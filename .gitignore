@@ -1,0 +1,9 @@
+web/sf*
+web/uploads/*
+cache/*
+plugins/.*
+log/*
+config/databases.yml
+mkmf.log
+.rsync*
+backups/*

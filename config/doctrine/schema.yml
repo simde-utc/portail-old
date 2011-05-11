@@ -1,0 +1,141 @@
+Asso:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    name: { type: string(50) }
+    login: { type: string(32) }
+    pole_id: { type: integer }
+    type_id: { type: integer }
+    url_site: { type: string(100) }
+    description: { type: clob }
+    logo: { type: string(100) }
+    active: { type: boolean }
+  relations:
+    Pole: { local: pole_id, foreign: id }
+    Type: { local: type_id, foreign: id, class: TypeAsso }
+ 
+Pole:
+  connection: doctrine
+  columns:
+    asso_id: { type: integer }
+  relations:
+    Infos: { local: asso_id, foreign: id, class: Asso }
+    
+    
+TypeAsso:
+  connection: doctrine
+  columns:
+    name: { type: string(50) }
+    
+AssoMember:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    user_id: { type: integer }
+    asso_id: { type: integer }
+    role_id: { type: integer }
+  relations:
+    Asso: { local: asso, foreign: id }
+    Role: { local: role, foreign: id }
+    User: { local: user_id, foreign: id, class: SfGuardUser }
+    
+Role:
+  connection: doctrine
+  columns:
+    name: { type: string(50) }
+    order: { type: integer(4) }
+    
+sfGuardUser:
+  connection: doctrine
+  actAs: [Timestampable]
+  columns:
+    first_name: { type: string(255) }
+    last_name: { type: string(255) }
+    email_address:
+      type: string(255)
+      notnull: true
+      unique: true
+    username:
+      type: string(128)
+      notnull: true
+      unique: true
+    algorithm:
+      type: string(128)
+      default: sha1
+      notnull: true
+    salt: { type: string(128) }
+    password: { type: string(128) }
+    domain: { type: string(15) }
+    is_active:
+      type: boolean
+      default: 1
+    is_super_admin:
+      type: boolean
+      default: false
+    last_login:
+      type: timestamp
+  indexes:
+    is_active_idx:
+      fields: [is_active]
+    full_login:
+      fields: [username, domain]
+      type: unique
+      
+Profile:
+   connection: doctrine
+   actAs: { Timestampable: ~ }
+   columns:
+     user_id: { type: integer }
+     nickname: { type: string(50) }
+     birthday: { type: date }
+     sexe: { type: char(1) }
+     mobile: { type: string(15) }
+     home_address: { type: integer }
+     family_address: { type: integer }
+   relations:
+     User: { local: user_id, foreign: id, class: SfGuardUser }
+     HomeAdress: { local: home_adress, foreign: id, class: Address }
+     FamilyAdress: { local: family_adress, foreign: id, class: Address }
+
+Address:
+   connection: doctrine
+   actAs: { Timestampable: ~ }
+   columns:
+     street: { type: string }
+     zipcode: { type: string(10) }
+     city: { type: string(100) }
+     country: { type: string(100) }
+     phone: { type: string(15) }
+
+Event:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    asso_id : { type: integer }
+    type_id: { type: integer }
+    name: { type: string(50) }
+    description: { type: clob }
+    start_date: { type: date }
+    end_date: { type: date }
+    is_public: { type: boolean }
+    is_weekmail: { type: boolean }
+    place: { type: string }
+  relations:
+    Asso: { local: asso_id, foreign: id }
+    Type: { local: type_id, foreign: id, class: EventType }
+    
+EventType:
+  connection: doctrine
+  columns:
+    name: { type: string(50) }
+    
+Article:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    asso_id: { type: integer }
+    name : { type: string(200) }
+    text : { type: cblob }
+    is_weekmail: { type: boolean }
+  relations:
+    Asso: { local: asso_id, foreign: id }

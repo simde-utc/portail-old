@@ -15,7 +15,7 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'first_name'     => new sfWidgetFormFilterInput(),
       'last_name'      => new sfWidgetFormFilterInput(),
-      'email_address'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'email_adress'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'username'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'algorithm'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'salt'           => new sfWidgetFormFilterInput(),
@@ -31,7 +31,7 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'first_name'     => new sfValidatorPass(array('required' => false)),
       'last_name'      => new sfValidatorPass(array('required' => false)),
-      'email_address'  => new sfValidatorPass(array('required' => false)),
+      'email_adress'   => new sfValidatorPass(array('required' => false)),
       'username'       => new sfValidatorPass(array('required' => false)),
       'algorithm'      => new sfValidatorPass(array('required' => false)),
       'salt'           => new sfValidatorPass(array('required' => false)),
@@ -64,7 +64,7 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'id'             => 'Number',
       'first_name'     => 'Text',
       'last_name'      => 'Text',
-      'email_address'  => 'Text',
+      'email_adress'   => 'Text',
       'username'       => 'Text',
       'algorithm'      => 'Text',
       'salt'           => 'Text',

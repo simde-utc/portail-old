@@ -9,7 +9,7 @@ Doctrine_Manager::getInstance()->bindComponent('sfGuardUser', 'doctrine');
  * 
  * @property string $first_name
  * @property string $last_name
- * @property string $email_address
+ * @property string $email_adress
  * @property string $username
  * @property string $algorithm
  * @property string $salt
@@ -21,7 +21,7 @@ Doctrine_Manager::getInstance()->bindComponent('sfGuardUser', 'doctrine');
  * 
  * @method string      getFirstName()      Returns the current record's "first_name" value
  * @method string      getLastName()       Returns the current record's "last_name" value
- * @method string      getEmailAddress()   Returns the current record's "email_address" value
+ * @method string      getEmailAdress()    Returns the current record's "email_adress" value
  * @method string      getUsername()       Returns the current record's "username" value
  * @method string      getAlgorithm()      Returns the current record's "algorithm" value
  * @method string      getSalt()           Returns the current record's "salt" value
@@ -32,7 +32,7 @@ Doctrine_Manager::getInstance()->bindComponent('sfGuardUser', 'doctrine');
  * @method timestamp   getLastLogin()      Returns the current record's "last_login" value
  * @method sfGuardUser setFirstName()      Sets the current record's "first_name" value
  * @method sfGuardUser setLastName()       Sets the current record's "last_name" value
- * @method sfGuardUser setEmailAddress()   Sets the current record's "email_address" value
+ * @method sfGuardUser setEmailAdress()    Sets the current record's "email_adress" value
  * @method sfGuardUser setUsername()       Sets the current record's "username" value
  * @method sfGuardUser setAlgorithm()      Sets the current record's "algorithm" value
  * @method sfGuardUser setSalt()           Sets the current record's "salt" value
@@ -60,7 +60,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'type' => 'string',
              'length' => 255,
              ));
-        $this->hasColumn('email_address', 'string', 255, array(
+        $this->hasColumn('email_adress', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
              'unique' => true,

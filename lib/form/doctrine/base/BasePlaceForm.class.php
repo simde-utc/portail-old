@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Adress form base class.
+ * Place form base class.
  *
- * @method Adress getObject() Returns the current form's model object
+ * @method Place getObject() Returns the current form's model object
  *
  * @package    simde
  * @subpackage form
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseAdressForm extends BaseFormDoctrine
+abstract class BasePlaceForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -36,7 +36,7 @@ abstract class BaseAdressForm extends BaseFormDoctrine
       'updated_at' => new sfValidatorDateTime(),
     ));
 
-    $this->widgetSchema->setNameFormat('adress[%s]');
+    $this->widgetSchema->setNameFormat('place[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -47,7 +47,7 @@ abstract class BaseAdressForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'Adress';
+    return 'Place';
   }
 
 }

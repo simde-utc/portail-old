@@ -90,14 +90,14 @@ Profile:
      birthday: { type: date }
      sexe: { type: char(1) }
      mobile: { type: string(15) }
-     home_adress: { type: integer }
-     family_adress: { type: integer }
+     home_place: { type: integer }
+     family_place: { type: integer }
    relations:
      User: { local: user_id, foreign: id, class: SfGuardUser }
-     HomeAdress: { local: home_adress, foreign: id, class: Adress }
-     FamilyAdress: { local: family_adress, foreign: id, class: Adress }
+     HomePlace: { local: home_place, foreign: id, class: Place }
+     FamilyPlace: { local: family_place, foreign: id, class: Place }
 
-Adress:
+Place:
    connection: doctrine
    actAs: { Timestampable: ~ }
    columns:

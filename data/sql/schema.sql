@@ -1,11 +1,11 @@
-CREATE TABLE adress (id BIGINT AUTO_INCREMENT, street TEXT, zipcode VARCHAR(10), city VARCHAR(100), country VARCHAR(100), phone VARCHAR(15), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE article (id BIGINT AUTO_INCREMENT, asso_id BIGINT, name VARCHAR(200), text TEXT, is_weekmail TINYINT(1), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX asso_id_idx (asso_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE asso (id BIGINT AUTO_INCREMENT, name VARCHAR(50), login VARCHAR(32), pole_id BIGINT, type_id BIGINT, url_site VARCHAR(100), description TEXT, logo VARCHAR(100), active TINYINT(1), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX pole_id_idx (pole_id), INDEX type_id_idx (type_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE asso_member (id BIGINT AUTO_INCREMENT, user_id BIGINT, asso_id BIGINT, role_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX asso_id_idx (asso_id), INDEX role_id_idx (role_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE event (id BIGINT AUTO_INCREMENT, asso_id BIGINT, type_id BIGINT, name VARCHAR(50), description TEXT, start_date DATE, end_date DATE, is_public TINYINT(1), is_weekmail TINYINT(1), place TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX asso_id_idx (asso_id), INDEX type_id_idx (type_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE event_type (id BIGINT AUTO_INCREMENT, name VARCHAR(50), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE place (id BIGINT AUTO_INCREMENT, street TEXT, zipcode VARCHAR(10), city VARCHAR(100), country VARCHAR(100), phone VARCHAR(15), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE pole (id BIGINT AUTO_INCREMENT, asso_id BIGINT, INDEX asso_id_idx (asso_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE profile (id BIGINT AUTO_INCREMENT, user_id BIGINT, nickname VARCHAR(50), birthday DATE, sexe CHAR(1), mobile VARCHAR(15), home_adress BIGINT, family_adress BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX home_adress_idx (home_adress), INDEX family_adress_idx (family_adress), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE profile (id BIGINT AUTO_INCREMENT, user_id BIGINT, nickname VARCHAR(50), birthday DATE, sexe CHAR(1), mobile VARCHAR(15), home_place BIGINT, family_place BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX home_place_idx (home_place), INDEX family_place_idx (family_place), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE role (id BIGINT AUTO_INCREMENT, name VARCHAR(50), sort INT, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE type_asso (id BIGINT AUTO_INCREMENT, name VARCHAR(50), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user (id BIGINT AUTO_INCREMENT, first_name VARCHAR(255), last_name VARCHAR(255), email_adress VARCHAR(255) NOT NULL UNIQUE, username VARCHAR(128) NOT NULL UNIQUE, algorithm VARCHAR(128) DEFAULT 'sha1' NOT NULL, salt VARCHAR(128), password VARCHAR(128), domain VARCHAR(15), is_active TINYINT(1) DEFAULT '1', is_super_admin TINYINT(1) DEFAULT '0', last_login DATETIME, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX is_active_idx_idx (is_active), UNIQUE INDEX full_login_idx (username, domain), PRIMARY KEY(id)) ENGINE = INNODB;
@@ -17,5 +17,5 @@ ALTER TABLE asso_member ADD CONSTRAINT asso_member_asso_id_asso_id FOREIGN KEY (
 ALTER TABLE event ADD CONSTRAINT event_type_id_event_type_id FOREIGN KEY (type_id) REFERENCES event_type(id);
 ALTER TABLE event ADD CONSTRAINT event_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id);
 ALTER TABLE pole ADD CONSTRAINT pole_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id);
-ALTER TABLE profile ADD CONSTRAINT profile_home_adress_adress_id FOREIGN KEY (home_adress) REFERENCES adress(id);
-ALTER TABLE profile ADD CONSTRAINT profile_family_adress_adress_id FOREIGN KEY (family_adress) REFERENCES adress(id);
+ALTER TABLE profile ADD CONSTRAINT profile_home_place_place_id FOREIGN KEY (home_place) REFERENCES place(id);
+ALTER TABLE profile ADD CONSTRAINT profile_family_place_place_id FOREIGN KEY (family_place) REFERENCES place(id);

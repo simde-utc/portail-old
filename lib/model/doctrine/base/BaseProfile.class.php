@@ -12,29 +12,29 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @property date $birthday
  * @property char $sexe
  * @property string $mobile
- * @property integer $home_adress
- * @property integer $family_adress
- * @property Adress $HomeAdress
- * @property Adress $FamilyAdress
+ * @property integer $home_place
+ * @property integer $family_place
+ * @property Place $HomePlace
+ * @property Place $FamilyPlace
  * 
- * @method integer getUserId()        Returns the current record's "user_id" value
- * @method string  getNickname()      Returns the current record's "nickname" value
- * @method date    getBirthday()      Returns the current record's "birthday" value
- * @method char    getSexe()          Returns the current record's "sexe" value
- * @method string  getMobile()        Returns the current record's "mobile" value
- * @method integer getHomeAdress()    Returns the current record's "home_adress" value
- * @method integer getFamilyAdress()  Returns the current record's "family_adress" value
- * @method Adress  getHomeAdress()    Returns the current record's "HomeAdress" value
- * @method Adress  getFamilyAdress()  Returns the current record's "FamilyAdress" value
- * @method Profile setUserId()        Sets the current record's "user_id" value
- * @method Profile setNickname()      Sets the current record's "nickname" value
- * @method Profile setBirthday()      Sets the current record's "birthday" value
- * @method Profile setSexe()          Sets the current record's "sexe" value
- * @method Profile setMobile()        Sets the current record's "mobile" value
- * @method Profile setHomeAdress()    Sets the current record's "home_adress" value
- * @method Profile setFamilyAdress()  Sets the current record's "family_adress" value
- * @method Profile setHomeAdress()    Sets the current record's "HomeAdress" value
- * @method Profile setFamilyAdress()  Sets the current record's "FamilyAdress" value
+ * @method integer getUserId()       Returns the current record's "user_id" value
+ * @method string  getNickname()     Returns the current record's "nickname" value
+ * @method date    getBirthday()     Returns the current record's "birthday" value
+ * @method char    getSexe()         Returns the current record's "sexe" value
+ * @method string  getMobile()       Returns the current record's "mobile" value
+ * @method integer getHomePlace()    Returns the current record's "home_place" value
+ * @method integer getFamilyPlace()  Returns the current record's "family_place" value
+ * @method Place   getHomePlace()    Returns the current record's "HomePlace" value
+ * @method Place   getFamilyPlace()  Returns the current record's "FamilyPlace" value
+ * @method Profile setUserId()       Sets the current record's "user_id" value
+ * @method Profile setNickname()     Sets the current record's "nickname" value
+ * @method Profile setBirthday()     Sets the current record's "birthday" value
+ * @method Profile setSexe()         Sets the current record's "sexe" value
+ * @method Profile setMobile()       Sets the current record's "mobile" value
+ * @method Profile setHomePlace()    Sets the current record's "home_place" value
+ * @method Profile setFamilyPlace()  Sets the current record's "family_place" value
+ * @method Profile setHomePlace()    Sets the current record's "HomePlace" value
+ * @method Profile setFamilyPlace()  Sets the current record's "FamilyPlace" value
  * 
  * @package    simde
  * @subpackage model
@@ -64,10 +64,10 @@ abstract class BaseProfile extends sfDoctrineRecord
              'type' => 'string',
              'length' => 15,
              ));
-        $this->hasColumn('home_adress', 'integer', null, array(
+        $this->hasColumn('home_place', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('family_adress', 'integer', null, array(
+        $this->hasColumn('family_place', 'integer', null, array(
              'type' => 'integer',
              ));
     }
@@ -75,12 +75,12 @@ abstract class BaseProfile extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Adress as HomeAdress', array(
-             'local' => 'home_adress',
+        $this->hasOne('Place as HomePlace', array(
+             'local' => 'home_place',
              'foreign' => 'id'));
 
-        $this->hasOne('Adress as FamilyAdress', array(
-             'local' => 'family_adress',
+        $this->hasOne('Place as FamilyPlace', array(
+             'local' => 'family_place',
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();

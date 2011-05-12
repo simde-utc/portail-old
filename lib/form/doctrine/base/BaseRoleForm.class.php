@@ -15,15 +15,15 @@ abstract class BaseRoleForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'    => new sfWidgetFormInputHidden(),
-      'name'  => new sfWidgetFormInputText(),
-      'order' => new sfWidgetFormInputText(),
+      'id'   => new sfWidgetFormInputHidden(),
+      'name' => new sfWidgetFormInputText(),
+      'sort' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
-      'id'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'name'  => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'order' => new sfValidatorInteger(array('required' => false)),
+      'id'   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'name' => new sfValidatorString(array('max_length' => 50, 'required' => false)),
+      'sort' => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('role[%s]');

@@ -9,13 +9,13 @@ Doctrine_Manager::getInstance()->bindComponent('Article', 'doctrine');
  * 
  * @property integer $asso_id
  * @property string $name
- * @property cblob $text
+ * @property string $text
  * @property boolean $is_weekmail
  * @property Asso $Asso
  * 
  * @method integer getAssoId()      Returns the current record's "asso_id" value
  * @method string  getName()        Returns the current record's "name" value
- * @method cblob   getText()        Returns the current record's "text" value
+ * @method string  getText()        Returns the current record's "text" value
  * @method boolean getIsWeekmail()  Returns the current record's "is_weekmail" value
  * @method Asso    getAsso()        Returns the current record's "Asso" value
  * @method Article setAssoId()      Sets the current record's "asso_id" value
@@ -41,8 +41,8 @@ abstract class BaseArticle extends sfDoctrineRecord
              'type' => 'string',
              'length' => 200,
              ));
-        $this->hasColumn('text', 'cblob', null, array(
-             'type' => 'cblob',
+        $this->hasColumn('text', 'string', null, array(
+             'type' => 'string',
              ));
         $this->hasColumn('is_weekmail', 'boolean', null, array(
              'type' => 'boolean',

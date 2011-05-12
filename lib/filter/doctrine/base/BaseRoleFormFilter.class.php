@@ -13,13 +13,13 @@ abstract class BaseRoleFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'name'  => new sfWidgetFormFilterInput(),
-      'order' => new sfWidgetFormFilterInput(),
+      'name' => new sfWidgetFormFilterInput(),
+      'sort' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'name'  => new sfValidatorPass(array('required' => false)),
-      'order' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'name' => new sfValidatorPass(array('required' => false)),
+      'sort' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('role_filters[%s]');
@@ -39,9 +39,9 @@ abstract class BaseRoleFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'    => 'Number',
-      'name'  => 'Text',
-      'order' => 'Number',
+      'id'   => 'Number',
+      'name' => 'Text',
+      'sort' => 'Number',
     );
   }
 }

@@ -10,7 +10,7 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @property integer $asso_id
  * @property integer $type_id
  * @property string $name
- * @property clob $description
+ * @property string $description
  * @property date $start_date
  * @property date $end_date
  * @property boolean $is_public
@@ -22,7 +22,7 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @method integer   getAssoId()      Returns the current record's "asso_id" value
  * @method integer   getTypeId()      Returns the current record's "type_id" value
  * @method string    getName()        Returns the current record's "name" value
- * @method clob      getDescription() Returns the current record's "description" value
+ * @method string    getDescription() Returns the current record's "description" value
  * @method date      getStartDate()   Returns the current record's "start_date" value
  * @method date      getEndDate()     Returns the current record's "end_date" value
  * @method boolean   getIsPublic()    Returns the current record's "is_public" value
@@ -62,8 +62,8 @@ abstract class BaseEvent extends sfDoctrineRecord
              'type' => 'string',
              'length' => 50,
              ));
-        $this->hasColumn('description', 'clob', null, array(
-             'type' => 'clob',
+        $this->hasColumn('description', 'string', null, array(
+             'type' => 'string',
              ));
         $this->hasColumn('start_date', 'date', null, array(
              'type' => 'date',

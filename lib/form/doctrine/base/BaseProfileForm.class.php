@@ -15,29 +15,29 @@ abstract class BaseProfileForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'             => new sfWidgetFormInputHidden(),
-      'user_id'        => new sfWidgetFormInputText(),
-      'nickname'       => new sfWidgetFormInputText(),
-      'birthday'       => new sfWidgetFormDate(),
-      'sexe'           => new sfWidgetFormInputText(),
-      'mobile'         => new sfWidgetFormInputText(),
-      'home_address'   => new sfWidgetFormInputText(),
-      'family_address' => new sfWidgetFormInputText(),
-      'created_at'     => new sfWidgetFormDateTime(),
-      'updated_at'     => new sfWidgetFormDateTime(),
+      'id'            => new sfWidgetFormInputHidden(),
+      'user_id'       => new sfWidgetFormInputText(),
+      'nickname'      => new sfWidgetFormInputText(),
+      'birthday'      => new sfWidgetFormDate(),
+      'sexe'          => new sfWidgetFormInputText(),
+      'mobile'        => new sfWidgetFormInputText(),
+      'home_adress'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('HomeAdress'), 'add_empty' => true)),
+      'family_adress' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('FamilyAdress'), 'add_empty' => true)),
+      'created_at'    => new sfWidgetFormDateTime(),
+      'updated_at'    => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'user_id'        => new sfValidatorInteger(array('required' => false)),
-      'nickname'       => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'birthday'       => new sfValidatorDate(array('required' => false)),
-      'sexe'           => new sfValidatorPass(array('required' => false)),
-      'mobile'         => new sfValidatorString(array('max_length' => 15, 'required' => false)),
-      'home_address'   => new sfValidatorInteger(array('required' => false)),
-      'family_address' => new sfValidatorInteger(array('required' => false)),
-      'created_at'     => new sfValidatorDateTime(),
-      'updated_at'     => new sfValidatorDateTime(),
+      'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'user_id'       => new sfValidatorInteger(array('required' => false)),
+      'nickname'      => new sfValidatorString(array('max_length' => 50, 'required' => false)),
+      'birthday'      => new sfValidatorDate(array('required' => false)),
+      'sexe'          => new sfValidatorPass(array('required' => false)),
+      'mobile'        => new sfValidatorString(array('max_length' => 15, 'required' => false)),
+      'home_adress'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('HomeAdress'), 'required' => false)),
+      'family_adress' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('FamilyAdress'), 'required' => false)),
+      'created_at'    => new sfValidatorDateTime(),
+      'updated_at'    => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('profile[%s]');

@@ -49,11 +49,11 @@ abstract class BaseAssoMember extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasOne('Asso', array(
-             'local' => 'asso',
+             'local' => 'asso_id',
              'foreign' => 'id'));
 
         $this->hasOne('Role', array(
-             'local' => 'role',
+             'local' => 'role_id',
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();

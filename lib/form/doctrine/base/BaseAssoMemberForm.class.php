@@ -17,8 +17,8 @@ abstract class BaseAssoMemberForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'user_id'    => new sfWidgetFormInputText(),
-      'asso_id'    => new sfWidgetFormInputText(),
-      'role_id'    => new sfWidgetFormInputText(),
+      'asso_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'add_empty' => true)),
+      'role_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Role'), 'add_empty' => true)),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
@@ -26,8 +26,8 @@ abstract class BaseAssoMemberForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'user_id'    => new sfValidatorInteger(array('required' => false)),
-      'asso_id'    => new sfValidatorInteger(array('required' => false)),
-      'role_id'    => new sfValidatorInteger(array('required' => false)),
+      'asso_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'required' => false)),
+      'role_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Role'), 'required' => false)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
     ));

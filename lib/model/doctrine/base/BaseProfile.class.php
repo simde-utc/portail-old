@@ -12,29 +12,29 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @property date $birthday
  * @property char $sexe
  * @property string $mobile
- * @property integer $home_address
- * @property integer $family_address
- * @property Address $HomeAdress
- * @property Address $FamilyAdress
+ * @property integer $home_adress
+ * @property integer $family_adress
+ * @property Adress $HomeAdress
+ * @property Adress $FamilyAdress
  * 
- * @method integer getUserId()         Returns the current record's "user_id" value
- * @method string  getNickname()       Returns the current record's "nickname" value
- * @method date    getBirthday()       Returns the current record's "birthday" value
- * @method char    getSexe()           Returns the current record's "sexe" value
- * @method string  getMobile()         Returns the current record's "mobile" value
- * @method integer getHomeAddress()    Returns the current record's "home_address" value
- * @method integer getFamilyAddress()  Returns the current record's "family_address" value
- * @method Address getHomeAdress()     Returns the current record's "HomeAdress" value
- * @method Address getFamilyAdress()   Returns the current record's "FamilyAdress" value
- * @method Profile setUserId()         Sets the current record's "user_id" value
- * @method Profile setNickname()       Sets the current record's "nickname" value
- * @method Profile setBirthday()       Sets the current record's "birthday" value
- * @method Profile setSexe()           Sets the current record's "sexe" value
- * @method Profile setMobile()         Sets the current record's "mobile" value
- * @method Profile setHomeAddress()    Sets the current record's "home_address" value
- * @method Profile setFamilyAddress()  Sets the current record's "family_address" value
- * @method Profile setHomeAdress()     Sets the current record's "HomeAdress" value
- * @method Profile setFamilyAdress()   Sets the current record's "FamilyAdress" value
+ * @method integer getUserId()        Returns the current record's "user_id" value
+ * @method string  getNickname()      Returns the current record's "nickname" value
+ * @method date    getBirthday()      Returns the current record's "birthday" value
+ * @method char    getSexe()          Returns the current record's "sexe" value
+ * @method string  getMobile()        Returns the current record's "mobile" value
+ * @method integer getHomeAdress()    Returns the current record's "home_adress" value
+ * @method integer getFamilyAdress()  Returns the current record's "family_adress" value
+ * @method Adress  getHomeAdress()    Returns the current record's "HomeAdress" value
+ * @method Adress  getFamilyAdress()  Returns the current record's "FamilyAdress" value
+ * @method Profile setUserId()        Sets the current record's "user_id" value
+ * @method Profile setNickname()      Sets the current record's "nickname" value
+ * @method Profile setBirthday()      Sets the current record's "birthday" value
+ * @method Profile setSexe()          Sets the current record's "sexe" value
+ * @method Profile setMobile()        Sets the current record's "mobile" value
+ * @method Profile setHomeAdress()    Sets the current record's "home_adress" value
+ * @method Profile setFamilyAdress()  Sets the current record's "family_adress" value
+ * @method Profile setHomeAdress()    Sets the current record's "HomeAdress" value
+ * @method Profile setFamilyAdress()  Sets the current record's "FamilyAdress" value
  * 
  * @package    simde
  * @subpackage model
@@ -64,10 +64,10 @@ abstract class BaseProfile extends sfDoctrineRecord
              'type' => 'string',
              'length' => 15,
              ));
-        $this->hasColumn('home_address', 'integer', null, array(
+        $this->hasColumn('home_adress', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('family_address', 'integer', null, array(
+        $this->hasColumn('family_adress', 'integer', null, array(
              'type' => 'integer',
              ));
     }
@@ -75,11 +75,11 @@ abstract class BaseProfile extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Address as HomeAdress', array(
+        $this->hasOne('Adress as HomeAdress', array(
              'local' => 'home_adress',
              'foreign' => 'id'));
 
-        $this->hasOne('Address as FamilyAdress', array(
+        $this->hasOne('Adress as FamilyAdress', array(
              'local' => 'family_adress',
              'foreign' => 'id'));
 

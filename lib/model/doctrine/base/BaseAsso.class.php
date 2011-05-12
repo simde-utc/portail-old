@@ -12,7 +12,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property integer $pole_id
  * @property integer $type_id
  * @property string $url_site
- * @property clob $description
+ * @property string $description
  * @property string $logo
  * @property boolean $active
  * @property Pole $Pole
@@ -26,7 +26,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method integer             getPoleId()      Returns the current record's "pole_id" value
  * @method integer             getTypeId()      Returns the current record's "type_id" value
  * @method string              getUrlSite()     Returns the current record's "url_site" value
- * @method clob                getDescription() Returns the current record's "description" value
+ * @method string              getDescription() Returns the current record's "description" value
  * @method string              getLogo()        Returns the current record's "logo" value
  * @method boolean             getActive()      Returns the current record's "active" value
  * @method Pole                getPole()        Returns the current record's "Pole" value
@@ -76,8 +76,8 @@ abstract class BaseAsso extends sfDoctrineRecord
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('description', 'clob', null, array(
-             'type' => 'clob',
+        $this->hasColumn('description', 'string', null, array(
+             'type' => 'string',
              ));
         $this->hasColumn('logo', 'string', 100, array(
              'type' => 'string',
@@ -101,7 +101,7 @@ abstract class BaseAsso extends sfDoctrineRecord
 
         $this->hasMany('AssoMember', array(
              'local' => 'id',
-             'foreign' => 'asso'));
+             'foreign' => 'asso_id'));
 
         $this->hasMany('Event', array(
              'local' => 'id',

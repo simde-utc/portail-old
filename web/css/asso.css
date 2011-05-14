@@ -58,7 +58,7 @@
 	padding:3px 3px 3px 23px;
 	margin:2px;
 	font-weight:bold;
-	background: url('../img/world.png') no-repeat 3px 3px;
+	background: url('/images/world.png') no-repeat 3px 3px;
 }
 #assos_list .website:hover{
 	text-decoration:none;

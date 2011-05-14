@@ -8,12 +8,20 @@ homepage:
   
   
 assos_list:
-  url:   /asso/list/:pole
+  url:   /asso
+  param: { module: asso, action: index }
+
+assos_list_pole:
+  url:   /asso/pole/:id
+  class: sfDoctrineRoute
   param: { module: asso, action: list }
-  
+  options: { model: Pole, type: object }
+
 assos_show:
-  url:   /asso/show/:asso
+  url:   /asso/show/:id
+  class: sfDoctrineRoute
   param: { module: asso, action: show }
+  options: { model: Asso, type: object }
   
 sf_guard_signin:
   url:   /login

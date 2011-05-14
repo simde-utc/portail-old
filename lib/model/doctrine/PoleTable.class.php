@@ -7,36 +7,15 @@
  */
 class PoleTable extends Doctrine_Table
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return object PoleTable
-     */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('Pole');
-    }
-    
-    /**
-     * 
-     * Retrieve a Pole by its login
-     * 
-     * @param String $login
-     */
-		public static function retrieveByLogin($login)
-		{
-			
-			if($asso = AssoTable::retrieveByLogin($login))
-			{
-				$q = Doctrine_Query::create()
-						->from('Pole p');
 
-				$q->Where('p.asso_id = ?', $asso->getId());
+  /**
+   * Returns an instance of this class.
+   *
+   * @return object PoleTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('Pole');
+  }
 
-				return $q->fetchOne();
-			}
-			else return null;
-			
-	    
-		}
 }

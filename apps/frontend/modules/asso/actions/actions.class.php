@@ -10,23 +10,28 @@
  */
 class assoActions extends sfActions
 {
- /**
-  * Liste des associations
-  * Si un pole est spécifié on affiche la liste des asso de ce pole, 
-  * sinon on affiche la liste de toutes les assos
-  *
-  * @param sfRequest $request A request object
-  */
+  /**
+   * Liste des associations
+   * On affiche la liste de toutes les assos
+   *
+   * @param sfRequest $request A request object
+   */
+  public function executeIndex(sfWebRequest $request)
+  {
+    $this->assos = AssoTable::getInstance()->getAssosList();
+    $this->setTemplate('list');
+  }
+  
+  /**
+   * Liste des associations
+   * On affiche la liste des asso du pôle spécifié
+   *
+   * @param sfRequest $request A request object
+   */
   public function executeList(sfWebRequest $request)
   {
-  	$this->pole = null;
-  	if($request->hasParameter("pole"))
-  	{
-  		$this->pole = PoleTable::retrieveByLogin($request->getParameter("pole"));	
-  	}
-  	
-  	
-    $this->assos = AssoTable::getAssosList($this->pole);
+    $this->pole = $this->getRoute()->getObject();
+    $this->assos = AssoTable::getInstance()->getAssosList($this->pole->getPrimaryKey());
   }
 
   /**
@@ -36,11 +41,7 @@ class assoActions extends sfActions
    */
   public function executeShow(sfWebRequest $request)
   {
-  	$this->asso = null;
-  	if($request->hasParameter("asso"))
-  	{
-  		$this->asso = AssoTable::retrieveByLogin($request->getParameter("asso"));	
-  	}
+    $this->asso = $this->getRoute()->getObject();
   }
 
 }

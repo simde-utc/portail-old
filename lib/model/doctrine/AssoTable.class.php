@@ -7,51 +7,34 @@
  */
 class AssoTable extends Doctrine_Table
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return object AssoTable
-     */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('Asso');
-    }
-    
-    /**
-     * 
-     * Fetch the list of all associations sorted by name.
-     * 
-     * TODO : Add more parameters to specify the associations we want
-     * 
-     * @param int $pole_id
-     */
-	public static function getAssosList($pole_id = null)
-	{
-	$q = Doctrine_Query::create()
-	  ->from('Asso a');
-	 
-	  $q->addOrderBy('a.name ASC');
-	  
-	  if($pole_id)
-		$q->Where("a.pole_id = ?", $pole_id);
-	 
-	  return $q->execute();
-	}
-		
-    /**
-     * 
-     * Retrieve an association by its login
-     * 
-     * @param String $login
-     */
-	public static function retrieveByLogin($login)
-	{
 
-		$q = Doctrine_Query::create()
-				->from('Asso a');
+  /**
+   * Returns an instance of this class.
+   *
+   * @return object AssoTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('Asso');
+  }
 
-		$q->Where('a.login = ?', $login);
+  /**
+   * 
+   * Fetch the list of all associations sorted by name.
+   * 
+   * TODO : Add more parameters to specify the associations we want
+   * 
+   * @param int $pole_id
+   */
+  public function getAssosList($pole_id = null)
+  {
+    $q = $this->createQuery('a')
+      ->addOrderBy('a.name ASC');
 
-		return $q->fetchOne();
-	}
+    if(!is_null($pole_id))
+      $q = $q->where("a.pole_id = ?",$pole_id);
+
+    return $q->execute();
+  }
+
 }

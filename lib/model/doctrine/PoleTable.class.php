@@ -29,11 +29,11 @@ class PoleTable extends Doctrine_Table
 			if($asso = AssoTable::retrieveByLogin($login))
 			{
 				$q = Doctrine_Query::create()
-	      ->from('Pole p');
-			 
-			  $q->Where('p.asso_id = ?', $asso->getId());
-			 
-			  return $q->fetchOne();
+						->from('Pole p');
+
+				$q->Where('p.asso_id = ?', $asso->getId());
+
+				return $q->fetchOne();
 			}
 			else return null;
 			

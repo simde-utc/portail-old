@@ -25,18 +25,18 @@ class AssoTable extends Doctrine_Table
      * 
      * @param int $pole_id
      */
-		public static function getAssosList($pole_id = null)
-		{
-	    $q = Doctrine_Query::create()
-	      ->from('Asso a');
-		 
-		  $q->addOrderBy('a.name ASC');
-		  
-		  if($pole_id)
-		  	$q->Where("a.pole_id = ?", $pole_id);
-		 
-		  return $q->execute();
-		}
+	public static function getAssosList($pole_id = null)
+	{
+	$q = Doctrine_Query::create()
+	  ->from('Asso a');
+	 
+	  $q->addOrderBy('a.name ASC');
+	  
+	  if($pole_id)
+		$q->Where("a.pole_id = ?", $pole_id);
+	 
+	  return $q->execute();
+	}
 		
     /**
      * 
@@ -44,14 +44,14 @@ class AssoTable extends Doctrine_Table
      * 
      * @param String $login
      */
-		public static function retrieveByLogin($login)
-		{
+	public static function retrieveByLogin($login)
+	{
 
-	    $q = Doctrine_Query::create()
-	      ->from('Asso a');
-		 
-		  $q->Where('a.login = ?', $login);
-		 
-		  return $q->fetchOne();
-		}
+		$q = Doctrine_Query::create()
+				->from('Asso a');
+
+		$q->Where('a.login = ?', $login);
+
+		return $q->fetchOne();
+	}
 }

@@ -11,6 +11,10 @@ assos_list:
   url:   /asso/list/:pole
   param: { module: asso, action: list }
   
+assos_show:
+  url:   /asso/show/:asso
+  param: { module: asso, action: show }
+  
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }

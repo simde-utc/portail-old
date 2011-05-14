@@ -44,48 +44,13 @@ Role:
   columns:
     name: { type: string(50) }
     sort: { type: integer(4) }
-    
-sfGuardUser:
-  connection: doctrine
-  actAs: [Timestampable]
-  columns:
-    first_name: { type: string(255) }
-    last_name: { type: string(255) }
-    email_adress:
-      type: string(255)
-      notnull: true
-      unique: true
-    username:
-      type: string(128)
-      notnull: true
-      unique: true
-    algorithm:
-      type: string(128)
-      default: sha1
-      notnull: true
-    salt: { type: string(128) }
-    password: { type: string(128) }
-    domain: { type: string(15) }
-    is_active:
-      type: boolean
-      default: 1
-    is_super_admin:
-      type: boolean
-      default: false
-    last_login:
-      type: timestamp
-  indexes:
-    is_active_idx:
-      fields: [is_active]
-    full_login:
-      fields: [username, domain]
-      type: unique
       
 Profile:
    connection: doctrine
    actAs: { Timestampable: ~ }
    columns:
      user_id: { type: integer }
+     domain: { type: string(15) }
      nickname: { type: string(50) }
      birthday: { type: date }
      sexe: { type: char(1) }
@@ -93,7 +58,7 @@ Profile:
      home_place: { type: integer }
      family_place: { type: integer }
    relations:
-     User: { local: user_id, foreign: id, class: SfGuardUser }
+     User: { local: user_id, foreign: id, class: sfGuardUser, foreignType: one }
      HomePlace: { local: home_place, foreign: id, class: Place }
      FamilyPlace: { local: family_place, foreign: id, class: Place }
 

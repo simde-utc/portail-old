@@ -16,4 +16,23 @@ class PoleTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Pole');
     }
+    
+    /**
+     * 
+     * Retrieve a Pole by its login
+     * 
+     * @param String $login
+     */
+		public static function retrieveByLogin($login)
+		{
+
+			$asso = AssoTable::retrieveByLogin($login);
+			
+	    $q = Doctrine_Query::create()
+	      ->from('Pole p');
+		 
+		  $q->Where('p.asso_id = ?', $asso->getId());
+		 
+		  return $q->fetchOne();
+		}
 }

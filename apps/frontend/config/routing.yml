@@ -4,7 +4,12 @@
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: asso, action: list }
+  
+  
+assos_list:
+  url:   /asso/list/:pole
+  param: { module: asso, action: list }
 
 # generic rules
 # please, remove them by adding more specific rules

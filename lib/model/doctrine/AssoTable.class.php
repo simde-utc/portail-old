@@ -16,4 +16,42 @@ class AssoTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Asso');
     }
+    
+    /**
+     * 
+     * Fetch the list of all associations sorted by name.
+     * 
+     * TODO : Add more parameters to specify the associations we want
+     * 
+     * @param int $pole_id
+     */
+		public static function getAssosList($pole_id = null)
+		{
+	    $q = Doctrine_Query::create()
+	      ->from('Asso a');
+		 
+		  $q->addOrderBy('a.name ASC');
+		  
+		  if($pole_id)
+		  	$q->Where("a.pole_id = ?", $pole_id);
+		 
+		  return $q->execute();
+		}
+		
+    /**
+     * 
+     * Retrieve an association by its login
+     * 
+     * @param String $login
+     */
+		public static function retrieveByLogin($login)
+		{
+
+	    $q = Doctrine_Query::create()
+	      ->from('Asso a');
+		 
+		  $q->Where('a.login = ?', $login);
+		 
+		  return $q->fetchOne();
+		}
 }

@@ -16,7 +16,8 @@ abstract class BaseProfileForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
-      'user_id'      => new sfWidgetFormInputText(),
+      'user_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
+      'domain'       => new sfWidgetFormInputText(),
       'nickname'     => new sfWidgetFormInputText(),
       'birthday'     => new sfWidgetFormDate(),
       'sexe'         => new sfWidgetFormInputText(),
@@ -29,7 +30,8 @@ abstract class BaseProfileForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'           => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'user_id'      => new sfValidatorInteger(array('required' => false)),
+      'user_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'required' => false)),
+      'domain'       => new sfValidatorString(array('max_length' => 15, 'required' => false)),
       'nickname'     => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'birthday'     => new sfValidatorDate(array('required' => false)),
       'sexe'         => new sfValidatorPass(array('required' => false)),

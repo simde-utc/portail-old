@@ -45,4 +45,24 @@ abstract class PluginsfGuardUserTable extends Doctrine_Table
 
     return $query->fetchOne();
   }
+  
+  /**
+   * Retrieves a sfGuardUser object by username, domain and is_active flag.
+   *
+   * @param  string  $username The username
+   * @param  boolean $isActive The user's status
+   *
+   * @return sfGuardUser
+   */
+  public function retrieveByUsernameAndDomain($username, $domain, $isActive = true)
+  {
+    $query = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')
+      ->leftJoin('u.Profile p')
+      ->where('u.username = ?', $username)
+      ->addWhere('p.domain = ?',$domain)
+      ->addWhere('u.is_active = ?', $isActive)
+    ;
+
+    return $query->fetchOne();
+  }
 }

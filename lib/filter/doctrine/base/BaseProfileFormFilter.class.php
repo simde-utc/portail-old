@@ -13,7 +13,8 @@ abstract class BaseProfileFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'user_id'      => new sfWidgetFormFilterInput(),
+      'user_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
+      'domain'       => new sfWidgetFormFilterInput(),
       'nickname'     => new sfWidgetFormFilterInput(),
       'birthday'     => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'sexe'         => new sfWidgetFormFilterInput(),
@@ -25,7 +26,8 @@ abstract class BaseProfileFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'user_id'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'user_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('User'), 'column' => 'id')),
+      'domain'       => new sfValidatorPass(array('required' => false)),
       'nickname'     => new sfValidatorPass(array('required' => false)),
       'birthday'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'sexe'         => new sfValidatorPass(array('required' => false)),
@@ -54,7 +56,8 @@ abstract class BaseProfileFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'           => 'Number',
-      'user_id'      => 'Number',
+      'user_id'      => 'ForeignKey',
+      'domain'       => 'Text',
       'nickname'     => 'Text',
       'birthday'     => 'Date',
       'sexe'         => 'Text',

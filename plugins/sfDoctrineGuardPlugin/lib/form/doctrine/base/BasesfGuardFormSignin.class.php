@@ -11,24 +11,35 @@
  */
 class BasesfGuardFormSignin extends BaseForm
 {
+
   /**
    * @see sfForm
    */
   public function setup()
   {
+    $choices = array(
+     0 => 'Etudiant UTC',
+     1 => 'Enseignant UTC',
+     2 => 'ESCOM',
+     3 => 'Ancien',
+     4 => 'Extérieur',
+    );
+
     $this->setWidgets(array(
-      'username' => new sfWidgetFormInputText(),
-      'password' => new sfWidgetFormInputPassword(array('type' => 'password')),
-      'remember' => new sfWidgetFormInputCheckbox(),
+     'domain'   => new sfWidgetFormChoice(array('choices' => $choices)),
+     'username' => new sfWidgetFormInputText(),
+     'password' => new sfWidgetFormInputPassword(array('type' => 'password')),
+     'remember' => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
-      'username' => new sfValidatorString(),
-      'password' => new sfValidatorString(),
-      'remember' => new sfValidatorBoolean(),
+     'domain'   => new sfValidatorChoice(array('choices' => $choices)),
+     'username' => new sfValidatorString(),
+     'password' => new sfValidatorString(),
+     'remember' => new sfValidatorBoolean(),
     ));
 
-    if (sfConfig::get('app_sf_guard_plugin_allow_login_with_email', true))
+    if(sfConfig::get('app_sf_guard_plugin_allow_login_with_email',true))
     {
       $this->widgetSchema['username']->setLabel('Username or E-Mail');
     }
@@ -37,4 +48,5 @@ class BasesfGuardFormSignin extends BaseForm
 
     $this->widgetSchema->setNameFormat('signin[%s]');
   }
+
 }

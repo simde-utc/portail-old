@@ -48,6 +48,7 @@ class assoActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->asso = $this->getRoute()->getObject();
+    $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getId());
   }
 
   public function executeEdit(sfWebRequest $request)

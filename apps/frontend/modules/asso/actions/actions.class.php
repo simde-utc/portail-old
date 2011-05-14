@@ -44,4 +44,32 @@ class assoActions extends sfActions
     $this->asso = $this->getRoute()->getObject();
   }
 
+  public function executeEdit(sfWebRequest $request)
+  {
+    $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))), sprintf('Object asso does not exist (%s).', $request->getParameter('id')));
+    $this->form = new assoForm($asso);
+  }
+
+  public function executeUpdate(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+    $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))), sprintf('Object asso does not exist (%s).', $request->getParameter('id')));
+    $this->form = new assoForm($asso);
+
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('edit');
+  }
+
+  protected function processForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $asso = $form->save();
+
+      $this->redirect('asso/edit?id='.$asso->getId());
+    }
+  }
+
 }

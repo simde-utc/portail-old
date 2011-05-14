@@ -1,19 +1,21 @@
 <?php
 
 /**
- * Profile form.
+ * sfGuardFormSignin for sfGuardAuth signin action
  *
- * @package    simde
+ * @package    sfDoctrineGuardPlugin
  * @subpackage form
- * @author     Your name here
- * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
+ * @version    SVN: $Id: sfGuardFormSignin.class.php 23536 2009-11-02 21:41:21Z Kris.Wallsmith $
  */
-class ProfileForm extends BaseProfileForm
+class sfGuardFormSignin extends BasesfGuardFormSignin
 {
 
+  /**
+   * @see sfForm
+   */
   public function configure()
   {
-    unset($this['updated_at'],$this['created_at']);
     $choices = array(
      0 => 'Etudiant UTC',
      1 => 'Enseignant UTC',

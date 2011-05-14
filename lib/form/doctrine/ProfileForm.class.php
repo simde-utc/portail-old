@@ -10,7 +10,21 @@
  */
 class ProfileForm extends BaseProfileForm
 {
+
   public function configure()
   {
+    unset($this['updated_at'],$this['created_at']);
+    $choices = array(
+     0 => 'Etudiant UTC',
+     1 => 'Enseignant UTC',
+     2 => 'ESCOM',
+     3 => 'Ancien',
+     4 => 'Extérieur',
+    );
+
+    $this->widgetSchema['domain'] = new sfWidgetFormChoice(array('choices' => $choices));
+
+    $this->validatorSchema['domain'] = new sfValidatorChoice(array('choices' => array_keys($choices),'required' => true));
   }
+
 }

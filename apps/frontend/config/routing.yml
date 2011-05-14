@@ -10,6 +10,14 @@ homepage:
 assos_list:
   url:   /asso/list/:pole
   param: { module: asso, action: list }
+  
+sf_guard_signin:
+  url:   /login
+  param: { module: sfGuardAuth, action: signin }
+        
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
 
 # generic rules
 # please, remove them by adding more specific rules

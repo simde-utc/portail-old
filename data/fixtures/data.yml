@@ -22,7 +22,7 @@ Asso:
     updated_at: '2011-05-14 11:10:51'
   Asso_3:
     name: 'Pôle Solidarite et Citoyennete'
-    login: polepsec
+    login: polesec
     Type: TypeAsso_3
     url_site: null
     description: 'Le pôle psec n''existe pas encore au SiMDE...'
@@ -86,7 +86,7 @@ Asso:
   Asso_9:
     name: Comet
     login: comet
-    Pole: Pole_2
+    Pole: Pole_1
     Type: TypeAsso_1
     url_site: 'http://wwwassos.utc.fr/comet'
     description: 'Organisation des soirées Étudiantes (Estu), location de matériel de son et lumières à bas prix.'

@@ -18,7 +18,12 @@ class articleActions extends sfActions
 
   public function executeList(sfWebRequest $request)
   {
-    $this->asso = $this->getRoute()->getObject();
+    try {
+      $this->asso = $this->getRoute()->getObject();
+    }
+    catch (Exception $e) {
+      $this->forward('article','index');
+    }
     $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getPrimaryKey());
   }
   

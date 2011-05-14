@@ -30,7 +30,13 @@ class assoActions extends sfActions
    */
   public function executeList(sfWebRequest $request)
   {
-    $this->pole = $this->getRoute()->getObject();
+    try {
+      $this->pole = $this->getRoute()->getObject();
+    }
+    catch (Exception $e) {
+      $this->forward('asso','index');
+    }
+
     $this->assos = AssoTable::getInstance()->getAssosList($this->pole->getPrimaryKey());
   }
 

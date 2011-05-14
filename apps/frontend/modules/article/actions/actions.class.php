@@ -25,8 +25,7 @@ class articleActions extends sfActions
   
   public function executeShow(sfWebRequest $request)
   {
-    $this->asso = $this->getRoute()->getObject();
-    $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getPrimaryKey());
+    $this->article = $this->getRoute()->getObject();
   }
 
   public function executeNew(sfWebRequest $request)

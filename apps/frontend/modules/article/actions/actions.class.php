@@ -12,7 +12,6 @@ class articleActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->asso = NULL;
     $this->articles = ArticleTable::getInstance()->getArticlesList();
     $this->setTemplate('list');
   }

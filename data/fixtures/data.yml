@@ -1,46 +1,5 @@
 Asso:
   Asso_1:
-    name: SiMDE
-    login: simde
-    Pole: Pole_4
-    Type: TypeAsso_1
-    url_site: 'http://wwwassos.utc.fr/simde'
-    description: '<span style="font-size: large;">Service informatique de la Maison des Étudiants</span><div><span style="font-size: 18px;"><br /></span><div>chargé de la mise en place de :</div><div><ul><li>Ressource informatique au sein de la MDE</li><li>Les serveurs : Phoenix et Centaure </li><li>Le site wwwassos.utc.fr</li><li>L''intranet des assos<br /></li></ul></div></div>'
-    logo: 'http://wwwassos.utc.fr/simde.png'
-    active: true
-    created_at: '2011-05-14 11:06:17'
-    updated_at: '2011-05-14 11:06:24'
-  Asso_2:
-    name: 'Pôle Artistique et Évènementiel'
-    login: poleae
-    Type: TypeAsso_3
-    url_site: 'http://wwwassos.utc.fr/poleae'
-    description: '<p>?Le Pôle Artistique et Évènementiel, ou PAÉ pour les intimes, est là pour <span style="font-weight: bold;">soutenir, accompagner et coordonner les associations à caractère artistique et/ou évènementiel</span>&nbsp; de l''UTC. Il est composé d''un bureau d''au minimum 4 personnes (on est 15 actuellement) et d''un CA de 10 personnes, renouvelés tous les ans, et de l''ensemble des membres des asso artistiques et évènementielles de la fédération BDE-UTC.<br /><br />Le pôle est <span style="font-weight: bold;">ZE association à contacter au moindre soucis</span> : disposant de tous les contacts utiles, il saura répondre à toutes tes questions, que tu sois à la tête d''un projet associatif, un membre actif ou simple sympathisant d''une asso du pôle. De plus, le pôle <span style="font-weight: bold;">met en place plusieurs ateliers de réflexion</span> sur des thèmes tels que les passations, la communication, les partenariats, la "trousse à UTC" (réserve de bénévoles dispo pour filer un coup de main aux gros évènements), etc... et bien entendu, <span style="font-weight: bold;">on recrute des gens pour aider à la communication, assurer l''animation, la vente de billets, l''organisation de soirées au PIC</span>, bref, y a besoin de monde, pour des petits comme des grands coups de main. <b>N''hésite pas à nous rejoindre !</b></p> '
-    logo: 'http://wwwassos.utc.fr/poleae/logos/poleae.png'
-    active: true
-    created_at: '2011-05-14 11:10:48'
-    updated_at: '2011-05-14 11:10:51'
-  Asso_3:
-    name: 'Pôle Solidarite et Citoyennete'
-    login: polesec
-    Type: TypeAsso_3
-    url_site: null
-    description: 'Le pôle psec n''existe pas encore au SiMDE...'
-    logo: null
-    active: null
-    created_at: '2011-05-14 11:15:35'
-    updated_at: '2011-05-14 11:15:37'
-  Asso_4:
-    name: 'Pôle Technologie et Entreprenariat'
-    login: poletee
-    Type: TypeAsso_3
-    url_site: null
-    description: 'Le pôle Technologie et Entreprenariat n''existe pas encore au SiMDE.'
-    logo: null
-    active: null
-    created_at: '2011-05-14 11:17:11'
-    updated_at: '2011-05-14 11:17:13'
-  Asso_5:
     name: 'Pôle Vie du Campus'
     login: polevdc
     Type: TypeAsso_3
@@ -50,10 +9,51 @@ Asso:
     active: true
     created_at: '2011-05-14 11:29:47'
     updated_at: '2011-05-14 11:29:49'
+  Asso_2:
+    name: SiMDE
+    login: simde
+    Pole: Pole_1
+    Type: TypeAsso_1
+    url_site: 'http://wwwassos.utc.fr/simde'
+    description: '<span style="font-size: large;">Service informatique de la Maison des Étudiants</span><div><span style="font-size: 18px;"><br /></span><div>chargé de la mise en place de :</div><div><ul><li>Ressource informatique au sein de la MDE</li><li>Les serveurs : Phoenix et Centaure </li><li>Le site wwwassos.utc.fr</li><li>L''intranet des assos<br /></li></ul></div></div>'
+    logo: 'http://wwwassos.utc.fr/simde.png'
+    active: true
+    created_at: '2011-05-14 11:06:17'
+    updated_at: '2011-05-14 11:06:24'
+  Asso_3:
+    name: 'Pôle Artistique et Évènementiel'
+    login: poleae
+    Type: TypeAsso_3
+    url_site: 'http://wwwassos.utc.fr/poleae'
+    description: '<p>?Le Pôle Artistique et Évènementiel, ou PAÉ pour les intimes, est là pour <span style="font-weight: bold;">soutenir, accompagner et coordonner les associations à caractère artistique et/ou évènementiel</span>&nbsp; de l''UTC. Il est composé d''un bureau d''au minimum 4 personnes (on est 15 actuellement) et d''un CA de 10 personnes, renouvelés tous les ans, et de l''ensemble des membres des asso artistiques et évènementielles de la fédération BDE-UTC.<br /><br />Le pôle est <span style="font-weight: bold;">ZE association à contacter au moindre soucis</span> : disposant de tous les contacts utiles, il saura répondre à toutes tes questions, que tu sois à la tête d''un projet associatif, un membre actif ou simple sympathisant d''une asso du pôle. De plus, le pôle <span style="font-weight: bold;">met en place plusieurs ateliers de réflexion</span> sur des thèmes tels que les passations, la communication, les partenariats, la "trousse à UTC" (réserve de bénévoles dispo pour filer un coup de main aux gros évènements), etc... et bien entendu, <span style="font-weight: bold;">on recrute des gens pour aider à la communication, assurer l''animation, la vente de billets, l''organisation de soirées au PIC</span>, bref, y a besoin de monde, pour des petits comme des grands coups de main. <b>N''hésite pas à nous rejoindre !</b></p> '
+    logo: 'http://wwwassos.utc.fr/poleae/logos/poleae.png'
+    active: true
+    created_at: '2011-05-14 11:10:48'
+    updated_at: '2011-05-14 11:10:51'
+  Asso_4:
+    name: 'Pôle Solidarite et Citoyennete'
+    login: polesec
+    Type: TypeAsso_3
+    url_site: null
+    description: 'Le pôle psec n''existe pas encore au SiMDE...'
+    logo: null
+    active: null
+    created_at: '2011-05-14 11:15:35'
+    updated_at: '2011-05-14 11:15:37'
+  Asso_5:
+    name: 'Pôle Technologie et Entreprenariat'
+    login: poletee
+    Type: TypeAsso_3
+    url_site: null
+    description: 'Le pôle Technologie et Entreprenariat n''existe pas encore au SiMDE.'
+    logo: null
+    active: null
+    created_at: '2011-05-14 11:17:11'
+    updated_at: '2011-05-14 11:17:13'
   Asso_6:
     name: BDE-UTC
     login: bde
-    Pole: Pole_4
+    Pole: Pole_1
     Type: TypeAsso_3
     url_site: 'http://wwwassos.utc.fr/'
     description: "Le bureau des étudiants de l'UTC (BDE-UTC) est une association 1901 qui a pour objet l'animation et la structuration de la vie étudiante de l'UTC de manière saine, responsable et constructive.\r\n\r\nDans ce cadre le BDE-UTC administre la Maison des Étudiants (MDE), partie du bâtiment C du centre Benjamin Franklin, dans le cadre de la Convention d'Occupation de la MDE signée chaque année avec l'UTC. Depuis début septembre, le BDE et ses commissions s'attache à supprimer les nuisances sonores aux abords des bâtiments."
@@ -64,7 +64,7 @@ Asso:
   Asso_7:
     name: USEC
     login: usec
-    Pole: Pole_3
+    Pole: Pole_2
     Type: TypeAsso_3
     url_site: 'http://wwwassos.utc.fr/usec'
     description: "Envie de toucher du doigt le monde de l'Entreprise? \r\nRejoins l'équipe de l'USEC, Junior-Entreprise de l'UTC! \r\n\r\nProche du fonctionnement les entreprises de conseil, nous mettons à disposition de clients industriels, du secteur tertiaire et particuliers, les compétences et connaissances acquises durant notre cycle ingénieur à l'UTC. Et bien sûr, chaque étudiant qui travaille pour l'USEC est rémunéré!\r\n\r\nL'USEC sera ton lien privilégié avec les entreprises durant tes années à l'UTC!\r\n\r\nViens nous voir en FC221!!"
@@ -75,7 +75,7 @@ Asso:
   Asso_8:
     name: Polar
     login: polar
-    Pole: Pole_4
+    Pole: Pole_1
     Type: TypeAsso_3
     url_site: 'http://wwwassos.utc.fr/polar'
     description: 'LA centrale d''achat des étudiants : matériel informatique, fournitures, papier ; mais aussi tout le service : impressions de rapports, posters, location de vidéoprojecteur, de WiiPack, de manuel de langue, et bien d''autres encore !'
@@ -86,7 +86,7 @@ Asso:
   Asso_9:
     name: Comet
     login: comet
-    Pole: Pole_1
+    Pole: Pole_3
     Type: TypeAsso_1
     url_site: 'http://wwwassos.utc.fr/comet'
     description: 'Organisation des soirées Étudiantes (Estu), location de matériel de son et lumières à bas prix.'
@@ -94,14 +94,29 @@ Asso:
     active: true
     created_at: '2011-05-14 11:37:01'
     updated_at: '2011-05-14 11:37:03'
+Article:
+  Article_1:
+    Asso: Asso_2
+    name: 'Article test'
+    text: "Hey !!\r\n\r\nCeci est mon petit article test...\r\n\r\nLe SiMDE"
+    is_weekmail: false
+    created_at: '2011-05-14 17:02:02'
+    updated_at: '2011-05-14 17:02:04'
+  Article_2:
+    Asso: Asso_8
+    name: Test
+    text: "Ceci est un article test.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. In varius, mauris nec sollicitudin molestie, augue velit condimentum augue, quis lobortis tellus erat sed sapien. Pellentesque nunc nisi, pulvinar interdum feugiat sed, iaculis quis magna. Sed ipsum mi, cursus ac facilisis laoreet, hendrerit ut purus. Etiam ut elit vel augue pellentesque sodales. Ut eget libero vitae libero laoreet dapibus ac vel nisl. Nulla consectetur egestas massa et porta. Morbi sit amet leo at metus consectetur blandit ac non purus. Aenean rhoncus semper est, ut aliquet nunc consectetur ac. Suspendisse vulputate euismod justo eu consectetur. Aenean eu sapien magna, et ullamcorper quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras dictum lobortis pulvinar.\r\n\r\nClass aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi id lectus ac enim iaculis varius congue sit amet libero. Pellentesque pretium tortor at ligula suscipit commodo. Proin quis leo massa, id euismod odio. Vivamus ornare eros non libero consequat molestie. Cras condimentum nisl ac libero ornare volutpat. Nunc mattis lorem eget nulla lacinia vitae egestas orci fermentum. Mauris consequat, felis ac sagittis molestie, turpis dui vulputate diam, vitae vulputate purus nunc in orci. Duis enim libero, lobortis vitae molestie in, ultricies at nunc. Sed tincidunt, libero vel porta scelerisque, massa tortor sollicitudin eros, vitae dictum tellus libero et diam. Aliquam quis erat ligula, eu imperdiet justo. Pellentesque dignissim nibh at ligula porttitor porttitor a eget diam. Aliquam ac purus non eros malesuada rhoncus non dignissim risus. Quisque nisi massa, semper luctus placerat vel, gravida porttitor lacus. Donec ut lectus augue. Cras vitae laoreet est. Nullam eu odio quam. Sed ac metus libero."
+    is_weekmail: false
+    created_at: '2011-05-14 17:03:00'
+    updated_at: '2011-05-14 17:03:03'
 Pole:
   Pole_1:
-    Infos: Asso_2
-  Pole_2:
-    Infos: Asso_3
+    Infos: Asso_1
   Pole_3:
-    Infos: Asso_4
+    Infos: Asso_3
   Pole_4:
+    Infos: Asso_4
+  Pole_2:
     Infos: Asso_5
 TypeAsso:
   TypeAsso_1:

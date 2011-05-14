@@ -23,6 +23,22 @@ assos_show:
   param: { module: asso, action: show }
   options: { model: Asso, type: object }
   
+articles_list:
+  url:   /article
+  param: { module: article, action: index }
+  
+articles_list_asso:
+  url:   /article/asso/:id
+  class: sfDoctrineRoute
+  param: { module: article, action: list }
+  options: { model: Asso, type: object }
+  
+article_show:
+  url:   /article/show/:id
+  class: sfDoctrineRoute
+  param: { module: article, action: show }
+  options: { model: Article, type: object }
+  
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }

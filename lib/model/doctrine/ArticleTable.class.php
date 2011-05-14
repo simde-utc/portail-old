@@ -16,4 +16,22 @@ class ArticleTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Article');
     }
+    
+    
+   /**
+   * 
+   * Fetch the list of all articles sorted by date.
+   * 
+   * @param int $pole_id
+   */
+  public function getArticlesList($asso_id = null)
+  {
+    $q = $this->createQuery('a')
+      ->addOrderBy('a.created_at DESC');
+
+    if(!is_null($asso_id))
+      $q = $q->where("a.asso_id = ?",$asso_id);
+
+    return $q->execute();
+  }
 }

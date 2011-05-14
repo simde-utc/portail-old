@@ -12,9 +12,21 @@ class articleActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->articles = Doctrine_Core::getTable('article')
-      ->createQuery('a')
-      ->execute();
+    $this->asso = NULL;
+    $this->articles = ArticleTable::getInstance()->getArticlesList();
+    $this->setTemplate('list');
+  }
+
+  public function executeList(sfWebRequest $request)
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getPrimaryKey());
+  }
+  
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getPrimaryKey());
   }
 
   public function executeNew(sfWebRequest $request)

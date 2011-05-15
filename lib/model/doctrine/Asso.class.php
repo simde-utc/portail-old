@@ -12,4 +12,13 @@
  */
 class Asso extends BaseAsso
 {
+  /**
+   * Return name slugified
+   * 
+   * @return string
+   */
+  public function getNameSlug()
+  {
+    return Text::slugify($this->getName());
+  }
 }

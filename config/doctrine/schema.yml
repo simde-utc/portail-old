@@ -37,7 +37,7 @@ AssoMember:
   relations:
     Asso: { local: asso_id, foreign: id }
     Role: { local: role_id, foreign: id }
-    User: { local: user_id, foreign: id, class: SfGuardUser }
+    User: { local: user_id, foreign: id, class: sfGuardUser }
     
 Role:
   connection: doctrine

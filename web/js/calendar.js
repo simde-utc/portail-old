@@ -6,14 +6,10 @@
           center: 'title',
           right: 'month,agendaWeek,agendaDay'
         },
-			editable: true,
+			editable: false,
+      allDayDefault: false,
 			
 			events: "/event/index.json",
-			
-			eventDrop: function(event, delta) {
-				alert(event.title + ' was moved ' + delta + ' days\n' +
-					'(should probably update your database)');
-			},
 			
 			loading: function(bool) {
 				if (bool) $('#loading').show();

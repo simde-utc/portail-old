@@ -12,4 +12,13 @@
  */
 class Role extends BaseRole
 {
+  /**
+   * Return name slugified
+   * 
+   * @return string
+   */
+  public function getNameSlug()
+  {
+    return Text::slugify($this->getName());
+  }
 }

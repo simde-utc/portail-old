@@ -12,4 +12,25 @@
  */
 class sfGuardUser extends PluginsfGuardUser
 {
+
+  /**
+   * Returns an array containing all permissions, including groups permissions
+   * and single permissions.
+   *
+   * @return array
+   */
+  public function getAllPermissions()
+  {
+    if(!$this->_allPermissions)
+    {
+      $this->_allPermissions = parent::getAllPermissions();
+      foreach($this->getAssoMember() as $asso_member)
+      {
+        $this->_allPermissions[$asso_member->getAsso()->getNameSlug().'_'.$asso_member->getRole()->getNameSlug()] = $asso_member;
+      }
+    }
+    
+    return $this->_allPermissions;
+  }
+  
 }

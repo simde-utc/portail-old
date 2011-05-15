@@ -12,17 +12,20 @@ Doctrine_Manager::getInstance()->bindComponent('AssoMember', 'doctrine');
  * @property integer $role_id
  * @property Asso $Asso
  * @property Role $Role
+ * @property sfGuardUser $User
  * 
- * @method integer    getUserId()  Returns the current record's "user_id" value
- * @method integer    getAssoId()  Returns the current record's "asso_id" value
- * @method integer    getRoleId()  Returns the current record's "role_id" value
- * @method Asso       getAsso()    Returns the current record's "Asso" value
- * @method Role       getRole()    Returns the current record's "Role" value
- * @method AssoMember setUserId()  Sets the current record's "user_id" value
- * @method AssoMember setAssoId()  Sets the current record's "asso_id" value
- * @method AssoMember setRoleId()  Sets the current record's "role_id" value
- * @method AssoMember setAsso()    Sets the current record's "Asso" value
- * @method AssoMember setRole()    Sets the current record's "Role" value
+ * @method integer     getUserId()  Returns the current record's "user_id" value
+ * @method integer     getAssoId()  Returns the current record's "asso_id" value
+ * @method integer     getRoleId()  Returns the current record's "role_id" value
+ * @method Asso        getAsso()    Returns the current record's "Asso" value
+ * @method Role        getRole()    Returns the current record's "Role" value
+ * @method sfGuardUser getUser()    Returns the current record's "User" value
+ * @method AssoMember  setUserId()  Sets the current record's "user_id" value
+ * @method AssoMember  setAssoId()  Sets the current record's "asso_id" value
+ * @method AssoMember  setRoleId()  Sets the current record's "role_id" value
+ * @method AssoMember  setAsso()    Sets the current record's "Asso" value
+ * @method AssoMember  setRole()    Sets the current record's "Role" value
+ * @method AssoMember  setUser()    Sets the current record's "User" value
  * 
  * @package    simde
  * @subpackage model
@@ -54,6 +57,10 @@ abstract class BaseAssoMember extends sfDoctrineRecord
 
         $this->hasOne('Role', array(
              'local' => 'role_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('sfGuardUser as User', array(
+             'local' => 'user_id',
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();

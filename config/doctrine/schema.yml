@@ -93,6 +93,7 @@ EventType:
   connection: doctrine
   columns:
     name: { type: string(50) }
+    color: { type: string(7) }
     
 Article:
   connection: doctrine

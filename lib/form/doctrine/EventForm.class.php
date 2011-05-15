@@ -30,8 +30,8 @@ class EventForm extends BaseEventForm
     $js_path = '/js/tiny_mce/tiny_mce.js';
     sfContext::getInstance()->getResponse()->addJavascript($js_path);
     
-    $this->widgetSchema['start_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png'));
-    $this->widgetSchema['end_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png'));
+    $this->widgetSchema['start_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png', 'date_widget'=>$this->widgetSchema['start_date']));
+    $this->widgetSchema['end_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png', 'date_widget'=>$this->widgetSchema['end_date']));
 
   }
 }

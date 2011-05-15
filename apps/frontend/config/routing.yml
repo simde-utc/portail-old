@@ -49,9 +49,13 @@ sf_guard_signout:
 
 # generic rules
 # please, remove them by adding more specific rules
+
 default_index:
   url:   /:module
   param: { action: index }
 
 default:
   url:   /:module/:action/*
+
+default_api:
+  url:   /:module/:action.:sf_format

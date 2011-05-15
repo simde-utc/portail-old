@@ -60,6 +60,11 @@ class eventActions extends sfActions
     $this->redirect('event/index');
   }
 
+  public function executeCalendar(sfWebRequest $request)
+  {
+    
+  }
+  
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));

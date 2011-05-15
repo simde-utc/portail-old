@@ -21,8 +21,8 @@
     <?php foreach ($events as $event): ?>
     <tr>
       <td><a href="<?php echo url_for('event/edit?id='.$event->getId()) ?>"><?php echo $event->getId() ?></a></td>
-      <td><?php echo $event->getAssoId() ?></td>
-      <td><?php echo $event->getTypeId() ?></td>
+      <td><?php echo $event->getAsso() ?></td>
+      <td><?php echo $event->getType() ?></td>
       <td><?php echo $event->getName() ?></td>
       <td><?php echo $event->getDescription() ?></td>
       <td><?php echo $event->getStartDate() ?></td>

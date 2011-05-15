@@ -23,6 +23,12 @@ assos_show:
   param: { module: asso, action: show }
   options: { model: Asso, type: object }
   
+assos_show:
+  url:   /asso/edit/:id
+  class: sfDoctrineRoute
+  param: { module: asso, action: edit }
+  options: { model: Asso, type: object }
+  
 articles_list:
   url:   /article
   param: { module: article, action: index }

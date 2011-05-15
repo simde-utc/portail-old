@@ -3,7 +3,7 @@
 
 <h2><?php echo $asso ? $asso->getName() : "Cette association n'existe pas" ?></h2>
 <?php if($asso): ?>
-  <ul id="assos_list">
+  <div id="asso">
     <li>
       <h3><a href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getName() ?></a></h3>
       <img class="logo" src="<?php echo $asso->getLogo() ?>">
@@ -13,5 +13,5 @@
         <a class="website" href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a>
       </div>
     </li>
-  </ul>
+  </div>
 <?php endif ?>

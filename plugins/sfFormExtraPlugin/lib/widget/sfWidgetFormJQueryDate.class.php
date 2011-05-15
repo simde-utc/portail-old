@@ -18,7 +18,7 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfWidgetFormJQueryDate.class.php 30755 2010-08-25 11:14:33Z fabien $
  */
-class sfWidgetFormJQueryDate extends sfWidgetForm
+class sfWidgetFormJQueryDate extends sfWidgetFormDateTime
 {
   /**
    * Configures the current widget.

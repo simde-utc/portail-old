@@ -29,5 +29,7 @@ class AssoForm extends BaseAssoForm
     );
     $js_path = '/js/tiny_mce/tiny_mce.js';
     sfContext::getInstance()->getResponse()->addJavascript($js_path);
+    
+    $this->getWidget('pole_id')->setOption('query',PoleTable::getInstance()->getAllWithInfos());
   }
 }

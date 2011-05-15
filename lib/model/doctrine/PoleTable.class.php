@@ -17,5 +17,13 @@ class PoleTable extends Doctrine_Table
   {
     return Doctrine_Core::getTable('Pole');
   }
+  
+  public function getAllWithInfos()
+  {
+    $q = $this->createQuery('q')
+      ->leftJoin('q.Infos i');
+    
+    return $q;
+  }
 
 }

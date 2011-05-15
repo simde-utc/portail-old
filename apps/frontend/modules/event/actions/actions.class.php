@@ -10,6 +10,11 @@
  */
 class eventActions extends sfActions
 {
+  /*
+   * @todo gérer les parametres d'url start et end ! 
+   * 
+   * 
+   */
   public function executeIndex(sfWebRequest $request)
   {
     $this->events = Doctrine_Core::getTable('event')

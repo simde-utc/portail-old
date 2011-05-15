@@ -19,49 +19,7 @@
       </tr>
     </tfoot>
     <tbody>
-      <?php echo $form->renderGlobalErrors() ?>
-      <tr>
-        <th><?php echo $form['asso_id']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['asso_id']->renderError() ?>
-          <?php echo $form['asso_id'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['name']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['name']->renderError() ?>
-          <?php echo $form['name'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['text']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['text']->renderError() ?>
-          <?php echo $form['text'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['is_weekmail']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['is_weekmail']->renderError() ?>
-          <?php echo $form['is_weekmail'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['created_at']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['created_at']->renderError() ?>
-          <?php echo $form['created_at'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['updated_at']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['updated_at']->renderError() ?>
-          <?php echo $form['updated_at'] ?>
-        </td>
-      </tr>
+      <?php echo $form ?>
     </tbody>
   </table>
 </form>

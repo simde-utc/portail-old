@@ -16,63 +16,7 @@
       </tr>
     </tfoot>
     <tbody>
-      <?php echo $form->renderGlobalErrors() ?>
-      <tr>
-        <th><?php echo $form['name']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['name']->renderError() ?>
-          <?php echo $form['name'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['login']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['login']->renderError() ?>
-          <?php echo $form['login'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['pole_id']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['pole_id']->renderError() ?>
-          <?php echo $form['pole_id'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['type_id']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['type_id']->renderError() ?>
-          <?php echo $form['type_id'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['url_site']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['url_site']->renderError() ?>
-          <?php echo $form['url_site'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['description']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['description']->renderError() ?>
-          <?php echo $form['description'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['logo']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['logo']->renderError() ?>
-          <?php echo $form['logo'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['active']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['active']->renderError() ?>
-          <?php echo $form['active'] ?>
-        </td>
-      </tr>
+      <?php echo $form ?>
     </tbody>
   </table>
 </form>

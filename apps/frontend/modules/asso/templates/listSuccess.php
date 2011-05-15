@@ -6,7 +6,7 @@
   <?php foreach($assos as $asso) : ?>
 
     <li>
-      <h3><a href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getName() ?></a></h3>
+      <h3><a href="<?php echo url_for('asso/show?id='.$asso->getId()) ?>"><?php echo $asso->getName() ?></a></h3>
       <img class="logo" src="<?php echo $asso->getLogo() ?>">
       <div class="desc">
         <?php echo truncate_text($asso->getDescription(),256) ?>

@@ -12,11 +12,7 @@
     <div id="wrap">
       <div id="header">
         <div id="header_login">
-          "LOGIN" : ??? <br/>
-          "PASSWORD" : ??? <br/>
-          [Connexion] <br/>
-          <br/>
-          S'enregister
+          <?php include_component('sfGuardAuth','signin_form') ?>
         </div>
         <div id="header_logo">
           <img src="/images/logo_bde.jpg" width="256px" height="150px">

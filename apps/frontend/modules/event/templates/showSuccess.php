@@ -3,7 +3,7 @@
 
 <h2><?php $event->getName() ?> </h2>
 
-<h3><?php echo $event->getName() ?> - <?php echo format_date($event->getStartDate(),'f','fr') . " au " . format_date($event->getEndDate(),'f','fr'); ?></h3>
+<h3><?php echo $event->getName() . " - " . format_date($event->getStartDate(),'f','fr') . " au " . format_date($event->getEndDate(),'f','fr'); ?></h3>
 		Créé par <?php echo $event->getAsso()->getName() ?> le <?php echo format_date($event->getCreatedAt(),'f','fr') ?>
     <br />
     Type: <?php echo $event->getType()->getName(); ?>

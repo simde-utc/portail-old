@@ -24,7 +24,7 @@
       <td><?php echo $event->getAsso() ?></td>
       <td><?php echo $event->getType() ?></td>
       <td><?php echo $event->getName() ?></td>
-      <td><?php echo $event->getDescription() ?></td>
+      <td><?php echo html_entity_decode($event->getDescription()) ?></td>
       <td><?php echo $event->getStartDate() ?></td>
       <td><?php echo $event->getEndDate() ?></td>
       <td><?php echo $event->getIsPublic() ?></td>

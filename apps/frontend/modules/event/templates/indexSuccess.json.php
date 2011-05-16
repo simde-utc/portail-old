@@ -9,7 +9,7 @@ foreach ($events as $event)
     "title" => ($event->getAsso(). " - ".$event->getType()." - " .$event->getName()), 
     "start" => (strtotime($event->getStartDate())),
     "end" => (strtotime($event->getEndDate())),
-    "url" => url_for(array("module"=>"event", "action"=>"edit", "id" => $event->getId())),
+    "url" => url_for("/event/show/".$event->getId()),
     "color" => ($event->getType()->getColor())
   );
   if(strtotime($event->getEndDate()) - strtotime($event->getStartDate()) > 24*3600)

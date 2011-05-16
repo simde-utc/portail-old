@@ -1,5 +1,4 @@
 <?php use_stylesheet('event.css') ?>
-<?php use_helper('Text') ?>
 
 <h2><?php $event->getName() ?> </h2>
 

@@ -149,23 +149,21 @@ p {
 }
 
 .menu:hover {
-  background-color: #222;
-  color: #EEE;
-  border: 1px solid #333;
+  background-color: #444;
+  border: 1px solid #555;
   -moz-box-shadow: 4px 4px 10px #333;
   box-shadow: 4px 4px 10px #333;
   margin: auto;
   }
 
-.menu a:link, .menu a:visited{
-	color:#111;
-	text-decoration:none;
-  }
-    
-.menu a:hover{
-	color:#EEE;
-	text-decoration:none;
-  }
+.menu a{
+  color:#111;
+  text-decoration: none;
+}
+
+.menu:hover a{
+  color: #FFF;
+}
 
 
 #content{

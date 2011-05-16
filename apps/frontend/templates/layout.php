@@ -12,7 +12,11 @@
     <div id="wrap">
       <div id="header">
         <div id="header_login">
-          <?php include_component('sfGuardAuth','signin_form') ?>
+          <?php if($sf_user->isAuthenticated()): ?>
+            TODO : Liste des connectés
+          <?php else: ?>
+            <?php include_component('sfGuardAuth','signin_form') ?>
+          <?php endif ?>
         </div>
         <div id="header_logo">
           <img src="/images/logo_bde.jpg" width="256px" height="150px">

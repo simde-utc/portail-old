@@ -11,7 +11,7 @@
 
     <li>
       <h3><?php echo $event->getName() . " - " . format_date($event->getStartDate(),'f','fr') . " au " . format_date($event->getEndDate(),'f','fr'); ?></h3>
-  		Créé par <?php echo $event->getAsso()->getName() ?> le <?php echo $event->getCreatedAt() ?>  
+  		Créé par <?php echo $event->getAsso()->getName() . " le " . format_date($event->getCreatedAt(),'f','fr') ?>  
       <!-- todo only if authorized -->
   		- <a href="<?php echo url_for('event/edit?id='.$event->getId()) ?>">Editer</a>
 

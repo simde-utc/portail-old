@@ -67,7 +67,12 @@ class eventActions extends sfActions
 
   public function executeCalendar(sfWebRequest $request)
   {
-    
+	
+  }
+
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->event = $this->getRoute()->getObject();
   }
   
   protected function processForm(sfWebRequest $request, sfForm $form)

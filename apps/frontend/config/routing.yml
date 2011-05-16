@@ -38,7 +38,13 @@ article_show:
   class: sfDoctrineRoute
   param: { module: article, action: show }
   options: { model: Article, type: object }
-  
+
+event_show:
+  url: /event/show/:id
+  class: sfDoctrineRoute
+  param: { module: event, action: show }
+  options: { model: Event, type: object }
+
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }

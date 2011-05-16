@@ -1,7 +1,7 @@
 <?php use_stylesheet('event.css') ?>
 <?php use_helper('Text') ?>
 
-<h2><?php echo isset($asso) ? "Article de : ".$asso->getName() : "Liste des events" ?></h2>
+<h2><?php echo isset($asso) ? "Event de : ".$asso->getName() : "Liste des events" ?></h2>
 <!-- todo only if authorized -->
 <a href="<?php echo url_for('event/new') ?>">Créer un event</a>
 

@@ -17,7 +17,7 @@
 			editable: false,
       allDayDefault: false,
 			
-			events: "/event/index.json",
+			events: "<?php echo url_for("/json/event/index") ?>",
 			
 			loading: function(bool) {
 				if (bool) $('#loading').show();

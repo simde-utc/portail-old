@@ -17,9 +17,8 @@ class eventActions extends sfActions
    */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->events = Doctrine_Core::getTable('event')
-      ->createQuery('a')
-      ->execute();
+    $this->events = EventTable::getInstance()->getEventsList();
+    $this->setTemplate('list');
   }
 
   public function executeNew(sfWebRequest $request)
@@ -65,9 +64,32 @@ class eventActions extends sfActions
     $this->redirect('event/index');
   }
 
+  /**
+   * Liste des event
+   * On affiche la liste des events de l'asso specifié
+   *
+   * @param sfRequest $request A request object
+   */
+  public function executeList(sfWebRequest $request)
+  {
+    try {
+      $this->asso = $this->getRoute()->getObject();
+    }
+    catch (Exception $e) {
+      $this->forward('event','index');
+    }
+
+    $this->events = EventTable::getInstance()->getEventsList($this->asso->getPrimaryKey());
+  }
+
   public function executeCalendar(sfWebRequest $request)
   {
     
+  }
+
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->event = $this->getRoute()->getObject();
   }
   
   protected function processForm(sfWebRequest $request, sfForm $form)

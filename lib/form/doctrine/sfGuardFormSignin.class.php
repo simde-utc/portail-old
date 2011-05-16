@@ -27,6 +27,14 @@ class sfGuardFormSignin extends BasesfGuardFormSignin
     $this->widgetSchema['domain'] = new sfWidgetFormChoice(array('choices' => $choices));
 
     $this->validatorSchema['domain'] = new sfValidatorChoice(array('choices' => array_keys($choices),'required' => true));
+    
+    $this->useFields(array('domain','username','password','remember'));
+    
+    $this->getWidget('domain')->setLabel('Domaine');
+    $this->getWidget('username')->setLabel('Login');
+    $this->getWidget('password')->setLabel('Mot de passe');
+    $this->getWidget('remember')->setLabel('Se souvenir de moi');
+    
   }
 
 }

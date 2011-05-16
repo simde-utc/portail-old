@@ -49,6 +49,7 @@ class assoActions extends sfActions
   {
     $this->asso = $this->getRoute()->getObject();
     $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getId());
+    $this->events = EventTable::getInstance()->getEventsList($this->asso->getId());
   }
 
   public function executeEdit(sfWebRequest $request)

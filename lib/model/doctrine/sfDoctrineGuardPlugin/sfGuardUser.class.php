@@ -26,7 +26,7 @@ class sfGuardUser extends PluginsfGuardUser
       $this->_allPermissions = parent::getAllPermissions();
       foreach($this->getAssoMember() as $asso_member)
       {
-        $this->_allPermissions[$asso_member->getAsso()->getNameSlug().'_'.$asso_member->getRole()->getNameSlug()] = $asso_member;
+        $this->_allPermissions[$asso_member->getAsso()->getLogin().'_'.$asso_member->getRole()->getNameSlug()] = $asso_member;
       }
     }
     

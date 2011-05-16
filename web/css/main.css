@@ -1,67 +1,67 @@
 /*
  * Style graphique utilisé pour le portail du BDE de l'UTC
  * Créé par des étudiants de l'UTC
- */
+*/
 
 /* ------------------------------- */
 /*          HTML Elements          */
 /* ------------------------------- */
 
 * {
-	font-family:arial, verdana, sans serif;
-	font-size:10pt;
+  font-family:arial, verdana, sans serif;
+  font-size:10pt;
 }
 
 html {}
 body {
-	background-color: #999;
+  background-color: #999;
 }
 
 a:link, a:visited{
-	color:#888888;
-	text-decoration:none;
-    }
-    
+  color:#888888;
+  text-decoration:none;
+}
+
 a:hover{
-	color:#888888;
-	text-decoration:underline;
-    }
-    
+  color:#888888;
+  text-decoration:underline;
+}
+
 h1{
-	font-size:24px;
-	color:#000000;
-    }
-    
+  font-size:24px;
+  color:#000000;
+}
+
 h2{
-	font-size:18px;
-	color:#666666;
+  font-size:18px;
+  color:#666666;
 }
 
 h3{
-	font-size:11pt;
-	margin:2px 0px;
-    }
-    
+  font-size:11pt;
+  margin:2px 0px;
+}
+
 fieldset {
-	border:0;
-    }
-    
+  border:0;
+}
+
 img {
-	border:0;
-    }
+  border:0;
+}
 
 p {
-	text-align : justify;
-	}
-	
+  text-align : justify;
+}
+
 .radius5{
-    -moz-border-radius: 5px;
-	border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .radius10{
-    -moz-border-radius: 10px;
-	border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 
 
@@ -70,57 +70,155 @@ p {
 /*         PAGE Elements           */
 /* ------------------------------- */
 
+#wrap{
+  margin: auto;
+  max-width: 1200px;
+  min-width: 1000px;
+}
+
+#header{
+  height: 190px;
+}
+
+#header_login{
+  width: 260px;
+  /*height: 90px;*/
+  float: right;
+  background-color: #FFF;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #B7B7B7;
+  -moz-box-shadow: 2px 2px 5px #B7B7B7;
+  box-shadow: 2px 2px 5px #B7B7B7;
+  margin: auto;
+  margin-right: 20px;
+}
+
+#header_login #signin_username, #header_login #signin_password { width: 110px; }
+
+
+#header_logo{
+  width: 250px;
+  height: 150px;
+  float: left;
+  background-color: #FFF;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #B7B7B7;
+  -moz-box-shadow: 2px 2px 5px #B7B7B7;
+  box-shadow: 2px 2px 5px #B7B7B7;
+  margin: auto;
+  margin-left: 20px;
+}
+
+#header_titre{
+  width: 400px;
+  height: 90px;
+  background-color: #FFF;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #B7B7B7;
+  -moz-box-shadow: 2px 2px 5px #B7B7B7;
+  box-shadow: 2px 2px 5px #B7B7B7;
+  margin: auto;
+}
+
+#header_menu{
+  text-align: center;
+  padding: 0px;
+  height: 50px;
+  margin: auto;
+  margin-top: 30px;
+  margin-right: 20px;
+  margin-left: 300px;
+}
+
+.menu{
+  display: inline;
+  width: 100px;
+  height: 50px;
+  background-color: #FFF;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #B7B7B7;
+  -moz-box-shadow: 2px 2px 5px #B7B7B7;
+  box-shadow: 2px 2px 5px #B7B7B7;
+  margin: auto;
+}
+
+.menu:hover {
+  background-color: #444;
+  border: 1px solid #555;
+  -moz-box-shadow: 4px 4px 10px #333;
+  box-shadow: 4px 4px 10px #333;
+  margin: auto;
+}
+
+.menu a{
+  color:#111;
+  text-decoration: none;
+}
+
+.menu:hover a{
+  color: #FFF;
+}
+
+
 #content{
-	padding-top:20px;
-	width: 1000px;
-	background-color: #FFF;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	padding: 10px;
-	border: 1px solid #B7B7B7;
-	-moz-box-shadow: 2px 2px 5px #B7B7B7;
-	box-shadow: 2px 2px 5px #B7B7B7;
-	margin: auto;
-    }
-    
+  padding-top:20px;
+  width: 100%;
+  background-color: #FFF;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #B7B7B7;
+  -moz-box-shadow: 2px 2px 5px #B7B7B7;
+  box-shadow: 2px 2px 5px #B7B7B7;
+  margin: auto;
+}
+
 #sidebar{
-	float: right;
-	width: 20%;
-	background-color: #DBEAFF;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	padding: 10px;
-	border: 1px solid #B7B7B7;
-	-moz-box-shadow: 2px 2px 5px #B7B7B7;
-	box-shadow: 2px 2px 5px #B7B7B7;
-	}
+  float: right;
+  width: 20%;
+  background-color: #DBEAFF;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #B7B7B7;
+  -moz-box-shadow: 2px 2px 5px #B7B7B7;
+  box-shadow: 2px 2px 5px #B7B7B7;
+}
 
 
 #navbar{
-	padding-left: 4%;
-	}
-	
+  padding-left: 4%;
+}
+
 #navbar ul li{
-	list-style:none;
-	float:left;
-	margin-right : 5px;
+  list-style:none;
+  float:left;
+  margin-right : 5px;
 }
 
 #footer{
-	clear:both;
-	padding-top:30px;
-	padding-left: 140px;
-	margin-left: 7px;
-	height: 210px;
-	color: #FFF;
-	margin-bottom : 0px;
+  clear:both;
+  padding-top:30px;
+  padding-left: 140px;
+  margin-left: 7px;
+  height: 210px;
+  color: #FFF;
+  margin-bottom : 0px;
 }
 #footer a{
-	color:#666666;
-	text-decoration:underline;
+  color:#666666;
+  text-decoration:underline;
 }
 #footer p{
-	text-align:center;
+  text-align:center;
 }
 
 
@@ -130,45 +228,45 @@ p {
 /*-------------------------------------------*/
 
 .event #box{
-/*	border : 1px outset ;*/
-	width : 90%;
-	margin : auto;
-	margin-bottom : 30px;
+  /*	border : 1px outset ;*/
+  width : 90%;
+  margin : auto;
+  margin-bottom : 30px;
 
-	}
+}
 
 #event h2{
-/*	background : none;*/
-	margin : 0px;
-/*	margin-bottom : 0px;*/
-/*	margin-left : 0px;*/
-/*	margin-right : 0px;*/
-	}
+  /*	background : none;*/
+  margin : 0px;
+  /*	margin-bottom : 0px;*/
+  /*	margin-left : 0px;*/
+  /*	margin-right : 0px;*/
+}
 
 .date{
-	border-bottom:solid 1px;
-	font-weight : bold;
-	font-size : 14px;
-	margin-bottom : 5px;
-	margin-top : 10px;
-	padding-top : 5px;
-	color : #7C0000;
-	}
+  border-bottom:solid 1px;
+  font-weight : bold;
+  font-size : 14px;
+  margin-bottom : 5px;
+  margin-top : 10px;
+  padding-top : 5px;
+  color : #7C0000;
+}
 
 .lieu{
-	margin : 5px;
-	}
+  margin : 5px;
+}
 
 .description{
-	margin : 5px;
-	}
+  margin : 5px;
+}
 
 #plus{
-	text-align : right;
-	font-weight : bold;
-	margin-right : 30px;
-	font-size : 16px;
-	}
+  text-align : right;
+  font-weight : bold;
+  margin-right : 30px;
+  font-size : 16px;
+}
 
 /*.lieu:before{*/
 /*	content : "Lieu : ";*/

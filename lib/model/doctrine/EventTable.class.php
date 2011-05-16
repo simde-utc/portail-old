@@ -16,4 +16,21 @@ class EventTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Event');
     }
+    
+  /**
+   * 
+   * Fetch the list of all events sorted by date.
+   * 
+   * @param int $asso_id
+   */
+  public function getEventsList($asso_id = null)
+  {
+    $q = $this->createQuery('a')
+      ->addOrderBy('a.created_at DESC');
+
+    if(!is_null($asso_id))
+      $q = $q->where("a.asso_id = ?",$asso_id);
+
+    return $q->execute();
+  }
 }

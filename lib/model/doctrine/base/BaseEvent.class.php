@@ -11,8 +11,8 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @property integer $type_id
  * @property string $name
  * @property string $description
- * @property date $start_date
- * @property date $end_date
+ * @property timestamp $start_date
+ * @property timestamp $end_date
  * @property boolean $is_public
  * @property boolean $is_weekmail
  * @property string $place
@@ -23,8 +23,8 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @method integer   getTypeId()      Returns the current record's "type_id" value
  * @method string    getName()        Returns the current record's "name" value
  * @method string    getDescription() Returns the current record's "description" value
- * @method date      getStartDate()   Returns the current record's "start_date" value
- * @method date      getEndDate()     Returns the current record's "end_date" value
+ * @method timestamp getStartDate()   Returns the current record's "start_date" value
+ * @method timestamp getEndDate()     Returns the current record's "end_date" value
  * @method boolean   getIsPublic()    Returns the current record's "is_public" value
  * @method boolean   getIsWeekmail()  Returns the current record's "is_weekmail" value
  * @method string    getPlace()       Returns the current record's "place" value
@@ -65,11 +65,11 @@ abstract class BaseEvent extends sfDoctrineRecord
         $this->hasColumn('description', 'string', null, array(
              'type' => 'string',
              ));
-        $this->hasColumn('start_date', 'date', null, array(
-             'type' => 'date',
+        $this->hasColumn('start_date', 'timestamp', null, array(
+             'type' => 'timestamp',
              ));
-        $this->hasColumn('end_date', 'date', null, array(
-             'type' => 'date',
+        $this->hasColumn('end_date', 'timestamp', null, array(
+             'type' => 'timestamp',
              ));
         $this->hasColumn('is_public', 'boolean', null, array(
              'type' => 'boolean',

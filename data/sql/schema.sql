@@ -1,8 +1,8 @@
 CREATE TABLE article (id BIGINT AUTO_INCREMENT, asso_id BIGINT, name VARCHAR(200), text TEXT, is_weekmail TINYINT(1), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX asso_id_idx (asso_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE asso (id BIGINT AUTO_INCREMENT, name VARCHAR(50), login VARCHAR(32), pole_id BIGINT, type_id BIGINT, url_site VARCHAR(100), description TEXT, logo VARCHAR(100), active TINYINT(1), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX pole_id_idx (pole_id), INDEX type_id_idx (type_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE asso_member (id BIGINT AUTO_INCREMENT, user_id BIGINT, asso_id BIGINT, role_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX asso_id_idx (asso_id), INDEX role_id_idx (role_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE event (id BIGINT AUTO_INCREMENT, asso_id BIGINT, type_id BIGINT, name VARCHAR(50), description TEXT, start_date DATE, end_date DATE, is_public TINYINT(1), is_weekmail TINYINT(1), place TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX asso_id_idx (asso_id), INDEX type_id_idx (type_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE event_type (id BIGINT AUTO_INCREMENT, name VARCHAR(50), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE asso_member (id BIGINT AUTO_INCREMENT, user_id BIGINT, asso_id BIGINT, role_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX asso_id_idx (asso_id), INDEX role_id_idx (role_id), INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE event (id BIGINT AUTO_INCREMENT, asso_id BIGINT, type_id BIGINT, name VARCHAR(50), description TEXT, start_date DATETIME, end_date DATETIME, is_public TINYINT(1), is_weekmail TINYINT(1), place TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX asso_id_idx (asso_id), INDEX type_id_idx (type_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE event_type (id BIGINT AUTO_INCREMENT, name VARCHAR(50), color VARCHAR(7), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE place (id BIGINT AUTO_INCREMENT, street TEXT, zipcode VARCHAR(10), city VARCHAR(100), country VARCHAR(100), phone VARCHAR(15), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE pole (id BIGINT AUTO_INCREMENT, asso_id BIGINT, INDEX asso_id_idx (asso_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE profile (id BIGINT AUTO_INCREMENT, user_id BIGINT, domain VARCHAR(15), nickname VARCHAR(50), birthday DATE, sexe CHAR(1), mobile VARCHAR(15), home_place BIGINT, family_place BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), INDEX home_place_idx (home_place), INDEX family_place_idx (family_place), PRIMARY KEY(id)) ENGINE = INNODB;
@@ -19,6 +19,7 @@ CREATE TABLE sf_guard_user_permission (user_id BIGINT, permission_id BIGINT, cre
 ALTER TABLE article ADD CONSTRAINT article_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id);
 ALTER TABLE asso ADD CONSTRAINT asso_type_id_type_asso_id FOREIGN KEY (type_id) REFERENCES type_asso(id);
 ALTER TABLE asso ADD CONSTRAINT asso_pole_id_pole_id FOREIGN KEY (pole_id) REFERENCES pole(id);
+ALTER TABLE asso_member ADD CONSTRAINT asso_member_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE asso_member ADD CONSTRAINT asso_member_role_id_role_id FOREIGN KEY (role_id) REFERENCES role(id);
 ALTER TABLE asso_member ADD CONSTRAINT asso_member_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id);
 ALTER TABLE event ADD CONSTRAINT event_type_id_event_type_id FOREIGN KEY (type_id) REFERENCES event_type(id);

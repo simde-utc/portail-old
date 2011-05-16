@@ -12,4 +12,8 @@
  */
 class Pole extends BasePole
 {
+  function __toString()
+  {
+    return $this->getInfos()->getName();
+  }
 }

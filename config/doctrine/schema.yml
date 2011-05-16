@@ -37,7 +37,7 @@ AssoMember:
   relations:
     Asso: { local: asso_id, foreign: id }
     Role: { local: role_id, foreign: id }
-    User: { local: user_id, foreign: id, class: SfGuardUser }
+    User: { local: user_id, foreign: id, class: sfGuardUser }
     
 Role:
   connection: doctrine
@@ -80,8 +80,8 @@ Event:
     type_id: { type: integer }
     name: { type: string(50) }
     description: { type: string }
-    start_date: { type: date }
-    end_date: { type: date }
+    start_date: { type: timestamp }
+    end_date: { type: timestamp }
     is_public: { type: boolean }
     is_weekmail: { type: boolean }
     place: { type: string }
@@ -93,6 +93,7 @@ EventType:
   connection: doctrine
   columns:
     name: { type: string(50) }
+    color: { type: string(7) }
     
 Article:
   connection: doctrine

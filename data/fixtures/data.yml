@@ -109,6 +109,13 @@ Article:
     is_weekmail: false
     created_at: '2011-05-14 17:03:00'
     updated_at: '2011-05-14 17:03:03'
+EventType:
+  EventType_1:
+    name: Réunion
+    color: '#0000FF'
+  EventType_3:
+    name: 'Perm au pic'
+    color: '#FF0000'
 Pole:
   Pole_1:
     Infos: Asso_1
@@ -127,3 +134,28 @@ TypeAsso:
     name: 'Associations 1901'
   TypeAsso_4:
     name: 'Club Upsilon'
+Event:
+  Event_1:
+    Asso: Asso_2
+    Type: EventType_1
+    name: Test
+    description: "<p>fdgfgfd</p>\r\n<p>fgdgfd</p>\r\n<p>gfdgfdgfd</p>"
+    start_date: '2011-05-09'
+    end_date: '2011-05-17'
+    is_public: false
+    is_weekmail: false
+    place: ''
+    created_at: '2011-05-15 21:30:31'
+    updated_at: '2011-05-15 21:30:31'
+  Event_2:
+    Asso: Asso_2
+    Type: EventType_3
+    name: Test
+    description: "<p>fdgfdg</p>\r\n<p>fg</p>\r\n<p>fdg</p>\r\n<p>fdgfdgfdgfd</p>"
+    start_date: '2011-05-18'
+    end_date: '2011-05-19'
+    is_public: false
+    is_weekmail: false
+    place: ''
+    created_at: '2011-05-15 21:31:40'
+    updated_at: '2011-05-15 21:31:40'

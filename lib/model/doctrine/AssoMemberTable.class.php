@@ -7,13 +7,25 @@
  */
 class AssoMemberTable extends Doctrine_Table
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return object AssoMemberTable
-     */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('AssoMember');
-    }
+  /**
+   * Recharge les permissions de l'utilisateur courant après une modification de la table
+   * 
+   * @param sfEvent $event 
+   */
+  public function postSave($event)
+  {
+    parent::postSave($event);
+    $this->getUser()->reloadGroupsAndPermissions();
+  }
+
+  /**
+   * Returns an instance of this class.
+   *
+   * @return object AssoMemberTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('AssoMember');
+  }
+
 }

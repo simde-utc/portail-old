@@ -39,6 +39,10 @@ article_show:
   param: { module: article, action: show }
   options: { model: Article, type: object }
 
+events_list:
+  url: /event
+  param: { module: event, action: index }
+  
 event_show:
   url: /event/show/:id
   class: sfDoctrineRoute

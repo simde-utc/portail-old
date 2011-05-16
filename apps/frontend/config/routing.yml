@@ -1,0 +1,86 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: asso, action: index }
+  
+#Asso
+assos_list:
+  url:   /asso
+  param: { module: asso, action: index }
+
+assos_list_pole:
+  url:   /asso/pole/:id
+  class: sfDoctrineRoute
+  param: { module: asso, action: list }
+  options: { model: Pole, type: object }
+
+assos_show:
+  url:   /asso/show/:login
+  class: sfDoctrineRoute
+  param: { module: asso, action: show }
+  options: { model: Asso, type: object }
+  
+  
+#Articles
+articles_list:
+  url:   /article
+  param: { module: article, action: index }
+  
+articles_list_asso:
+  url:   /article/asso/:id
+  class: sfDoctrineRoute
+  param: { module: article, action: list }
+  options: { model: Asso, type: object }
+  
+article_show:
+  url:   /article/show/:id
+  class: sfDoctrineRoute
+  param: { module: article, action: show }
+  options: { model: Article, type: object }
+
+
+#Events
+events_list:
+  url: /event
+  param: { module: event, action: index }
+  
+events_list_asso:
+  url:   /event/asso/:id
+  class: sfDoctrineRoute
+  param: { module: event, action: list }
+  options: { model: Asso, type: object }
+  
+event_show:
+  url: /event/show/:id
+  class: sfDoctrineRoute
+  param: { module: event, action: show }
+  options: { model: Event, type: object }
+
+agenda_detail:
+  url:   /event/calendar
+  param: { module: event, action: calendar }
+
+sf_guard_signin:
+  url:   /login
+  param: { module: sfGuardAuth, action: signin }
+        
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
+
+default_json:
+  url:   /json/:module/:action/*
+  param: { sf_format: json }
+
+# generic rules
+# please, remove them by adding more specific rules
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

@@ -9,8 +9,32 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-    <div id="content">
-      <?php echo $sf_content ?>
+    <div id="wrap">
+      <div id="header">
+        <div id="header_login">
+          "LOGIN" : ??? <br/>
+          "PASSWORD" : ??? <br/>
+          [Connexion] <br/>
+          <br/>
+          S'enregister
+        </div>
+        <div id="header_logo">
+          <img src="/images/logo_bde.jpg" width="256px" height="150px">
+        </div>
+        <div id="header_titre">
+          <center><h1>Portail des étudiants UTC</h1></center>
+        </div>
+        <div id="header_menu">
+          <div class="menu"><a href="<?php echo url_for('@homepage') ?>">Accueil</a></div>
+          <div class="menu"><a href="<?php echo url_for('asso/index') ?>">Associations</a></div>
+          <div class="menu"><a href="<?php echo url_for('article/index') ?>">Articles</a></div>
+          <div class="menu"><a href="<?php echo url_for('event/calendar') ?>">Événements</a></div>
+        </div>
+      </div>
+      <div id="content">
+        <?php echo $sf_content ?>
+      </div>
     </div>
+    <div id="footer"> <center> Copyright SiMDE 2011 - Ce projet est une création d'étudiant UTCéen. </center> </div>
   </body>
 </html>

@@ -4,7 +4,7 @@
 # default rules
 homepage:
   url:   /
-  param: { module: asso, action: list }
+  param: { module: asso, action: index }
   
   
 assos_list:

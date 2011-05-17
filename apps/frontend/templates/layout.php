@@ -31,7 +31,14 @@
           <div class="menu"><a href="<?php echo url_for('event/calendar') ?>">Événements</a></div>
         </div>
       </div>
+      
       <div id="content">
+      <div class="ui-widget">
+      	<form action="<?php echo url_for('asso_search_json') ?>" method="get">
+				<label for="search">Recherche : </label>
+				<input id="search" />
+				</form>
+			</div>
         <?php echo $sf_content ?>
       </div>
     </div>

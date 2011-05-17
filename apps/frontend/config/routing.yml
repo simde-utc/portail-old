@@ -23,7 +23,15 @@ assos_show:
   param: { module: asso, action: show }
   options: { model: Asso, type: object }
   
+asso_search:
+  url:   /asso/search
+  param: { module: asso, action: search }
+
+asso_search_json:
+  url:   /asso/search.json
+  param: { module: asso, action: search, sf_format: json }
   
+    
 #Articles
 articles_list:
   url:   /article

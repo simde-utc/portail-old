@@ -79,5 +79,27 @@ class assoActions extends sfActions
       $this->redirect('asso/edit?id='.$asso->getId());
     }
   }
+  
+  /**
+   * 
+   * Find an asso from a string given using zend framework search
+   * @param sfWebRequest $request
+   */
+	public function executeSearch(sfWebRequest $request)
+	{
+	  $this->forwardUnless($query = $request->getParameter('query'), 'asso', 'index');
+	 
+	  $this->assos = Doctrine_Core::getTable('Asso')->getForLuceneQuery($query);
+	 
+	  if ($request->isXmlHttpRequest())
+	  {
+	    if ('*' == $query || !$this->assos)
+	    {
+	      return $this->renderText('No results.');
+	    }
+	 
+	    return $this->renderPartial('asso/list', array('assos' => $this->assos));
+	  }
+	}
 
 }

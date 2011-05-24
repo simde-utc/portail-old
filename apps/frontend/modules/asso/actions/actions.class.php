@@ -19,6 +19,7 @@ class assoActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->assos = AssoTable::getInstance()->getAssosList();
+    $this->poles = PoleTable::getInstance()->getAllWithInfos();
     $this->setTemplate('list');
   }
   
@@ -50,6 +51,8 @@ class assoActions extends sfActions
     $this->asso = $this->getRoute()->getObject();
     $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getId());
     $this->events = EventTable::getInstance()->getEventsList($this->asso->getId());
+    if($pole = $this->asso->isPole())
+    	$this->assos = AssoTable::getInstance()->getAssosList($pole->getPrimaryKey());
   }
 
   public function executeEdit(sfWebRequest $request)

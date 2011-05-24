@@ -4,43 +4,31 @@
 
 <h2><?php echo $asso ? $asso->getName() : "Cette association n'existe pas" ?></h2>
 <?php if($asso): ?>
+	<?php include_partial('asso/sidebar', array('asso' => $asso)) ?>
   <div id="asso">
   
 	  	<ul>
-				<li><a href="#description"><?php echo $asso->getName() ?></a></li>
 				<li><a href="#articles">Articles</a></li>
 				<li><a href="#events">Évènements</a></li>
+				<?php if($asso->isPole()) : ?><li><a href="#assos">Assos</a></li><?php endif;?>
 			</ul>
-			
-			<img class="logo" src="<?php echo $asso->getLogo() ?>">
-			
-		<div id="description">
-      
-      <div class="desc">
-  			<?php echo html_entity_decode(truncate_text($asso->getDescription(),256)) ?>
-        </br>
-        <a class="website" href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a>
-      </div>
-	</div>
 	
 	<div id="articles">
 	<h3>Articles de <?php echo $asso ? $asso->getName() : "Cette association n'existe pas" ?></h3>
 	<?php if(count($articles) > 0): ?>
-	<ul id="article_list">
+	<div id="article_list">
 	<?php foreach($articles as $article) : ?>
+		<div class="article">
 	  <h4><?php echo $article->getName() ?></h4>
-	  Publié par <?php echo $article->getAsso()->getName() ?> le <?php echo $article->getCreatedAt() ?>  
+	  <div class="actions">
 	  <!-- todo only if authorized -->
-	  - <a href="<?php echo url_for('article/edit?id='.$article->getId()) ?>">Editer</a>
-	
-	  <div class="desc">
-	  <?php echo html_entity_decode(truncate_text($article->getText(),256)) ?>
-	  </br>
-	  <a class="link" href="<?php echo url_for('article/show/?id='.$article->getId()) ?>">Lire la suite</a>
+	  <a href="<?php echo url_for('article/edit?id='.$article->getId()) ?>">Editer</a>
+		</div>
+	  <?php echo html_entity_decode($article->getText()) ?>
 	  </div>
 	
 	<?php endforeach; ?>
-	</ul>
+	</div>
 	<?php else: ?>
 	  Cette association n'a pas encore publié d'article.
 	<?php endif ?>
@@ -70,7 +58,14 @@
 	  Cette association n'a pas encore proposé d'événement.
 	<?php endif ?>
 	</div>
-
+	
+	<div id="assos">
+	
+	<h3>Associations de <?php echo $asso ? $asso->getName() : "Cette association n'existe pas" ?></h3>
+		<div class="assos_pole">
+		<?php include_partial('asso/list', array('assos' => $assos)) ?>
+		</div>
+	</div>
   </div>
 <?php endif ?>
 

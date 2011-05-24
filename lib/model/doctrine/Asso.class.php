@@ -98,4 +98,13 @@ class Asso extends BaseAsso
   {
     return Text::slugify($this->getName());
   }
+  
+	public function isPole()
+  {
+  	$q = Doctrine_Query::create()
+						->from('Pole p');
+		$q->Where('p.asso_id = ?', $this->getPrimaryKey());
+		
+		return $q->fetchOne();
+  }
 }

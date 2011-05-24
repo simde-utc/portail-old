@@ -23,7 +23,7 @@ class PoleTable extends Doctrine_Table
     $q = $this->createQuery('q')
       ->leftJoin('q.Infos i');
     
-    return $q;
+    return $q->execute();
   }
 
 }

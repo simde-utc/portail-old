@@ -2,7 +2,7 @@
 
 <ul id="assos_list">
   <?php foreach($assos as $asso) : ?>
-
+	<?php if(!$asso->isPole()) : ?>
     <li>
       <h3><a href="<?php echo url_for('asso/show?login='.$asso->getLogin()) ?>"><?php echo $asso->getName() ?></a></h3>
       <img class="logo" src="<?php echo $asso->getLogo() ?>">
@@ -12,6 +12,6 @@
         <a class="website" href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a>
       </div>
     </li>
-
+	<?php endif;?>
   <?php endforeach; ?>
 </ul>

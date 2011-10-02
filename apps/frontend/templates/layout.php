@@ -46,6 +46,7 @@
       <div id="content">
         <?php echo $sf_content ?>
       </div>
+      <div style="clear: both;"></div>
     </div>
     <div id="footer"> <center> Copyright SiMDE 2011 - Ce projet est une création d'étudiant UTCéen. </center> </div>
   </body>

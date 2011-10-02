@@ -14,7 +14,7 @@
 
 html {}
 body {
-  background-color: #999;
+  background-color: #FFF;
   margin: 0px;
 }
 
@@ -87,7 +87,9 @@ p {
 
 #wrap{
   margin: auto;
+  padding: 5px;
   width: 1200px;
+  background-color: #999;
 }
 
 #header{
@@ -184,17 +186,44 @@ p {
 
 
 #content{
-  padding-top:20px;
-  width: 100%;
+  width: 700px;;
   background-color: #FFF;
   -moz-border-radius: 10px;
   border-radius: 10px;
+  margin: auto;
   padding: 20px;
   border: 1px solid #B7B7B7;
   -moz-box-shadow: 2px 2px 5px #B7B7B7;
   box-shadow: 2px 2px 5px #B7B7B7;
-  margin: auto;
 }
+
+#column-left{
+  float: left;
+  width: 150px;
+  background-color: #FFF;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #B7B7B7;
+  -moz-box-shadow: 2px 2px 5px #B7B7B7;
+  box-shadow: 2px 2px 5px #B7B7B7;
+}
+
+#column-right{
+  float: right;
+  width: 150px;;
+  background-color: #FFF;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #B7B7B7;
+  -moz-box-shadow: 2px 2px 5px #B7B7B7;
+  box-shadow: 2px 2px 5px #B7B7B7;
+}
+
+
 
 #sidebar{
   float: right;
@@ -223,7 +252,6 @@ p {
   height: 210px;
   color: #FFF;
   margin-bottom : 0px;
-  margin-top: 15px;
   background-color: #000;
 }
 #footer a{

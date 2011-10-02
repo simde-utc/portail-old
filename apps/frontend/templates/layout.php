@@ -13,7 +13,7 @@
       <div id="header">
         <div id="header_login">
           <?php if($sf_user->isAuthenticated()): ?>
-            TODO : Liste des connectés
+	    <?php print($sf_user); ?>
           <?php else: ?>
             <?php include_component('sfGuardAuth','signin_form') ?>
           <?php endif ?>

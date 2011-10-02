@@ -49,6 +49,11 @@ article_show:
   param: { module: article, action: show }
   options: { model: Article, type: object }
 
+article_edit:
+  url:  /article/edit/:id
+  class: sfDoctrineRoute
+  param: { module: article, action: edit }
+  options: { model: Article, type: object }
 
 #Events
 events_list:
@@ -85,10 +90,6 @@ sf_guard_signout:
   url:   /logout
   param: { module: sfGuardAuth, action: signout }
 
-default_json:
-  url:   /json/:module/:action/*
-  param: { sf_format: json }
-
 # generic rules
 # please, remove them by adding more specific rules
 
@@ -98,3 +99,8 @@ default_index:
 
 default:
   url:   /:module/:action/*
+
+
+default_json:
+  url:   /json/:module/:action/*
+  param: { sf_format: json }

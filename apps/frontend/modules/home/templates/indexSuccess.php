@@ -1,1 +1,1 @@
-<h1>Test</h1>
+<?php include_partial('event/carousel', array('events' => $events)) ?>

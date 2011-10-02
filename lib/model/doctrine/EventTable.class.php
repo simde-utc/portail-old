@@ -33,4 +33,18 @@ class EventTable extends Doctrine_Table
 
     return $q->execute();
   }
+
+  /**
+   * 
+   * Fetch the list of all events in future.
+   *  
+   */
+  public function getFutureEventsList()
+  {
+    $q = $this->createQuery('a')
+      ->addOrderBy('a.created_at DESC');
+    $q = $q->where("a.start_date > ?","NOW");
+
+    return $q->execute();
+  }
 }

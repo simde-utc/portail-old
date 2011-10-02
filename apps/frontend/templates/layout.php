@@ -19,7 +19,7 @@
           <?php endif ?>
         </div>
         <div id="header_logo">
-          <img src="/images/logo_bde.jpg" width="256px" height="150px">
+          <img src="/images/logo_bde.jpg" alt="BDE UTC" width="256px" height="150px" />
         </div>
         <div id="header_titre">
           <center><h1>Portail des étudiants UTC</h1></center>

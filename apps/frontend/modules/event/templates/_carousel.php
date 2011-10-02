@@ -1,7 +1,7 @@
 <?php use_stylesheet('jquery.jscrollpane.css') ?>
 <?php use_stylesheet('carousel.css') ?>
 
-<?php use_javascript('js/jquery.easing.1.3.js') ?>
+<?php use_javascript('jquery.easing.1.3.js') ?>
 <?php use_javascript('jquery.mousewheel.js') ?>
 <?php use_javascript('jquery.contentcarousel.js') ?>
 

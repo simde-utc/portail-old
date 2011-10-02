@@ -9,6 +9,12 @@
     <?php include_javascripts() ?>
   </head>
   <body>
+    <div id="top_bar">
+      <div style="width: 1200px; margin-left: auto; margin-right: auto; text-align: right;" >
+          <span>RECHERCHER UNE INFO <input type="text" /><button>CHERCHER</button></span> 
+	  <span>| F T +1 | S'IDENTIFIER | S'INSCRIRE</span>
+      </div>
+    </div>
     <div id="wrap">
       <div id="header">
         <div id="header_login">

@@ -67,6 +67,12 @@ event_show:
   param: { module: event, action: show }
   options: { model: Event, type: object }
 
+event_edit:
+  url: /event/edit/:id
+  class: sfDoctrineRoute
+  param: { module: event, action: edit }
+  options: { model: Event, type: object }
+
 agenda_detail:
   url:   /event/calendar
   param: { module: event, action: calendar }

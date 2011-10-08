@@ -15,10 +15,30 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
    */
   public function configure()
   {
+		$choices = array(
+     0 => 'Etudiant UTC',
+     1 => 'Enseignant UTC',
+     2 => 'ESCOM',
+     3 => 'Ancien',
+     4 => 'Extérieur',
+    );
+
     parent::configure();
-    $profileForm = new ProfileForm($this->object->Profile);
-    unset($profileForm['id'],$profileForm['user_id']);
-    unset($profileForm['nickname'],$profileForm['birthday'],$profileForm['sexe'],$profileForm['mobile'],$profileForm['home_place'],$profileForm['family_place']);
-    $this->embedForm('Profile',$profileForm);
+
+		$this->widgetSchema['domain'] = new sfWidgetDomainSelector();
+		$this->widgetSchema['username']->setAttribute('onkeyup', '$("#nickname_email").val($(this).val());');
+
+		$this->widgetSchema->moveField('username', 'first');
+		$this->widgetSchema->moveField('domain', 'after', 'username');
+
+		$this->widgetSchema->setLabels(array(
+		  'domain'   => 'Mail UTC',
+		  'password' => 'Mot de passe',
+		  'password_again' => 'Confirmer',
+			'username'    => 'Login UTC',
+			'last_name' => 'Nom',
+			'first_name' => 'Prénom',
+		));
+	
   }
 }

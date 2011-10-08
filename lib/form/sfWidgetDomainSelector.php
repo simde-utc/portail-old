@@ -2,17 +2,18 @@
 
 class sfWidgetDomainSelector extends sfWidgetForm
 {
-	public function configure($options = array(), $attributes = array ())
-	{
-		parent::configure($options, $attributes);
-	}
- 
-	public function render($name, $value = null, $attributes = array(), $errors = array())
-	{
-		$login = new sfWidgetFormInput();
-		$login->setAttribute('readonly', 'readonly');
-		
-		$choices = array(
+
+  public function configure($options = array(),$attributes = array())
+  {
+    parent::configure($options,$attributes);
+  }
+
+  public function render($name,$value = null,$attributes = array(),$errors = array())
+  {
+    $login = new sfWidgetFormInput();
+    $login->setAttribute('readonly','readonly');
+
+    $choices = array(
      '0' => 'etu.utc.fr',
 //		 '' => 'hds.utc.fr',
      '1' => 'utc.fr',
@@ -23,7 +24,7 @@ class sfWidgetDomainSelector extends sfWidgetForm
 
     $domaine = new sfWidgetFormChoice(array('choices' => $choices));
 
-    return $login->render("nickname_email")." @ ".$domaine->render("domain");
-		
-	}
+    return $login->render("nickname_email")." @ ".$domaine->render($name);
+  }
+
 }

@@ -16,13 +16,10 @@ class sfGuardFormSignin extends BasesfGuardFormSignin
    */
   public function configure()
   {
- 
     $this->useFields(array('username','password','remember'));
-    
     $this->getWidget('username')->setLabel('Login');
     $this->getWidget('password')->setLabel('Mot de passe');
     $this->getWidget('remember')->setLabel('Se souvenir de moi');
-    
   }
 
 }

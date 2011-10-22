@@ -42,8 +42,7 @@ class assoActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->asso = $this->getRoute()->getObject();
-    $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getId());
-    $this->events = EventTable::getInstance()->getEventsList($this->asso->getId());
+    $this->redirectUnless($this->asso,'assos_list');
     if($pole = $this->asso->isPole())
       $this->assos = AssoTable::getInstance()->getAssosList($pole->getPrimaryKey());
   }

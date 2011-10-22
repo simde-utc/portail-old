@@ -1,151 +1,162 @@
- #assos_list {
-	list-style:none;
-	line-height:200%;
-	margin-top:20px;
-	background-color: #FFF;
-	position:relative;
-	padding : 10px;
-	margin-left : 25px;
+#assos_list {
+  list-style:none;
+  line-height:200%;
+  margin-top:20px;
+  background-color: #FFF;
+  position:relative;
+  padding : 10px;
+  margin-left : 25px;
 }
 
 #assos_list li{
-	padding : 10px;
-	width:650px;
-	min-height : 150px;
-	border: 1px solid #efefef;
-	margin: 0 30px 30px 0;
-	background: #fff;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset; }
-	}
+  padding : 10px;
+  width:650px;
+  min-height : 150px;
+  border: 1px solid #efefef;
+  margin: 0 30px 30px 0;
+  background: #fff;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset; }
+}
 
 #assos_list li:before,
 #assos_list li:after {
-	content: '';
-	z-index: -1;
-	position: absolute;
-	left: 10px;
-	bottom: 10px;
-	width: 70%;
-	max-width: 300px; /* avoid rotation causing ugly appearance at large container widths */
-	height: 55%;
-	-webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-	-webkit-transform: skew(-15deg) rotate(-6deg);
-	-moz-transform: skew(-15deg) rotate(-6deg);
-	-ms-transform: skew(-15deg) rotate(-6deg);
-	-o-transform: skew(-15deg) rotate(-6deg);
-	transform: skew(-15deg) rotate(-6deg);
+  content: '';
+  z-index: -1;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 70%;
+  max-width: 300px; /* avoid rotation causing ugly appearance at large container widths */
+  height: 55%;
+  -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  -webkit-transform: skew(-15deg) rotate(-6deg);
+  -moz-transform: skew(-15deg) rotate(-6deg);
+  -ms-transform: skew(-15deg) rotate(-6deg);
+  -o-transform: skew(-15deg) rotate(-6deg);
+  transform: skew(-15deg) rotate(-6deg);
 }
 
 #assos_list h3 a{
-	font-size:1.3em;
+  font-size:1.3em;
 }
 #assos_list .desc{
-    margin-left : 100px;
+  margin-left : 100px;
 }
 #assos_list img.logo{
-	float:left;
-	height:85px;
-	width:85px;
-	margin-right: 10px;
-	border:2px outset #000;
-	background-color : #FFF;
+  float:left;
+  height:85px;
+  width:85px;
+  margin-right: 10px;
+  border:2px outset #000;
+  background-color : #FFF;
 }
 #assos_list .website{
-	padding:3px 3px 3px 23px;
-	margin:2px;
-	font-weight:bold;
-	background: url('/images/world.png') no-repeat 3px 3px;
+  font-weight:bold;
+}
+#topbar .website:before , #assos_list .website:before {
+  content: url('/images/icons/home.png');
+  margin-right: 5px;
+  vertical-align: middle;
 }
 #assos_list .website:hover{
-	text-decoration:none;
-	color:#fff;
-	background-color:#75c34b;
+  text-decoration:none;
+  color:#fff;
+  background-color:#75c34b;
+}
+#topbar .email:before , #assos_list .email:before {
+  content: url('/images/icons/mail.png');
+  margin-right: 5px;
+  vertical-align: middle;
 }
 
-
 #asso{
-	padding : 10px;
-	width:750px;
-	min-height : 500px;
-	border: 1px solid #efefef;
-	margin: 0 30px 30px 0;
-	background: #fff;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-	margin-left : 235px;
-	}
-	
+  padding : 10px;
+  width:680px;
+  min-height : 500px;
+  border: 1px solid #efefef;
+  margin: 0 30px 0 0;
+  background: #fff;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+}
+
 #asso#article-list{
-	list-style:none;
-	}
-	
+  list-style:none;
+}
+
 #asso img.logo{
-	margin : 20px;
-	}
-	
+  margin : 20px;
+}
+
 #asso h3{
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 #asso ul{
-	height: 32px;
+  height: 32px;
 }
-	
+
 #asso .desc{
-	margin : 5px;
-	}
-	
-#sidebar{
-	float: left;
-	width: 200px;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  margin : 5px;
 }
 
-#sidebar div#logo_asso{
-	text-align: center;
-	margin: 10px;
+#topbar{
+  width: 680px;
+  margin: 10px auto;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  border: 1px solid #efefef;
+  padding: 10px;
 }
 
-#sidebar div#logo_asso img{
-	max-width: 180px;
-	max-height: 100px;
+#topbar .logo_asso{
+  text-align: center;
+  margin: 10px;
+}
+
+#topbar .logo_asso img{
+  max-width: 180px;
+  max-height: 100px;
+}
+
+#topbar .desc {
+  margin: 10px auto;
 }
 
 #poles_list{
-	margin: auto;
-	}
-	
+  margin: auto;
+}
+
 #poles_list ul{
-	list-style:none;
-	text-align: center;
-	}
-	
+  list-style:none;
+  text-align: center;
+}
+
 #poles_list ul li{
-	text-align: center;
-	width : 100px;
-	float: left;
-	margin: 10px;
-	-moz-border-radius: 10px;
+  text-align: center;
+  width : 100px;
+  float: left;
+  margin: 10px;
+  -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding : 5px;
-	}
-	
+}
+
 #poles_list ul li:hover{
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-	}
-	
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+}
+
 #poles_list ul li img{
-	max-width : 80px;
-	max-height : 80px;
-	}
+  max-width : 80px;
+  max-height : 80px;
+}

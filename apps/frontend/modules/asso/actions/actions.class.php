@@ -10,35 +10,28 @@
  */
 class assoActions extends sfActions
 {
+
   /**
    * Liste des associations
-   * On affiche la liste de toutes les assos
+   * On affiche la liste de toutes les assos ou du pôle spécifié
    *
    * @param sfRequest $request A request object
    */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->assos = AssoTable::getInstance()->getAssosList();
+    $pole_id = $this->getRequestParameter('pole');
     $this->poles = PoleTable::getInstance()->getAllWithInfos();
+    foreach($this->poles as $p)
+    {
+      if($p->getPrimaryKey() == $pole_id)
+      {
+        $this->assos = AssoTable::getInstance()->getAssosList($pole_id);
+        break;
+      }
+    }
+    if(!$this->assos)
+      $this->assos = AssoTable::getInstance()->getAssosList();
     $this->setTemplate('list');
-  }
-  
-  /**
-   * Liste des associations
-   * On affiche la liste des asso du pôle spécifié
-   *
-   * @param sfRequest $request A request object
-   */
-  public function executeList(sfWebRequest $request)
-  {
-    try {
-      $this->pole = $this->getRoute()->getObject();
-    }
-    catch (Exception $e) {
-      $this->forward('asso','index');
-    }
-
-    $this->assos = AssoTable::getInstance()->getAssosList($this->pole->getPrimaryKey());
   }
 
   /**
@@ -52,57 +45,57 @@ class assoActions extends sfActions
     $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getId());
     $this->events = EventTable::getInstance()->getEventsList($this->asso->getId());
     if($pole = $this->asso->isPole())
-    	$this->assos = AssoTable::getInstance()->getAssosList($pole->getPrimaryKey());
+      $this->assos = AssoTable::getInstance()->getAssosList($pole->getPrimaryKey());
   }
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))), sprintf('Object asso does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))),sprintf('Object asso does not exist (%s).',$request->getParameter('id')));
     $this->form = new assoForm($asso);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))), sprintf('Object asso does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))),sprintf('Object asso does not exist (%s).',$request->getParameter('id')));
     $this->form = new assoForm($asso);
 
-    $this->processForm($request, $this->form);
+    $this->processForm($request,$this->form);
 
     $this->setTemplate('edit');
   }
 
-  protected function processForm(sfWebRequest $request, sfForm $form)
+  protected function processForm(sfWebRequest $request,sfForm $form)
   {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
+    $form->bind($request->getParameter($form->getName()),$request->getFiles($form->getName()));
+    if($form->isValid())
     {
       $asso = $form->save();
 
       $this->redirect('asso/edit?id='.$asso->getId());
     }
   }
-  
+
   /**
    * 
    * Find an asso from a string given using zend framework search
    * @param sfWebRequest $request
    */
-	public function executeSearch(sfWebRequest $request)
-	{
-	  $this->forwardUnless($query = $request->getParameter('query'), 'asso', 'index');
-	 
-	  $this->assos = Doctrine_Core::getTable('Asso')->getForLuceneQuery($query);
-	 
-	  if ($request->isXmlHttpRequest())
-	  {
-	    if ('*' == $query || !$this->assos)
-	    {
-	      return $this->renderText('No results.');
-	    }
-	 
-	    return $this->renderPartial('asso/list', array('assos' => $this->assos));
-	  }
-	}
+  public function executeSearch(sfWebRequest $request)
+  {
+    $this->forwardUnless($query = $request->getParameter('query'),'asso','index');
+
+    $this->assos = Doctrine_Core::getTable('Asso')->getForLuceneQuery($query);
+
+    if($request->isXmlHttpRequest())
+    {
+      if('*' == $query || !$this->assos)
+      {
+        return $this->renderText('No results.');
+      }
+
+      return $this->renderPartial('asso/list',array('assos' => $this->assos));
+    }
+  }
 
 }

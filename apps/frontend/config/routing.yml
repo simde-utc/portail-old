@@ -12,10 +12,8 @@ assos_list:
   param: { module: asso, action: index }
 
 assos_list_pole:
-  url:   /asso/pole/:id
-  class: sfDoctrineRoute
-  param: { module: asso, action: list }
-  options: { model: Pole, type: object }
+  url:   /asso/pole/:pole
+  param: { module: asso, action: index }
 
 assos_show:
   url:   /asso/show/:login

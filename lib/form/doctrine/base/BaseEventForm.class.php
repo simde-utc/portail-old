@@ -25,6 +25,7 @@ abstract class BaseEventForm extends BaseFormDoctrine
       'is_public'   => new sfWidgetFormInputCheckbox(),
       'is_weekmail' => new sfWidgetFormInputCheckbox(),
       'place'       => new sfWidgetFormTextarea(),
+      'affiche'     => new sfWidgetFormTextarea(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -40,6 +41,7 @@ abstract class BaseEventForm extends BaseFormDoctrine
       'is_public'   => new sfValidatorBoolean(array('required' => false)),
       'is_weekmail' => new sfValidatorBoolean(array('required' => false)),
       'place'       => new sfValidatorString(array('required' => false)),
+      'affiche'     => new sfValidatorString(array('required' => false)),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
     ));

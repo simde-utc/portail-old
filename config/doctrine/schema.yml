@@ -10,6 +10,10 @@ Asso:
     description: { type: string }
     logo: { type: string(100) }
     active: { type: boolean }
+    passation: { type: boolean }
+    local: { type: string(6) }
+    phone: { type: string(15) }
+    facebook: { type: string }
   relations:
     Pole: { local: pole_id, foreign: id }
     Type: { local: type_id, foreign: id, class: TypeAsso }
@@ -18,9 +22,9 @@ Pole:
   connection: doctrine
   columns:
     asso_id: { type: integer }
+    couleur: { type: string(7) }
   relations:
     Infos: { local: asso_id, foreign: id, class: Asso }
-    
     
 TypeAsso:
   connection: doctrine
@@ -34,10 +38,12 @@ AssoMember:
     user_id: { type: integer }
     asso_id: { type: integer }
     role_id: { type: integer }
+    semestre_id: { type: integer }
   relations:
     Asso: { local: asso_id, foreign: id }
     Role: { local: role_id, foreign: id }
     User: { local: user_id, foreign: id, class: sfGuardUser }
+    Semestre: { local: semestre_id, foreign: id }
     
 Role:
   connection: doctrine
@@ -57,10 +63,19 @@ Profile:
      mobile: { type: string(15) }
      home_place: { type: integer }
      family_place: { type: integer }
+     branche_id: { type: integer }
+     filiere_id: { type: integer }
+     semestre: { type: integer }
+     other_email: { type: string }
+     photo: { type: string }
+     weekmail: { type: boolean }
+     autorisation_photo: { type: boolean }
+     cotisant: { type: boolean }
    relations:
      User: { local: user_id, foreign: id, class: sfGuardUser, foreignType: one }
      HomePlace: { local: home_place, foreign: id, class: Place }
      FamilyPlace: { local: family_place, foreign: id, class: Place }
+     Branche: { local: branche, foreign: id }
 
 Place:
    connection: doctrine
@@ -85,6 +100,7 @@ Event:
     is_public: { type: boolean }
     is_weekmail: { type: boolean }
     place: { type: string }
+    affiche: { type: string }
   relations:
     Asso: { local: asso_id, foreign: id }
     Type: { local: type_id, foreign: id, class: EventType }
@@ -103,5 +119,16 @@ Article:
     name : { type: string(200) }
     text : { type: string }
     is_weekmail: { type: boolean }
+    image: { type: string }
   relations:
     Asso: { local: asso_id, foreign: id }
+
+Semestre:
+  connection: doctrine
+  columns:
+    name: { type: string(3) }
+    
+Branche:
+  connection: doctrine
+  columns:
+    name: { type: string(3) }

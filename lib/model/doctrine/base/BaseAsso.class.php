@@ -15,6 +15,10 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property string $description
  * @property string $logo
  * @property boolean $active
+ * @property boolean $passation
+ * @property string $local
+ * @property string $phone
+ * @property string $facebook
  * @property Pole $Pole
  * @property TypeAsso $Type
  * @property Doctrine_Collection $AssoMember
@@ -29,6 +33,10 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method string              getDescription() Returns the current record's "description" value
  * @method string              getLogo()        Returns the current record's "logo" value
  * @method boolean             getActive()      Returns the current record's "active" value
+ * @method boolean             getPassation()   Returns the current record's "passation" value
+ * @method string              getLocal()       Returns the current record's "local" value
+ * @method string              getPhone()       Returns the current record's "phone" value
+ * @method string              getFacebook()    Returns the current record's "facebook" value
  * @method Pole                getPole()        Returns the current record's "Pole" value
  * @method TypeAsso            getType()        Returns the current record's "Type" value
  * @method Doctrine_Collection getAssoMember()  Returns the current record's "AssoMember" collection
@@ -42,6 +50,10 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setDescription() Sets the current record's "description" value
  * @method Asso                setLogo()        Sets the current record's "logo" value
  * @method Asso                setActive()      Sets the current record's "active" value
+ * @method Asso                setPassation()   Sets the current record's "passation" value
+ * @method Asso                setLocal()       Sets the current record's "local" value
+ * @method Asso                setPhone()       Sets the current record's "phone" value
+ * @method Asso                setFacebook()    Sets the current record's "facebook" value
  * @method Asso                setPole()        Sets the current record's "Pole" value
  * @method Asso                setType()        Sets the current record's "Type" value
  * @method Asso                setAssoMember()  Sets the current record's "AssoMember" collection
@@ -85,6 +97,20 @@ abstract class BaseAsso extends sfDoctrineRecord
              ));
         $this->hasColumn('active', 'boolean', null, array(
              'type' => 'boolean',
+             ));
+        $this->hasColumn('passation', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('local', 'string', 6, array(
+             'type' => 'string',
+             'length' => 6,
+             ));
+        $this->hasColumn('phone', 'string', 15, array(
+             'type' => 'string',
+             'length' => 15,
+             ));
+        $this->hasColumn('facebook', 'string', null, array(
+             'type' => 'string',
              ));
     }
 

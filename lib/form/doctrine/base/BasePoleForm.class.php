@@ -17,11 +17,13 @@ abstract class BasePoleForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'      => new sfWidgetFormInputHidden(),
       'asso_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Infos'), 'add_empty' => true)),
+      'couleur' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'      => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'asso_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Infos'), 'required' => false)),
+      'couleur' => new sfValidatorString(array('max_length' => 7, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('pole[%s]');

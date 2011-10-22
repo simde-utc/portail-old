@@ -15,32 +15,59 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @property string $mobile
  * @property integer $home_place
  * @property integer $family_place
+ * @property integer $branche_id
+ * @property integer $filiere_id
+ * @property integer $semestre
+ * @property string $other_email
+ * @property string $photo
+ * @property boolean $weekmail
+ * @property boolean $autorisation_photo
+ * @property boolean $cotisant
  * @property sfGuardUser $User
  * @property Place $HomePlace
  * @property Place $FamilyPlace
+ * @property Branche $Branche
  * 
- * @method integer     getUserId()       Returns the current record's "user_id" value
- * @method string      getDomain()       Returns the current record's "domain" value
- * @method string      getNickname()     Returns the current record's "nickname" value
- * @method date        getBirthday()     Returns the current record's "birthday" value
- * @method char        getSexe()         Returns the current record's "sexe" value
- * @method string      getMobile()       Returns the current record's "mobile" value
- * @method integer     getHomePlace()    Returns the current record's "home_place" value
- * @method integer     getFamilyPlace()  Returns the current record's "family_place" value
- * @method sfGuardUser getUser()         Returns the current record's "User" value
- * @method Place       getHomePlace()    Returns the current record's "HomePlace" value
- * @method Place       getFamilyPlace()  Returns the current record's "FamilyPlace" value
- * @method Profile     setUserId()       Sets the current record's "user_id" value
- * @method Profile     setDomain()       Sets the current record's "domain" value
- * @method Profile     setNickname()     Sets the current record's "nickname" value
- * @method Profile     setBirthday()     Sets the current record's "birthday" value
- * @method Profile     setSexe()         Sets the current record's "sexe" value
- * @method Profile     setMobile()       Sets the current record's "mobile" value
- * @method Profile     setHomePlace()    Sets the current record's "home_place" value
- * @method Profile     setFamilyPlace()  Sets the current record's "family_place" value
- * @method Profile     setUser()         Sets the current record's "User" value
- * @method Profile     setHomePlace()    Sets the current record's "HomePlace" value
- * @method Profile     setFamilyPlace()  Sets the current record's "FamilyPlace" value
+ * @method integer     getUserId()             Returns the current record's "user_id" value
+ * @method string      getDomain()             Returns the current record's "domain" value
+ * @method string      getNickname()           Returns the current record's "nickname" value
+ * @method date        getBirthday()           Returns the current record's "birthday" value
+ * @method char        getSexe()               Returns the current record's "sexe" value
+ * @method string      getMobile()             Returns the current record's "mobile" value
+ * @method integer     getHomePlace()          Returns the current record's "home_place" value
+ * @method integer     getFamilyPlace()        Returns the current record's "family_place" value
+ * @method integer     getBrancheId()          Returns the current record's "branche_id" value
+ * @method integer     getFiliereId()          Returns the current record's "filiere_id" value
+ * @method integer     getSemestre()           Returns the current record's "semestre" value
+ * @method string      getOtherEmail()         Returns the current record's "other_email" value
+ * @method string      getPhoto()              Returns the current record's "photo" value
+ * @method boolean     getWeekmail()           Returns the current record's "weekmail" value
+ * @method boolean     getAutorisationPhoto()  Returns the current record's "autorisation_photo" value
+ * @method boolean     getCotisant()           Returns the current record's "cotisant" value
+ * @method sfGuardUser getUser()               Returns the current record's "User" value
+ * @method Place       getHomePlace()          Returns the current record's "HomePlace" value
+ * @method Place       getFamilyPlace()        Returns the current record's "FamilyPlace" value
+ * @method Branche     getBranche()            Returns the current record's "Branche" value
+ * @method Profile     setUserId()             Sets the current record's "user_id" value
+ * @method Profile     setDomain()             Sets the current record's "domain" value
+ * @method Profile     setNickname()           Sets the current record's "nickname" value
+ * @method Profile     setBirthday()           Sets the current record's "birthday" value
+ * @method Profile     setSexe()               Sets the current record's "sexe" value
+ * @method Profile     setMobile()             Sets the current record's "mobile" value
+ * @method Profile     setHomePlace()          Sets the current record's "home_place" value
+ * @method Profile     setFamilyPlace()        Sets the current record's "family_place" value
+ * @method Profile     setBrancheId()          Sets the current record's "branche_id" value
+ * @method Profile     setFiliereId()          Sets the current record's "filiere_id" value
+ * @method Profile     setSemestre()           Sets the current record's "semestre" value
+ * @method Profile     setOtherEmail()         Sets the current record's "other_email" value
+ * @method Profile     setPhoto()              Sets the current record's "photo" value
+ * @method Profile     setWeekmail()           Sets the current record's "weekmail" value
+ * @method Profile     setAutorisationPhoto()  Sets the current record's "autorisation_photo" value
+ * @method Profile     setCotisant()           Sets the current record's "cotisant" value
+ * @method Profile     setUser()               Sets the current record's "User" value
+ * @method Profile     setHomePlace()          Sets the current record's "HomePlace" value
+ * @method Profile     setFamilyPlace()        Sets the current record's "FamilyPlace" value
+ * @method Profile     setBranche()            Sets the current record's "Branche" value
  * 
  * @package    simde
  * @subpackage model
@@ -80,6 +107,30 @@ abstract class BaseProfile extends sfDoctrineRecord
         $this->hasColumn('family_place', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('branche_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('filiere_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('semestre', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('other_email', 'string', null, array(
+             'type' => 'string',
+             ));
+        $this->hasColumn('photo', 'string', null, array(
+             'type' => 'string',
+             ));
+        $this->hasColumn('weekmail', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('autorisation_photo', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('cotisant', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
     }
 
     public function setUp()
@@ -95,6 +146,10 @@ abstract class BaseProfile extends sfDoctrineRecord
 
         $this->hasOne('Place as FamilyPlace', array(
              'local' => 'family_place',
+             'foreign' => 'id'));
+
+        $this->hasOne('Branche', array(
+             'local' => 'branche',
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();

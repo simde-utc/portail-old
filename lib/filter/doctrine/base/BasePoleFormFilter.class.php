@@ -14,10 +14,12 @@ abstract class BasePoleFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'asso_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Infos'), 'add_empty' => true)),
+      'couleur' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
       'asso_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Infos'), 'column' => 'id')),
+      'couleur' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('pole_filters[%s]');
@@ -39,6 +41,7 @@ abstract class BasePoleFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'      => 'Number',
       'asso_id' => 'ForeignKey',
+      'couleur' => 'Text',
     );
   }
 }

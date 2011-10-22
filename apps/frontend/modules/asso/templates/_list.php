@@ -9,7 +9,7 @@
       <div class="desc">
         <?php echo html_entity_decode(truncate_text($asso->getDescription(),256)) ?>
         </br>
-        <a class="website" href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a>
+        <a class="website" href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a> - <a href="mailto:<?php echo $asso->getLogin() ?>@assos.utc.fr"><?php echo $asso->getLogin() ?>@assos.utc.fr</a>
       </div>
     </li>
 	<?php endif;?>

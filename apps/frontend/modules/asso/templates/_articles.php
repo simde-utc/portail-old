@@ -5,6 +5,7 @@
       <?php foreach($articles as $article) : ?>
         <div class="article">
           <h4><?php echo $article->getName() ?></h4>
+          Publié par <?php echo $article->getAsso()->getName() ?> le <?php echo $article->getCreatedAt() ?>  
           <div class="actions">
             <!-- todo only if authorized -->
             <a href="<?php echo url_for('article/edit?id='.$article->getId()) ?>">Editer</a>

@@ -7,31 +7,36 @@
  */
 class ArticleTable extends Doctrine_Table
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return object ArticleTable
-     */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('Article');
-    }
-    
-    
-   /**
+
+  /**
+   * Returns an instance of this class.
+   *
+   * @return object ArticleTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('Article');
+  }
+
+  /**
    * 
    * Fetch the list of all articles sorted by date.
    * 
    * @param int $pole_id
    */
-  public function getArticlesList($asso_id = null)
+  public function getArticlesList($asso = null)
   {
     $q = $this->createQuery('a')
+      ->select('a.*')
       ->addOrderBy('a.created_at DESC');
 
-    if(!is_null($asso_id))
-      $q = $q->where("a.asso_id = ?",$asso_id);
+    if(!is_null($asso))
+      if($asso->isPole())
+        $q = $q->leftJoin('Asso as')->where("as.pole_id = ?",$asso->getPrimaryKey());
+      else
+        $q = $q->where("a.asso_id = ?",$asso->getPrimaryKey());
 
     return $q->execute();
   }
+
 }

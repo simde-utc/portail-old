@@ -36,6 +36,6 @@ abstract class BaseBranche extends sfDoctrineRecord
         parent::setUp();
         $this->hasMany('Profile', array(
              'local' => 'id',
-             'foreign' => 'branche'));
+             'foreign' => 'branche_id'));
     }
 }

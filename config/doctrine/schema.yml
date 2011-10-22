@@ -11,7 +11,7 @@ Asso:
     logo: { type: string(100) }
     active: { type: boolean }
     passation: { type: boolean }
-    local: { type: string(6) }
+    salle: { type: string(6) }
     phone: { type: string(15) }
     facebook: { type: string }
   relations:
@@ -75,7 +75,7 @@ Profile:
      User: { local: user_id, foreign: id, class: sfGuardUser, foreignType: one }
      HomePlace: { local: home_place, foreign: id, class: Place }
      FamilyPlace: { local: family_place, foreign: id, class: Place }
-     Branche: { local: branche, foreign: id }
+     Branche: { local: branche_id, foreign: id }
 
 Place:
    connection: doctrine

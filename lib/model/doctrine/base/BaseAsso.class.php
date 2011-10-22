@@ -16,7 +16,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property string $logo
  * @property boolean $active
  * @property boolean $passation
- * @property string $local
+ * @property string $salle
  * @property string $phone
  * @property string $facebook
  * @property Pole $Pole
@@ -34,7 +34,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method string              getLogo()        Returns the current record's "logo" value
  * @method boolean             getActive()      Returns the current record's "active" value
  * @method boolean             getPassation()   Returns the current record's "passation" value
- * @method string              getLocal()       Returns the current record's "local" value
+ * @method string              getSalle()       Returns the current record's "salle" value
  * @method string              getPhone()       Returns the current record's "phone" value
  * @method string              getFacebook()    Returns the current record's "facebook" value
  * @method Pole                getPole()        Returns the current record's "Pole" value
@@ -51,7 +51,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setLogo()        Sets the current record's "logo" value
  * @method Asso                setActive()      Sets the current record's "active" value
  * @method Asso                setPassation()   Sets the current record's "passation" value
- * @method Asso                setLocal()       Sets the current record's "local" value
+ * @method Asso                setSalle()       Sets the current record's "salle" value
  * @method Asso                setPhone()       Sets the current record's "phone" value
  * @method Asso                setFacebook()    Sets the current record's "facebook" value
  * @method Asso                setPole()        Sets the current record's "Pole" value
@@ -101,7 +101,7 @@ abstract class BaseAsso extends sfDoctrineRecord
         $this->hasColumn('passation', 'boolean', null, array(
              'type' => 'boolean',
              ));
-        $this->hasColumn('local', 'string', 6, array(
+        $this->hasColumn('salle', 'string', 6, array(
              'type' => 'string',
              'length' => 6,
              ));

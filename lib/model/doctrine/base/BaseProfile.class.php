@@ -149,7 +149,7 @@ abstract class BaseProfile extends sfDoctrineRecord
              'foreign' => 'id'));
 
         $this->hasOne('Branche', array(
-             'local' => 'branche',
+             'local' => 'branche_id',
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();

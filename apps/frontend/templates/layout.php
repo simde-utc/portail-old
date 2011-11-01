@@ -10,16 +10,20 @@
   </head>
   <body>
     <div id="top_bar">
-      <div style="width: 1200px; margin-left: auto; margin-right: auto; text-align: right;" >
-          <span>RECHERCHER UNE INFO <input type="text" /><button>CHERCHER</button></span> 
-	  <span>| F T +1 | S'IDENTIFIER | S'INSCRIRE</span>
+      <div class="wrap" >
+        <a href="<?php echo url_for('homepage') ?>" id="logo">
+          <img src="/images/logo_bde.png" alt="BDE UTC" width="163px" height="110px" />
+        </a>
+        Rerchercher une info<input type="text" /><button>CHERCHER</button><span class="barre"></span>
+        <a href="http://www.facebook.com/" class="facebook">F</a><a href="http://www.twitter.com" class="twitter">T</a>
+        +1<span class="barre"></span>S'identifier<span class="barre"></span>S'inscrire
       </div>
     </div>
-    <div id="wrap">
+    <div class="wrap">
       <div id="header">
         <div id="header_login">
           <?php if($sf_user->isAuthenticated()): ?>
-	    <?php print($sf_user); ?>
+            <?php print($sf_user); ?>
           <?php else: ?>
             <?php include_component('sfGuardAuth','signin_form') ?>
           <?php endif ?>
@@ -38,10 +42,10 @@
         </div>
       </div>
       <div id="column-left">
-	<p>Colonne Gauche</p>
+        <p>Colonne Gauche</p>
       </div>
       <div id="column-right">
-	<p>Colonne Droite</p>
+        <p>Colonne Droite</p>
       </div>      
       <div id="content">
         <?php echo $sf_content ?>

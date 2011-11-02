@@ -1,3 +1,4 @@
+<?php use_helper('Date') ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
@@ -16,9 +17,43 @@
         </a>
         Rerchercher une info<input type="text" /><button>CHERCHER</button><span class="barre"></span>
         <a href="http://www.facebook.com/" class="facebook">F</a><a href="http://www.twitter.com" class="twitter">T</a>
-        +1<span class="barre"></span>S'identifier<span class="barre"></span>S'inscrire
+        +1<span class="barre"></span><a href="<?php echo url_for('sf_guard_signin') ?>">S'identifier</a><span class="barre"></span><a href="<?php echo url_for('sf_guard_register') ?>">S'inscrire</a>
       </div>
     </div>
+
+    <div id="menu">
+      <div class="wrap" >
+        <a href="<?php echo url_for('homepage') ?>">Accueil</a>
+        <a href="<?php echo url_for('asso/index') ?>" class="barre">Liste des associations</a>
+        <a href="" class="barre">Services</a>
+        <a href="" class="barre">Fonctionnement de l'UTC</a>
+        <span class="horloge">
+          <?php echo format_date(time(),"D",'fr') ?>
+          <span class="barre"><?php echo format_date(time(),"t",'fr') ?></span>
+        </span>
+      </div>
+    </div>
+
+    <div id="calendrier">
+      <h1>Calendrier des associations</h1>
+      <div class="wrap">
+        <div class="event">
+          <img src="" alt="" width="112" height="112" />
+          <h2>Titre 01</h2>
+          Par Machine Chose<br />
+          <h3>Date</h3>
+          <span class="infos">
+            Heure de Début<br />
+            Heure de Fin<br />
+            Lieu
+          </span>
+          <a href="" class="more">En savoir plus</a>
+        </div>
+        <div class="event barre"></div>
+        <div class="event barre"></div>
+      </div>
+    </div>
+
     <div class="wrap">
       <div id="header">
         <div id="header_login">

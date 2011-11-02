@@ -33,27 +33,7 @@
         </span>
       </div>
     </div>
-
-    <div id="calendrier">
-      <h1>Calendrier des associations</h1>
-      <div class="wrap">
-        <div class="event">
-          <img src="" alt="" width="112" height="112" />
-          <h2>Titre 01</h2>
-          Par Machine Chose<br />
-          <h3>Date</h3>
-          <span class="infos">
-            Heure de Début<br />
-            Heure de Fin<br />
-            Lieu
-          </span>
-          <a href="" class="more">En savoir plus</a>
-        </div>
-        <div class="event barre"></div>
-        <div class="event barre"></div>
-      </div>
-    </div>
-
+    <?php include_component('event','carousel') ?>
     <div class="wrap">
       <div id="header">
         <div id="header_login">

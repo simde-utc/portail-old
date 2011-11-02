@@ -17,8 +17,5 @@ class homeActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->events = EventTable::getInstance()->getFutureEventsList();
-    $this->setTemplate('index');
-
   }
 }

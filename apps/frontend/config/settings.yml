@@ -39,3 +39,4 @@ all:
     login_action:           signin
     secure_module:          sfGuardAuth
     secure_action:          secure
+    default_culture:        fr_FR

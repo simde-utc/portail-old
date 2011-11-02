@@ -45,7 +45,10 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
      'username','email_address','first_name','last_name','password','password_again','Profile'
     ));
 
-    unset($this->widgetSchema['Profile']['nickname'],$this->widgetSchema['Profile']['birthday'],$this->widgetSchema['Profile']['sexe'],$this->widgetSchema['Profile']['mobile'],$this->widgetSchema['Profile']['home_place'],$this->widgetSchema['Profile']['family_place']);
+    $array = array('nickname','birthday','sexe','mobile','home_place','family_place',
+     'branche_id','filiere_id','semestre','other_email','photo','weekmail','autorisation_photo','cotisant');
+    foreach($array as $row)
+      unset($this->widgetSchema['Profile'][$row]);
     $this->getWidget('Profile')->setHidden(true);
     $this->widgetSchema['Profile']['domain'] = new sfWidgetFormInputHidden();
   }

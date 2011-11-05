@@ -34,39 +34,67 @@
       </div>
     </div>
     <?php include_component('event','carousel') ?>
+
     <div class="wrap">
-      <div id="header">
-        <div id="header_login">
+      <div id="ariane">
+        Vous êtes ici : Accueil
+      </div>
+
+      <div id="column-left">
+        <div id="left_login">
           <?php if($sf_user->isAuthenticated()): ?>
             <?php print($sf_user); ?>
           <?php else: ?>
             <?php include_component('sfGuardAuth','signin_form') ?>
           <?php endif ?>
         </div>
-        <div id="header_logo">
-          <img src="/images/logo_bde.jpg" alt="BDE UTC" width="256px" height="150px" />
-        </div>
-        <div id="header_titre">
-          <center><h1>Portail des étudiants UTC</h1></center>
-        </div>
-        <div id="header_menu">
-          <div class="menu"><a href="<?php echo url_for('@homepage') ?>">Accueil</a></div>
-          <div class="menu"><a href="<?php echo url_for('asso/index') ?>">Associations</a></div>
-          <div class="menu"><a href="<?php echo url_for('article/index') ?>">Articles</a></div>
-          <div class="menu"><a href="<?php echo url_for('event/calendar') ?>">Événements</a></div>
-        </div>
-      </div>
-      <div id="column-left">
-        <p>Colonne Gauche</p>
       </div>
       <div id="column-right">
-        <p>Colonne Droite</p>
+        Colonne Droite
       </div>      
       <div id="content">
         <?php echo $sf_content ?>
       </div>
       <div style="clear: both;"></div>
     </div>
-    <div id="footer"> <center> Copyright SiMDE 2011 - Ce projet est une création d'étudiant UTCéen. </center> </div>
+    <div id="footer">
+      <div class="wrap">
+        <div id="splash"></div>
+        <div id="footer-left">
+          <p>
+            <h2>Accueil</h2>
+          </p>
+          <p>
+            <h2>Services</h2>
+            <a href="">Matmatronch</a><br />
+            <a href="">eboutic</a><br />
+            <a href="">stocks à souvenir</a><br />
+            <a href="">laverie</a><br />
+            <a href="">weekmail</a><br />
+            <a href="">forum</a><br />
+            <a href="">pédagogie</a><br />
+            <a href="">covoiturage</a><br />
+            <a href="">prêt de matériel</a><br />
+          </p>
+        </div>
+        <div id="footer-right">
+          <p>
+            <h2>Fonctionnement de l’utc</h2>
+            <a href="">l’utc c’est quoi ?</a><br />
+            <a href="">candidater à l’utc</a><br />
+            <a href="">la vie d’étudiant</a><br />
+            <a href="">les études proposées</a><br />
+          </p>
+          <p>
+            <h2>Liste des assos</h2>
+            <a href="">Vie du campus</a><br />
+            <a href="">Artistique et évènementiel</a><br />
+            <a href="">Solidarité et citoyenneté</a><br />
+            <a href="">Technologie et entreprenariat</a><br />
+            <a href="">sport</a><br />
+          </p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

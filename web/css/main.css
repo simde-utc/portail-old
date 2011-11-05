@@ -175,180 +175,74 @@ p { text-align : justify; }
                             text-align: center; font-size: 10px; text-transform: uppercase; }
 
 /* ------------------------------- */
-/*         HEADER                  */
+/*         FIL D'ARIANE            */
 /* ------------------------------- */
 
-#header{
-  height: 190px;
-}
+#ariane { background: #ececec; color: #2a2a2a; font-size: 9px; margin: 20px auto; height: 15px; padding-top: 5px; text-indent: 5px; }
 
-#header_login{
-  width: 260px;
-  /*height: 90px;*/
-  float: right;
-  background-color: #FFF;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid #B7B7B7;
-  -moz-box-shadow: 2px 2px 5px #B7B7B7;
-  box-shadow: 2px 2px 5px #B7B7B7;
-  margin: auto;
-  /*margin-right: 20px*/;
-}
-
-#header_login #signin_username, #header_login #signin_password { width: 110px; }
-
-
-#header_logo{
-  width: 250px;
-  height: 150px;
-  float: left;
-  background-color: #FFF;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid #B7B7B7;
-  -moz-box-shadow: 2px 2px 5px #B7B7B7;
-  box-shadow: 2px 2px 5px #B7B7B7;
-  margin: auto;
-  /*margin-left: 20px*/;
-}
-
-#header_titre{
-  width: 400px;
-  height: 90px;
-  background-color: #FFF;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid #B7B7B7;
-  -moz-box-shadow: 2px 2px 5px #B7B7B7;
-  box-shadow: 2px 2px 5px #B7B7B7;
-  margin: auto;
-}
-
-#header_menu{
-  text-align: center;
-  padding: 0px;
-  height: 50px;
-  margin: auto;
-  margin-top: 30px;
-  margin-right: 20px;
-  margin-left: 300px;
-}
-
-.menu{
-  display: inline;
-  width: 100px;
-  height: 50px;
-  background-color: #FFF;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid #B7B7B7;
-  -moz-box-shadow: 2px 2px 5px #B7B7B7;
-  box-shadow: 2px 2px 5px #B7B7B7;
-  margin: auto;
-}
-
-.menu:hover {
-  background-color: #444;
-  border: 1px solid #555;
-  -moz-box-shadow: 4px 4px 10px #333;
-  box-shadow: 4px 4px 10px #333;
-  margin: auto;
-}
-
-.menu a{
-  color:#111;
-  text-decoration: none;
-}
-
-.menu:hover a{
-  color: #FFF;
-}
-
+/* ------------------------------- */
+/*        CONTENT            */
+/* ------------------------------- */
 
 #content{
-  width: 500px;;
-  background-color: #FFF;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  width: 620px;;
   margin: auto;
-  padding: 20px;
-  border: 1px solid #B7B7B7;
-  -moz-box-shadow: 2px 2px 5px #B7B7B7;
-  box-shadow: 2px 2px 5px #B7B7B7;
+
 }
 
 #column-left{
   float: left;
-  width: 150px;
-  background-color: #FFF;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  width: 175px;
   margin: auto;
-  padding: 20px;
-  border: 1px solid #B7B7B7;
-  -moz-box-shadow: 2px 2px 5px #B7B7B7;
-  box-shadow: 2px 2px 5px #B7B7B7;
 }
 
 #column-right{
   float: right;
-  width: 150px;;
-  background-color: #FFF;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  width: 175px;
   margin: auto;
-  padding: 20px;
-  border: 1px solid #B7B7B7;
-  -moz-box-shadow: 2px 2px 5px #B7B7B7;
-  box-shadow: 2px 2px 5px #B7B7B7;
-}
-
-
-
-#sidebar{
-  float: right;
-  border: 1px solid #efefef;
-  background: #fff;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-  padding: 10px;
-}
-
-
-#navbar{
-  padding-left: 4%;
-}
-
-#navbar ul li{
-  list-style:none;
-  float:left;
-  margin-right : 5px;
 }
 
 #footer{
+  margin-top: 80px;
   clear:both;
-  padding-top:30px;
-  height: 210px;
+  height: 270px;
+  width: 100%;
+  background: url('/images/bg_footer.png') repeat-x;
+  padding-top: 45px;
+  text-transform: uppercase;
+}
+
+#footer #splash {
+  width: 366px;
+  height: 368px;
+  background: url('/images/splash_footer.png') no-repeat;
+  position: absolute;
+  margin-top: -110px;
+}
+
+#footer #footer-left {
+  width: 155px;
+  border-right: 1px solid #FFF;
+  display: inline-block;
+  margin-left: 425px;
+}
+
+#footer #footer-right {
+  margin-left: 45px;
+  display: inline-block;
+}
+
+#footer h2 {
+  font-size: 15px;
+  font-family: Impact;
   color: #FFF;
-  margin-bottom : 0px;
-  background-color: #000;
-}
-#footer a{
-  color:#666666;
-  text-decoration:underline;
-}
-#footer p{
-  text-align:center;
+  margin-bottom: 0px;
 }
 
-
+#footer a {
+  font-size: 10px;
+  color: #FFF;
+}
 
 /*-------------------------------------------*/
 /*--------------EVENEMENTS-------------------*/

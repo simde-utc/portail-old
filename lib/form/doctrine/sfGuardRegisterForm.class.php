@@ -64,7 +64,7 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
 //     4 => 'Autre...',
     );
     $values['Profile']['domain'] = $values['email_address'];
-    $values['email_adress'] = $values['username'] . '@' . $choices[$values['email_address']];
+    $values['email_address'] = $values['username'] . '@' . $choices[$values['email_address']];
     return parent::processValues($values);
   }
 

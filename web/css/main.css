@@ -302,6 +302,76 @@ p { text-align : justify; }
   color: #2a2a2a;
 }
 
+#column-right #contact {
+  background: #353535;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 12px;
+  color: #FFF;
+  font-weight: bold;
+  text-align: center;
+}
+
+#column-right #contact p { text-align: center; padding: 10px 0px; border-bottom: 1px solid #FFF; margin: 0 auto; }
+
+#column-right #contact h1 {
+  font-family: Impact;
+  font-size: 15px;
+  margin: 0 auto;
+  text-align: center;
+  color: #FFF;
+  font-weight: normal;
+}
+
+#column-right #contact .nousecrire {
+  display: block;
+  margin-top: 10px;
+  color: #FFF;
+}
+
+#column-right #random_asso {
+  padding: 5px;
+  background: #FFF;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#column-right #random_asso img {
+  float: left;
+  margin-bottom: 5px;
+}
+
+#column-right #random_asso h2 {
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 0 0 0 70px;
+  color: #2a2a2a;
+}
+#column-right #random_asso p {
+  clear: both;
+  margin: 5px auto;
+}
+#column-right #random_asso .barre {
+  margin: 5px auto;
+  border-top: 1px solid #000;
+}
+#column-right #random_asso .more {
+  width: 155px;
+  height: 16px;
+  text-align: right;
+  background: #bebcbc;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding-top: 4px;
+  padding-right: 10px;
+  display: block;
+  color: #2a2a2a;
+}
 
 /*-------------------------------------------*/
 /*--------------EVENEMENTS-------------------*/

@@ -44,6 +44,13 @@ class AssoTable extends Doctrine_Table
       ->where('m.user_id = ?',$user_id);
     return $q->execute();
   }
+  
+  public function getRandom()
+  {
+    $q = $this->createQuery('q')
+      ->orderBy('RAND()');
+    return $q->fetchOne();
+  }
 
   /**
    * 

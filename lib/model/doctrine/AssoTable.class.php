@@ -36,64 +36,70 @@ class AssoTable extends Doctrine_Table
 
     return $q->execute();
   }
-  
-  
+
+  public function getMyAssos($user_id)
+  {
+    $q = $this->createQuery('q')
+      ->leftJoin('q.AssoMember m')
+      ->where('m.user_id = ?',$user_id);
+    return $q->execute();
+  }
+
   /**
    * 
    * Method to use the zend framework for search
    * Give the response of a search query 
-   ** @param unknown_type $query
+   * * @param unknown_type $query
    */
-	public function getForLuceneQuery($query)
-	{
-	  $hits = self::getLuceneIndex()->find($query);
-	 
-	  $pks = array();
-	  foreach ($hits as $hit)
-	  {
-	    $pks[] = $hit->pk;
-	  }
-	 
-	  if (empty($pks))
-	  {
-	    return array();
-	  }
-	 
-	  $q = $this->createQuery('a')
-	    ->whereIn('a.id', $pks)
-	    ->limit(20);
-	 
-	  return $q->execute();
-	}
-	
-	
-	/**
-	 * 
-	 * Method to use the zend framework for search
-	 * Get or create the index file
-	 */
-	static public function getLuceneIndex()
-	{
-	  ProjectConfiguration::registerZend();
-	 
-	  if (file_exists($index = self::getLuceneIndexFile()))
-	  {
-	    return Zend_Search_Lucene::open($index);
-	  }
-	  else
-	  {
-	    return Zend_Search_Lucene::create($index);
-	  }
-	}
-	 
-	/**
-	 * 
-	 * Method to use the zend framework for search
-	 * Give the index file if exists
-	 */
-	static public function getLuceneIndexFile()
-	{
-	  return sfConfig::get('sf_data_dir').'/asso.'.sfConfig::get('sf_environment').'.index';
-	}
+  public function getForLuceneQuery($query)
+  {
+    $hits = self::getLuceneIndex()->find($query);
+
+    $pks = array();
+    foreach($hits as $hit)
+    {
+      $pks[] = $hit->pk;
+    }
+
+    if(empty($pks))
+    {
+      return array();
+    }
+
+    $q = $this->createQuery('a')
+      ->whereIn('a.id',$pks)
+      ->limit(20);
+
+    return $q->execute();
+  }
+
+  /**
+   * 
+   * Method to use the zend framework for search
+   * Get or create the index file
+   */
+  static public function getLuceneIndex()
+  {
+    ProjectConfiguration::registerZend();
+
+    if(file_exists($index = self::getLuceneIndexFile()))
+    {
+      return Zend_Search_Lucene::open($index);
+    }
+    else
+    {
+      return Zend_Search_Lucene::create($index);
+    }
+  }
+
+  /**
+   * 
+   * Method to use the zend framework for search
+   * Give the index file if exists
+   */
+  static public function getLuceneIndexFile()
+  {
+    return sfConfig::get('sf_data_dir').'/asso.'.sfConfig::get('sf_environment').'.index';
+  }
 
 }

@@ -53,7 +53,21 @@
         <?php endif ?>
       </div>
       <div id="column-right">
-        Colonne Droite
+        <?php include_component('asso','randomAsso') ?>
+        <div id="contact">
+          <h1>Contacter le BDE</h1>
+          <p>rue du Dr Schweitzer<br />
+            Compiègne, 60200 FRANCE</p>
+          <p>
+            Tél : +33 3 44 23 44 23<br />
+            Fax : +33 3 44 23 44 23
+          </p>
+          <p>
+            bde@asso.utc.fr<br />
+            <?php echo url_for('asso/show?login=bde',true) ?>
+          </p>
+          <a href="" class="nousecrire">Nous écrire</a>
+        </div>
       </div>      
       <div id="content">
         <?php echo $sf_content ?>

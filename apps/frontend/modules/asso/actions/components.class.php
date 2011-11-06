@@ -30,5 +30,10 @@ class assoComponents extends sfComponents
   {
     $this->assos = AssoTable::getInstance()->getMyAssos($this->getUser()->getGuardUser()->getId());
   }
+  
+  public function executeRandomAsso()
+  {
+    $this->asso = AssoTable::getInstance()->getRandom();
+  }
 
 }

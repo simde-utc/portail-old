@@ -48,6 +48,9 @@
             <?php include_component('sfGuardAuth','signin_form') ?>
           <?php endif ?>
         </div>
+        <?php if($sf_user->isAuthenticated()): ?>
+          <?php include_component('asso','myAssos') ?>
+        <?php endif ?>
       </div>
       <div id="column-right">
         Colonne Droite

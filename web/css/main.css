@@ -85,7 +85,7 @@ p { text-align : justify; }
   margin: 0 2px;
   width: 33px;
   height: 32px;
-  vertical-align: 30%;
+  vertical-align: 20%;
   text-indent: 10000px;
   overflow: hidden;
 }
@@ -101,13 +101,13 @@ p { text-align : justify; }
 #menu {
   margin: 0 auto;
   background: url('/images/bg_menu.png') no-repeat;
-  height: 55px;
+  height: 58px;
   width: 1071px;
   font-family: impact;
   font-size: 15px;
   text-transform: uppercase;
   color: #FFF;
-  padding-top: 14px;
+  padding-top: 11px;
 }
 #menu a { color: #FFF; }
 #menu .barre {
@@ -140,7 +140,7 @@ p { text-align : justify; }
   margin: 0 auto;
   display: block;
   background: #535353;
-  height: 22px;
+  height: 24px;
   width: 990px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -150,7 +150,7 @@ p { text-align : justify; }
   font-weight: normal;
   color: #FFF;
   padding-left: 10px;
-  padding-top: 3px;
+  padding-top: 1px;
   text-transform: uppercase;
 }
 
@@ -181,7 +181,7 @@ p { text-align : justify; }
 #ariane { background: #ececec; color: #2a2a2a; font-size: 9px; margin: 20px auto; height: 15px; padding-top: 5px; text-indent: 5px; }
 
 /* ------------------------------- */
-/*        CONTENT            */
+/*        CONTENT                  */
 /* ------------------------------- */
 
 #content{
@@ -243,6 +243,65 @@ p { text-align : justify; }
   font-size: 10px;
   color: #FFF;
 }
+
+#column-left #left_login {
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+#column-left #my_assos h1 {
+  color: #FFF;
+  text-transform: uppercase;
+  font-family: Impact;
+  font-size: 15px;
+  background: url('/images/bg_col_title.png') no-repeat;
+  width: 175px;
+  height: 45px;
+  font-weight: normal;
+  text-indent: 10px;
+  padding-top: 6px;
+}
+
+#column-left #my_assos .my_asso {
+  height: 95px;
+  padding: 5px;
+  background: #FFF;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#column-left #my_assos .my_asso img {
+  float: left;
+  margin-bottom: 5px;
+}
+
+#column-left #my_assos .my_asso h2 {
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 0 0 0 70px;
+  color: #2a2a2a;
+}
+#column-left #my_assos .my_asso .barre {
+  margin: 5px auto;
+  border-top: 1px solid #000;
+  clear: both;
+}
+#column-left #my_assos .my_asso .more {
+  width: 155px;
+  height: 16px;
+  text-align: right;
+  background: #bebcbc;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding-top: 4px;
+  padding-right: 10px;
+  display: block;
+  color: #2a2a2a;
+}
+
 
 /*-------------------------------------------*/
 /*--------------EVENEMENTS-------------------*/

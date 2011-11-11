@@ -1,5 +1,5 @@
 all:
   sf_guard_plugin:
-    allow_login_with_email: false
+    allow_login_with_email: true
     remember_key_expiration_age:  604800   # 7 days in seconds
     remember_cookie_name:         portailSiMDERememberMe

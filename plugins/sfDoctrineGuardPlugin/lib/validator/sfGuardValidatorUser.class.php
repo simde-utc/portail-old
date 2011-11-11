@@ -20,7 +20,6 @@ class sfGuardValidatorUser extends sfValidatorBase
   public function configure($options = array(), $messages = array())
   {
     $this->addOption('username_field', 'username');
-    $this->addOption('domain_field', 'domain');
     $this->addOption('password_field', 'password');
     $this->addOption('throw_global_error', false);
 
@@ -30,11 +29,10 @@ class sfGuardValidatorUser extends sfValidatorBase
   protected function doClean($values)
   {
     $username = isset($values[$this->getOption('username_field')]) ? $values[$this->getOption('username_field')] : '';
-    $domain = isset($values[$this->getOption('domain_field')]) ? $values[$this->getOption('domain_field')] : '';
     $password = isset($values[$this->getOption('password_field')]) ? $values[$this->getOption('password_field')] : '';
 
-    //$allowEmail = sfConfig::get('app_sf_guard_plugin_allow_login_with_email', true);
-    //$method = $allowEmail ? 'retrieveByUsernameOrEmailAddress' : 'retrieveByUsername';
+    $allowEmail = sfConfig::get('app_sf_guard_plugin_allow_login_with_email', true);
+    $method = $allowEmail ? 'retrieveByUsernameOrEmailAddress' : 'retrieveByUsername';
 
     // don't allow to sign in with an empty username
     if ($username)
@@ -43,7 +41,7 @@ class sfGuardValidatorUser extends sfValidatorBase
        {
            $user = call_user_func_array($callable, array($username));
        } else {
-           $user = $this->getTable()->retrieveByUsernameAndDomain($username,$domain);
+           $user = $this->getTable()->$method($username);
        }
         // user exists?
        if($user)

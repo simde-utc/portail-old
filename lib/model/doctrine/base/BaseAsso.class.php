@@ -21,7 +21,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property string $facebook
  * @property Pole $Pole
  * @property TypeAsso $Type
- * @property Doctrine_Collection $PoleInfos
+ * @property Pole $PoleInfos
  * @property Doctrine_Collection $AssoMember
  * @property Doctrine_Collection $Event
  * @property Doctrine_Collection $Article
@@ -40,7 +40,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method string              getFacebook()    Returns the current record's "facebook" value
  * @method Pole                getPole()        Returns the current record's "Pole" value
  * @method TypeAsso            getType()        Returns the current record's "Type" value
- * @method Doctrine_Collection getPoleInfos()   Returns the current record's "PoleInfos" collection
+ * @method Pole                getPoleInfos()   Returns the current record's "PoleInfos" value
  * @method Doctrine_Collection getAssoMember()  Returns the current record's "AssoMember" collection
  * @method Doctrine_Collection getEvent()       Returns the current record's "Event" collection
  * @method Doctrine_Collection getArticle()     Returns the current record's "Article" collection
@@ -58,7 +58,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setFacebook()    Sets the current record's "facebook" value
  * @method Asso                setPole()        Sets the current record's "Pole" value
  * @method Asso                setType()        Sets the current record's "Type" value
- * @method Asso                setPoleInfos()   Sets the current record's "PoleInfos" collection
+ * @method Asso                setPoleInfos()   Sets the current record's "PoleInfos" value
  * @method Asso                setAssoMember()  Sets the current record's "AssoMember" collection
  * @method Asso                setEvent()       Sets the current record's "Event" collection
  * @method Asso                setArticle()     Sets the current record's "Article" collection
@@ -128,7 +128,7 @@ abstract class BaseAsso extends sfDoctrineRecord
              'local' => 'type_id',
              'foreign' => 'id'));
 
-        $this->hasMany('Pole as PoleInfos', array(
+        $this->hasOne('Pole as PoleInfos', array(
              'local' => 'id',
              'foreign' => 'asso_id'));
 

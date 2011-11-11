@@ -1,0 +1,72 @@
+#content .part .event {
+    width: 200px;
+    float: right;
+}
+.part {
+    margin-bottom: 40px;
+}
+.part h1 {
+    margin: 0 auto;
+    display: block;
+    background: #505050;
+    height: 24px;
+    width: 100%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: impact;
+    font-size: 15px;
+    font-weight: normal;
+    color: white;
+    padding-left: 10px;
+    padding-top: 1px;
+    text-transform: uppercase;
+}
+
+.part .article h2 {
+    margin: 5px auto;
+    display: block;
+    height: 24px;
+    width: 100%;
+    font-family: impact;
+    font-size: 15px;
+    font-weight: normal;
+    color: white;
+    padding-left: 10px;
+    padding-top: 1px;
+    text-transform: uppercase;
+}
+
+.poleae {
+    background: red;
+}
+
+.polevdc {
+    background: blue;
+}
+
+.polete {
+    background: green;
+}
+
+.polesc {
+    background: orange;
+}
+
+.part .more {
+    height: 16px;
+    text-align: right;
+    float: right;
+    background: #BEBCBC;
+    text-transform: uppercase;
+    font-size: 10px;
+    padding-top: 4px;
+    padding-right: 10px;
+    padding-left: 15px;
+    display: block;
+    color: #2A2A2A;
+}
+
+.part .more:hover{
+    background: #CECCCC;
+}

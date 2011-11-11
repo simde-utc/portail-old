@@ -49,6 +49,13 @@ class EventTable extends Doctrine_Table
       ->addOrderBy('a.start_date ASC');
     $q = $q->where("a.start_date > NOW()");
 
-    return $q->execute();
+    return $q;
+  }
+
+  public function getLastEvents($count = 3)
+  {
+    $q = $this->getFutureEventsList()
+      ->limit($count);
+    return $q;
   }
 }

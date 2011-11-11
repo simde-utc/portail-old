@@ -17,20 +17,20 @@ class eventActions extends sfActions
    */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->events = EventTable::getInstance()->getEventsList();
+    $this->events = EventTable::getInstance()->getEventsList()->execute();
     $this->setTemplate('list');
   }
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new eventForm();
+    $this->form = new EventForm();
   }
 
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
 
-    $this->form = new eventForm();
+    $this->form = new EventForm();
 
     $this->processForm($request, $this->form);
 
@@ -40,14 +40,14 @@ class eventActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($event = Doctrine_Core::getTable('event')->find(array($request->getParameter('id'))), sprintf('Object event does not exist (%s).', $request->getParameter('id')));
-    $this->form = new eventForm($event);
+    $this->form = new EventForm($event);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($event = Doctrine_Core::getTable('event')->find(array($request->getParameter('id'))), sprintf('Object event does not exist (%s).', $request->getParameter('id')));
-    $this->form = new eventForm($event);
+    $this->form = new EventForm($event);
 
     $this->processForm($request, $this->form);
 

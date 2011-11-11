@@ -24,7 +24,7 @@ Pole:
     asso_id: { type: integer }
     couleur: { type: string(7) }
   relations:
-    Infos: { local: asso_id, foreign: id, class: Asso, foreignAlias: PoleInfos }
+    Infos: { local: asso_id, foreign: id, class: Asso, foreignAlias: PoleInfos, foreignType: one }
     
 TypeAsso:
   connection: doctrine

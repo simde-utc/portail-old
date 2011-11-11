@@ -24,6 +24,6 @@
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
     </div>
   </div>
-  <hr />
-  <a class="more"> >>> Voir tous les evenements</a>
+    <hr class="clear"/>
+    <a class="more"> >>> Voir tous les evenements</a>
 </div>

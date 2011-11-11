@@ -4,7 +4,7 @@ body {
   font-family: Arial, Verdana, Helvetica, sans serif;
   font-size:10pt;
 }
-div.clear{ clear:both; }
+.clear{ clear:both; }
 a:link, a:visited{ color:#888888; text-decoration:none; }
 a:hover{ color:#888888; text-decoration:underline; }
 h1{ font-size:24px; color:#000000; }

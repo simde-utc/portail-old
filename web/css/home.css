@@ -45,8 +45,7 @@
     font-size: 15px;
     font-weight: normal;
     color: white;
-    padding-left: 10px;
-    padding-top: 1px;
+    padding: 1px 10px;
     text-transform: uppercase;
 }
 

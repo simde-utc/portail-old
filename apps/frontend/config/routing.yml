@@ -88,6 +88,20 @@ sf_guard_signout:
   url:   /logout
   param: { module: sfGuardAuth, action: signout }
 
+sf_guard_register:
+  url: /inscription
+  param: { module: sfGuardRegister, action: index }
+
+register_activation:
+  url: /inscription/activation/:activation_key
+  class: sfDoctrineRoute
+  param: { module: sfGuardRegister, action: activation }
+  options: { model: Activation, type: object }
+
+register_resend:
+  url: /inscription/activation
+  param: { module: sfGuardRegister, action: resend }
+
 # generic rules
 # please, remove them by adding more specific rules
 

@@ -132,3 +132,12 @@ Branche:
   connection: doctrine
   columns:
     name: { type: string(3) }
+
+Activation:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    user_id: { type: integer }
+    activation_key: { type: string }
+  relations:
+    sfGuardUser: { onUpdate: CASCADE, local: user_id, foreign: id, foreignAlias: Activations}

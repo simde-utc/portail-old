@@ -1,6 +1,19 @@
-#content .part .event {
-    width: 200px;
+.part .event {
+    width: 160px;
+    margin: 10px;
     float: right;
+    padding: 10px;
+}
+.part .event img {
+    width: 160px;
+    height: 100px;
+}
+.part .event h2 {
+    text-transform: uppercase;
+    color: white;
+    font-family: impact;
+    font-size: 15px;
+    font-weight: normal;
 }
 .part {
     margin-bottom: 40px;
@@ -42,7 +55,7 @@
 }
 
 .polevdc {
-    background: blue;
+    background: cyan;
 }
 
 .polete {

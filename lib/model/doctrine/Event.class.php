@@ -12,4 +12,9 @@
  */
 class Event extends BaseEvent
 {
+  public function getPole()
+  {
+    $asso = $this->getAsso();
+    return ($asso->isPole()) ? $asso->getPoleInfos() : $asso->getPole();
+  }
 }

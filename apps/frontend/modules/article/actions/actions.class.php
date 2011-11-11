@@ -12,7 +12,7 @@ class articleActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->articles = ArticleTable::getInstance()->getArticlesList();
+    $this->articles = ArticleTable::getInstance()->getArticlesList()->execute();
     $this->setTemplate('list');
   }
 
@@ -24,7 +24,7 @@ class articleActions extends sfActions
     catch (Exception $e) {
       $this->forward('article','index');
     }
-    $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getPrimaryKey());
+    $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getPrimaryKey())->execute();
   }
   
   public function executeShow(sfWebRequest $request)

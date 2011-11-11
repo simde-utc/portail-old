@@ -12,4 +12,9 @@
  */
 class Article extends BaseArticle
 {
+  public function getPole()
+  {
+    $asso = $this->getAsso();
+    return ($asso->isPole()) ? $asso->getPoleInfos() : $asso->getPole();
+  }
 }

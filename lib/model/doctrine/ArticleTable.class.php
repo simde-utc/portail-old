@@ -36,7 +36,14 @@ class ArticleTable extends Doctrine_Table
       else
         $q = $q->where("a.asso_id = ?",$asso->getPrimaryKey());
 
-    return $q->execute();
+    return $q;
+  }
+
+  public function getLastArticles($count = 3)
+  {
+    $q = $this->getArticlesList()
+      ->limit($count);
+    return $q;
   }
 
 }

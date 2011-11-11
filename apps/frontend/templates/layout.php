@@ -44,6 +44,7 @@
         <div id="left_login">
           <?php if($sf_user->isAuthenticated()): ?>
             <?php print($sf_user); ?>
+          <a href="<?php echo url_for('sf_guard_signout') ?>">Deconnexion</a>
           <?php else: ?>
             <?php include_component('sfGuardAuth','signin_form') ?>
           <?php endif ?>

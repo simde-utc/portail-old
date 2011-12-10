@@ -41,5 +41,17 @@ class AssoMemberTable extends Doctrine_Table
 
     return $q->execute();
   }
+  
+  public function getMembres($asso)
+  {
+    $q = $this->createQuery('q')
+      ->where('asso_id = ?',$asso->getId())
+      ->leftJoin('q.Role r')
+      ->leftJoin('q.User u')
+      ->leftJoin('u.Profile p')
+      ->leftJoin('q.Semestre s');
+
+    return $q->execute();
+  }
 
 }

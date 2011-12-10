@@ -36,9 +36,11 @@
 
     <div class="wrap">
       <div id="column-left">
-        <div id="left_login">
-          <?php if($sf_user->isAuthenticated()): ?>
-            <?php print($sf_user); ?>
+          <h1>Mon petit compte</h1>
+          <div id="left_login">
+            <?php if($sf_user->isAuthenticated()): ?>
+            Navatar
+            <?php echo $sf_user->getName() ?>
           <a href="<?php echo url_for('sf_guard_signout') ?>">Deconnexion</a>
           <?php else: ?>
             <?php include_component('sfGuardAuth','signin_form') ?>

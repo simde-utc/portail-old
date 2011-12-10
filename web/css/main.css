@@ -248,12 +248,7 @@ p { text-align : justify; }
   color: #FFF;
 }
 
-#column-left #left_login {
-  height: 100px;
-  margin-bottom: 20px;
-}
-
-#column-left #my_assos h1 {
+#column-left h1 {
   color: #FFF;
   text-transform: uppercase;
   font-family: Impact;
@@ -421,6 +416,23 @@ p { text-align : justify; }
   margin-right : 30px;
   font-size : 16px;
 }
+
+#column-left #left_login {
+  background: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+#column-left #form-login input {
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+#column-left #signin_username, #column-left #signin_password {
+  width: 137px;
+}
+
 
 /*.lieu:before{*/
 /*	content : "Lieu : ";*/

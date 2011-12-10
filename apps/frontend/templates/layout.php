@@ -53,9 +53,9 @@
       <div id="column-right">
         <?php include_component('asso','randomAsso') ?>
         <div id="contact">
-          <h1>Contacter le BDE</h1>
-          <p>rue du Dr Schweitzer<br />
-            Compiègne, 60200 FRANCE</p>
+          <h1>Contacter le BDE-UTC</h1>
+          <p>rue Roger Couttolenc<br />
+            60200 Compiègne</p>
           <p>
             Tél : +33 3 44 23 44 23<br />
             Fax : +33 3 44 23 44 23

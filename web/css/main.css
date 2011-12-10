@@ -54,7 +54,7 @@ p { text-align : justify; }
 }
 
 #top_bar .wrap #logo {
-  position: absolute;
+  float: left;
 }
 
 #top_bar .wrap input {

@@ -33,4 +33,8 @@ class sfGuardUser extends PluginsfGuardUser
     return $this->_allPermissions;
   }
   
+  public function getName(){
+    return $this->getFirstName().' '.$this->getLastName();
+  }
+  
 }

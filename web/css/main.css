@@ -1,5 +1,5 @@
 body {
-  background: #FFF url(/images/background.jpg) no-repeat top center;
+  background: url(/images/background.jpg) #fdfdfd no-repeat top center;
   margin: 0px;
   font-family: Arial, Verdana, Helvetica, sans-serif;
   font-size:10pt;

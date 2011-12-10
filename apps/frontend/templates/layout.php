@@ -15,9 +15,8 @@
         <a href="<?php echo url_for('homepage') ?>" id="logo">
           <img src="/images/logo_bde.png" alt="BDE UTC" width="163px" height="110px" />
         </a>
-        Rerchercher une info<input type="text" /><button>CHERCHER</button><span class="barre"></span>
-        <a href="http://www.facebook.com/" class="facebook">F</a><a href="http://www.twitter.com" class="twitter">T</a>
-        +1<span class="barre"></span><a href="<?php echo url_for('sf_guard_signin') ?>">S'identifier</a><span class="barre"></span><a href="<?php echo url_for('sf_guard_register') ?>">S'inscrire</a>
+        Rerchercher<input type="text" /><button>CHERCHER</button><span class="barre"></span>
+        <a href="http://www.facebook.com/pages/BDE-UTC/190043221063147" class="facebook">F</a>
       </div>
     </div>
 

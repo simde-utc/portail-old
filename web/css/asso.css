@@ -1,23 +1,18 @@
 #assos_list {
   list-style:none;
   line-height:200%;
-  margin-top:20px;
-  background-color: #FFF;
+  margin:20px auto;
   position:relative;
-  padding : 10px;
-  margin-left : 25px;
+  padding: 0;
 }
 
 #assos_list li{
   padding : 10px;
-  width:650px;
+  width:600px;
   min-height : 150px;
   border: 1px solid #efefef;
   margin: 0 30px 30px 0;
   background: #fff;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset; }
 }
 
 #assos_list li:before,
@@ -136,13 +131,16 @@
 #poles_list ul{
   list-style:none;
   text-align: center;
+  margin: 0 auto;
+  padding: 0;
 }
 
 #poles_list ul li{
   text-align: center;
   width : 100px;
-  float: left;
   margin: 10px;
+  vertical-align: top;
+  display: inline-block;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;

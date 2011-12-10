@@ -20,7 +20,7 @@ class assoComponents extends sfComponents
 
   public function executeTrombinoscope()
   {
-    
+    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso);
   }
 
   /**

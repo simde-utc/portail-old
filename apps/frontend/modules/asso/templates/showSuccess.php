@@ -1,12 +1,11 @@
 <?php use_stylesheet('asso.css') ?>
-<?php use_stylesheet('article.css') ?>
 <?php use_helper('Text') ?>
 
-<h2><?php echo $asso->getName() ?></h2>
+<h2><a href="<?php echo url_for('asso/show?login='.$asso->getLogin()) ?>"><?php echo $asso->getName() ?></a></h2>
   <?php include_partial('asso/topbar',array('asso' => $asso)) ?>
   <div id="asso">
 
-    <ul>
+    <ul id="onglets">
       <li><a href="#articles">Articles</a></li>
       <li><a href="#events">Évènements</a></li>
       <li><a href="#bureau">Bureau</a></li>

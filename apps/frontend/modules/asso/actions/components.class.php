@@ -5,7 +5,7 @@ class assoComponents extends sfComponents
 
   public function executeArticles()
   {
-    $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso);
+    $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso)->execute();
   }
 
   public function executeEvents()
@@ -15,7 +15,7 @@ class assoComponents extends sfComponents
 
   public function executeBureau()
   {
-    
+    $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso);
   }
 
   public function executeTrombinoscope()

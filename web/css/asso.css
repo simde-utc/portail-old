@@ -15,26 +15,6 @@
   background: #fff;
 }
 
-#assos_list li:before,
-#assos_list li:after {
-  content: '';
-  z-index: -1;
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
-  width: 70%;
-  max-width: 300px; /* avoid rotation causing ugly appearance at large container widths */
-  height: 55%;
-  -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  -webkit-transform: skew(-15deg) rotate(-6deg);
-  -moz-transform: skew(-15deg) rotate(-6deg);
-  -ms-transform: skew(-15deg) rotate(-6deg);
-  -o-transform: skew(-15deg) rotate(-6deg);
-  transform: skew(-15deg) rotate(-6deg);
-}
-
 #assos_list h3 a{
   font-size:1.3em;
 }
@@ -70,14 +50,11 @@
 
 #asso{
   padding : 10px;
-  width:680px;
+  width:598px;
   min-height : 500px;
   border: 1px solid #efefef;
   margin: 0 30px 0 0;
   background: #fff;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
 }
 
 #asso#article-list{
@@ -88,11 +65,7 @@
   margin : 20px;
 }
 
-#asso h3{
-  margin-top: 20px;
-}
-
-#asso ul{
+#asso ul#onglets{
   height: 32px;
 }
 
@@ -101,11 +74,8 @@
 }
 
 #topbar{
-  width: 680px;
+  width: 598px;
   margin: 10px auto;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
   border: 1px solid #efefef;
   padding: 10px;
 }
@@ -157,4 +127,13 @@
 #poles_list ul li img{
   max-width : 80px;
   max-height : 80px;
+}
+
+.article h3 { padding: 0px; margin: 0 auto; }
+
+ul#event_list { padding: 0px; margin: 0px; }
+
+#asso .article, #asso .event {
+  margin: 10px auto;
+  border-bottom: 1px dashed #000;
 }

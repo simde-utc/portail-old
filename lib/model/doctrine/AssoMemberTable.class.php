@@ -7,6 +7,7 @@
  */
 class AssoMemberTable extends Doctrine_Table
 {
+
   /**
    * Recharge les permissions de l'utilisateur courant après une modification de la table
    * 
@@ -26,6 +27,19 @@ class AssoMemberTable extends Doctrine_Table
   public static function getInstance()
   {
     return Doctrine_Core::getTable('AssoMember');
+  }
+
+  public function getBureau($asso)
+  {
+    $q = $this->createQuery('q')
+      ->where('asso_id = ?',$asso->getId())
+      ->leftJoin('q.Role r')
+      ->leftJoin('q.User u')
+      ->leftJoin('u.Profile p')
+      ->leftJoin('q.Semestre s')
+      ->andWhere('r.bureau = 1');
+
+    return $q->execute();
   }
 
 }

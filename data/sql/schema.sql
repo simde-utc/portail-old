@@ -5,10 +5,11 @@ CREATE TABLE asso_member (id BIGINT AUTO_INCREMENT, user_id BIGINT, asso_id BIGI
 CREATE TABLE branche (id BIGINT AUTO_INCREMENT, name VARCHAR(3), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE event (id BIGINT AUTO_INCREMENT, asso_id BIGINT, type_id BIGINT, name VARCHAR(50), description TEXT, start_date DATETIME, end_date DATETIME, is_public TINYINT(1), is_weekmail TINYINT(1), place TEXT, affiche TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX asso_id_idx (asso_id), INDEX type_id_idx (type_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE event_type (id BIGINT AUTO_INCREMENT, name VARCHAR(50), color VARCHAR(7), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE filiere (id BIGINT AUTO_INCREMENT, name VARCHAR(10), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE place (id BIGINT AUTO_INCREMENT, street TEXT, zipcode VARCHAR(10), city VARCHAR(100), country VARCHAR(100), phone VARCHAR(15), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE pole (id BIGINT AUTO_INCREMENT, asso_id BIGINT, couleur VARCHAR(7), INDEX asso_id_idx (asso_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE profile (id BIGINT AUTO_INCREMENT, user_id BIGINT, domain VARCHAR(15), nickname VARCHAR(50), birthday DATE, sexe CHAR(1), mobile VARCHAR(15), home_place BIGINT, family_place BIGINT, branche_id BIGINT, filiere_id BIGINT, semestre BIGINT, other_email TEXT, photo TEXT, weekmail TINYINT(1), autorisation_photo TINYINT(1), cotisant TINYINT(1), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), INDEX home_place_idx (home_place), INDEX family_place_idx (family_place), INDEX branche_id_idx (branche_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE role (id BIGINT AUTO_INCREMENT, name VARCHAR(50), sort INT, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE profile (id BIGINT AUTO_INCREMENT, user_id BIGINT, domain VARCHAR(15), nickname VARCHAR(50), birthday DATE, sexe CHAR(1), mobile VARCHAR(15), home_place BIGINT, family_place BIGINT, branche_id BIGINT, filiere_id BIGINT, semestre BIGINT, other_email TEXT, photo TEXT, weekmail TINYINT(1), autorisation_photo TINYINT(1), cotisant TINYINT(1), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), INDEX home_place_idx (home_place), INDEX family_place_idx (family_place), INDEX branche_id_idx (branche_id), INDEX filiere_id_idx (filiere_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE role (id BIGINT AUTO_INCREMENT, name VARCHAR(50), sort INT, bureau TINYINT(1) DEFAULT '0' NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE semestre (id BIGINT AUTO_INCREMENT, name VARCHAR(3), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE type_asso (id BIGINT AUTO_INCREMENT, name VARCHAR(50), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_forgot_password (id BIGINT AUTO_INCREMENT, user_id BIGINT NOT NULL, unique_key VARCHAR(255), expires_at DATETIME NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = INNODB;
@@ -32,6 +33,7 @@ ALTER TABLE event ADD CONSTRAINT event_asso_id_asso_id FOREIGN KEY (asso_id) REF
 ALTER TABLE pole ADD CONSTRAINT pole_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id);
 ALTER TABLE profile ADD CONSTRAINT profile_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE profile ADD CONSTRAINT profile_home_place_place_id FOREIGN KEY (home_place) REFERENCES place(id);
+ALTER TABLE profile ADD CONSTRAINT profile_filiere_id_filiere_id FOREIGN KEY (filiere_id) REFERENCES filiere(id);
 ALTER TABLE profile ADD CONSTRAINT profile_family_place_place_id FOREIGN KEY (family_place) REFERENCES place(id);
 ALTER TABLE profile ADD CONSTRAINT profile_branche_id_branche_id FOREIGN KEY (branche_id) REFERENCES branche(id);
 ALTER TABLE sf_guard_forgot_password ADD CONSTRAINT sf_guard_forgot_password_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;

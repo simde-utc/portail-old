@@ -9,13 +9,16 @@ Doctrine_Manager::getInstance()->bindComponent('Role', 'doctrine');
  * 
  * @property string $name
  * @property integer $sort
+ * @property boolean $bureau
  * @property Doctrine_Collection $AssoMember
  * 
  * @method string              getName()       Returns the current record's "name" value
  * @method integer             getSort()       Returns the current record's "sort" value
+ * @method boolean             getBureau()     Returns the current record's "bureau" value
  * @method Doctrine_Collection getAssoMember() Returns the current record's "AssoMember" collection
  * @method Role                setName()       Sets the current record's "name" value
  * @method Role                setSort()       Sets the current record's "sort" value
+ * @method Role                setBureau()     Sets the current record's "bureau" value
  * @method Role                setAssoMember() Sets the current record's "AssoMember" collection
  * 
  * @package    simde
@@ -35,6 +38,11 @@ abstract class BaseRole extends sfDoctrineRecord
         $this->hasColumn('sort', 'integer', 4, array(
              'type' => 'integer',
              'length' => 4,
+             ));
+        $this->hasColumn('bureau', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
+             'notnull' => true,
              ));
     }
 

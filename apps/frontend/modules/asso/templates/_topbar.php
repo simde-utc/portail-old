@@ -1,5 +1,4 @@
 <div id="topbar">
-  <h3><a href="<?php echo url_for('asso/show?login='.$asso->getLogin()) ?>"><?php echo $asso->getName() ?></a></h3>
   <div class="logo_asso"><img src="<?php echo $asso->getLogo() ?>"></div>
 
   <div class="desc">

@@ -50,6 +50,7 @@ Role:
   columns:
     name: { type: string(50) }
     sort: { type: integer(4) }
+    bureau: { type: boolean, default: false, notnull: true }
       
 Profile:
    connection: doctrine
@@ -76,6 +77,7 @@ Profile:
      HomePlace: { local: home_place, foreign: id, class: Place }
      FamilyPlace: { local: family_place, foreign: id, class: Place }
      Branche: { local: branche_id, foreign: id }
+     Filiere: { local: filiere_id, foreign: id }
 
 Place:
    connection: doctrine
@@ -132,6 +134,11 @@ Branche:
   connection: doctrine
   columns:
     name: { type: string(3) }
+    
+Filiere:
+  connection: doctrine
+  columns:
+    name: { type: string(10) }
 
 Activation:
   connection: doctrine

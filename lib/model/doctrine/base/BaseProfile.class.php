@@ -27,6 +27,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @property Place $HomePlace
  * @property Place $FamilyPlace
  * @property Branche $Branche
+ * @property Filiere $Filiere
  * 
  * @method integer     getUserId()             Returns the current record's "user_id" value
  * @method string      getDomain()             Returns the current record's "domain" value
@@ -48,6 +49,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @method Place       getHomePlace()          Returns the current record's "HomePlace" value
  * @method Place       getFamilyPlace()        Returns the current record's "FamilyPlace" value
  * @method Branche     getBranche()            Returns the current record's "Branche" value
+ * @method Filiere     getFiliere()            Returns the current record's "Filiere" value
  * @method Profile     setUserId()             Sets the current record's "user_id" value
  * @method Profile     setDomain()             Sets the current record's "domain" value
  * @method Profile     setNickname()           Sets the current record's "nickname" value
@@ -68,6 +70,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @method Profile     setHomePlace()          Sets the current record's "HomePlace" value
  * @method Profile     setFamilyPlace()        Sets the current record's "FamilyPlace" value
  * @method Profile     setBranche()            Sets the current record's "Branche" value
+ * @method Profile     setFiliere()            Sets the current record's "Filiere" value
  * 
  * @package    simde
  * @subpackage model
@@ -150,6 +153,10 @@ abstract class BaseProfile extends sfDoctrineRecord
 
         $this->hasOne('Branche', array(
              'local' => 'branche_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Filiere', array(
+             'local' => 'filiere_id',
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();

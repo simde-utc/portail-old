@@ -13,7 +13,6 @@
     <?php endforeach; ?>
   </ul>
 </div>
-<div class="clear"></div>
 
 <h2><?php echo isset($pole) ? $pole->getInfos()->getName() : "Liste des associations" ?></h2>
 

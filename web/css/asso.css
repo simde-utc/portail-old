@@ -137,3 +137,5 @@ ul#event_list { padding: 0px; margin: 0px; }
   margin: 10px auto;
   border-bottom: 1px dashed #000;
 }
+
+#trombi .membre { margin: 5px auto;  height: 120px; }

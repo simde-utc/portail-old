@@ -36,10 +36,6 @@
     <?php include_component('event','carousel') ?>
 
     <div class="wrap">
-      <div id="ariane">
-        Vous êtes ici : Accueil
-      </div>
-
       <div id="column-left">
         <div id="left_login">
           <?php if($sf_user->isAuthenticated()): ?>

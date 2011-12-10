@@ -11,9 +11,7 @@
 .part .event h2 {
     text-transform: uppercase;
     color: white;
-    font-family: impact;
-    font-size: 15px;
-    font-weight: normal;
+    font-size: 12px;
 }
 .part {
     margin-bottom: 40px;
@@ -22,31 +20,36 @@
     margin: 0 auto;
     display: block;
     background: #505050;
-    height: 24px;
-    width: 100%;
+    font-weight: normal;
+    width: auto;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     font-family: impact;
     font-size: 15px;
-    font-weight: normal;
     color: white;
-    padding-left: 10px;
-    padding-top: 1px;
+    padding: 5px;
     text-transform: uppercase;
 }
 
 .part .article h2 {
     margin: 5px auto;
     display: block;
-    height: 24px;
-    width: 100%;
-    font-family: impact;
-    font-size: 15px;
-    font-weight: normal;
+    width: auto;
+    font-size: 12px;
+    font-weight: bold;
     color: white;
-    padding: 1px 10px;
+    padding: 5px;
     text-transform: uppercase;
+}
+
+.part .article h2 span.sub {
+  float: right;
+  font-size: 10px;
+}
+
+.part .article h2 a, .part .article h2 a:hover, .part .article h2 a:visited, .part .article h2 a:active {
+  color: white;
 }
 
 .poleae {

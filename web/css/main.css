@@ -1,8 +1,9 @@
 body {
-  background: #FFF url('/images/background.jpg') no-repeat top center;
+  background: #FFF url(/images/background.jpg) no-repeat top center;
   margin: 0px;
-  font-family: Arial, Verdana, Helvetica, sans serif;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
   font-size:10pt;
+  color: #2a2a2a;
 }
 .clear{ clear:both; }
 a:link, a:visited{ color:#888888; text-decoration:none; }
@@ -27,7 +28,7 @@ p { text-align : justify; }
   border-radius: 10px;
 }
 .ui-autocomplete-loading { 
-  background: white url('/images/jquery-ui/ui-anim_basic_16x16.gif') right center no-repeat; 
+  background: white url(/images/jquery-ui/ui-anim_basic_16x16.gif) right center no-repeat; 
 }
 
 /* ------------------------------- */
@@ -187,7 +188,10 @@ p { text-align : justify; }
 #content{
   width: 620px;;
   margin: auto;
-
+  background: #fff;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
 }
 
 #column-left{

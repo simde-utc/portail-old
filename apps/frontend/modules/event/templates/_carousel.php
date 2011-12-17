@@ -6,7 +6,7 @@
   <div class="wrap ca-wrapper">
     <?php foreach($events as $event) : ?>
       <div class="event ca-item">
-          <img src="<?php echo $event->getAffiche() ?>" alt="" width="112" height="112" />
+          <img src="<?php echo $event->getAffiche_prefixed() ?>" alt="" width="112" height="112" />
           <h2><?php echo $event->getName() ?></h2>
           Par <a href="<?php echo url_for('asso/show?login='.$event->getAsso()->getLogin()) ?>" title="<?php echo $event->getAsso()->getName() ?>"><?php echo $event->getAsso()->getName() ?></a><br />
           <h3><?php echo format_date($event->getStartDate(),"D",'fr') ?></h3>

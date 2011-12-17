@@ -16,7 +16,7 @@ class ArticleForm extends BaseArticleForm
       $this['created_at'],$this['updated_at']
     );
     
-    $this->widgetSchema['text'] =  new sfWidgetFormTextareaTinyMCE(
+    /*$this->widgetSchema['text'] =  new sfWidgetFormTextareaTinyMCE(
       array(
         'width'=>550,
         'height'=>350,
@@ -28,7 +28,22 @@ class ArticleForm extends BaseArticleForm
       )
     );
     $js_path = '/js/tiny_mce/tiny_mce.js';
-    sfContext::getInstance()->getResponse()->addJavascript($js_path);
+    sfContext::getInstance()->getResponse()->addJavascript($js_path);*/
+
+	$this->widgetSchema['image'] = new sfWidgetFormInputFileEditable(array(
+      'file_src' => '/uploads/articles/'.$this->getObject()->getImage(),
+      'is_image' => true,
+      'edit_mode' => !$this->isNew(),
+      'with_delete' => true,
+    ));
+ 
+    $this->validatorSchema['image'] = new sfValidatorFile(array(
+    	'required' => false,
+    	'path' => sfConfig::get('sf_upload_dir').'/articles',
+        'mime_types' => 'web_images'
+    ));
+    
+    $this->validatorSchema['image_delete'] = new sfValidatorBoolean();
 
   }
 }

@@ -16,12 +16,14 @@ abstract class BaseRoleFormFilter extends BaseFormFilterDoctrine
       'name'   => new sfWidgetFormFilterInput(),
       'sort'   => new sfWidgetFormFilterInput(),
       'bureau' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'droits' => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
       'name'   => new sfValidatorPass(array('required' => false)),
       'sort'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'bureau' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'droits' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('role_filters[%s]');
@@ -45,6 +47,7 @@ abstract class BaseRoleFormFilter extends BaseFormFilterDoctrine
       'name'   => 'Text',
       'sort'   => 'Number',
       'bureau' => 'Boolean',
+      'droits' => 'Number',
     );
   }
 }

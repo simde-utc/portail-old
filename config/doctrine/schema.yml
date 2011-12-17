@@ -51,6 +51,7 @@ Role:
     name: { type: string(50) }
     sort: { type: integer(4) }
     bureau: { type: boolean, default: false, notnull: true }
+    droits: { type: integer, default: 0, notnull: true }
       
 Profile:
    connection: doctrine

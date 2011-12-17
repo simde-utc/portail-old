@@ -8,10 +8,12 @@
           <p>
             <?php echo html_entity_decode($article->getText()) ?>
           </p>
+          <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($article->getAsso()->getLogin(),4)): ?>
           <div class="actions">
             <!-- todo only if authorized -->
             <a href="<?php echo url_for('article/edit?id='.$article->getId()) ?>">Editer</a>
           </div>
+          <?php endif ?>
         </div>
       <?php endforeach; ?>
     </div>

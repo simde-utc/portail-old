@@ -51,7 +51,10 @@ abstract class BasesfGuardUserForm extends BaseFormDoctrine
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'sfGuardUser', 'column' => array('email_address')))
+      new sfValidatorAnd(array(
+        new sfValidatorDoctrineUnique(array('model' => 'sfGuardUser', 'column' => array('email_address'))),
+        new sfValidatorDoctrineUnique(array('model' => 'sfGuardUser', 'column' => array('username'))),
+      ))
     );
 
     $this->widgetSchema->setNameFormat('sf_guard_user[%s]');

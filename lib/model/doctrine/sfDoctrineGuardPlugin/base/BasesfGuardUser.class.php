@@ -91,6 +91,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasColumn('username', 'string', 128, array(
              'type' => 'string',
              'notnull' => true,
+             'unique' => true,
              'length' => 128,
              ));
         $this->hasColumn('algorithm', 'string', 128, array(

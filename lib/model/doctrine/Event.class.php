@@ -17,4 +17,9 @@ class Event extends BaseEvent
     $asso = $this->getAsso();
     return ($asso->isPole()) ? $asso->getPoleInfos() : $asso->getPole();
   }
+  
+  public function getAffiche_prefixed()
+  {
+	  return "/uploads/events/" . $this->getAffiche();
+  }
 }

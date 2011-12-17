@@ -19,6 +19,7 @@ abstract class BaseRoleForm extends BaseFormDoctrine
       'name'   => new sfWidgetFormInputText(),
       'sort'   => new sfWidgetFormInputText(),
       'bureau' => new sfWidgetFormInputCheckbox(),
+      'droits' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -26,6 +27,7 @@ abstract class BaseRoleForm extends BaseFormDoctrine
       'name'   => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'sort'   => new sfValidatorInteger(array('required' => false)),
       'bureau' => new sfValidatorBoolean(array('required' => false)),
+      'droits' => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('role[%s]');

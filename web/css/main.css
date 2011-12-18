@@ -248,7 +248,7 @@ p { text-align : justify; }
   color: #FFF;
 }
 
-#column-left h1 {
+#column-left h1, #column-right h1 {
   color: #FFF;
   text-transform: uppercase;
   font-family: Impact;

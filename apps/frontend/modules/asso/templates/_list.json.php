@@ -9,7 +9,7 @@ foreach ($assos as $asso)
     "name" => ($asso->getName()), 
     "login" => ($asso->getLogin()),
     "description" => ($asso->getDescription()),
-    "url" => url_for("/asso/show/" . $asso->getLogin())
+    "url" => url_for('asso_show',$asso)
   );
     
   echo json_encode($arr);

@@ -29,6 +29,9 @@ class AssoTable extends Doctrine_Table
   public function getAssosList($pole_id = null)
   {
     $q = $this->createQuery('a')
+			->select('a.*, p.*, pa.name')
+			->leftJoin('a.Pole p')
+			->leftJoin('p.Asso pa')
       ->addOrderBy('a.name ASC');
 
     if(!is_null($pole_id))
@@ -36,6 +39,29 @@ class AssoTable extends Doctrine_Table
 
     return $q;
   }
+
+  /**
+   * 
+   * Fetch the list of all associations sorted by name.
+   * 
+   * 
+   * @param int $pole_id
+   */
+  public function getAssosAndNotPolesList($pole_id = null)
+  {
+    $q = $this->createQuery('a')
+			->select('a.*, p.*, pa.name')
+			->leftJoin('a.Pole p')
+			->leftJoin('p.Asso pa')
+			->where('a.pole_id IS NOT NULL')
+      ->addOrderBy('a.name ASC');
+
+    if(!is_null($pole_id))
+      $q = $q->where("a.pole_id = ?",$pole_id);
+
+    return $q->execute();
+  }
+
 
   public function getMyAssos($user_id)
   {

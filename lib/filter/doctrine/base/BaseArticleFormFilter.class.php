@@ -14,8 +14,8 @@ abstract class BaseArticleFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'asso_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'add_empty' => true)),
-      'name'        => new sfWidgetFormFilterInput(),
-      'text'        => new sfWidgetFormFilterInput(),
+      'name'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'text'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'is_weekmail' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'image'       => new sfWidgetFormFilterInput(),
       'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),

@@ -34,14 +34,14 @@ class articleActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new articleForm();
+    $this->form = new ArticleForm();
   }
 
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
 
-    $this->form = new articleForm();
+    $this->form = new ArticleForm();
 
     $this->processForm($request, $this->form);
 
@@ -51,14 +51,16 @@ class articleActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($article = Doctrine_Core::getTable('article')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
-    $this->form = new articleForm($article);
+    $this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(),0x04));
+    $this->form = new ArticleForm($article);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($article = Doctrine_Core::getTable('article')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
-    $this->form = new articleForm($article);
+    $this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(),0x04));
+    $this->form = new ArticleForm($article);
 
     $this->processForm($request, $this->form);
 
@@ -70,6 +72,7 @@ class articleActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->forward404Unless($article = Doctrine_Core::getTable('article')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(),0x04));
     $article->delete();
 
     $this->redirect('article/index');

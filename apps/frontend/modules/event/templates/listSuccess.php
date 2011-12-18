@@ -3,7 +3,7 @@
 <?php use_helper('Date') ?>
 
 <h2><?php echo isset($asso) ? "Event de : " . $asso->getName() : "Liste des events" ?></h2>
-<?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x08)): ?>
+<?php if (isset($asso) && $sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x08)): ?>
   <a href="<?php echo url_for('event/new') ?>">Créer un event</a>
 <?php endif ?>
 
@@ -13,7 +13,7 @@
     <li>
       <h3><?php echo $event->getName() . " - " . format_date($event->getStartDate(), 'f', 'fr') . " au " . format_date($event->getEndDate(), 'f', 'fr'); ?></h3>
       Créé par <?php echo $event->getAsso()->getName() . " le " . format_date($event->getCreatedAt(), 'f', 'fr') ?>  
-      <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x08)): ?>
+      <?php if (isset($asso) && $sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x08)): ?>
         - <a href="<?php echo url_for('event/edit?id=' . $event->getId()) ?>">Editer</a>
       <?php endif ?>
       <img class="logo" src="<?php echo $event->getAsso()->getLogo() ?>">

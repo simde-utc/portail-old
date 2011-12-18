@@ -42,7 +42,7 @@ class AssoTable extends Doctrine_Table
     $q = $this->createQuery('q')
       ->leftJoin('q.AssoMember m')
       ->where('m.user_id = ?',$user_id);
-    return $q->execute();
+    return $q;
   }
   
   public function getRandom()

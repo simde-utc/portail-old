@@ -2,7 +2,7 @@
 <?php use_helper('Text') ?>
 
 <h2><?php echo isset($asso) ? "Article de : " . $asso->getName() : "Liste des articles" ?></h2>
-<?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x04)): ?>
+<?php if (isset($asso) && $sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x04)): ?>
   <a href="<?php echo url_for('article/new') ?>">Ecrire un article</a>
 <?php endif ?>
 
@@ -12,7 +12,7 @@
     <li>
       <h3><?php echo $article->getName() ?></h3>
       Publié par <?php echo $article->getAsso()->getName() ?> le <?php echo $article->getCreatedAt() ?>  
-      <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x04)): ?>
+      <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04)): ?>
         - <a href="<?php echo url_for('article/edit?id=' . $article->getId()) ?>">Editer</a>
       <?php endif ?>
       <img class="logo" src="<?php echo $article->getAsso()->getLogo() ?>">

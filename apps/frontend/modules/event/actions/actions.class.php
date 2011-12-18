@@ -17,7 +17,7 @@ class eventActions extends sfActions
    */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->events = EventTable::getInstance()->getEventsList()->execute();
+    $this->events = EventTable::getInstance()->getEventsList();
     $this->setTemplate('list');
   }
 

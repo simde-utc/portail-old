@@ -39,16 +39,20 @@ abstract class BaseArticle extends sfDoctrineRecord
         $this->setTableName('article');
         $this->hasColumn('asso_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('name', 'string', 200, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 200,
              ));
         $this->hasColumn('text', 'string', null, array(
              'type' => 'string',
+             'notnull' => true,
              ));
         $this->hasColumn('is_weekmail', 'boolean', null, array(
              'type' => 'boolean',
+             'default' => false,
              ));
         $this->hasColumn('image', 'string', null, array(
              'type' => 'string',

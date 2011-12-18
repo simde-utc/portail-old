@@ -31,15 +31,10 @@ class AssoMemberTable extends Doctrine_Table
 
   public function getBureau($asso)
   {
-    $q = $this->createQuery('q')
-      ->where('asso_id = ?',$asso->getId())
-      ->leftJoin('q.Role r')
-      ->leftJoin('q.User u')
-      ->leftJoin('u.Profile p')
-      ->leftJoin('q.Semestre s')
+    $q = $this->getMembres($asso)
       ->andWhere('r.bureau = 1');
 
-    return $q->execute();
+    return $q;
   }
   
   public function getMembres($asso)
@@ -51,7 +46,7 @@ class AssoMemberTable extends Doctrine_Table
       ->leftJoin('u.Profile p')
       ->leftJoin('q.Semestre s');
 
-    return $q->execute();
+    return $q;
   }
 
 }

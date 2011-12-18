@@ -10,17 +10,17 @@ class assoComponents extends sfComponents
 
   public function executeEvents()
   {
-    $this->events = EventTable::getInstance()->getEventsList($this->asso);
+    $this->events = EventTable::getInstance()->getEventsList($this->asso)->execute();
   }
 
   public function executeBureau()
   {
-    $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso);
+    $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
   }
 
   public function executeTrombinoscope()
   {
-    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso);
+    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
   }
 
   /**

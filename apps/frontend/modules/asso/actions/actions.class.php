@@ -25,12 +25,12 @@ class assoActions extends sfActions
     {
       if($p->getPrimaryKey() == $pole_id)
       {
-        $this->assos = AssoTable::getInstance()->getAssosList($pole_id);
+        $this->assos = AssoTable::getInstance()->getAssosList($pole_id)->execute();
         break;
       }
     }
     if(!$this->assos)
-      $this->assos = AssoTable::getInstance()->getAssosList();
+      $this->assos = AssoTable::getInstance()->getAssosList()->execute();
     $this->setTemplate('list');
   }
 
@@ -44,7 +44,7 @@ class assoActions extends sfActions
     $this->asso = $this->getRoute()->getObject();
     $this->redirectUnless($this->asso,'assos_list');
     if($pole = $this->asso->isPole())
-      $this->assos = AssoTable::getInstance()->getAssosList($pole->getPrimaryKey());
+      $this->assos = AssoTable::getInstance()->getAssosList($pole->getPrimaryKey())->execute();
   }
 
   public function executeEdit(sfWebRequest $request)

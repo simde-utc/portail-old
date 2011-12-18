@@ -7,7 +7,7 @@
     Par <?php echo $event->getAsso()->getName() ?><br />
     Le <?php echo format_date($event->getStartDate(), 'd MMMM à HH:mm', 'fr'); ?>
     <div class="event_content">
-      <?php echo html_entity_decode($event->getDescription()) ?>
+      <?php echo $event->getDescription() ?>
     </div>
   </div>
 <?php endforeach ?>

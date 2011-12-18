@@ -50,7 +50,7 @@ class articleActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($article = Doctrine_Core::getTable('article')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($article = $this->getRoute()->getObject());
     $this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(),0x04));
     $this->form = new ArticleForm($article);
   }

@@ -28,7 +28,16 @@ asso_search:
 asso_search_json:
   url:   /asso/search.json
   param: { module: asso, action: search, sf_format: json }
-  
+
+asso_edit:
+  url: /asso/edit/:login
+  class: sfDoctrineRoute
+  param: { module: asso, action: edit }
+  options: { model: Asso, type: object }
+
+asso_update:
+  url: /asso/update/:id
+  param: { module: asso, action: update }
     
 #Articles
 articles_list:
@@ -36,7 +45,7 @@ articles_list:
   param: { module: article, action: index }
   
 articles_list_asso:
-  url:   /article/asso/:id
+  url:   /article/asso/:login
   class: sfDoctrineRoute
   param: { module: article, action: list }
   options: { model: Asso, type: object }
@@ -52,6 +61,20 @@ article_edit:
   class: sfDoctrineRoute
   param: { module: article, action: edit }
   options: { model: Article, type: object }
+
+article_update:
+  url:  /article/update/:id
+  param: { module: article, action: update }
+  
+article_delete:
+  url:  /article/delete/:id
+  param: { module: article, action: delete }   
+article_create:
+  url: /article/create
+  param: { module: article, action: create } 
+article_new:
+  url: /article/new
+  param: { module: article, action: new }
 
 #Events
 events_list:
@@ -75,7 +98,21 @@ event_edit:
   class: sfDoctrineRoute
   param: { module: event, action: edit }
   options: { model: Event, type: object }
-
+  
+event_update:
+  url:  /event/update/:id
+  param: { module: event, action: update }
+  
+event_delete:
+  url:  /event/delete/:id
+  param: { module: event, action: delete }   
+event_create:
+  url: /event/create
+  param: { module: event, action: create } 
+event_new:
+  url: /event/new
+  param: { module: event, action: new }
+  
 agenda_detail:
   url:   /event/calendar
   param: { module: event, action: calendar }
@@ -105,14 +142,14 @@ register_resend:
 # generic rules
 # please, remove them by adding more specific rules
 
-default_index:
-  url:   /:module
-  param: { action: index }
+#default_index:
+#  url:   /:module
+#  param: { action: index }
 
-default:
-  url:   /:module/:action/*
+#default:
+#  url:   /:module/:action/*
 
 
-default_json:
-  url:   /json/:module/:action/*
-  param: { sf_format: json }
+#default_json:
+#  url:   /json/:module/:action/*
+#  param: { sf_format: json }

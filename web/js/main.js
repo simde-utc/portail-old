@@ -1,0 +1,9 @@
+$(document).ready(function(){
+  $("#lienlisteassos").click(function(e){
+    e.preventDefault();
+    $("#bigmenu").show();
+  });
+  $("#bigmenu").mouseleave(function(){
+    $(this).hide();
+  });
+});

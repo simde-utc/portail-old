@@ -23,7 +23,7 @@
     <div id="menu">
       <div class="wrap" >
         <a href="<?php echo url_for('homepage') ?>">Accueil</a>
-        <a href="<?php echo url_for('asso/index') ?>" class="barre">Liste des associations</a>
+        <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Liste des associations</a>
         <a href="" class="barre">Services</a>
         <a href="" class="barre">Fonctionnement de l'UTC</a>
         <span class="horloge">
@@ -32,6 +32,7 @@
         </span>
       </div>
     </div>
+		<?php include_component('asso', 'bigMenu') ?>
     <?php include_component('event','carousel') ?>
 
     <div class="wrap">

@@ -36,4 +36,14 @@ class assoComponents extends sfComponents
     $this->asso = AssoTable::getInstance()->getRandom();
   }
 
+  public function executeBigMenu()
+  {
+		$assos = AssoTable::getInstance()->getAssosAndNotPolesList();
+
+		foreach($assos as $asso)
+		{
+			$poles[$asso->getPoleId()][] = $asso;
+		}
+		$this->poles = $poles;
+  }
 }

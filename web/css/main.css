@@ -433,6 +433,46 @@ p { text-align : justify; }
   width: 137px;
 }
 
+#bigmenu {
+  background: black;
+  color: white;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141"); /* Pour IE seulement et mode gradient à linear */
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));
+  background-image: -moz-linear-gradient(top center, #242424, #414141);
+  background-image: -o-linear-gradient(top, #242424, #414141); /*uniquement en mode linear*/
+  color: #FFF;
+  font-family: impact;
+  font-size: 15px;
+  text-transform: uppercase;
+  margin: -31px 0px 0px -530px;
+  left: 50%;
+  width: 1061px;
+  position: absolute;
+  display: none;
+  z-index: 11000;
+}
+
+#bigmenu a {
+  color: white;
+}
+
+#bigmenu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#bigmenu ul li a {
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-size: 10pt;
+}
+
+#bigmenu .bm_pole {
+  position: relative;
+  width: 200px;
+  float: left;
+  border-right: 1px solid white;
+  padding: 5px 15px;
+}
 
 /*.lieu:before{*/
 /*	content : "Lieu : ";*/

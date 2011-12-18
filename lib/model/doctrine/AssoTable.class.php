@@ -34,7 +34,7 @@ class AssoTable extends Doctrine_Table
     if(!is_null($pole_id))
       $q = $q->where("a.pole_id = ?",$pole_id);
 
-    return $q->execute();
+    return $q;
   }
 
   public function getMyAssos($user_id)

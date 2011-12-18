@@ -35,7 +35,7 @@ class EventTable extends Doctrine_Table
       else
         $q = $q->where("a.asso_id = ?",$asso->getPrimaryKey());
 
-    return $q->execute();
+    return $q;
   }
 
   /**

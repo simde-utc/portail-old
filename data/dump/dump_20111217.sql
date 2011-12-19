@@ -1,3 +1,4 @@
+SET FOREIGN_KEY_CHECKS = 0;
 INSERT INTO `type_asso` (`id`, `name`) VALUES
 (1, 'Commission/Projet BDE'),
 (2, 'Projet Objectifs'),
@@ -83,3 +84,4 @@ INSERT INTO `profile` (`id`, `user_id`, `domain`, `nickname`, `birthday`, `sexe`
 INSERT INTO `asso_member` (`id`, `user_id`, `asso_id`, `role_id`, `semestre_id`, `created_at`, `updated_at`) VALUES
 (1, 4, 2, 2, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2, 7, 2, 3, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+SET FOREIGN_KEY_CHECKS = 1;

@@ -16,8 +16,8 @@ abstract class BaseEventForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'asso_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'add_empty' => true)),
-      'type_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Type'), 'add_empty' => true)),
+      'asso_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'add_empty' => false)),
+      'type_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Type'), 'add_empty' => false)),
       'name'        => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(),
       'start_date'  => new sfWidgetFormDateTime(),
@@ -32,12 +32,12 @@ abstract class BaseEventForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'asso_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'required' => false)),
-      'type_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Type'), 'required' => false)),
-      'name'        => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'description' => new sfValidatorString(array('required' => false)),
-      'start_date'  => new sfValidatorDateTime(array('required' => false)),
-      'end_date'    => new sfValidatorDateTime(array('required' => false)),
+      'asso_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'))),
+      'type_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Type'))),
+      'name'        => new sfValidatorString(array('max_length' => 50)),
+      'description' => new sfValidatorString(),
+      'start_date'  => new sfValidatorDateTime(),
+      'end_date'    => new sfValidatorDateTime(),
       'is_public'   => new sfValidatorBoolean(array('required' => false)),
       'is_weekmail' => new sfValidatorBoolean(array('required' => false)),
       'place'       => new sfValidatorString(array('required' => false)),

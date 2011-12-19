@@ -20,17 +20,17 @@ class assoActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $pole_id = $this->getRequestParameter('pole');
-    $this->poles = PoleTable::getInstance()->getAllWithInfos();
+    $this->poles = PoleTable::getInstance()->getAllWithInfos()->execute();
     foreach($this->poles as $p)
     {
       if($p->getPrimaryKey() == $pole_id)
       {
-        $this->assos = AssoTable::getInstance()->getAssosList($pole_id);
+        $this->assos = AssoTable::getInstance()->getAssosList($pole_id)->execute();
         break;
       }
     }
     if(!$this->assos)
-      $this->assos = AssoTable::getInstance()->getAssosList();
+      $this->assos = AssoTable::getInstance()->getAssosList()->execute();
     $this->setTemplate('list');
   }
 
@@ -44,21 +44,22 @@ class assoActions extends sfActions
     $this->asso = $this->getRoute()->getObject();
     $this->redirectUnless($this->asso,'assos_list');
     if($pole = $this->asso->isPole())
-      $this->assos = AssoTable::getInstance()->getAssosList($pole->getPrimaryKey());
+      $this->assos = AssoTable::getInstance()->getAssosList($pole->getPrimaryKey())->execute();
   }
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))),sprintf('Object asso does not exist (%s).',$request->getParameter('id')));
-    $this->form = new assoForm($asso);
+    $this->forward404Unless($asso = $this->getRoute()->getObject());
+    $this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($asso->getLogin(),0x01));
+    $this->form = new AssoForm($asso);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))),sprintf('Object asso does not exist (%s).',$request->getParameter('id')));
-    $this->form = new assoForm($asso);
-
+    $this->form = new AssoForm($asso);
+    $this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($asso->getLogin(),0x01));
     $this->processForm($request,$this->form);
 
     $this->setTemplate('edit');
@@ -71,7 +72,7 @@ class assoActions extends sfActions
     {
       $asso = $form->save();
 
-      $this->redirect('asso/edit?id='.$asso->getId());
+      $this->redirect('asso/edit?login='.$asso->getLogin());
     }
   }
 

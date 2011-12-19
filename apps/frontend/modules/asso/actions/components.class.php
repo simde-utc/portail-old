@@ -10,17 +10,17 @@ class assoComponents extends sfComponents
 
   public function executeEvents()
   {
-    $this->events = EventTable::getInstance()->getEventsList($this->asso);
+    $this->events = EventTable::getInstance()->getEventsList($this->asso)->execute();
   }
 
   public function executeBureau()
   {
-    $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso);
+    $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
   }
 
   public function executeTrombinoscope()
   {
-    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso);
+    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
   }
 
   /**
@@ -28,7 +28,7 @@ class assoComponents extends sfComponents
    */
   public function executeMyAssos()
   {
-    $this->assos = AssoTable::getInstance()->getMyAssos($this->getUser()->getGuardUser()->getId());
+    $this->assos = AssoTable::getInstance()->getMyAssos($this->getUser()->getGuardUser()->getId())->execute();
   }
   
   public function executeRandomAsso()
@@ -36,4 +36,14 @@ class assoComponents extends sfComponents
     $this->asso = AssoTable::getInstance()->getRandom();
   }
 
+  public function executeBigMenu()
+  {
+		$assos = AssoTable::getInstance()->getAssosAndNotPolesList();
+
+		foreach($assos as $asso)
+		{
+			$poles[$asso->getPoleId()][] = $asso;
+		}
+		$this->poles = $poles;
+  }
 }

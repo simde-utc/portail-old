@@ -16,7 +16,7 @@ abstract class BaseArticleForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'asso_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'add_empty' => true)),
+      'asso_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'add_empty' => false)),
       'name'        => new sfWidgetFormInputText(),
       'text'        => new sfWidgetFormTextarea(),
       'is_weekmail' => new sfWidgetFormInputCheckbox(),
@@ -27,9 +27,9 @@ abstract class BaseArticleForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'asso_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'required' => false)),
-      'name'        => new sfValidatorString(array('max_length' => 200, 'required' => false)),
-      'text'        => new sfValidatorString(array('required' => false)),
+      'asso_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'))),
+      'name'        => new sfValidatorString(array('max_length' => 200)),
+      'text'        => new sfValidatorString(),
       'is_weekmail' => new sfValidatorBoolean(array('required' => false)),
       'image'       => new sfValidatorString(array('required' => false)),
       'created_at'  => new sfValidatorDateTime(),

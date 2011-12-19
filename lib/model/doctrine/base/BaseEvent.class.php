@@ -57,28 +57,36 @@ abstract class BaseEvent extends sfDoctrineRecord
         $this->setTableName('event');
         $this->hasColumn('asso_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('type_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('name', 'string', 50, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 50,
              ));
         $this->hasColumn('description', 'string', null, array(
              'type' => 'string',
+             'notnull' => true,
              ));
         $this->hasColumn('start_date', 'timestamp', null, array(
              'type' => 'timestamp',
+             'notnull' => true,
              ));
         $this->hasColumn('end_date', 'timestamp', null, array(
              'type' => 'timestamp',
+             'notnull' => true,
              ));
         $this->hasColumn('is_public', 'boolean', null, array(
              'type' => 'boolean',
+             'default' => true,
              ));
         $this->hasColumn('is_weekmail', 'boolean', null, array(
              'type' => 'boolean',
+             'default' => false,
              ));
         $this->hasColumn('place', 'string', null, array(
              'type' => 'string',

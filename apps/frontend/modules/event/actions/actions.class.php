@@ -79,7 +79,7 @@ class eventActions extends sfActions
       $this->forward('event','index');
     }
 
-    $this->events = EventTable::getInstance()->getEventsList($this->asso->getPrimaryKey());
+    $this->events = EventTable::getInstance()->getEventsList($this->asso->getPrimaryKey())->execute();
   }
 
   public function executeCalendar(sfWebRequest $request)

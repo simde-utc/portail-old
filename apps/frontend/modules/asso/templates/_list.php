@@ -1,3 +1,4 @@
+<?php use_stylesheet('home.css') ?>
 <?php use_helper('Text') ?>
 
 <ul id="assos_list">

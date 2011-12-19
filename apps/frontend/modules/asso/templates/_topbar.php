@@ -1,3 +1,4 @@
+<h1>Notre Description</h1>
 <div id="topbar">
   <div class="logo_asso"><img src="<?php echo $asso->getLogo() ?>"></div>
 

@@ -1,13 +1,17 @@
+<?php use_helper('Date') ?>
+<h1>Nos Articles</h1>
 <div id="articles">
   <?php if($articles->count() > 0): ?>
     <div id="article_list">
       <?php foreach($articles as $article) : ?>
         <div class="article">
-          <h3><?php echo $article->getName() ?></h3>
-          Publié par <?php echo $article->getAsso()->getName() ?> le <?php echo $article->getCreatedAt() ?>
+          <h2 style="background: <?php echo $article->getPole()->getCouleur()?>"><?php echo $article->getName() ?>
+		  <span class="sub"><?php echo $article->getAsso()->getName() ?>, le <?php echo format_date($article->getCreatedAt(), 'P', 'fr'); ?></span></h2>
           <p>
             <?php echo html_entity_decode($article->getText()) ?>
           </p>
+		  <a class="alink" href="#">En savoir plus</a>
+		  
           <div class="actions">
             <!-- todo only if authorized -->
             <a href="<?php echo url_for('article/edit?id='.$article->getId()) ?>">Editer</a>

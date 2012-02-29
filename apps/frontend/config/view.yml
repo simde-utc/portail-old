@@ -10,7 +10,7 @@ default:
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en
-    #robots:       index, follow
+    robots:       noindex, nofollow
 
   stylesheets:    [jquery-ui-1.8.12.custom.css, main.css, carousel.css]
 

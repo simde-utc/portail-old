@@ -52,17 +52,17 @@
         <?php endif ?>
       </div>
       <div id="column-right">
+		<h1>Une asso au hasard</h1>
         <?php include_component('asso','randomAsso') ?>
         <div id="contact">
-          <h1>Contacter le BDE-UTC</h1>
+          <p>Contacter le BDE-UTC</p>
           <p>rue Roger Couttolenc<br />
             60200 Compiègne</p>
           <p>
-            Tél : +33 3 44 23 44 23<br />
-            Fax : +33 3 44 23 44 23
+            Tél : +33 3 44 23 43 71
           </p>
           <p>
-            bde@asso.utc.fr<br />
+            bde@assos.utc.fr<br />
             <?php echo url_for('asso/show?login=bde',true) ?>
           </p>
           <a href="" class="nousecrire">Nous écrire</a>

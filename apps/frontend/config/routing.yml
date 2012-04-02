@@ -5,6 +5,14 @@
 homepage:
   url:   /
   param: { module: home, action: index }
+
+cas:
+  url: /cas
+  param: { module: cas, action: login }
+
+cas_logout:
+  url: /cas/logout
+  param: { module: cas, action: logout }
   
 #Asso
 assos_list:

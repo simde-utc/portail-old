@@ -36,6 +36,11 @@ class myUser extends sfGuardSecurityUser
                 $data->setLastName(ucfirst(strtolower($cotisants->nom)));
                 $data->setIsActive(true);
                 $data->save();
+                
+                $profile = new Profile();
+                $profile->setUser($data);
+                $profile->setDomain($cotisants->ecole);
+                $profile->save();
             }
             /**
              * @todo Gérer non etu

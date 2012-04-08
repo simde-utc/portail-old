@@ -22,7 +22,6 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @property string $photo
  * @property boolean $weekmail
  * @property boolean $autorisation_photo
- * @property boolean $cotisant
  * @property sfGuardUser $User
  * @property Place $HomePlace
  * @property Place $FamilyPlace
@@ -44,7 +43,6 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @method string      getPhoto()              Returns the current record's "photo" value
  * @method boolean     getWeekmail()           Returns the current record's "weekmail" value
  * @method boolean     getAutorisationPhoto()  Returns the current record's "autorisation_photo" value
- * @method boolean     getCotisant()           Returns the current record's "cotisant" value
  * @method sfGuardUser getUser()               Returns the current record's "User" value
  * @method Place       getHomePlace()          Returns the current record's "HomePlace" value
  * @method Place       getFamilyPlace()        Returns the current record's "FamilyPlace" value
@@ -65,7 +63,6 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @method Profile     setPhoto()              Sets the current record's "photo" value
  * @method Profile     setWeekmail()           Sets the current record's "weekmail" value
  * @method Profile     setAutorisationPhoto()  Sets the current record's "autorisation_photo" value
- * @method Profile     setCotisant()           Sets the current record's "cotisant" value
  * @method Profile     setUser()               Sets the current record's "User" value
  * @method Profile     setHomePlace()          Sets the current record's "HomePlace" value
  * @method Profile     setFamilyPlace()        Sets the current record's "FamilyPlace" value
@@ -129,9 +126,6 @@ abstract class BaseProfile extends sfDoctrineRecord
              'type' => 'boolean',
              ));
         $this->hasColumn('autorisation_photo', 'boolean', null, array(
-             'type' => 'boolean',
-             ));
-        $this->hasColumn('cotisant', 'boolean', null, array(
              'type' => 'boolean',
              ));
     }

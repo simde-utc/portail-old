@@ -17,6 +17,7 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @property boolean $is_weekmail
  * @property string $place
  * @property string $affiche
+ * @property string $summary
  * @property Asso $Asso
  * @property EventType $Type
  * 
@@ -30,6 +31,7 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @method boolean   getIsWeekmail()  Returns the current record's "is_weekmail" value
  * @method string    getPlace()       Returns the current record's "place" value
  * @method string    getAffiche()     Returns the current record's "affiche" value
+ * @method string    getSummary()     Returns the current record's "summary" value
  * @method Asso      getAsso()        Returns the current record's "Asso" value
  * @method EventType getType()        Returns the current record's "Type" value
  * @method Event     setAssoId()      Sets the current record's "asso_id" value
@@ -42,6 +44,7 @@ Doctrine_Manager::getInstance()->bindComponent('Event', 'doctrine');
  * @method Event     setIsWeekmail()  Sets the current record's "is_weekmail" value
  * @method Event     setPlace()       Sets the current record's "place" value
  * @method Event     setAffiche()     Sets the current record's "affiche" value
+ * @method Event     setSummary()     Sets the current record's "summary" value
  * @method Event     setAsso()        Sets the current record's "Asso" value
  * @method Event     setType()        Sets the current record's "Type" value
  * 
@@ -93,6 +96,10 @@ abstract class BaseEvent extends sfDoctrineRecord
              ));
         $this->hasColumn('affiche', 'string', null, array(
              'type' => 'string',
+             ));
+        $this->hasColumn('summary', 'string', 150, array(
+             'type' => 'string',
+             'length' => 150,
              ));
     }
 

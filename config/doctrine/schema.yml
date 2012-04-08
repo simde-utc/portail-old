@@ -14,6 +14,7 @@ Asso:
     salle: { type: string(6) }
     phone: { type: string(15) }
     facebook: { type: string }
+    summary: { type: string(150) }
   relations:
     Pole: { local: pole_id, foreign: id }
     Type: { local: type_id, foreign: id, class: TypeAsso }
@@ -72,7 +73,6 @@ Profile:
      photo: { type: string }
      weekmail: { type: boolean }
      autorisation_photo: { type: boolean }
-     cotisant: { type: boolean }
    relations:
      User: { local: user_id, foreign: id, class: sfGuardUser, foreignType: one }
      HomePlace: { local: home_place, foreign: id, class: Place }
@@ -104,6 +104,7 @@ Event:
     is_weekmail: { type: boolean, default: false }
     place: { type: string }
     affiche: { type: string }
+    summary: { type: string(150) }
   relations:
     Asso: { local: asso_id, foreign: id }
     Type: { local: type_id, foreign: id, class: EventType }
@@ -123,6 +124,7 @@ Article:
     text : { type: string, notnull: true }
     is_weekmail: { type: boolean, default: false }
     image: { type: string }
+    summary: { type: string(150) }
   relations:
     Asso: { local: asso_id, foreign: id }
 

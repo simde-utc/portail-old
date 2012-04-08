@@ -12,6 +12,7 @@ Doctrine_Manager::getInstance()->bindComponent('Article', 'doctrine');
  * @property string $text
  * @property boolean $is_weekmail
  * @property string $image
+ * @property string $summary
  * @property Asso $Asso
  * 
  * @method integer getAssoId()      Returns the current record's "asso_id" value
@@ -19,12 +20,14 @@ Doctrine_Manager::getInstance()->bindComponent('Article', 'doctrine');
  * @method string  getText()        Returns the current record's "text" value
  * @method boolean getIsWeekmail()  Returns the current record's "is_weekmail" value
  * @method string  getImage()       Returns the current record's "image" value
+ * @method string  getSummary()     Returns the current record's "summary" value
  * @method Asso    getAsso()        Returns the current record's "Asso" value
  * @method Article setAssoId()      Sets the current record's "asso_id" value
  * @method Article setName()        Sets the current record's "name" value
  * @method Article setText()        Sets the current record's "text" value
  * @method Article setIsWeekmail()  Sets the current record's "is_weekmail" value
  * @method Article setImage()       Sets the current record's "image" value
+ * @method Article setSummary()     Sets the current record's "summary" value
  * @method Article setAsso()        Sets the current record's "Asso" value
  * 
  * @package    simde
@@ -56,6 +59,10 @@ abstract class BaseArticle extends sfDoctrineRecord
              ));
         $this->hasColumn('image', 'string', null, array(
              'type' => 'string',
+             ));
+        $this->hasColumn('summary', 'string', 150, array(
+             'type' => 'string',
+             'length' => 150,
              ));
     }
 

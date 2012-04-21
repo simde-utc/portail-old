@@ -66,7 +66,6 @@ p { text-align : justify; }
 
 #top_bar .wrap button {
   height: 22px;
-  width: 76px;
   margin: 0 8px;
   vertical-align: 10%;
 }
@@ -474,6 +473,30 @@ p { text-align : justify; }
 }
 #bigmenu .bm_pole:first-child {
     border: none;
+}
+
+#asso-menu {
+  background: #009cdd;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#009cdd", endColorstr="#30596a"); /* Pour IE seulement et mode gradient à linear */
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#009cdd), to(#30596a));
+  background-image: -moz-linear-gradient(top center, #009cdd, #30596a);
+  background-image: -o-linear-gradient(top, #009cdd, #30596a); /*uniquement en mode linear*/
+  height: 30px;
+  margin-top: -31px;
+}
+
+#asso-menu a {
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 0 10px;
+  border-left: 1px solid white;
+  color: white;
+  font-weight: bold;
+  height: 23px;
+  padding-top:7px;
+}
+#asso-menu a:first-child {
+  border: none;
 }
 
 /*.lieu:before{*/

@@ -13,44 +13,49 @@ class myUser extends sfGuardSecurityUser
         $username = phpCAS::getUser();
 
         $data = sfGuardUserTable::getInstance()->findOneBy('username', $username);
-        if(!$data)
-        {
-            $cotisants = simplexml_load_file('http://assos.utc.fr/simde/api/cotisants.php?login=' . $username);
-            if($cotisants->nom
-                    && $cotisants->prenom
-                    && $cotisants->ecole)
-            {
-                $data = new sfGuardUser();
-                $data->setUsername($username);
-
-                switch($cotisants->ecole)
-                {
-                    case 'utc': $email = 'etu.utc.fr';
-                        break;
-                    case 'escom': $email = 'escom.fr';
-                        break;
-                    default: $email = '';
-                }
-                $data->setEmailAddress($username . '@' . $email);
-                $data->setFirstName(ucfirst(strtolower($cotisants->prenom)));
-                $data->setLastName(ucfirst(strtolower($cotisants->nom)));
-                $data->setIsActive(true);
-                $data->save();
-                
-                $profile = new Profile();
-                $profile->setUser($data);
-                $profile->setDomain($cotisants->ecole);
-                $profile->save();
-            }
-            /**
-             * @todo Gérer non etu
-             */
-            else
-            {
-                die("Vous n'êtes pas dans notre base étudiants.");
-            }
-        }
+        if(!$data || ($data->getPassword() == NULL && !$data->getIsActive()))
+            $data = $this->registerUser($username, $data);
         $this->signin($data, true);
+    }
+
+    private function registerUser($username, $data = NULL)
+    {
+        $cotisants = simplexml_load_file('http://assos.utc.fr/simde/api/cotisants.php?login=' . $username);
+        if($cotisants->nom
+                && $cotisants->prenom
+                && $cotisants->ecole)
+        {
+            if(!$data)
+                $data = new sfGuardUser();
+            $data->setUsername($username);
+
+            switch($cotisants->ecole)
+            {
+                case 'utc': $email = 'etu.utc.fr';
+                    break;
+                case 'escom': $email = 'escom.fr';
+                    break;
+                default: $email = '';
+            }
+            $data->setEmailAddress($username . '@' . $email);
+            $data->setFirstName(ucfirst(strtolower($cotisants->prenom)));
+            $data->setLastName(ucfirst(strtolower($cotisants->nom)));
+            $data->setIsActive(true);
+            $data->save();
+
+            $profile = new Profile();
+            $profile->setUser($data);
+            $profile->setDomain($cotisants->ecole);
+            $profile->save();
+        }
+        /**
+         * @todo Gérer non etu
+         */
+        else
+        {
+            die("Vous n'êtes pas dans notre base étudiants.");
+        }
+        return $data;
     }
 
     /**

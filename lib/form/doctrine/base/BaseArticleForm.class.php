@@ -21,6 +21,7 @@ abstract class BaseArticleForm extends BaseFormDoctrine
       'text'        => new sfWidgetFormTextarea(),
       'is_weekmail' => new sfWidgetFormInputCheckbox(),
       'image'       => new sfWidgetFormTextarea(),
+      'summary'     => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -32,6 +33,7 @@ abstract class BaseArticleForm extends BaseFormDoctrine
       'text'        => new sfValidatorString(),
       'is_weekmail' => new sfValidatorBoolean(array('required' => false)),
       'image'       => new sfValidatorString(array('required' => false)),
+      'summary'     => new sfValidatorString(array('max_length' => 150, 'required' => false)),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
     ));

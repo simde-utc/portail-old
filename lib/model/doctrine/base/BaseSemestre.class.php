@@ -29,6 +29,9 @@ abstract class BaseSemestre extends sfDoctrineRecord
              'type' => 'string',
              'length' => 3,
              ));
+
+        $this->option('collate', 'utf8_unicode_ci');
+        $this->option('charset', 'utf8');
     }
 
     public function setUp()

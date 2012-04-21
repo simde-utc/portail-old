@@ -29,6 +29,9 @@ abstract class BaseTypeAsso extends sfDoctrineRecord
              'type' => 'string',
              'length' => 50,
              ));
+
+        $this->option('collate', 'utf8_unicode_ci');
+        $this->option('charset', 'utf8');
     }
 
     public function setUp()

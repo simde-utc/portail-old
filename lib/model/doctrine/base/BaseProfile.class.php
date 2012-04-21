@@ -128,6 +128,9 @@ abstract class BaseProfile extends sfDoctrineRecord
         $this->hasColumn('autorisation_photo', 'boolean', null, array(
              'type' => 'boolean',
              ));
+
+        $this->option('collate', 'utf8_unicode_ci');
+        $this->option('charset', 'utf8');
     }
 
     public function setUp()

@@ -8,3 +8,8 @@ all:
       dsn:      mysql:host=localhost;dbname=simde
       username: root
       password: 
+      encoding: utf8
+      attributes:
+        default_table_collate: utf8_unicode_ci
+        default_table_charset: utf8
+

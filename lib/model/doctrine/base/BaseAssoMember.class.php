@@ -55,6 +55,9 @@ abstract class BaseAssoMember extends sfDoctrineRecord
         $this->hasColumn('semestre_id', 'integer', null, array(
              'type' => 'integer',
              ));
+
+        $this->option('collate', 'utf8_unicode_ci');
+        $this->option('charset', 'utf8');
     }
 
     public function setUp()

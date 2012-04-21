@@ -64,6 +64,9 @@ abstract class BaseArticle extends sfDoctrineRecord
              'type' => 'string',
              'length' => 150,
              ));
+
+        $this->option('collate', 'utf8_unicode_ci');
+        $this->option('charset', 'utf8');
     }
 
     public function setUp()

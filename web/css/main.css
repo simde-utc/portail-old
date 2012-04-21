@@ -444,12 +444,12 @@ p { text-align : justify; }
   font-family: impact;
   font-size: 15px;
   text-transform: uppercase;
-  margin: -31px 0px 0px -530px;
-  left: 50%;
-  width: 1061px;
-  position: absolute;
+  margin: auto;
+  margin-top: -31px;
+  width: 1020px;
   display: none;
   z-index: 11000;
+  padding-bottom: 31px;
 }
 
 #bigmenu a {
@@ -467,11 +467,13 @@ p { text-align : justify; }
 }
 
 #bigmenu .bm_pole {
-  position: relative;
-  width: 200px;
+  width: 180px;
   float: left;
-  border-right: 1px solid white;
-  padding: 5px 15px;
+  border-left: 1px solid white;
+  padding: 5px 10px;
+}
+#bigmenu .bm_pole:first-child {
+    border: none;
 }
 
 /*.lieu:before{*/

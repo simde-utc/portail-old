@@ -30,7 +30,7 @@ class assoComponents extends sfComponents
   {
     $this->assos = AssoTable::getInstance()->getMyAssos($this->getUser()->getGuardUser()->getId())->execute();
   }
-  
+
   public function executeRandomAsso()
   {
     $this->asso = AssoTable::getInstance()->getRandom();
@@ -38,12 +38,18 @@ class assoComponents extends sfComponents
 
   public function executeBigMenu()
   {
-		$assos = AssoTable::getInstance()->getAssosAndNotPolesList();
+    $assos = AssoTable::getInstance()->getAssosAndNotPolesList();
 
-		foreach($assos as $asso)
-		{
-			$poles[$asso->getPoleId()][] = $asso;
-		}
-		$this->poles = $poles;
+    foreach($assos as $asso)
+    {
+      $poles[$asso->getPoleId()][] = $asso;
+    }
+    $this->poles = $poles;
   }
+  
+  public function executeMenu()
+  {
+    
+  }
+
 }

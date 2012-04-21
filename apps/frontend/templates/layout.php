@@ -32,9 +32,12 @@
         </span>
       </div>
     </div>
-		<?php include_component('asso', 'bigMenu') ?>
-    <?php include_component('event','carousel') ?>
-
+    <?php include_component('asso', 'bigMenu') ?>
+    <?php if($sf_request->getParameter('module') != 'asso'): ?>
+      <?php include_component('event','carousel') ?>
+    <?php else: ?>
+      <?php include_component('asso', 'menu') ?>
+    <?php endif ?>;
     <div class="wrap">
       <div id="column-left">
           <h1>Mon petit compte</h1>

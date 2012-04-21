@@ -28,6 +28,7 @@ abstract class BaseAssoForm extends BaseFormDoctrine
       'salle'       => new sfWidgetFormInputText(),
       'phone'       => new sfWidgetFormInputText(),
       'facebook'    => new sfWidgetFormTextarea(),
+      'summary'     => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -46,6 +47,7 @@ abstract class BaseAssoForm extends BaseFormDoctrine
       'salle'       => new sfValidatorString(array('max_length' => 6, 'required' => false)),
       'phone'       => new sfValidatorString(array('max_length' => 15, 'required' => false)),
       'facebook'    => new sfValidatorString(array('required' => false)),
+      'summary'     => new sfValidatorString(array('max_length' => 150, 'required' => false)),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
     ));

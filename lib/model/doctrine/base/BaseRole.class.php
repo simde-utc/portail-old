@@ -52,6 +52,9 @@ abstract class BaseRole extends sfDoctrineRecord
              'default' => 0,
              'notnull' => true,
              ));
+
+        $this->option('collate', 'utf8_unicode_ci');
+        $this->option('charset', 'utf8');
     }
 
     public function setUp()

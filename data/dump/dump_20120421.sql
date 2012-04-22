@@ -194,6 +194,7 @@ INSERT INTO `sf_guard_user` (`id`, `first_name`, `last_name`, `email_address`, `
 (34, NULL, NULL, 'moreaueg@etu.utc.fr', 'moreaueg', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (35, NULL, NULL, 'lchampea@etu.utc.fr', 'lchampea', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (36, NULL, NULL, 'alavergn@etu.utc.fr', 'alavergn', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
+UPDATE `sf_guard_user` SET `is_active`= 0;
 
 INSERT INTO `asso_member` (`id`, `user_id`, `asso_id`, `role_id`, `semestre_id`, `created_at`, `updated_at`) VALUES
 (1, 7, 21, 1, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),

@@ -97,5 +97,33 @@ class assoActions extends sfActions
       return $this->renderPartial('asso/list',array('assos' => $this->assos));
     }
   }
+  
+  public function executeArticles()
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->redirectUnless($this->asso,'assos_list');
+    $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso)->execute();
+  }
+
+  public function executeEvents()
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->redirectUnless($this->asso,'assos_list');
+    $this->events = EventTable::getInstance()->getEventsList($this->asso)->execute();
+  }
+
+  public function executeBureau()
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->redirectUnless($this->asso,'assos_list');
+    $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
+  }
+
+  public function executeTrombinoscope()
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->redirectUnless($this->asso,'assos_list');
+    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
+  }
 
 }

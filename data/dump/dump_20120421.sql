@@ -225,7 +225,10 @@ INSERT INTO `asso_member` (`id`, `user_id`, `asso_id`, `role_id`, `semestre_id`,
 (27, 5, 110, 1, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (28, 17, 61, 1, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (29, 22, 49, 1, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
-(30, 8, 22, 1, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
+(30, 8, 22, 1, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(31, 1, 2, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(32, 2, 2, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(33, 3, 2, 1, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
 
 INSERT INTO `profile` (`id`, `user_id`, `domain`, `nickname`, `birthday`, `sexe`, `mobile`, `home_place`, `family_place`, `branche_id`, `filiere_id`, `semestre`, `other_email`, `photo`, `weekmail`, `autorisation_photo`, `created_at`, `updated_at`) VALUES
 (NULL, 1, 'utc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),

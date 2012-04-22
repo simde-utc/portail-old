@@ -49,8 +49,8 @@ class assoActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($asso = $this->getRoute()->getObject());
-    $this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($asso->getLogin(),0x01));
+    $this->redirectUnless($asso = $this->getRoute()->getObject(),'assos_list');
+    $this->redirectUnless($this->getUser()->getGuardUser()->hasAccess($asso->getLogin(),0x01),'assos_list');
     $this->form = new AssoForm($asso);
   }
 
@@ -59,7 +59,7 @@ class assoActions extends sfActions
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))),sprintf('Object asso does not exist (%s).',$request->getParameter('id')));
     $this->form = new AssoForm($asso);
-    $this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($asso->getLogin(),0x01));
+    $this->redirectUnless($this->getUser()->getGuardUser()->hasAccess($asso->getLogin(),0x01),'assos_list');
     $this->processForm($request,$this->form);
 
     $this->setTemplate('edit');

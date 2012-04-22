@@ -12,14 +12,25 @@ class AssoForm extends BaseAssoForm
 {
   public function configure()
   {
-    unset(
-      $this['created_at'],$this['updated_at']
-    );
+    $this->useFields(array(
+        'name','pole_id','type_id','url_site','logo','summary','description','salle','phone','facebook'
+    ));
     
     $this->widgetSchema['description'] =  new sfWidgetFormTextareaTinyMCE(
       array(
-        'width'=>550,
-        'height'=>350,
+        'width'=>520,
+        'height'=>150,
+        'config'=>'theme_advanced_disable: "anchor,image,cleanup,help"',
+        'theme'   =>  sfConfig::get('app_tinymce_theme','advanced'),
+      ),
+      array(
+        'class'   =>  'tiny_mce'
+      )
+    );
+    $this->widgetSchema['summary'] =  new sfWidgetFormTextareaTinyMCE(
+      array(
+        'width'=>520,
+        'height'=>80,
         'config'=>'theme_advanced_disable: "anchor,image,cleanup,help"',
         'theme'   =>  sfConfig::get('app_tinymce_theme','advanced'),
       ),

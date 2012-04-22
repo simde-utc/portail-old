@@ -24,9 +24,33 @@ assos_list_pole:
   param: { module: asso, action: index }
 
 assos_show:
-  url:   /asso/show/:login
+  url:   /asso/:login
   class: sfDoctrineRoute
   param: { module: asso, action: show }
+  options: { model: Asso, type: object }
+
+asso_articles:
+  url:   /asso/articles/:login
+  class: sfDoctrineRoute
+  param: { module: asso, action: articles }
+  options: { model: Asso, type: object }
+
+asso_events:
+  url:   /asso/events/:login
+  class: sfDoctrineRoute
+  param: { module: asso, action: events }
+  options: { model: Asso, type: object }
+
+asso_bureau:
+  url:   /asso/bureau/:login
+  class: sfDoctrineRoute
+  param: { module: asso, action: bureau }
+  options: { model: Asso, type: object }
+
+asso_trombi:
+  url:   /asso/trombi/:login
+  class: sfDoctrineRoute
+  param: { module: asso, action: trombinoscope }
   options: { model: Asso, type: object }
   
 asso_search:
@@ -38,13 +62,13 @@ asso_search_json:
   param: { module: asso, action: search, sf_format: json }
 
 asso_edit:
-  url: /asso/edit/:login
+  url: /asso/:login/edit
   class: sfDoctrineRoute
   param: { module: asso, action: edit }
   options: { model: Asso, type: object }
 
 asso_update:
-  url: /asso/update/:id
+  url: /asso/:id/update
   param: { module: asso, action: update }
     
 #Articles

@@ -8,5 +8,21 @@
   <a class="website" href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a><br />
   <a class="email "href="mailto:<?php echo $asso->getLogin() ?>@assos.utc.fr"><?php echo $asso->getLogin() ?>@assos.utc.fr</a><br />
   <br />
-  <a href="#">Je souhaite rejoindre cette association</a>
+  <?php if($sf_user->isAuthenticated()): ?>
+    <?php if(!$sf_user->getGuardUser()->isMember($asso->getLogin())): ?>
+      <a href="#">Je souhaite rejoindre cette association</a><br />
+    <?php else: ?>
+      <?php if($sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x01)): ?>
+        <a href="<?php echo url_for('asso_edit', $asso) ?>">Editer les informations</a><br />
+      <?php endif ?>
+        <?php if($sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x04)): ?>
+        <a href="<?php echo url_for('article_new', $asso) ?>">Ajouter un article</a><br />
+      <?php endif ?>
+        <?php if($sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x08)): ?>
+        <a href="<?php echo url_for('event_new', $asso) ?>">Ajouter un événement</a><br />
+      <?php endif ?>
+    <?php endif ?>
+  <?php else: ?>
+    Vous devez être connecté pour rejoindre cette association.
+  <?php endif ?>
 </div>

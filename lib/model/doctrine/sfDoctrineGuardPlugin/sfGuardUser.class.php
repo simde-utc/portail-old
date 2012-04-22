@@ -60,4 +60,8 @@ class sfGuardUser extends PluginsfGuardUser
     return $this->getPermissionValue($asso)->getRole()->getDroits() & $droit;
   }
   
+  public function isMember($asso)
+  {
+    return $this->hasPermission($asso);
+  }
 }

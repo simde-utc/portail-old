@@ -11,12 +11,12 @@
       <tr>
         <td colspan="2">
           <?php echo $form->renderHiddenFields(false) ?>
+          <input class="btn btn-primary" type="submit" value="Enregistrer" />
           <?php if($form->getObject()->isNew()): ?>
           &nbsp;<a class="btn" href="<?php echo url_for('asso/index') ?>">Retour à la liste des assos</a>
           <?php else: ?>
           &nbsp;<a class="btn" href="<?php echo url_for('assos_show',$form->getObject()) ?>">Retour à l'association</a>
           <?php endif ?>
-          <input class="btn btn-primary" type="submit" value="Enregistrer" />
         </td>
       </tr>
     </tfoot>

@@ -15,7 +15,7 @@
         <a href="<?php echo url_for('homepage') ?>" id="logo">
           <img src="/images/logo_bde.png" alt="BDE UTC" width="163px" height="110px" />
         </a>
-        Rerchercher<input type="text" /><button>CHERCHER</button><span class="barre"></span>
+        Rerchercher<input type="text" /><button type="submit" class="btn">CHERCHER</button><span class="barre"></span>
         <a href="http://www.facebook.com/pages/BDE-UTC/190043221063147" class="facebook">F</a>
       </div>
     </div>

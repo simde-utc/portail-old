@@ -17,7 +17,7 @@ p { text-align : justify; }
 
 .wrap{
   margin: 0 auto;
-  width: 1024px;
+  max-width: 1024px;
 }
 .radius5{
   -moz-border-radius: 5px;
@@ -47,8 +47,13 @@ p { text-align : justify; }
   font-size: 15px;
   text-transform: uppercase;
   margin-bottom: 190px;
+  vertical-align: top;
 }
-#top_bar a { color: #FFF; }
+#top_bar .nav a.dropdown-toggle { color: #FFF; }
+#top_bar .nav a.dropdown-toggle:hover { color: #424242; background: #FFF; }
+#top_bar .nav .open a.dropdown-toggle { color: #FFF; background: none; }
+#top_bar .nav .open a.dropdown-toggle:hover { color: #424242; background: #FFF; }
+#top_bar .dropdown-menu a { color: #424242; }
 #top_bar .wrap {
   text-align: right;
 }
@@ -57,26 +62,30 @@ p { text-align : justify; }
   float: left;
 }
 
-#top_bar .wrap input {
-  height: 18px;
-  width: 170px;
-  margin: 0 8px;
-  vertical-align: 10%;
+#top_bar form {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 0px;
+  margin-top: 3px;
 }
 
-#top_bar .wrap button {
-  height: 22px;
-  margin: 0 8px;
-  vertical-align: 10%;
+#top_bar form label {
+  color: #FFF;
+}
+
+#top_bar ul.nav {
+  display: inline-block;
+  padding: 0;
+  margin: 0 auto;
 }
 
 #top_bar .wrap .barre{
   border-left: 1px #FFF solid;
-  margin: 0 8px;
-  height: 15px;
+  margin: 7px 0px 0px 8px;
+  height: 20px;
   width: 1px;
   display: inline-block;
-  vertical-align: -10%;
+  vertical-align: top;
 }
 
 #top_bar .wrap .facebook, #top_bar .wrap  .twitter {
@@ -185,7 +194,7 @@ p { text-align : justify; }
 /* ------------------------------- */
 
 #content{
-  width: 620px;;
+  width: 620px;
   margin: auto;
   background: #fff;
   padding: 10px;
@@ -472,7 +481,7 @@ p { text-align : justify; }
   padding: 5px 10px;
 }
 #bigmenu .bm_pole:first-child {
-    border: none;
+  border: none;
 }
 
 #asso-menu {

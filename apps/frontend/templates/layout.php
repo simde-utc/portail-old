@@ -15,8 +15,41 @@
         <a href="<?php echo url_for('homepage') ?>" id="logo">
           <img src="/images/logo_bde.png" alt="BDE UTC" width="163px" height="110px" />
         </a>
-        Rerchercher<input type="text" /><button type="submit" class="btn">CHERCHER</button><span class="barre"></span>
-        <a href="http://www.facebook.com/pages/BDE-UTC/190043221063147" class="facebook">F</a>
+        <form class="form-inline"><label>Rerchercher une info</label>
+          <input type="text" class="input-medium" />
+          <button type="submit" class="btn">Chercher</button>
+        </form>
+        <span class="barre"></span>
+        <?php if(!$sf_user->isAuthenticated()): ?>
+        <ul class="nav nav-pills">
+          <li class="dropdown" id="drop-connexion">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
+              Connexion
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu pull-right">
+              <li><a href="<?php echo url_for('cas') ?>">Connexion via le CAS</a></li>
+              <li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>
+              <li class="divider"></li>
+              <li><a href="<?php echo url_for('sf_guard_register') ?>">Inscription extérieur</a></li>
+            </ul>
+          </li>
+        </ul>
+        <?php else: ?>
+        <ul class="nav nav-pills">
+          <li class="dropdown" id="drop-connexion">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
+              <?php echo $sf_user->getGuardUser()->getName() ?>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu pull-right">
+              <li><a href="<?php echo url_for('cas_logout') ?>">Déconnexion du CAS</a></li>
+              <li class="divider"></li>
+              <li><a href="<?php echo url_for('sf_guard_signout') ?>">Déconnexion du portail</a></li>
+            </ul>
+          </li>
+        </ul>
+        <?php endif ?>
       </div>
     </div>
 
@@ -27,36 +60,36 @@
         <a href="" class="barre">Services</a>
         <a href="" class="barre">Fonctionnement de l'UTC</a>
         <span class="horloge">
-          <?php echo format_date(time(),"D",'fr') ?>
-          <span class="barre"><?php echo format_date(time(),"t",'fr') ?></span>
+          <?php echo format_date(time(), "D", 'fr') ?>
+          <span class="barre"><?php echo format_date(time(), "t", 'fr') ?></span>
         </span>
       </div>
     </div>
     <?php include_component('asso', 'bigMenu') ?>
     <?php if($sf_request->getParameter('module') != 'asso'): ?>
-      <?php include_component('event','carousel') ?>
+      <?php include_component('event', 'carousel') ?>
     <?php else: ?>
       <?php include_component('asso', 'menu') ?>
     <?php endif ?>;
     <div class="wrap">
       <div id="column-left">
-          <h1>Mon petit compte</h1>
-          <div id="left_login">
-            <?php if($sf_user->isAuthenticated()): ?>
+        <h1>Mon petit compte</h1>
+        <div id="left_login">
+          <?php if($sf_user->isAuthenticated()): ?>
             Navatar
             <?php echo $sf_user->getName() ?>
-          <a href="<?php echo url_for('sf_guard_signout') ?>">Deconnexion</a>
+            <a href="<?php echo url_for('sf_guard_signout') ?>">Deconnexion</a>
           <?php else: ?>
-            <?php include_component('sfGuardAuth','signin_form') ?>
+            <?php include_component('sfGuardAuth', 'signin_form') ?>
           <?php endif ?>
         </div>
         <?php if($sf_user->isAuthenticated()): ?>
-          <?php include_component('asso','myAssos') ?>
+          <?php include_component('asso', 'myAssos') ?>
         <?php endif ?>
       </div>
       <div id="column-right">
-		<h1>Une asso au hasard</h1>
-        <?php include_component('asso','randomAsso') ?>
+        <h1>Une asso au hasard</h1>
+        <?php include_component('asso', 'randomAsso') ?>
         <div id="contact">
           <p>Contacter le BDE-UTC</p>
           <p>rue Roger Couttolenc<br />
@@ -66,7 +99,7 @@
           </p>
           <p>
             bde@assos.utc.fr<br />
-            <?php echo url_for('asso/show?login=bde',true) ?>
+            <?php echo url_for('asso/show?login=bde', true) ?>
           </p>
           <a href="" class="nousecrire">Nous écrire</a>
         </div>

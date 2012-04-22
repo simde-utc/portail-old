@@ -12,4 +12,4 @@ all:
     #  relative to sf_root_dir, ex:    "data/cas/cert/mycert.pem"
     #  absolute ex:                    "/usr/var/certif/xxx.pem"
     #  disabled for dev context ex:    false
-    server_cert: false
+    server_cert: "../data/cas.pem"

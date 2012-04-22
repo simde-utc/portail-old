@@ -12,9 +12,9 @@ default:
     #language:     en
     robots:       noindex, nofollow
 
-  stylesheets:    [jquery-ui-1.8.12.custom.css, main.css, carousel.css]
+  stylesheets:    [jquery-ui-1.8.12.custom.css, bootstrap.min.css, main.css, carousel.css]
 
-  javascripts:    [jquery-1.5.1.min.js, jquery-ui-1.8.12.custom.min.js, search.js, jquery.contentcarousel.js, main.js]
+  javascripts:    [jquery-1.7.2.min.js, jquery-ui-1.8.12.custom.min.js, bootstrap.min.js, search.js, jquery.contentcarousel.js, main.js]
 
   has_layout:     true
   layout:         layout

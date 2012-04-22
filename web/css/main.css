@@ -8,7 +8,7 @@ body {
 .clear{ clear:both; }
 a:link, a:visited{ color:#888888; text-decoration:none; }
 a:hover{ color:#888888; text-decoration:underline; }
-h1{ font-size:24px; color:#000000; }
+h1{ font-size:24px; color:#000000; line-height: 18px; }
 h2{ font-size:18px; color:#666666; }
 h3{ font-size:11pt; margin:2px 0px; }
 fieldset { border:0; }

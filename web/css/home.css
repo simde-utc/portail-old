@@ -219,3 +219,5 @@
   max-width : 80px;
   max-height : 80px;
 }
+
+#bureau img, #trombi img { height: 120px; }

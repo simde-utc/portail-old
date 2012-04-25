@@ -47,9 +47,10 @@ class assoComponents extends sfComponents
     $this->poles = $poles;
   }
   
-  public function executeMenu()
+  public function executeMenu(sfWebRequest $request)
   {
-    
+    if($login = $request->getParameter('login',null))
+      $this->asso = AssoTable::getInstance()->findOneByLogin($login);
   }
 
 }

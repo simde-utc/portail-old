@@ -3,6 +3,9 @@
     <ul>
       <?php foreach($bureau as $membre) : ?>
         <li><?php echo $membre->getUser() ?>
+          <?php if($sf_user->isAuthenticated()): ?>
+            <img src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $membre->getUser()->getUsername() ?>" height="120" style="float: right;" />
+          <?php endif ?>
           <ul>
             <li>Rôle : <?php echo $membre->getRole()->getName() ?> (<?php echo $membre->getSemestre() ?>)</li>
             <li>Email : <?php echo $membre->getUser()->getEmailAddress() ?></li>

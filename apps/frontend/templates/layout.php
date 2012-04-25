@@ -28,7 +28,7 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu pull-right">
-              <li><a href="<?php echo url_for('cas') ?>">Connexion via le CAS</a></li>
+              <li><a href="<?php echo url_for('cas') ?>">Je suis étudiant</a></li>
               <li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>
               <li class="divider"></li>
               <li><a href="<?php echo url_for('sf_guard_register') ?>">Inscription extérieur</a></li>
@@ -73,23 +73,13 @@
     <?php endif ?>;
     <div class="wrap">
       <div id="column-left">
-        <h1>Mon petit compte</h1>
-        <div id="left_login">
-          <?php if($sf_user->isAuthenticated()): ?>
-            Navatar
-            <?php echo $sf_user->getName() ?>
-            <a href="<?php echo url_for('sf_guard_signout') ?>">Deconnexion</a>
-          <?php else: ?>
-            <?php include_component('sfGuardAuth', 'signin_form') ?>
-          <?php endif ?>
-        </div>
         <?php if($sf_user->isAuthenticated()): ?>
           <?php include_component('asso', 'myAssos') ?>
+        <?php else: ?>
+          <?php include_partial('home/bienvenue') ?>
         <?php endif ?>
       </div>
       <div id="column-right">
-        <h1>Une asso au hasard</h1>
-        <?php include_component('asso', 'randomAsso') ?>
         <div id="contact">
           <p>Contacter le BDE-UTC</p>
           <p>rue Roger Couttolenc<br />

@@ -72,7 +72,7 @@ class assoActions extends sfActions
     {
       $asso = $form->save();
 
-      $this->redirect('asso/edit?login='.$asso->getLogin());
+      $this->redirect('asso/show?login='.$asso->getLogin());
     }
   }
 

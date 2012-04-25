@@ -17,7 +17,7 @@ Asso:
     passation: { type: boolean }
     salle: { type: string(6) }
     phone: { type: string(15) }
-    facebook: { type: string }
+    facebook: { type: string(100) }
     summary: { type: string(150) }
   relations:
     Pole: { local: pole_id, foreign: id }

@@ -38,6 +38,16 @@
     text-transform: uppercase;
 }
 
+.part h1 .titleaction {
+	float: right;
+	font-size: 12px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	text-transform: none;
+}
+.part h1 .titleaction a {
+	color: white;
+}
+
 .part .article h2 {
     margin: 5px auto;
     display: block;

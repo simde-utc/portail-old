@@ -1,4 +1,9 @@
-<h1>Notre Description</h1>
+<h1>
+  Notre description
+  <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x01)): ?>
+    <span class="titleaction"><i class="icon-edit icon-white"></i> <a href="<?php echo url_for('asso_edit', $asso) ?>">Éditer</a></span>
+  <?php endif ?>
+</h1>
 <div id="topbar">
   <div class="logo_asso"><img src="<?php echo $asso->getLogo() ?>"></div>
 
@@ -12,9 +17,6 @@
     <?php if(!$sf_user->getGuardUser()->isMember($asso->getLogin())): ?>
       <a href="#">Je souhaite rejoindre cette association</a><br />
     <?php else: ?>
-      <?php if($sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x01)): ?>
-        <a href="<?php echo url_for('asso_edit', $asso) ?>">Editer les informations</a><br />
-      <?php endif ?>
         <?php if($sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x04)): ?>
         <a href="<?php echo url_for('article_new', $asso) ?>">Ajouter un article</a><br />
       <?php endif ?>

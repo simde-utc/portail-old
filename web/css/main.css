@@ -515,3 +515,19 @@ p { text-align : justify; }
 /*.description:before{*/
 /*	content : "Description : ";*/
 /*	}*/
+
+.editform label {
+	text-align: right;
+	margin-right: 6px;
+	padding: 4px;
+}
+.editform th {
+	vertical-align: top;
+}
+.editform input, .editform textarea, .editform select {
+	width: 380px;
+}
+
+.editform input.btn {
+	width: auto;
+}

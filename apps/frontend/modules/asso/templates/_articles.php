@@ -1,5 +1,10 @@
 <?php use_helper('Date') ?>
-<h1>Nos Articles</h1>
+<h1>
+  Nos articles
+  <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x04)): ?>
+    <span class="titleaction"><i class="icon-plus icon-white"></i> <a href="<?php echo url_for('article_new', $asso) ?>">Ajouter un article</a></span>
+  <?php endif ?>
+</h1>
 <div id="articles">
   <?php if($articles->count() > 0): ?>
     <div id="article_list">

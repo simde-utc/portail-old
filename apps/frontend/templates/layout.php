@@ -66,7 +66,7 @@
       </div>
     </div>
     <?php include_component('asso', 'bigMenu') ?>
-    <?php if($sf_request->getParameter('module') != 'asso'): ?>
+    <?php if($sf_request->getParameter('module') == 'home'): ?>
       <?php include_component('event', 'carousel') ?>
     <?php else: ?>
       <?php include_component('asso', 'menu') ?>

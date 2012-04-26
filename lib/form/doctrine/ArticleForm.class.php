@@ -11,23 +11,7 @@
 class ArticleForm extends BaseArticleForm {
 
   public function configure() {
-    unset(
-            $this['created_at'], $this['updated_at']
-    );
-
-    /* $this->widgetSchema['text'] =  new sfWidgetFormTextareaTinyMCE(
-      array(
-      'width'=>550,
-      'height'=>350,
-      'config'=>'theme_advanced_disable: "anchor,image,cleanup,help"',
-      'theme'   =>  sfConfig::get('app_tinymce_theme','advanced'),
-      ),
-      array(
-      'class'   =>  'tiny_mce'
-      )
-      );
-      $js_path = '/js/tiny_mce/tiny_mce.js';
-      sfContext::getInstance()->getResponse()->addJavascript($js_path); */
+    unset($this['created_at'], $this['updated_at'], $this['is_weekmail']);
     
     $this->getWidget('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
     $this->getValidator('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
@@ -46,6 +30,13 @@ class ArticleForm extends BaseArticleForm {
             ));
 
     $this->validatorSchema['image_delete'] = new sfValidatorBoolean();
+    
+    $this->widgetSchema->setLabel('asso_id', 'Auteur');
+    $this->widgetSchema->setLabel('name', 'Titre');
+    $this->widgetSchema->setLabel('summary', 'Résumé en une ligne');
+    $this->widgetSchema->setLabel('text', 'Contenu');
+    $this->widgetSchema->setLabel('image', 'Ilustration');
+    $this->useFields(array('asso_id', 'name', 'summary', 'text', 'image'));
   }
 
 }

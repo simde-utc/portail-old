@@ -19,9 +19,25 @@ class EventForm extends BaseEventForm
       array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));
     $this->widgetSchema['end_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png', 'date_widget'=>$this->widgetSchema['end_date']),
       array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));*/
+        
+    $this->widgetSchema['start_date']->addOption('date', array(
+      'format' => '%day%/%month%/%year%',
+      'years' => range(date('Y'), date('Y') + 5)
+     ));
+    $this->widgetSchema['end_date']->addOption('date', array(
+      'format' => '%day%/%month%/%year%',
+      'years' => range(date('Y'), date('Y') + 5)
+     ));
+
     
-    $this->widgetSchema['start_date']->setOption('date', array('format' => '%day%/%month%/%year%'));
-    $this->widgetSchema['end_date']->setOption('date', array('format' => '%day%/%month%/%year%'));
+    $this->widgetSchema['start_date']->setAttributes(array(
+      'date' => array('class' => 'nosize'),
+      'time' => array('class' => 'nosize')
+    ));
+    $this->widgetSchema['end_date']->setAttributes(array(
+      'date' => array('class' => 'nosize'),
+      'time' => array('class' => 'nosize')
+    ));
     
 	$this->widgetSchema['affiche'] = new sfWidgetFormInputFileEditable(array(
       'file_src' => '/uploads/events/'.$this->getObject()->getAffiche(),

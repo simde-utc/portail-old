@@ -19,7 +19,10 @@ class EventForm extends BaseEventForm
       array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));
     $this->widgetSchema['end_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png', 'date_widget'=>$this->widgetSchema['end_date']),
       array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));*/
-	
+    
+    $this->widgetSchema['start_date']->setOption('date', array('format' => '%day%/%month%/%year%'));
+    $this->widgetSchema['end_date']->setOption('date', array('format' => '%day%/%month%/%year%'));
+    
 	$this->widgetSchema['affiche'] = new sfWidgetFormInputFileEditable(array(
       'file_src' => '/uploads/events/'.$this->getObject()->getAffiche(),
       'is_image' => true,
@@ -35,7 +38,8 @@ class EventForm extends BaseEventForm
     
     $this->validatorSchema['affiche_delete'] = new sfValidatorBoolean();
 
-    $this->widgetSchema->setLabel('asso_id', 'Auteur');
+    $this->widgetSchema->setLabels(array(
+        'asso_id' => 'Auteur',));
     $this->widgetSchema->setLabel('name', 'Nom');
     $this->widgetSchema->setLabel('type_id', 'Type');
     $this->widgetSchema->setLabel('start_date', 'Début');

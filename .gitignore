@@ -7,3 +7,4 @@ config/databases.yml
 mkmf.log
 .rsync*
 backups/*
+/nbproject/private/

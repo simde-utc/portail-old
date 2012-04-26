@@ -15,7 +15,7 @@
           <?php if($form->getObject()->isNew()): ?>
           &nbsp;<a class="btn" href="<?php echo url_for('article/index') ?>">Retour à la liste des articles</a>
           <?php else: ?>
-          &nbsp;<a class="btn" href="<?php echo url_for('assos_show',$form->getObject()) ?>">Retour à l'association</a>
+          &nbsp;<a class="btn" href="<?php echo url_for('assos_show',$form->getObject()->getAsso()) ?>">Retour à l'association</a>
           <?php endif ?>
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('Delete', 'article/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>

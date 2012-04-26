@@ -15,10 +15,10 @@ class EventForm extends BaseEventForm
     $this->getWidget('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
     $this->getValidator('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
     
-    $this->widgetSchema['start_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png', 'date_widget'=>$this->widgetSchema['start_date']),
+    /*$this->widgetSchema['start_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png', 'date_widget'=>$this->widgetSchema['start_date']),
       array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));
     $this->widgetSchema['end_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png', 'date_widget'=>$this->widgetSchema['end_date']),
-      array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));
+      array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));*/
 	
 	$this->widgetSchema['affiche'] = new sfWidgetFormInputFileEditable(array(
       'file_src' => '/uploads/events/'.$this->getObject()->getAffiche(),

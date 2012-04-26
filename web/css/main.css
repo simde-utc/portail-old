@@ -524,10 +524,14 @@ p { text-align : justify; }
 .editform th {
 	vertical-align: top;
 }
-.editform input, .editform textarea, .editform select {
+.editform input, .editform textarea {
 	width: 380px;
 }
 
 .editform input.btn {
+	width: auto;
+}
+
+.well select.nosize {
 	width: auto;
 }

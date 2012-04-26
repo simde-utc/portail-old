@@ -1,14 +1,16 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 
-<form class="well" action="<?php echo url_for('event/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
+<form class="editform well" action="<?php echo url_for('event/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
   <table>
     <tfoot>
       <tr>
-        <td colspan="2">
+        <th></th>
+        <td>
+          <input class="btn btn-primary" type="submit" value="Publier" />
           <?php echo $form->renderHiddenFields(false) ?>
                       <?php if($form->getObject()->isNew()): ?>
           &nbsp;<a class="btn" href="<?php echo url_for('event/index') ?>">Retour à la liste des évènements</a>
@@ -18,7 +20,6 @@
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('Delete', 'event/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
           <?php endif; ?>
-          <input class="btn btn-primary" type="submit" value="Save" />
         </td>
       </tr>
     </tfoot>

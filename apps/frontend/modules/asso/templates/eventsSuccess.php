@@ -1,10 +1,12 @@
 <?php use_helper('Date') ?>
 <div class="part" >
-  <h1>Nos événements</h1>
-  <div id="events">
+  <h1>
+    Nos événements
     <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x08)): ?>
-      <a href="<?php echo url_for('event_new', $asso) ?>">Ajouter un événement</a><br /><br />
+      <span class="titleaction"><i class="icon-plus icon-white"></i> <a href="<?php echo url_for('event_new', $asso) ?>">Ajouter un événement</a></span>
     <?php endif ?>
+  </h1>
+  <div id="events">
     <?php if($events->count() > 0): ?>
       <div id="event_list">
         <?php foreach($events as $event) : ?>

@@ -17,14 +17,9 @@
     <?php if(!$sf_user->getGuardUser()->isMember($asso->getLogin())): ?>
       <a href="#">Je souhaite rejoindre cette association</a><br />
     <?php else: ?>
-        <?php if($sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x04)): ?>
-        <a href="<?php echo url_for('article_new', $asso) ?>">Ajouter un article</a><br />
-      <?php endif ?>
-        <?php if($sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x08)): ?>
-        <a href="<?php echo url_for('event_new', $asso) ?>">Ajouter un événement</a><br />
-      <?php endif ?>
-    <?php endif ?>
+      Vous êtes déjà membre de cette association. Se désinscrire !
+    <?php endif; ?>
   <?php else: ?>
-    Vous devez être connecté pour rejoindre cette association.
+    Connectez-vous pour rejoindre cette association
   <?php endif ?>
 </div>

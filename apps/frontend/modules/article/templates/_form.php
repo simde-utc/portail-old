@@ -12,11 +12,8 @@
         <td>
           <?php echo $form->renderHiddenFields(false) ?>
           <input class="btn btn-primary" type="submit" value="Publier" />
-          <?php if($form->getObject()->isNew()): ?>
-          &nbsp;<a class="btn" href="<?php echo url_for('article/index') ?>">Retour à la liste des articles</a>
-          <?php else: ?>
-          &nbsp;<a class="btn" href="<?php echo url_for('assos_show',$form->getObject()->getAsso()) ?>">Retour à l'association</a>
-          <?php endif ?>
+          
+          &nbsp;<a class="btn" href="<?php echo url_for('assos_show',array('login' => ($form->getObject()->isNew()) ? $sf_request->getParameter('login',null) : $form->getObject()->getAsso()->getLogin())) ?>">Retour à l'association</a>
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('Delete', 'article/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
           <?php endif; ?>

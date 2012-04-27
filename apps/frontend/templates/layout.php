@@ -68,7 +68,7 @@
     <?php include_component('asso', 'bigMenu') ?>
     <?php if($sf_request->getParameter('module') == 'home'): ?>
       <?php include_component('event', 'carousel') ?>
-    <?php else: ?>
+    <?php elseif($sf_request->getParameter('login')): ?>
       <?php include_component('asso', 'menu') ?>
     <?php endif ?>;
     <div class="wrap">

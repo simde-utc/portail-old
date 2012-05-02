@@ -270,14 +270,12 @@ p { text-align : justify; }
 }
 
 #column-left #my_assos .my_asso {
-  height: 95px;
   padding: 5px;
   background: #FFF;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  margin-bottom: 10px;
-}
+  }
 
 #column-left #my_assos .my_asso img {
   float: left;
@@ -288,25 +286,16 @@ p { text-align : justify; }
   font-weight: bold;
   font-size: 12px;
   text-transform: uppercase;
-  margin: 0 0 0 70px;
+  margin: 0 0 0 38px;
   color: #2a2a2a;
+  line-height: 1em;
+  margin-top: 8px;
+  
 }
 #column-left #my_assos .my_asso .barre {
-  margin: 5px auto;
+  margin: 2px auto;
   border-top: 1px solid #000;
   clear: both;
-}
-#column-left #my_assos .my_asso .more {
-  width: 155px;
-  height: 16px;
-  text-align: right;
-  background: #bebcbc;
-  text-transform: uppercase;
-  font-size: 10px;
-  padding-top: 4px;
-  padding-right: 10px;
-  display: block;
-  color: #2a2a2a;
 }
 
 #column-right #contact {

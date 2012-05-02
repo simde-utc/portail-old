@@ -89,7 +89,7 @@
           </p>
           <p>
             bde@assos.utc.fr<br />
-            <?php echo url_for('asso/show?login=bde', true) ?>
+            <?php echo url_for('home/index', true) ?>
           </p>
           <a href="" class="nousecrire">Nous écrire</a>
         </div>

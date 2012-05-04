@@ -310,7 +310,20 @@ p { text-align : justify; }
   text-align: center;
 }
 
-#column-right #contact p { text-align: center; padding: 10px 0px; border-bottom: 1px solid #FFF; margin: 0 auto; }
+#column-right #contact a {
+  color: #fff;
+}
+
+#column-right #contact p { 
+  text-align: center;
+  padding: 10px 0px;
+  border-bottom: 1px solid #FFF;
+  margin: 0 auto;
+}
+
+#column-right #contact p:last-child {
+  border: 0;
+}
 
 #column-right #contact h1 {
   font-family: Impact;

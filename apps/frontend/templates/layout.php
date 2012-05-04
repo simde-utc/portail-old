@@ -82,16 +82,15 @@
       <div id="column-right">
         <div id="contact">
           <p>Contacter le BDE-UTC</p>
-          <p>rue Roger Couttolenc<br />
+          <p>Rue Roger Couttolenc<br />
             60200 Compiègne</p>
           <p>
-            Tél : +33 3 44 23 43 71
+            Tél. : +33 3 44 23 43 71
           </p>
           <p>
-            bde@assos.utc.fr<br />
-            <?php echo url_for('home/index', true) ?>
+            <a href="mailto:bde@assos.utc.fr">bde@assos.utc.fr</a><br />
+            <a href="<?php echo url_for('home/index') ?>"><?php echo url_for('home/index', true) ?></a>
           </p>
-          <a href="" class="nousecrire">Nous écrire</a>
         </div>
       </div>      
       <div id="content">

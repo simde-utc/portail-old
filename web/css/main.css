@@ -567,3 +567,7 @@ p { text-align : justify; }
 .well select.nosize {
 	width: auto;
 }
+
+a.btn-danger {
+  color: white;
+}

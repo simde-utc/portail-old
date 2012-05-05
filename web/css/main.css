@@ -548,7 +548,7 @@ p { text-align : justify; }
 /*	content : "Description : ";*/
 /*	}*/
 
-.editform label {
+.editform label:first-child {
 	text-align: right;
 	margin-right: 6px;
 	padding: 4px;

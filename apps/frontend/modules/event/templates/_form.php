@@ -11,7 +11,7 @@
         <th></th>
         <td>
           <?php echo $form->renderHiddenFields(false) ?>
-          <input class="btn btn-primary" type="submit" value="Publier" />
+          <input class="btn btn-primary" type="submit" value="Enregistrer" />
           
           &nbsp;<a class="btn" href="<?php echo url_for('assos_show',array('login' => ($form->getObject()->isNew()) ? $sf_request->getParameter('login',null) : $form->getObject()->getAsso()->getLogin())) ?>">Retour à l'association</a>
           <?php if (!$form->getObject()->isNew()): ?>

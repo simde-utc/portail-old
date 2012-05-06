@@ -26,7 +26,6 @@
       <?php endforeach; ?>
     </div>
     <hr class="clear"/>
-    <a class="btn">Voir tous les événements >></a>
   <?php else: ?>
     Cette association n'a pas encore proposé d'événement.
   <?php endif ?>

@@ -1,6 +1,6 @@
 <?php use_helper('Thumb') ?>
 <h1>
-  Notre description
+  <?php echo $asso->getName() ?> en bref
   <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x01)): ?>
     <span class="titleaction"><i class="icon-edit icon-white"></i> <a href="<?php echo url_for('asso_edit', $asso) ?>">Éditer</a></span>
   <?php endif ?>
@@ -18,7 +18,7 @@
     <?php if(!$sf_user->getGuardUser()->isMember($asso->getLogin())): ?>
       <a href="#">Je souhaite rejoindre cette association</a><br />
     <?php else: ?>
-      Vous êtes déjà membre de cette association. Se désinscrire !
+      Vous êtes déjà membre de cette association.
     <?php endif; ?>
   <?php else: ?>
     Connectez-vous pour rejoindre cette association

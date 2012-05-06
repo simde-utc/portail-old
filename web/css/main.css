@@ -310,7 +310,20 @@ p { text-align : justify; }
   text-align: center;
 }
 
-#column-right #contact p { text-align: center; padding: 10px 0px; border-bottom: 1px solid #FFF; margin: 0 auto; }
+#column-right #contact a {
+  color: #fff;
+}
+
+#column-right #contact p { 
+  text-align: center;
+  padding: 10px 0px;
+  border-bottom: 1px solid #FFF;
+  margin: 0 auto;
+}
+
+#column-right #contact p:last-child {
+  border: 0;
+}
 
 #column-right #contact h1 {
   font-family: Impact;
@@ -535,7 +548,7 @@ p { text-align : justify; }
 /*	content : "Description : ";*/
 /*	}*/
 
-.editform label {
+.editform label:first-child {
 	text-align: right;
 	margin-right: 6px;
 	padding: 4px;
@@ -553,4 +566,8 @@ p { text-align : justify; }
 
 .well select.nosize {
 	width: auto;
+}
+
+a.btn-danger {
+  color: white;
 }

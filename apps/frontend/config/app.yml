@@ -13,6 +13,12 @@ all:
     #  absolute ex:                    "/usr/var/certif/xxx.pem"
     #  disabled for dev context ex:    false
     server_cert: "../data/cas.pem"
+  sfImageTransformPlugin:
+    default_adapter: GD
+    default_image: default.jpg
+    mime_type:
+      auto_detect: true
+      library: gd_mime_type
 
 dev:
   cas:

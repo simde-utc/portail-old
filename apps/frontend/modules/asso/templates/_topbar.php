@@ -1,3 +1,4 @@
+<?php use_helper('Thumb') ?>
 <h1>
   Notre description
   <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x01)): ?>
@@ -5,7 +6,7 @@
   <?php endif ?>
 </h1>
 <div id="topbar">
-  <div class="logo_asso"><img src="<?php echo $asso->getLogo() ?>"></div>
+  <div class="logo_asso"><?php echo showThumb($asso->getLogo(), 'assos', array('width'=>150, 'height'=>150), 'scale') ?></div>
 
   <div class="desc">
     <?php echo html_entity_decode($asso->getDescription()) ?>

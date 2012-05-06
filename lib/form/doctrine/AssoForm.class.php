@@ -23,7 +23,6 @@ class AssoForm extends BaseAssoForm
       'edit_mode' => (!$this->isNew() && $this->getObject()->getLogo()),
       'with_delete' => true,
       'delete_label' => "Supprimer ce logo",
-      
     ));
  
     $this->validatorSchema['logo'] = new sfValidatorFile(array(

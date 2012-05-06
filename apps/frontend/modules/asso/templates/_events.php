@@ -1,4 +1,5 @@
 <?php use_helper('Date') ?>
+<?php use_helper('Thumb') ?>
 <h1>
   Nos événements
   <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x08)): ?>
@@ -10,7 +11,7 @@
     <div id="event_list">
       <?php foreach($events as $event) : ?>
         <div class="event" style="background: <?php echo $event->getPole()->getCouleur() ?>">
-          <img src="<?php echo $event->getAffiche() ?>" alt="<?php echo $event->getType() ?>" /><br />
+          <?php echo showThumb($event->getAffiche(), 'events', array('width'=>160, 'height'=>100), 'center') ?><br />
           <h2><?php echo $event->getName() ?></h2>
           Par <?php echo $event->getAsso()->getName() ?><br />
           Le <?php echo format_date($event->getStartDate(), 'd MMMM à HH:mm', 'fr'); ?>

@@ -10,10 +10,6 @@
     float: right;
     padding: 10px;
 }
-.part .event img {
-    width: 160px;
-    height: 100px;
-}
 .part .event h2 {
     text-transform: uppercase;
     color: white;

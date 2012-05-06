@@ -15,6 +15,9 @@
     color: white;
     font-size: 12px;
 }
+.part .event a {
+  color: white;
+}
 .part {
     margin-bottom: 40px;
 }
@@ -62,6 +65,11 @@
 
 .part .article h2 a, .part .article h2 a:hover, .part .article h2 a:visited, .part .article h2 a:active {
   color: white;
+}
+
+.part .article img.affiche {
+  float: right;
+  margin: 15px 0px 15px 15px;
 }
 
 .poleae {

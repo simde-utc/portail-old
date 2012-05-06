@@ -1,6 +1,6 @@
 <?php use_helper('Date') ?>
 <h1>
-  Nos articles
+  Derniers articles
   <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x04)): ?>
     <span class="titleaction"><i class="icon-plus icon-white"></i> <a href="<?php echo url_for('article_new', $asso) ?>">Ajouter un article</a></span>
   <?php endif ?>
@@ -18,13 +18,16 @@
               <?php endif ?>
             </span>
           </h2>
-          <?php echo showThumb($article->getImage(), 'articles', array('width'=>250, 'height'=>150, 'class' => 'affiche'), 'scale') ?><br />
+          <?php if($article->getImage()): ?>
+            <?php echo showThumb($article->getImage(), 'articles', array('width'=>250, 'height'=>150, 'class' => 'affiche'), 'scale') ?><br />
+          <?php endif; ?>
           <p>
             <?php if($article->getSummary()): ?>
               <?php echo $article->getSummary() ?> <a href="<?php echo url_for('article/show?id='.$article->getId()) ?>">En savoir plus...</a>
             <?php else: ?>
               <?php echo $article->getText() ?>
             <?php endif; ?>
+            <br style="clear: both;" />
           </p>
         </div>
       <?php endforeach; ?>

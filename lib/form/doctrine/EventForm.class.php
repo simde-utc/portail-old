@@ -22,11 +22,11 @@ class EventForm extends BaseEventForm
         
     $this->widgetSchema['start_date']->addOption('date', array(
       'format' => '%day%/%month%/%year%',
-      'years' => range(date('Y'), date('Y') + 5)
+      'years' => array_reverse(range(date('Y'), date('Y') + 5))
      ));
     $this->widgetSchema['end_date']->addOption('date', array(
       'format' => '%day%/%month%/%year%',
-      'years' => range(date('Y'), date('Y') + 5)
+      'years' => array_reverse(range(date('Y'), date('Y') + 5))
      ));
 
     

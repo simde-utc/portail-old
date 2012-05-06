@@ -272,10 +272,7 @@ p { text-align : justify; }
 #column-left #my_assos .my_asso {
   padding: 5px;
   background: #FFF;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  }
+}
 
 #column-left #my_assos .my_asso img {
   float: left;

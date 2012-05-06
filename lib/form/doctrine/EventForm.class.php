@@ -12,6 +12,8 @@ class EventForm extends BaseEventForm
 {
   public function configure()
   { 
+    sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
+    
     $this->getWidget('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
     $this->getValidator('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
     
@@ -40,16 +42,17 @@ class EventForm extends BaseEventForm
       'time' => array('class' => 'nosize')
     ));
     
-	$this->widgetSchema['affiche'] = new sfWidgetFormInputFileEditable(array(
-      'file_src' => '/uploads/events/'.$this->getObject()->getAffiche(),
+    $this->widgetSchema['affiche'] = new sfWidgetFormInputFileEditable(array(
+      'file_src' => doThumb($this->getObject()->getAffiche(), 'events', array('width'=>150, 'height'=>150), 'scale'),
       'is_image' => true,
-      'edit_mode' => !$this->isNew(),
+      'edit_mode' => (!$this->isNew() && $this->getObject()->getAffiche()),
       'with_delete' => true,
+      'delete_label' => "Supprimer cette illustration",
     ));
  
     $this->validatorSchema['affiche'] = new sfValidatorFile(array(
     	'required' => false,
-    	'path' => sfConfig::get('sf_upload_dir').'/events',
+    	'path' => sfConfig::get('sf_upload_dir').'/events/source',
         'mime_types' => 'web_images'
     ));
     

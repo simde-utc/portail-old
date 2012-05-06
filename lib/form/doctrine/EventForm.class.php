@@ -19,14 +19,15 @@ class EventForm extends BaseEventForm
       array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));
     $this->widgetSchema['end_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png', 'date_widget'=>$this->widgetSchema['end_date']),
       array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));*/
-        
+        $years =range(date('Y'), date('Y') + 5);
+        $years_list = array_combine($years, $years);
     $this->widgetSchema['start_date']->addOption('date', array(
       'format' => '%day%/%month%/%year%',
-      'years' => array_reverse(range(date('Y'), date('Y') + 5))
+      'years' => $years_list
      ));
     $this->widgetSchema['end_date']->addOption('date', array(
       'format' => '%day%/%month%/%year%',
-      'years' => array_reverse(range(date('Y'), date('Y') + 5))
+      'years' => $years_list
      ));
 
     

@@ -16,7 +16,7 @@
   <br />
   <?php if($sf_user->isAuthenticated()): ?>
     <?php if(!$sf_user->getGuardUser()->isMember($asso->getLogin())): ?>
-      <a href="#">Je souhaite rejoindre cette association</a><br />
+      <a href="<?php echo url_for('asso_join',$asso) ?>">Je souhaite rejoindre cette association</a><br />
     <?php else: ?>
       Vous êtes déjà membre de cette association.
     <?php endif; ?>

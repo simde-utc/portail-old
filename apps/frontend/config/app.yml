@@ -19,6 +19,10 @@ all:
     mime_type:
       auto_detect: true
       library: gd_mime_type
+  portail:
+    current_semestre: 2
+    default_join_role: 3
+      
 
 dev:
   cas:

@@ -66,6 +66,12 @@ asso_edit:
   class: sfDoctrineRoute
   param: { module: asso, action: edit }
   options: { model: Asso, type: object }
+  
+asso_join:
+  url: /asso/:login/join
+  class: sfDoctrineRoute
+  param: { module: asso, action: join }
+  options: { model: Asso, type: object }
 
 asso_update:
   url: /asso/:id/update

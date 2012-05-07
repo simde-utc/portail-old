@@ -103,5 +103,15 @@ class Asso extends BaseAsso
 
     return $q->fetchOne();
   }
+  
+  public function addMember(sfGuardUser $user)
+  {
+    $assoMember = new AssoMember();
+    $assoMember->setAsso($this);
+    $assoMember->setUser($user);
+    $assoMember->setRoleId(sfConfig::get('app_portail_default_join_role'));
+    $assoMember->setSemestreId(sfConfig::get('app_portail_current_semestre'));
+    $assoMember->save();
+  }
 
 }

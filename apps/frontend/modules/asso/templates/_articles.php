@@ -27,8 +27,8 @@
             <?php else: ?>
               <?php echo $article->getText() ?>
             <?php endif; ?>
-            <br style="clear: both;" />
           </p>
+          <br style="clear: both;" />
         </div>
       <?php endforeach; ?>
     </div>

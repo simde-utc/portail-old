@@ -27,6 +27,7 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfFormExtraPlugin');
     $this->enablePlugins('sfCASPlugin');
     $this->enablePlugins('sfImageTransformPlugin');
+    $this->enablePlugins('sfXssSafePlugin');
     sfForm::disableCSRFProtection();
   }
 }

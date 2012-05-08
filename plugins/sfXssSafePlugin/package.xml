@@ -1,0 +1,982 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.9.4" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfXssSafePlugin</name>
+ <channel>pear.symfony-project.com</channel>
+ <summary>Output Rich Text With Cross Site Scripting Protection</summary>
+ <description>An alternative between escaping raw and escaping entities.</description>
+ <lead>
+  <name>Alexandre Mogère</name>
+  <user>heristop</user>
+  <email/>
+  <active>yes</active>
+ </lead>
+ <date>2011-10-04</date>
+ <time>10:09:53</time>
+ <version>
+  <release>1.1.0</release>
+  <api>1.1.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.com/license">MIT</license>
+ <notes>
+-
+ </notes>
+ <contents>
+  <dir name="/">
+   <file md5sum="b73b2f804cff28e7085a5fed7840ddd7" name="lib/helper/XssSafeHelper.php" role="data"/>
+   <file md5sum="63e9baf88219ee520055dcddc9126349" name="lib/vendor/htmlpurifier/tests/PHPT/Reporter/SimpleTest.php" role="data"/>
+   <file md5sum="0804b18ecbb46e7a85f0d348c95e6180" name="lib/vendor/htmlpurifier/tests/PHPT/Section/PRESKIPIF.php" role="data"/>
+   <file md5sum="f4f03fd115c48405edb0d8d1241174bb" name="lib/vendor/htmlpurifier/tests/PHPT/Controller/SimpleTest.php" role="data"/>
+   <file md5sum="d73e4d97e7c4afbd38f5a05ad890d29b" name="lib/vendor/htmlpurifier/tests/FSTools/FileSystemHarness.php" role="data"/>
+   <file md5sum="f39f373247f3ada754e17cf1c1b5af65" name="lib/vendor/htmlpurifier/tests/FSTools/FileTest.php" role="data"/>
+   <file md5sum="1e9429a2030745d25d245d9f06f7f065" name="lib/vendor/htmlpurifier/tests/tmp/README" role="data"/>
+   <file md5sum="8e605e4216accc9ec6eb1064e3ad8a7e" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/VarParser/NativeTest.php" role="data"/>
+   <file md5sum="8770b8eb8b224f6cd9b7161cde4fc46c" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/VarParser/FlexibleTest.php" role="data"/>
+   <file md5sum="facf58f71104d5820277501827401899" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/SimpleTest/Reporter.php" role="data"/>
+   <file md5sum="eeb77dcdb21143f23a384727ff15b293" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/SimpleTest/TextReporter.php" role="data"/>
+   <file md5sum="c51c210ca6f2f2fa66e53d3cf9049197" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModule/SafeObjectTest.php" role="data"/>
+   <file md5sum="f28812115f94d0437e374627de37eb46" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModule/SafeEmbedTest.php" role="data"/>
+   <file md5sum="3f1888953559d886ab358b601c8496a9" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModule/ProprietaryTest.php" role="data"/>
+   <file md5sum="fa7459d4379e69e711f861f3de8a465d" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModule/ObjectTest.php" role="data"/>
+   <file md5sum="4d722a0510b7a4e50fbd213149fba7f6" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModule/ImageTest.php" role="data"/>
+   <file md5sum="7726b0600bac094407c03019bd388c9d" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModule/FormsTest.php" role="data"/>
+   <file md5sum="352825a4889375dd064b91b7bd9ef1e4" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModule/NameTest.php" role="data"/>
+   <file md5sum="3f381b6e3b0f844171ca711eb7a03238" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModule/ScriptingTest.php" role="data"/>
+   <file md5sum="4fcd663593ed96dcc14c5cd4ad7469b1" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModule/NofollowTest.php" role="data"/>
+   <file md5sum="64e051dcc8388f7433dac8cb5069a1d7" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModule/TidyTest.php" role="data"/>
+   <file md5sum="958095654aa23be59d647a1fb8420544" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModule/RubyTest.php" role="data"/>
+   <file md5sum="a1f70a2e04f598d92312e7d9b21f006b" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/valueAliasesAliasIsString.vtest" role="data"/>
+   <file md5sum="bbfe1b061b6aa05640d9662778d71142" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/defaultType.vtest" role="data"/>
+   <file md5sum="91c368acefd715c1a36de3808cb23f7b" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/descriptionNotEmpty.vtest" role="data"/>
+   <file md5sum="3d7207ba7b0e9fd8447e6f9abe60362f" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/valueAliasesNotAliasSelf.vtest" role="data"/>
+   <file md5sum="181333eb65374b96d2bfaee68fceeabc" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/aliasesAliasCollision.vtest" role="data"/>
+   <file md5sum="e4aec3c56f31f2f021e2670c7fc22b9a" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/aliasesDirectiveCollision.vtest" role="data"/>
+   <file md5sum="886579f4ae48890559dd8da8711572a6" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/typeExists.vtest" role="data"/>
+   <file md5sum="4055c21d3208c7ee603244f0447d9325" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/allowedNotEmpty.vtest" role="data"/>
+   <file md5sum="d5d7061f1fd4a47fd9628a81215e0fe3" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/typeWithValueAliasesIsStringType.vtest" role="data"/>
+   <file md5sum="88d4a781e7db1ad59a186c37dba5923b" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/unique.vtest" role="data"/>
+   <file md5sum="cbbf0d327a398d24405d5568345c2a4c" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/valueAliasesRealAllowed.vtest" role="data"/>
+   <file md5sum="24145e91ed5e2729d48a3eb57ef4d296" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/typeWithAllowedIsStringType.vtest" role="data"/>
+   <file md5sum="9bf526184e6624de82d9650be11c92df" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/typeDefined.vtest" role="data"/>
+   <file md5sum="9df8b796111c5376429249c99a383e52" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/allowedIsString.vtest" role="data"/>
+   <file md5sum="3d4920bbf70dc559bd190fb777f8e999" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/defaultNullWithAllowed.vtest" role="data"/>
+   <file md5sum="6764f80e125ed8f26803b94590477c80" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/ignoreNamespace.vtest" role="data"/>
+   <file md5sum="3d532a81a91b6f94f125da0cfd413331" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/defaultIsAllowed.vtest" role="data"/>
+   <file md5sum="87a7415c242d51ca9f67cbef7a49222a" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/valueAliasesAliasNotAllowed.vtest" role="data"/>
+   <file md5sum="43ec749b626eec1f2d978344753654c5" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/Validator/directive/valueAliasesRealIsString.vtest" role="data"/>
+   <file md5sum="a37724d4120034872a6af85fd3c8fe60" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/ValidatorTestCase.php" role="data"/>
+   <file md5sum="2253e07fcf51b94bdba33e57412c6187" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/ValidatorTest.php" role="data"/>
+   <file md5sum="c3c013b5944919b6d5eb6a8057b94272" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/InterchangeTest.php" role="data"/>
+   <file md5sum="6a0940882495f1a521cf13ace67f44eb" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchema/ValidatorAtomTest.php" role="data"/>
+   <file md5sum="c885103f2df160961de75b45352d4667" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URIFilter/MakeAbsoluteTest.php" role="data"/>
+   <file md5sum="c303f504d16c51b03ea4d3cec10ef7b6" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URIFilter/MungeTest.php" role="data"/>
+   <file md5sum="184c11e1ac868570693a7c0f5860cb06" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URIFilter/HostBlacklistTest.php" role="data"/>
+   <file md5sum="661e61b290b45d8ab5496236dc5ec06a" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URIFilter/DisableExternalTest.php" role="data"/>
+   <file md5sum="723f0262612509415382249f8bc8a0a1" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URIFilter/DisableResourcesTest.php" role="data"/>
+   <file md5sum="e8e72afa5414bde9bfd2a823c9b566a9" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URIFilter/DisableExternalResourcesTest.php" role="data"/>
+   <file md5sum="6ad3bc71714ed2669c0b8175cace5e88" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/CompositeTest.php" role="data"/>
+   <file md5sum="b6303a06366702af20fcf7edb65f67fc" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/URITest.php" role="data"/>
+   <file md5sum="1d2a141d7f3cb11ed2fda8e178d2af10" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/ColorTest.php" role="data"/>
+   <file md5sum="d068ff7e10fc969a4e9b1392f1303fdb" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/FontFamilyTest.php" role="data"/>
+   <file md5sum="8cf66be955e618484022990f6677cb5c" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/FilterTest.php" role="data"/>
+   <file md5sum="afe37f48039db6a2ecbb1d7e1bcc36e6" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/ListStyleTest.php" role="data"/>
+   <file md5sum="e725239240e6fdaae892dcfef53f8275" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/BackgroundPositionTest.php" role="data"/>
+   <file md5sum="e4db34d95bc7d7324ed7ea0d93871d25" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/NumberTest.php" role="data"/>
+   <file md5sum="8ea96370a948b2e78f7f71db017472d3" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/LengthTest.php" role="data"/>
+   <file md5sum="b0a0b40819d1a21d442f3080ec0b9fda" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/AlphaValueTest.php" role="data"/>
+   <file md5sum="b5e5bec429416c06fed8a2c6adc489b1" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/FontTest.php" role="data"/>
+   <file md5sum="39d2a3347c17099aa310b1140b025a1f" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/BorderTest.php" role="data"/>
+   <file md5sum="68ce59a0f6293889ac1773e23ced2c1e" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/ImportantDecoratorTest.php" role="data"/>
+   <file md5sum="e2d1f3d5ae5e3162f888b2ee606782de" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/TextDecorationTest.php" role="data"/>
+   <file md5sum="3fc30f81eac0c48ac4ae63486992b7d1" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/PercentageTest.php" role="data"/>
+   <file md5sum="d9954863c1310805b56b15e1cae20c85" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/MultipleTest.php" role="data"/>
+   <file md5sum="d61b05ddb7c6abb780c7f579b0ef8435" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSS/BackgroundTest.php" role="data"/>
+   <file md5sum="786b784273640b2f45062b09fbc078da" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/URI/Email/SimpleCheckTest.php" role="data"/>
+   <file md5sum="a1160bc82fcfad42a2756188722d0a77" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/URI/EmailHarness.php" role="data"/>
+   <file md5sum="bb008540503f9653a4c0ea9e2ff36036" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/URI/IPv4Test.php" role="data"/>
+   <file md5sum="f7c59c29ce84dafcc86a9886e20b39dd" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/URI/HostTest.php" role="data"/>
+   <file md5sum="96a6468cd98b32608493e454214b1f30" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/URI/IPv6Test.php" role="data"/>
+   <file md5sum="e5310ece5f4bbf931fd5c1f3383f6123" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/HTML/LinkTypesTest.php" role="data"/>
+   <file md5sum="09f7ad99fcce07ac85205ba92a615b71" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/HTML/ColorTest.php" role="data"/>
+   <file md5sum="bf0976a16dcb6bb948d051838e1f1af1" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/HTML/NmtokensTest.php" role="data"/>
+   <file md5sum="a23b2800414ca0c6dc115de9da27332e" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/HTML/IDTest.php" role="data"/>
+   <file md5sum="4c7446bdc1b3b6937e4cd72acae22d89" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/HTML/ClassTest.php" role="data"/>
+   <file md5sum="0c8797863132a4880b3c10c2f7473d2f" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/HTML/LengthTest.php" role="data"/>
+   <file md5sum="84fa908817f1c4fa7979400e8d429b15" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/HTML/MultiLengthTest.php" role="data"/>
+   <file md5sum="8d4256470cb669cc865a8330d8d754b1" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/HTML/BoolTest.php" role="data"/>
+   <file md5sum="5943d8981709bcd68a0395ca304ea165" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/HTML/PixelsTest.php" role="data"/>
+   <file md5sum="7a138f6562ebd6eb44fdb910bd39dbf7" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/HTML/FrameTargetTest.php" role="data"/>
+   <file md5sum="ab4443e06fe30fb31d8b17970bffe851" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/EnumTest.php" role="data"/>
+   <file md5sum="dd016d21ef7da60ff6060772e3848f5d" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/URITest.php" role="data"/>
+   <file md5sum="3044d546be82aa1b099158bf38eb3c50" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/LangTest.php" role="data"/>
+   <file md5sum="0d2cccccd1d299f51d626ec528188e14" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/SwitchTest.php" role="data"/>
+   <file md5sum="e37cb450d1350985914e7a1a120871d2" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/CSSTest.php" role="data"/>
+   <file md5sum="60949757892546592e387e98ce62a93a" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/IntegerTest.php" role="data"/>
+   <file md5sum="ad27afb8818a963bdbbccca222d204e2" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDef/TextTest.php" role="data"/>
+   <file md5sum="55f1a666a48a2b989ff03fbe06badaf0" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ChildDef/OptionalTest.php" role="data"/>
+   <file md5sum="132e5bb406540174bb060a996d333caa" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ChildDef/RequiredTest.php" role="data"/>
+   <file md5sum="301b85add2c8106f29cc5e0a46df8c1d" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ChildDef/ChameleonTest.php" role="data"/>
+   <file md5sum="7d0b91dbe4ca71f50ad51293bc73cd87" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ChildDef/StrictBlockquoteTest.php" role="data"/>
+   <file md5sum="2db5e8b3db3b27e557a56a8a11ddeeeb" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ChildDef/TableTest.php" role="data"/>
+   <file md5sum="125a02e6c2d365734058a95308524afe" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ChildDef/CustomTest.php" role="data"/>
+   <file md5sum="183fdb2e05e91494c31c85fa6f66a41c" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/StringHashParser/Multi.txt" role="data"/>
+   <file md5sum="10062e3f1f89a26c6a6c54de3fec48e1" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/StringHashParser/Default.txt" role="data"/>
+   <file md5sum="f2b2a1245a0d460d729058fd0d0bff8e" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/StringHashParser/OverrideSingle.txt" role="data"/>
+   <file md5sum="64e35401f7708b039d3c5ba000ed8619" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/StringHashParser/Simple.txt" role="data"/>
+   <file md5sum="621cfcacefdfc608f4c99bc269741cd9" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/StringHashParser/AppendMultiline.txt" role="data"/>
+   <file md5sum="ecaf672059d4685675f77ef2b74d422d" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Injector/RemoveEmptyTest.php" role="data"/>
+   <file md5sum="7e2286d4c69567ec216b5938f2b3a788" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Injector/SafeObjectTest.php" role="data"/>
+   <file md5sum="2528cb76a24dacf33e14a9a55bb484db" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Injector/PurifierLinkifyTest.php" role="data"/>
+   <file md5sum="efaecc2fdf2ab164a9bf17a3674dcbd7" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Injector/RemoveSpansWithoutAttributesTest.php" role="data"/>
+   <file md5sum="9a6c9c2dd3024757fb76e9a5a6bf125e" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Injector/AutoParagraphTest.php" role="data"/>
+   <file md5sum="75812c8ea443557001e6bc362cf38bfe" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Injector/DisplayLinkURITest.php" role="data"/>
+   <file md5sum="f0e7bfe32409667ebeff9e6e85cafc43" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Injector/LinkifyTest.php" role="data"/>
+   <file md5sum="8016f7c7a5e1c65030852260d7d5e939" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/auto-includes.phpt" role="data"/>
+   <file md5sum="07e197cb37a23dcccf14fd30edfd677c" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/path-includes-autoload.phpt" role="data"/>
+   <file md5sum="b91db59786e749776ca0001e962938b8" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/auto-without-spl-with-autoload.phpt" role="data"/>
+   <file md5sum="5b88dc7af3b00898ceefc7b759142806" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/_autoload.inc" role="data"/>
+   <file md5sum="416ae031ad6644641e68508879803c2e" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/_no-autoload.inc" role="data"/>
+   <file md5sum="fd0573b9cfba2e11a9c4f144e05b3fba" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/path-includes.phpt" role="data"/>
+   <file md5sum="5ba413b02bc8dd9aacca0bae61e9a545" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/auto-with-autoload.phpt" role="data"/>
+   <file md5sum="ee3f052f0c3487ae4b6faea01b8043c5" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/auto-without-spl-autoload.phpt" role="data"/>
+   <file md5sum="5986ea20240a3f19ea653f08202cd997" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/error-auto-with-spl-nonstatic-autoload.phpt" role="data"/>
+   <file md5sum="2b97783c2fc7c154d7c0ce2cd7304b27" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/standalone.phpt" role="data"/>
+   <file md5sum="3a1cef52dd6bc067a639262c0cf168d3" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/auto.phpt" role="data"/>
+   <file md5sum="0087d00b2fffa485811341d3e1fd9a7b" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/auto-with-spl-autoload.phpt" role="data"/>
+   <file md5sum="8f52fdaf158f64e1029604e8dae62032" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/safe-includes.phpt" role="data"/>
+   <file md5sum="1287770ace15798c264f1fb426413825" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/standalone-autoload.phpt" role="data"/>
+   <file md5sum="6cbaf0788d2dcde9a40f2f16fadd9cd4" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/loading/standalone-with-prefix.phpt" role="data"/>
+   <file md5sum="68054ddcf0eaa555ee3404319ab3132c" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/kses/basic.phpt" role="data"/>
+   <file md5sum="b932db20236d58a15646b30f771bb22f" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/func.phpt" role="data"/>
+   <file md5sum="9fc9a211fe875fa5649ada0147861b22" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/utf8.phpt" role="data"/>
+   <file md5sum="559d4074f0faf13574e318178748f7f8" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/domxml.phpt" role="data"/>
+   <file md5sum="3332bb5ded2fe0a84429581d3d6e1bca" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/ze1_compatibility_mode.phpt" role="data"/>
+   <file md5sum="2cca3b195fcad597042a65d04599cfcd" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PHPT/stub.phpt" role="data"/>
+   <file md5sum="9872012d220ce3a2ffea637814d54c68" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/MakeWellFormed/EndRewindInjector.php" role="data"/>
+   <file md5sum="68e5666086ad3b76c8ff61b931b78f43" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/MakeWellFormed/EndRewindInjectorTest.php" role="data"/>
+   <file md5sum="b084d59d7ca7683cc90482921fc4f0d0" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/MakeWellFormed/SkipInjector.php" role="data"/>
+   <file md5sum="22ec6232bfd8982e39e8a287f4610b76" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/MakeWellFormed/EndInsertInjectorTest.php" role="data"/>
+   <file md5sum="46ef2ce714a4fd7324aec86f31c62887" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/MakeWellFormed/EndInsertInjector.php" role="data"/>
+   <file md5sum="e6547aea7e0e872b9a4838dc77259491" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/MakeWellFormed/SkipInjectorTest.php" role="data"/>
+   <file md5sum="b38a31d69cc33d6467bf9471aa90241a" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/CompositeTest.php" role="data"/>
+   <file md5sum="f5f108f415787e7eb864a42d2339cc94" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/FixNestingTest.php" role="data"/>
+   <file md5sum="91971f1c430d2b94e984708c312b6fbc" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/RemoveForeignElementsTest.php" role="data"/>
+   <file md5sum="b6f96c3fe1e12b97e973c46af5d4b685" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/CoreTest.php" role="data"/>
+   <file md5sum="6185f8e29abe8b1894c2b91549ede570" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/RemoveForeignElements_ErrorsTest.php" role="data"/>
+   <file md5sum="380b23e8eda1f13f8dbc799cc75a7949" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/ValidateAttributes_IDTest.php" role="data"/>
+   <file md5sum="9867e085fabce1edc769a45de523f844" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/FixNesting_ErrorsTest.php" role="data"/>
+   <file md5sum="c2acb3e58b7b339d787e6302b4ebe8fd" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/MakeWellFormed_ErrorsTest.php" role="data"/>
+   <file md5sum="7cf8e9d2032f75470f1e1155911bcb31" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/MakeWellFormedTest.php" role="data"/>
+   <file md5sum="6b82f98c94f94b5d3c492354638297f4" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/RemoveForeignElements_TidyTest.php" role="data"/>
+   <file md5sum="c82d492a2bdc257c9184adec00aff7b1" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/ErrorsHarness.php" role="data"/>
+   <file md5sum="16dc09f5d39b3a770e765a741ad24035" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/ValidateAttributesTest.php" role="data"/>
+   <file md5sum="ad2fc68a189ff8b77e3e358228d7d54b" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/ValidateAttributes_TidyTest.php" role="data"/>
+   <file md5sum="88815d773f0630aeb4e17313b965967a" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Strategy/MakeWellFormed_InjectorTest.php" role="data"/>
+   <file md5sum="1e9429a2030745d25d245d9f06f7f065" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DefinitionCache/SerializerTest/README" role="data"/>
+   <file md5sum="327e8c7c8eaa4efc64754c79b423dba3" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DefinitionCache/Decorator/MemoryTest.php" role="data"/>
+   <file md5sum="f7fccab336deb147412c49d92a63eb49" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DefinitionCache/Decorator/CleanupTest.php" role="data"/>
+   <file md5sum="b2c95f3464cb228a90f4415e877b06fa" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DefinitionCache/SerializerTest.php" role="data"/>
+   <file md5sum="5ad062c999ba32d437613d031b144fda" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DefinitionCache/DecoratorHarness.php" role="data"/>
+   <file md5sum="b0f2181c4d409a5f0a88ef1378d18bd9" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DefinitionCache/DecoratorTest.php" role="data"/>
+   <file md5sum="0e72b973bf7694b0d106ce9559c10f82" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Lexer/DirectLexTest.php" role="data"/>
+   <file md5sum="6de98bfff600409768ee6acecf26bd96" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Lexer/DirectLex_ErrorsTest.php" role="data"/>
+   <file md5sum="16b7eeedf0de495572566f800584bddd" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Filter/ExtractStyleBlocksTest.php" role="data"/>
+   <file md5sum="b5c3e8ac43324c61e5ca02366be43370" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/name.htmlt" role="data"/>
+   <file md5sum="e01a7189ba6155331d8e6fd3e425c88f" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/script-ideal.htmlt" role="data"/>
+   <file md5sum="41477b6267254c56029f2133a84c6caf" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/munge.htmlt" role="data"/>
+   <file md5sum="e6822bdf990252548aaf54117c8cfbc7" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/id-default.htmlt" role="data"/>
+   <file md5sum="c8a0de32510d4db12c4582fb60209a8c" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/strict-blockquote.htmlt" role="data"/>
+   <file md5sum="c3922601f29f587ebb7e939cc98a3610" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/css-allowed-preserve.htmlt" role="data"/>
+   <file md5sum="f1a5a8f1a4bd82be4c6288f1f4f5b789" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/strict-blockquote-with-inline.htmlt" role="data"/>
+   <file md5sum="d9490fdff9a86f4331dda9d523b2d14f" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/double-youtube.htmlt" role="data"/>
+   <file md5sum="b9792330cbd501c8e1740fe6a275f79b" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/script-comment.htmlt" role="data"/>
+   <file md5sum="15172d748c0ce509086d9d531b58ad68" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/strict-underline.htmlt" role="data"/>
+   <file md5sum="504ef615bd29cbd6ed764dc5910dc32e" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/id-enabled.htmlt" role="data"/>
+   <file md5sum="de48b2755badf507a413e70ecc9ff83d" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/whitespace-preserve.htmlt" role="data"/>
+   <file md5sum="dd7775c03f279f20410c4c1f7acb8cac" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/blacklist-preserve.htmlt" role="data"/>
+   <file md5sum="2086f6d0b309411d4ded9424137b2e65" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/blacklist-remove.htmlt" role="data"/>
+   <file md5sum="8b14b94221cd368e2311c4a07dbe3703" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/inline-wraps-block.htmlt" role="data"/>
+   <file md5sum="8f75fa04bd8056c9ec58ad16edf4da60" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/shift-jis-remove-yen.htmlt" role="data"/>
+   <file md5sum="1ed03ea097d44f20eabe68a0ed0af91e" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/munge-extra.htmlt" role="data"/>
+   <file md5sum="b35768905774fdf2572dd6313f2b99aa" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/trusted-comments-required.htmlt" role="data"/>
+   <file md5sum="206f0c530d36ca8c5b1fb2f41256a5a8" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/disable-uri.htmlt" role="data"/>
+   <file md5sum="b9683b8db76cc53eb833e44dff39d966" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/script-dbl-comment.htmlt" role="data"/>
+   <file md5sum="e69d40f708aa2dd18faf2eaabd4ea898" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/id-img.htmlt" role="data"/>
+   <file md5sum="d6865a08341386eb0b159905ed70f240" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/trusted-comments-table.htmlt" role="data"/>
+   <file md5sum="4f726de459684f026f6c04157dcfe369" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/script-bare.htmlt" role="data"/>
+   <file md5sum="6d70a86f7c03246f3190668c6fe8f355" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/allowed-preserve.htmlt" role="data"/>
+   <file md5sum="60a7318b13388515392143945344ebf7" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/tidy-background.htmlt" role="data"/>
+   <file md5sum="b536c702699a9c56880ef450b9569d87" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/id-name-mix.htmlt" role="data"/>
+   <file md5sum="e74f0d40724763b78dec96ed40332cb8" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/basic.htmlt" role="data"/>
+   <file md5sum="901d9487157bbdf22fd4ae00cb7a5353" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/trusted-comments.htmlt" role="data"/>
+   <file md5sum="f73fc1f2790a6083bcfd6bdb3e50e8d7" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/safe-object-embed-munge.htmlt" role="data"/>
+   <file md5sum="d8ac885c1763b86b23707f28e4ea71fa" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/empty.htmlt" role="data"/>
+   <file md5sum="6de6971494a97b4aa44deecf561b7fbb" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/allowed-remove.htmlt" role="data"/>
+   <file md5sum="c661e1bf47fc314c01b455657fb46263" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/file-uri.htmlt" role="data"/>
+   <file md5sum="8bd790d63dfec9d5fb64cec994c1af7c" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/safe-object-embed.htmlt" role="data"/>
+   <file md5sum="3abdffcd8ad5cffeca5c40e6c796cf3d" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/secure-munge.htmlt" role="data"/>
+   <file md5sum="c229d61769aea5ceb71308a3eac195ad" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/inline-list-loop.htmlt" role="data"/>
+   <file md5sum="0202566ab9e1da855e61285b0806cced" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/shift-jis-preserve-yen.htmlt" role="data"/>
+   <file md5sum="5955cec4811a7df980429a5fe63a0b16" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/css-allowed-remove.htmlt" role="data"/>
+   <file md5sum="6ade75d6ebe12117f9fb3ef6a46023d0" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT/script-cdata.htmlt" role="data"/>
+   <file md5sum="9f897a1199dc9ad94f4d9367cc44df56" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/ImgSpaceTest.php" role="data"/>
+   <file md5sum="a2e52049949d8bb4f660818032946bb9" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/LangTest.php" role="data"/>
+   <file md5sum="0f5f00abc47f07a2dba0a0d98eea85d9" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/EnumToCSSTest.php" role="data"/>
+   <file md5sum="2afe80071bcf4c2181446854aed39a5c" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/BdoDirTest.php" role="data"/>
+   <file md5sum="7689bed6054c456abae9c5cee4133471" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/LengthTest.php" role="data"/>
+   <file md5sum="415a2f339b425af8e7e7810dd14507d5" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/InputTest.php" role="data"/>
+   <file md5sum="350aea837a1c4b2b32eb0c9c97be3c8c" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/BorderTest.php" role="data"/>
+   <file md5sum="54899332e0140f5e389f979bc2ad7e7f" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/BoolToCSSTest.php" role="data"/>
+   <file md5sum="579d3a8141d63e7746dec2f95535e6cb" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/NameSyncTest.php" role="data"/>
+   <file md5sum="37dafdd930f749e249df1ae1eab04e7d" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/ImgRequiredTest.php" role="data"/>
+   <file md5sum="1e524a61433478d2aa0d750b0fb02cc0" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/NameTest.php" role="data"/>
+   <file md5sum="5d55ffa2e63d33a1ea7f310dc0d8b16b" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/BackgroundTest.php" role="data"/>
+   <file md5sum="fdc8c7f17e4e0c0dc235408cbb8cf8eb" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransform/BgColorTest.php" role="data"/>
+   <file md5sum="6be07c09ce8d2b7c41dd58bf43ac0854" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DefinitionTest.php" role="data"/>
+   <file md5sum="3e26b59f624853a506174532a8883e05" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTypesTest.php" role="data"/>
+   <file md5sum="36d37955271a5185ee555d457f65338f" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URITest.php" role="data"/>
+   <file md5sum="26c0264e4dc5e41a0aaf0c9b5de4d8f8" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigTest.php" role="data"/>
+   <file md5sum="f79e2956e8758fa2e7f180a6176fefd0" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/LanguageFactoryTest.php" role="data"/>
+   <file md5sum="1cd7b59a6bfa824c73709e76b3ad08da" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ComplexHarness.php" role="data"/>
+   <file md5sum="92095ad14c2e048a3405d01fa1e012da" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URISchemeTest.php" role="data"/>
+   <file md5sum="72d437225568245285b0f1ebadd693f9" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PropertyListTest.php" role="data"/>
+   <file md5sum="de9fecf70586915643db826f706c4d0e" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DefinitionCacheFactoryTest.php" role="data"/>
+   <file md5sum="a1e89f17a8e76dd917ab2253ad8533f2" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ErrorCollectorEMock.php" role="data"/>
+   <file md5sum="74a39cac8524b6737baf7553ea8f327d" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigTest-finalize.ini" role="data"/>
+   <file md5sum="dbad09b91d1bc8fafe6a46cbf2e7d080" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDefHarness.php" role="data"/>
+   <file md5sum="1545229403a73e6df871b0df8dbebdaa" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLT.php" role="data"/>
+   <file md5sum="4b363d1720c7f25a4ef7c85266ca487a" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/InjectorHarness.php" role="data"/>
+   <file md5sum="98c23e6be146094ebac5cd0083a06129" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransformHarness.php" role="data"/>
+   <file md5sum="cc2ccca1d2e707ab6ccf62b2764ec40a" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URISchemeRegistryTest.php" role="data"/>
+   <file md5sum="68bf4c6176b39777e55406453c102677" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigSchemaTest.php" role="data"/>
+   <file md5sum="4a2ad0118ba4196363792723a84f8972" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/LexerTest.php" role="data"/>
+   <file md5sum="d7c34c9c1c52df1b0c01cd63c6848744" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/LengthTest.php" role="data"/>
+   <file md5sum="f9598aa38296cb07e2321b67fb52b270" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ChildDefHarness.php" role="data"/>
+   <file md5sum="02e238b28f3deaacd7ae90a035f52879" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModuleTest.php" role="data"/>
+   <file md5sum="02cfe5b5741ffd8bad6dfbf32a7583d8" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/IDAccumulatorTest.php" role="data"/>
+   <file md5sum="86ca8dbcc6c4705e8299098c2814c62e" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/TagTransformTest.php" role="data"/>
+   <file md5sum="825e2acda3728b5be2982528b3c93175" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ContextTest.php" role="data"/>
+   <file md5sum="013abfc7f4f134bbedc7da1db3550c2a" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/TokenFactoryTest.php" role="data"/>
+   <file md5sum="515b8da984ec1fc36ecc800616847d04" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLDefinitionTest.php" role="data"/>
+   <file md5sum="c7b94f5ba14eac1647af8874f91eaecb" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DefinitionCacheTest.php" role="data"/>
+   <file md5sum="bbf322529893222b81cc2222c16f607b" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/UnitConverterTest.php" role="data"/>
+   <file md5sum="e1129897f9d2c2a1979f3602e713d0c5" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/GeneratorTest.php" role="data"/>
+   <file md5sum="26cc8290898359bddcf5fd6a873b29aa" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/StringHashTest.php" role="data"/>
+   <file md5sum="132ecd2421aed5e85c6aeb88197d8339" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DoctypeRegistryTest.php" role="data"/>
+   <file md5sum="0b488f905e763e57e5d48a46733aa431" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModuleHarness.php" role="data"/>
+   <file md5sum="393e88e57930344ea3a334bb48989a08" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/EntityParserTest.php" role="data"/>
+   <file md5sum="ec8f758814b648b82843f81acca9a497" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ElementDefTest.php" role="data"/>
+   <file md5sum="a3f12ca3956abcd9cc13ca493d60207b" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URIFilterHarness.php" role="data"/>
+   <file md5sum="a3fc005dfbc150799888d3e325d5f497" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrValidator_ErrorsTest.php" role="data"/>
+   <file md5sum="26fc8a9b4c2e539111659d62579b31f4" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URIHarness.php" role="data"/>
+   <file md5sum="09d6132242b0857b7fb9f0de0527f944" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrDefTest.php" role="data"/>
+   <file md5sum="ba89ca394d7de7f3eeb73f7c48cbbc15" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/TokenTest.php" role="data"/>
+   <file md5sum="6115d4f6552d1f06d624dad40aec4ccf" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ErrorCollectorTest.php" role="data"/>
+   <file md5sum="130240184aa286c614cb03edf2ef6d17" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/VarParserHarness.php" role="data"/>
+   <file md5sum="390be3590f283af2dad57a072e5848f9" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigTest-loadIni.ini" role="data"/>
+   <file md5sum="0021e4517541c09e1e9e67ccd40ad3e5" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DefinitionTestable.php" role="data"/>
+   <file md5sum="de241387648c5c5a243b3a52dfab7c79" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/StringHashParserTest.php" role="data"/>
+   <file md5sum="88b3427446087cd83070acc4ddb45822" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/DefinitionCacheHarness.php" role="data"/>
+   <file md5sum="0e104ecf2ae8a5ed9f49b8f2b6177dc3" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ConfigTest-create.ini" role="data"/>
+   <file md5sum="91b82f17f7e33711ab0a895800e47ea8" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/LanguageTest.php" role="data"/>
+   <file md5sum="d165c33a88520bf982a1bb0ab8194ca1" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/HTMLModuleManagerTest.php" role="data"/>
+   <file md5sum="d51a4a56c13afe8ca5d64a38d1db96b0" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/EntityLookupTest.php" role="data"/>
+   <file md5sum="0e508a27d36f9f992bd70cf95bf37a51" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrTransformTest.php" role="data"/>
+   <file md5sum="51d1fee1de35f20d4de6ae444e79f6b6" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/ErrorsHarness.php" role="data"/>
+   <file md5sum="7cc3d8bfbc14f8fe1d1b9be0f33d6afa" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URIParserTest.php" role="data"/>
+   <file md5sum="f8cf5f3f5474cd3234e4c6cdc67fcbfa" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/StrategyHarness.php" role="data"/>
+   <file md5sum="80578c4acc03ccacea49364238989d92" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/Harness.php" role="data"/>
+   <file md5sum="ad11813de379b36b42c3378e8f2f9206" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/AttrCollectionsTest.php" role="data"/>
+   <file md5sum="ba2358f713b1b24830671814ddaa9946" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/PercentEncoderTest.php" role="data"/>
+   <file md5sum="bdf6485fcfb4e0b1912d5ad03f789d1e" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/EncoderTest.php" role="data"/>
+   <file md5sum="8541b28004f2c395854b973536a5590a" name="lib/vendor/htmlpurifier/tests/HTMLPurifier/URIDefinitionTest.php" role="data"/>
+   <file md5sum="267d72b86c21c0d5f274e3fb45abb942" name="lib/vendor/htmlpurifier/tests/generate_mock_once.func.php" role="data"/>
+   <file md5sum="5977c673ecabb8e33eccb2316e9c6f00" name="lib/vendor/htmlpurifier/tests/CliTestCase.php" role="data"/>
+   <file md5sum="f504ac141f6c99247161823c9b0371c5" name="lib/vendor/htmlpurifier/tests/multitest.php" role="data"/>
+   <file md5sum="d0a5b3a6630ca124240ef31872c9c771" name="lib/vendor/htmlpurifier/tests/HTMLPurifierTest.php" role="data"/>
+   <file md5sum="d21aabe52bb60cbc757359342ff6da1e" name="lib/vendor/htmlpurifier/tests/Debugger.php" role="data"/>
+   <file md5sum="b13657d02b22d4d5c32819adc8eadf34" name="lib/vendor/htmlpurifier/tests/index.php" role="data"/>
+   <file md5sum="485753d78dc020345c2bb10225beaaf7" name="lib/vendor/htmlpurifier/tests/test_files.php" role="data"/>
+   <file md5sum="42884ae52b6ed67c4d0c0123414a044f" name="lib/vendor/htmlpurifier/tests/common.php" role="data"/>
+   <file md5sum="5c70398c70ea50a2ffd38db5dac24273" name="lib/vendor/htmlpurifier/tests/path2class.func.php" role="data"/>
+   <file md5sum="3f27bc04fdeb48349fc2ee86cc98f283" name="lib/vendor/htmlpurifier/maintenance/old-extract-schema.php" role="data"/>
+   <file md5sum="cdbe396dea4ca0edc2a8837499b57e31" name="lib/vendor/htmlpurifier/maintenance/generate-includes.php" role="data"/>
+   <file md5sum="a047f6ce1e836c0d997adf2405b77531" name="lib/vendor/htmlpurifier/maintenance/update-freshmeat.php" role="data"/>
+   <file md5sum="7054b5a9f217c98b225d33e3e5a4e418" name="lib/vendor/htmlpurifier/maintenance/generate-ph5p-patch.php" role="data"/>
+   <file md5sum="fb42b7286f5654d5254dc70c1e1dcd50" name="lib/vendor/htmlpurifier/maintenance/old-remove-schema-def.php" role="data"/>
+   <file md5sum="7feaa642131379f5fcec14c37d5ad6d5" name="lib/vendor/htmlpurifier/maintenance/generate-entity-file.php" role="data"/>
+   <file md5sum="a94de425125e2c5745cdf6e83e8ab246" name="lib/vendor/htmlpurifier/maintenance/rename-config.php" role="data"/>
+   <file md5sum="849a34c400921e5605edc12f14dd510f" name="lib/vendor/htmlpurifier/maintenance/old-remove-require-once.php" role="data"/>
+   <file md5sum="bea7fb1a36819da330afd18bd5596f92" name="lib/vendor/htmlpurifier/maintenance/merge-library.php" role="data"/>
+   <file md5sum="a662cc94ef93ddc4c1cc32a881b04c74" name="lib/vendor/htmlpurifier/maintenance/compile-doxygen.sh" role="data"/>
+   <file md5sum="aac075bdcff81b1fdefed2a45ed32537" name="lib/vendor/htmlpurifier/maintenance/flush-definition-cache.php" role="data"/>
+   <file md5sum="451ef78952050b1eb713e5bd492c3071" name="lib/vendor/htmlpurifier/maintenance/add-vimline.php" role="data"/>
+   <file md5sum="2d18c9d5f293e170a986fa14f27f124a" name="lib/vendor/htmlpurifier/maintenance/PH5P.patch" role="data"/>
+   <file md5sum="c21b593bef095d4b3594e1efb570bf4c" name="lib/vendor/htmlpurifier/maintenance/update-config.php" role="data"/>
+   <file md5sum="6e0f81a01b3e459f9312d34c2b850b7f" name="lib/vendor/htmlpurifier/maintenance/flush.php" role="data"/>
+   <file md5sum="48e935722889bc31428491576f8d1deb" name="lib/vendor/htmlpurifier/maintenance/regenerate-docs.sh" role="data"/>
+   <file md5sum="9274dec9d4d077a786e82fadc96d602a" name="lib/vendor/htmlpurifier/maintenance/generate-standalone.php" role="data"/>
+   <file md5sum="f902c78700b9d61daafecaa569cf0b81" name="lib/vendor/htmlpurifier/maintenance/PH5P.php" role="data"/>
+   <file md5sum="90702aed78107334b424983f2f4938dd" name="lib/vendor/htmlpurifier/maintenance/generate-schema-cache.php" role="data"/>
+   <file md5sum="c4bdb767c9c46a9bfdd0a8a27789f503" name="lib/vendor/htmlpurifier/maintenance/config-scanner.php" role="data"/>
+   <file md5sum="9c64a8e98d3c707c0aa58a3b4294315b" name="lib/vendor/htmlpurifier/maintenance/remove-trailing-whitespace.php" role="data"/>
+   <file md5sum="950769667cca915015e51d22ad38bd4d" name="lib/vendor/htmlpurifier/maintenance/common.php" role="data"/>
+   <file md5sum="04bc014e6d6e6700699159a2a41df646" name="lib/vendor/htmlpurifier/docs/specimens/html-align-to-css.html" role="data"/>
+   <file md5sum="455db42cc24a52037c644a18a1d4eacd" name="lib/vendor/htmlpurifier/docs/specimens/img.png" role="data"/>
+   <file md5sum="93ba097ba87a35164c2613ffd5bb5986" name="lib/vendor/htmlpurifier/docs/specimens/jochem-blok-word.html" role="data"/>
+   <file md5sum="6d31eb0c08af9953745aef6bfbc1b50d" name="lib/vendor/htmlpurifier/docs/specimens/LICENSE" role="data"/>
+   <file md5sum="63dc9109b3ea33a8b1fd77e2af768d0d" name="lib/vendor/htmlpurifier/docs/specimens/windows-live-mail-desktop-beta.html" role="data"/>
+   <file md5sum="52118e4fe2efb0930ce211247ec237d0" name="lib/vendor/htmlpurifier/docs/dtd/xhtml1-transitional.dtd" role="data"/>
+   <file md5sum="9d841f57d8a28eb32c04db0e36a078dd" name="lib/vendor/htmlpurifier/docs/entities/xhtml-lat1.ent" role="data"/>
+   <file md5sum="dc34235b0742b58b7a710cc63459c0f7" name="lib/vendor/htmlpurifier/docs/entities/xhtml-special.ent" role="data"/>
+   <file md5sum="17c862dda86c53953f18452bdef54e40" name="lib/vendor/htmlpurifier/docs/entities/xhtml-symbol.ent" role="data"/>
+   <file md5sum="e10d543532c494b173718f6000d9b8f0" name="lib/vendor/htmlpurifier/docs/examples/basic.php" role="data"/>
+   <file md5sum="6dd0b96d6100dfd302f06252a3442cb2" name="lib/vendor/htmlpurifier/docs/proposal-new-directives.txt" role="data"/>
+   <file md5sum="051f797a2516b3f0bdb1ee9ae2b0176c" name="lib/vendor/htmlpurifier/docs/style.css" role="data"/>
+   <file md5sum="63533ac0b88f7e2b7b41fda367318066" name="lib/vendor/htmlpurifier/docs/ref-devnetwork.html" role="data"/>
+   <file md5sum="9a75c212a39a66c5c0290eae47611169" name="lib/vendor/htmlpurifier/docs/proposal-css-extraction.txt" role="data"/>
+   <file md5sum="38ac151f9225d16d5f8aeaad43f34b90" name="lib/vendor/htmlpurifier/docs/ref-html-modularization.txt" role="data"/>
+   <file md5sum="eb7c6ac5e110543ec598e995724e4738" name="lib/vendor/htmlpurifier/docs/enduser-overview.txt" role="data"/>
+   <file md5sum="d202a871b3884f4fbd5bd4c6cfcfec48" name="lib/vendor/htmlpurifier/docs/proposal-plists.txt" role="data"/>
+   <file md5sum="efef39786588662491b71ccfd0117a20" name="lib/vendor/htmlpurifier/docs/enduser-uri-filter.html" role="data"/>
+   <file md5sum="d022960c1119d78fc0c41f5590d3098f" name="lib/vendor/htmlpurifier/docs/ref-whatwg.txt" role="data"/>
+   <file md5sum="2db89c1d04f068f28357fd6f799a999a" name="lib/vendor/htmlpurifier/docs/proposal-config.txt" role="data"/>
+   <file md5sum="538af122ed5c613152605dc4330fea45" name="lib/vendor/htmlpurifier/docs/dev-config-naming.txt" role="data"/>
+   <file md5sum="33f340824eeee14aff59b2be8b13c3b0" name="lib/vendor/htmlpurifier/docs/enduser-utf8.html" role="data"/>
+   <file md5sum="66a561e77f9ae1151ce238ee09ceba1c" name="lib/vendor/htmlpurifier/docs/dev-naming.html" role="data"/>
+   <file md5sum="76a79eb4622de5050223ef6cc83f50b4" name="lib/vendor/htmlpurifier/docs/dev-config-bcbreaks.txt" role="data"/>
+   <file md5sum="bac6e19a74c3eb004d6efc1e14c909fe" name="lib/vendor/htmlpurifier/docs/ref-css-length.txt" role="data"/>
+   <file md5sum="3548d98730a4d5d17739d62c5135aa4d" name="lib/vendor/htmlpurifier/docs/proposal-colors.html" role="data"/>
+   <file md5sum="98807bb1b7ca7a136a9ed7d1fadf8d92" name="lib/vendor/htmlpurifier/docs/enduser-youtube.html" role="data"/>
+   <file md5sum="1a99e0c8f06962f057eb3049e4f3f8ee" name="lib/vendor/htmlpurifier/docs/index.html" role="data"/>
+   <file md5sum="8d3504db41ee2eeff982bfafe49eec97" name="lib/vendor/htmlpurifier/docs/dev-includes.txt" role="data"/>
+   <file md5sum="b775c8a74b1840a984cf2027b8ce8451" name="lib/vendor/htmlpurifier/docs/dev-config-schema.html" role="data"/>
+   <file md5sum="27d7340459d874ff0d0cf7fc1b56160d" name="lib/vendor/htmlpurifier/docs/dev-code-quality.txt" role="data"/>
+   <file md5sum="4041db0779844d5a5a7c0f52914ff19c" name="lib/vendor/htmlpurifier/docs/ref-content-models.txt" role="data"/>
+   <file md5sum="06c43763e5ee655cd88f6c5a0c11395d" name="lib/vendor/htmlpurifier/docs/enduser-security.txt" role="data"/>
+   <file md5sum="87504d15f2c832b57d5cfef337107491" name="lib/vendor/htmlpurifier/docs/dev-progress.html" role="data"/>
+   <file md5sum="b3d857ca8c133772bd27c9f718dc9aba" name="lib/vendor/htmlpurifier/docs/fixquotes.htc" role="data"/>
+   <file md5sum="3586d248ee112441ec8f768555da4012" name="lib/vendor/htmlpurifier/docs/dev-flush.html" role="data"/>
+   <file md5sum="e61f4bde624072632b8efcdd1bd2d221" name="lib/vendor/htmlpurifier/docs/ref-proprietary-tags.txt" role="data"/>
+   <file md5sum="d6e84a2f46867eb255dd136dbd98b47e" name="lib/vendor/htmlpurifier/docs/proposal-language.txt" role="data"/>
+   <file md5sum="eda575b17dbfb079cd8c7297eff0665b" name="lib/vendor/htmlpurifier/docs/enduser-customize.html" role="data"/>
+   <file md5sum="d13d44bc50d48c7b79ae9a81431c6ab6" name="lib/vendor/htmlpurifier/docs/dev-optimization.html" role="data"/>
+   <file md5sum="0d323c6e195293b07791d0518f5bba5d" name="lib/vendor/htmlpurifier/docs/proposal-filter-levels.txt" role="data"/>
+   <file md5sum="77b0948f44c10de6a4426d618f9d799a" name="lib/vendor/htmlpurifier/docs/enduser-slow.html" role="data"/>
+   <file md5sum="41fcbfeebc660a6acdc8082b35f4cb4e" name="lib/vendor/htmlpurifier/docs/proposal-errors.txt" role="data"/>
+   <file md5sum="1a86bbe9c0161963c7d1472a585df432" name="lib/vendor/htmlpurifier/docs/enduser-id.html" role="data"/>
+   <file md5sum="7ded81b2a2f9d167cc057ba3ebf06289" name="lib/vendor/htmlpurifier/docs/dev-advanced-api.html" role="data"/>
+   <file md5sum="c3bca5176f743bbb7aa8fc5fea261073" name="lib/vendor/htmlpurifier/docs/enduser-tidy.html" role="data"/>
+   <file md5sum="431a836e9f614cedcfea308e1a83f6cc" name="lib/vendor/htmlpurifier/art/logo-large.png" role="data"/>
+   <file md5sum="bce9a0761377239bb6d180767ab46790" name="lib/vendor/htmlpurifier/art/powered.png" role="data"/>
+   <file md5sum="81ce4443df352c60afa4c908ca22ae6f" name="lib/vendor/htmlpurifier/art/icon-16x16.svg" role="data"/>
+   <file md5sum="2bf6b24b2778d3a76c6b6034c6875d72" name="lib/vendor/htmlpurifier/art/icon-16x16.png" role="data"/>
+   <file md5sum="3311a21e1d9e6284666d093626f6b33e" name="lib/vendor/htmlpurifier/art/logo.svg" role="data"/>
+   <file md5sum="0d5bc74e3288df82eb63ea5360e7be9a" name="lib/vendor/htmlpurifier/art/icon-32x32.svg" role="data"/>
+   <file md5sum="18632babb9fd853b44340e5cf036e6b1" name="lib/vendor/htmlpurifier/art/logo.png" role="data"/>
+   <file md5sum="e6da3c85b417267503a706b9813d8cc4" name="lib/vendor/htmlpurifier/art/1000passes.png" role="data"/>
+   <file md5sum="0c0a9c7cb4fb5f541f67274b41829704" name="lib/vendor/htmlpurifier/art/100cases.png" role="data"/>
+   <file md5sum="4c2c0aff2af734d1ee3a971aafe999d2" name="lib/vendor/htmlpurifier/art/icon-64x64.png" role="data"/>
+   <file md5sum="d4aef9ebd0f6aa4329dcdb80122573a1" name="lib/vendor/htmlpurifier/art/icon-32x32.png" role="data"/>
+   <file md5sum="ae1d05fb02b3346f3c2a8da1ffe76c10" name="lib/vendor/htmlpurifier/art/favicon.ico" role="data"/>
+   <file md5sum="e67f5908e683b3b9061f2caeffe32414" name="lib/vendor/htmlpurifier/plugins/phorum/htmlpurifier/README" role="data"/>
+   <file md5sum="a1b3d3e45e8422eed104489842a6f546" name="lib/vendor/htmlpurifier/plugins/phorum/htmlpurifier/LICENSE" role="data"/>
+   <file md5sum="3d30d7645a2b1df984c2be3c9d2cbc43" name="lib/vendor/htmlpurifier/plugins/phorum/settings/migrate-sigs-form.php" role="data"/>
+   <file md5sum="ed085195dc9516258dc80ce1a1b9aea1" name="lib/vendor/htmlpurifier/plugins/phorum/settings/save.php" role="data"/>
+   <file md5sum="27218c3ad6f8245cc6b45b8f3e76ae5d" name="lib/vendor/htmlpurifier/plugins/phorum/settings/migrate-sigs.php" role="data"/>
+   <file md5sum="ad01c89251d8c7b74d27f6921ba65933" name="lib/vendor/htmlpurifier/plugins/phorum/settings/form.php" role="data"/>
+   <file md5sum="9a2b36f20a1eeb54917a11a2f873ee59" name="lib/vendor/htmlpurifier/plugins/phorum/htmlpurifier.php" role="data"/>
+   <file md5sum="4f42a2eb9af34ce36b57a95e7feb0abb" name="lib/vendor/htmlpurifier/plugins/phorum/migrate.bbcode.php" role="data"/>
+   <file md5sum="db0bcc667f05495311657fba0af8a81b" name="lib/vendor/htmlpurifier/plugins/phorum/init-config.php" role="data"/>
+   <file md5sum="79a64b084e1d170ceef31a1ab2d54bcd" name="lib/vendor/htmlpurifier/plugins/phorum/README" role="data"/>
+   <file md5sum="8584e6e23eda1ff10d09dfe05c5b155c" name="lib/vendor/htmlpurifier/plugins/phorum/INSTALL" role="data"/>
+   <file md5sum="5f81774926f7154dc4283994ee42ec83" name="lib/vendor/htmlpurifier/plugins/phorum/info.txt" role="data"/>
+   <file md5sum="adfbcb78b42838836935a416256354bc" name="lib/vendor/htmlpurifier/plugins/phorum/settings.php" role="data"/>
+   <file md5sum="cad6c5af1697668466b8d57a277173bb" name="lib/vendor/htmlpurifier/plugins/phorum/config.default.php" role="data"/>
+   <file md5sum="f9b81644b2888f6f9656ddeb2cb00e2f" name="lib/vendor/htmlpurifier/plugins/phorum/Changelog" role="data"/>
+   <file md5sum="ab06b7fff842804be5e3b515a6af20ca" name="lib/vendor/htmlpurifier/plugins/modx.txt" role="data"/>
+   <file md5sum="a1ee2cf2a31f87fe63b5702ff82ed9ba" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Token/Text.php" role="data"/>
+   <file md5sum="b38096253b7361aa606beabbd361e744" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Token/Empty.php" role="data"/>
+   <file md5sum="0a93e4fcea3cf8114eec37914806e54f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Token/Comment.php" role="data"/>
+   <file md5sum="abb859525c52a506e5f58c309431f3ca" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Token/Start.php" role="data"/>
+   <file md5sum="3399539ee65d2dcb1f507a678cb7c5b8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Token/Tag.php" role="data"/>
+   <file md5sum="6dc6cdb4e980b6ffb9bb18ae73236ca9" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Token/End.php" role="data"/>
+   <file md5sum="faa91653d527c5229b49253658ca80dd" name="lib/vendor/htmlpurifier/library/HTMLPurifier/VarParser/Native.php" role="data"/>
+   <file md5sum="9ba5084965a3167605535ee579f8cc96" name="lib/vendor/htmlpurifier/library/HTMLPurifier/VarParser/Flexible.php" role="data"/>
+   <file md5sum="5215ba83a8f645d50077b748ab344b8a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Tidy/Strict.php" role="data"/>
+   <file md5sum="9c41c71abf36d63efe2df29832ec065a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Tidy/Proprietary.php" role="data"/>
+   <file md5sum="a00c39ef28493892552b3f3e452cf992" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Tidy/Transitional.php" role="data"/>
+   <file md5sum="f6bed98e1a7ebae0e09764956bdac4f2" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Tidy/Name.php" role="data"/>
+   <file md5sum="cbdf3deab781644fcc25dde08b441727" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Tidy/XHTMLAndHTML4.php" role="data"/>
+   <file md5sum="7f514a82cfd85b03d712274b5d249954" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Tidy/XHTML.php" role="data"/>
+   <file md5sum="bb4790cbd4a68e90a2d1fb8b820d7147" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Hypertext.php" role="data"/>
+   <file md5sum="65b57e9b356a4d13b6f0c65dfcd337dd" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Text.php" role="data"/>
+   <file md5sum="73153b86492552a9fbb88340c770963f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Forms.php" role="data"/>
+   <file md5sum="fe742ad3c690c7ea8fd32ab2b0ff132b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/SafeObject.php" role="data"/>
+   <file md5sum="074b0eb6b6c34a1992ab65aa67e29a35" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Scripting.php" role="data"/>
+   <file md5sum="e129432b77bb64fdc290d13987c45596" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Bdo.php" role="data"/>
+   <file md5sum="4770bf322cefdc9b155d9faf2851e21f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/StyleAttribute.php" role="data"/>
+   <file md5sum="5475ee52a8791d170b841cd6ad905094" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Edit.php" role="data"/>
+   <file md5sum="4837b4cb0776cc1af14a21c1b877e078" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Tidy.php" role="data"/>
+   <file md5sum="e503304a642c6786f6a11eb3ead87ddd" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Presentation.php" role="data"/>
+   <file md5sum="aae031812e9fbe29dff05f23e1b4cda5" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Proprietary.php" role="data"/>
+   <file md5sum="c87f9de5628a72270943de5496d36ddf" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Ruby.php" role="data"/>
+   <file md5sum="e36d4f596bd85f285d243013495c8dcb" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Legacy.php" role="data"/>
+   <file md5sum="ad4c41177390713e568bdd96848e37f5" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Target.php" role="data"/>
+   <file md5sum="911df038afaefbc0f662a3d6fa8d9554" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Image.php" role="data"/>
+   <file md5sum="a7cca883348645c6a77ec7db0932a610" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Object.php" role="data"/>
+   <file md5sum="4927a47ebe2721507baaddf7f66da265" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/XMLCommonAttributes.php" role="data"/>
+   <file md5sum="7d6e6c2595498da192d69006c46d769d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Tables.php" role="data"/>
+   <file md5sum="24b18ff07b334f19fc8c1e5f184d2570" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/NonXMLCommonAttributes.php" role="data"/>
+   <file md5sum="9765121a41a8e2a372a65c6bd3b32789" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Name.php" role="data"/>
+   <file md5sum="381c8ba0950e07c6c82c42a642385800" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/CommonAttributes.php" role="data"/>
+   <file md5sum="162a52e43e14d78642f4dd1826571819" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/SafeEmbed.php" role="data"/>
+   <file md5sum="273050404a01f635e470d05538438813" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/List.php" role="data"/>
+   <file md5sum="de959c166a98272afbf48c63d80b3f1d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule/Nofollow.php" role="data"/>
+   <file md5sum="a9d77f36c69fcdeeaffdddccf53b1aea" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/Builder/ConfigSchema.php" role="data"/>
+   <file md5sum="2f3ef23752e2cb399fea85c3368b2d47" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/Builder/Xml.php" role="data"/>
+   <file md5sum="0f39567afbe1f3b9764b1350e494dd4a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.Attr.Name.UseCDATA.txt" role="data"/>
+   <file md5sum="4cdc8843d64b8954826fe63ab800c4a4" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/CSS.AllowImportant.txt" role="data"/>
+   <file md5sum="51d2bfaa3bade6e02ef07b76d71955c9" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.DisableResources.txt" role="data"/>
+   <file md5sum="d96aa90796e69c12456daf563af1179a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.ForbiddenClasses.txt" role="data"/>
+   <file md5sum="35d99a66652595c744ebe8b0ffe48165" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.DefaultImageAlt.txt" role="data"/>
+   <file md5sum="28380c89a107c47d614155a10a2cbfdf" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/AutoFormat.PurifierLinkify.txt" role="data"/>
+   <file md5sum="962dc2f6f680a67c76e90ca58defa8ba" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Filter.ExtractStyleBlocks.txt" role="data"/>
+   <file md5sum="ec8e59c56d5c044651291bc2fd3ec2df" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.DisableExternalResources.txt" role="data"/>
+   <file md5sum="2334b1488c1920659d7b6ee5f8bf9e8c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.FlashAllowFullScreen.txt" role="data"/>
+   <file md5sum="35af9b45b2e0e12d68b23ce62a78fe0b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.MungeResources.txt" role="data"/>
+   <file md5sum="2627f4dfc25ae253e56241c1208b1861" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.Strict.txt" role="data"/>
+   <file md5sum="8bfa42cf1474478dc3069884a58e9441" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.AllowedModules.txt" role="data"/>
+   <file md5sum="cf02eb79ccac04001536539185d9112b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.AllowedRev.txt" role="data"/>
+   <file md5sum="d88546ab0eaf014b57e260d070c65ebe" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/info.ini" role="data"/>
+   <file md5sum="1c3c1d44844d5a053480f31b93102434" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.HostBlacklist.txt" role="data"/>
+   <file md5sum="27a34d8862655c293db261bfa3b6690f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.EscapeInvalidChildren.txt" role="data"/>
+   <file md5sum="438f7ac032cb0dd31e053c5791975eb3" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.Encoding.txt" role="data"/>
+   <file md5sum="417ac415d2e698fa41b3272c3357eae2" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.ClassUseCDATA.txt" role="data"/>
+   <file md5sum="636354d2cc7b1e142ed4b4bac719afe7" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/CSS.MaxImgLength.txt" role="data"/>
+   <file md5sum="9df7447f59f04e26a711c9cd289c0d02" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Filter.ExtractStyleBlocks.Scope.txt" role="data"/>
+   <file md5sum="d5f5ebc07893f09271b5910e9515827e" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/AutoFormat.PurifierLinkify.DocURL.txt" role="data"/>
+   <file md5sum="21d35d02463b602185695b77851618b4" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.SafeEmbed.txt" role="data"/>
+   <file md5sum="0ff4e89d3acd329b093eb0f483af0378" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.Allowed.txt" role="data"/>
+   <file md5sum="bf719ef499e5092b1745fdc0145544a8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.MaxImgLength.txt" role="data"/>
+   <file md5sum="5f3ddeed8119e52e8a83d9a2a292302b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.OverrideAllowedSchemes.txt" role="data"/>
+   <file md5sum="74625ff69c0bb72ac2ea00be938fd4a2" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.AllowedAttributes.txt" role="data"/>
+   <file md5sum="602bcdee9b9128369fece8dda6ca68d0" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.TidyLevel.txt" role="data"/>
+   <file md5sum="827049a0989ef1af9d513b7cf0ebd088" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.Parent.txt" role="data"/>
+   <file md5sum="6271b4a4b8b7af81af43f19969c2bde3" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/AutoFormat.AutoParagraph.txt" role="data"/>
+   <file md5sum="5eb818112d212f5524acc72c63d7f564" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/CSS.ForbiddenProperties.txt" role="data"/>
+   <file md5sum="f7d9ac0023cccb32f6792cbfc82be402" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.BlockWrapper.txt" role="data"/>
+   <file md5sum="5f8330c522350a363e079a8e1d1eb1e9" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/CSS.AllowedFonts.txt" role="data"/>
+   <file md5sum="3d2523b07cbea92b6928a2c32a3bbbc0" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/AutoFormat.RemoveEmpty.txt" role="data"/>
+   <file md5sum="b8616fbb020064b57fc5f7d81bde9421" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Filter.YouTube.txt" role="data"/>
+   <file md5sum="323dfc88d5b835f16d9eb927804da79e" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Output.FlashCompat.txt" role="data"/>
+   <file md5sum="59ca112eeafa80effa9329dd347cf39c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Output.FixInnerHTML.txt" role="data"/>
+   <file md5sum="6d9eb286dd0ad35fc9a42e888e437a11" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.RemoveInvalidImg.txt" role="data"/>
+   <file md5sum="c7e804eef84fd4e84555da46f5e67d78" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.AllowedClasses.txt" role="data"/>
+   <file md5sum="a8a28c98305dd6a9abb5464acd5c7367" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/AutoFormat.RemoveEmpty.RemoveNbsp.txt" role="data"/>
+   <file md5sum="97ddc74ca5ad0affb327e1f593ede768" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.IDBlacklist.txt" role="data"/>
+   <file md5sum="9a9c021bd1610663aee54f9d830fff0b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.CustomDoctype.txt" role="data"/>
+   <file md5sum="e7572119a13e8d41d980954283020b1b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.AllowedRel.txt" role="data"/>
+   <file md5sum="98c27e81560886a8243301ecf1356a4e" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.TidyAdd.txt" role="data"/>
+   <file md5sum="44bc257b528121bd62f852331ebf7583" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.ForbiddenAttributes.txt" role="data"/>
+   <file md5sum="703a4fcb08a72ac358bf54d1a8363347" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Output.CommentScriptContents.txt" role="data"/>
+   <file md5sum="0f3e26408858326c3ea07d07cd6f32ba" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.Proprietary.txt" role="data"/>
+   <file md5sum="91a4d5beceb354651773fc9dee5eae99" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.Base.txt" role="data"/>
+   <file md5sum="12dd6d349d980eee22f922e963c001b4" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/AutoFormat.Custom.txt" role="data"/>
+   <file md5sum="1797469f7d736a99d4e2aa67f5de7acd" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.DefinitionID.txt" role="data"/>
+   <file md5sum="580fe57f57c2633dcbf5ea61f03a2c17" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.TidyRemove.txt" role="data"/>
+   <file md5sum="6ef07d3ae6c3a546ed42e7a379f6270d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.ColorKeywords.txt" role="data"/>
+   <file md5sum="63a87a1f19518c7dc68ff3cd05896656" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.Munge.txt" role="data"/>
+   <file md5sum="a2a1e573097a562d5bf0e15e87033db8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.AllowedFrameTargets.txt" role="data"/>
+   <file md5sum="b59e10aecfd047b3a16a321d10d0f3ef" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.MakeAbsolute.txt" role="data"/>
+   <file md5sum="c312f1b6545ddb0e492228d9649ceb0e" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.RemoveProcessingInstructions.txt" role="data"/>
+   <file md5sum="3e8b627ac6dd450053e991531169b401" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.DefaultScheme.txt" role="data"/>
+   <file md5sum="973b359f1e0c27649c661665b6cce6b5" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/CSS.Proprietary.txt" role="data"/>
+   <file md5sum="db04b24ca81b77213fb8dc6b4a34e688" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Test.ForceNoIconv.txt" role="data"/>
+   <file md5sum="c79d40b21101ebe0f842c84b7f308e97" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.EscapeNonASCIICharacters.txt" role="data"/>
+   <file md5sum="782d42061de75233348a3c756e7540b9" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Output.SortAttr.txt" role="data"/>
+   <file md5sum="6ec326585143d337e8aa91a8449076aa" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Cache.SerializerPath.txt" role="data"/>
+   <file md5sum="5d57e91c9d381c65a457da4a66177a87" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.AllowedElements.txt" role="data"/>
+   <file md5sum="8abd158052b5fe867664cb53dc7016ff" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.CollectErrors.txt" role="data"/>
+   <file md5sum="5766c211d61ee8e63d84221cdfc0c382" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/CSS.AllowedProperties.txt" role="data"/>
+   <file md5sum="a610159b4dc4b4f090faab367df05913" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/CSS.AllowTricky.txt" role="data"/>
+   <file md5sum="f9a2ba865c9358f9acdcb1af76c75248" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.ConvertDocumentToFragment.txt" role="data"/>
+   <file md5sum="a5d0f2c37dc21f4ca4c0aea1143bc906" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.DefaultInvalidImageAlt.txt" role="data"/>
+   <file md5sum="afffc795383c3d375ce1f8d538353004" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Filter.ExtractStyleBlocks.TidyImpl.txt" role="data"/>
+   <file md5sum="aef75207f4a7ef148d46fd4b0b800ec0" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.Nofollow.txt" role="data"/>
+   <file md5sum="ab8bbc7c368a70b8997cee521f0f8266" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Cache.DefinitionImpl.txt" role="data"/>
+   <file md5sum="20606c0bb24a9ed5e51908cd49b5aa0d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Output.Newline.txt" role="data"/>
+   <file md5sum="7d76686be9f82a742690c6bc5ac2172b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.Language.txt" role="data"/>
+   <file md5sum="4dd6c2a7acb156bbe523ca5fce6e8cf9" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Cache.SerializerPermissions.txt" role="data"/>
+   <file md5sum="f8d19a8c404092f2f789ddb18cbe2c93" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.DefaultInvalidImage.txt" role="data"/>
+   <file md5sum="67b18acf336738ad6b73bdb24e3c3935" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.Trusted.txt" role="data"/>
+   <file md5sum="1812d786966978cef85926fb306081f1" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Output.TidyFormat.txt" role="data"/>
+   <file md5sum="9c4eee3c6f95f18967d89f4f822e92ea" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/AutoFormat.RemoveSpansWithoutAttributes.txt" role="data"/>
+   <file md5sum="eb240130a1906d9c6402db7da045e069" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.RemoveScriptContents.txt" role="data"/>
+   <file md5sum="b1994238ead13791bfae55ac6ead56e2" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.MaintainLineNumbers.txt" role="data"/>
+   <file md5sum="e39e05351052579f6db967f06eb34124" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Filter.Custom.txt" role="data"/>
+   <file md5sum="379b2f38f7a446c97d0cecf80b57eb12" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.DisableExternal.txt" role="data"/>
+   <file md5sum="e9867d9bf1a9e50f832f0d95ed04106c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.Host.txt" role="data"/>
+   <file md5sum="1c27523a1bf4fb4bc1b5efeb31374bf1" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/CSS.DefinitionRev.txt" role="data"/>
+   <file md5sum="19c20a0f38079e050aaca40a1d80153a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.DefinitionRev.txt" role="data"/>
+   <file md5sum="6ae2a6306a4742c4406a3a7978c8cb8d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.DefinitionID.txt" role="data"/>
+   <file md5sum="239a45c10f6eff0a180e0da5f89cf05a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.Doctype.txt" role="data"/>
+   <file md5sum="4236b3a52572b275840ea600ffe4c91e" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.DefinitionRev.txt" role="data"/>
+   <file md5sum="41ddfd49fafdfa843b26864ee200d983" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.IDPrefix.txt" role="data"/>
+   <file md5sum="abfa880ace0da126afa0404db057ccf3" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.AggressivelyFixLt.txt" role="data"/>
+   <file md5sum="10b09a0750da4d12c0780bcd83bf40cb" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.DirectLexLineNumberSyncInterval.txt" role="data"/>
+   <file md5sum="6e099862fb32d89340d934cdc392ba82" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Filter.ExtractStyleBlocks.Escaping.txt" role="data"/>
+   <file md5sum="6c673a7c23196cdc6b4b430d8d77e4d0" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.LexerImpl.txt" role="data"/>
+   <file md5sum="bea8bbdbbd31448a02d92663214e984c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/AutoFormat.DisplayLinkURI.txt" role="data"/>
+   <file md5sum="e38175b69d677589a8898b99aaa5b8ad" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.NormalizeNewlines.txt" role="data"/>
+   <file md5sum="a5ba607851e233e29b6b6c8ec93164a9" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/CSS.Trusted.txt" role="data"/>
+   <file md5sum="b08ddfb891716ac35c74b281827371b8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.EnableID.txt" role="data"/>
+   <file md5sum="d0bb87419dd6922763aaa8c4331d53fd" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.DefaultTextDir.txt" role="data"/>
+   <file md5sum="5a2204c09ad08a7fcd1f080984be7a3d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.AllowedSchemes.txt" role="data"/>
+   <file md5sum="aaa953fcd68ebc340e9cb465e49951b6" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.ForbiddenElements.txt" role="data"/>
+   <file md5sum="f9cfd8c36d7048944f4d43ecff297678" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.SafeObject.txt" role="data"/>
+   <file md5sum="bdd5c7ed524c8b4e529e5b0d0b512b0b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.XHTML.txt" role="data"/>
+   <file md5sum="e9f14e5050c5920c7e9006b9f28bd76f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.EscapeInvalidTags.txt" role="data"/>
+   <file md5sum="21aea6427b2a3c2dfb298d02e96ec669" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/AutoFormat.Linkify.txt" role="data"/>
+   <file md5sum="bdacaee370b43ee3f42057e1ce9acc5d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.Disable.txt" role="data"/>
+   <file md5sum="1b26b5763bb96c96c98abc3236ee6b19" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.IDPrefixLocal.txt" role="data"/>
+   <file md5sum="0b4694fa209765c9eb4017787db4cfa2" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/URI.MungeSecretKey.txt" role="data"/>
+   <file md5sum="376c4ef45a5ca3cb19d77774856ddfdf" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Attr.IDBlacklistRegexp.txt" role="data"/>
+   <file md5sum="27a1c037eda91bea2eee5229e4f1a058" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/HTML.CoreModules.txt" role="data"/>
+   <file md5sum="f6e08c75224c0681a0933aaa70122db1" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/Core.HiddenElements.txt" role="data"/>
+   <file md5sum="e53542febfba19782c49cba0a61cc8c2" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema/AutoFormat.RemoveEmpty.RemoveNbsp.Exceptions.txt" role="data"/>
+   <file md5sum="b67c7f7562c9eac082a960b3be9f5f1f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/Interchange/Id.php" role="data"/>
+   <file md5sum="3b11731a184f921ad82632a4d5ca8ea3" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/Interchange/Directive.php" role="data"/>
+   <file md5sum="16ec96e01b7a93a75f6c0d27a3044d2c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/Interchange.php" role="data"/>
+   <file md5sum="31bf3afba867409fdf11f75eaa3725fd" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/Exception.php" role="data"/>
+   <file md5sum="2da487ed0053dd17f8f4c13a7b3cf04d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/InterchangeBuilder.php" role="data"/>
+   <file md5sum="d9327f8aaab4fdc364107d0779310b3b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/Validator.php" role="data"/>
+   <file md5sum="9a57bfdb6b774679e2f5593d4c67d7f5" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/ValidatorAtom.php" role="data"/>
+   <file md5sum="4b91a9bd8d48f6f480d443c754ce4a55" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema/schema.ser" role="data"/>
+   <file md5sum="9df1553f001cd2e5e574be075396a575" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIFilter/DisableExternal.php" role="data"/>
+   <file md5sum="f75e2069424d0b4f60988b1e8344cde8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIFilter/DisableExternalResources.php" role="data"/>
+   <file md5sum="0af3bb537e6c3885eb844881fd4b1512" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIFilter/Munge.php" role="data"/>
+   <file md5sum="f60d09064deb7203990b68895c6c8d66" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIFilter/MakeAbsolute.php" role="data"/>
+   <file md5sum="d00b0e8fb4e37dfee67edba835f7668b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIFilter/DisableResources.php" role="data"/>
+   <file md5sum="a520831064417a45e03fd669b0f8256c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIFilter/HostBlacklist.php" role="data"/>
+   <file md5sum="54f6f27a44bdb66d6197a46ba89213e8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/TextDecoration.php" role="data"/>
+   <file md5sum="3d888cc157a4ea616dc1e94dd5f1c21e" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/ListStyle.php" role="data"/>
+   <file md5sum="9a9a4ef13940096bbe18037d54cb056f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/ImportantDecorator.php" role="data"/>
+   <file md5sum="10afadc403e14974645b3e1c17f83adb" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Percentage.php" role="data"/>
+   <file md5sum="a112e7c263f001b9ac062ea64201cccd" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/DenyElementDecorator.php" role="data"/>
+   <file md5sum="ac75113a9cbfe6bfe8d3afe36444f272" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Composite.php" role="data"/>
+   <file md5sum="f2f45d74040f109cd09580b5cb3de1c4" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/BackgroundPosition.php" role="data"/>
+   <file md5sum="c14c12936339b03f24e9b50cd5273450" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Font.php" role="data"/>
+   <file md5sum="0301346329aae91bae8924c90d3d4688" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Border.php" role="data"/>
+   <file md5sum="f0232cc2a7573418b8ebe5efcf108c46" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/AlphaValue.php" role="data"/>
+   <file md5sum="2c4560cf0dd700ae39c0a553140ffd1b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Multiple.php" role="data"/>
+   <file md5sum="550018b589519d34e99630c8ae2c3c1e" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/URI.php" role="data"/>
+   <file md5sum="5d79c32e91f2e53b344a080092847b76" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/FontFamily.php" role="data"/>
+   <file md5sum="54e42fbf58fe9c70ef082d6a8f8be821" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Filter.php" role="data"/>
+   <file md5sum="6774b03e0b29672961ad4fba15c25787" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Length.php" role="data"/>
+   <file md5sum="8a16f12cb9b9f6d941b7a82f1c40862c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Background.php" role="data"/>
+   <file md5sum="0f1f03450117004aabb529c43f154334" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Number.php" role="data"/>
+   <file md5sum="4bd2e4e9cd6e71ca7a6cb5e62700b380" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS/Color.php" role="data"/>
+   <file md5sum="cebebf0d99b63ecd2072f37e69055b6c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/URI/Email/SimpleCheck.php" role="data"/>
+   <file md5sum="44004a19ee045f386993905c84600d61" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/URI/IPv6.php" role="data"/>
+   <file md5sum="958e3072379737950b8ce0f6823ac8eb" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/URI/Email.php" role="data"/>
+   <file md5sum="49fd2ef2059f4bb779e44c57faec6a0a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/URI/Host.php" role="data"/>
+   <file md5sum="da52096d6feb81bd8a40f9d5ed439139" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/URI/IPv4.php" role="data"/>
+   <file md5sum="96026f3e8ffdc70e533f306e63322923" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/FrameTarget.php" role="data"/>
+   <file md5sum="bd36cb0c65c586c2d1dff7a44a4bf0dc" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/ID.php" role="data"/>
+   <file md5sum="a38926a6e784e67d5cd7e9d657802214" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Length.php" role="data"/>
+   <file md5sum="fa319109d0c0e5989a24f550c884c1b5" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Class.php" role="data"/>
+   <file md5sum="8face464a844799e3aab2e9f4f918868" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Nmtokens.php" role="data"/>
+   <file md5sum="c579b5a145c447f1880c7bc6d3db774c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Bool.php" role="data"/>
+   <file md5sum="122498f21ff87dcab5ec8f1dfb51d39c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/MultiLength.php" role="data"/>
+   <file md5sum="46ca436ee46da44472226b91a2b11a22" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Color.php" role="data"/>
+   <file md5sum="95962e03883b9a84496487a1f8af5da3" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/Pixels.php" role="data"/>
+   <file md5sum="ed11d4126e34e45fd127650a45f0ee56" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/HTML/LinkTypes.php" role="data"/>
+   <file md5sum="f57bc53b7c7a29b0c4324e0ad2039c2a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/Integer.php" role="data"/>
+   <file md5sum="0ad9dcd58ce4f104006b59a9df51802a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/Text.php" role="data"/>
+   <file md5sum="6caf3a641704cee2aeb15b4eb1c287c9" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/CSS.php" role="data"/>
+   <file md5sum="8fcf6999bbd3f2cd9d3780182d91be7d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/Switch.php" role="data"/>
+   <file md5sum="05afd73beee5b644bc49790b7a0dde0f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/URI.php" role="data"/>
+   <file md5sum="1a11be0015a161c2a11d6c51305f45fa" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/Enum.php" role="data"/>
+   <file md5sum="04a72938e4c07553d9a18ae6649cd90f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef/Lang.php" role="data"/>
+   <file md5sum="c02f2fa8100745b88a85ed30e883fbc2" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Printer/ConfigForm.css" role="data"/>
+   <file md5sum="512c6d0717c3fcb0bb0997594cdf7f3f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Printer/ConfigForm.php" role="data"/>
+   <file md5sum="a46e55a618e944c96bbd09e5cfcf8cc1" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Printer/HTMLDefinition.php" role="data"/>
+   <file md5sum="ee5990d6bb62017463a7a8d72c8288b5" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Printer/ConfigForm.js" role="data"/>
+   <file md5sum="d1d09c86a9c81b526bbd44c847344b6d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Printer/CSSDefinition.php" role="data"/>
+   <file md5sum="3c557d08cadb051c7e1711376da3acb8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ChildDef/Chameleon.php" role="data"/>
+   <file md5sum="22f2d339fcb60c536e651f80f03f7c82" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ChildDef/Empty.php" role="data"/>
+   <file md5sum="13c44a1aaf1ab1b25744758cd1831b4f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ChildDef/Custom.php" role="data"/>
+   <file md5sum="538d675731b05c7483ec31e1ae55ca4a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ChildDef/StrictBlockquote.php" role="data"/>
+   <file md5sum="6b324d68260f872dc1a9312608af70bf" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ChildDef/Optional.php" role="data"/>
+   <file md5sum="98c3856ffede2c519fa703dee541fc01" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ChildDef/Table.php" role="data"/>
+   <file md5sum="682f8da336f2a1dad1cd7880d4848076" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ChildDef/Required.php" role="data"/>
+   <file md5sum="dbfe4673baeefc27fb505c867d56c5d4" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Injector/PurifierLinkify.php" role="data"/>
+   <file md5sum="f34138e894be0e555fe120540db7cb5c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Injector/SafeObject.php" role="data"/>
+   <file md5sum="29da73b24cb7b03d0bd80d105e56401a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Injector/RemoveSpansWithoutAttributes.php" role="data"/>
+   <file md5sum="8e0e9c2d101e48d8ab7eae9ef3b8e503" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Injector/AutoParagraph.php" role="data"/>
+   <file md5sum="f6216052673d05748b26bfcbd51689f7" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Injector/RemoveEmpty.php" role="data"/>
+   <file md5sum="a205c290b398a25a7f4b76a5401e54c4" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Injector/Linkify.php" role="data"/>
+   <file md5sum="e0ba2c64ec1ff45452069ea4a61194c8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Injector/DisplayLinkURI.php" role="data"/>
+   <file md5sum="5e45fd1e8d10be6b9f4da28c765532ee" name="lib/vendor/htmlpurifier/library/HTMLPurifier/TagTransform/Simple.php" role="data"/>
+   <file md5sum="89de5fbc32f4899fcdd325e2e3402a6c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/TagTransform/Font.php" role="data"/>
+   <file md5sum="48272af4271d1d6cc193052d9a175222" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Strategy/FixNesting.php" role="data"/>
+   <file md5sum="a700e2953362d1f6118277acf05cd6be" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Strategy/MakeWellFormed.php" role="data"/>
+   <file md5sum="0324f1ab3397cb1544a51257994f576a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Strategy/Core.php" role="data"/>
+   <file md5sum="55d2b2fd0577ebdcbbbf1312f4e6eb6e" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Strategy/Composite.php" role="data"/>
+   <file md5sum="3e085d73ce91a3d38f3017b112d07a0d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Strategy/ValidateAttributes.php" role="data"/>
+   <file md5sum="6c6dbc3f24bccf2fdbfdbe9fe0912653" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Strategy/RemoveForeignElements.php" role="data"/>
+   <file md5sum="9e8b84835e638f4f835e43405c50900f" name="lib/vendor/htmlpurifier/library/HTMLPurifier/DefinitionCache/Decorator/Template.php.in" role="data"/>
+   <file md5sum="8acd4ef5453cc2c25612a665f46ca836" name="lib/vendor/htmlpurifier/library/HTMLPurifier/DefinitionCache/Decorator/Memory.php" role="data"/>
+   <file md5sum="31e3ea9d5988c5a1ae3f369ddccbfead" name="lib/vendor/htmlpurifier/library/HTMLPurifier/DefinitionCache/Decorator/Cleanup.php" role="data"/>
+   <file md5sum="1e9429a2030745d25d245d9f06f7f065" name="lib/vendor/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer/README" role="data"/>
+   <file md5sum="f185adab8aad39c577d9d4900ed61b81" name="lib/vendor/htmlpurifier/library/HTMLPurifier/DefinitionCache/Decorator.php" role="data"/>
+   <file md5sum="e27dfb4700f20a6ccd1ab8e498ce0ac6" name="lib/vendor/htmlpurifier/library/HTMLPurifier/DefinitionCache/Null.php" role="data"/>
+   <file md5sum="8d944f52f789e0e2a0ffc8b2e71fc9f6" name="lib/vendor/htmlpurifier/library/HTMLPurifier/DefinitionCache/Serializer.php" role="data"/>
+   <file md5sum="6fabc1d98be32763ec7b17b4d14b3f37" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Lexer/DOMLex.php" role="data"/>
+   <file md5sum="952281bcdb7bca94a6a69bb0fcb6a475" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Lexer/PEARSax3.php" role="data"/>
+   <file md5sum="a2936a1f2b528d9f055312d05f96712b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Lexer/DirectLex.php" role="data"/>
+   <file md5sum="fe014dc9d00bc84352578e9183917d24" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Lexer/PH5P.php" role="data"/>
+   <file md5sum="739249b8ed7c1e1ff906931b13d477f6" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Filter/ExtractStyleBlocks.php" role="data"/>
+   <file md5sum="92324458027c0e4bb3bce76361312080" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Filter/YouTube.php" role="data"/>
+   <file md5sum="f645558786c86be0b603b7cfc82f7e12" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Language/classes/en-x-test.php" role="data"/>
+   <file md5sum="146f1c2d41e1fdf85f334a05a0dd41ca" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Language/messages/en-x-testmini.php" role="data"/>
+   <file md5sum="c1ea035c3a68aee24f6d4c264ee79d6b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Language/messages/en-x-test.php" role="data"/>
+   <file md5sum="b9df8f809000af10f96b93ead76e0b64" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Language/messages/en.php" role="data"/>
+   <file md5sum="0effa122c2636c1b1d5ed4b900e51e68" name="lib/vendor/htmlpurifier/library/HTMLPurifier/EntityLookup/entities.ser" role="data"/>
+   <file md5sum="4a8d048c4ea2cf2a90e133659bd541d1" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/SafeParam.php" role="data"/>
+   <file md5sum="6575e1225807af9eb79e3c005b028591" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/SafeObject.php" role="data"/>
+   <file md5sum="03c2f1e68d493f53430c42d4c8806166" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/NameSync.php" role="data"/>
+   <file md5sum="b7d7e4d45de29fc50eefdc97e760e6d5" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/BoolToCSS.php" role="data"/>
+   <file md5sum="7d035d518336aec5b4dfa7e8d2958652" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/ImgRequired.php" role="data"/>
+   <file md5sum="3e6afa73230fc31d74eb382bd42bb18a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/BdoDir.php" role="data"/>
+   <file md5sum="faca234a22422d5cf69ca7068145eac8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/Border.php" role="data"/>
+   <file md5sum="f1f2fb8deb98f319592e4f55545facee" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/EnumToCSS.php" role="data"/>
+   <file md5sum="107148ff2b640ff7afbfc59e638812f5" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/ImgSpace.php" role="data"/>
+   <file md5sum="aeeb086b76d4bcb87d8a36a61b7ca644" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/ScriptRequired.php" role="data"/>
+   <file md5sum="45c48b09a03a9abef719748ce27c4728" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/Textarea.php" role="data"/>
+   <file md5sum="0c9bfa9cdc93cff8714b237e854f4595" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/Length.php" role="data"/>
+   <file md5sum="17dd8373c191efd5c95bfe5fb79ed8fe" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/Lang.php" role="data"/>
+   <file md5sum="563026acbdd46b682f91cdfea1103ce8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/Name.php" role="data"/>
+   <file md5sum="1decd9fa8e0777811024260549d29aaa" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/Background.php" role="data"/>
+   <file md5sum="a0ee62ef96c7ac5c6add36ef47f9ba47" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/Input.php" role="data"/>
+   <file md5sum="ec7f74671186c8e5e93a381cce6470fa" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/BgColor.php" role="data"/>
+   <file md5sum="c9814258f610f4cbc17b6a511289b329" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/SafeEmbed.php" role="data"/>
+   <file md5sum="e5fb3e1edb3c61fbaecf01e2dfcf22f9" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform/Nofollow.php" role="data"/>
+   <file md5sum="ca4835d0e9d1343746190b9593466f45" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIScheme/file.php" role="data"/>
+   <file md5sum="2e2cc9cf920b39eb12d22ad7d0a333eb" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIScheme/http.php" role="data"/>
+   <file md5sum="6f8038c64f19a6939747bae17e983964" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIScheme/mailto.php" role="data"/>
+   <file md5sum="c32c0196a3234bfbc42359b8805dce34" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIScheme/news.php" role="data"/>
+   <file md5sum="9399c38e67a552a22c5828dd1c4aeedc" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIScheme/https.php" role="data"/>
+   <file md5sum="a34f4bc3bdcfd94524eee1f606c7d6ad" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIScheme/ftp.php" role="data"/>
+   <file md5sum="509519ebf9008ace902400a32753cce4" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIScheme/data.php" role="data"/>
+   <file md5sum="35806fa84506a4828b476a76dcf0a769" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIScheme/nntp.php" role="data"/>
+   <file md5sum="24ef176b2f7404070c401d8d509d7968" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModuleManager.php" role="data"/>
+   <file md5sum="629508f0959354d4ebd99c527e704036" name="lib/vendor/htmlpurifier/library/HTMLPurifier/VarParser.php" role="data"/>
+   <file md5sum="d2040cbc74c4ce31449d127719bcc6cb" name="lib/vendor/htmlpurifier/library/HTMLPurifier/StringHashParser.php" role="data"/>
+   <file md5sum="934cbbd131e387f9e2cf0921e0c88936" name="lib/vendor/htmlpurifier/library/HTMLPurifier/StringHash.php" role="data"/>
+   <file md5sum="09c3ba8bb6f4aa45ffa1e8826de537c5" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ConfigSchema.php" role="data"/>
+   <file md5sum="6549f2e00060fd671149191f1e94eaf3" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Exception.php" role="data"/>
+   <file md5sum="b1ba10c4bcd37a7f5e9a6c97a81b18c8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTypes.php" role="data"/>
+   <file md5sum="05823f704d950d3a9debbd3784e4aaea" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Strategy.php" role="data"/>
+   <file md5sum="d52d2040f01112af0e00f8b9bac38267" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIParser.php" role="data"/>
+   <file md5sum="d17e7d5f8bc24cfc07f97aa7b014c4cd" name="lib/vendor/htmlpurifier/library/HTMLPurifier/PropertyListIterator.php" role="data"/>
+   <file md5sum="5b1067853574bae62d9cd70370ff10af" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrCollections.php" role="data"/>
+   <file md5sum="319d75a5f8e6bbc8c644056a68a4aaec" name="lib/vendor/htmlpurifier/library/HTMLPurifier/PropertyList.php" role="data"/>
+   <file md5sum="ed32af45fe9dba652840c42075a7cdf3" name="lib/vendor/htmlpurifier/library/HTMLPurifier/TokenFactory.php" role="data"/>
+   <file md5sum="fc3fee6ae7b5cfa04ce2c4ba8699a98b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Encoder.php" role="data"/>
+   <file md5sum="1ebc1f6db1134f98ba757d16bec67d0a" name="lib/vendor/htmlpurifier/library/HTMLPurifier/EntityLookup.php" role="data"/>
+   <file md5sum="8213ddfbefa6817cc8b5dc187a5b1872" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Generator.php" role="data"/>
+   <file md5sum="cecf44537b101f5dd9dd489e466dc1dc" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIScheme.php" role="data"/>
+   <file md5sum="e0d561847a32f792cfe835b7c06ade5b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Config.php" role="data"/>
+   <file md5sum="076912e39d039b0a59bfa28d76dc21f2" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Lexer.php" role="data"/>
+   <file md5sum="41e2004626f0e87d894ad091f91f6554" name="lib/vendor/htmlpurifier/library/HTMLPurifier/IDAccumulator.php" role="data"/>
+   <file md5sum="d47c14f91daea5ce4c2cf8a7c8a05bba" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URI.php" role="data"/>
+   <file md5sum="512fcd900313924eb7902442186a06cc" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Doctype.php" role="data"/>
+   <file md5sum="cebdc28d8a702d0d2dfceb8c27196812" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Token.php" role="data"/>
+   <file md5sum="18870fa532d982a78f20d00e93b6ba3e" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrTransform.php" role="data"/>
+   <file md5sum="1bd2243d0d7b68504723ebc5dddd0ea2" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ContentSets.php" role="data"/>
+   <file md5sum="34c9de227562f8967141cbf9f565c289" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Language.php" role="data"/>
+   <file md5sum="b510f76fa16d0a3298c6d7b468a6494c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrDef.php" role="data"/>
+   <file md5sum="62112e5c17a05698309321ea85935061" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIFilter.php" role="data"/>
+   <file md5sum="33181bbe7f6e7e839796e73d4d2a790d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Filter.php" role="data"/>
+   <file md5sum="4d14a6fa6959c5c6993391b9946b57fe" name="lib/vendor/htmlpurifier/library/HTMLPurifier/PercentEncoder.php" role="data"/>
+   <file md5sum="c1ed36707d08237daa646b3b8eeb30a4" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Context.php" role="data"/>
+   <file md5sum="7eceb75eb3b094801acb9e76862ae245" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLDefinition.php" role="data"/>
+   <file md5sum="58a26316f701ac79ca439ce4d874b9d3" name="lib/vendor/htmlpurifier/library/HTMLPurifier/LanguageFactory.php" role="data"/>
+   <file md5sum="1df8a4f27f64b5473b41e4666f787c6d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/DefinitionCacheFactory.php" role="data"/>
+   <file md5sum="39382c387dc2a7dac903c2b63849a9a6" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Length.php" role="data"/>
+   <file md5sum="53aebf76f83099026c95c03844ecf39b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/AttrValidator.php" role="data"/>
+   <file md5sum="549903c3c3bfa86d91d3c2e2c8e065db" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URIDefinition.php" role="data"/>
+   <file md5sum="dbcd0c8ef8f54df0bf8945d5a61b2a9c" name="lib/vendor/htmlpurifier/library/HTMLPurifier/URISchemeRegistry.php" role="data"/>
+   <file md5sum="3cc9e13fb56fb8816bd478e46522a926" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ErrorStruct.php" role="data"/>
+   <file md5sum="281eaa00a5e3ff98b611b5ebca97bcb0" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ChildDef.php" role="data"/>
+   <file md5sum="85a29be7cf7434024284aeb333659c0b" name="lib/vendor/htmlpurifier/library/HTMLPurifier/EntityParser.php" role="data"/>
+   <file md5sum="9dcddc344c2d6d44698479dead8beead" name="lib/vendor/htmlpurifier/library/HTMLPurifier/UnitConverter.php" role="data"/>
+   <file md5sum="ef70ab52db10c8ec6adb270fe46f8f6d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ElementDef.php" role="data"/>
+   <file md5sum="26cebb9f30dca77d71a4a266eb7d16f8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Bootstrap.php" role="data"/>
+   <file md5sum="0ab0a6b2a7d358ab8532d897e8bfe729" name="lib/vendor/htmlpurifier/library/HTMLPurifier/DoctypeRegistry.php" role="data"/>
+   <file md5sum="5aee849a4ef4f610cd383752697f6966" name="lib/vendor/htmlpurifier/library/HTMLPurifier/ErrorCollector.php" role="data"/>
+   <file md5sum="9f1d4fac7ab8e8ba0a94a13cdfb5c644" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Injector.php" role="data"/>
+   <file md5sum="9cbb7c9019e68203ca205eff77a61fe5" name="lib/vendor/htmlpurifier/library/HTMLPurifier/HTMLModule.php" role="data"/>
+   <file md5sum="8b1819c0ed397d313e5c76b062e6264d" name="lib/vendor/htmlpurifier/library/HTMLPurifier/VarParserException.php" role="data"/>
+   <file md5sum="db24b53bab53b8ffa40b197e06078fe4" name="lib/vendor/htmlpurifier/library/HTMLPurifier/DefinitionCache.php" role="data"/>
+   <file md5sum="530db343c69ec3d4ba27e09e4b837903" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Printer.php" role="data"/>
+   <file md5sum="3516a182bdf938206958c01134604b23" name="lib/vendor/htmlpurifier/library/HTMLPurifier/TagTransform.php" role="data"/>
+   <file md5sum="91ddc1c426c0d3566b822155141dfdb1" name="lib/vendor/htmlpurifier/library/HTMLPurifier/CSSDefinition.php" role="data"/>
+   <file md5sum="fc6c201006bd25ce1e56148805be4ae8" name="lib/vendor/htmlpurifier/library/HTMLPurifier/Definition.php" role="data"/>
+   <file md5sum="4b4731b18fc20cf22a3524093b122278" name="lib/vendor/htmlpurifier/library/HTMLPurifier.autoload.php" role="data"/>
+   <file md5sum="5a6eedd494dd20c8579e2a9d39809d5b" name="lib/vendor/htmlpurifier/library/HTMLPurifier.path.php" role="data"/>
+   <file md5sum="25043ef5e632f88e8d5c825a8516a1cc" name="lib/vendor/htmlpurifier/library/HTMLPurifier.kses.php" role="data"/>
+   <file md5sum="0f6dba2689f471c382240c8d2d7892ba" name="lib/vendor/htmlpurifier/library/HTMLPurifier.auto.php" role="data"/>
+   <file md5sum="3fc5474d1a6934d5f847f77f7ce02150" name="lib/vendor/htmlpurifier/library/HTMLPurifier.includes.php" role="data"/>
+   <file md5sum="f09594e7a7db5826b4b3aef3b9f874ed" name="lib/vendor/htmlpurifier/library/HTMLPurifier.func.php" role="data"/>
+   <file md5sum="1607fd41502416710381369d0acd3499" name="lib/vendor/htmlpurifier/library/HTMLPurifier.safe-includes.php" role="data"/>
+   <file md5sum="535bf3d46f4d7aebb2f8189e0e3ec9aa" name="lib/vendor/htmlpurifier/library/HTMLPurifier.php" role="data"/>
+   <file md5sum="32e3036960c6d3226aadb9d85c08ba92" name="lib/vendor/htmlpurifier/benchmarks/samples/Lexer/4.html" role="data"/>
+   <file md5sum="f611408a4bb7cb5318cf36e6beb46426" name="lib/vendor/htmlpurifier/benchmarks/samples/Lexer/3.html" role="data"/>
+   <file md5sum="e44cddb96094d659f340e821574c29be" name="lib/vendor/htmlpurifier/benchmarks/samples/Lexer/DISCLAIMER.txt" role="data"/>
+   <file md5sum="c44fba567476ab151e0527042ba67bba" name="lib/vendor/htmlpurifier/benchmarks/samples/Lexer/1.html" role="data"/>
+   <file md5sum="0a3fc317a55f229e538fa104d2660640" name="lib/vendor/htmlpurifier/benchmarks/samples/Lexer/2.html" role="data"/>
+   <file md5sum="bd2fbe1678cdff00817e718751ad7052" name="lib/vendor/htmlpurifier/benchmarks/ConfigSchema.php" role="data"/>
+   <file md5sum="a1271512b768064c997c8ec8bd44104b" name="lib/vendor/htmlpurifier/benchmarks/Lexer.php" role="data"/>
+   <file md5sum="3d0a2c13799a9b088db551001120b520" name="lib/vendor/htmlpurifier/benchmarks/Trace.php" role="data"/>
+   <file md5sum="a8386dc539769e5d88e80c5f3c7747de" name="lib/vendor/htmlpurifier/extras/ConfigDoc/HTMLXSLTProcessor.php" role="data"/>
+   <file md5sum="191bc1613cb75eadf957316991dbde13" name="lib/vendor/htmlpurifier/extras/FSTools/File.php" role="data"/>
+   <file md5sum="c07b3d2a2e728fac7d85a943947010bc" name="lib/vendor/htmlpurifier/extras/HTMLPurifierExtras.php" role="data"/>
+   <file md5sum="d035ef887c98aaf21ce29cf903cd1d7b" name="lib/vendor/htmlpurifier/extras/README" role="data"/>
+   <file md5sum="ccc8e4daed5604321a36c92b8bc8aaf2" name="lib/vendor/htmlpurifier/extras/HTMLPurifierExtras.auto.php" role="data"/>
+   <file md5sum="b8f834154fca4e84d5e12f06ab94dc1a" name="lib/vendor/htmlpurifier/extras/HTMLPurifierExtras.autoload.php" role="data"/>
+   <file md5sum="c2ac350224e96fdb3b7b5827ae5fb3d9" name="lib/vendor/htmlpurifier/extras/FSTools.php" role="data"/>
+   <file md5sum="51f2c07c553d2ae0bc9e5898eaf7aa8c" name="lib/vendor/htmlpurifier/configdoc/styles/plain.xsl" role="data"/>
+   <file md5sum="938a1394ccb864c2ec20d9c9575bbb7c" name="lib/vendor/htmlpurifier/configdoc/styles/plain.css" role="data"/>
+   <file md5sum="caf8dd6563273808076fec57ad39d30f" name="lib/vendor/htmlpurifier/configdoc/usage.xml" role="data"/>
+   <file md5sum="661726abed7f7562757b06cba14bb63b" name="lib/vendor/htmlpurifier/configdoc/types.xml" role="data"/>
+   <file md5sum="c01d083d54b7706dc7719cbd3f28834a" name="lib/vendor/htmlpurifier/configdoc/generate.php" role="data"/>
+   <file md5sum="6e061f1d1700b11f7305574eff3853c1" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.string.txt" role="data"/>
+   <file md5sum="62a41b61a6704d1d80d552da7c9f4a22" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.istring.txt" role="data"/>
+   <file md5sum="69a3bd653578e721b0c6ddf93f351d3f" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.hash.txt" role="data"/>
+   <file md5sum="a247504be1c13d2b98c55e4d96754e62" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.itext.txt" role="data"/>
+   <file md5sum="321779d56894dcd38164c5f53158ccc2" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.text.txt" role="data"/>
+   <file md5sum="b585112f2c72d7fc2a90605819bb19e1" name="lib/vendor/htmlpurifier/smoketests/test-schema/Directive.Deprecated.txt" role="data"/>
+   <file md5sum="20de5a0761dc1a7092ed4263e3926f0a" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.lookup.txt" role="data"/>
+   <file md5sum="9fa9a9c936a4342d672b4a54a50eb89e" name="lib/vendor/htmlpurifier/smoketests/test-schema/Directive.Allowed.txt" role="data"/>
+   <file md5sum="c69158137fbab463f350406527cce730" name="lib/vendor/htmlpurifier/smoketests/test-schema/info.ini" role="data"/>
+   <file md5sum="60fad3547b26e9a8b2d7c8fcd6005296" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.float.txt" role="data"/>
+   <file md5sum="c1698d8e2629d85529e41f6e69078654" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.nullbool.txt" role="data"/>
+   <file md5sum="fed19bf515032e2d576d14b6bcf3723b" name="lib/vendor/htmlpurifier/smoketests/test-schema/Directive.txt" role="data"/>
+   <file md5sum="cc4beac12f2ca8e6c40de77597bc3c94" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.mixed.txt" role="data"/>
+   <file md5sum="896a09001f23f807cb7060bc2c2a1f72" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.txt" role="data"/>
+   <file md5sum="a3b1e875d5d4670fdfdfd8bc406a4938" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.list.txt" role="data"/>
+   <file md5sum="d18a11c2d4ec5931e17cfe6a248b7888" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.int.txt" role="data"/>
+   <file md5sum="7e166c176d8e4ce90d50ddcc681ead3c" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.nullstring.txt" role="data"/>
+   <file md5sum="7723a7de2720c9f79912027448caf22f" name="lib/vendor/htmlpurifier/smoketests/test-schema/Type.bool.txt" role="data"/>
+   <file md5sum="bd2a4100ac1c065fef36957ca6a41076" name="lib/vendor/htmlpurifier/smoketests/basic/allElements.html" role="data"/>
+   <file md5sum="dfccbdb0b66120760f4c1f13d9395528" name="lib/vendor/htmlpurifier/smoketests/basic/allElements.css" role="data"/>
+   <file md5sum="cc8b8dad808bd44d4ef4f99cbb3b976a" name="lib/vendor/htmlpurifier/smoketests/basic/legacy.html" role="data"/>
+   <file md5sum="3f281759cb1e89eb26f944853541df45" name="lib/vendor/htmlpurifier/smoketests/basic/legacy.css" role="data"/>
+   <file md5sum="73a13d98219551d6433871ec15bb9d1f" name="lib/vendor/htmlpurifier/smoketests/attrTransform.php" role="data"/>
+   <file md5sum="bab943b4abfeb9a929b324dc9a1992d6" name="lib/vendor/htmlpurifier/smoketests/dataScheme.php" role="data"/>
+   <file md5sum="742f7fa7d9106d11388770033656c038" name="lib/vendor/htmlpurifier/smoketests/configForm.php" role="data"/>
+   <file md5sum="235c5bcf8d5bc90bf2e6f2449de20a39" name="lib/vendor/htmlpurifier/smoketests/innerHTML.html" role="data"/>
+   <file md5sum="4a4d062424000890c158d1ec1d757b27" name="lib/vendor/htmlpurifier/smoketests/extractStyleBlocks.php" role="data"/>
+   <file md5sum="a72309cbf2c24955f5da0b7e65adb7f1" name="lib/vendor/htmlpurifier/smoketests/cacheConfig.php" role="data"/>
+   <file md5sum="455db42cc24a52037c644a18a1d4eacd" name="lib/vendor/htmlpurifier/smoketests/img.png" role="data"/>
+   <file md5sum="e950f90a156d9855fa6adfe6a0829f98" name="lib/vendor/htmlpurifier/smoketests/printDefinition.php" role="data"/>
+   <file md5sum="eaf7700b34b567ff431a89d1441b26f4" name="lib/vendor/htmlpurifier/smoketests/preserveYouTube.php" role="data"/>
+   <file md5sum="bd44210fc5620eb899783fabc6354de7" name="lib/vendor/htmlpurifier/smoketests/variableWidthAttack.php" role="data"/>
+   <file md5sum="69f478999fd1e0d0e53fe0c8ec514838" name="lib/vendor/htmlpurifier/smoketests/xssAttacks.php" role="data"/>
+   <file md5sum="648f3ff3df8a33ae87a31ca251dfb47f" name="lib/vendor/htmlpurifier/smoketests/innerHTML.js" role="data"/>
+   <file md5sum="a125000dfc0a503c2d45f7a4491cd14a" name="lib/vendor/htmlpurifier/smoketests/attrTransform.xml" role="data"/>
+   <file md5sum="887c3ea079d104e8c82d80b225d2450a" name="lib/vendor/htmlpurifier/smoketests/basic.php" role="data"/>
+   <file md5sum="7fac5c99bdf3f91c9b3f9ebabd74245c" name="lib/vendor/htmlpurifier/smoketests/all.php" role="data"/>
+   <file md5sum="69d1e13644301e93e48cd1033584098b" name="lib/vendor/htmlpurifier/smoketests/xssAttacks.xml" role="data"/>
+   <file md5sum="7bf018f273209263b75a936b0032b1ab" name="lib/vendor/htmlpurifier/smoketests/common.php" role="data"/>
+   <file md5sum="7078c6e52ad0f35401dbf2601d529862" name="lib/vendor/htmlpurifier/NEWS" role="data"/>
+   <file md5sum="500f6fabaec86ab77c0bafd28e7d7003" name="lib/vendor/htmlpurifier/TODO" role="data"/>
+   <file md5sum="a5f9ddecea015543001404c0a9bfd181" name="lib/vendor/htmlpurifier/CREDITS" role="data"/>
+   <file md5sum="0154007177368e4c50717ac988c30d94" name="lib/vendor/htmlpurifier/release2-tag.php" role="data"/>
+   <file md5sum="71574928bfb5487d903709ac8d24087e" name="lib/vendor/htmlpurifier/test-settings.sample.php" role="data"/>
+   <file md5sum="f86465f4ecdafb02019055a4a6dd1fe7" name="lib/vendor/htmlpurifier/README" role="data"/>
+   <file md5sum="ff4df1c693f829ce3b573dba2d588850" name="lib/vendor/htmlpurifier/WYSIWYG" role="data"/>
+   <file md5sum="df78a8690f63dab77e7b5053bd37d9ed" name="lib/vendor/htmlpurifier/INSTALL" role="data"/>
+   <file md5sum="c4fc35d873f9724d60f14c47a5a9bc1d" name="lib/vendor/htmlpurifier/phpdoc.ini" role="data"/>
+   <file md5sum="65957a416cd585417533025dfbe005e9" name="lib/vendor/htmlpurifier/Doxyfile" role="data"/>
+   <file md5sum="a1b3d3e45e8422eed104489842a6f546" name="lib/vendor/htmlpurifier/LICENSE" role="data"/>
+   <file md5sum="fe6a1df07a76e74091e3c1e6a4c044a1" name="lib/vendor/htmlpurifier/release1-update.php" role="data"/>
+   <file md5sum="a6270f666ec1a728b41a3727e50f2233" name="lib/vendor/htmlpurifier/FOCUS" role="data"/>
+   <file md5sum="c9e4dc50b8d6ed20385fdca95873b3a5" name="lib/vendor/htmlpurifier/VERSION" role="data"/>
+   <file md5sum="696cb037ad83242969231afad4894d07" name="lib/vendor/htmlpurifier/INSTALL.fr.utf8" role="data"/>
+   <file md5sum="ad88abe18d620b75f501876747efd092" name="lib/vendor/htmlpurifier/WHATSNEW" role="data"/>
+   <file md5sum="66259841f8bda1d10d43af7668f99e69" name="lib/vendor/htmlpurifier/package.php" role="data"/>
+   <file md5sum="7c5b5e148d08cde6b43ddfe6aa249588" name="lib/sfXssSafe.class.php" role="data"/>
+   <file md5sum="430a21691422b59bde63426f57757724" name="lib/sfXssSafeObject.class.php.sample" role="data"/>
+   <file md5sum="740f6142625e8e2b73716f85c3cdaf8a" name="test/unit/XssSafeTest.php" role="data"/>
+   <file md5sum="758da7093b3d35895f4165c01f8d383d" name="config/app.yml" role="data"/>
+   <file md5sum="2088f55526cc1e4f8a4c7d09620508a7" name="README" role="data"/>
+   <file md5sum="64c4c0f95fcb28fdfed525e79a177184" name="LICENSE" role="data"/>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.1.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   
+  </required>
+ </dependencies>
+ <phprelease/>
+ <changelog>
+  <release>
+   <version>
+    <release>1.1.0</release>
+    <api>1.1.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2011-10-04</date>
+   <notes>
+* heristop : Allows multiple attributes to one tag
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2011-08-26</date>
+   <notes>
+* heristop : Migration to HTML Purifier 4.3
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.5</release>
+    <api>0.9.5</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-05-28</date>
+   <notes>
+* heristop : Migration to HTML Purifier 4.0
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.2</release>
+    <api>0.9.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-05-28</date>
+   <notes>
+* heristop : Added missing classes from HTML Purifier 3.3 library
+* heristop : Renamed sfXssSafeObject.class sample to avoid autoload
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.1</release>
+    <api>0.9.1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-05-27</date>
+   <notes>
+* heristop : Migration to HTML Purifier 3.3
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.8.0</release>
+    <api>0.8.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2008-11-07</date>
+   <notes>
+* heristop : Migration to HTML Purifier 3.2
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.6.1</release>
+    <api>0.6.1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2008-06-27</date>
+   <notes>
+* heristop : Migration to HTML Purifier 3.1.1
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.6.0</release>
+    <api>0.6.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2008-06-20</date>
+   <notes>
+* heristop : Adding customizable elements
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.5.0</release>
+    <api>0.5.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2008-05-19</date>
+   <notes>
+* heristop : Initial version
+   </notes>
+  </release>
+ </changelog>
+</package>

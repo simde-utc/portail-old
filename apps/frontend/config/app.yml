@@ -22,7 +22,13 @@ all:
   portail:
     current_semestre: 2
     default_join_role: 3
-      
+  sfXssSafePlugin:
+    definition:
+
+      HTML:
+        DefinitionID:              'portail definition' 
+        DefinitionRev:             1
+
 
 dev:
   cas:

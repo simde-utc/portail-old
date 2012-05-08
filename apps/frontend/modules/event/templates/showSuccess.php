@@ -1,5 +1,6 @@
 <?php use_stylesheet('event.css') ?>
 <?php use_helper('Date') ?>
+<?php use_helper('Thumb') ?>
 
 <h2><?php $event->getName() ?> </h2>
 
@@ -14,7 +15,9 @@ Lieu : <?php echo $event->getPlace(); ?>
   - <a href="<?php echo url_for('event/edit?id=' . $event->getId()) ?>">Editer</a>
 <?php endif ?>
 <br/>
-<img class="logo" src="<?php echo $event->getAsso()->getLogo() ?>">
+<?php if($event->getAffiche()): ?>
+            <?php echo showThumb($event->getAffiche(), 'events', array('width'=>400, 'height'=>300), 'scale') ?><br />
+<?php endif; ?>
 <div class="desc">
   <?php echo $event->getDescription(); ?>
   </br>

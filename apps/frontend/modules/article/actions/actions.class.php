@@ -85,7 +85,7 @@ class articleActions extends sfActions
     {
       $article = $form->save();
 
-      $this->redirect('article/edit?id='.$article->getId());
+      $this->redirect('article/show?id='.$article->getId());
     }
   }
 }

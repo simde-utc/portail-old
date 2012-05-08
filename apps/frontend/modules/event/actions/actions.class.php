@@ -99,7 +99,7 @@ class eventActions extends sfActions
     {
       $event = $form->save();
 
-      $this->redirect('event/edit?id='.$event->getId());
+      $this->redirect('event/show?id='.$event->getId());
     }
   }
 }

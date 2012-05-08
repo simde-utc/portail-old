@@ -35,6 +35,7 @@ class articleActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new ArticleForm();
+    $this->form->setDefault('asso_id', $this->getRoute()->getObject()->getId());
   }
 
   public function executeCreate(sfWebRequest $request)

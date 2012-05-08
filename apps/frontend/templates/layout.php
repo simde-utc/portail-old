@@ -28,10 +28,8 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu pull-right">
-                <li><a href="<?php echo url_for('cas') ?>">Je suis étudiant</a></li>
+                <li><a href="<?php echo url_for('cas') ?>">Étudiant UTC (CAS)</a></li>
                 <li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>
-                <li class="divider"></li>
-                <li><a href="<?php echo url_for('sf_guard_register') ?>">Inscription extérieur</a></li>
               </ul>
             </li>
           </ul>
@@ -43,9 +41,7 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu pull-right">
-                <li><a href="<?php echo url_for('cas_logout') ?>">Déconnexion du CAS</a></li>
-                <li class="divider"></li>
-                <li><a href="<?php echo url_for('sf_guard_signout') ?>">Déconnexion du portail</a></li>
+                <li><a href="<?php echo url_for('cas_logout') ?>">Se déconnecter</a></li>
               </ul>
             </li>
           </ul>

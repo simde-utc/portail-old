@@ -14,8 +14,7 @@ class EventForm extends BaseEventForm
   { 
     sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
     
-    $this->getWidget('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
-    $this->getValidator('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
+    $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
     
     /*$this->widgetSchema['start_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png', 'date_widget'=>$this->widgetSchema['start_date']),
       array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));
@@ -58,8 +57,6 @@ class EventForm extends BaseEventForm
     
     $this->validatorSchema['affiche_delete'] = new sfValidatorBoolean();
 
-    $this->widgetSchema->setLabels(array(
-        'asso_id' => 'Auteur',));
     $this->widgetSchema->setLabel('name', 'Nom');
     $this->widgetSchema->setLabel('type_id', 'Type');
     $this->widgetSchema->setLabel('start_date', 'Début');

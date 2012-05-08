@@ -13,8 +13,7 @@ class ArticleForm extends BaseArticleForm {
   public function configure() {
     sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
     
-    $this->getWidget('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
-    $this->getValidator('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
+    $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
 
     $this->widgetSchema['image'] = new sfWidgetFormInputFileEditable(array(
                 'file_src' => doThumb($this->getObject()->getImage(), 'articles', array('width'=>150, 'height'=>150), 'scale'),
@@ -32,7 +31,6 @@ class ArticleForm extends BaseArticleForm {
 
     $this->validatorSchema['image_delete'] = new sfValidatorBoolean();
     
-    $this->widgetSchema->setLabel('asso_id', 'Auteur');
     $this->widgetSchema->setLabel('name', 'Titre');
     $this->widgetSchema->setLabel('summary', 'Résumé en une ligne');
     $this->widgetSchema->setLabel('text', 'Contenu');

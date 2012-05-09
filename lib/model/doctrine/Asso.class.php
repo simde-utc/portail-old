@@ -49,7 +49,7 @@ class Asso extends BaseAsso
   {
     $index = AssoTable::getInstance()->getLuceneIndex();
 
-    foreach($index->find('pk:'.$this->getId()) as $hit)
+    foreach($index->find('pk:' . $this->getId()) as $hit)
     {
       $index->delete($hit->id);
     }
@@ -66,7 +66,7 @@ class Asso extends BaseAsso
     $index = AssoTable::getInstance()->getLuceneIndex();
 
     // remove existing entries
-    foreach($index->find('pk:'.$this->getId()) as $hit)
+    foreach($index->find('pk:' . $this->getId()) as $hit)
     {
       $index->delete($hit->id);
     }
@@ -75,12 +75,12 @@ class Asso extends BaseAsso
     $doc = new Zend_Search_Lucene_Document();
 
     // store asso primary key to identify it in the search results
-    $doc->addField(Zend_Search_Lucene_Field::Keyword('pk',$this->getId()));
+    $doc->addField(Zend_Search_Lucene_Field::Keyword('pk', $this->getId()));
 
     // index asso fields
-    $doc->addField(Zend_Search_Lucene_Field::UnStored('name',$this->getName(),'utf-8'));
-    $doc->addField(Zend_Search_Lucene_Field::UnStored('description',$this->getDescription(),'utf-8'));
-    $doc->addField(Zend_Search_Lucene_Field::UnStored('login',$this->getLogin(),'utf-8'));
+    $doc->addField(Zend_Search_Lucene_Field::UnStored('name', $this->getName(), 'utf-8'));
+    $doc->addField(Zend_Search_Lucene_Field::UnStored('description', $this->getDescription(), 'utf-8'));
+    $doc->addField(Zend_Search_Lucene_Field::UnStored('login', $this->getLogin(), 'utf-8'));
 
     // add asso to the index
     $index->addDocument($doc);
@@ -99,9 +99,25 @@ class Asso extends BaseAsso
 
   public function isPole()
   {
-    $q = PoleTable::getInstance()->createQuery('p')->where('p.asso_id = ?',$this->getPrimaryKey());
+    $q = PoleTable::getInstance()->createQuery('p')->where('p.asso_id = ?', $this->getPrimaryKey());
 
     return $q->fetchOne();
+  }
+
+  public function addMember(sfGuardUser $user)
+  {
+    $assoMember = new AssoMember();
+    $assoMember->setAsso($this);
+    $assoMember->setUser($user);
+    $assoMember->setRoleId(sfConfig::get('app_portail_default_join_role'));
+    $assoMember->setSemestreId(sfConfig::get('app_portail_current_semestre'));
+    $assoMember->save();
+  }
+
+  public function getPoleName()
+  {
+    if($this->getPole())
+      return $this->getPole()->__toString();
   }
 
 }

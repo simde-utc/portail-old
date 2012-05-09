@@ -31,7 +31,7 @@ all:
 
     # Output escaping settings
     escaping_strategy:      true
-    escaping_method:        ESC_SPECIALCHARS
+    escaping_method:        ESC_XSSSAFE
 
     # Enable the database manager
     use_database:           true
@@ -41,4 +41,4 @@ all:
     login_action:           signin
     secure_module:          sfGuardAuth
     secure_action:          secure
-    standard_helpers:       [Partial, Cache, Asset]
+    standard_helpers:       [Partial, Cache, Asset, XssSafe]

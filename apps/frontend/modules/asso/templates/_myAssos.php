@@ -1,14 +1,14 @@
+<?php use_helper('Thumb') ?>
 <div id="my_assos">
   <h1>Mes associations</h1>
   <?php if($assos && $assos->count() > 0): ?>
     <?php foreach($assos as $asso): ?>
       <div class="my_asso">
-        <img src="<?php echo $asso->getLogo() ?>" width="64" height="64" alt="<?php echo $asso->getName() ?>" />
+        <a href="<?php echo url_for('assos_show',$asso) ?>"><?php echo showThumb($asso->getLogo(), 'assos', array('width'=>32, 'height'=>32), 'center') ?></a>
         <h2>
-          <?php echo $asso->getName() ?>
+          <a href="<?php echo url_for('assos_show',$asso) ?>"><?php echo $asso->getName() ?></a>
         </h2>
         <div class="barre"></div>
-        <a href="<?php echo url_for('assos_show',$asso) ?>" class="more">>> En savoir plus</a>
       </div>
     <?php endforeach; ?>
   <?php else: ?>

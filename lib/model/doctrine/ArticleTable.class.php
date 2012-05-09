@@ -28,9 +28,9 @@ class ArticleTable extends Doctrine_Table {
             ->addOrderBy('a.created_at DESC');
 
     if (!is_null($asso))
-      if ($asso->isPole())
+      /*if ($asso->isPole())
         $q = $q->leftJoin('Asso as')->where("as.pole_id = ?", $asso->getPrimaryKey());
-      else
+      else*/
         $q = $q->where("a.asso_id = ?", $asso->getPrimaryKey());
 
     return $q;

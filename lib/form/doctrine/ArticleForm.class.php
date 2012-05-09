@@ -11,27 +11,26 @@
 class ArticleForm extends BaseArticleForm {
 
   public function configure() {
-    unset($this['created_at'], $this['updated_at'], $this['is_weekmail']);
+    sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
     
-    $this->getWidget('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
-    $this->getValidator('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
+    $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
 
     $this->widgetSchema['image'] = new sfWidgetFormInputFileEditable(array(
-                'file_src' => '/uploads/articles/' . $this->getObject()->getImage(),
+                'file_src' => doThumb($this->getObject()->getImage(), 'articles', array('width'=>150, 'height'=>150), 'scale'),
                 'is_image' => true,
-                'edit_mode' => !$this->isNew(),
+                'edit_mode' => (!$this->isNew() && $this->getObject()->getImage()),
                 'with_delete' => true,
+                'delete_label' => "Supprimer cette illustration"
             ));
 
     $this->validatorSchema['image'] = new sfValidatorFile(array(
                 'required' => false,
-                'path' => sfConfig::get('sf_upload_dir') . '/articles',
+                'path' => sfConfig::get('sf_upload_dir') . '/articles/source',
                 'mime_types' => 'web_images'
             ));
 
     $this->validatorSchema['image_delete'] = new sfValidatorBoolean();
     
-    $this->widgetSchema->setLabel('asso_id', 'Auteur');
     $this->widgetSchema->setLabel('name', 'Titre');
     $this->widgetSchema->setLabel('summary', 'Résumé en une ligne');
     $this->widgetSchema->setLabel('text', 'Contenu');

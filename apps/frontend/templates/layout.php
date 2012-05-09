@@ -21,34 +21,30 @@
         </form>
         <span class="barre"></span>
         <?php if(!$sf_user->isAuthenticated()): ?>
-        <ul class="nav nav-pills">
-          <li class="dropdown" id="drop-connexion">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
-              Connexion
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu pull-right">
-              <li><a href="<?php echo url_for('cas') ?>">Je suis étudiant</a></li>
-              <li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>
-              <li class="divider"></li>
-              <li><a href="<?php echo url_for('sf_guard_register') ?>">Inscription extérieur</a></li>
-            </ul>
-          </li>
-        </ul>
+          <ul class="nav nav-pills">
+            <li class="dropdown" id="drop-connexion">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
+                Connexion
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu pull-right">
+                <li><a href="<?php echo url_for('cas') ?>">Étudiant UTC (CAS)</a></li>
+                <li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>
+              </ul>
+            </li>
+          </ul>
         <?php else: ?>
-        <ul class="nav nav-pills">
-          <li class="dropdown" id="drop-connexion">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
-              <?php echo $sf_user->getGuardUser()->getName() ?>
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu pull-right">
-              <li><a href="<?php echo url_for('cas_logout') ?>">Déconnexion du CAS</a></li>
-              <li class="divider"></li>
-              <li><a href="<?php echo url_for('sf_guard_signout') ?>">Déconnexion du portail</a></li>
-            </ul>
-          </li>
-        </ul>
+          <ul class="nav nav-pills">
+            <li class="dropdown" id="drop-connexion">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
+                <?php echo $sf_user->getGuardUser()->getName() ?>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu pull-right">
+                <li><a href="<?php echo url_for('cas_logout') ?>">Se déconnecter</a></li>
+              </ul>
+            </li>
+          </ul>
         <?php endif ?>
       </div>
     </div>
@@ -82,19 +78,42 @@
       <div id="column-right">
         <div id="contact">
           <p>Contacter le BDE-UTC</p>
-          <p>rue Roger Couttolenc<br />
+          <p>Rue Roger Couttolenc<br />
             60200 Compiègne</p>
           <p>
-            Tél : +33 3 44 23 43 71
+            Tél. : +33 3 44 23 43 71
           </p>
           <p>
-            bde@assos.utc.fr<br />
-            <?php echo url_for('asso/show?login=bde', true) ?>
+            <a href="mailto:bde@assos.utc.fr">bde@assos.utc.fr</a><br />
+            <a href="<?php echo url_for('home/index') ?>"><?php echo url_for('home/index', true) ?></a>
           </p>
-          <a href="" class="nousecrire">Nous écrire</a>
         </div>
       </div>      
       <div id="content">
+        <?php if($sf_user->hasFlash('error')): ?>
+        <div class="alert alert-block alert-error">
+          <strong>Erreur!</strong>
+          <?php echo $sf_user->getFlash('error'); ?>
+        </div>
+        <?php endif ?>
+        <?php if($sf_user->hasFlash('warning')): ?>
+        <div class="alert alert-block">
+          <strong>Avertissement!</strong>
+          <?php echo $sf_user->getFlash('warning'); ?>
+        </div>
+        <?php endif ?>
+        <?php if($sf_user->hasFlash('info')): ?>
+        <div class="alert alert-block alert-info">
+          <strong>Information!</strong>
+          <?php echo $sf_user->getFlash('info'); ?>
+        </div>
+        <?php endif ?>
+        <?php if($sf_user->hasFlash('success')): ?>
+        <div class="alert alert-block alert-success">
+          <strong>Succès!</strong>
+          <?php echo $sf_user->getFlash('success'); ?>
+        </div>
+        <?php endif ?>
         <?php echo $sf_content ?>
       </div>
       <div style="clear: both;"></div>

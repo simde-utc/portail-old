@@ -1,0 +1,23 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           AssoMember
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          asso_member
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [=id, User, Asso, Role, Semestre]
+      filter:
+        display: [user_id, asso_id, role_id, semestre_id]
+      form:    ~
+      edit:    ~
+      new:     ~

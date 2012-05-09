@@ -24,6 +24,7 @@ class eventActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new EventForm();
+    $this->form->setDefault('asso_id', $this->getRoute()->getObject()->getId());
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -99,7 +100,7 @@ class eventActions extends sfActions
     {
       $event = $form->save();
 
-      $this->redirect('event/edit?id='.$event->getId());
+      $this->redirect('event/show?id='.$event->getId());
     }
   }
 }

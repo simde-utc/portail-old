@@ -26,6 +26,8 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfDoctrineGuardPlugin');
     $this->enablePlugins('sfFormExtraPlugin');
     $this->enablePlugins('sfCASPlugin');
+    $this->enablePlugins('sfImageTransformPlugin');
+    $this->enablePlugins('sfXssSafePlugin');
     sfForm::disableCSRFProtection();
   }
 }

@@ -12,21 +12,23 @@ class EventForm extends BaseEventForm
 {
   public function configure()
   { 
-    $this->getWidget('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
-    $this->getValidator('asso_id')->setOption('query', AssoTable::getInstance()->getMyAssos(sfContext::getInstance()->getUser()->getGuardUser()->getId()));
+    sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
+    
+    $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
     
     /*$this->widgetSchema['start_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png', 'date_widget'=>$this->widgetSchema['start_date']),
       array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));
     $this->widgetSchema['end_date'] = new sfWidgetFormJQueryDate(array('image'=>'/images/calendar.png', 'date_widget'=>$this->widgetSchema['end_date']),
       array('time'=>array('class'=>'nosize'), 'date'=>array('class'=>'nosize')));*/
-        
+        $years =range(date('Y'), date('Y') + 5);
+        $years_list = array_combine($years, $years);
     $this->widgetSchema['start_date']->addOption('date', array(
       'format' => '%day%/%month%/%year%',
-      'years' => range(date('Y'), date('Y') + 5)
+      'years' => $years_list
      ));
     $this->widgetSchema['end_date']->addOption('date', array(
       'format' => '%day%/%month%/%year%',
-      'years' => range(date('Y'), date('Y') + 5)
+      'years' => $years_list
      ));
 
     
@@ -39,23 +41,22 @@ class EventForm extends BaseEventForm
       'time' => array('class' => 'nosize')
     ));
     
-	$this->widgetSchema['affiche'] = new sfWidgetFormInputFileEditable(array(
-      'file_src' => '/uploads/events/'.$this->getObject()->getAffiche(),
+    $this->widgetSchema['affiche'] = new sfWidgetFormInputFileEditable(array(
+      'file_src' => doThumb($this->getObject()->getAffiche(), 'events', array('width'=>150, 'height'=>150), 'scale'),
       'is_image' => true,
-      'edit_mode' => !$this->isNew(),
+      'edit_mode' => (!$this->isNew() && $this->getObject()->getAffiche()),
       'with_delete' => true,
+      'delete_label' => "Supprimer cette illustration",
     ));
  
     $this->validatorSchema['affiche'] = new sfValidatorFile(array(
     	'required' => false,
-    	'path' => sfConfig::get('sf_upload_dir').'/events',
+    	'path' => sfConfig::get('sf_upload_dir').'/events/source',
         'mime_types' => 'web_images'
     ));
     
     $this->validatorSchema['affiche_delete'] = new sfValidatorBoolean();
 
-    $this->widgetSchema->setLabels(array(
-        'asso_id' => 'Auteur',));
     $this->widgetSchema->setLabel('name', 'Nom');
     $this->widgetSchema->setLabel('type_id', 'Type');
     $this->widgetSchema->setLabel('start_date', 'Début');

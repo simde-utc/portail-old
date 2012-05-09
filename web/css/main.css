@@ -270,13 +270,8 @@ p { text-align : justify; }
 }
 
 #column-left #my_assos .my_asso {
-  height: 95px;
   padding: 5px;
   background: #FFF;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  margin-bottom: 10px;
 }
 
 #column-left #my_assos .my_asso img {
@@ -288,25 +283,16 @@ p { text-align : justify; }
   font-weight: bold;
   font-size: 12px;
   text-transform: uppercase;
-  margin: 0 0 0 70px;
+  margin: 0 0 0 38px;
   color: #2a2a2a;
+  line-height: 1em;
+  margin-top: 8px;
+  
 }
 #column-left #my_assos .my_asso .barre {
-  margin: 5px auto;
+  margin: 2px auto;
   border-top: 1px solid #000;
   clear: both;
-}
-#column-left #my_assos .my_asso .more {
-  width: 155px;
-  height: 16px;
-  text-align: right;
-  background: #bebcbc;
-  text-transform: uppercase;
-  font-size: 10px;
-  padding-top: 4px;
-  padding-right: 10px;
-  display: block;
-  color: #2a2a2a;
 }
 
 #column-right #contact {
@@ -321,7 +307,20 @@ p { text-align : justify; }
   text-align: center;
 }
 
-#column-right #contact p { text-align: center; padding: 10px 0px; border-bottom: 1px solid #FFF; margin: 0 auto; }
+#column-right #contact a {
+  color: #fff;
+}
+
+#column-right #contact p { 
+  text-align: center;
+  padding: 10px 0px;
+  border-bottom: 1px solid #FFF;
+  margin: 0 auto;
+}
+
+#column-right #contact p:last-child {
+  border: 0;
+}
 
 #column-right #contact h1 {
   font-family: Impact;
@@ -497,16 +496,46 @@ p { text-align : justify; }
 #asso-menu a {
   display: inline-block;
   text-transform: uppercase;
-  padding: 0 10px;
-  border-left: 1px solid white;
+  padding: 7px 10px 0 10px;
+  margin-left: -2px;
+  border-right: 1px solid white;
   color: white;
   font-weight: bold;
   height: 23px;
-  padding-top:7px;
+  white-space: nowrap;
 }
-#asso-menu a:first-child {
+#asso-menu a:last-child, #asso-menu a:first-child {
   border: none;
 }
+
+.arrow-e {
+  /*
+   * In Internet Explorer, The"border-style: dashed" will never be
+   * rendered unless "(width * 5) >= border-width" is true.
+   * Since "width" is set to "0", the "dashed-border" remains
+   * invisible to the user, which renders the border just like how
+   * "border-color: transparent" renders.
+   */
+  border-style: dashed;
+  border-color: transparent;
+  border-width: 0.53em;
+  display: -moz-inline-box;
+  display: inline-block;
+  /* Use font-size to control the size of the arrow. */
+  font-size: 14px;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: middle;
+  width: 0;
+  color: white;
+  border-left-width: .53em;
+  border-left-style: solid;
+  border-left-color: white;
+  left: 0.25em;
+  margin-top: -5px;
+}
+
 
 /*.lieu:before{*/
 /*	content : "Lieu : ";*/
@@ -516,7 +545,7 @@ p { text-align : justify; }
 /*	content : "Description : ";*/
 /*	}*/
 
-.editform label {
+.editform label:first-child {
 	text-align: right;
 	margin-right: 6px;
 	padding: 4px;
@@ -534,4 +563,8 @@ p { text-align : justify; }
 
 .well select.nosize {
 	width: auto;
+}
+
+a.btn-danger {
+  color: white;
 }

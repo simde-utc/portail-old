@@ -125,5 +125,23 @@ class assoActions extends sfActions
     $this->redirectUnless($this->asso,'assos_list');
     $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
   }
+  
+  public function executeJoin()
+  {
+    $asso = $this->getRoute()->getObject();
+    if(!$this->getUser()->isAuthenticated())
+    {
+      $this->getUser()->setFlash('error', 'Vous devez être connecté pour rejoindre une association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    if($this->getUser()->getGuardUser()->isMember($asso->getLogin()))
+    {
+      $this->getUser()->setFlash('error', 'Vous êtes déjà inscris à cette association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    $asso->addMember($this->getUser()->getGuardUser());
+    $this->getUser()->setFlash('success', 'Vous êtes maintenant membre de cette association.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
 
 }

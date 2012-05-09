@@ -35,6 +35,7 @@ class articleActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new ArticleForm();
+    $this->form->setDefault('asso_id', $this->getRoute()->getObject()->getId());
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -85,7 +86,7 @@ class articleActions extends sfActions
     {
       $article = $form->save();
 
-      $this->redirect('article/edit?id='.$article->getId());
+      $this->redirect('article/show?id='.$article->getId());
     }
   }
 }

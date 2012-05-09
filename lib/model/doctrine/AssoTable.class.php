@@ -54,7 +54,7 @@ class AssoTable extends Doctrine_Table
 			->leftJoin('a.Pole p')
 			->leftJoin('p.Asso pa')
 			->where('a.pole_id IS NOT NULL')
-      ->addOrderBy('p.id ASC');
+      ->addOrderBy('p.id, a.name ASC');
 
     if(!is_null($pole_id))
       $q = $q->where("a.pole_id = ?",$pole_id);

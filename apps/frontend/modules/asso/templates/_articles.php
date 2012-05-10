@@ -1,4 +1,5 @@
 <?php use_helper('Date') ?>
+<?php use_helper('Thumb') ?>
 <h1>
   Derniers articles
   <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x04)): ?>

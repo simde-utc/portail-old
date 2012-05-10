@@ -121,40 +121,8 @@
     <div id="footer">
       <div class="wrap">
         <div id="splash"></div>
-        <div id="footer-left">
-          <p>
-            <h2>Accueil</h2>
-          </p>
-          <p>
-            <h2>Services</h2>
-            <a href="">Matmatronch</a><br />
-            <a href="">eboutic</a><br />
-            <a href="">stocks à souvenir</a><br />
-            <a href="">laverie</a><br />
-            <a href="">weekmail</a><br />
-            <a href="">forum</a><br />
-            <a href="">pédagogie</a><br />
-            <a href="">covoiturage</a><br />
-            <a href="">prêt de matériel</a><br />
-          </p>
-        </div>
-        <div id="footer-right">
-          <p>
-            <h2>Fonctionnement de l’utc</h2>
-            <a href="">l’utc c’est quoi ?</a><br />
-            <a href="">candidater à l’utc</a><br />
-            <a href="">la vie d’étudiant</a><br />
-            <a href="">les études proposées</a><br />
-          </p>
-          <p>
-            <h2>Liste des assos</h2>
-            <a href="">Vie du campus</a><br />
-            <a href="">Artistique et évènementiel</a><br />
-            <a href="">Solidarité et citoyenneté</a><br />
-            <a href="">Technologie et entreprenariat</a><br />
-            <a href="">sport</a><br />
-          </p>
-        </div>
+        <div id="footer-left"></div>
+        <div id="footer-right"></div>
       </div>
     </div>
   </body>

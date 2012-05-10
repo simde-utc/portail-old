@@ -136,7 +136,7 @@ class assoActions extends sfActions
     }
     if($this->getUser()->getGuardUser()->isMember($asso->getLogin()))
     {
-      $this->getUser()->setFlash('error', 'Vous êtes déjà inscris à cette association.');
+      $this->getUser()->setFlash('error', 'Vous êtes déjà inscrit à cette association.');
       $this->redirect('asso/show?login='.$asso->getLogin());
     }
     $asso->addMember($this->getUser()->getGuardUser());

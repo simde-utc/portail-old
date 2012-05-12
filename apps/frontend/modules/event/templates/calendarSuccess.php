@@ -15,7 +15,7 @@ $(document).ready(function() {
     },
     editable: false,
     allDayDefault: false,
-    events: "<?php echo url_for("/json/event/index") ?>",
+    events: "<?php echo url_for("events_list",array('sf_format'=>'json')) ?>",
     loading: function(bool) {
       if (bool) $('#loading').show();
       else $('#loading').hide();

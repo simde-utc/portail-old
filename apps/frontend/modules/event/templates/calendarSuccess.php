@@ -1,5 +1,4 @@
 <?php use_stylesheet('fullcalendar.css') ?>
-<?php use_stylesheet('calendar.css') ?>
 
 <?php use_javascript('fullcalendar.min.js') ?>
 
@@ -11,7 +10,7 @@ $(document).ready(function() {
     header: {
       left: 'prev,next today',
       center: 'title',
-      right: 'month,agendaWeek,agendaDay'
+      right: 'agendaDay,agendaWeek,month'
     },
     editable: false,
     allDayDefault: false,

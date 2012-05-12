@@ -2,7 +2,7 @@
   <?php if($bureau->count() > 0): ?>
     <ul>
       <?php foreach($bureau as $membre) : ?>
-        <li><?php echo $membre->getUser() ?>
+        <li class="membre" <?php if($sf_user->isAuthenticated()): ?>style="height:125px;"<?php endif ?>><?php echo $membre->getUser() ?>
           <?php if($sf_user->isAuthenticated()): ?>
             <img src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $membre->getUser()->getUsername() ?>" height="120" style="float: right;" />
           <?php endif ?>

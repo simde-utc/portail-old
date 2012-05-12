@@ -114,6 +114,12 @@ class Asso extends BaseAsso
     $assoMember->save();
   }
 
+  public function removeMember(sfGuardUser $user)
+  {
+    $assoMember = AssoMemberTable::getInstance()->getCurrentAssoMember($this->getPrimaryKey(),$user->getPrimaryKey());
+    $assoMember->delete();
+  }
+
   public function getPoleName()
   {
     if($this->getPole())

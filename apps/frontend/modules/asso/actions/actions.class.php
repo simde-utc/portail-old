@@ -144,4 +144,22 @@ class assoActions extends sfActions
     $this->redirect('asso/show?login='.$asso->getLogin());
   }
 
+  public function executeLeave()
+  {
+    $asso = $this->getRoute()->getObject();
+    if(!$this->getUser()->isAuthenticated())
+    {
+      $this->getUser()->setFlash('error', 'Vous devez être déconnecté pour quitter une association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    if(!$this->getUser()->getGuardUser()->isMember($asso->getLogin()))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'êtes pas inscrit à cette association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    $asso->removeMember($this->getUser()->getGuardUser());
+    $this->getUser()->setFlash('success', 'Vous n\'êtes plus membre de cette association.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
+
 }

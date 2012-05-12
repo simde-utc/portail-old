@@ -51,6 +51,16 @@ class assoComponents extends sfComponents
   {
     if($login = $request->getParameter('login',null))
       $this->asso = AssoTable::getInstance()->findOneByLogin($login);
+    else
+      $this->asso = AssoTable::getInstance ()->find(1); // BDE
+  }
+
+  public function executeContact(sfWebRequest $request)
+  {
+    if($login = $request->getParameter('login',null))
+      $this->asso = AssoTable::getInstance()->findOneByLogin($login);
+    else
+      $this->asso = AssoTable::getInstance ()->find(1); // BDE
   }
 
 }

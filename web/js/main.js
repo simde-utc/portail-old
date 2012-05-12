@@ -3,7 +3,11 @@ $(document).ready(function(){
     e.preventDefault();
     $("#bigmenu").show();
   });
-  $("#bigmenu").mouseleave(function(){
-    $(this).hide();
+  $("body").click(function(e){
+    if(!$(e.target).is('#bigmenu') && !$(e.target).is('#lienlisteassos'))
+    {
+      if($('#bigmenu').is(':visible'))
+        $('#bigmenu').hide();
+    }
   });
 });

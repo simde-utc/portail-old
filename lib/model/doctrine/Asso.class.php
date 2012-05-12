@@ -116,7 +116,7 @@ class Asso extends BaseAsso
 
   public function removeMember(sfGuardUser $user)
   {
-    $assoMember = AssoMemberTable::getInstance()->getCurrentAssoMember($this->getPrimaryKey(),$user->getPrimaryKey());
+    $assoMember = AssoMemberTable::getInstance()->getCurrentAssoMember($this->getPrimaryKey(),$user->getPrimaryKey())->fetchOne();
     $assoMember->delete();
   }
 

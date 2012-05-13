@@ -15,11 +15,13 @@
         <a href="<?php echo url_for('homepage') ?>" id="logo">
           <img src="/images/logo_bde.png" alt="BDE UTC" width="163px" height="110px" />
         </a>
+        <?php if(0): ?>
         <form class="form-inline"><label>Rerchercher une info</label>
           <input type="text" class="input-medium" />
           <button type="submit" class="btn">Chercher</button>
         </form>
         <span class="barre"></span>
+        <?php endif; ?>
         <?php if(!$sf_user->isAuthenticated()): ?>
           <ul class="nav nav-pills">
             <li class="dropdown" id="drop-connexion">
@@ -52,9 +54,8 @@
     <div id="menu">
       <div class="wrap" >
         <a href="<?php echo url_for('homepage') ?>">Accueil</a>
-        <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Liste des associations</a>
-        <a href="" class="barre">Services</a>
-        <a href="" class="barre">Fonctionnement de l'UTC</a>
+        <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Toutes les associations</a>
+        <a href="<?php echo url_for('agenda_detail') ?>" class="barre">Calendrier</a>
         <span class="horloge">
           <?php echo format_date(time(), "D", 'fr') ?>
           <span class="barre"><?php echo format_date(time(), "t", 'fr') ?></span>

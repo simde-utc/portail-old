@@ -1,5 +1,5 @@
 <div class="wrap">
-  <div id="asso-menu" style="background:<?php echo $asso->getPole()->getCouleur() ?>">
+  <div id="asso-menu" style="background:<?php echo $couleur ?>">
     <a href="<?php echo url_for('assos_show', $asso) ?>"><i class="icon-home icon-white"></i> <?php echo $asso->getName() ?></a>
     <span class="arrow-e"></span>
     <a href="<?php echo url_for('asso_articles', $asso) ?>">Articles</a>

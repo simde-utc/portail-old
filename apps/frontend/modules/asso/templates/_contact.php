@@ -1,5 +1,5 @@
 <div id="contact">
-  <p>Contacter le <?php echo $asso->getName() ?></p>
+  <p>Contacter <?php echo $asso->getName() ?></p>
   <p>Rue Roger Couttolenc<br />
     60200 Compiègne</p>
   <?php if ($asso->getPhone()): ?>

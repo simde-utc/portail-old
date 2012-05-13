@@ -10,7 +10,7 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-    <div id="top_bar">
+    <div id="top_bar" class="navbar">
       <div class="wrap" >
         <a href="<?php echo url_for('homepage') ?>" id="logo">
           <img src="/images/logo_bde.png" alt="BDE UTC" width="163px" height="110px" />
@@ -23,26 +23,26 @@
         <span class="barre"></span>
         <?php endif; ?>
         <?php if(!$sf_user->isAuthenticated()): ?>
-          <ul class="nav nav-pills">
+          <ul class="nav pull-right">
             <li class="dropdown" id="drop-connexion">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
                 Connexion
                 <b class="caret"></b>
               </a>
-              <ul class="dropdown-menu pull-right">
+              <ul class="dropdown-menu">
                 <li><a href="<?php echo url_for('cas') ?>">Étudiant UTC (CAS)</a></li>
                 <li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>
               </ul>
             </li>
           </ul>
         <?php else: ?>
-          <ul class="nav nav-pills">
+          <ul class="nav pull-right">
             <li class="dropdown" id="drop-connexion">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
-                <?php echo $sf_user->getGuardUser()->getName() ?>
+                <i class="icon-user icon-white"></i> <?php echo $sf_user->getGuardUser()->getName() ?>
                 <b class="caret"></b>
               </a>
-              <ul class="dropdown-menu pull-right">
+              <ul class="dropdown-menu">
                 <li><a href="<?php echo url_for('cas_logout') ?>">Se déconnecter</a></li>
               </ul>
             </li>

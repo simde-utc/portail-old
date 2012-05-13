@@ -111,8 +111,18 @@
     <div id="footer">
       <div class="wrap">
         <div id="splash"></div>
-        <div id="footer-left"></div>
-        <div id="footer-right"></div>
+        <div id="footer-left">
+          <h2>Services</h2>
+          <a href="/gesmail">Gestion des mails assos</a><br/>
+          <a href="/resa">Réservation de salles</a><br/>
+          <a href="/mail">Webmail assos</a>
+        </div>
+        <div id="footer-right">
+          <h2>Liens</h2>
+          <a href="http://ent.utc.fr">ENT</a><br/>
+          <a href="/simde">SiMDE</a><br/>
+          <a href="http://www.utc.fr">UTC</a>
+        </div>
       </div>
     </div>
   </body>

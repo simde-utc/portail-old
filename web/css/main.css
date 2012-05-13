@@ -1,7 +1,7 @@
 body {
   background: url(/images/background.jpg) #fdfdfd no-repeat top center;
   margin: 0px;
-  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   font-size:10pt;
   color: #2a2a2a;
 }
@@ -43,8 +43,8 @@ p { text-align : justify; }
   background-image: -moz-linear-gradient(top center, #242424, #414141);
   background-image: -o-linear-gradient(top, #242424, #414141); /*uniquement en mode linear*/
   color: #FFF;
-  font-family: Impact, Charcoal, sans-serif;
-  font-size: 15px;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 12px;
   text-transform: uppercase;
   margin-bottom: 190px;
   vertical-align: top;
@@ -112,8 +112,8 @@ p { text-align : justify; }
   background: url('/images/bg_menu.png') no-repeat;
   height: 58px;
   width: 1071px;
-  font-family: Impact, Charcoal, sans-serif;
-  font-size: 15px;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 12px;
   text-transform: uppercase;
   color: #FFF;
   padding-top: 15px;
@@ -154,12 +154,12 @@ p { text-align : justify; }
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  font-family: Impact, Charcoal, sans-serif;
-  font-size: 15px;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 12px;
   font-weight: normal;
   color: #FFF;
   padding-left: 10px;
-  padding-top: 1px;
+  padding-top: 5px;
   text-transform: uppercase;
 }
 
@@ -245,8 +245,8 @@ p { text-align : justify; }
 }
 
 #footer h2 {
-  font-size: 15px;
-  font-family: Impact, Charcoal, sans-serif;
+  font-size: 12px;
+  font-family: 'Arial Black', sans-serif;
   color: #FFF;
   margin-bottom: 0px;
 }
@@ -259,14 +259,14 @@ p { text-align : justify; }
 #column-left h1, #column-right h1 {
   color: #FFF;
   text-transform: uppercase;
-  font-family: Impact, Charcoal, sans-serif;
-  font-size: 15px;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 12px;
   background: url('/images/bg_col_title.png') no-repeat;
   width: 175px;
   height: 45px;
   font-weight: normal;
   text-indent: 10px;
-  padding-top: 6px;
+  padding-top: 8px;
 }
 
 #column-left #my_assos .my_asso {
@@ -323,8 +323,8 @@ p { text-align : justify; }
 }
 
 #column-right #contact h1 {
-  font-family: Impact, Charcoal, sans-serif;
-  font-size: 15px;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 12px;
   margin: 0 auto;
   text-align: center;
   color: #FFF;
@@ -448,8 +448,8 @@ p { text-align : justify; }
   background-image: -moz-linear-gradient(top center, #242424, #414141);
   background-image: -o-linear-gradient(top, #242424, #414141); /*uniquement en mode linear*/
   color: #FFF;
-  font-family: Impact, Charcoal, sans-serif;
-  font-size: 15px;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 12px;
   text-transform: uppercase;
   margin: -31px 0px 31px 0px;
   width: 1020px;
@@ -468,7 +468,7 @@ p { text-align : justify; }
 }
 
 #bigmenu ul li a {
-  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 10pt;
 }
 

@@ -42,32 +42,40 @@ class assoActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->asso = $this->getRoute()->getObject();
-    $this->redirectUnless($this->asso,'assos_list');
+    $this->redirectUnless($this->asso, 'assos_list');
     if($pole = $this->asso->isPole())
       $this->assos = AssoTable::getInstance()->getAssosList($pole->getPrimaryKey())->execute();
   }
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->redirectUnless($asso = $this->getRoute()->getObject(),'assos_list');
-    $this->redirectUnless($this->getUser()->getGuardUser()->hasAccess($asso->getLogin(),0x01),'assos_list');
+    $this->redirectUnless($asso = $this->getRoute()->getObject(), 'assos_list');
+    if(!$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
     $this->form = new AssoForm($asso);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))),sprintf('Object asso does not exist (%s).',$request->getParameter('id')));
+    $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))), sprintf('Object asso does not exist (%s).', $request->getParameter('id')));
+    if(!$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
     $this->form = new AssoForm($asso);
-    $this->redirectUnless($this->getUser()->getGuardUser()->hasAccess($asso->getLogin(),0x01),'assos_list');
-    $this->processForm($request,$this->form);
+    $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
   }
 
-  protected function processForm(sfWebRequest $request,sfForm $form)
+  protected function processForm(sfWebRequest $request, sfForm $form)
   {
-    $form->bind($request->getParameter($form->getName()),$request->getFiles($form->getName()));
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if($form->isValid())
     {
       $asso = $form->save();
@@ -83,7 +91,7 @@ class assoActions extends sfActions
    */
   public function executeSearch(sfWebRequest $request)
   {
-    $this->forwardUnless($query = $request->getParameter('query'),'asso','index');
+    $this->forwardUnless($query = $request->getParameter('query'), 'asso', 'index');
 
     $this->assos = Doctrine_Core::getTable('Asso')->getForLuceneQuery($query);
 
@@ -94,38 +102,38 @@ class assoActions extends sfActions
         return $this->renderText('No results.');
       }
 
-      return $this->renderPartial('asso/list',array('assos' => $this->assos));
+      return $this->renderPartial('asso/list', array('assos' => $this->assos));
     }
   }
-  
+
   public function executeArticles()
   {
     $this->asso = $this->getRoute()->getObject();
-    $this->redirectUnless($this->asso,'assos_list');
+    $this->redirectUnless($this->asso, 'assos_list');
     $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso)->execute();
   }
 
   public function executeEvents()
   {
     $this->asso = $this->getRoute()->getObject();
-    $this->redirectUnless($this->asso,'assos_list');
+    $this->redirectUnless($this->asso, 'assos_list');
     $this->events = EventTable::getInstance()->getEventsList($this->asso)->execute();
   }
 
   public function executeBureau()
   {
     $this->asso = $this->getRoute()->getObject();
-    $this->redirectUnless($this->asso,'assos_list');
+    $this->redirectUnless($this->asso, 'assos_list');
     $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
   }
 
   public function executeTrombinoscope()
   {
     $this->asso = $this->getRoute()->getObject();
-    $this->redirectUnless($this->asso,'assos_list');
+    $this->redirectUnless($this->asso, 'assos_list');
     $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
   }
-  
+
   public function executeJoin()
   {
     $asso = $this->getRoute()->getObject();

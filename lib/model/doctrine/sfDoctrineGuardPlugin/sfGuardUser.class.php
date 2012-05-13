@@ -26,7 +26,8 @@ class sfGuardUser extends PluginsfGuardUser
       $this->_allPermissions = parent::getAllPermissions();
       foreach($this->getAssoMember() as $asso_member)
       {
-        $this->_allPermissions[$asso_member->getAsso()->getLogin()] = $asso_member;
+        if($asso_member->getSemestreId() == sfConfig::get('app_portail_current_semestre'))
+          $this->_allPermissions[$asso_member->getAsso()->getLogin()] = $asso_member;
       }
     }
     

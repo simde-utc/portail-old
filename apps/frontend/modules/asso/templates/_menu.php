@@ -6,6 +6,5 @@
     <a href="<?php echo url_for('asso_events', $asso) ?>">Événements</a>
     <a href="<?php echo url_for('asso_trombi', $asso) ?>">Trombinoscope</a>
     <a href="<?php echo url_for('asso_bureau', $asso) ?>">Bureau</a>
-    <a href="<?php echo url_for('agenda_detail') ?>">Calendrier</a>
   </div>
 </div>

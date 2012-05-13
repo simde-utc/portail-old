@@ -73,6 +73,12 @@ asso_join:
   param: { module: asso, action: join }
   options: { model: Asso, type: object }
 
+asso_leave:
+  url: /asso/:login/leave
+  class: sfDoctrineRoute
+  param: { module: asso, action: leave }
+  options: { model: Asso, type: object }
+
 asso_update:
   url: /asso/:id/update
   param: { module: asso, action: update }
@@ -118,8 +124,10 @@ article_new:
 
 #Events
 events_list:
-  url: /event
+  url: /event.:sf_format
   param: { module: event, action: index }
+  requirements:
+    sf_format: (?:html|json)
   
 events_list_asso:
   url:   /event/asso/:id
@@ -190,8 +198,3 @@ register_resend:
 
 #default:
 #  url:   /:module/:action/*
-
-
-#default_json:
-#  url:   /json/:module/:action/*
-#  param: { sf_format: json }

@@ -451,12 +451,11 @@ p { text-align : justify; }
   font-family: Impact, Charcoal, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
-  margin: auto;
-  margin-top: -31px;
+  margin: -31px 0px 31px 0px;
   width: 1020px;
   display: none;
   z-index: 11000;
-  padding-bottom: 31px;
+  overflow: hidden;
 }
 
 #bigmenu a {
@@ -478,6 +477,8 @@ p { text-align : justify; }
   float: left;
   border-left: 1px solid white;
   padding: 5px 10px;
+  margin-bottom: -2000px;
+  padding-bottom: 2000px;
 }
 #bigmenu .bm_pole:first-child {
   border: none;

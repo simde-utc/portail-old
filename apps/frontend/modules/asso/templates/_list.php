@@ -6,7 +6,7 @@
 	<?php if(!$asso->isPole()) : ?>
     <li>
       <h3><a href="<?php echo url_for('asso/show?login='.$asso->getLogin()) ?>"><?php echo $asso->getName() ?></a></h3>
-      <?php echo showThumb($asso->getLogo(), 'assos', array('width'=>85, 'height'=>85, 'class'=>'logo'), 'center') ?>
+      <a href="<?php echo url_for('asso/show?login='.$asso->getLogin()) ?>"><?php echo showThumb($asso->getLogo(), 'assos', array('width'=>85, 'height'=>85, 'class'=>'logo'), 'center') ?></a>
       <div class="desc">
         <?php echo $asso->getSummary() ?>
         </br>

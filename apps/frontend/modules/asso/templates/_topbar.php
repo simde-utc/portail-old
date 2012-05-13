@@ -9,7 +9,7 @@
   <div class="logo_asso"><?php echo showThumb($asso->getLogo(), 'assos', array('width'=>150, 'height'=>150), 'scale') ?></div>
 
   <div class="desc">
-    <?php echo $asso->getDescription() ?>
+    <?php echo nl2br($asso->getDescription()) ?>
   </div>
   <a class="website" href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a><br />
   <a class="email "href="mailto:<?php echo $asso->getLogin() ?>@assos.utc.fr"><?php echo $asso->getLogin() ?>@assos.utc.fr</a><br />

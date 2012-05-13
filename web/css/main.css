@@ -568,3 +568,7 @@ p { text-align : justify; }
 a.btn-danger {
   color: white;
 }
+
+#topbar a.btn {
+  color: #000;
+}

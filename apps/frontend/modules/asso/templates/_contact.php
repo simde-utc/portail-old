@@ -9,6 +9,6 @@
   <?php endif ?>
   <p>
     <a href="mailto:<?php echo $asso->getLogin() ?>@assos.utc.fr"><?php echo $asso->getLogin() ?>@assos.utc.fr</a><br />
-    <a href="<?php echo url_for('assos_show', $asso) ?>"><?php echo url_for('assos_show', $asso) ?></a>
+    <a href="<?php echo url_for('assos_show', $asso, true) ?>"><?php echo url_for('assos_show', $asso, true) ?></a>
   </p>
 </div>

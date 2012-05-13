@@ -50,9 +50,7 @@ p { text-align : justify; }
   vertical-align: top;
 }
 #top_bar .nav a.dropdown-toggle { color: #FFF; }
-#top_bar .nav a.dropdown-toggle:hover { color: #424242; background: #FFF; }
 #top_bar .nav .open a.dropdown-toggle { color: #FFF; background: none; }
-#top_bar .nav .open a.dropdown-toggle:hover { color: #424242; background: #FFF; }
 #top_bar .dropdown-menu a { color: #424242; }
 #top_bar .wrap {
   text-align: right;

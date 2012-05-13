@@ -1,4 +1,3 @@
-<?php use_stylesheet('home.css') ?>
 <?php use_helper('Text') ?>
 <h1>Associations du pôle</h1>
 <ul id="assos_list">

@@ -49,6 +49,9 @@ $(document).ready(function() {
       agenda: 'H:mm{ - H:mm}',
     },
     allDayText: 'Jour entier',
+    defaultView: 'agendaWeek',
+    firstHour: 8,
+    height: 600,
   });
 });
 </script>

@@ -1,4 +1,3 @@
-<?php use_stylesheet('event.css') ?>
 <?php use_helper('Date') ?>
 <?php use_helper('Thumb') ?>
 

@@ -9,6 +9,7 @@
     margin: 10px;
     float: right;
     padding: 10px;
+    min-height: 250px;
 }
 .part .event h2 {
     text-transform: uppercase;

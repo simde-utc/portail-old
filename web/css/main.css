@@ -43,7 +43,7 @@ p { text-align : justify; }
   background-image: -moz-linear-gradient(top center, #242424, #414141);
   background-image: -o-linear-gradient(top, #242424, #414141); /*uniquement en mode linear*/
   color: #FFF;
-  font-family: impact;
+  font-family: Impact, Charcoal, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
   margin-bottom: 190px;
@@ -112,7 +112,7 @@ p { text-align : justify; }
   background: url('/images/bg_menu.png') no-repeat;
   height: 58px;
   width: 1071px;
-  font-family: impact;
+  font-family: Impact, Charcoal, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
   color: #FFF;
@@ -154,7 +154,7 @@ p { text-align : justify; }
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  font-family: impact;
+  font-family: Impact, Charcoal, sans-serif;
   font-size: 15px;
   font-weight: normal;
   color: #FFF;
@@ -246,7 +246,7 @@ p { text-align : justify; }
 
 #footer h2 {
   font-size: 15px;
-  font-family: Impact;
+  font-family: Impact, Charcoal, sans-serif;
   color: #FFF;
   margin-bottom: 0px;
 }
@@ -259,7 +259,7 @@ p { text-align : justify; }
 #column-left h1, #column-right h1 {
   color: #FFF;
   text-transform: uppercase;
-  font-family: Impact;
+  font-family: Impact, Charcoal, sans-serif;
   font-size: 15px;
   background: url('/images/bg_col_title.png') no-repeat;
   width: 175px;
@@ -323,7 +323,7 @@ p { text-align : justify; }
 }
 
 #column-right #contact h1 {
-  font-family: Impact;
+  font-family: Impact, Charcoal, sans-serif;
   font-size: 15px;
   margin: 0 auto;
   text-align: center;
@@ -448,7 +448,7 @@ p { text-align : justify; }
   background-image: -moz-linear-gradient(top center, #242424, #414141);
   background-image: -o-linear-gradient(top, #242424, #414141); /*uniquement en mode linear*/
   color: #FFF;
-  font-family: impact;
+  font-family: Impact, Charcoal, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
   margin: auto;

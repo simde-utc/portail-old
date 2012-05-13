@@ -21,6 +21,6 @@
     Type : <?php echo $event->getType()->getName(); ?><br />
     Lieu : <?php echo $event->getPlace(); ?>
   </p>
-  <p><?php echo $event->getSummary() ?></p>
-  <p><?php echo $event->getDescription() ?></p>
+  <p><?php echo nl2br($event->getSummary()) ?></p>
+  <p><?php echo nl2br($event->getDescription()) ?></p>
 </div>

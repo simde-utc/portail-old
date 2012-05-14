@@ -47,7 +47,7 @@ class EventTable extends Doctrine_Table
   {
     $q = $this->createQuery('a')
       ->addOrderBy('a.start_date ASC');
-    $q = $q->where("a.start_date > NOW()");
+    $q = $q->where("a.end_date > NOW()");
 
     return $q;
   }

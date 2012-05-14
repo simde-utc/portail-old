@@ -1,6 +1,6 @@
 <?php use_helper('Date') ?>
 <?php use_helper('Thumb') ?>
-<h1>Prochains événements</h1>
+<h1>Derniers événements ajoutés</h1>
 <div id="events">
   <?php if($events->count() > 0): ?>
     <div id="event_list">

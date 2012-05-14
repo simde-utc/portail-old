@@ -47,7 +47,7 @@ class eventActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($event = $this->getRoute()->getObjuect());
+    $this->forward404Unless($event = $this->getRoute()->getObject());
     if(!$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x08))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');

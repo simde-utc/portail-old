@@ -54,7 +54,7 @@ class EventTable extends Doctrine_Table
 
   public function getLastEvents($count = 3)
   {
-    $q = $this->getFutureEventsList()
+    $q = $this->getEventsList()
       ->limit($count);
     return $q;
   }

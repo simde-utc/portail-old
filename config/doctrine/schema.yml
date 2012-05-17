@@ -155,3 +155,15 @@ Activation:
     activation_key: { type: string }
   relations:
     sfGuardUser: { onUpdate: CASCADE, local: user_id, foreign: id, foreignAlias: Activations}
+   
+Abonnement:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    user_id: { type: integer, notnull: true }
+    asso_id: { type: integer } 
+    type_publication: { type: integer, notnull: true }
+  relations:
+    Asso: { local: asso_id, foreign: id }
+    User: { local: user_id, foreign: id, class: sfGuardUser }  
+    

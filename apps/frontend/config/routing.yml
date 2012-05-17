@@ -180,6 +180,13 @@ register_activation:
 register_resend:
   url: /inscription/activation
   param: { module: sfGuardRegister, action: resend }
+  
+#Etudiants
+abonnement_list:
+  url: /abonnement
+  param: { module: abonnement, action: show}
+ 
+
 
 # generic rules
 # please, remove them by adding more specific rules

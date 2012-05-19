@@ -484,10 +484,10 @@ p { text-align : justify; }
 
 #asso-menu {
   background: #009cdd;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#009cdd", endColorstr="#30596a"); /* Pour IE seulement et mode gradient à linear */
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#009cdd", endColorstr="#30596a");
   background-image: -webkit-gradient(linear, left top, left bottom, from(#009cdd), to(#30596a));
   background-image: -moz-linear-gradient(top center, #009cdd, #30596a);
-  background-image: -o-linear-gradient(top, #009cdd, #30596a); /*uniquement en mode linear*/
+  background-image: -o-linear-gradient(top, #009cdd, #30596a); */
   height: 30px;
   margin-top: -31px;
 }

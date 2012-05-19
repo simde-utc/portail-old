@@ -55,4 +55,15 @@ class AssoMemberTable extends Doctrine_Table {
     return $q;
   }
 
+  public function getDroits($user_id)
+  {
+    $q = $this->createQuery('q')
+            ->select('q.*, a.id, a.login, r.id, r.droits')
+            ->where('q.user_id = ?',$user_id)
+            ->andWhere('q.semestre_id = ?', sfConfig::get('app_portail_current_semestre'))
+            ->leftJoin('q.Asso a')
+            ->leftJoin('q.Role r');
+    return $q;
+  }
+
 }

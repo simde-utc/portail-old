@@ -96,9 +96,8 @@ class Asso extends BaseAsso
 
   public function isPole()
   {
-    $q = PoleTable::getInstance()->createQuery('p')->where('p.asso_id = ?', $this->getPrimaryKey());
-
-    return $q->fetchOne();
+    // Codé en dur pour des raisons de performances
+    return in_array($this->getId(), array(1,3,4,5,6));
   }
 
   public function addMember(sfGuardUser $user)

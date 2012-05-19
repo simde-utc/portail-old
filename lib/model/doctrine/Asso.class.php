@@ -23,8 +23,7 @@ class Asso extends BaseAsso
   {
     $conn = $conn ? $conn : AssoTable::getInstance()->getConnection();
     $conn->beginTransaction();
-    try
-    {
+    try {
       $ret = parent::save($conn);
 
       $this->updateLuceneIndex();
@@ -32,9 +31,7 @@ class Asso extends BaseAsso
       $conn->commit();
 
       return $ret;
-    }
-    catch(Exception $e)
-    {
+    } catch(Exception $e) {
       $conn->rollBack();
       throw $e;
     }
@@ -49,7 +46,7 @@ class Asso extends BaseAsso
   {
     $index = AssoTable::getInstance()->getLuceneIndex();
 
-    foreach($index->find('pk:' . $this->getId()) as $hit)
+    foreach($index->find('pk:'.$this->getId()) as $hit)
     {
       $index->delete($hit->id);
     }
@@ -66,7 +63,7 @@ class Asso extends BaseAsso
     $index = AssoTable::getInstance()->getLuceneIndex();
 
     // remove existing entries
-    foreach($index->find('pk:' . $this->getId()) as $hit)
+    foreach($index->find('pk:'.$this->getId()) as $hit)
     {
       $index->delete($hit->id);
     }
@@ -116,7 +113,7 @@ class Asso extends BaseAsso
 
   public function removeMember(sfGuardUser $user)
   {
-    $assoMember = AssoMemberTable::getInstance()->getCurrentAssoMember($this->getPrimaryKey(),$user->getPrimaryKey())->fetchOne();
+    $assoMember = AssoMemberTable::getInstance()->getCurrentAssoMember($this->getPrimaryKey(), $user->getPrimaryKey())->fetchOne();
     $assoMember->delete();
   }
 
@@ -124,6 +121,11 @@ class Asso extends BaseAsso
   {
     if($this->getPole())
       return $this->getPole()->__toString();
+  }
+
+  public function getUrlSite()
+  {
+    return 'http://assos.utc.fr/'.$this->getLogin();
   }
 
 }

@@ -46,7 +46,7 @@ class AssoTable extends Doctrine_Table {
    */
   public function getAssosAndNotPolesList($pole_id = null) {
     $q = $this->createQuery('a')
-            ->select('a.*, p.*, pa.name')
+            ->select('a.login, a.name, p.id, pa.login, pa.name')
             ->leftJoin('a.Pole p')
             ->leftJoin('p.Asso pa')
             ->where('a.pole_id IS NOT NULL')

@@ -27,7 +27,7 @@ assos_show:
   url:   /asso/:login
   class: sfDoctrineRoute
   param: { module: asso, action: show }
-  options: { model: Asso, type: object }
+  options: { model: Asso, type: object, method_for_query: retrieveAsso }
 
 asso_articles:
   url:   /asso/articles/:login

@@ -114,10 +114,30 @@ class Asso extends BaseAsso
     $assoMember->save();
   }
 
+  public function removeMember(sfGuardUser $user)
+  {
+    $assoMember = AssoMemberTable::getInstance()->getCurrentAssoMember($this->getPrimaryKey(),$user->getPrimaryKey())->fetchOne();
+    $assoMember->delete();
+  }
+
   public function getPoleName()
   {
     if($this->getPole())
       return $this->getPole()->__toString();
   }
+
+  public function addFollower(sfGuardUser $user)
+    {
+      $assoFollower = new Abonnement();
+      $assoFollower->setAssoId($this);
+      $assoFollower->setUserId($user);
+      $assoFollower->save();
+    }
+
+    public function removeFollower(sfGuardUser $user)
+    {
+      $assoFollower = AbonnementTable::getInstance()->getCurrentAssoFollower($this->getPrimaryKey(),$user->getPrimaryKey())->fetchOne();
+      $assoFollower->delete();
+    }
 
 }

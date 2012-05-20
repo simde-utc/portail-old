@@ -73,6 +73,24 @@ asso_join:
   param: { module: asso, action: join }
   options: { model: Asso, type: object }
 
+asso_leave:
+  url: /asso/:login/leave
+  class: sfDoctrineRoute
+  param: { module: asso, action: leave }
+  options: { model: Asso, type: object }
+  
+asso_follow:
+  url: /asso/:login/follow
+  class: sfDoctrineRoute
+  param: { module: asso, action: follow }
+  options: { model: Asso, type: object }
+
+asso_unfollow:
+  url: /asso/:login/unfollow
+  class: sfDoctrineRoute
+  param: { module: asso, action: unfollow }
+  options: { model: Asso, type: object }
+
 asso_update:
   url: /asso/:id/update
   param: { module: asso, action: update }
@@ -118,8 +136,10 @@ article_new:
 
 #Events
 events_list:
-  url: /event
+  url: /event.:sf_format
   param: { module: event, action: index }
+  requirements:
+    sf_format: (?:html|json)
   
 events_list_asso:
   url:   /event/asso/:id
@@ -183,7 +203,7 @@ register_resend:
   
 #Etudiants
 abonnement_list:
-  url: /abonnement
+  url: /abonnement/:show
   param: { module: abonnement, action: show}
  
 
@@ -202,3 +222,4 @@ abonnement_list:
 #default_json:
 #  url:   /json/:module/:action/*
 #  param: { sf_format: json }
+#  url:   /:module/:action/*

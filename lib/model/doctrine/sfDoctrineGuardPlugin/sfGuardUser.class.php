@@ -26,7 +26,8 @@ class sfGuardUser extends PluginsfGuardUser
       $this->_allPermissions = parent::getAllPermissions();
       foreach($this->getAssoMember() as $asso_member)
       {
-        $this->_allPermissions[$asso_member->getAsso()->getLogin()] = $asso_member;
+        if($asso_member->getSemestreId() == sfConfig::get('app_portail_current_semestre'))
+          $this->_allPermissions[$asso_member->getAsso()->getLogin()] = $asso_member;
       }
     }
     
@@ -63,5 +64,11 @@ class sfGuardUser extends PluginsfGuardUser
   public function isMember($asso)
   {
     return $this->hasPermission($asso);
+  }
+  
+  public function isFollower($asso)
+  {
+    $res = AbonnementTable::getInstance()->getCurrentAssoFollower($asso, $this->getId())->fetchOne();
+    return $res ? true : false;
   }
 }

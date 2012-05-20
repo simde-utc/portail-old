@@ -1,3 +1,12 @@
+semestre:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Semestre
+    module:               semestre
+    prefix_path:          /semestre
+    column:               id
+    with_wildcard_routes: true
+
 role:
   class: sfDoctrineRouteCollection
   options:

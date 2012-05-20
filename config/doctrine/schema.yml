@@ -40,10 +40,10 @@ AssoMember:
   connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
-    user_id: { type: integer }
-    asso_id: { type: integer }
-    role_id: { type: integer }
-    semestre_id: { type: integer }
+    user_id: { type: integer, notnull: true }
+    asso_id: { type: integer, notnull: true }
+    role_id: { type: integer, notnull: true }
+    semestre_id: { type: integer, notnull: true }
   relations:
     Asso: { local: asso_id, foreign: id }
     Role: { local: role_id, foreign: id }

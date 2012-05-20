@@ -15,6 +15,6 @@
       <?php endforeach; ?>
     </ul>
   <?php else: ?>
-    Cette association n'a pas de membre dans son bureau.
+    Cette association n'a pas de membre.
   <?php endif ?>
 </div>

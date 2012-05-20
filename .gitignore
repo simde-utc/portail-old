@@ -8,3 +8,4 @@ mkmf.log
 .rsync*
 backups/*
 /nbproject/private/
+data/*.index

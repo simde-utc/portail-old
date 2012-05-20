@@ -45,15 +45,19 @@ abstract class BaseAssoMember extends sfDoctrineRecord
         $this->setTableName('asso_member');
         $this->hasColumn('user_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('asso_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('role_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('semestre_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
 
         $this->option('collate', 'utf8_unicode_ci');

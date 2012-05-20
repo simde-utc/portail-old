@@ -170,4 +170,16 @@ class assoActions extends sfActions
     $this->redirect('asso/show?login='.$asso->getLogin());
   }
 
+  public function executeMember()
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->redirectUnless($this->asso, 'assos_list');
+    if(!$this->getUser()->getGuardUser()->hasAccess($this->asso->getLogin(), 0x02))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$this->asso->getLogin());
+    }
+    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
+  }
+
 }

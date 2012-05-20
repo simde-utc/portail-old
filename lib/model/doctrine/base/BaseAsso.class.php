@@ -115,8 +115,9 @@ abstract class BaseAsso extends sfDoctrineRecord
              'type' => 'string',
              'length' => 15,
              ));
-        $this->hasColumn('facebook', 'string', null, array(
+        $this->hasColumn('facebook', 'string', 100, array(
              'type' => 'string',
+             'length' => 100,
              ));
         $this->hasColumn('summary', 'string', 150, array(
              'type' => 'string',

@@ -16,7 +16,6 @@ Asso:
     logo: { type: string(100) }
     active: { type: boolean, notnull: true, default: true }
     passation: { type: boolean, notnull: true, default: false }
-    charte_info: { type: boolean, notnull: true, default: false }
     salle: { type: string(6) }
     phone: { type: string(15) }
     facebook: { type: string(100) }
@@ -156,3 +155,18 @@ Activation:
     activation_key: { type: string }
   relations:
     sfGuardUser: { onUpdate: CASCADE, local: user_id, foreign: id, foreignAlias: Activations}
+
+CharteInfo:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    date: { type: date, notnull: true }
+    semestre_id: { type: integer, notnull: true }
+    asso_id : { type: integer, notnull : true }
+    responsable_id: { type: integer, notnull: true }
+    confirmation: { type: boolean, notnull: true, default: false }
+  relations:
+    Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Responsable: { onUpdate: CASCADE, local: responsable_id, foreign: id, class: sfGuardUser }
+    

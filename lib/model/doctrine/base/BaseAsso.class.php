@@ -17,7 +17,6 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property string $logo
  * @property boolean $active
  * @property boolean $passation
- * @property boolean $charte_info
  * @property string $salle
  * @property string $phone
  * @property string $facebook
@@ -27,6 +26,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property Doctrine_Collection $AssoMember
  * @property Doctrine_Collection $Event
  * @property Doctrine_Collection $Article
+ * @property Doctrine_Collection $CharteInfo
  * 
  * @method string              getName()        Returns the current record's "name" value
  * @method string              getLogin()       Returns the current record's "login" value
@@ -38,7 +38,6 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method string              getLogo()        Returns the current record's "logo" value
  * @method boolean             getActive()      Returns the current record's "active" value
  * @method boolean             getPassation()   Returns the current record's "passation" value
- * @method boolean             getCharteInfo()  Returns the current record's "charte_info" value
  * @method string              getSalle()       Returns the current record's "salle" value
  * @method string              getPhone()       Returns the current record's "phone" value
  * @method string              getFacebook()    Returns the current record's "facebook" value
@@ -48,6 +47,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Doctrine_Collection getAssoMember()  Returns the current record's "AssoMember" collection
  * @method Doctrine_Collection getEvent()       Returns the current record's "Event" collection
  * @method Doctrine_Collection getArticle()     Returns the current record's "Article" collection
+ * @method Doctrine_Collection getCharteInfo()  Returns the current record's "CharteInfo" collection
  * @method Asso                setName()        Sets the current record's "name" value
  * @method Asso                setLogin()       Sets the current record's "login" value
  * @method Asso                setPoleId()      Sets the current record's "pole_id" value
@@ -58,7 +58,6 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setLogo()        Sets the current record's "logo" value
  * @method Asso                setActive()      Sets the current record's "active" value
  * @method Asso                setPassation()   Sets the current record's "passation" value
- * @method Asso                setCharteInfo()  Sets the current record's "charte_info" value
  * @method Asso                setSalle()       Sets the current record's "salle" value
  * @method Asso                setPhone()       Sets the current record's "phone" value
  * @method Asso                setFacebook()    Sets the current record's "facebook" value
@@ -68,6 +67,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setAssoMember()  Sets the current record's "AssoMember" collection
  * @method Asso                setEvent()       Sets the current record's "Event" collection
  * @method Asso                setArticle()     Sets the current record's "Article" collection
+ * @method Asso                setCharteInfo()  Sets the current record's "CharteInfo" collection
  * 
  * @package    simde
  * @subpackage model
@@ -120,11 +120,6 @@ abstract class BaseAsso extends sfDoctrineRecord
              'notnull' => true,
              'default' => false,
              ));
-        $this->hasColumn('charte_info', 'boolean', null, array(
-             'type' => 'boolean',
-             'notnull' => true,
-             'default' => false,
-             ));
         $this->hasColumn('salle', 'string', 6, array(
              'type' => 'string',
              'length' => 6,
@@ -166,6 +161,10 @@ abstract class BaseAsso extends sfDoctrineRecord
              'foreign' => 'asso_id'));
 
         $this->hasMany('Article', array(
+             'local' => 'id',
+             'foreign' => 'asso_id'));
+
+        $this->hasMany('CharteInfo', array(
              'local' => 'id',
              'foreign' => 'asso_id'));
 

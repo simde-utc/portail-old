@@ -76,6 +76,9 @@
               <li><a href="<?php echo url_for('role_new') ?>">Nouveau rôle</a></li>
               <li><a href="<?php echo url_for('semestre') ?>">Liste des semestres</a></li>
               <li><a href="<?php echo url_for('semestre_new') ?>">Nouveau semestre</a></li>
+              <li class="nav-header">SiMDE</li>
+              <li><a href="<?php echo url_for('charte_info') ?>">Signatures Chartes Info</a></li>
+              <li><a href="<?php echo url_for('charte_info_new') ?>">Nouvelle Charte Info</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

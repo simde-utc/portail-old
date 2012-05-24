@@ -12,14 +12,15 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property integer $pole_id
  * @property integer $type_id
  * @property string $url_site
+ * @property string $summary
  * @property string $description
  * @property string $logo
  * @property boolean $active
  * @property boolean $passation
+ * @property boolean $charte_info
  * @property string $salle
  * @property string $phone
  * @property string $facebook
- * @property string $summary
  * @property Pole $Pole
  * @property TypeAsso $Type
  * @property Pole $PoleInfos
@@ -32,14 +33,15 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method integer             getPoleId()      Returns the current record's "pole_id" value
  * @method integer             getTypeId()      Returns the current record's "type_id" value
  * @method string              getUrlSite()     Returns the current record's "url_site" value
+ * @method string              getSummary()     Returns the current record's "summary" value
  * @method string              getDescription() Returns the current record's "description" value
  * @method string              getLogo()        Returns the current record's "logo" value
  * @method boolean             getActive()      Returns the current record's "active" value
  * @method boolean             getPassation()   Returns the current record's "passation" value
+ * @method boolean             getCharteInfo()  Returns the current record's "charte_info" value
  * @method string              getSalle()       Returns the current record's "salle" value
  * @method string              getPhone()       Returns the current record's "phone" value
  * @method string              getFacebook()    Returns the current record's "facebook" value
- * @method string              getSummary()     Returns the current record's "summary" value
  * @method Pole                getPole()        Returns the current record's "Pole" value
  * @method TypeAsso            getType()        Returns the current record's "Type" value
  * @method Pole                getPoleInfos()   Returns the current record's "PoleInfos" value
@@ -51,14 +53,15 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setPoleId()      Sets the current record's "pole_id" value
  * @method Asso                setTypeId()      Sets the current record's "type_id" value
  * @method Asso                setUrlSite()     Sets the current record's "url_site" value
+ * @method Asso                setSummary()     Sets the current record's "summary" value
  * @method Asso                setDescription() Sets the current record's "description" value
  * @method Asso                setLogo()        Sets the current record's "logo" value
  * @method Asso                setActive()      Sets the current record's "active" value
  * @method Asso                setPassation()   Sets the current record's "passation" value
+ * @method Asso                setCharteInfo()  Sets the current record's "charte_info" value
  * @method Asso                setSalle()       Sets the current record's "salle" value
  * @method Asso                setPhone()       Sets the current record's "phone" value
  * @method Asso                setFacebook()    Sets the current record's "facebook" value
- * @method Asso                setSummary()     Sets the current record's "summary" value
  * @method Asso                setPole()        Sets the current record's "Pole" value
  * @method Asso                setType()        Sets the current record's "Type" value
  * @method Asso                setPoleInfos()   Sets the current record's "PoleInfos" value
@@ -78,10 +81,12 @@ abstract class BaseAsso extends sfDoctrineRecord
         $this->setTableName('asso');
         $this->hasColumn('name', 'string', 50, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 50,
              ));
         $this->hasColumn('login', 'string', 32, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 32,
              ));
         $this->hasColumn('pole_id', 'integer', null, array(
@@ -94,6 +99,10 @@ abstract class BaseAsso extends sfDoctrineRecord
              'type' => 'string',
              'length' => 100,
              ));
+        $this->hasColumn('summary', 'string', 150, array(
+             'type' => 'string',
+             'length' => 150,
+             ));
         $this->hasColumn('description', 'string', null, array(
              'type' => 'string',
              ));
@@ -103,9 +112,18 @@ abstract class BaseAsso extends sfDoctrineRecord
              ));
         $this->hasColumn('active', 'boolean', null, array(
              'type' => 'boolean',
+             'notnull' => true,
+             'default' => true,
              ));
         $this->hasColumn('passation', 'boolean', null, array(
              'type' => 'boolean',
+             'notnull' => true,
+             'default' => false,
+             ));
+        $this->hasColumn('charte_info', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => false,
              ));
         $this->hasColumn('salle', 'string', 6, array(
              'type' => 'string',
@@ -118,10 +136,6 @@ abstract class BaseAsso extends sfDoctrineRecord
         $this->hasColumn('facebook', 'string', 100, array(
              'type' => 'string',
              'length' => 100,
-             ));
-        $this->hasColumn('summary', 'string', 150, array(
-             'type' => 'string',
-             'length' => 150,
              ));
 
         $this->option('collate', 'utf8_unicode_ci');

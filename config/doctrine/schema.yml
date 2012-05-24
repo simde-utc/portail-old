@@ -6,19 +6,20 @@ Asso:
   connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
-    name: { type: string(50) }
-    login: { type: string(32) }
+    name: { type: string(50), notnull: true }
+    login: { type: string(32), notnull: true }
     pole_id: { type: integer }
     type_id: { type: integer }
     url_site: { type: string(100) }
+    summary: { type: string(150) }
     description: { type: string }
     logo: { type: string(100) }
-    active: { type: boolean }
-    passation: { type: boolean }
+    active: { type: boolean, notnull: true, default: true }
+    passation: { type: boolean, notnull: true, default: false }
+    charte_info: { type: boolean, notnull: true, default: false }
     salle: { type: string(6) }
     phone: { type: string(15) }
     facebook: { type: string(100) }
-    summary: { type: string(150) }
   relations:
     Pole: { local: pole_id, foreign: id }
     Type: { local: type_id, foreign: id, class: TypeAsso }

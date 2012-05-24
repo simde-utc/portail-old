@@ -43,7 +43,7 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="<?php echo url_for('cas_logout') ?>">Se déconnecter</a></li>
+                <li><a href="<?php echo url_for('sf_guard_signout') ?>">Se déconnecter</a></li>
               </ul>
             </li>
           </ul>

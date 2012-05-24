@@ -179,7 +179,7 @@ class assoActions extends sfActions
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$this->asso->getLogin());
     }
-    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
+    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->andWhere('q.role_id <> 1')->execute();
   }
 
 }

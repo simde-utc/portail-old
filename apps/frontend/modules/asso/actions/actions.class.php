@@ -50,7 +50,7 @@ class assoActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->redirectUnless($asso = $this->getRoute()->getObject(), 'assos_list');
-    if(!$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$asso->getLogin());
@@ -62,7 +62,7 @@ class assoActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))), sprintf('Object asso does not exist (%s).', $request->getParameter('id')));
-    if(!$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$asso->getLogin());
@@ -174,7 +174,7 @@ class assoActions extends sfActions
   {
     $this->asso = $this->getRoute()->getObject();
     $this->redirectUnless($this->asso, 'assos_list');
-    if(!$this->getUser()->getGuardUser()->hasAccess($this->asso->getLogin(), 0x02))
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($this->asso->getLogin(), 0x02))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$this->asso->getLogin());

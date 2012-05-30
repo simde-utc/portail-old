@@ -36,7 +36,7 @@ class memberActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($asso_member = Doctrine_Core::getTable('AssoMember')->find(array($request->getParameter('id'))), sprintf('Object asso_member does not exist (%s).', $request->getParameter('id')));
-    if(!$this->getUser()->getGuardUser()->hasAccess($asso_member->getAsso()->getLogin(), 0x02))
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso_member->getAsso()->getLogin(), 0x02))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$asso_member->getAsso()->getLogin());
@@ -48,7 +48,7 @@ class memberActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($asso_member = Doctrine_Core::getTable('AssoMember')->find(array($request->getParameter('id'))), sprintf('Object asso_member does not exist (%s).', $request->getParameter('id')));
-    if(!$this->getUser()->getGuardUser()->hasAccess($asso_member->getAsso()->getLogin(), 0x02))
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso_member->getAsso()->getLogin(), 0x02))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$asso_member->getAsso()->getLogin());

@@ -25,7 +25,7 @@ class eventActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     $this->redirectUnless($asso = $this->getRoute()->getObject(), 'assos_list');
-    if(!$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x08))
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x08))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$asso->getLogin());
@@ -48,7 +48,7 @@ class eventActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($event = $this->getRoute()->getObject());
-    if(!$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x08))
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x08))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$event->getAsso()->getLogin());
@@ -60,7 +60,7 @@ class eventActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($event = Doctrine_Core::getTable('event')->find(array($request->getParameter('id'))), sprintf('Object event does not exist (%s).', $request->getParameter('id')));
-    if(!$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x08))
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x08))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$event->getAsso()->getLogin());
@@ -77,7 +77,7 @@ class eventActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->forward404Unless($event = Doctrine_Core::getTable('event')->find(array($request->getParameter('id'))), sprintf('Object event does not exist (%s).', $request->getParameter('id')));
-    if(!$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x08))
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x08))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$event->getAsso()->getLogin());

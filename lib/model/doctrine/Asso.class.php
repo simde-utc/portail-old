@@ -100,6 +100,11 @@ class Asso extends BaseAsso
     return in_array($this->getId(), array(1,3,4,5,6));
   }
 
+  public function __toString()
+  {
+    return $this->getLogin();
+  }
+
   public function addMember(sfGuardUser $user)
   {
     $assoMember = new AssoMember();

@@ -60,15 +60,15 @@ asso_member:
   options: { model: Asso, type: object }
 
 member_edit:
-  url:   /member/:id/edit
+  url:   /asso/membres/:asso/edit/:id
   class: sfDoctrineRoute
   param: { module: member, action: edit }
   options: { model: AssoMember, type: object }
 member_update:
-  url:  /member/:id/update
+  url:  /asso/membres/:asso/update/:id
   param: { module: member, action: update }
 member_delete:
-  url:  /member/delete/:id
+  url:  /asso/membres/:asso/delete/:id
   param: { module: member, action: delete }
 
 asso_search:

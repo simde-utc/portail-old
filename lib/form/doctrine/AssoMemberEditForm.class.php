@@ -14,5 +14,11 @@ class AssoMemberEditForm extends AssoMemberForm
   {
     parent::configure();
     unset($this['semestre_id'],$this['asso_id'],$this['user_id']);
+    $this->widgetSchema['role_id'] = new sfWidgetFormDoctrineChoice(array(
+        'model' => $this->getRelatedModelName('Role'),
+        'add_empty' => false,
+        'query' => RoleTable::getInstance()->getUnsecureRole(),
+        ));
+    
   }
 }

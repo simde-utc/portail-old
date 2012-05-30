@@ -10,8 +10,7 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Asso extends BaseAsso
-{
+class Asso extends BaseAsso {
 
   /**
    * 
@@ -46,7 +45,7 @@ class Asso extends BaseAsso
   {
     $index = AssoTable::getInstance()->getLuceneIndex();
 
-    foreach($index->find('pk:'.$this->getId()) as $hit)
+    foreach($index->find('pk:' . $this->getId()) as $hit)
     {
       $index->delete($hit->id);
     }
@@ -63,7 +62,7 @@ class Asso extends BaseAsso
     $index = AssoTable::getInstance()->getLuceneIndex();
 
     // remove existing entries
-    foreach($index->find('pk:'.$this->getId()) as $hit)
+    foreach($index->find('pk:' . $this->getId()) as $hit)
     {
       $index->delete($hit->id);
     }
@@ -97,7 +96,7 @@ class Asso extends BaseAsso
   public function isPole()
   {
     // Codé en dur pour des raisons de performances
-    return in_array($this->getId(), array(1,3,4,5,6));
+    return in_array($this->getId(), array(1, 3, 4, 5, 6));
   }
 
   public function __toString()
@@ -129,7 +128,13 @@ class Asso extends BaseAsso
 
   public function getUrlSite()
   {
-    return 'http://assos.utc.fr/'.$this->getLogin();
+    return 'http://assos.utc.fr/' . $this->getLogin();
+  }
+
+  public function getCharteSigned()
+  {
+    $charte = CharteInfoTable::getInstance()->getByAssoAndSemestre($this->getId())->fetchOne();
+    return ( $charte ) ? $charte->getConfirmation() : 0;
   }
 
 }

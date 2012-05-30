@@ -43,8 +43,11 @@ class assoActions extends sfActions
   {
     $this->asso = $this->getRoute()->getObject();
     $this->redirectUnless($this->asso, 'assos_list');
-    if($pole = $this->asso->isPole())
-      $this->assos = AssoTable::getInstance()->getAssosList($pole->getPrimaryKey())->execute();
+    if($this->asso->isPole())
+        {
+          $pole = PoleTable::getInstance()->findOneBy('asso_id',$this->asso->getId());
+          $this->assos = AssoTable::getInstance()->getAssosList($pole->getId())->execute();
+        }
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -179,7 +182,7 @@ class assoActions extends sfActions
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$this->asso->getLogin());
     }
-    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
+    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->andWhere('q.role_id <> 1')->execute();
   }
 
 }

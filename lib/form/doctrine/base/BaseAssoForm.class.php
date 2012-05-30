@@ -21,6 +21,7 @@ abstract class BaseAssoForm extends BaseFormDoctrine
       'pole_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Pole'), 'add_empty' => true)),
       'type_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Type'), 'add_empty' => true)),
       'url_site'    => new sfWidgetFormInputText(),
+      'summary'     => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(),
       'logo'        => new sfWidgetFormInputText(),
       'active'      => new sfWidgetFormInputCheckbox(),
@@ -28,18 +29,18 @@ abstract class BaseAssoForm extends BaseFormDoctrine
       'salle'       => new sfWidgetFormInputText(),
       'phone'       => new sfWidgetFormInputText(),
       'facebook'    => new sfWidgetFormInputText(),
-      'summary'     => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'name'        => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'login'       => new sfValidatorString(array('max_length' => 32, 'required' => false)),
+      'name'        => new sfValidatorString(array('max_length' => 50)),
+      'login'       => new sfValidatorString(array('max_length' => 32)),
       'pole_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Pole'), 'required' => false)),
       'type_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Type'), 'required' => false)),
       'url_site'    => new sfValidatorString(array('max_length' => 100, 'required' => false)),
+      'summary'     => new sfValidatorString(array('max_length' => 150, 'required' => false)),
       'description' => new sfValidatorString(array('required' => false)),
       'logo'        => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'active'      => new sfValidatorBoolean(array('required' => false)),
@@ -47,7 +48,6 @@ abstract class BaseAssoForm extends BaseFormDoctrine
       'salle'       => new sfValidatorString(array('max_length' => 6, 'required' => false)),
       'phone'       => new sfValidatorString(array('max_length' => 15, 'required' => false)),
       'facebook'    => new sfValidatorString(array('max_length' => 100, 'required' => false)),
-      'summary'     => new sfValidatorString(array('max_length' => 150, 'required' => false)),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
     ));

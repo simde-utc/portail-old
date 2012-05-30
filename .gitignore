@@ -9,3 +9,4 @@ mkmf.log
 backups/*
 /nbproject/private/
 data/*.index
+nbproject

@@ -76,8 +76,8 @@ class memberActions extends sfActions
     if ($form->isValid())
     {
       $asso_member = $form->save();
-
-      $this->redirect('member/edit?id='.$asso_member->getId());
+      $this->getUser()->setFlash('success', 'Rôle du membre '.$asso_member->getUser().' modifié.');
+      $this->redirect('asso/member?login='.$asso_member->getAsso()->getLogin());
     }
   }
 }

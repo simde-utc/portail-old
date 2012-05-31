@@ -32,11 +32,11 @@
         <?php foreach($roles as $role): ?>
         <tr>
           <td style="font-weight: bold;"><?php echo $role->getName() ?></td>
-          <td><?php echo ( $role->getBureau() ? 'Oui' : 'Non') ?></td>
-          <td><?php echo ($role->getDroits() & 0x01) ? 'Oui' : 'Non' ?></td>
-          <td><?php echo ($role->getDroits() & 0x02) ? 'Oui' : 'Non' ?></td>
-          <td><?php echo ($role->getDroits() & 0x04) ? 'Oui' : 'Non' ?></td>
-          <td><?php echo ($role->getDroits() & 0x08) ? 'Oui' : 'Non' ?></td>
+          <td><?php echo ( $role->getBureau() ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>') ?></td>
+          <td><?php echo ($role->getDroits() & 0x01) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
+          <td><?php echo ($role->getDroits() & 0x02) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
+          <td><?php echo ($role->getDroits() & 0x04) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
+          <td><?php echo ($role->getDroits() & 0x08) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
         </tr>
         <?php endforeach; ?>
       </tbody>

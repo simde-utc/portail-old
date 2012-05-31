@@ -1,0 +1,71 @@
+all:
+  sfImageTransformPlugin:
+    default_adapter: GD #, ImageMagick
+    default_image:
+      mime_type: image/png
+      filename: Untitled.png
+      width: 100
+      height: 100
+      color: '#FFFFFF'
+    font_dir: /usr/share/fonts/truetype/msttcorefonts
+    mime_type:
+      auto_detect: true
+      library: gd_mime_type #  gd_mime_type (GD), Fileinfo (PECL), MIME_Type (PEAR)
+  gallerynePlugin:
+    thumbnails_sizes:
+      - 50
+      - 150
+      - 300
+      - 450
+    default_size: 50 # default, if not in thumbnails_sizes array new thumbnail is created
+    skitter_size: 450
+    anything_max_height: 450
+    portfolio_thumbnails_size: 150
+    onDelete: cascade # none or cascade, cascade remove all gallery's files
+    path_gallery: <?php echo sfConfig::get("sf_upload_dir")."/gallery/\n" ;?>
+    theme: admin
+    csstheme: black #black or original
+    defaultPicture: /gallerynePlugin/images/default_picture.jpg
+    path_filigrane: <?php echo sfConfig::get("sf_upload_dir")."/filigrane.png\n"; ?>
+    ratio:
+      enable: true
+      value: 1.5
+    dimensions:
+      min:
+        width: 0
+        height: 0
+      max:
+        width: 615
+        height: 400
+
+    uploader:
+      #Define your file schema (that you will give in the widget call
+      default:
+        #The class the files are linked
+        aggregate_entity_class_name: Gallery
+
+        #Give the relation type of you file schema : can be enum, related_table or column
+        # default gallery plugin only has one related_table : photos
+        relation_type: related_table
+
+        #Give only this information if the relation_type is set to enum or related_table
+        entity_aggregate_columnid: gallery_id
+        entity_filename_column: filename
+        entity_size_column: size
+
+        #If relation_type = enum, give here the different values
+        #else if relation_type = related_table, give here the different Doctrine Class names
+        #else if relation_type = column, give the columnames
+        entity_file_kinds:
+          - Photos
+
+        #Set the limit foreach entity kind
+        photos_max_number: 10
+        photos_unit_max_weight: 1100000
+        photos_max_weight: 21000000
+
+        global_max_weight: 20000000
+
+        photos_main_path: /uploads/gallery
+        min_file_size: 1 
+        max_file_size: 1000000000

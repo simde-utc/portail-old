@@ -1,7 +1,7 @@
 options:
   collate: utf8_unicode_ci
   charset: utf8
-
+  
 Asso:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -22,7 +22,33 @@ Asso:
   relations:
     Pole: { local: pole_id, foreign: id }
     Type: { local: type_id, foreign: id, class: TypeAsso }
- 
+
+Album:
+  connection: doctrine
+  actAs: { Timestampable: ~}
+  columns:
+    name: { type: string(50) }
+    location: { type: string(100) }
+    visibility: { type: integer }
+    asso_id: { type: integer }
+  relations:
+    Asso: { local: asso_id, foreign: id }
+    Images:
+      type: many
+      class: Image
+      local: id
+      foreign: album_id
+      onDelete: CASCADE
+Image:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    name: { type: string(50) }
+    legend: { type: string(255) }
+    album_id: { type: integer }
+  relations:
+    Album: { local: album_id, foreign: id, type : one }
+
 Pole:
   connection: doctrine
   columns:

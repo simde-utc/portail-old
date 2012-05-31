@@ -1,0 +1,14 @@
+<?php
+/**
+ *
+ * @author lbernard
+ */
+interface Uploadable {
+    public function getFullPath();
+    public function getTempPath();
+    public function getPath();
+    public function getLimitMax();
+    public function getAllowedExtensions();
+}
+
+?>

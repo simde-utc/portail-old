@@ -3,6 +3,25 @@ all:
     allow_login_with_email: true
     remember_key_expiration_age:  604800   # 7 days in seconds
     remember_cookie_name:         portailSiMDERememberMe
+  gallerynePlugin:
+    uploader:
+       default:
+        relation_type: related_table
+        aggregate_entity_class_name: Gallery
+        entity_aggregate_columnid: gallery_id
+        entity_filename_column: filename
+        entity_size_column: size
+        entity_file_kinds:
+          - Photos
+        photos_max_number: 10
+        photos_unit_max_weight: 1100000
+        photos_max_weight: 21000000
+ 
+        global_max_weight: 21000000
+        main_path: /uploads/gallery
+ 
+        min_file_size: 1 
+        max_file_size: 1000000000
   cas:
     # Exemple for https://cas-server-name:8443/cas-path
     server_name: 'cas.utc.fr'

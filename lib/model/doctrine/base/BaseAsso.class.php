@@ -22,6 +22,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property string $summary
  * @property Pole $Pole
  * @property TypeAsso $Type
+ * @property Doctrine_Collection $Album
  * @property Pole $PoleInfos
  * @property Doctrine_Collection $AssoMember
  * @property Doctrine_Collection $Event
@@ -42,6 +43,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method string              getSummary()     Returns the current record's "summary" value
  * @method Pole                getPole()        Returns the current record's "Pole" value
  * @method TypeAsso            getType()        Returns the current record's "Type" value
+ * @method Doctrine_Collection getAlbum()       Returns the current record's "Album" collection
  * @method Pole                getPoleInfos()   Returns the current record's "PoleInfos" value
  * @method Doctrine_Collection getAssoMember()  Returns the current record's "AssoMember" collection
  * @method Doctrine_Collection getEvent()       Returns the current record's "Event" collection
@@ -61,6 +63,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setSummary()     Sets the current record's "summary" value
  * @method Asso                setPole()        Sets the current record's "Pole" value
  * @method Asso                setType()        Sets the current record's "Type" value
+ * @method Asso                setAlbum()       Sets the current record's "Album" collection
  * @method Asso                setPoleInfos()   Sets the current record's "PoleInfos" value
  * @method Asso                setAssoMember()  Sets the current record's "AssoMember" collection
  * @method Asso                setEvent()       Sets the current record's "Event" collection
@@ -115,8 +118,9 @@ abstract class BaseAsso extends sfDoctrineRecord
              'type' => 'string',
              'length' => 15,
              ));
-        $this->hasColumn('facebook', 'string', null, array(
+        $this->hasColumn('facebook', 'string', 100, array(
              'type' => 'string',
+             'length' => 100,
              ));
         $this->hasColumn('summary', 'string', 150, array(
              'type' => 'string',
@@ -137,6 +141,10 @@ abstract class BaseAsso extends sfDoctrineRecord
         $this->hasOne('TypeAsso as Type', array(
              'local' => 'type_id',
              'foreign' => 'id'));
+
+        $this->hasMany('Album', array(
+             'local' => 'id',
+             'foreign' => 'asso_id'));
 
         $this->hasOne('Pole as PoleInfos', array(
              'local' => 'id',

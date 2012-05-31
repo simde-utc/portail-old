@@ -1,0 +1,5 @@
+all:
+  .settings:
+    standard_helpers:       [Partial, Cache, I18N, Date, Number, jQuery]
+    i18n: on
+    default_culture: fr

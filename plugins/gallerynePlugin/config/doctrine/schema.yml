@@ -1,0 +1,53 @@
+Gallery:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [title]
+      unique: true
+      canUpdate : true
+  columns:
+    title:
+      type : string(255)
+    description:
+      type : string
+    is_active: boolean
+    private: 
+      type: boolean
+      default: false
+      comment: "True means that this gallery has been added by the widget"
+    
+
+GalleryneFile:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      fields: [title]
+      unique: true
+  columns:
+    title:
+      type : string(255)
+    description:
+      type : string
+    filename:
+      type : string(255)
+    size:
+      type : string(255)
+    position:
+      type: integer(4)
+      default: null
+    is_default:     { type: boolean, default: false }
+Photos:
+  inheritance:
+    type:    concrete
+    extends: GalleryneFile
+  columns:
+    order_photo:
+      type: integer(4)
+      default: null
+    gallery_id:
+      type: integer
+      default: null
+  relations:
+    Gallery:
+      local: gallery_id
+      onDelete: CASCADE

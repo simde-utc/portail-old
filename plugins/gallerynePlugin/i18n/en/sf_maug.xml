@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd" >
+<xliff version="1.0">
+  <file original="global" source-language="en" target-language="en" datatype="plaintext">
+    <header />
+    <body>
+      <trans-unit>
+        <source>Ajouter des images</source>
+        <target>Add pictures</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Body</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>Edition</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>Drop files here to upload</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Please wait...</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source>slideshow.index.title</source>
+        <target>Galleries list</target>
+      </trans-unit>
+      <trans-unit>
+        <source>slideshow.index.empty</source>
+        <target>No gallery available</target>
+      </trans-unit>
+      <trans-unit>
+        <source>backend.action.greyscale</source>
+        <target>Greyscale this picture</target>
+      </trans-unit>
+      <trans-unit>
+        <source>backend.action.colorize</source>
+        <target>Colorize this picture</target>
+      </trans-unit>
+      <trans-unit>
+        <source>backend.action.flip.vertical<source>
+        <target>Vertical flip</target>
+      </trans-unit>
+      <trans-unit>
+        <source>backend.action.flip.horizontal<source>
+        <target>Horizontal flip</target>
+      </trans-unit>
+      <trans-unit>
+        <source>backend.action.rotate.left<source>
+        <target>Left rotation</target>
+      </trans-unit>
+      <trans-unit>
+        <source>backend.action.rotate.right<source>
+        <target>Right rotation</target>
+      </trans-unit>
+      <trans-unit>
+        <source>backend.action.crop<source>
+        <target>Crop this picture</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

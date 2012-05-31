@@ -116,6 +116,56 @@ article_new:
   options: { model: Asso, type: object }
   param: { module: article, action: new }
 
+# Album
+albums_list:
+  url:   /album
+  param: { module: album, action: index }
+  
+album_show:
+  url:   /album/show/:id
+  class: sfDoctrineRoute
+  param: { module: album, action: show }
+  options: { model: Album, type: object }
+
+album_edit:
+  url:  /album/edit/:id
+  class: sfDoctrineRoute
+  param: { module: album, action: edit }
+  options: { model: Album, type: object }
+
+album_update:
+  url:  /album/update/:id
+  param: { module: album, action: update }
+  
+album_delete:
+  url:  /album/delete/:id
+  param: { module: album, action: delete } 
+  
+album_create:
+  url: /album/create
+  param: { module: album, action: create } 
+  
+album_new:
+  url: /album/new
+ # class: sfDoctrineRoute
+#  options: { model: Album, type: object }
+  param: { module: album, action: new }
+
+add:
+  url: /add
+  param: { module: album, action: add }
+
+edit:
+  url: /edit
+  param: { module: album, action: edit }
+
+submit:
+  url: /submit
+  param: { module: album, action: submit }
+
+new:
+  url: /new
+  param: { module: album, action: new }
 #Events
 events_list:
   url: /event

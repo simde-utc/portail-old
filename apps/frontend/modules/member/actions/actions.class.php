@@ -35,13 +35,13 @@ class memberActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($asso_member = Doctrine_Core::getTable('AssoMember')->find(array($request->getParameter('id'))), sprintf('Object asso_member does not exist (%s).', $request->getParameter('id')));
-    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso_member->getAsso()->getLogin(), 0x02))
+    $this->forward404Unless($this->asso_member = Doctrine_Core::getTable('AssoMember')->find(array($request->getParameter('id'))), sprintf('Object asso_member does not exist (%s).', $request->getParameter('id')));
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($this->asso_member->getAsso()->getLogin(), 0x02))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('asso/show?login='.$asso_member->getAsso()->getLogin());
+      $this->redirect('asso/show?login='.$this->asso_member->getAsso()->getLogin());
     }
-    $this->form = new AssoMemberEditForm($asso_member);
+    $this->form = new AssoMemberEditForm($this->asso_member);
   }
 
   public function executeUpdate(sfWebRequest $request)

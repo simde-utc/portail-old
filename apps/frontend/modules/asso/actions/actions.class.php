@@ -140,6 +140,11 @@ class assoActions extends sfActions
   public function executeJoin()
   {
     $asso = $this->getRoute()->getObject();
+    if(!$asso->getJoignable())
+    {
+      $this->getUser()->setFlash('error', 'On ne peut pas rejoindre cette association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
     if(!$this->getUser()->isAuthenticated())
     {
       $this->getUser()->setFlash('error', 'Vous devez être connecté pour rejoindre une association.');

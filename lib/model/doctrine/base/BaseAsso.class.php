@@ -20,6 +20,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property string $salle
  * @property string $phone
  * @property string $facebook
+ * @property boolean $joignable
  * @property Pole $Pole
  * @property TypeAsso $Type
  * @property Pole $PoleInfos
@@ -41,6 +42,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method string              getSalle()       Returns the current record's "salle" value
  * @method string              getPhone()       Returns the current record's "phone" value
  * @method string              getFacebook()    Returns the current record's "facebook" value
+ * @method boolean             getJoignable()   Returns the current record's "joignable" value
  * @method Pole                getPole()        Returns the current record's "Pole" value
  * @method TypeAsso            getType()        Returns the current record's "Type" value
  * @method Pole                getPoleInfos()   Returns the current record's "PoleInfos" value
@@ -61,6 +63,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setSalle()       Sets the current record's "salle" value
  * @method Asso                setPhone()       Sets the current record's "phone" value
  * @method Asso                setFacebook()    Sets the current record's "facebook" value
+ * @method Asso                setJoignable()   Sets the current record's "joignable" value
  * @method Asso                setPole()        Sets the current record's "Pole" value
  * @method Asso                setType()        Sets the current record's "Type" value
  * @method Asso                setPoleInfos()   Sets the current record's "PoleInfos" value
@@ -131,6 +134,11 @@ abstract class BaseAsso extends sfDoctrineRecord
         $this->hasColumn('facebook', 'string', 100, array(
              'type' => 'string',
              'length' => 100,
+             ));
+        $this->hasColumn('joignable', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => true,
              ));
 
         $this->option('collate', 'utf8_unicode_ci');

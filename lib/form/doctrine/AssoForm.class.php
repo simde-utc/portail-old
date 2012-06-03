@@ -14,7 +14,7 @@ class AssoForm extends BaseAssoForm
   {
     sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
     $this->useFields(array(
-        'name', 'pole_id','type_id','logo','summary','description','salle','phone','facebook'
+        'name', 'pole_id','type_id','logo','summary','description','salle','phone','facebook','joignable'
     ));
     
     $this->widgetSchema['logo'] = new sfWidgetFormInputFileEditable(array(
@@ -42,6 +42,7 @@ class AssoForm extends BaseAssoForm
     $this->widgetSchema->setLabel('salle', 'Local');
     $this->widgetSchema->setLabel('phone', 'Téléphone');
     $this->widgetSchema->setLabel('facebook', 'Page Facebook');
+    $this->widgetSchema->setLabel('joignable', 'Joignable');
     
     $this->getWidget('pole_id')->setOption('query',PoleTable::getInstance()->getAllWithInfos());
   }

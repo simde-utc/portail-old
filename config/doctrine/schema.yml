@@ -19,6 +19,7 @@ Asso:
     salle: { type: string(6) }
     phone: { type: string(15) }
     facebook: { type: string(100) }
+    joignable: { type: boolean, notnull: true, default: true }
   relations:
     Pole: { local: pole_id, foreign: id }
     Type: { local: type_id, foreign: id, class: TypeAsso }

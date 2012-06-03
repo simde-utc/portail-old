@@ -25,10 +25,12 @@ class AssoForm extends BaseAssoForm
       'delete_label' => "Supprimer ce logo",
     ));
  
-    $this->validatorSchema['logo'] = new sfValidatorFile(array(
+    $this->validatorSchema['logo'] = new sfValidatorFileImage(array(
     	'required' => false,
     	'path' => sfConfig::get('sf_upload_dir').'/assos/source',
-        'mime_types' => 'web_images'
+        'mime_types' => 'web_images',
+        'max_width' => 1000,
+        'max_height' => 1000
     ));
     
     $this->validatorSchema['logo_delete'] = new sfValidatorBoolean();

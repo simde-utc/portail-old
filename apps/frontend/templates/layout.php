@@ -67,11 +67,17 @@
       <?php include_component('event', 'carousel') ?>
     <?php elseif($sf_request->getParameter('login')): ?>
       <?php include_component('asso', 'menu') ?>
-    <?php endif ?>;
+    <?php endif ?>
     <div class="wrap">
-      <div id="column-left">
+      <div id="column-left">        
         <?php if($sf_user->isAuthenticated()): ?>
           <?php include_component('asso', 'myAssos') ?>
+        <?php else: ?>
+          <?php include_partial('home/bienvenue') ?>
+        <?php endif ?>
+        <br>
+        <?php if($sf_user->isAuthenticated()): ?>
+          <?php include_component('abonnement', 'myFlux') ?>
         <?php else: ?>
           <?php include_partial('home/bienvenue') ?>
         <?php endif ?>

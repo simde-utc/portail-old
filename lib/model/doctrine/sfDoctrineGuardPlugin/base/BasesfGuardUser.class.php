@@ -25,6 +25,7 @@
  * @property Profile $Profile
  * @property Doctrine_Collection $Activations
  * @property Doctrine_Collection $CharteInfo
+ * @property Doctrine_Collection $Emprunt
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -46,6 +47,7 @@
  * @method Profile               getProfile()               Returns the current record's "Profile" value
  * @method Doctrine_Collection   getActivations()           Returns the current record's "Activations" collection
  * @method Doctrine_Collection   getCharteInfo()            Returns the current record's "CharteInfo" collection
+ * @method Doctrine_Collection   getEmprunt()               Returns the current record's "Emprunt" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -66,6 +68,7 @@
  * @method sfGuardUser           setProfile()               Sets the current record's "Profile" value
  * @method sfGuardUser           setActivations()           Sets the current record's "Activations" collection
  * @method sfGuardUser           setCharteInfo()            Sets the current record's "CharteInfo" collection
+ * @method sfGuardUser           setEmprunt()               Sets the current record's "Emprunt" collection
  * 
  * @package    simde
  * @subpackage model
@@ -176,6 +179,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasMany('CharteInfo', array(
              'local' => 'id',
              'foreign' => 'responsable_id'));
+
+        $this->hasMany('Emprunt', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));

@@ -28,6 +28,8 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property Doctrine_Collection $Event
  * @property Doctrine_Collection $Article
  * @property Doctrine_Collection $CharteInfo
+ * @property Doctrine_Collection $Materiel
+ * @property Doctrine_Collection $Emprunt
  * 
  * @method string              getName()        Returns the current record's "name" value
  * @method string              getLogin()       Returns the current record's "login" value
@@ -50,6 +52,8 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Doctrine_Collection getEvent()       Returns the current record's "Event" collection
  * @method Doctrine_Collection getArticle()     Returns the current record's "Article" collection
  * @method Doctrine_Collection getCharteInfo()  Returns the current record's "CharteInfo" collection
+ * @method Doctrine_Collection getMateriel()    Returns the current record's "Materiel" collection
+ * @method Doctrine_Collection getEmprunt()     Returns the current record's "Emprunt" collection
  * @method Asso                setName()        Sets the current record's "name" value
  * @method Asso                setLogin()       Sets the current record's "login" value
  * @method Asso                setPoleId()      Sets the current record's "pole_id" value
@@ -71,6 +75,8 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setEvent()       Sets the current record's "Event" collection
  * @method Asso                setArticle()     Sets the current record's "Article" collection
  * @method Asso                setCharteInfo()  Sets the current record's "CharteInfo" collection
+ * @method Asso                setMateriel()    Sets the current record's "Materiel" collection
+ * @method Asso                setEmprunt()     Sets the current record's "Emprunt" collection
  * 
  * @package    simde
  * @subpackage model
@@ -173,6 +179,14 @@ abstract class BaseAsso extends sfDoctrineRecord
              'foreign' => 'asso_id'));
 
         $this->hasMany('CharteInfo', array(
+             'local' => 'id',
+             'foreign' => 'asso_id'));
+
+        $this->hasMany('Materiel', array(
+             'local' => 'id',
+             'foreign' => 'asso_id'));
+
+        $this->hasMany('Emprunt', array(
              'local' => 'id',
              'foreign' => 'asso_id'));
 

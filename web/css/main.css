@@ -568,3 +568,48 @@ p { text-align : justify; }
 a.btn-danger {
   color: white;
 }
+/*      PROFILE     */
+#profile {
+    line-height: 20px;  
+}
+
+#profile h1{
+    margin: 0 auto;
+    display: block;
+    background: #505050;
+    font-weight: normal;
+    width: auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: impact;
+    font-size: 15px;
+    color: white;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+#profile h2{
+    margin: 0 auto 7px;
+    display: block;
+    font-weight: normal;
+    width: auto;
+    font-family: impact;
+    font-size: 21px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom:thin solid #000;
+}
+
+#profile #trombi{
+    height : 120px;
+    margin-right:20px;
+}
+
+#profile .row{
+    margin-bottom: 10px;
+}
+
+#profile #infoPerso .span2{
+    width: 100px;
+}

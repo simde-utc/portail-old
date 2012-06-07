@@ -39,14 +39,6 @@ class albumActions extends sfActions
       }
 
       $this->setTemplate('edit');
-            // var_dump($taintedFiles);
-      
-      
-      
-      
-      
-
-      
     }
     
     public function executeAdd(sfWebRequest $request){
@@ -76,6 +68,24 @@ class albumActions extends sfActions
 
       $this->setTemplate('edit');
     }
+    
+      public function executeDelete(sfWebRequest $request)
+  {
+    $request->checkCSRFProtection();
+
+    $this->forward404Unless($album = Doctrine_Core::getTable('album')->find(array($request->getParameter('id'))), sprintf('Object album does not exist (%s).', $request->getParameter('id')));
+    //$this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(),0x04));
+    
+    $images = $album->getImages();
+    
+    foreach($images as $image){
+        $image->delete();
+    }
+    
+    $album->delete();
+
+    $this->redirect('album/index');
+  }
 /*
   public function executeCreate(sfWebRequest $request)
   {

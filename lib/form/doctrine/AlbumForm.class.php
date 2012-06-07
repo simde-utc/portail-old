@@ -4,7 +4,7 @@
  *
  * @package    simde
  * @subpackage form
- * @author     Your name here
+ * @author     Loic Picavet - loic.picavet@gmail.com
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class AlbumForm extends BaseAlbumForm
@@ -14,7 +14,7 @@ class AlbumForm extends BaseAlbumForm
        unset($this['created_at'], $this['updated_at']);
        $this->widgetSchema->setLabel('name', "Nom de l'album");
        $this->widgetSchema->setLabel('location', "Lieu");
-       
+
         $this->embedRelation('Images');
   }
   
@@ -37,7 +37,7 @@ class AlbumForm extends BaseAlbumForm
   public function bind(array $taintedValues = null, array $taintedFiles = null){
 
     $new_occurrences = new BaseForm();
-// if $taintedValues['new'] exists
+ if(isset($taintedValues['new'])){ 
     foreach($taintedValues['new'] as $key => $new_occurrence){
       $occurrence = new Image();
       $occurrence->setAlbum($this->getObject());
@@ -45,6 +45,7 @@ class AlbumForm extends BaseAlbumForm
 
       $new_occurrences->embedForm($key,$occurrence_form);
     }
+ }
 
     $this->embedForm('new',$new_occurrences);
 

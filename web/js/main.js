@@ -1,9 +1,11 @@
 $(document).ready(function(){
   $("#lienlisteassos").click(function(e){
     e.preventDefault();
-    $("#bigmenu").show();
+    $("#bigmenu").toggle();
   });
-  $("#bigmenu").mouseleave(function(){
-    $(this).hide();
+  
+  $("body").click(function(e){
+    if(!$(e.target).is("#bigmenu") && $(e.target).parents("#bigmenu").length == 0 && !$(e.target).is("#lienlisteassos"))
+      $("#bigmenu:visible").hide();
   });
 });

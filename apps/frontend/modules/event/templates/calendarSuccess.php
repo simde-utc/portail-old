@@ -1,5 +1,4 @@
 <?php use_stylesheet('fullcalendar.css') ?>
-<?php use_stylesheet('calendar.css') ?>
 
 <?php use_javascript('fullcalendar.min.js') ?>
 
@@ -11,11 +10,11 @@ $(document).ready(function() {
     header: {
       left: 'prev,next today',
       center: 'title',
-      right: 'month,agendaWeek,agendaDay'
+      right: 'agendaDay,agendaWeek,month'
     },
     editable: false,
     allDayDefault: false,
-    events: "<?php echo url_for("/json/event/index") ?>",
+    events: "<?php echo url_for("events_list",array('sf_format'=>'json')) ?>",
     loading: function(bool) {
       if (bool) $('#loading').show();
       else $('#loading').hide();
@@ -50,6 +49,9 @@ $(document).ready(function() {
       agenda: 'H:mm{ - H:mm}',
     },
     allDayText: 'Jour entier',
+    defaultView: 'agendaWeek',
+    firstHour: 8,
+    height: 600,
   });
 });
 </script>

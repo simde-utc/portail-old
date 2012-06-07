@@ -26,6 +26,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property Doctrine_Collection $AssoMember
  * @property Doctrine_Collection $Event
  * @property Doctrine_Collection $Article
+ * @property Doctrine_Collection $Abonnement
  * 
  * @method string              getName()        Returns the current record's "name" value
  * @method string              getLogin()       Returns the current record's "login" value
@@ -46,6 +47,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Doctrine_Collection getAssoMember()  Returns the current record's "AssoMember" collection
  * @method Doctrine_Collection getEvent()       Returns the current record's "Event" collection
  * @method Doctrine_Collection getArticle()     Returns the current record's "Article" collection
+ * @method Doctrine_Collection getAbonnement()  Returns the current record's "Abonnement" collection
  * @method Asso                setName()        Sets the current record's "name" value
  * @method Asso                setLogin()       Sets the current record's "login" value
  * @method Asso                setPoleId()      Sets the current record's "pole_id" value
@@ -65,6 +67,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setAssoMember()  Sets the current record's "AssoMember" collection
  * @method Asso                setEvent()       Sets the current record's "Event" collection
  * @method Asso                setArticle()     Sets the current record's "Article" collection
+ * @method Asso                setAbonnement()  Sets the current record's "Abonnement" collection
  * 
  * @package    simde
  * @subpackage model
@@ -152,6 +155,10 @@ abstract class BaseAsso extends sfDoctrineRecord
              'foreign' => 'asso_id'));
 
         $this->hasMany('Article', array(
+             'local' => 'id',
+             'foreign' => 'asso_id'));
+
+        $this->hasMany('Abonnement', array(
              'local' => 'id',
              'foreign' => 'asso_id'));
 

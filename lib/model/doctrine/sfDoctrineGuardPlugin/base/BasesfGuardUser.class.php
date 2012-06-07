@@ -24,6 +24,7 @@
  * @property Doctrine_Collection $AssoMember
  * @property Profile $Profile
  * @property Doctrine_Collection $Activations
+ * @property Doctrine_Collection $Abonnement
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -44,6 +45,7 @@
  * @method Doctrine_Collection   getAssoMember()            Returns the current record's "AssoMember" collection
  * @method Profile               getProfile()               Returns the current record's "Profile" value
  * @method Doctrine_Collection   getActivations()           Returns the current record's "Activations" collection
+ * @method Doctrine_Collection   getAbonnement()            Returns the current record's "Abonnement" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -63,6 +65,7 @@
  * @method sfGuardUser           setAssoMember()            Sets the current record's "AssoMember" collection
  * @method sfGuardUser           setProfile()               Sets the current record's "Profile" value
  * @method sfGuardUser           setActivations()           Sets the current record's "Activations" collection
+ * @method sfGuardUser           setAbonnement()            Sets the current record's "Abonnement" collection
  * 
  * @package    simde
  * @subpackage model
@@ -167,6 +170,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasMany('Activation as Activations', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('Abonnement', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

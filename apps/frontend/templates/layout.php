@@ -10,37 +10,39 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-    <div id="top_bar">
+    <div id="top_bar" class="navbar">
       <div class="wrap" >
         <a href="<?php echo url_for('homepage') ?>" id="logo">
           <img src="/images/logo_bde.png" alt="BDE UTC" width="163px" height="110px" />
         </a>
+        <?php if(0): ?>
         <form class="form-inline"><label>Rerchercher une info</label>
           <input type="text" class="input-medium" />
           <button type="submit" class="btn">Chercher</button>
         </form>
         <span class="barre"></span>
+        <?php endif; ?>
         <?php if(!$sf_user->isAuthenticated()): ?>
-          <ul class="nav nav-pills">
+          <ul class="nav pull-right">
             <li class="dropdown" id="drop-connexion">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
                 Connexion
                 <b class="caret"></b>
               </a>
-              <ul class="dropdown-menu pull-right">
+              <ul class="dropdown-menu">
                 <li><a href="<?php echo url_for('cas') ?>">Étudiant UTC (CAS)</a></li>
                 <li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>
               </ul>
             </li>
           </ul>
         <?php else: ?>
-          <ul class="nav nav-pills">
+          <ul class="nav pull-right">
             <li class="dropdown" id="drop-connexion">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
-                <?php echo $sf_user->getGuardUser()->getName() ?>
+                <i class="icon-user icon-white"></i> <?php echo $sf_user->getGuardUser()->getName() ?>
                 <b class="caret"></b>
               </a>
-              <ul class="dropdown-menu pull-right">
+              <ul class="dropdown-menu">
                 <li><a href="<?php echo url_for('cas_logout') ?>">Se déconnecter</a></li>
               </ul>
             </li>
@@ -52,9 +54,8 @@
     <div id="menu">
       <div class="wrap" >
         <a href="<?php echo url_for('homepage') ?>">Accueil</a>
-        <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Liste des associations</a>
-        <a href="" class="barre">Services</a>
-        <a href="" class="barre">Fonctionnement de l'UTC</a>
+        <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Toutes les associations</a>
+        <a href="<?php echo url_for('agenda_detail') ?>" class="barre">Calendrier</a>
         <span class="horloge">
           <?php echo format_date(time(), "D", 'fr') ?>
           <span class="barre"><?php echo format_date(time(), "t", 'fr') ?></span>
@@ -66,51 +67,46 @@
       <?php include_component('event', 'carousel') ?>
     <?php elseif($sf_request->getParameter('login')): ?>
       <?php include_component('asso', 'menu') ?>
-    <?php endif ?>;
+    <?php endif ?>
     <div class="wrap">
-      <div id="column-left">
+      <div id="column-left">        
         <?php if($sf_user->isAuthenticated()): ?>
           <?php include_component('asso', 'myAssos') ?>
         <?php else: ?>
           <?php include_partial('home/bienvenue') ?>
         <?php endif ?>
+        <br>
+        <?php if($sf_user->isAuthenticated()): ?>
+          <?php include_component('abonnement', 'myFlux') ?>
+        <?php else: ?>
+          <?php include_partial('home/bienvenue') ?>
+        <?php endif ?>
       </div>
       <div id="column-right">
-        <div id="contact">
-          <p>Contacter le BDE-UTC</p>
-          <p>Rue Roger Couttolenc<br />
-            60200 Compiègne</p>
-          <p>
-            Tél. : +33 3 44 23 43 71
-          </p>
-          <p>
-            <a href="mailto:bde@assos.utc.fr">bde@assos.utc.fr</a><br />
-            <a href="<?php echo url_for('home/index') ?>"><?php echo url_for('home/index', true) ?></a>
-          </p>
-        </div>
+        <?php include_component('asso','contact') ?>
       </div>      
       <div id="content">
         <?php if($sf_user->hasFlash('error')): ?>
         <div class="alert alert-block alert-error">
-          <strong>Erreur!</strong>
+          <strong>Erreur !</strong>
           <?php echo $sf_user->getFlash('error'); ?>
         </div>
         <?php endif ?>
         <?php if($sf_user->hasFlash('warning')): ?>
         <div class="alert alert-block">
-          <strong>Avertissement!</strong>
+          <strong>Avertissement !</strong>
           <?php echo $sf_user->getFlash('warning'); ?>
         </div>
         <?php endif ?>
         <?php if($sf_user->hasFlash('info')): ?>
         <div class="alert alert-block alert-info">
-          <strong>Information!</strong>
+          <strong>Information !</strong>
           <?php echo $sf_user->getFlash('info'); ?>
         </div>
         <?php endif ?>
         <?php if($sf_user->hasFlash('success')): ?>
         <div class="alert alert-block alert-success">
-          <strong>Succès!</strong>
+          <strong>Succès !</strong>
           <?php echo $sf_user->getFlash('success'); ?>
         </div>
         <?php endif ?>
@@ -122,38 +118,16 @@
       <div class="wrap">
         <div id="splash"></div>
         <div id="footer-left">
-          <p>
-            <h2>Accueil</h2>
-          </p>
-          <p>
-            <h2>Services</h2>
-            <a href="">Matmatronch</a><br />
-            <a href="">eboutic</a><br />
-            <a href="">stocks à souvenir</a><br />
-            <a href="">laverie</a><br />
-            <a href="">weekmail</a><br />
-            <a href="">forum</a><br />
-            <a href="">pédagogie</a><br />
-            <a href="">covoiturage</a><br />
-            <a href="">prêt de matériel</a><br />
-          </p>
+          <h2>Services</h2>
+          <a href="/gesmail">Gestion des mails assos</a><br/>
+          <a href="/resa">Réservation de salles</a><br/>
+          <a href="/mail">Webmail assos</a>
         </div>
         <div id="footer-right">
-          <p>
-            <h2>Fonctionnement de l’utc</h2>
-            <a href="">l’utc c’est quoi ?</a><br />
-            <a href="">candidater à l’utc</a><br />
-            <a href="">la vie d’étudiant</a><br />
-            <a href="">les études proposées</a><br />
-          </p>
-          <p>
-            <h2>Liste des assos</h2>
-            <a href="">Vie du campus</a><br />
-            <a href="">Artistique et évènementiel</a><br />
-            <a href="">Solidarité et citoyenneté</a><br />
-            <a href="">Technologie et entreprenariat</a><br />
-            <a href="">sport</a><br />
-          </p>
+          <h2>Liens</h2>
+          <a href="http://ent.utc.fr">ENT</a><br/>
+          <a href="/simde">SiMDE</a><br/>
+          <a href="http://www.utc.fr">UTC</a>
         </div>
       </div>
     </div>

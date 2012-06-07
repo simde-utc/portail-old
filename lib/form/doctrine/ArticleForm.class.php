@@ -23,11 +23,13 @@ class ArticleForm extends BaseArticleForm {
                 'delete_label' => "Supprimer cette illustration"
             ));
 
-    $this->validatorSchema['image'] = new sfValidatorFile(array(
-                'required' => false,
-                'path' => sfConfig::get('sf_upload_dir') . '/articles/source',
-                'mime_types' => 'web_images'
-            ));
+    $this->validatorSchema['image'] = new sfValidatorFileImage(array(
+    	'required' => false,
+    	'path' => sfConfig::get('sf_upload_dir').'/articles/source',
+        'mime_types' => 'web_images',
+        'max_width' => 1000,
+        'max_height' => 1000
+    ));
 
     $this->validatorSchema['image_delete'] = new sfValidatorBoolean();
     

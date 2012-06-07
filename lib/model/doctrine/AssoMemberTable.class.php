@@ -34,7 +34,7 @@ class AssoMemberTable extends Doctrine_Table {
     return $q;
   }
 
-  public function getMembres($asso) {
+  public function getMembres($asso, $bureau = true) {
     $q = $this->createQuery('q')
             ->where('q.asso_id = ?', $asso->getId())
             ->andWhere('q.semestre_id = ?', sfConfig::get('app_portail_current_semestre'))
@@ -43,6 +43,8 @@ class AssoMemberTable extends Doctrine_Table {
             ->leftJoin('u.Profile p')
             ->leftJoin('q.Semestre s')
             ->orderBy('u.username');
+    if(!$bureau)
+      $q->andWhere('r.Bureau = 0');
 
     return $q;
   }

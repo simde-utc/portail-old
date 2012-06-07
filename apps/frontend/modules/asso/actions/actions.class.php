@@ -123,18 +123,12 @@ class assoActions extends sfActions
     $this->events = EventTable::getInstance()->getEventsList($this->asso)->execute();
   }
 
-  public function executeBureau()
-  {
-    $this->asso = $this->getRoute()->getObject();
-    $this->redirectUnless($this->asso, 'assos_list');
-    $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
-  }
-
   public function executeTrombinoscope()
   {
     $this->asso = $this->getRoute()->getObject();
     $this->redirectUnless($this->asso, 'assos_list');
-    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
+    $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
+    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso, false)->execute();    
   }
 
   public function executeJoin()

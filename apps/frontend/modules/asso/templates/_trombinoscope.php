@@ -1,20 +1,21 @@
+<?php use_helper('Thumb') ?>
 <div id="trombi">
-  <?php if ($membres->count() > 0): ?>
-    <ul>
+   <?php if ($membres->count() > 0): ?>
+    <ul class="membres">
       <?php foreach ($membres as $membre) : ?>
-        <li class="membre" <?php if ($sf_user->isAuthenticated()): ?>style="height:125px;"<?php endif ?>><?php echo $membre->getUser() ?>
+        <li>
           <?php if ($sf_user->isAuthenticated()): ?>
-            <img src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $membre->getUser()->getUsername() ?>" height="120" style="float: right;" />
+            <img src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $membre->getUser()->getUsername() ?>" alt="Photo non disponible" /><br />
+          <?php else: ?>
+            <img src="/images/default.jpg" />
           <?php endif ?>
-          <ul>
-            <li>Rôle : <?php echo $membre->getRole()->getName() ?> (<?php echo $membre->getSemestre() ?>)</li>
-            <li>Email : <?php echo $membre->getUser()->getEmailAddress() ?></li>
-            <li>Semestre : <?php echo $membre->getUser()->getProfile()->getBranche() . '0' . $membre->getUser()->getProfile()->getSemestre() ?> <?php echo $membre->getUser()->getProfile()->getFiliere() ?></li>
-          </ul>
+          <a href="mailto:<?php echo $membre->getUser()->getEmailAddress() ?>"><?php echo $membre->getUser()->getName() ?></a><br />
+          <?php echo $membre->getRole()->getName() ?> <?php echo $membre->getSemestre() ?>
         </li>
       <?php endforeach; ?>
     </ul>
   <?php else: ?>
-    Cette association n'a pas de membre.
+    Aucun membre dans cette catégorie.
   <?php endif ?>
+  <br class="clear" />
 </div>

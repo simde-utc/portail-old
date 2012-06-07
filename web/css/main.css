@@ -573,7 +573,7 @@ p { text-align : justify; }
 a.btn-danger {
   color: white;
 }
-<<<<<<< HEAD
+
 /*      PROFILE     */
 #profile {
     line-height: 20px;  
@@ -581,7 +581,7 @@ a.btn-danger {
 
 #profile h1{
     margin: 0 auto;
-=======
+}
 
 #topbar a.btn {
   color: #000;
@@ -613,7 +613,6 @@ a.btn-danger {
 }
 .part h1 {
     margin: 0 auto 10px auto;
->>>>>>> ad67c3872646373cf0a13d182db8f3cc91606b99
     display: block;
     background: #505050;
     font-weight: normal;
@@ -621,19 +620,13 @@ a.btn-danger {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-<<<<<<< HEAD
     font-family: impact;
     font-size: 15px;
-=======
-    font-family: 'Arial Black', sans-serif;
-    font-size: 12px;
->>>>>>> ad67c3872646373cf0a13d182db8f3cc91606b99
     color: white;
     padding: 5px;
     text-transform: uppercase;
 }
 
-<<<<<<< HEAD
 #profile h2{
     margin: 0 auto 7px;
     display: block;
@@ -658,7 +651,7 @@ a.btn-danger {
 #profile #infoPerso .span2{
     width: 100px;
 }
-=======
+
 .part h1 .titleaction {
 	float: right;
 	font-size: 12px;
@@ -852,4 +845,3 @@ a.btn-danger {
 }
 
 #bureau img, #trombi img { height: 120px; }
->>>>>>> ad67c3872646373cf0a13d182db8f3cc91606b99

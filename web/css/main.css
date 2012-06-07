@@ -805,3 +805,18 @@ a.btn-danger {
 }
 
 #bureau img, #trombi img { height: 120px; }
+
+ul.membres li {
+  float: left;
+  width: 120px;
+  height: 155px;
+  bacground: #ccc;
+  list-style-type: none;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+}
+
+ul.membres li img {
+  height: 120px;
+}

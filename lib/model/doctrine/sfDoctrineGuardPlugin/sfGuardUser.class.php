@@ -53,6 +53,8 @@ class sfGuardUser extends PluginsfGuardUser
    *  0x08 - gestion des events
    *  0x10 - gestion des roles
    *  0x20 - changement de pres
+   *  0x40 - gestion du materiel
+   *  0x80 - gestion des mails
    * @return type 
    */
   public function hasAccess($asso,$droit)

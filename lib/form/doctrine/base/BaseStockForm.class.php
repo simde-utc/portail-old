@@ -17,7 +17,7 @@ abstract class BaseStockForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
       'materiel_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Materiel'), 'add_empty' => true)),
-      'etat_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Etat'), 'add_empty' => true)),
+      'etat_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Etat'), 'add_empty' => false)),
       'nombre'      => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),

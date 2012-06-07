@@ -16,4 +16,11 @@ class MaterielTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Materiel');
     }
+    
+    public function getAllByAsso($asso)
+    {
+      $q = $this->createQuery('q')
+          ->where('q.asso_id = ?',$asso->getId());
+      return $q;
+    }
 }

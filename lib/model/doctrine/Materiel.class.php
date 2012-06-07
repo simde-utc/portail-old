@@ -10,6 +10,12 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Materiel extends BaseMateriel
-{
+class Materiel extends BaseMateriel {
+
+  public function getStockDisponible()
+  {
+    $res = StockTable::getInstance()->getDispoForMateriel($this->getId())->fetchOne();
+    return ($res['stock'] != NULL) ? $res['stock'] : '0';
+  }
+
 }

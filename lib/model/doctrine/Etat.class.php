@@ -12,4 +12,8 @@
  */
 class Etat extends BaseEtat
 {
+  public function __toString()
+  {
+    return $this->getNom();
+  }
 }

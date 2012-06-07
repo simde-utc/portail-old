@@ -180,10 +180,63 @@ event_new:
   class: sfDoctrineRoute
   options: { model: Asso, type: object }
   param: { module: event, action: new }
-  
+
 agenda_detail:
   url:   /event/calendar
   param: { module: event, action: calendar }
+
+#Materiel
+materiel:
+  url:   /materiel/asso/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: materiel, action: index }
+
+materiel_show:
+  url:   /materiel/show/:id
+  class: sfDoctrineRoute
+  param: { module: materiel, action: show }
+  options: { model: Materiel, type: object }
+
+materiel_edit:
+  url:  /materiel/edit/:id
+  class: sfDoctrineRoute
+  param: { module: materiel, action: edit }
+  options: { model: Materiel, type: object }
+
+materiel_update:
+  url:  /materiel/update/:id
+  param: { module: materiel, action: update }
+  
+materiel_delete:
+  url:  /materiel/delete/:id
+  class: sfDoctrineRoute
+  param: { module: materiel, action: delete }
+  options: { model: Materiel, type: object }
+
+materiel_create:
+  url: /materiel/create
+  param: { module: materiel, action: create }
+
+materiel_new:
+  url: /materiel/:login/new
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: materiel, action: new }
+
+materiel_ajout:
+  url: /materiel/ajout/:id
+  class: sfDoctrineRoute
+  options: { model: Materiel, type: object }
+  param: { module: materiel, action: ajout }
+
+materiel_update_ajout:
+  url:  /materiel/ajout/update/:id
+  param: { module: materiel, action: updateAjout }
+
+materiel_create_ajout:
+  url: /materiel/ajout/create
+  param: { module: materiel, action: createAjout }
 
 sf_guard_signin:
   url:   /login

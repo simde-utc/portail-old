@@ -9,5 +9,8 @@
     <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x02)): ?>
       <a href="<?php echo url_for('asso_member', $asso) ?>">Gestion des membres</a>
     <?php endif ?>
+    <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x40)): ?>
+      <a href="<?php echo url_for('materiel',$asso) ?>">Matériel</a>
+    <?php endif ?>
   </div>
 </div>

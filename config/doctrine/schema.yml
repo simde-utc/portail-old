@@ -189,7 +189,7 @@ Stock:
   actAs: { Timestampable: ~ }
   columns:
     materiel_id: { type: integer }
-    etat_id: { type: integer }
+    etat_id: { type: integer, notnull: true, default: 1 }
     nombre: { type: integer }
   relations:
     Materiel: { onDelete: CASCADE, onUpdate: CASCADE, local: materiel_id, foreign: id }

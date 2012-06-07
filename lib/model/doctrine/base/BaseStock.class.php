@@ -37,6 +37,8 @@ abstract class BaseStock extends sfDoctrineRecord
              ));
         $this->hasColumn('etat_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
+             'default' => 1,
              ));
         $this->hasColumn('nombre', 'integer', null, array(
              'type' => 'integer',

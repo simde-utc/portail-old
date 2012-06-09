@@ -12,5 +12,11 @@ class EmpruntForm extends BaseEmpruntForm
 {
   public function configure()
   {
+    $this->widgetSchema['materiel_id'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['user_id'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['recu'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['rendu'] = new sfWidgetFormInputHidden();
+    unset($this['created_at'],$this['updated_at']);
   }
 }

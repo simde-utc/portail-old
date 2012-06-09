@@ -7,13 +7,23 @@
  */
 class EmpruntTable extends Doctrine_Table
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return object EmpruntTable
-     */
-    public static function getInstance()
-    {
-        return Doctrine_Core::getTable('Emprunt');
-    }
+
+  /**
+   * Returns an instance of this class.
+   *
+   * @return object EmpruntTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('Emprunt');
+  }
+
+  public function getAllByAsso($asso)
+  {
+    $q = $this->createQuery('q')
+            ->where('q.asso_id = ?', $asso->getId())
+            ->andWhere('q.rendu = ?', false);
+    return $q;
+  }
+
 }

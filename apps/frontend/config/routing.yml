@@ -238,6 +238,27 @@ materiel_create_ajout:
   url: /materiel/ajout/create
   param: { module: materiel, action: createAjout }
 
+#Emprunt
+emprunt_delete:
+  url:  /emprunt/delete/:id
+  param: { module: emprunt, action: delete }
+
+emprunt_create:
+  url: /emprunt/create
+  param: { module: emprunt, action: create }
+
+emprunt_new:
+  url: /emprunt/:id/new
+  class: sfDoctrineRoute
+  options: { model: Materiel, type: object }
+  param: { module: emprunt, action: new }
+
+emprunt_rendre:
+  url: /emprunt/rendre/:id
+  class: sfDoctrineRoute
+  options: { model: Emprunt, type: object }
+  param: { module: emprunt, action: rendre }
+
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }

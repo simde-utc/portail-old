@@ -12,4 +12,61 @@
  */
 class Emprunt extends BaseEmprunt
 {
+
+  public function rendre()
+  {
+    if(!$this->getRendu())
+    {
+      $this->setRendu(true);
+
+      $stock_dispo = StockTable::getInstance()->findOneByMaterielIdAndEtatId($this->getMaterielId(), 1);
+      if(!$stock_dispo)
+      {
+        $stock_dispo = new Stock();
+        $stock_dispo->setNombre($this->getNombre());
+        $stock_dispo->setMaterielId($this->getMaterielId());
+        $stock_dispo->setEtatId(1);
+      }
+      else
+        $stock_dispo->addNombre($this->getNombre());
+
+      $emprunte = StockTable::getInstance()->findOneByMaterielIdAndEtatId($this->getMaterielId(), 2);
+      $emprunte->addNombre(-($this->getNombre()));
+
+      $this->save();
+      $stock_dispo->save();
+      $emprunte->save();
+    }
+  }
+
+  public function emprunter($form)
+  {
+    $materiel_id = $form->getValue('materiel_id');
+    $nombre = $form->getValue('nombre');
+
+    $dispo = StockTable::getInstance()->findOneByMaterielIdAndEtatId($materiel_id, 1);
+    if($dispo && $dispo->getNombre() >= $nombre)
+    {
+      $form->save();
+      $dispo->addNombre(-($nombre));
+      $dispo->save();
+
+      $emprunte = StockTable::getInstance()->findOneByMaterielIdAndEtatId($materiel_id, 2);
+      if(!$emprunte)
+      {
+        $emprunte = new Stock();
+        $emprunte->setNombre($nombre);
+        $emprunte->setMaterielId($materiel_id);
+        $emprunte->setEtatId(2);
+      }
+      else
+        $emprunte->addNombre($nombre);
+
+      $emprunte->save();
+      return true;
+    }
+    else
+      return false;
+  }
+
 }

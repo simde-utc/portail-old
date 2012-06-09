@@ -14,6 +14,7 @@ class materielActions extends sfActions {
   {
     $this->asso = $this->getRoute()->getObject();
     $this->materiels = MaterielTable::getInstance()->getAllByAsso($this->asso)->execute();
+    $this->emprunts = EmpruntTable::getInstance()->getAllByAsso($this->asso)->execute();
   }
 
   public function executeNew(sfWebRequest $request)
@@ -114,5 +115,4 @@ class materielActions extends sfActions {
       $this->redirect('materiel', $stock->getMateriel()->getAsso());
     }
   }
-
 }

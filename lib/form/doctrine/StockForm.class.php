@@ -13,6 +13,7 @@ class StockForm extends BaseStockForm
   public function configure()
   {
     $this->widgetSchema['materiel_id'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['etat_id'] = new sfWidgetFormInputHidden();
     unset($this['created_at'],$this['updated_at']);
   }
 }

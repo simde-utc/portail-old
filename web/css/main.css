@@ -299,6 +299,18 @@ p { text-align : justify; }
   clear: both;
 }
 
+#column-left #my_flux .events_abonnements .barre {
+  margin: 2px auto;
+  border-top: 1px solid #000;
+  clear: both;
+}
+
+#column-left #my_flux .articles_abonnements .barre {
+  margin: 2px auto;
+  border-top: 1px solid #000;
+  clear: both;
+}
+
 #column-right #contact {
   background: #353535;
   -webkit-border-radius: 5px;

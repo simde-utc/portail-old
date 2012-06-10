@@ -65,11 +65,11 @@ class assoComponents extends sfComponents
   public function executeContact(sfWebRequest $request)
   {
     if($login = $request->getParameter('login',null))
-      $this->asso = AssoTable::getInstance()->getOneByLogin($login)->select('q.id, q.login, q.name, q.phone, q.salle, q.url_site, q.facebook')->fetchOne();
+      $this->asso = AssoTable::getInstance()->getOneByLogin($login)->select('q.id, q.login, q.name, q.phone, q.salle, q.facebook')->fetchOne();
     else if($login = $request->getParameter('asso',null))
       $this->asso = AssoTable::getInstance()->getOneByLogin($login)->select('q.id, q.login')->fetchOne();
     else
-      $this->asso = AssoTable::getInstance ()->getOneById(1)->select('q.id, q.login, q.name, q.phone, q.salle, q.url_site, q.facebook')->fetchOne(); // BDE
+      $this->asso = AssoTable::getInstance ()->getOneById(1)->select('q.id, q.login, q.name, q.phone, q.salle, q.facebook')->fetchOne(); // BDE
   }
 
 }

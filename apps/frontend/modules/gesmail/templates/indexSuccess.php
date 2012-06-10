@@ -13,17 +13,19 @@
             </tr>
           </thead>
           <tbody>
-            <?php foreach($destinataires as $dest): ?>
-            <tr>
-              <td><?php echo $dest['destination']; ?></td>
-              <td>
-                <form action="delete" method="post" class="butseul form-inline">
-                  <input type="hidden" name="_METHOD" value="DELETE" />
-                  <input type="submit" class="btn" value="Supprimer" />
-                </form>
-              </td>
-            </tr>
-            <?php endforeach; ?>
+            <?php if($box->getDestinataires()->count() > 0): ?>
+              <?php foreach($box->getDestinataires() as $dest): ?>
+              <tr>
+                <td><?php echo $dest->destination ?></td>
+                <td>
+                  <form action="delete" method="post" class="butseul form-inline">
+                    <input type="hidden" name="_METHOD" value="DELETE" />
+                    <input type="submit" class="btn" value="Supprimer" />
+                  </form>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+            <?php endif; ?>
             <tr>
               <form action="/gesmail/<?php echo $adr; ?>" method="post" class="form-horizontal">
               <td>

@@ -26,17 +26,11 @@ class gesmailActions extends sfActions
     }
     
     // Récupération de l'asso sur laquelle on est
-    $gesmail = new Gesmail();
-    $gesmail->setAsso($asso);
+    $gesmail = new Gesmail($asso);
     $this->boxes = $gesmail->getBoxes();
-    
-    $this->adr = -1;
-    if($request->getParameter('box'))
-      $this->adr = $request->getParameter ('box');
-    
     $this->asso = $asso;
-    
-    $this->destinataires = $gesmail->getBoxContents($this->adr);
+    $this->box = $gesmail->getBox($request->getParameter('box'));
+    $this->adr = $this->box->getName();
   }
   
   public function executeEdit(sfWebRequest $request)

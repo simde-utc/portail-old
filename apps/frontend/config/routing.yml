@@ -259,6 +259,41 @@ emprunt_rendre:
   options: { model: Emprunt, type: object }
   param: { module: emprunt, action: rendre }
 
+#Annonce
+annonce:
+  url:   /annonce
+  param: { module: annonce, action: index }
+
+annonce_show:
+  url:   /annonce/show/:id
+  class: sfDoctrineRoute
+  param: { module: annonce, action: show }
+  options: { model: Materiel, type: object }
+
+annonce_edit:
+  url:  /annonce/edit/:id
+  class: sfDoctrineRoute
+  param: { module: annonce, action: edit }
+  options: { model: Materiel, type: object }
+
+annonce_update:
+  url:  /annonce/update/:id
+  param: { module: annonce, action: update }
+
+annonce_delete:
+  url:  /annonce/delete/:id
+  class: sfDoctrineRoute
+  param: { module: annonce, action: delete }
+  options: { model: Materiel, type: object }
+
+annonce_create:
+  url: /annonce/create
+  param: { module: annonce, action: create }
+
+annonce_new:
+  url: /annonce/new
+  param: { module: annonce, action: new }
+
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }

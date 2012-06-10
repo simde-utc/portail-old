@@ -10,7 +10,6 @@ Asso:
     login: { type: string(32), notnull: true }
     pole_id: { type: integer }
     type_id: { type: integer }
-    url_site: { type: string(100) }
     summary: { type: string(150) }
     description: { type: string }
     logo: { type: string(100) }
@@ -118,7 +117,6 @@ EventType:
   connection: doctrine
   columns:
     name: { type: string(50) }
-    color: { type: string(7) }
     
 Article:
   connection: doctrine
@@ -172,6 +170,7 @@ CharteInfo:
     Responsable: { onUpdate: CASCADE, local: responsable_id, foreign: id, class: sfGuardUser }
 
 Materiel:
+  connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
     nom: { type: string(100) }
@@ -181,11 +180,13 @@ Materiel:
     Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
 
 Etat:
+  connection: doctrine
   columns:
     nom: { type: string(100) }
     disponible: { type: boolean }
 
 Stock:
+  connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
     materiel_id: { type: integer }
@@ -196,6 +197,7 @@ Stock:
     Etat: { onDelete: CASCADE, onUpdate: CASCADE, local: etat_id, foreign: id }
 
 Emprunt:
+  connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
     materiel_id: { type: integer }

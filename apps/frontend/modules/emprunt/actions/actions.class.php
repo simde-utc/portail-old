@@ -14,6 +14,11 @@ class empruntActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     $this->materiel = $this->getRoute()->getObject();
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($this->materiel->getAsso()->getLogin(), 0x40))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$this->materiel->getAsso()->getLogin());
+    }
     $emprunt = new Emprunt();
     $emprunt->setUser($this->getUser()->getGuardUser());
     $emprunt->setRendu(false);
@@ -27,6 +32,11 @@ class empruntActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
     $this->materiel = MaterielTable::getInstance()->find($request->getPostParameter('emprunt[materiel_id]'));
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($this->materiel->getAsso()->getLogin(), 0x40))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$this->materiel->getAsso()->getLogin());
+    }
     $emprunt = new Emprunt();
     $emprunt->setMaterielId($this->materiel->getId());
     $this->form = new EmpruntForm($emprunt);
@@ -55,6 +65,11 @@ class empruntActions extends sfActions
 
     $this->forward404Unless($emprunt = Doctrine_Core::getTable('Emprunt')->find(array($request->getParameter('id'))), sprintf('Object emprunt does not exist (%s).', $request->getParameter('id')));
     $materiel = $emprunt->getMateriel();
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($materiel->getAsso()->getLogin(), 0x40))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$materiel->getAsso()->getLogin());
+    }
     $emprunt->rendre();
     $emprunt->delete();
 
@@ -65,6 +80,11 @@ class empruntActions extends sfActions
   {
     $this->forward404Unless($emprunt = $this->getRoute()->getObject(), sprintf('Object emprunt does not exist (%s).', $request->getParameter('id')));
     $materiel = $emprunt->getMateriel();
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($materiel->getAsso()->getLogin(), 0x40))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$materiel->getAsso()->getLogin());
+    }
     $emprunt->rendre();
     $this->getUser()->setFlash('success', 'Vous avez rendu '.$emprunt->getNombre().' '.$emprunt->getMateriel()->getNom().'.');
     $this->redirect('materiel', $materiel->getAsso());

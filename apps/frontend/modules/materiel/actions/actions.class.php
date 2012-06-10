@@ -13,6 +13,11 @@ class materielActions extends sfActions {
   public function executeIndex(sfWebRequest $request)
   {
     $this->asso = $this->getRoute()->getObject();
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($this->asso->getLogin(), 0x40))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$this->asso->getLogin());
+    }
     $this->materiels = MaterielTable::getInstance()->getAllByAsso($this->asso)->execute();
     $this->emprunts = EmpruntTable::getInstance()->getAllByAsso($this->asso)->execute();
   }
@@ -20,6 +25,11 @@ class materielActions extends sfActions {
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new MaterielForm();
+        if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($this->getRoute()->getObject()->getLogin(), 0x40))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$this->getRoute()->getObject()->getLogin());
+    }
     $this->form->setDefault('asso_id', $this->getRoute()->getObject()->getId());
   }
 
@@ -37,6 +47,11 @@ class materielActions extends sfActions {
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($materiel = $this->getRoute()->getObject(), sprintf('Object materiel does not exist (%s).', $request->getParameter('id')));
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($materiel->getAsso()->getLogin(), 0x40))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$materiel->getAsso()->getLogin());
+    }
     $this->form = new MaterielForm($materiel);
   }
 
@@ -56,6 +71,11 @@ class materielActions extends sfActions {
     $request->checkCSRFProtection();
 
     $this->forward404Unless($materiel = $this->getRoute()->getObject(), sprintf('Object materiel does not exist (%s).', $request->getParameter('id')));
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($materiel->getAsso()->getLogin(), 0x40))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$materiel->getAsso()->getLogin());
+    }
     $materiel->delete();
 
     $this->redirect('materiel/index');
@@ -75,6 +95,11 @@ class materielActions extends sfActions {
   public function executeAjout(sfWebRequest $request)
   {
     $this->materiel = $this->getRoute()->getObject();
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($this->materiel->getAsso()->getLogin(), 0x40))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$this->materiel->getAsso()->getLogin());
+    }
     $stock = StockTable::getInstance()->createQuery('q')
         ->andWhere('materiel_id = ?',$this->materiel->getId())
         ->andWhere('etat_id = ?',1)

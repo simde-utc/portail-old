@@ -1,10 +1,12 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <?php include_partial('gesmail/liste', array('boxes' => $boxes, 'asso' => $asso, 'adr' => $adr)) ?>
+    <?php include_partial('gesmail/liste', array('boxes' => $boxes, 'asso' => $asso, 'box' => $box)) ?>
     <div class="span8">
       <?php if(!empty($flash['success'])): ?>
         <div class="alert alert-success"><?php echo $flash['success']; ?></div>
-        <?php endif; ?>
+      <?php endif; ?>
+        <h2><?php echo $box->getEmail() ?></h2>
+        <p><?php echo ucfirst($box->getTypeLu()) ?></p>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -27,7 +29,7 @@
               <?php endforeach; ?>
             <?php endif; ?>
             <tr>
-              <form action="/gesmail/<?php echo $adr; ?>" method="post" class="form-horizontal">
+              <form action="" method="post" class="form-horizontal">
               <td>
                 <?php if(!empty($flash['adderror'])): ?>
                 <div class="alert alert-error">

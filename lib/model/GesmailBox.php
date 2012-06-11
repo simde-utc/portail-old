@@ -58,5 +58,9 @@ class GesmailBox {
       return false;
     }
   }
+  
+  public function getEmail(){
+    return $this->getName()."@assos.utc.fr";
+  }
 }
 ?>

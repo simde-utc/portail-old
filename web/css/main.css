@@ -293,22 +293,14 @@ p { text-align : justify; }
   clear: both;
 }
 
-#column-left #my_flux .all_abonnements .barre {
+#column-left #my_flux .all_abonnements .barre, #column-left #my_flux .events_abonnements .barre, #column-left #my_flux .articles_abonnements .barre {
   margin: 2px auto;
   border-top: 1px solid #000;
   clear: both;
 }
 
-#column-left #my_flux .events_abonnements .barre {
-  margin: 2px auto;
-  border-top: 1px solid #000;
-  clear: both;
-}
-
-#column-left #my_flux .articles_abonnements .barre {
-  margin: 2px auto;
-  border-top: 1px solid #000;
-  clear: both;
+#all_but {
+  border-bottom: 3px solid black;
 }
 
 #column-right #contact {

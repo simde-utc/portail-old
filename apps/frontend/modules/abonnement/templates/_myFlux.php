@@ -8,8 +8,7 @@
         <?php echo $abonnement['summary'] ?>
         <div class="barre"> </div>
    </div>
-  
-   <div class="events_abonnements">
+  <div class="events_abonnements">
     <?php if($abonnement['article'] == 'event'): ?>   
      <b>  <a href="<?php echo url_for('article/show?id='.$abonnement['id']) ?>"><?php echo $abonnement['assoName'].' : '.$abonnement['name'] ?></b>
         <?php echo $abonnement['summary'] ?>

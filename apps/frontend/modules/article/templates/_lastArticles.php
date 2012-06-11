@@ -25,7 +25,7 @@
               <?php echo nl2br($article->getText()) ?>
             <?php endif; ?>
           </p>
-          <br style="clear: both;" />
+          <br style="clear: right;" />
         </div>
       <?php endforeach; ?>
     </div>

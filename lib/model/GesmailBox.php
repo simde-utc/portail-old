@@ -20,7 +20,7 @@ class GesmailBox {
       $req = $pdo->query("SELECT Extension, Type FROM gesmail WHERE Asso LIKE $login AND Extension LIKE $extension")->fetch(PDO::FETCH_ASSOC);
     }
     
-    if(!empty($box) && !empty($req)){
+    if(!empty($ext) && !empty($req)){
       $this->type = $req['Type'];
       $this->extension = $req['Extension'];
     }

@@ -53,9 +53,9 @@ class GesmailBox {
       $login = $pdo->quote($this->asso);
       return $pdo->query("SELECT ID, destination FROM postfix_alias WHERE alias LIKE $alias AND destination NOT LIKE $login")->fetchAll(PDO::FETCH_OBJ);
     }
-    elseif($gbox->type == "ml"){
-      // @TODO
-      return false;
+    elseif($this->type == "ml"){
+      $ml = $pdo->quote($this->getName());
+      return $pdo->query("SELECT address AS destination FROM mailman_mysql WHERE listname LIKE $ml")->fetchAll(PDO::FETCH_OBJ);
     }
   }
   

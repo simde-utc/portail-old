@@ -12,6 +12,5 @@
  */
 class Abonnement extends BaseAbonnement
 {
-  
-  
+
 }

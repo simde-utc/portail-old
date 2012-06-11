@@ -134,6 +134,113 @@ article_new:
   options: { model: Asso, type: object }
   param: { module: article, action: new }
 
+#Uv
+uv_list:
+  url:   /uv
+  param: { module: uv, action: index }
+
+uv_update:
+  url:  /uv/update/:id
+  param: { module: uv, action: update }
+  
+uv_delete:
+  url:  /uv/delete/:id
+  param: { module: uv, action: delete } 
+  
+uv_create:
+  url: /uv/create
+  param: { module: uv, action: create } 
+
+uv_new:
+  url: /uv/new
+  param: { module: uv, action: new }
+
+uv_edit:
+  url:  /uv/edit/:id
+  class: sfDoctrineRoute
+  param: { module: uv, action: edit }
+  options: { model: Uv, type: object }  
+
+#Sport
+sport_list:
+  url:   /sport
+  param: { module: sport, action: index }
+
+sport_update:
+  url:  /sport/update/:id
+  param: { module: sport, action: update }
+  
+sport_delete:
+  url:  /sport/delete/:id
+  param: { module: sport, action: delete } 
+  
+sport_create:
+  url: /sport/create
+  param: { module: sport, action: create } 
+
+sport_new:
+  url: /sport/new
+  param: { module: sport, action: new }
+
+sport_edit:
+  url:  /sport/edit/:id
+  class: sfDoctrineRoute
+  param: { module: sport, action: edit }
+  options: { model: Sport, type: object }   
+
+#Profile
+profile_show:
+  url:   /profile
+  param: { module: profile, action: show }  
+  
+profile_identite_edit:
+  url:  /profile/identite/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editIdentite }
+
+profile_identite_update:
+  url:  /profile/identite/update/:id
+  param: { module: profile, action: updateIdentite }
+
+profile_infoPerso_edit:
+  url:  /profile/infoPerso/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editInfoPerso }
+
+profile_infoPerso_update:
+  url:  /profile/infoPerso/update/:id
+  param: { module: profile, action: updateInfoPerso }
+ 
+profile_infoSupp_edit:
+  url:  /profile/infoSupp/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editInfoSupp }
+
+profile_infoSupp_update:
+  url:  /profile/infoSupp/update/:id
+  param: { module: profile, action: updateInfoSupp }  
+
+profile_parcoursUTC_edit:
+  url:  /profile/parcoursUTC/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editParcoursUTC }
+
+profile_parcoursUTC_update:
+  url:  /profile/parcoursUTC/update/:id
+  param: { module: profile, action: updateParcoursUTC }   
+  
+#profile_edit:
+#  url:  /profile/edit
+#  param: { module: profile, action: edit }
+
+#profile_update:
+#  url:  /profile/update
+#  param: { module: profile, action: update }
+  
 #Events
 events_list:
   url: /event.:sf_format

@@ -32,8 +32,5 @@ class AbonnementTable extends Doctrine_Table
             ->where('q.asso_id = ?', $asso)
             ->andWhere('q.user_id = ?', $user);
       return $q;
-    }
-    
-    
-   
+    } 
 }

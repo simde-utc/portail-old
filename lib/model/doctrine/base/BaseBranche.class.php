@@ -9,11 +9,14 @@ Doctrine_Manager::getInstance()->bindComponent('Branche', 'doctrine');
  * 
  * @property string $name
  * @property Doctrine_Collection $Profile
+ * @property Doctrine_Collection $UserSemestre
  * 
- * @method string              getName()    Returns the current record's "name" value
- * @method Doctrine_Collection getProfile() Returns the current record's "Profile" collection
- * @method Branche             setName()    Sets the current record's "name" value
- * @method Branche             setProfile() Sets the current record's "Profile" collection
+ * @method string              getName()         Returns the current record's "name" value
+ * @method Doctrine_Collection getProfile()      Returns the current record's "Profile" collection
+ * @method Doctrine_Collection getUserSemestre() Returns the current record's "UserSemestre" collection
+ * @method Branche             setName()         Sets the current record's "name" value
+ * @method Branche             setProfile()      Sets the current record's "Profile" collection
+ * @method Branche             setUserSemestre() Sets the current record's "UserSemestre" collection
  * 
  * @package    simde
  * @subpackage model
@@ -38,6 +41,10 @@ abstract class BaseBranche extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasMany('Profile', array(
+             'local' => 'id',
+             'foreign' => 'branche_id'));
+
+        $this->hasMany('UserSemestre', array(
              'local' => 'id',
              'foreign' => 'branche_id'));
     }

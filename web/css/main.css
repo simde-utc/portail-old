@@ -820,3 +820,6 @@ ul.membres li {
 ul.membres li img {
   height: 120px;
 }
+
+.form-filters label { float: left; width: 130px; }
+.form-filters input, .form-filters select {  }

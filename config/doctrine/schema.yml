@@ -232,12 +232,16 @@ Annonce:
     texte: { type: string, notnull: true }
     offre: { type: boolean, notnull: true, default: 1 }
     ville: { type: string }
-    prix: { type: float }
+    prix: { type: float, notnull: true, default: 0.00 }
     departement_id: { type: integer }
     branche_id: { type: integer }
     debut: { type: timestamp }
     fin: { type: timestamp }
+    user_id: { type: integer }
+    email: { type: string(100) }
+    password: { type: string(32) }
   relations:
     Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: AnnoncesCategorie }
     Departement: { onUpdate: CASCADE, local: departement_id, foreign: id }
     Branche: { onUpdate: CASCADE, local: branche_id, foreign: id }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }

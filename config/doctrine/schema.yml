@@ -6,19 +6,19 @@ Asso:
   connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
-    name: { type: string(50) }
-    login: { type: string(32) }
+    name: { type: string(50), notnull: true }
+    login: { type: string(32), notnull: true }
     pole_id: { type: integer }
     type_id: { type: integer }
-    url_site: { type: string(100) }
+    summary: { type: string(150) }
     description: { type: string }
     logo: { type: string(100) }
-    active: { type: boolean }
-    passation: { type: boolean }
+    active: { type: boolean, notnull: true, default: true }
+    passation: { type: boolean, notnull: true, default: false }
     salle: { type: string(6) }
     phone: { type: string(15) }
     facebook: { type: string(100) }
-    summary: { type: string(150) }
+    joignable: { type: boolean, notnull: true, default: true }
   relations:
     Pole: { local: pole_id, foreign: id }
     Type: { local: type_id, foreign: id, class: TypeAsso }
@@ -40,10 +40,10 @@ AssoMember:
   connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
-    user_id: { type: integer }
-    asso_id: { type: integer }
-    role_id: { type: integer }
-    semestre_id: { type: integer }
+    user_id: { type: integer, notnull: true }
+    asso_id: { type: integer, notnull: true }
+    role_id: { type: integer, notnull: true }
+    semestre_id: { type: integer, notnull: true }
   relations:
     Asso: { local: asso_id, foreign: id }
     Role: { local: role_id, foreign: id }
@@ -165,7 +165,6 @@ EventType:
   connection: doctrine
   columns:
     name: { type: string(50) }
-    color: { type: string(7) }
     
 Article:
   connection: doctrine
@@ -214,4 +213,94 @@ Abonnement:
   relations:
     Asso: { local: asso_id, foreign: id }
     User: { local: user_id, foreign: id, class: sfGuardUser }  
-    
+
+CharteInfo:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    date: { type: date, notnull: true }
+    semestre_id: { type: integer, notnull: true }
+    asso_id : { type: integer, notnull : true }
+    responsable_id: { type: integer, notnull: true }
+    confirmation: { type: boolean, notnull: true, default: false }
+  relations:
+    Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Responsable: { onUpdate: CASCADE, local: responsable_id, foreign: id, class: sfGuardUser }
+
+Materiel:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string(100) }
+    asso_id : { type: integer }
+    description: { type: string }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+Etat:
+  connection: doctrine
+  columns:
+    nom: { type: string(100) }
+    disponible: { type: boolean }
+
+Stock:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    materiel_id: { type: integer }
+    etat_id: { type: integer, notnull: true, default: 1 }
+    nombre: { type: integer }
+  relations:
+    Materiel: { onDelete: CASCADE, onUpdate: CASCADE, local: materiel_id, foreign: id }
+    Etat: { onDelete: CASCADE, onUpdate: CASCADE, local: etat_id, foreign: id }
+
+Emprunt:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    materiel_id: { type: integer }
+    user_id: { type: integer }
+    asso_id: { type: integer }
+    nombre: { type: integer }
+    recu: { type: boolean }
+    rendu: { type: boolean }
+  relations:
+    Materiel: { onDelete: CASCADE, onUpdate: CASCADE, local: materiel_id, foreign: id }
+    User: { onDelete: CASCADE, onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser}
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+Departement:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  columns:
+    num: { type: integer(2), notnull: true }
+    name: { type: string(50), notnull: true }
+
+AnnoncesCategorie:
+  connection: doctrine
+  columns:
+    name: { type: string(100) , notnull: true }
+
+Annonce:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  columns:
+    categorie_id: { type: integer, notnull: true }
+    titre: { type: string(250), notnull: true }
+    texte: { type: string, notnull: true }
+    offre: { type: boolean, notnull: true, default: 1 }
+    ville: { type: string }
+    prix: { type: float, notnull: true, default: 0.00 }
+    departement_id: { type: integer }
+    branche_id: { type: integer }
+    debut: { type: timestamp }
+    fin: { type: timestamp }
+    user_id: { type: integer }
+    email: { type: string(100) }
+    password: { type: string(32) }
+  relations:
+    Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: AnnoncesCategorie }
+    Departement: { onUpdate: CASCADE, local: departement_id, foreign: id }
+    Branche: { onUpdate: CASCADE, local: branche_id, foreign: id }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }

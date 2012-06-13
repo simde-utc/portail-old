@@ -49,10 +49,12 @@ class EventForm extends BaseEventForm
       'delete_label' => "Supprimer cette illustration",
     ));
  
-    $this->validatorSchema['affiche'] = new sfValidatorFile(array(
+    $this->validatorSchema['affiche'] = new sfValidatorFileImage(array(
     	'required' => false,
     	'path' => sfConfig::get('sf_upload_dir').'/events/source',
-        'mime_types' => 'web_images'
+        'mime_types' => 'web_images',
+        'max_width' => 1000,
+        'max_height' => 1000
     ));
     
     $this->validatorSchema['affiche_delete'] = new sfValidatorBoolean();

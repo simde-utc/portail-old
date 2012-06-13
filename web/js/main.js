@@ -38,4 +38,8 @@ $(document).ready(function(){
     $("#my_flux div.articles_abonnements").hide();
     $("#my_flux div.events_abonnements").show();
   });
+
+   $(".well").tooltip({
+     selector: "a[rel=tooltip]"
+   });
 });

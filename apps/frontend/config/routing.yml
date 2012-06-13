@@ -213,25 +213,24 @@ profile_infoPerso_update:
   url:  /profile/infoPerso/update/:id
   param: { module: profile, action: updateInfoPerso }
  
+#profile_infoSupp_edit:
+#  url:  /profile/infoSupp/edit/:id
+#  class: sfDoctrineRoute
+#  options: { model: Profile, type: object }
+#  param: { module: profile, action: editInfoSupp }
+
+#profile_infoSupp_update:
+#  url:  /profile/infoSupp/update/:id
+#  param: { module: profile, action: updateInfoSupp }  
+
+ 
 profile_infoSupp_edit:
-  url:  /profile/infoSupp/edit/:id
-  class: sfDoctrineRoute
-  options: { model: Profile, type: object }
+  url:  /profile/infoSupp/edit
   param: { module: profile, action: editInfoSupp }
 
-profile_infoSupp_update:
-  url:  /profile/infoSupp/update/:id
+profile_infoSupp_submit:
+  url:  /profile/infoSupp/submit
   param: { module: profile, action: updateInfoSupp }  
-
-profile_parcoursUTC_edit:
-  url:  /profile/parcoursUTC/edit/:id
-  class: sfDoctrineRoute
-  options: { model: Profile, type: object }
-  param: { module: profile, action: editParcoursUTC }
-
-profile_parcoursUTC_update:
-  url:  /profile/parcoursUTC/update/:id
-  param: { module: profile, action: updateParcoursUTC }   
   
 #profile_edit:
 #  url:  /profile/edit
@@ -313,6 +312,11 @@ abonnement_list:
   url: /abonnement/:show
   param: { module: abonnement, action: show}
  
+ 
+#Aide
+aide:
+  url: /aide
+  param: { module: aide, action: show}
 
 
 # generic rules

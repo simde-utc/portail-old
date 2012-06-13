@@ -652,6 +652,28 @@ a.btn-danger {
     width: 100px;
 }
 
+#infoPerso .label{
+    display: inline;
+}
+
+#profile .radio_list{
+    list-style: none;
+}
+
+#profile .radio_list label{
+    width: 60px;
+    display: inline;
+}
+
+#profile select{
+    width: auto;
+}
+
+.modifier {
+    cursor: url('/images/button/modifier.png'), auto;
+}
+
+
 .part h1 .titleaction {
 	float: right;
 	font-size: 12px;
@@ -685,6 +707,18 @@ a.btn-danger {
 .part img.affiche {
   float: right;
   margin: 15px 0px 15px 15px;
+}
+
+#aide h2{
+    margin: 0 auto 7px;
+    display: block;
+    font-weight: normal;
+    width: auto;
+    font-family: impact;
+    font-size: 21px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom:thin solid #000;
 }
 
 .poleae {

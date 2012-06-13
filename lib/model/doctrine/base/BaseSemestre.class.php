@@ -9,13 +9,16 @@ Doctrine_Manager::getInstance()->bindComponent('Semestre', 'doctrine');
  * 
  * @property string $name
  * @property Doctrine_Collection $AssoMember
+ * @property Doctrine_Collection $Profile
  * @property Doctrine_Collection $UserSemestre
  * 
  * @method string              getName()         Returns the current record's "name" value
  * @method Doctrine_Collection getAssoMember()   Returns the current record's "AssoMember" collection
+ * @method Doctrine_Collection getProfile()      Returns the current record's "Profile" collection
  * @method Doctrine_Collection getUserSemestre() Returns the current record's "UserSemestre" collection
  * @method Semestre            setName()         Sets the current record's "name" value
  * @method Semestre            setAssoMember()   Sets the current record's "AssoMember" collection
+ * @method Semestre            setProfile()      Sets the current record's "Profile" collection
  * @method Semestre            setUserSemestre() Sets the current record's "UserSemestre" collection
  * 
  * @package    simde
@@ -43,6 +46,10 @@ abstract class BaseSemestre extends sfDoctrineRecord
         $this->hasMany('AssoMember', array(
              'local' => 'id',
              'foreign' => 'semestre_id'));
+
+        $this->hasMany('Profile', array(
+             'local' => 'id',
+             'foreign' => 'semestre'));
 
         $this->hasMany('UserSemestre', array(
              'local' => 'id',

@@ -28,6 +28,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @property Place $FamilyPlace
  * @property Branche $Branche
  * @property Filiere $Filiere
+ * @property Semestre $Semestre
  * @property Doctrine_Collection $UserSemestre
  * @property Doctrine_Collection $UserSport
  * 
@@ -52,6 +53,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @method Place               getFamilyPlace()        Returns the current record's "FamilyPlace" value
  * @method Branche             getBranche()            Returns the current record's "Branche" value
  * @method Filiere             getFiliere()            Returns the current record's "Filiere" value
+ * @method Semestre            getSemestre()           Returns the current record's "Semestre" value
  * @method Doctrine_Collection getUserSemestre()       Returns the current record's "UserSemestre" collection
  * @method Doctrine_Collection getUserSport()          Returns the current record's "UserSport" collection
  * @method Profile             setUserId()             Sets the current record's "user_id" value
@@ -75,6 +77,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @method Profile             setFamilyPlace()        Sets the current record's "FamilyPlace" value
  * @method Profile             setBranche()            Sets the current record's "Branche" value
  * @method Profile             setFiliere()            Sets the current record's "Filiere" value
+ * @method Profile             setSemestre()           Sets the current record's "Semestre" value
  * @method Profile             setUserSemestre()       Sets the current record's "UserSemestre" collection
  * @method Profile             setUserSport()          Sets the current record's "UserSport" collection
  * 
@@ -167,6 +170,10 @@ abstract class BaseProfile extends sfDoctrineRecord
 
         $this->hasOne('Filiere', array(
              'local' => 'filiere_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Semestre', array(
+             'local' => 'semestre',
              'foreign' => 'id'));
 
         $this->hasMany('UserSemestre', array(

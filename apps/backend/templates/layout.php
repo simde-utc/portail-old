@@ -73,7 +73,12 @@
               <li><a href="<?php echo url_for('asso_member_new') ?>">Nouveau membre asso</a></li>
               <li class="nav-header">Données du portail</li>
               <li><a href="<?php echo url_for('role') ?>">Liste des rôles</a></li>
-              <li><a href="<?php echo url_for('role') ?>">Nouveau rôle</a></li>
+              <li><a href="<?php echo url_for('role_new') ?>">Nouveau rôle</a></li>
+              <li><a href="<?php echo url_for('semestre') ?>">Liste des semestres</a></li>
+              <li><a href="<?php echo url_for('semestre_new') ?>">Nouveau semestre</a></li>
+              <li class="nav-header">SiMDE</li>
+              <li><a href="<?php echo url_for('charte_info') ?>">Signatures Chartes Info</a></li>
+              <li><a href="<?php echo url_for('charte_info_new') ?>">Nouvelle Charte Info</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

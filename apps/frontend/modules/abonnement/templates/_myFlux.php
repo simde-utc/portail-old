@@ -1,21 +1,27 @@
 <?php use_helper('Thumb') ?>
 <div id="my_flux">
   <h1>Mon Flux</h1>
-  <a " class="btn"><i class="icon-ok"></i> Tous les articles</a><br />
+  <a href="" id="all_but">Tout</a>
+  <a href="" id="events_but">Événements</a>
+  <a href="" id="articles_but">Articles</a>
   <?php if($abonnements && $abonnements->count() > 0): ?>
     <?php foreach ($abonnements as $abonnement):?>
-   <div class="my_fluxx">
-        <h3>
-          <a href="<?php echo url_for('assos_show',$abonnement->getAsso()) ?>"><?php echo $abonnement->getAsso()->getName() ?></a>
-          <?php echo ' : '?>
-          <a href="<?php echo url_for('event_show',$abonnement) ?>"><?php echo $abonnement->getName() ?></a>
-        </h3>
-        <a href="<?php echo url_for('event_show',$abonnement) ?>"><?php echo $abonnement->getSummary() ?></a>
-        <div class="barre"> </div>
-      </div>
+      <?php if($abonnement['article'] == 'event'): ?>
+        <div class="events_abonnements">
+          <b><a href="<?php echo url_for('article/show?id='.$abonnement['id']) ?>"><?php echo $abonnement['assoName'].' : '.$abonnement['name'] ?></a></b>
+          <?php echo $abonnement['summary'] ?>
+          <div class="barre"></div>
+        </div>
+      <?php endif; ?>
+      <?php if($abonnement['article'] == 'article'): ?>
+        <div class="articles_abonnements">
+          <b><a href="<?php echo url_for('article/show?id='.$abonnement['id']) ?>"><?php echo $abonnement['assoName'].' : '.$abonnement['name'] ?></a></b>
+          <?php echo $abonnement['summary'] ?>
+          <div class="barre"></div>
+        </div> 
+      <?php endif; ?>  
     <?php endforeach; ?>
   <?php else: ?>
-    Vous ne suivez aucune association.
+    <p>Vous ne suivez aucune association.</p>
   <?php endif; ?>
 </div>
-

@@ -24,7 +24,8 @@ class sfGuardUser extends PluginsfGuardUser
     if(!$this->_allPermissions)
     {
       $this->_allPermissions = parent::getAllPermissions();
-      foreach($this->getAssoMember() as $asso_member)
+      $asso_members = AssoMemberTable::getInstance()->getDroits($this->getPrimaryKey())->execute();
+      foreach($asso_members as $asso_member)
       {
         if($asso_member->getSemestreId() == sfConfig::get('app_portail_current_semestre'))
           $this->_allPermissions[$asso_member->getAsso()->getLogin()] = $asso_member;
@@ -52,6 +53,8 @@ class sfGuardUser extends PluginsfGuardUser
    *  0x08 - gestion des events
    *  0x10 - gestion des roles
    *  0x20 - changement de pres
+   *  0x40 - gestion du materiel
+   *  0x80 - gestion des mails
    * @return type 
    */
   public function hasAccess($asso,$droit)

@@ -24,7 +24,9 @@ class ArticleTable extends Doctrine_Table {
    */
   public function getArticlesList($asso = null) {
     $q = $this->createQuery('a')
-            ->select('a.*')
+            ->select('a.*, as.id, p.couleur')
+            ->leftJoin('a.Asso as')
+            ->leftJoin('as.Pole p')
             ->addOrderBy('a.created_at DESC');
 
     if (!is_null($asso))
@@ -54,17 +56,22 @@ class ArticleTable extends Doctrine_Table {
       return $q;
     }
     
-    
     public function getAbonnementsFollowed($user_id){
-      $q = $this->createQuery('ar')
-            ->select ('as.name, ar.*, ev.*')
-            ->where('ar.asso_id = as.id')
-            ->andWhere('ab.user_id = ?', $user_id)
-            ->leftJoin('ar.Asso as')
-            ->leftJoin('as.Abonnement ab')
-            ->leftJoin('as.Event ev')
-            ->orderBy('ar.updated_at desc')
-            ->limit(5);            
-      return $q;
-    }
+      $res = Doctrine_Manager::getInstance()
+       ->getConnection('doctrine')
+       ->getDbh()
+       ->query('(SELECT a.id, a.name, a.summary, a.created_at, a.asso_id, asso.name AS assoName, \'article\'
+                FROM article a, abonnement ab, asso asso
+                WHERE (a.asso_id = ab.asso_id AND ab.user_id = '.$user_id.' AND a.asso_id = asso.id)
+                limit 5)
+                UNION (SELECT e.id, e.name, e.summary, e.created_at, e.asso_id, asso.name AS assoName, \'event\'
+                FROM event e, abonnement ab, asso asso
+                WHERE (e.asso_id = ab.asso_id AND ab.user_id = '.$user_id.' AND e.asso_id = asso.id) 
+                LIMIT 5)
+                ORDER BY created_at DESC')
+       ->fetchAll(PDO::FETCH_ASSOC);
+      return $res;
+    } 
+       
+   
 }

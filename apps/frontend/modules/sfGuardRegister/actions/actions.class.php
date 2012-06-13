@@ -66,7 +66,7 @@ class sfGuardRegisterActions extends BasesfGuardRegisterActions
     $activation->save();
 
     $message = $this->getMailer()->composeAndSend(
-      'bde-portail@emilienkenler.com',$user->getEmailAddress(),'Please confirm your registration!','Hello '.$user->getName().',
+      'simde@assos.utc.fr',$user->getEmailAddress(),'Please confirm your registration!','Hello '.$user->getName().',
         Please click on the following link to complete your registration:
         '.$this->generateUrl('register_activation',array('activation_key' => $activation->getActivationKey()),true).'
         We hope you will have fun!');

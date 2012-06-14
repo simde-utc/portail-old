@@ -62,5 +62,19 @@ class GesmailBox {
   public function getEmail(){
     return $this->getName()."@assos.utc.fr";
   }
+  
+  public function deleteDest($email){
+    $pdo = Doctrine_Manager::getInstance()
+       ->getConnection('gesmail')
+       ->getDbh();
+    
+    $alias = $pdo->quote($this->getName());
+    $email = $pdo->quote($email);
+    
+    if($this->type == "alias")
+      return $pdo->query("DELETE FROM postfix_alias WHERE alias LIKE $alias AND destination LIKE $email")->execute();
+    elseif($this->type == "ml")
+      return $pdo->query("DELETE FROM mailman_mysql WHERE listname LIKE $alias AND address LIKE $email")->execute();
+  }
 }
 ?>

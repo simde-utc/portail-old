@@ -54,4 +54,33 @@ class gesmailActions extends sfActions
         
     $this->redirect('gesmail_box', array('box' => $box->extension , 'login' => $asso->getLogin()));
   }
+  
+  public function executeAdd(sfWebRequest $request){
+    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+    $asso = AssoTable::getInstance()->getOneByLogin($request->getParameter('login'))->select('q.id, q.login')->fetchOne();
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x80))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    
+    // Récupération de l'asso sur laquelle on est
+    $gesmail = new Gesmail($asso);
+    $box = $gesmail->getBoxByID($request->getParameter('box'));
+    $ret = $box->addDest($request->getParameter('email'));
+    
+    if($ret == 1)
+      $this->getUser()->setFlash('error', "L'adresse saisie est incorrecte.");
+    elseif($ret == 2)
+      $this->getUser()->setFlash('error', "Il est impossible d'ajouter une adresse à elle-même (regarde les options ;)).");
+    elseif($ret == 3)
+      $this->getUser()->setFlash('warning', "Cette adresse est déjà présente dans la liste.");
+
+    if(empty($box->extension))
+      $this->redirect('gesmail', array('login' => $asso->getLogin()));
+    else
+      $this->redirect('gesmail_box', array('box' => $box->extension, 'login' => $asso->getLogin()));
+  }
+  
+  
 }

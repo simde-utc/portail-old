@@ -297,6 +297,10 @@ gesmail_box_delete:
   url: /asso/:login/gesmail/delete/:box
   param: { module: gesmail, action: delete }
 
+gesmail_box_add:
+  url: /asso/:login/gesmail/add/:box
+  param: { module: gesmail, action: add }
+
 # generic rules
 # please, remove them by adding more specific rules
 

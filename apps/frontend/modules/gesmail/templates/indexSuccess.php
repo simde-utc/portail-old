@@ -29,7 +29,7 @@
               <?php endforeach; ?>
             <?php endif; ?>
             <tr>
-              <form action="" method="post" class="form-horizontal">
+              <form action="<?php echo url_for('gesmail_box_add', array('box' => $box->idbox, 'login' => $asso->getLogin())) ?>" method="post" class="form-horizontal">
               <td>
                 <?php if(!empty($flash['adderror'])): ?>
                 <div class="alert alert-error">

@@ -20,7 +20,7 @@
               <tr>
                 <td><?php echo $dest->destination ?></td>
                 <td>
-                  <form action="<?php echo url_for('gesmail_box_delete', array('box' => $box->extension, 'login' => $asso->getLogin())) ?>" method="post" class="butseul form-inline">
+                  <form action="<?php echo url_for('gesmail_box_delete', array('box' => $box->idbox, 'login' => $asso->getLogin())) ?>" method="post" class="butseul form-inline">
                     <input type="hidden" name="email" value="<?php echo $dest->destination ?>" />
                     <input type="submit" class="btn" value="Supprimer" />
                   </form>

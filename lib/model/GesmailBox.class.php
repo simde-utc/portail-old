@@ -3,6 +3,7 @@ class GesmailBox {
   public $asso;
   public $extension;
   public $type;
+  public $idbox = -1;
   
   public function __construct($asso, $ext = ""){
     $this->asso = $asso;
@@ -17,12 +18,13 @@ class GesmailBox {
     if(!empty($ext)){
       $login = $pdo->quote($this->asso);
       $extension = $pdo->quote($ext);
-      $req = $pdo->query("SELECT Extension, Type FROM gesmail WHERE Asso LIKE $login AND Extension LIKE $extension")->fetch(PDO::FETCH_ASSOC);
+      $req = $pdo->query("SELECT ID, Extension, Type FROM gesmail WHERE Asso LIKE $login AND Extension LIKE $extension")->fetch(PDO::FETCH_ASSOC);
     }
     
     if(!empty($ext) && !empty($req)){
       $this->type = $req['Type'];
       $this->extension = $req['Extension'];
+      $this->idbox = $req['ID'];
     }
     else {
       $this->type = "alias";

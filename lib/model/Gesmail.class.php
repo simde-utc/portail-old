@@ -28,5 +28,21 @@ class Gesmail {
     return new GesmailBox($this->asso->getLogin(), $box);
   }
   
+  public function getBoxByID($boxid){
+    if($boxid == -1)
+      return new GesmailBox($this->asso->getLogin());
+    
+    
+    $pdo = Doctrine_Manager::getInstance()
+       ->getConnection('gesmail')
+       ->getDbh();
+    
+    $login = $pdo->quote($this->asso->getLogin());
+    $boxid = intval($boxid);
+    $query = $pdo->query("SELECT Extension FROM gesmail WHERE Asso LIKE $login AND ID = $boxid")->fetchObject();
+    
+    return new GesmailBox($this->asso->getLogin(), $query->Extension);
+  }
+  
 }
 ?>

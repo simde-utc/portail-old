@@ -287,6 +287,14 @@ gesmail:
   param: { module: gesmail, action: index }
   options: { model: Asso, type: object }
 
+gesmail_create:
+  url: /asso/:login/gesmail/create
+  param: { module: gesmail, action: create }
+  
+gesmail_docreate:
+  url: /asso/:login/gesmail/docreate
+  param: { module: gesmail, action: docreate }
+
 gesmail_box:
   url: /asso/:login/gesmail/:box
   class: sfDoctrineRoute

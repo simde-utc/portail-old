@@ -44,5 +44,26 @@ class Gesmail {
     return new GesmailBox($this->asso->getLogin(), $query->Extension);
   }
   
+  public function createBox($ext, $type){
+    $pdo = Doctrine_Manager::getInstance()
+       ->getConnection('gesmail')
+       ->getDbh();
+    
+    if(!preg_match('#^[a-z0-9]+$#', $ext))
+      return 2;
+    
+    $asso = $pdo->quote($this->asso->getLogin());
+    $extension = $pdo->quote($ext);
+    
+    if($type == "alias")
+      $q = $pdo->query("INSERT IGNORE INTO gesmail (Asso, Extension, Type) VALUES ($asso, $extension, 'alias')");
+    elseif($type == "ml")
+      $q = $pdo->query("INSERT IGNORE INTO gesmail (Asso, Extension, Type) VALUES ($asso, $extension, 'ml')");
+    
+    if($q->rowCount() == 1)
+      return 0;
+    else
+      return 1; // Adresse existe déjà
+  }
 }
 ?>

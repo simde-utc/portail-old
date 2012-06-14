@@ -820,3 +820,7 @@ ul.membres li {
 ul.membres li img {
   height: 120px;
 }
+
+.nav a {
+  color: #08C;
+}

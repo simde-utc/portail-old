@@ -241,3 +241,12 @@ Annonce:
     Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: AnnoncesCategorie }
     Departement: { onUpdate: CASCADE, local: departement_id, foreign: id }
     Branche: { onUpdate: CASCADE, local: branche_id, foreign: id }
+
+Partenaire:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string(100) }
+    logo: { type: string(100) }
+    url: { type: string(255) }
+    description: { type: string }

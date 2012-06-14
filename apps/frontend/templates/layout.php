@@ -68,7 +68,7 @@
       <?php include_component('event', 'carousel') ?>
     <?php elseif($sf_request->getParameter('login') || $sf_request->getParameter('asso')): ?>
       <?php include_component('asso', 'menu') ?>
-    <?php endif ?>;
+    <?php endif ?>
     <div class="wrap">
       <div id="column-left">
         <?php if($sf_user->isAuthenticated()): ?>

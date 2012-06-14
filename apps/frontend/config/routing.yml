@@ -281,12 +281,6 @@ register_resend:
   url: /inscription/activation
   param: { module: sfGuardRegister, action: resend }
 
-gesmail:
-  url: /asso/:login/gesmail
-  class: sfDoctrineRoute
-  param: { module: gesmail, action: index }
-  options: { model: Asso, type: object }
-
 gesmail_create:
   url: /asso/:login/gesmail/create
   param: { module: gesmail, action: create }
@@ -295,11 +289,9 @@ gesmail_docreate:
   url: /asso/:login/gesmail/docreate
   param: { module: gesmail, action: docreate }
 
-gesmail_box:
-  url: /asso/:login/gesmail/:box
-  class: sfDoctrineRoute
-  param: { module: gesmail, action: index }
-  options: { model: Asso, type: object }
+gesmail_delete:
+  url: /asso/:login/gesmail/dodelete/:id
+  param: { module: gesmail, action: dodelete }
   
 gesmail_box_delete:
   url: /asso/:login/gesmail/delete/:box
@@ -308,6 +300,19 @@ gesmail_box_delete:
 gesmail_box_add:
   url: /asso/:login/gesmail/add/:box
   param: { module: gesmail, action: add }
+
+gesmail_box:
+  url: /asso/:login/gesmail/:box
+  class: sfDoctrineRoute
+  param: { module: gesmail, action: index }
+  options: { model: Asso, type: object }
+  
+gesmail:
+  url: /asso/:login/gesmail
+  class: sfDoctrineRoute
+  param: { module: gesmail, action: index }
+  options: { model: Asso, type: object }
+
 
 # generic rules
 # please, remove them by adding more specific rules

@@ -53,6 +53,24 @@ class gesmailActions extends sfActions
     $this->form = new GesmailCreateForm();
   }
   
+   public function executeDodelete(sfWebRequest $request)
+  {
+    $asso = AssoTable::getInstance()->getOneByLogin($request->getParameter('login'))->select('q.id, q.login')->fetchOne();
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x80))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    
+    $gesmail = new Gesmail($asso);
+    if($gesmail->getBoxById($request->getParameter('id'))->deleteBox())
+      $this->getUser()->setFlash('success', "L'adresse a été supprimée correctement.");
+    else
+      $this->getUser()->setFlash('error', "Une erreur s'est produite lors de la suppression.");
+    
+    $this->redirect('gesmail', array('login' => $asso->getLogin()));
+  }
+  
     
   public function executeDocreate(sfWebRequest $request)
   {

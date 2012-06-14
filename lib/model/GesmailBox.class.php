@@ -117,5 +117,22 @@ class GesmailBox {
       $str .= $s[rand(0,25)];
     return $str;
   }
+  
+  public function deleteBox(){
+    $pdo = Doctrine_Manager::getInstance()
+       ->getConnection('gesmail')
+       ->getDbh();
+    
+    $dests = $this->getDestinataires();
+    foreach($dests as $dest)
+      $this->deleteDest($dest->destination);
+    
+    $asso = $pdo->quote($this->asso);
+    $extension = $pdo->quote($this->extension);
+    
+    $q = $pdo->query("DELETE FROM gesmail WHERE Asso LIKE $asso AND Extension LIKE $extension");
+    
+    return ($q->rowCount() == 1);
+  }
 }
 ?>

@@ -10,16 +10,31 @@
  */
 class annonceActions extends sfActions
 {
+
   public function executeIndex(sfWebRequest $request)
   {
-    $this->annonces = Doctrine_Core::getTable('Annonce')
-      ->createQuery('a')
-      ->execute();
+
+    $this->filters = new AnnonceFormFilter();
+    if($request->getMethod() == sfRequest::POST)
+    {
+      $this->filters->bind($request->getParameter($this->filters->getName()));
+      if($this->filters->isValid())
+      {
+        $query = $this->filters->buildQuery($this->filters->getValues());
+      }
+    }
+    else
+      $query = Doctrine_Core::getTable('Annonce')
+              ->createQuery('a')
+              ->orderBy('a.created_at DESC');
+    $this->annonces = $query->execute();
   }
 
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new AnnonceForm();
+    if($this->getUser()->isAuthenticated())
+      $this->form->setDefaultUser($this->getUser()->getGuardUser()->getId());
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -63,11 +78,12 @@ class annonceActions extends sfActions
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
+    if($form->isValid())
     {
       $annonce = $form->save();
 
       $this->redirect('annonce/edit?id='.$annonce->getId());
     }
   }
+
 }

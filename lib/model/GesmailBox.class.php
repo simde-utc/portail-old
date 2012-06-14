@@ -87,7 +87,7 @@ class GesmailBox {
     if(!$this->verifMail($email))
       return 1;
     
-    if($email == $this->getName()."@assos.utc.fr")
+    if($email == $this->getEmail())
       return 2;
 
     

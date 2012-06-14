@@ -18,6 +18,7 @@ class Gesmail {
     $login = $pdo->quote($this->asso->getLogin());
     $query = $pdo->query("SELECT Extension, Type FROM gesmail WHERE Asso LIKE $login");
     
+    $return = array('alias' => array(), 'ml' => array());
     while($res = $query->fetchObject())
       $return[$res->Type][] = new GesmailBox($this->asso, $res->Extension);
 

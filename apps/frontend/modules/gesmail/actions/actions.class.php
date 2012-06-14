@@ -27,9 +27,14 @@ class gesmailActions extends sfActions
     
     // Récupération de l'asso sur laquelle on est
     $gesmail = new Gesmail($asso);
+    $box = $request->getParameter('box');
     $this->boxes = $gesmail->getBoxes();
     $this->asso = $asso;
-    $this->box = $gesmail->getBox($request->getParameter('box'));
+    $this->box = $gesmail->getBox($box);
+    
+    if(!$this->box->type && !empty($box))
+      $this->redirect('gesmail', array('login' => $asso->getLogin()));
+    
     $this->adr = $this->box->getName();
   }
   

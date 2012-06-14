@@ -26,7 +26,7 @@ class GesmailBox {
       $this->extension = $req['Extension'];
       $this->idbox = $req['ID'];
     }
-    else {
+    elseif(empty($ext)) {
       $this->type = "alias";
     }
   }

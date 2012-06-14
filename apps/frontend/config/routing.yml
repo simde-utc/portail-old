@@ -292,7 +292,10 @@ gesmail_box:
   class: sfDoctrineRoute
   param: { module: gesmail, action: index }
   options: { model: Asso, type: object }
-
+  
+gesmail_box_delete:
+  url: /asso/:login/gesmail/delete/:box
+  param: { module: gesmail, action: delete }
 
 # generic rules
 # please, remove them by adding more specific rules

@@ -46,7 +46,13 @@ asso_bureau:
   class: sfDoctrineRoute
   param: { module: asso, action: bureau }
   options: { model: Asso, type: object }
-
+  
+asso_albums:
+  url:   /asso/albums/:login
+  class: sfDoctrineRoute
+  param: { module: asso, action: albums }
+  options: { model: Asso, type: object }
+  
 asso_trombi:
   url:   /asso/trombi/:login
   class: sfDoctrineRoute
@@ -71,6 +77,24 @@ asso_join:
   url: /asso/:login/join
   class: sfDoctrineRoute
   param: { module: asso, action: join }
+  options: { model: Asso, type: object }
+
+asso_leave:
+  url: /asso/:login/leave
+  class: sfDoctrineRoute
+  param: { module: asso, action: leave }
+  options: { model: Asso, type: object }
+  
+asso_follow:
+  url: /asso/:login/follow
+  class: sfDoctrineRoute
+  param: { module: asso, action: follow }
+  options: { model: Asso, type: object }
+
+asso_unfollow:
+  url: /asso/:login/unfollow
+  class: sfDoctrineRoute
+  param: { module: asso, action: unfollow }
   options: { model: Asso, type: object }
 
 asso_update:
@@ -116,6 +140,7 @@ article_new:
   options: { model: Asso, type: object }
   param: { module: article, action: new }
 
+
 # Album
 albums_list:
   url:   /album
@@ -146,11 +171,11 @@ album_create:
   param: { module: album, action: create } 
   
 album_new:
-  url: /album/new
- # class: sfDoctrineRoute
-#  options: { model: Album, type: object }
+  url: /album/new/:login
+  class: sfDoctrineRoute
   param: { module: album, action: new }
-
+  options: { model: Asso, type: object }
+  
 add:
   url: /add
   param: { module: album, action: add }
@@ -166,10 +191,120 @@ submit:
 new:
   url: /new
   param: { module: album, action: new }
+  
+#Uv
+uv_list:
+  url:   /uv
+  param: { module: uv, action: index }
+
+uv_update:
+  url:  /uv/update/:id
+  param: { module: uv, action: update }
+  
+uv_delete:
+  url:  /uv/delete/:id
+  param: { module: uv, action: delete } 
+  
+uv_create:
+  url: /uv/create
+  param: { module: uv, action: create } 
+
+uv_new:
+  url: /uv/new
+  param: { module: uv, action: new }
+
+uv_edit:
+  url:  /uv/edit/:id
+  class: sfDoctrineRoute
+  param: { module: uv, action: edit }
+  options: { model: Uv, type: object }  
+
+#Sport
+sport_list:
+  url:   /sport
+  param: { module: sport, action: index }
+
+sport_update:
+  url:  /sport/update/:id
+  param: { module: sport, action: update }
+  
+sport_delete:
+  url:  /sport/delete/:id
+  param: { module: sport, action: delete } 
+  
+sport_create:
+  url: /sport/create
+  param: { module: sport, action: create } 
+
+sport_new:
+  url: /sport/new
+  param: { module: sport, action: new }
+
+sport_edit:
+  url:  /sport/edit/:id
+  class: sfDoctrineRoute
+  param: { module: sport, action: edit }
+  options: { model: Sport, type: object }   
+
+#Profile
+profile_show:
+  url:   /profile
+  param: { module: profile, action: show }  
+  
+profile_identite_edit:
+  url:  /profile/identite/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editIdentite }
+
+profile_identite_update:
+  url:  /profile/identite/update/:id
+  param: { module: profile, action: updateIdentite }
+
+profile_infoPerso_edit:
+  url:  /profile/infoPerso/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editInfoPerso }
+
+profile_infoPerso_update:
+  url:  /profile/infoPerso/update/:id
+  param: { module: profile, action: updateInfoPerso }
+ 
+profile_infoSupp_edit:
+  url:  /profile/infoSupp/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editInfoSupp }
+
+profile_infoSupp_update:
+  url:  /profile/infoSupp/update/:id
+  param: { module: profile, action: updateInfoSupp }  
+
+profile_parcoursUTC_edit:
+  url:  /profile/parcoursUTC/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editParcoursUTC }
+
+profile_parcoursUTC_update:
+  url:  /profile/parcoursUTC/update/:id
+  param: { module: profile, action: updateParcoursUTC }   
+  
+#profile_edit:
+#  url:  /profile/edit
+#  param: { module: profile, action: edit }
+
+#profile_update:
+#  url:  /profile/update
+#  param: { module: profile, action: update }
+  
 #Events
 events_list:
-  url: /event
+  url: /event.:sf_format
   param: { module: event, action: index }
+  requirements:
+    sf_format: (?:html|json)
   
 events_list_asso:
   url:   /event/asso/:id
@@ -230,6 +365,13 @@ register_activation:
 register_resend:
   url: /inscription/activation
   param: { module: sfGuardRegister, action: resend }
+  
+#Etudiants
+abonnement_list:
+  url: /abonnement/:show
+  param: { module: abonnement, action: show}
+ 
+
 
 # generic rules
 # please, remove them by adding more specific rules
@@ -245,3 +387,4 @@ register_resend:
 #default_json:
 #  url:   /json/:module/:action/*
 #  param: { sf_format: json }
+#  url:   /:module/:action/*

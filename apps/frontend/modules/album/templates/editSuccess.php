@@ -1,3 +1,4 @@
+<?php use_helper('Thumb');?>
 <div class="part" >
 
 <?php if ($form->getObject()->isNew()): ?>
@@ -7,13 +8,15 @@
 <?php endif ?>
 <br /><br />
 <form class="editform well form-horizontal" action="<?php echo url_for('@submit') ?>" method="post" enctype="multipart/form-data" >
-  <?php echo $form->renderHiddenFields() ?>
+          <?php echo $form->renderHiddenFields(false) ?>
+  
+    
   <?php echo $form->renderGlobalErrors() ?>
-  <?php echo $form['name']->renderLabel()?> <?php echo $form['name']->renderError()?> <?php echo $form['name'] ?>
+  <?php echo $form['asso_id']->renderLabel()?> <?php echo $form['asso_id'] ?>
+    <br/>  
+  <?php echo $form['name']->renderLabel()?> <?php echo $form['name'] ?>
     <br/>
-      <?php echo $form->renderHiddenFields() ?>
-  <?php echo $form->renderGlobalErrors() ?>
-  <?php echo $form['location']->renderLabel()?> <?php echo $form['location']->renderError()?> <?php echo $form['location'] ?>
+  <?php echo $form['location']->renderLabel()?> <?php echo $form['location'] ?>
   <ul id="maListe">
     <?php if ($form->getObject()->isNew()): ?>
     <script type="text/javascript">newfieldscount = 1;</script>
@@ -28,8 +31,9 @@
     <?php foreach ($form['Images'] as $occurrence):?>
       <?php if($occurrence['name'] != ""): ?>
     <li>
-      <?php echo $occurrence['name']->renderLabel() ?>  <?php echo $occurrence['name']->renderError() ?>
+      <?php // echo $occurrence['name']->renderLabel() ?>  <?php //echo $occurrence['name']->renderError() ?>
       <?php echo $occurrence['name'] ?>
+              <?php //echo showThumb($occurrence['name']->render(), 'albums', array('width'=>130, 'height'=>120), 'scale') ?>
        <br />
       <?php echo $occurrence['legend']->renderLabel() ?>  <?php echo $occurrence['legend']->renderError() ?>
       <?php echo $occurrence['legend'] ?>

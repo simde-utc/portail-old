@@ -14,6 +14,7 @@ class AlbumForm extends BaseAlbumForm
        unset($this['created_at'], $this['updated_at']);
        $this->widgetSchema->setLabel('name', "Nom de l'album");
        $this->widgetSchema->setLabel('location', "Lieu");
+      // $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
 
         $this->embedRelation('Images');
   }

@@ -1,4 +1,5 @@
 <?php use_helper('Date') ?>
+<?php use_helper('Thumb') ?>
 <h1>
   Derniers articles
   <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x04)): ?>
@@ -23,9 +24,9 @@
           <?php endif; ?>
           <p>
             <?php if($article->getSummary()): ?>
-              <?php echo $article->getSummary() ?> <a href="<?php echo url_for('article/show?id='.$article->getId()) ?>">En savoir plus...</a>
+              <?php echo nl2br($article->getSummary()) ?> <a href="<?php echo url_for('article/show?id='.$article->getId()) ?>">En savoir plus...</a>
             <?php else: ?>
-              <?php echo $article->getText() ?>
+              <?php echo nl2br($article->getText()) ?>
             <?php endif; ?>
           </p>
           <br style="clear: both;" />

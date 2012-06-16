@@ -47,15 +47,27 @@ class EventTable extends Doctrine_Table
   {
     $q = $this->createQuery('a')
       ->addOrderBy('a.start_date ASC');
-    $q = $q->where("a.start_date > NOW()");
+    $q = $q->where("a.end_date > NOW()");
 
     return $q;
   }
 
   public function getLastEvents($count = 3)
   {
-    $q = $this->getFutureEventsList()
+    $q = $this->getEventsList()
       ->limit($count);
     return $q;
   }
+  
+     public function getEventsFollowed($user_id){
+      $q = $this->createQuery('ev')
+            ->select ('as.name, ev.*')
+            ->where('ev.asso_id = as.id')
+            ->andWhere('ab.user_id = ?', $user_id)
+            ->leftJoin('ev.Asso as')
+            ->leftJoin('as.Abonnement ab')
+            ->orderBy('ev.updated_at desc')
+            ->limit(3);            
+      return $q;
+    }
 }

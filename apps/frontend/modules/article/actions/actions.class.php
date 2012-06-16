@@ -34,6 +34,12 @@ class articleActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
+    $this->redirectUnless($asso = $this->getRoute()->getObject(),'assos_list');
+    if(!$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x04))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
     $this->form = new ArticleForm();
     $this->form->setDefault('asso_id', $this->getRoute()->getObject()->getId());
   }
@@ -52,7 +58,11 @@ class articleActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($article = $this->getRoute()->getObject());
-    $this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(),0x04));
+    if(!$this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$article->getAsso()->getLogin());
+    }
     $this->form = new ArticleForm($article);
   }
 
@@ -60,7 +70,11 @@ class articleActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($article = Doctrine_Core::getTable('article')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
-    $this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(),0x04));
+    if(!$this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$article->getAsso()->getLogin());
+    }
     $this->form = new ArticleForm($article);
 
     $this->processForm($request, $this->form);
@@ -73,7 +87,11 @@ class articleActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->forward404Unless($article = Doctrine_Core::getTable('article')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
-    $this->forward404Unless($this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(),0x04));
+    if(!$this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$article->getAsso()->getLogin());
+    }
     $article->delete();
 
     $this->redirect('article/index');

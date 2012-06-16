@@ -83,42 +83,90 @@ Role:
     sort: { type: integer(4) }
     bureau: { type: boolean, default: false, notnull: true }
     droits: { type: integer, default: 0, notnull: true }
-      
+ 
 Profile:
-   connection: doctrine
-   actAs: { Timestampable: ~ }
-   columns:
-     user_id: { type: integer }
-     domain: { type: string(15) }
-     nickname: { type: string(50) }
-     birthday: { type: date }
-     sexe: { type: char(1) }
-     mobile: { type: string(15) }
-     home_place: { type: integer }
-     family_place: { type: integer }
-     branche_id: { type: integer }
-     filiere_id: { type: integer }
-     semestre: { type: integer }
-     other_email: { type: string }
-     photo: { type: string }
-     weekmail: { type: boolean }
-     autorisation_photo: { type: boolean }
-   relations:
-     User: { local: user_id, foreign: id, class: sfGuardUser, foreignType: one }
-     HomePlace: { local: home_place, foreign: id, class: Place }
-     FamilyPlace: { local: family_place, foreign: id, class: Place }
-     Branche: { local: branche_id, foreign: id }
-     Filiere: { local: filiere_id, foreign: id }
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    user_id: { type: integer }
+    domain: { type: string(15) }
+    nickname: { type: string(50) }
+    birthday: { type: date }
+    sexe: { type: char(1) }
+    mobile: { type: string(15) }
+    home_place: { type: integer }
+    family_place: { type: integer }
+    branche_id: { type: integer }
+    filiere_id: { type: integer }
+    semestre: { type: integer }
+    other_email: { type: string }
+    photo: { type: string }
+    weekmail: { type: boolean }
+    autorisation_photo: { type: boolean }
+    devise: { type: string(300) }
+
+  relations:
+    User: { local: user_id, foreign: id, class: sfGuardUser, foreignType: one }
+    HomePlace: { local: home_place, foreign: id, class: Place }
+    FamilyPlace: { local: family_place, foreign: id, class: Place }
+    Branche: { local: branche_id, foreign: id }
+    Filiere: { local: filiere_id, foreign: id }
+
+UserSemestre:
+  connection: doctrine
+  columns:
+    user_id: { type: integer }
+    branche_id: { type: integer }
+    num: { type: string(4) }
+    abroad: { type: string(30) }
+    semestre_id: {type: integer }
+
+  relations:
+    Profile: { local: user_id, foreign: id }
+    Branche: { local: branche_id, foreign: id }
+    Semestre: { local: semestre_id, foreign: id }
+
+UserUv:
+  connection: doctrine
+  columns:
+    uv_id: { type: integer }
+    user_semestre_id: { type: integer }
+    note: { type: string(2) }
+ 
+  relations:
+    Uv: { local: uv_id, foreign: id }
+    UserSemestre: { local: user_semestre_id, foreign: id }
+
+UserSport:
+  connection: doctrine
+  columns:
+    user_id: { type: integer }
+    sport_id: { type: integer }
+ 
+  relations:
+    Profile: { local: user_id, foreign: id }
+    Sport: { local: sport_id, foreign: id }
+
+Sport:
+  connection: doctrine
+  columns:
+    name: { type: string(30), notnull: true }
+ 
+Uv:
+  connection: doctrine
+  columns:
+    code: { type: string(4), unique:true}
+    name: { type: string(100) }
 
 Place:
-   connection: doctrine
-   actAs: { Timestampable: ~ }
-   columns:
-     street: { type: string }
-     zipcode: { type: string(10) }
-     city: { type: string(100) }
-     country: { type: string(100) }
-     phone: { type: string(15) }
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    street: { type: string }
+    zipcode: { type: string(10) }
+    city: { type: string(100) }
+    country: { type: string(100) }
+    phone: { type: string(15) }
 
 Event:
   connection: doctrine
@@ -181,3 +229,15 @@ Activation:
     activation_key: { type: string }
   relations:
     sfGuardUser: { onUpdate: CASCADE, local: user_id, foreign: id, foreignAlias: Activations}
+   
+Abonnement:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    user_id: { type: integer, notnull: true }
+    asso_id: { type: integer } 
+    type_publication: { type: integer, notnull: true }
+  relations:
+    Asso: { local: asso_id, foreign: id }
+    User: { local: user_id, foreign: id, class: sfGuardUser }  
+    

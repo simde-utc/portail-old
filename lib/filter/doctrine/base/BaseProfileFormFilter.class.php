@@ -28,6 +28,10 @@ abstract class BaseProfileFormFilter extends BaseFormFilterDoctrine
       'photo'              => new sfWidgetFormFilterInput(),
       'weekmail'           => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'autorisation_photo' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+<<<<<<< HEAD
+=======
+      'devise'             => new sfWidgetFormFilterInput(),
+>>>>>>> 9a945a1ee42da6f33934b1a8509aef508f9e2e4c
       'created_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
@@ -48,6 +52,10 @@ abstract class BaseProfileFormFilter extends BaseFormFilterDoctrine
       'photo'              => new sfValidatorPass(array('required' => false)),
       'weekmail'           => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'autorisation_photo' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+<<<<<<< HEAD
+=======
+      'devise'             => new sfValidatorPass(array('required' => false)),
+>>>>>>> 9a945a1ee42da6f33934b1a8509aef508f9e2e4c
       'created_at'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
@@ -85,6 +93,10 @@ abstract class BaseProfileFormFilter extends BaseFormFilterDoctrine
       'photo'              => 'Text',
       'weekmail'           => 'Boolean',
       'autorisation_photo' => 'Boolean',
+<<<<<<< HEAD
+=======
+      'devise'             => 'Text',
+>>>>>>> 9a945a1ee42da6f33934b1a8509aef508f9e2e4c
       'created_at'         => 'Date',
       'updated_at'         => 'Date',
     );

@@ -31,6 +31,10 @@ abstract class BaseProfileForm extends BaseFormDoctrine
       'photo'              => new sfWidgetFormTextarea(),
       'weekmail'           => new sfWidgetFormInputCheckbox(),
       'autorisation_photo' => new sfWidgetFormInputCheckbox(),
+<<<<<<< HEAD
+=======
+      'devise'             => new sfWidgetFormTextarea(),
+>>>>>>> 9a945a1ee42da6f33934b1a8509aef508f9e2e4c
       'created_at'         => new sfWidgetFormDateTime(),
       'updated_at'         => new sfWidgetFormDateTime(),
     ));
@@ -52,6 +56,10 @@ abstract class BaseProfileForm extends BaseFormDoctrine
       'photo'              => new sfValidatorString(array('required' => false)),
       'weekmail'           => new sfValidatorBoolean(array('required' => false)),
       'autorisation_photo' => new sfValidatorBoolean(array('required' => false)),
+<<<<<<< HEAD
+=======
+      'devise'             => new sfValidatorString(array('max_length' => 300, 'required' => false)),
+>>>>>>> 9a945a1ee42da6f33934b1a8509aef508f9e2e4c
       'created_at'         => new sfValidatorDateTime(),
       'updated_at'         => new sfValidatorDateTime(),
     ));

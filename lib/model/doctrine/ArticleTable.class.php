@@ -42,4 +42,29 @@ class ArticleTable extends Doctrine_Table {
     return $q;
   }
 
+    public function getArticlesFollowed($user_id){
+      $q = $this->createQuery('ar')
+            ->select ('as.name, ar.*')
+            ->where('ar.asso_id = as.id')
+            ->andWhere('ab.user_id = ?', $user_id)
+            ->leftJoin('ar.Asso as')
+            ->leftJoin('as.Abonnement ab')
+            ->orderBy('ar.updated_at desc')
+            ->limit(3);            
+      return $q;
+    }
+    
+    
+    public function getAbonnementsFollowed($user_id){
+      $q = $this->createQuery('ar')
+            ->select ('as.name, ar.*, ev.*')
+            ->where('ar.asso_id = as.id')
+            ->andWhere('ab.user_id = ?', $user_id)
+            ->leftJoin('ar.Asso as')
+            ->leftJoin('as.Abonnement ab')
+            ->leftJoin('as.Event ev')
+            ->orderBy('ar.updated_at desc')
+            ->limit(5);            
+      return $q;
+    }
 }

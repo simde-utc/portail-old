@@ -51,6 +51,21 @@ class assoComponents extends sfComponents
   {
     if($login = $request->getParameter('login',null))
       $this->asso = AssoTable::getInstance()->findOneByLogin($login);
+    else
+      $this->asso = AssoTable::getInstance ()->find(1); // BDE
+    
+    if($this->asso->isPole())
+      $this->couleur = PoleTable::getInstance()->findOneBy('asso_id', $this->asso->getId())->getCouleur();
+    else
+      $this->couleur = $this->asso->getPole()->getCouleur();
+  }
+
+  public function executeContact(sfWebRequest $request)
+  {
+    if($login = $request->getParameter('login',null))
+      $this->asso = AssoTable::getInstance()->findOneByLogin($login);
+    else
+      $this->asso = AssoTable::getInstance ()->find(1); // BDE
   }
 
 }

@@ -31,7 +31,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="<?php echo url_for('cas') ?>">Étudiant UTC (CAS)</a></li>
-                <li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>
+                <?php /*<li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>*/ ?>
               </ul>
             </li>
           </ul>

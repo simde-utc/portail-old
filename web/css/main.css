@@ -643,6 +643,11 @@ a.btn-danger {
     border-bottom:thin solid #000;
 }
 
+#profile h2 a{
+    text-decoration: none;
+    color: #666666;
+}
+
 #profile #trombi{
     height : 120px;
     margin-right:20px;
@@ -652,25 +657,70 @@ a.btn-danger {
     margin-bottom: 10px;
 }
 
-#profile #infoPerso .span2{
-    width: 100px;
-}
-
-#infoPerso .label{
-    display: inline;
-}
-
-#profile .radio_list{
-    list-style: none;
-}
-
-#profile .radio_list label{
-    width: 60px;
+#profile label{
     display: inline;
 }
 
 #profile select{
     width: auto;
+}
+
+#profile #infoPerso .span2{
+    width: 100px;
+}
+
+#profile input[type="submit"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#identite .radio_list{
+    list-style: none;
+}
+
+#identite .radio_list label{
+    width: 60px;
+    display: inline;
+}
+
+#identite #profile_branche_id {
+    margin-right: 150px;
+}
+
+#identite #profile_filiere_id {
+    margin-right: 150px;
+}
+
+#identite #profile_semestre {
+    margin-right: 150px;
+}
+
+#infoPerso h3 {
+    margin-left: 140px;
+    margin-top: 10px;
+}
+
+#infoPerso th {
+    padding-right: 11px;
+}
+
+#infoPerso label[for="profile_mobile"]{
+    padding-right: 27px;
+}
+
+#infoSupp label {
+    padding-right: 10px;
+}
+
+#infoSupp #profile_devise {
+    margin-right: 300px;
+    margin-bottom:  10px;
+}
+
+#sports select {
+    display: block;
+    margin-top: 10px;
 }
 
 .modifier {

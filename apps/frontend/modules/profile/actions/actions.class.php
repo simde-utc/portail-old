@@ -24,6 +24,10 @@ class profileActions extends sfActions
   {
     if (!$this->getUser()->isAuthenticated())
 	$this->redirect("homepage");
+    
+    $this->profile = $this->getUser()->getProfile();
+    $this->semestres = UserSemestreTable::getInstance()->getAllByProfile($this->profile)->execute();
+    
   }
 //  
 //    public function executeEdit(sfWebRequest $request)
@@ -95,27 +99,27 @@ class profileActions extends sfActions
   //infoSupp
     public function executeEditInfoSupp(sfWebRequest $request)
   {
-    //$this->profile = $this->getRoute()->getObject();
-    //$this->form = new ProfileFormInfoSupp($this->profile); 
-    $this->forward404Unless($sport = Doctrine::getTable('UserSport')->find(array($request->getParameter('id'))), sprintf('Event does not exist (%s).', $request->getParameter('id')));
-    $this->form = new UserSportForm($sport);
+    $this->profile = $this->getRoute()->getObject();
+    $this->form = new ProfileFormInfoSupp($this->profile); 
+//    $this->forward404Unless($sport = Doctrine::getTable('UserSport')->find(array($request->getParameter('id'))), sprintf('Event does not exist (%s).', $request->getParameter('id')));
+//    $this->form = new UserSportForm($sport);
   }
   
   public function executeUpdateInfoSupp(sfWebRequest $request)
   {
-//    $this->forward404Unless($this->profile = Doctrine_Core::getTable('profile')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
-//    $this->form = new ProfileFormInfoSupp($this->profile); 
-//    $this->processFormInfoSupp($request, $this->form);
-      
-      $tainted_values = $request->getParameter('sport');
-      $sport = Doctrine::getTable('UserSport')->find($tainted_values['id']);
-
-      $this->form = new UserSportForm($sport);
-
-      if ($request->isMethod('post') && $this->form->bindAndSave($tainted_values))
-        $this->redirect('profile_show');
-
-      $this->setTemplate('error');
+    $this->forward404Unless($this->profile = Doctrine_Core::getTable('profile')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
+    $this->form = new ProfileFormInfoSupp($this->profile); 
+    $this->processFormInfoSupp($request, $this->form);
+//      
+//      $tainted_values = $request->getParameter('sport');
+//      $sport = Doctrine::getTable('UserSport')->find($tainted_values['id']);
+//
+//      $this->form = new UserSportForm($sport);
+//
+//      if ($request->isMethod('post') && $this->form->bindAndSave($tainted_values))
+//        $this->redirect('profile_show');
+//
+//      $this->setTemplate('error');
   }
   
     protected function processFormInfoSupp(sfWebRequest $request, sfForm $form)

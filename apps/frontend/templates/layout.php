@@ -43,7 +43,8 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="<?php echo url_for('sf_guard_signout') ?>">Se déconnecter</a></li>
+                <li><a href="<?php echo url_for('profile_show') ?>">Mon Profil</a></li>
+                <li><a href="<?php echo url_for('sf_guard_signout') ?>">Me déconnecter</a></li>
               </ul>
             </li>
           </ul>
@@ -122,13 +123,14 @@
           <h2>Services</h2>
           <a href="/gesmail">Gestion des mails assos</a><br/>
           <a href="/resa">Réservation de salles</a><br/>
-          <a href="/mail">Webmail assos</a>
+          <a href="/mail">Webmail assos</a><br/><br/>
         </div>
         <div id="footer-right">
           <h2>Liens</h2>
           <a href="http://ent.utc.fr">ENT</a><br/>
           <a href="/simde">SiMDE</a><br/>
-          <a href="http://www.utc.fr">UTC</a>
+          <a href="http://www.utc.fr">UTC</a><br/>
+          <a href="/aide">Aide</a>
         </div>
       </div>
     </div>

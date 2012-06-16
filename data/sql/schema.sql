@@ -59,7 +59,7 @@ ALTER TABLE event ADD CONSTRAINT event_asso_id_asso_id FOREIGN KEY (asso_id) REF
 ALTER TABLE materiel ADD CONSTRAINT materiel_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id) ON UPDATE CASCADE;
 ALTER TABLE pole ADD CONSTRAINT pole_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id);
 ALTER TABLE profile ADD CONSTRAINT profile_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id);
-ALTER TABLE profile ADD CONSTRAINT profile_semestre_semestre_id FOREIGN KEY (semestre) REFERENCES semestre(id);
+ALTER TABLE profile ADD CONSTRAINT profile_semestre_user_semestre_id FOREIGN KEY (semestre) REFERENCES user_semestre(id);
 ALTER TABLE profile ADD CONSTRAINT profile_home_place_place_id FOREIGN KEY (home_place) REFERENCES place(id);
 ALTER TABLE profile ADD CONSTRAINT profile_filiere_id_filiere_id FOREIGN KEY (filiere_id) REFERENCES filiere(id);
 ALTER TABLE profile ADD CONSTRAINT profile_family_place_place_id FOREIGN KEY (family_place) REFERENCES place(id);

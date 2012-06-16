@@ -231,25 +231,29 @@ profile_infoPerso_update:
   url:  /profile/infoPerso/update/:id
   param: { module: profile, action: updateInfoPerso }
  
-#profile_infoSupp_edit:
-#  url:  /profile/infoSupp/edit/:id
-#  class: sfDoctrineRoute
-#  options: { model: Profile, type: object }
-#  param: { module: profile, action: editInfoSupp }
-
-#profile_infoSupp_update:
-#  url:  /profile/infoSupp/update/:id
-#  param: { module: profile, action: updateInfoSupp }  
-
- 
 profile_infoSupp_edit:
-  url:  /profile/infoSupp/edit
+  url:  /profile/infoSupp/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
   param: { module: profile, action: editInfoSupp }
 
-profile_infoSupp_submit:
-  url:  /profile/infoSupp/submit
+profile_infoSupp_update:
+  url:  /profile/infoSupp/update/:id
   param: { module: profile, action: updateInfoSupp }  
-  
+
+ 
+#profile_infoSupp_edit:
+#  url:  /profile/infoSupp/edit
+#  param: { module: profile, action: editInfoSupp }
+#
+#profile_infoSupp_submit:
+#  url:  /profile/infoSupp/submit
+#  param: { module: profile, action: updateInfoSupp }  
+
+profile_infoSupp_add:
+  url: /profile/add
+  param: { module: sport, action: add }
+
 #profile_edit:
 #  url:  /profile/edit
 #  param: { module: profile, action: edit }

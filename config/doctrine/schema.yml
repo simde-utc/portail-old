@@ -85,7 +85,7 @@ Profile:
     FamilyPlace: { local: family_place, foreign: id, class: Place }
     Branche: { local: branche_id, foreign: id }
     Filiere: { local: filiere_id, foreign: id }
-    Semestre: { local: semestre, foreign: id }
+    UserSemestre: { local: semestre, foreign: id }
 
 UserSemestre:
   connection: doctrine

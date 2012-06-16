@@ -22,15 +22,16 @@ class ProfileFormIdentite extends BaseProfileForm
      $this->widgetSchema['birthday']->setAttributes(array(
       'date' => array('class' => 'nosize')
      ));
-     
-     $this->widgetSchema->setLabel('birthday', '<b>Date de Naissance</b>');
-     $this->widgetSchema->setLabel('sexe', '<b>Sexe</b>');
-     
-     $this->embedRelation('Branche');
-     $this->embedRelation('Filiere');
+          
      
      $sex = array('M' => 'Homme', 'F' => 'Femme');
      $this->widgetSchema['sexe'] = new sfWidgetFormSelectRadio(array('choices' => $sex)); 
+     
+     $this->widgetSchema->setLabel('birthday', '<b>Date de Naissance</b>');
+     $this->widgetSchema->setLabel('sexe', '<b>Sexe</b>');
+     $this->widgetSchema->setLabel('branche_id', '<b>Branche</b>');
+     $this->widgetSchema->setLabel('filiere_id', '<b>Filière</b>');
+     
      
      $this->useFields(array("id","birthday","sexe","branche_id","filiere_id"));
       

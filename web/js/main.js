@@ -11,5 +11,7 @@ $(document).ready(function(){
   
    $('.well').tooltip({
       selector: "a[rel=tooltip]"
-    })
+    });
+    
+  $('.dropdown-toggle').dropdown();
 });

@@ -7,6 +7,7 @@
     <a href="<?php echo url_for('asso_trombi', $asso) ?>">Trombinoscope</a>
     <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x02)): ?>
       <a href="<?php echo url_for('asso_member', $asso) ?>">Gestion des membres</a>
+      <a href="<?php echo url_for('gesmail', $asso) ?>">Gestion des mails</a>
     <?php endif ?>
     <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x40)): ?>
       <a href="<?php echo url_for('materiel',$asso) ?>">Matériel</a>

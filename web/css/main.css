@@ -823,3 +823,5 @@ ul.membres li img {
 
 .form-filters label { float: left; width: 130px; }
 .form-filters input, .form-filters select {  }
+
+#annonce_offre_1 + label,#annonce_offre_1, #annonce_offre_0 + label, #annonce_offre_0 { display: inline-block; margin: 0 5px; }

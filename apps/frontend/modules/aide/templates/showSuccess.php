@@ -15,7 +15,7 @@
             <!-- pour afficher le Windows Media player dans Internet Explorer: -->
             <param name="Filename" value="/videos/profile.avi">
             <param name="AnimationAtStart" value="True">
-            <param name="AutoStart" value="True">
+            <param name="AutoStart" value="False">
             <param name="showControls" value="True">
             <param name="ShowStatusBar" value="False">
             <param name="ShowDisplay" value="False">
@@ -29,7 +29,7 @@
                     width="580" height="400"
                     pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" 
                     src="/videos/profile.avi" 
-                    autostart="True"
+                    autostart="False"
                     showcontrols="True"
                     showstatusbar="False" 
                     showdisplay="False"

@@ -5,7 +5,7 @@
 
         <script type="text/javascript">
             function editIdentite(){
-                $.get('/profile/identite/edit/<?php echo $profile->getId() ?>', function(data) {
+                $.get('<?php echo url_for('profile_identite_edit',array('id' => $profile->getId())) ?>', function(data) {
                     $('#semestre').hide();
                     $('#filiere').hide();
                     $('#identite').html(data);
@@ -14,7 +14,7 @@
             };
             
             function editInfoPerso(){
-                $.get('/profile/infoPerso/edit/<?php echo $profile->getId() ?>', function(data) {
+                $.get('<?php echo url_for('profile_infoPerso_edit',array('id' => $profile->getId())) ?>', function(data) {
                     $('#infoPerso').hide();
                     $('#infoPerso').html(data);
                     $('#infoPerso').fadeIn(1000);
@@ -22,20 +22,20 @@
             };
             
             function editInfoSupp(){
-                $.get('/profile/infoSupp/edit/<?php echo $profile->getId() ?>', function(data) {
+                $.get('<?php echo url_for('profile_infoSupp_edit',array('id' => $profile->getId())) ?>', function(data) {
                     $('#infoSupp').hide();
                     $('#infoSupp').html(data);
                     $('#infoSupp').fadeIn(1000);
                 });
             };
             
-            function editParcoursUTC(){
-                $.get('/profile/parcoursUTC/edit/<?php echo $profile->getId() ?>', function(data) {
-                    $('#parcoursUTC').hide();
-                    $('#parcoursUTC').html(data);
-                    $('#parcoursUTC').fadeIn(1000);
-                });
-            };
+//            function editParcoursUTC(){
+//                $.get('/profile/parcoursUTC/edit/<?php echo $profile->getId() ?>', function(data) {
+//                    $('#parcoursUTC').hide();
+//                    $('#parcoursUTC').html(data);
+//                    $('#parcoursUTC').fadeIn(1000);
+//                });
+//            };
         </script>
 	<h1>Mon Profil</h1>
 	
@@ -134,7 +134,11 @@
   
       </div></div> -->
   </div>
-  <h2><a href="#" class="modifier" onclick="editParcoursUTC();return false;">Parcours UTC</a></h2>
+  <h2>
+<!--      <a href="#" class="modifier" onclick="editParcoursUTC();return false;">-->
+          Parcours UTC
+<!--      </a>-->
+  </h2>
   <div id="parcoursUTC">
   <?php
 	//parcours UTC

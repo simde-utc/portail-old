@@ -215,3 +215,30 @@ Abonnement:
     Asso: { local: asso_id, foreign: id }
     User: { local: user_id, foreign: id, class: sfGuardUser }  
     
+Services:
+  connection: doctrine 
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string, notnull: true }
+    resume: { type: string(150), notnull: true }
+    logo: { type: string }
+    url: { type: string }
+    type_id: { type: integer, notnull: true }
+  relations:
+    Type: { local: type_id, foreign: id, class: ServicesType }
+    
+MembresServices:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    membre: { type: integer, notnull: true }
+    service: { type: integer, notnull: true }
+  relations:
+    User: { local: membre, foreign: id, class: sfGuardUser }  
+    Services: { local: service, foreign: id }
+     
+ServicesType:
+  connection: doctrine
+  columns:
+    name: { type: string(50) }
+    

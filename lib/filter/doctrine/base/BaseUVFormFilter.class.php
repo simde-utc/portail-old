@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Uv filter form base class.
+ * UV filter form base class.
  *
  * @package    simde
  * @subpackage filter
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
-abstract class BaseUvFormFilter extends BaseFormFilterDoctrine
+abstract class BaseUVFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
@@ -33,7 +33,7 @@ abstract class BaseUvFormFilter extends BaseFormFilterDoctrine
 
   public function getModelName()
   {
-    return 'Uv';
+    return 'UV';
   }
 
   public function getFields()

@@ -7,11 +7,13 @@ CREATE TABLE branche (id BIGINT AUTO_INCREMENT, name VARCHAR(3), PRIMARY KEY(id)
 CREATE TABLE event (id BIGINT AUTO_INCREMENT, asso_id BIGINT NOT NULL, type_id BIGINT NOT NULL, name VARCHAR(50) NOT NULL, description TEXT NOT NULL, start_date DATETIME NOT NULL, end_date DATETIME NOT NULL, is_public TINYINT(1) DEFAULT '1', is_weekmail TINYINT(1) DEFAULT '0', place TEXT, affiche TEXT, summary VARCHAR(150), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX asso_id_idx (asso_id), INDEX type_id_idx (type_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE event_type (id BIGINT AUTO_INCREMENT, name VARCHAR(50), color VARCHAR(7), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE filiere (id BIGINT AUTO_INCREMENT, name VARCHAR(10), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
+CREATE TABLE membres_services (id BIGINT AUTO_INCREMENT, membre BIGINT NOT NULL, service BIGINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX membre_idx (membre), INDEX service_idx (service), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE place (id BIGINT AUTO_INCREMENT, street TEXT, zipcode VARCHAR(10), city VARCHAR(100), country VARCHAR(100), phone VARCHAR(15), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE pole (id BIGINT AUTO_INCREMENT, asso_id BIGINT, couleur VARCHAR(7), INDEX asso_id_idx (asso_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE profile (id BIGINT AUTO_INCREMENT, user_id BIGINT, domain VARCHAR(15), nickname VARCHAR(50), birthday DATE, sexe CHAR(1), mobile VARCHAR(15), home_place BIGINT, family_place BIGINT, branche_id BIGINT, filiere_id BIGINT, semestre BIGINT, other_email TEXT, photo TEXT, weekmail TINYINT(1), autorisation_photo TINYINT(1), devise TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), INDEX home_place_idx (home_place), INDEX family_place_idx (family_place), INDEX branche_id_idx (branche_id), INDEX filiere_id_idx (filiere_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE role (id BIGINT AUTO_INCREMENT, name VARCHAR(50), sort INT, bureau TINYINT(1) DEFAULT '0' NOT NULL, droits BIGINT DEFAULT 0 NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE semestre (id BIGINT AUTO_INCREMENT, name VARCHAR(3), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
+CREATE TABLE services (id BIGINT AUTO_INCREMENT, nom TEXT NOT NULL, resume VARCHAR(150) NOT NULL, logo TEXT, url TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE sport (id BIGINT AUTO_INCREMENT, name VARCHAR(30) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE type_asso (id BIGINT AUTO_INCREMENT, name VARCHAR(50), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE uv (id BIGINT AUTO_INCREMENT, code VARCHAR(4) UNIQUE, name VARCHAR(100), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
@@ -38,6 +40,8 @@ ALTER TABLE asso_member ADD CONSTRAINT asso_member_role_id_role_id FOREIGN KEY (
 ALTER TABLE asso_member ADD CONSTRAINT asso_member_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id);
 ALTER TABLE event ADD CONSTRAINT event_type_id_event_type_id FOREIGN KEY (type_id) REFERENCES event_type(id);
 ALTER TABLE event ADD CONSTRAINT event_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id);
+ALTER TABLE membres_services ADD CONSTRAINT membres_services_service_services_id FOREIGN KEY (service) REFERENCES services(id);
+ALTER TABLE membres_services ADD CONSTRAINT membres_services_membre_sf_guard_user_id FOREIGN KEY (membre) REFERENCES sf_guard_user(id);
 ALTER TABLE pole ADD CONSTRAINT pole_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id);
 ALTER TABLE profile ADD CONSTRAINT profile_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE profile ADD CONSTRAINT profile_home_place_place_id FOREIGN KEY (home_place) REFERENCES place(id);

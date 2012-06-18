@@ -303,6 +303,9 @@ p { text-align : justify; }
   border-bottom: 3px solid black;
 }
 
+#all_but a:hover{
+  text-decoration: none;
+}
 #column-right #contact {
   background: #353535;
   -webkit-border-radius: 5px;
@@ -724,7 +727,7 @@ a.btn-danger {
 .part .more:hover{
     background: #CECCCC;
 }
-#assos_list {
+#assos_list #services_list {
   list-style:none;
   line-height:200%;
   margin:20px auto;
@@ -732,7 +735,7 @@ a.btn-danger {
   padding: 0;
 }
 
-#assos_list li{
+#assos_list li, #services_list li{
   padding : 10px;
   width:600px;
   min-height : 120px;
@@ -741,13 +744,13 @@ a.btn-danger {
   background: #fff;
 }
 
-#assos_list h3 a{
+#assos_list h3 a, #services_list h3 a{
   font-size:1.3em;
 }
-#assos_list .desc{
+#assos_list .desc, #services_list .desc{
   margin-left : 100px;
 }
-#assos_list img.logo{
+#assos_list img.logo, #services_list img.logo{
   float:left;
   height:85px;
   width:85px;
@@ -755,15 +758,15 @@ a.btn-danger {
   background-color : #FFF;
   border: 0;
 }
-#assos_list .website{
+#assos_list .website, #services_list .website{
   font-weight:bold;
 }
-#topbar .website:before , #assos_list .website:before {
+#topbar .website:before , #assos_list .website:before , #services_list .website:before {
   content: url('/images/icons/home.png');
   margin-right: 5px;
   vertical-align: middle;
 }
-#assos_list .website:hover{
+#assos_list .website:hover #services_list .ebsite:hover{
   text-decoration:none;
   color:#fff;
   background-color:#75c34b;

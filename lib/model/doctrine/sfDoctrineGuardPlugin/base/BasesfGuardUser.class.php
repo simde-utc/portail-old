@@ -25,6 +25,7 @@
  * @property Profile $Profile
  * @property Doctrine_Collection $Activations
  * @property Doctrine_Collection $Abonnement
+ * @property Doctrine_Collection $MembresServices
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -46,6 +47,7 @@
  * @method Profile               getProfile()               Returns the current record's "Profile" value
  * @method Doctrine_Collection   getActivations()           Returns the current record's "Activations" collection
  * @method Doctrine_Collection   getAbonnement()            Returns the current record's "Abonnement" collection
+ * @method Doctrine_Collection   getMembresServices()       Returns the current record's "MembresServices" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -66,6 +68,7 @@
  * @method sfGuardUser           setProfile()               Sets the current record's "Profile" value
  * @method sfGuardUser           setActivations()           Sets the current record's "Activations" collection
  * @method sfGuardUser           setAbonnement()            Sets the current record's "Abonnement" collection
+ * @method sfGuardUser           setMembresServices()       Sets the current record's "MembresServices" collection
  * 
  * @package    simde
  * @subpackage model
@@ -176,6 +179,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasMany('Abonnement', array(
              'local' => 'id',
              'foreign' => 'user_id'));
+
+        $this->hasMany('MembresServices', array(
+             'local' => 'id',
+             'foreign' => 'membre'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));

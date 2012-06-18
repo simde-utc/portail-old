@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Uv form base class.
+ * UV form base class.
  *
- * @method Uv getObject() Returns the current form's model object
+ * @method UV getObject() Returns the current form's model object
  *
  * @package    simde
  * @subpackage form
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BaseUvForm extends BaseFormDoctrine
+abstract class BaseUVForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -27,7 +27,7 @@ abstract class BaseUvForm extends BaseFormDoctrine
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'Uv', 'column' => array('code')))
+      new sfValidatorDoctrineUnique(array('model' => 'UV', 'column' => array('code')))
     );
 
     $this->widgetSchema->setNameFormat('uv[%s]');
@@ -41,7 +41,7 @@ abstract class BaseUvForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'Uv';
+    return 'UV';
   }
 
 }

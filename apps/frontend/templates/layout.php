@@ -81,8 +81,6 @@
         <br>
         <?php if($sf_user->isAuthenticated()): ?>
           <?php include_component('abonnement', 'myFlux') ?>
-        <?php else: ?>
-          <?php include_partial('home/bienvenue') ?>
         <?php endif ?>
       </div>
       <div id="column-right">

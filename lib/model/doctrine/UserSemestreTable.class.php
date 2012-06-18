@@ -16,4 +16,11 @@ class UserSemestreTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('UserSemestre');
     }
+    
+    public function getAllByProfile($profile)
+    {
+      $q = $this->createQuery('q')
+          ->where('q.user_id = ?',$profile);
+      return $q;
+    }
 }

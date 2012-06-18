@@ -497,10 +497,10 @@ p { text-align : justify; }
 
 #asso-menu {
   background: #009cdd;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#009cdd", endColorstr="#30596a"); /* Pour IE seulement et mode gradient à linear */
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#009cdd", endColorstr="#30596a");
   background-image: -webkit-gradient(linear, left top, left bottom, from(#009cdd), to(#30596a));
   background-image: -moz-linear-gradient(top center, #009cdd, #30596a);
-  background-image: -o-linear-gradient(top, #009cdd, #30596a); /*uniquement en mode linear*/
+  background-image: -o-linear-gradient(top, #009cdd, #30596a); */
   height: 30px;
   margin-top: -31px;
 }
@@ -646,6 +646,11 @@ a.btn-danger {
     border-bottom:thin solid #000;
 }
 
+#profile h2 a{
+    text-decoration: none;
+    color: #666666;
+}
+
 #profile #trombi{
     height : 120px;
     margin-right:20px;
@@ -655,9 +660,76 @@ a.btn-danger {
     margin-bottom: 10px;
 }
 
+#profile label{
+    display: inline;
+}
+
+#profile select{
+    width: auto;
+}
+
 #profile #infoPerso .span2{
     width: 100px;
 }
+
+#profile input[type="submit"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#identite .radio_list{
+    list-style: none;
+}
+
+#identite .radio_list label{
+    width: 60px;
+    display: inline;
+}
+
+#identite #profile_branche_id {
+    margin-right: 150px;
+}
+
+#identite #profile_filiere_id {
+    margin-right: 150px;
+}
+
+#identite #profile_semestre {
+    margin-right: 150px;
+}
+
+#infoPerso h3 {
+    margin-left: 140px;
+    margin-top: 10px;
+}
+
+#infoPerso th {
+    padding-right: 11px;
+}
+
+#infoPerso label[for="profile_mobile"]{
+    padding-right: 27px;
+}
+
+#infoSupp label {
+    padding-right: 10px;
+}
+
+#infoSupp #profile_devise {
+    margin-right: 300px;
+    margin-bottom:  10px;
+}
+
+#sports select {
+    display: block;
+    margin-top: 10px;
+}
+
+.modifier {
+    cursor: url('/images/button/modifier.png'), auto;
+}
+
 
 .part h1 .titleaction {
 	float: right;
@@ -692,6 +764,18 @@ a.btn-danger {
 .part img.affiche {
   float: right;
   margin: 15px 0px 15px 15px;
+}
+
+#aide h2{
+    margin: 0 auto 7px;
+    display: block;
+    font-weight: normal;
+    width: auto;
+    font-family: impact;
+    font-size: 21px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom:thin solid #000;
 }
 
 .poleae {
@@ -852,3 +936,21 @@ a.btn-danger {
 }
 
 #bureau img, #trombi img { height: 120px; }
+
+ul.membres li {
+  float: left;
+  width: 120px;
+  height: 155px;
+  bacground: #ccc;
+  list-style-type: none;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+}
+
+ul.membres li img {
+  height: 120px;
+}
+
+.form-filters label { float: left; width: 130px; }
+.form-filters input, .form-filters select {  }

@@ -10,8 +10,7 @@
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Asso extends BaseAsso
-{
+class Asso extends BaseAsso {
 
   /**
    * 
@@ -23,8 +22,7 @@ class Asso extends BaseAsso
   {
     $conn = $conn ? $conn : AssoTable::getInstance()->getConnection();
     $conn->beginTransaction();
-    try
-    {
+    try {
       $ret = parent::save($conn);
 
       $this->updateLuceneIndex();
@@ -32,9 +30,7 @@ class Asso extends BaseAsso
       $conn->commit();
 
       return $ret;
-    }
-    catch(Exception $e)
-    {
+    } catch(Exception $e) {
       $conn->rollBack();
       throw $e;
     }
@@ -99,9 +95,13 @@ class Asso extends BaseAsso
 
   public function isPole()
   {
-    $q = PoleTable::getInstance()->createQuery('p')->where('p.asso_id = ?', $this->getPrimaryKey());
+    // Codé en dur pour des raisons de performances
+    return in_array($this->getId(), array(1, 3, 4, 5, 6));
+  }
 
-    return $q->fetchOne();
+  public function __toString()
+  {
+    return $this->getLogin();
   }
 
   public function addMember(sfGuardUser $user)
@@ -116,7 +116,7 @@ class Asso extends BaseAsso
 
   public function removeMember(sfGuardUser $user)
   {
-    $assoMember = AssoMemberTable::getInstance()->getCurrentAssoMember($this->getPrimaryKey(),$user->getPrimaryKey())->fetchOne();
+    $assoMember = AssoMemberTable::getInstance()->getCurrentAssoMember($this->getPrimaryKey(), $user->getPrimaryKey())->fetchOne();
     $assoMember->delete();
   }
 
@@ -125,19 +125,29 @@ class Asso extends BaseAsso
     if($this->getPole())
       return $this->getPole()->__toString();
   }
-
+  
   public function addFollower(sfGuardUser $user)
-    {
+  {
       $assoFollower = new Abonnement();
       $assoFollower->setAssoId($this);
       $assoFollower->setUserId($user);
       $assoFollower->save();
-    }
+  }
 
-    public function removeFollower(sfGuardUser $user)
-    {
-      $assoFollower = AbonnementTable::getInstance()->getCurrentAssoFollower($this->getPrimaryKey(),$user->getPrimaryKey())->fetchOne();
-      $assoFollower->delete();
-    }
+  public function removeFollower(sfGuardUser $user)
+  {
+    $assoFollower = AbonnementTable::getInstance()->getCurrentAssoFollower($this->getPrimaryKey(),$user->getPrimaryKey())->fetchOne();
+    $assoFollower->delete();
+  }
 
+  public function getUrlSite()
+  {
+    return 'http://assos.utc.fr/' . $this->getLogin();
+  }
+
+  public function getCharteSigned()
+  {
+    $charte = CharteInfoTable::getInstance()->getByAssoAndSemestre($this->getId())->fetchOne();
+    return ( $charte ) ? $charte->getConfirmation() : 0;
+  }
 }

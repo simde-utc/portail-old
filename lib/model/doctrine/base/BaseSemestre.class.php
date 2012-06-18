@@ -10,13 +10,16 @@ Doctrine_Manager::getInstance()->bindComponent('Semestre', 'doctrine');
  * @property string $name
  * @property Doctrine_Collection $AssoMember
  * @property Doctrine_Collection $UserSemestre
+ * @property Doctrine_Collection $CharteInfo
  * 
  * @method string              getName()         Returns the current record's "name" value
  * @method Doctrine_Collection getAssoMember()   Returns the current record's "AssoMember" collection
  * @method Doctrine_Collection getUserSemestre() Returns the current record's "UserSemestre" collection
+ * @method Doctrine_Collection getCharteInfo()   Returns the current record's "CharteInfo" collection
  * @method Semestre            setName()         Sets the current record's "name" value
  * @method Semestre            setAssoMember()   Sets the current record's "AssoMember" collection
  * @method Semestre            setUserSemestre() Sets the current record's "UserSemestre" collection
+ * @method Semestre            setCharteInfo()   Sets the current record's "CharteInfo" collection
  * 
  * @package    simde
  * @subpackage model
@@ -45,6 +48,10 @@ abstract class BaseSemestre extends sfDoctrineRecord
              'foreign' => 'semestre_id'));
 
         $this->hasMany('UserSemestre', array(
+             'local' => 'id',
+             'foreign' => 'semestre_id'));
+
+        $this->hasMany('CharteInfo', array(
              'local' => 'id',
              'foreign' => 'semestre_id'));
     }

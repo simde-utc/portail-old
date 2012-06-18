@@ -27,7 +27,7 @@ assos_show:
   url:   /asso/:login
   class: sfDoctrineRoute
   param: { module: asso, action: show }
-  options: { model: Asso, type: object }
+  options: { model: Asso, type: object, method_for_query: retrieveAsso }
 
 asso_articles:
   url:   /asso/articles/:login
@@ -52,7 +52,25 @@ asso_trombi:
   class: sfDoctrineRoute
   param: { module: asso, action: trombinoscope }
   options: { model: Asso, type: object }
-  
+
+asso_member:
+  url:   /asso/membres/:login
+  class: sfDoctrineRoute
+  param: { module: asso, action: member }
+  options: { model: Asso, type: object }
+
+member_edit:
+  url:   /asso/membres/:asso/edit/:id
+  class: sfDoctrineRoute
+  param: { module: member, action: edit }
+  options: { model: AssoMember, type: object }
+member_update:
+  url:  /asso/membres/:asso/update/:id
+  param: { module: member, action: update }
+member_delete:
+  url:  /asso/membres/:asso/delete/:id
+  param: { module: member, action: delete }
+
 asso_search:
   url:   /asso/search
   param: { module: asso, action: search }
@@ -223,16 +241,19 @@ profile_infoSupp_update:
   url:  /profile/infoSupp/update/:id
   param: { module: profile, action: updateInfoSupp }  
 
-profile_parcoursUTC_edit:
-  url:  /profile/parcoursUTC/edit/:id
-  class: sfDoctrineRoute
-  options: { model: Profile, type: object }
-  param: { module: profile, action: editParcoursUTC }
+ 
+#profile_infoSupp_edit:
+#  url:  /profile/infoSupp/edit
+#  param: { module: profile, action: editInfoSupp }
+#
+#profile_infoSupp_submit:
+#  url:  /profile/infoSupp/submit
+#  param: { module: profile, action: updateInfoSupp }  
 
-profile_parcoursUTC_update:
-  url:  /profile/parcoursUTC/update/:id
-  param: { module: profile, action: updateParcoursUTC }   
-  
+profile_infoSupp_add:
+  url: /profile/add
+  param: { module: sport, action: add }
+
 #profile_edit:
 #  url:  /profile/edit
 #  param: { module: profile, action: edit }
@@ -281,10 +302,119 @@ event_new:
   class: sfDoctrineRoute
   options: { model: Asso, type: object }
   param: { module: event, action: new }
-  
+
 agenda_detail:
   url:   /event/calendar
   param: { module: event, action: calendar }
+
+#Materiel
+materiel:
+  url:   /materiel/asso/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: materiel, action: index }
+
+materiel_show:
+  url:   /materiel/show/:id
+  class: sfDoctrineRoute
+  param: { module: materiel, action: show }
+  options: { model: Materiel, type: object }
+
+materiel_edit:
+  url:  /materiel/edit/:id
+  class: sfDoctrineRoute
+  param: { module: materiel, action: edit }
+  options: { model: Materiel, type: object }
+
+materiel_update:
+  url:  /materiel/update/:id
+  param: { module: materiel, action: update }
+  
+materiel_delete:
+  url:  /materiel/delete/:id
+  class: sfDoctrineRoute
+  param: { module: materiel, action: delete }
+  options: { model: Materiel, type: object }
+
+materiel_create:
+  url: /materiel/create
+  param: { module: materiel, action: create }
+
+materiel_new:
+  url: /materiel/:login/new
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: materiel, action: new }
+
+materiel_ajout:
+  url: /materiel/ajout/:id
+  class: sfDoctrineRoute
+  options: { model: Materiel, type: object }
+  param: { module: materiel, action: ajout }
+
+materiel_update_ajout:
+  url:  /materiel/ajout/update/:id
+  param: { module: materiel, action: updateAjout }
+
+materiel_create_ajout:
+  url: /materiel/ajout/create
+  param: { module: materiel, action: createAjout }
+
+#Emprunt
+emprunt_delete:
+  url:  /emprunt/delete/:id
+  param: { module: emprunt, action: delete }
+
+emprunt_create:
+  url: /emprunt/create
+  param: { module: emprunt, action: create }
+
+emprunt_new:
+  url: /emprunt/:id/new
+  class: sfDoctrineRoute
+  options: { model: Materiel, type: object }
+  param: { module: emprunt, action: new }
+
+emprunt_rendre:
+  url: /emprunt/rendre/:id
+  class: sfDoctrineRoute
+  options: { model: Emprunt, type: object }
+  param: { module: emprunt, action: rendre }
+
+#Annonce
+annonce:
+  url:   /annonce
+  param: { module: annonce, action: index }
+
+annonce_show:
+  url:   /annonce/show/:id
+  class: sfDoctrineRoute
+  param: { module: annonce, action: show }
+  options: { model: Materiel, type: object }
+
+annonce_edit:
+  url:  /annonce/edit/:id
+  class: sfDoctrineRoute
+  param: { module: annonce, action: edit }
+  options: { model: Materiel, type: object }
+
+annonce_update:
+  url:  /annonce/update/:id
+  param: { module: annonce, action: update }
+
+annonce_delete:
+  url:  /annonce/delete/:id
+  class: sfDoctrineRoute
+  param: { module: annonce, action: delete }
+  options: { model: Materiel, type: object }
+
+annonce_create:
+  url: /annonce/create
+  param: { module: annonce, action: create }
+
+annonce_new:
+  url: /annonce/new
+  param: { module: annonce, action: new }
 
 sf_guard_signin:
   url:   /login
@@ -315,6 +445,12 @@ abonnement_list:
 services:
   url: /services
   param: {module: services, action: show}
+ 
+#Aide
+aide:
+  url: /aide
+  param: { module: aide, action: show}
+
 
 # generic rules
 # please, remove them by adding more specific rules

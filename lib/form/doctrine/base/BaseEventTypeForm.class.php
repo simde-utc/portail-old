@@ -15,15 +15,13 @@ abstract class BaseEventTypeForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'    => new sfWidgetFormInputHidden(),
-      'name'  => new sfWidgetFormInputText(),
-      'color' => new sfWidgetFormInputText(),
+      'id'   => new sfWidgetFormInputHidden(),
+      'name' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
-      'id'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'name'  => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'color' => new sfValidatorString(array('max_length' => 7, 'required' => false)),
+      'id'   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'name' => new sfValidatorString(array('max_length' => 50, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('event_type[%s]');

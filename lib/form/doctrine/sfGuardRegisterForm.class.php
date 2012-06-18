@@ -18,29 +18,6 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
   {
     parent::configure();
 
-
-    $this->widgetSchema['username']->setAttribute('onkeyup','$("#nickname_email").val($(this).val());');
-
-    $choices = array(
-     0 => 'Etudiant UTC',
-     1 => 'Enseignant UTC',
-     2 => 'ESCOM',
-     3 => 'Ancien',
-     4 => 'Extérieur',
-    );
-    $this->widgetSchema['email_address'] = new sfWidgetDomainSelector();
-
-//    $this->validatorSchema['email_address'] = new sfValidatorChoice(array('choices' => array_keys($choices),'required' => true));
-
-    $this->widgetSchema->setLabels(array(
-     'email_address' => 'Mail UTC',
-     'password' => 'Mot de passe',
-     'password_again' => 'Confirmer',
-     'username' => 'Login UTC',
-     'last_name' => 'Nom',
-     'first_name' => 'Prénom',
-    ));
-
     $this->useFields(array(
      'username','email_address','first_name','last_name','password','password_again','Profile'
     ));
@@ -55,16 +32,6 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
 
   public function processValues($values)
   {
-    $choices = array(
-     '0' => 'etu.utc.fr',
-//		 '' => 'hds.utc.fr',
-     '1' => 'utc.fr',
-     '2' => 'escom.fr',
-//     3 => 'tremplin-utc.asso.fr',
-//     4 => 'Autre...',
-    );
-    $values['Profile']['domain'] = $values['email_address'];
-    $values['email_address'] = $values['username'] . '@' . $choices[$values['email_address']];
     return parent::processValues($values);
   }
 

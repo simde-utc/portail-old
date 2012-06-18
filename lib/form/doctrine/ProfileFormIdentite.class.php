@@ -16,17 +16,24 @@ class ProfileFormIdentite extends BaseProfileForm
       $years =range(date('Y') - 40, date('Y') -12);
       $years_list = array_combine($years, $years);
       
-      $this->widgetSchema['birthday']->addOption('date', array(
-      'years' => $years_list
-     ));
+      $this->widgetSchema['birthday']->setOption('years',$years_list);
+      $this->widgetSchema['birthday']->setOption('format', '%day%/%month%/%year%');
       
      $this->widgetSchema['birthday']->setAttributes(array(
       'date' => array('class' => 'nosize')
      ));
+          
+     
+     $sex = array('M' => 'Homme', 'F' => 'Femme');
+     $this->widgetSchema['sexe'] = new sfWidgetFormSelectRadio(array('choices' => $sex)); 
      
      $this->widgetSchema->setLabel('birthday', '<b>Date de Naissance</b>');
-      
-      $this->useFields(array("id","birthday"));
+     $this->widgetSchema->setLabel('sexe', '<b>Sexe</b>');
+     $this->widgetSchema->setLabel('branche_id', '<b>Branche</b>');
+     $this->widgetSchema->setLabel('filiere_id', '<b>Filière</b>');
+     
+     
+     $this->useFields(array("id","birthday","sexe","branche_id","filiere_id"));
       
   }
 

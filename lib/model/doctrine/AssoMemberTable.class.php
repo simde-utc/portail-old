@@ -34,7 +34,7 @@ class AssoMemberTable extends Doctrine_Table {
     return $q;
   }
 
-  public function getMembres($asso) {
+  public function getMembres($asso, $bureau = true) {
     $q = $this->createQuery('q')
             ->where('q.asso_id = ?', $asso->getId())
             ->andWhere('q.semestre_id = ?', sfConfig::get('app_portail_current_semestre'))
@@ -43,6 +43,8 @@ class AssoMemberTable extends Doctrine_Table {
             ->leftJoin('u.Profile p')
             ->leftJoin('q.Semestre s')
             ->orderBy('u.username');
+    if(!$bureau)
+      $q->andWhere('r.Bureau = 0');
 
     return $q;
   }
@@ -52,6 +54,17 @@ class AssoMemberTable extends Doctrine_Table {
             ->where('q.asso_id = ?', $asso)
             ->andWhere('q.user_id = ?', $user)
             ->andWhere('q.semestre_id = ?', sfConfig::get('app_portail_current_semestre'));
+    return $q;
+  }
+
+  public function getDroits($user_id)
+  {
+    $q = $this->createQuery('q')
+            ->select('q.*, a.id, a.login, r.id, r.droits')
+            ->where('q.user_id = ?',$user_id)
+            ->andWhere('q.semestre_id = ?', sfConfig::get('app_portail_current_semestre'))
+            ->leftJoin('q.Asso a')
+            ->leftJoin('q.Role r');
     return $q;
   }
 

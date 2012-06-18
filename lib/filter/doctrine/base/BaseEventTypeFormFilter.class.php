@@ -13,13 +13,11 @@ abstract class BaseEventTypeFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'name'  => new sfWidgetFormFilterInput(),
-      'color' => new sfWidgetFormFilterInput(),
+      'name' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'name'  => new sfValidatorPass(array('required' => false)),
-      'color' => new sfValidatorPass(array('required' => false)),
+      'name' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('event_type_filters[%s]');
@@ -39,9 +37,8 @@ abstract class BaseEventTypeFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'    => 'Number',
-      'name'  => 'Text',
-      'color' => 'Text',
+      'id'   => 'Number',
+      'name' => 'Text',
     );
   }
 }

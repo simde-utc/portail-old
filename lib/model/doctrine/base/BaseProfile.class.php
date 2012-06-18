@@ -28,7 +28,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @property Place $FamilyPlace
  * @property Branche $Branche
  * @property Filiere $Filiere
- * @property Doctrine_Collection $UserSemestre
+ * @property UserSemestre $UserSemestre
  * @property Doctrine_Collection $UserSport
  * 
  * @method integer             getUserId()             Returns the current record's "user_id" value
@@ -52,7 +52,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @method Place               getFamilyPlace()        Returns the current record's "FamilyPlace" value
  * @method Branche             getBranche()            Returns the current record's "Branche" value
  * @method Filiere             getFiliere()            Returns the current record's "Filiere" value
- * @method Doctrine_Collection getUserSemestre()       Returns the current record's "UserSemestre" collection
+ * @method UserSemestre        getUserSemestre()       Returns the current record's "UserSemestre" value
  * @method Doctrine_Collection getUserSport()          Returns the current record's "UserSport" collection
  * @method Profile             setUserId()             Sets the current record's "user_id" value
  * @method Profile             setDomain()             Sets the current record's "domain" value
@@ -75,7 +75,7 @@ Doctrine_Manager::getInstance()->bindComponent('Profile', 'doctrine');
  * @method Profile             setFamilyPlace()        Sets the current record's "FamilyPlace" value
  * @method Profile             setBranche()            Sets the current record's "Branche" value
  * @method Profile             setFiliere()            Sets the current record's "Filiere" value
- * @method Profile             setUserSemestre()       Sets the current record's "UserSemestre" collection
+ * @method Profile             setUserSemestre()       Sets the current record's "UserSemestre" value
  * @method Profile             setUserSport()          Sets the current record's "UserSport" collection
  * 
  * @package    simde
@@ -169,9 +169,9 @@ abstract class BaseProfile extends sfDoctrineRecord
              'local' => 'filiere_id',
              'foreign' => 'id'));
 
-        $this->hasMany('UserSemestre', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
+        $this->hasOne('UserSemestre', array(
+             'local' => 'semestre',
+             'foreign' => 'id'));
 
         $this->hasMany('UserSport', array(
              'local' => 'id',

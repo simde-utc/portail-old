@@ -12,5 +12,6 @@ class UserSportForm extends BaseUserSportForm
 {
   public function configure()
   {
+    $this->widgetSchema['id'] = new sfWidgetFormInputHidden();  
   }
 }

@@ -24,7 +24,9 @@ class ArticleTable extends Doctrine_Table {
    */
   public function getArticlesList($asso = null) {
     $q = $this->createQuery('a')
-            ->select('a.*')
+            ->select('a.*, as.id, p.couleur')
+            ->leftJoin('a.Asso as')
+            ->leftJoin('as.Pole p')
             ->addOrderBy('a.created_at DESC');
 
     if (!is_null($asso))

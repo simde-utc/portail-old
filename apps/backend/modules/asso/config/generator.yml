@@ -15,9 +15,9 @@ generator:
       actions: ~
       fields:  ~
       list:
-        display: [=name, login, PoleName, Type, url_site, active]
+        display: [=name, login, PoleName, Type, url_site, active, charte_signed]
       filter:
-        display: [name, login, pole_id]
+        display: [name, login, pole_id, active]
       form:    ~
       edit:    ~
       new:     ~

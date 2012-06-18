@@ -14,10 +14,8 @@ class AnnonceFormFilter extends BaseAnnonceFormFilter
   public function configure()
   {
     $this->widgetSchema['lieu']->setOption('with_empty', false);
-    $this->widgetSchema['debut']->setOption('with_empty', false);
-    $this->widgetSchema['fin']->setOption('with_empty', false);
     $this->widgetSchema['offre']->setOption('choices', array('' => '', 1 => 'Je propose', 0 => 'Je cherche'));
-    unset($this['created_at'], $this['updated_at'], $this['email'], $this['password'], $this['user_id'], $this['texte'], $this['titre'], $this['debut'],$this['fin']);
+    unset($this['created_at'], $this['updated_at'], $this['email'], $this['password'], $this['user_id'], $this['texte'], $this['titre']);
   }
 
 }

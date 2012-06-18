@@ -21,22 +21,6 @@ class AnnonceForm extends BaseAnnonceForm {
             'formatter' => array($this, "formatRadioList"),
         ));
 
-    $this->widgetSchema['debut']->addOption('date', array(
-        'format' => '%day%/%month%/%year%',
-    ));
-    $this->widgetSchema['fin']->addOption('date', array(
-        'format' => '%day%/%month%/%year%',
-    ));
-
-    $this->widgetSchema['debut']->setAttributes(array(
-        'date' => array('class' => 'nosize'),
-        'time' => array('class' => 'nosize')
-    ));
-    $this->widgetSchema['fin']->setAttributes(array(
-        'date' => array('class' => 'nosize'),
-        'time' => array('class' => 'nosize')
-    ));
-
     $this->widgetSchema['user_id'] = new sfWidgetFormInputHidden();
     unset($this['created_at'], $this['updated_at']);
 

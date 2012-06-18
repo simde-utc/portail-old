@@ -30,9 +30,6 @@
       <p>
         <?php if($annonce->getPrix() != '0.00'): ?>Prix : <?php echo $annonce->getPrix() ?>€<br /><?php endif ?>
         <?php if($annonce->getLieu()): ?>Lieu : <?php echo $annonce->getLieu() ?><br /><?php endif ?>
-        <?php if($annonce->getBranche()): ?>Formation : <?php echo $annonce->getBranche() ?><br /><?php endif ?>
-        <?php if($annonce->getDebut()): ?>Début : <?php echo $annonce->getDebut() ?><br /><?php endif ?>
-        <?php if($annonce->getFin()): ?>Fin : <?php echo $annonce->getFin() ?><br /><?php endif ?>
       </p>
       <p style="font-style: italic;">
         Posté le <?php echo $annonce->getCreatedAt() ?>

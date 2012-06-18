@@ -226,15 +226,11 @@ Annonce:
     offre: { type: boolean, notnull: true, default: 1 }
     lieu: { type: string(100) }
     prix: { type: float, notnull: true, default: 0.00 }
-    branche_id: { type: integer }
-    debut: { type: timestamp }
-    fin: { type: timestamp }
     user_id: { type: integer }
     email: { type: string(100) }
     password: { type: string(32) }
   relations:
     Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: AnnoncesCategorie }
-    Branche: { onUpdate: CASCADE, local: branche_id, foreign: id }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
 
 Partenaire:

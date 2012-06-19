@@ -25,7 +25,7 @@
  * @property Profile $Profile
  * @property Doctrine_Collection $Activations
  * @property Doctrine_Collection $Abonnement
- * @property Doctrine_Collection $MembresServices
+ * @property Doctrine_Collection $MembreService
  * @property Doctrine_Collection $CharteInfo
  * @property Doctrine_Collection $Emprunt
  * @property Doctrine_Collection $Annonce
@@ -50,7 +50,7 @@
  * @method Profile               getProfile()               Returns the current record's "Profile" value
  * @method Doctrine_Collection   getActivations()           Returns the current record's "Activations" collection
  * @method Doctrine_Collection   getAbonnement()            Returns the current record's "Abonnement" collection
- * @method Doctrine_Collection   getMembresServices()       Returns the current record's "MembresServices" collection
+ * @method Doctrine_Collection   getMembreService()         Returns the current record's "MembreService" collection
  * @method Doctrine_Collection   getCharteInfo()            Returns the current record's "CharteInfo" collection
  * @method Doctrine_Collection   getEmprunt()               Returns the current record's "Emprunt" collection
  * @method Doctrine_Collection   getAnnonce()               Returns the current record's "Annonce" collection
@@ -74,7 +74,7 @@
  * @method sfGuardUser           setProfile()               Sets the current record's "Profile" value
  * @method sfGuardUser           setActivations()           Sets the current record's "Activations" collection
  * @method sfGuardUser           setAbonnement()            Sets the current record's "Abonnement" collection
- * @method sfGuardUser           setMembresServices()       Sets the current record's "MembresServices" collection
+ * @method sfGuardUser           setMembreService()         Sets the current record's "MembreService" collection
  * @method sfGuardUser           setCharteInfo()            Sets the current record's "CharteInfo" collection
  * @method sfGuardUser           setEmprunt()               Sets the current record's "Emprunt" collection
  * @method sfGuardUser           setAnnonce()               Sets the current record's "Annonce" collection
@@ -189,7 +189,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $this->hasMany('MembresServices', array(
+        $this->hasMany('MembreService', array(
              'local' => 'id',
              'foreign' => 'membre'));
 

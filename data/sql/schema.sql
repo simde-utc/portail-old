@@ -14,12 +14,15 @@ CREATE TABLE event (id BIGINT AUTO_INCREMENT, asso_id BIGINT NOT NULL, type_id B
 CREATE TABLE event_type (id BIGINT AUTO_INCREMENT, name VARCHAR(50), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE filiere (id BIGINT AUTO_INCREMENT, name VARCHAR(10), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE materiel (id BIGINT AUTO_INCREMENT, nom VARCHAR(100), asso_id BIGINT, description TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX asso_id_idx (asso_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
+CREATE TABLE membre_service (id BIGINT AUTO_INCREMENT, membre BIGINT NOT NULL, service BIGINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX membre_idx (membre), INDEX service_idx (service), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE membres_services (id BIGINT AUTO_INCREMENT, membre BIGINT NOT NULL, service BIGINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX membre_idx (membre), INDEX service_idx (service), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE place (id BIGINT AUTO_INCREMENT, street TEXT, zipcode VARCHAR(10), city VARCHAR(100), country VARCHAR(100), phone VARCHAR(15), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE pole (id BIGINT AUTO_INCREMENT, asso_id BIGINT, couleur VARCHAR(7), INDEX asso_id_idx (asso_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE profile (id BIGINT AUTO_INCREMENT, user_id BIGINT, domain VARCHAR(15), nickname VARCHAR(50), birthday DATE, sexe CHAR(1), mobile VARCHAR(15), home_place BIGINT, family_place BIGINT, branche_id BIGINT, filiere_id BIGINT, semestre BIGINT, other_email TEXT, photo TEXT, weekmail TINYINT(1), autorisation_photo TINYINT(1), devise TEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), INDEX home_place_idx (home_place), INDEX family_place_idx (family_place), INDEX branche_id_idx (branche_id), INDEX filiere_id_idx (filiere_id), INDEX semestre_idx (semestre), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE role (id BIGINT AUTO_INCREMENT, name VARCHAR(50), sort INT, bureau TINYINT(1) DEFAULT '0' NOT NULL, droits BIGINT DEFAULT 0 NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE semestre (id BIGINT AUTO_INCREMENT, name VARCHAR(3), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
+CREATE TABLE service (id BIGINT AUTO_INCREMENT, nom TEXT NOT NULL, resume VARCHAR(150) NOT NULL, logo TEXT, url TEXT, type_id BIGINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX type_id_idx (type_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
+CREATE TABLE service_type (id BIGINT AUTO_INCREMENT, name VARCHAR(50), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE services (id BIGINT AUTO_INCREMENT, nom TEXT NOT NULL, resume VARCHAR(150) NOT NULL, logo TEXT, url TEXT, type_id BIGINT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX type_id_idx (type_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE services_type (id BIGINT AUTO_INCREMENT, name VARCHAR(50), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE sport (id BIGINT AUTO_INCREMENT, name VARCHAR(30) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
@@ -60,6 +63,8 @@ ALTER TABLE emprunt ADD CONSTRAINT emprunt_asso_id_asso_id FOREIGN KEY (asso_id)
 ALTER TABLE event ADD CONSTRAINT event_type_id_event_type_id FOREIGN KEY (type_id) REFERENCES event_type(id);
 ALTER TABLE event ADD CONSTRAINT event_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id);
 ALTER TABLE materiel ADD CONSTRAINT materiel_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id) ON UPDATE CASCADE;
+ALTER TABLE membre_service ADD CONSTRAINT membre_service_service_service_id FOREIGN KEY (service) REFERENCES service(id);
+ALTER TABLE membre_service ADD CONSTRAINT membre_service_membre_sf_guard_user_id FOREIGN KEY (membre) REFERENCES sf_guard_user(id);
 ALTER TABLE membres_services ADD CONSTRAINT membres_services_service_services_id FOREIGN KEY (service) REFERENCES services(id);
 ALTER TABLE membres_services ADD CONSTRAINT membres_services_membre_sf_guard_user_id FOREIGN KEY (membre) REFERENCES sf_guard_user(id);
 ALTER TABLE pole ADD CONSTRAINT pole_asso_id_asso_id FOREIGN KEY (asso_id) REFERENCES asso(id);
@@ -69,6 +74,7 @@ ALTER TABLE profile ADD CONSTRAINT profile_home_place_place_id FOREIGN KEY (home
 ALTER TABLE profile ADD CONSTRAINT profile_filiere_id_filiere_id FOREIGN KEY (filiere_id) REFERENCES filiere(id);
 ALTER TABLE profile ADD CONSTRAINT profile_family_place_place_id FOREIGN KEY (family_place) REFERENCES place(id);
 ALTER TABLE profile ADD CONSTRAINT profile_branche_id_branche_id FOREIGN KEY (branche_id) REFERENCES branche(id);
+ALTER TABLE service ADD CONSTRAINT service_type_id_service_type_id FOREIGN KEY (type_id) REFERENCES service_type(id);
 ALTER TABLE services ADD CONSTRAINT services_type_id_services_type_id FOREIGN KEY (type_id) REFERENCES services_type(id);
 ALTER TABLE stock ADD CONSTRAINT stock_materiel_id_materiel_id FOREIGN KEY (materiel_id) REFERENCES materiel(id) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE stock ADD CONSTRAINT stock_etat_id_etat_id FOREIGN KEY (etat_id) REFERENCES etat(id) ON UPDATE CASCADE ON DELETE CASCADE;

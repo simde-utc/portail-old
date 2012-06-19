@@ -215,7 +215,7 @@ Abonnement:
     Asso: { local: asso_id, foreign: id }
     User: { local: user_id, foreign: id, class: sfGuardUser }  
     
-Services:
+Service:
   connection: doctrine 
   actAs: { Timestampable: ~ }
   columns:
@@ -225,9 +225,9 @@ Services:
     url: { type: string }
     type_id: { type: integer, notnull: true }
   relations:
-    Type: { local: type_id, foreign: id, class: ServicesType }
+    Type: { local: type_id, foreign: id, class: ServiceType }
     
-MembresServices:
+MembreService:
   connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
@@ -235,9 +235,9 @@ MembresServices:
     service: { type: integer, notnull: true }
   relations:
     User: { local: membre, foreign: id, class: sfGuardUser }  
-    Services: { local: service, foreign: id }
+    Service: { local: service, foreign: id }
      
-ServicesType:
+ServiceType:
   connection: doctrine
   columns:
     name: { type: string(50) }

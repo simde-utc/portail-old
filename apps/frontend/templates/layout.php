@@ -82,6 +82,10 @@
         <?php if($sf_user->isAuthenticated()): ?>
           <?php include_component('abonnement', 'myFlux') ?>
         <?php endif ?>
+        <br>
+        <?php if($sf_user->isAuthenticated()): ?>
+          <?php include_component('services', 'myServicesFavoris') ?>
+        <?php endif ?>
       </div>
       <div id="column-right">
         <?php include_component('asso','contact') ?>

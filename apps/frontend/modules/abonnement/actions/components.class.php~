@@ -5,7 +5,7 @@ class abonnementComponents extends sfComponents
 
   public function executeMyFlux()
   {
-    $this->abonnements = ArticleTable::getInstance()->getArticlesFollowed($this->getUser()->getGuardUser()->getId())->execute();
+    $this->abonnements = ArticleTable::getInstance()->getAbonnementsFollowed($this->getUser()->getGuardUser()->getId())->execute();
   }
 
 

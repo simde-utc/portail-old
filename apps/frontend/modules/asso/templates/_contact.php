@@ -7,8 +7,16 @@
       Tél. : <?php echo $asso->getPhone() ?>
     </p>
   <?php endif ?>
+  <?php if ($asso->getSalle()): ?>
+    <p>
+      Salle : <?php echo $asso->getSalle() ?>
+    </p>
+  <?php endif ?>
   <p>
     <a href="mailto:<?php echo $asso->getLogin() ?>@assos.utc.fr"><?php echo $asso->getLogin() ?>@assos.utc.fr</a><br />
-    <a href="<?php echo url_for('assos_show', $asso, true) ?>"><?php echo url_for('assos_show', $asso, true) ?></a>
+    <a href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a>
+      <?php if ($asso->getFacebook()): ?>
+      <a href="<?php echo $asso->getFacebook() ?>">Notre facebook</a>
+  <?php endif ?>
   </p>
 </div>

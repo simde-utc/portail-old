@@ -50,9 +50,11 @@ class assoComponents extends sfComponents
   public function executeMenu(sfWebRequest $request)
   {
     if($login = $request->getParameter('login',null))
-      $this->asso = AssoTable::getInstance()->findOneByLogin($login);
+      $this->asso = AssoTable::getInstance()->getOneByLogin($login)->select('q.id, q.login')->fetchOne();
+    else if($login = $request->getParameter('asso',null))
+      $this->asso = AssoTable::getInstance()->getOneByLogin($login)->select('q.id, q.login')->fetchOne();
     else
-      $this->asso = AssoTable::getInstance ()->find(1); // BDE
+      $this->asso = AssoTable::getInstance ()->getOneById(1)->select('q.id, q.login')->fetchOne(); // BDE
     
     if($this->asso->isPole())
       $this->couleur = PoleTable::getInstance()->findOneBy('asso_id', $this->asso->getId())->getCouleur();
@@ -63,9 +65,11 @@ class assoComponents extends sfComponents
   public function executeContact(sfWebRequest $request)
   {
     if($login = $request->getParameter('login',null))
-      $this->asso = AssoTable::getInstance()->findOneByLogin($login);
+      $this->asso = AssoTable::getInstance()->getOneByLogin($login)->select('q.id, q.login, q.name, q.phone, q.salle, q.facebook')->fetchOne();
+    else if($login = $request->getParameter('asso',null))
+      $this->asso = AssoTable::getInstance()->getOneByLogin($login)->select('q.id, q.login')->fetchOne();
     else
-      $this->asso = AssoTable::getInstance ()->find(1); // BDE
+      $this->asso = AssoTable::getInstance ()->getOneById(1)->select('q.id, q.login, q.name, q.phone, q.salle, q.facebook')->fetchOne(); // BDE
   }
 
 }

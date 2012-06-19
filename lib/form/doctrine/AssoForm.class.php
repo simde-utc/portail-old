@@ -14,7 +14,7 @@ class AssoForm extends BaseAssoForm
   {
     sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
     $this->useFields(array(
-        'name', 'pole_id','type_id','logo','summary','description','salle','phone','facebook'
+        'name', 'pole_id','type_id','logo','summary','description','salle','phone','facebook','joignable'
     ));
     
     $this->widgetSchema['logo'] = new sfWidgetFormInputFileEditable(array(
@@ -25,10 +25,12 @@ class AssoForm extends BaseAssoForm
       'delete_label' => "Supprimer ce logo",
     ));
  
-    $this->validatorSchema['logo'] = new sfValidatorFile(array(
+    $this->validatorSchema['logo'] = new sfValidatorFileImage(array(
     	'required' => false,
     	'path' => sfConfig::get('sf_upload_dir').'/assos/source',
-        'mime_types' => 'web_images'
+        'mime_types' => 'web_images',
+        'max_width' => 1000,
+        'max_height' => 1000
     ));
     
     $this->validatorSchema['logo_delete'] = new sfValidatorBoolean();
@@ -40,6 +42,7 @@ class AssoForm extends BaseAssoForm
     $this->widgetSchema->setLabel('salle', 'Local');
     $this->widgetSchema->setLabel('phone', 'Téléphone');
     $this->widgetSchema->setLabel('facebook', 'Page Facebook');
+    $this->widgetSchema->setLabel('joignable', 'Joignable');
     
     $this->getWidget('pole_id')->setOption('query',PoleTable::getInstance()->getAllWithInfos());
   }

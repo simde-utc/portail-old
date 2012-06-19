@@ -3,31 +3,39 @@
         <script type="text/javascript">
             function editIdentite(){
                 $.get('/frontend_dev.php/profile/identite/edit/<?php echo $profile->getId() ?>', function(data) {
-                    $('#dateNaissance').html(data);
+                    $('#identite').hide();
+                    $('#identite').html(data);
+                    $('#identite').fadeIn(1000);
                 });
             };
             
             function editInfoPerso(){
                 $.get('/frontend_dev.php/profile/infoPerso/edit/<?php echo $profile->getId() ?>', function(data) {
+                    $('#infoPerso').hide();
                     $('#infoPerso').html(data);
+                    $('#infoPerso').fadeIn(1000);
                 });
             };
             
             function editInfoSupp(){
-                $.get('/frontend_dev.php/profile/infoSupp/edit/<?php echo $profile->getId() ?>', function(data) {
+                $.get('/frontend_dev.php/profile/infoSupp/edit', function(data) {
+                    $('#infoPerso').hide();
                     $('#infoSupp').html(data);
+                    $('#infoPerso').fadeIn(1000);
                 });
             };
             
             function editParcoursUTC(){
                 $.get('/frontend_dev.php/profile/parcoursUTC/edit/<?php echo $profile->getId() ?>', function(data) {
+                    $('#infoPerso').hide();
                     $('#parcoursUTC').html(data);
+                    $('#infoPerso').fadeIn(1000);
                 });
             };
         </script>
 	<h1>Mon Profil</h1>
 	
-	<h2><a href="#" onclick="editIdentite();">Identité</a></h2>
+	<h2><a href="#" class="modifier" onclick="editIdentite();return false;">Identité</a></h2>
   <?php 
 	
 	
@@ -35,13 +43,23 @@
         echo '<img id="trombi" style="float: left;" src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username='.$sf_user->getGuardUser()->getUsername().'">'
    ?>
         <div class="row">
-            <div class="span4" style="background-image: url('/images/tampon2.png'); background-repeat:no-repeat; background-position: right -10px;">
     <?php
+            if ( !strcmp($profile->getDomain(), "utc")) {
+            echo "<div class=\"span4\" style=\"background-image: url('/images/tampon_utc.png'); background-repeat:no-repeat; background-position: right -11px;\" /> ";
+            } else if ( !strcmp($profile->getDomain(), "escom")) {
+            echo "<div class=\"span4\" style=\"background-image: url('/images/tampon_escom.png'); background-repeat:no-repeat; background-position: right -4px;\" /> ";
+            } else {
+                echo "<div class=\"span4\" style=\"background-image: url('/images/tampon_ext.png'); background-repeat:no-repeat; background-position: right -10px;\" /> ";
+            }
+
             echo "<b>Nom</b> : ".$sf_user->getGuardUser()->getLastName().'<br>';
             echo "<b>Prénom</b> : ".$sf_user->getGuardUser()->getFirstName().'<br><br>';
             echo "<b>Login</b> : ".$sf_user->getGuardUser()->getUsername().'<br><br>';
             $birthday = explode("-",$profile->getBirthday());
-            echo "<div id='dateNaissance'> <b>Date de Naissance</b> : ".$birthday[2].'/'.$birthday[1].'/'.$birthday[0].'<br></div>';
+            echo "<div id='identite'>";
+            if (count($birthday)==3)
+                echo "<b>Date de Naissance</b> : ".$birthday[2].'/'.$birthday[1].'/'.$birthday[0].'<br>';
+            echo "</div>";
     ?>
             </div>
             <div class="span2">
@@ -55,7 +73,7 @@
     ?>
             </div>
         </div>
-  <h2><a href="#" onclick="editInfoPerso();">Informations personnelles</a></h2>
+  <h2><a href="#" onclick="editInfoPerso();return false;" title="Editer">Informations personnelles</a></h2>
   <div id="infoPerso">
   <?php
 	//infos persos
@@ -65,20 +83,25 @@
 	
   ?>
   </div>
-  <h2><a href="#" onclick="editInfoSupp();">Informations supplémentaires</a></h2>  
+  <h2><a href="#" onclick="editInfoSupp();return false;" title="Editer">Informations supplémentaires</a></h2>  
   <div id="infoSupp">
   <?php
 	//infos supp
         echo "<div class='row'><div class='span1'><b>Devise</b> : </div><div class='span7'>".$profile->getDevise().'<br></div></div>';
         echo "<div class='row'><div class='span1'><b>Surnom</b> : </div><div class='span7'>".$profile->getNickname().'<br></div></div>';
         echo "<div class='row'><div class='span1'><b>Sport(s)</b> : </div><div class='span7'>";
-        foreach ($profile->getUserSport() as $sport) :
-            echo $sport->getSport()->getName().'<br>';
-	endforeach;
+
+        foreach ($profile->getUserSport() as $sp) :            
+            echo $sp->getSport()->getName().'<br>';
   ?>
+            <a href="<?php echo url_for('profile/editInfoSupp?id='.$sp->getId())?>">edit Sport</a> <br>
+  <?php
+	endforeach;
+  ?>    
+  
       </div></div> 
   </div>
-  <h2><a href="#" onclick="editParcoursUTC();">Parcours UTC</a></h2>
+  <h2><a href="#" onclick="editParcoursUTC();return false;" title="Editer">Parcours UTC</a></h2>
   <div id="parcoursUTC">
   <?php
 	//parcours UTC

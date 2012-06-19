@@ -46,7 +46,7 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="<?php echo url_for('cas_logout') ?>">Se déconnecter</a></li>
+                <li><a href="<?php echo url_for('sf_guard_signout') ?>">Se déconnecter</a></li>
               </ul>
             </li>
           </ul>
@@ -59,6 +59,7 @@
         <a href="<?php echo url_for('homepage') ?>">Accueil</a>
         <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Toutes les associations</a>
         <a href="<?php echo url_for('agenda_detail') ?>" class="barre">Calendrier</a>
+        <a href="<?php echo url_for('annonce') ?>" class="barre">Annonces</a>
         <span class="horloge">
           <?php echo format_date(time(), "D", 'fr') ?>
           <span class="barre"><?php echo format_date(time(), "t", 'fr') ?></span>
@@ -68,7 +69,7 @@
     <?php include_component('asso', 'bigMenu') ?>
     <?php if($sf_request->getParameter('module') == 'home'): ?>
       <?php include_component('event', 'carousel') ?>
-    <?php elseif($sf_request->getParameter('login')): ?>
+    <?php elseif($sf_request->getParameter('login') || $sf_request->getParameter('asso')): ?>
       <?php include_component('asso', 'menu') ?>
     <?php endif ?>
     <div class="wrap">

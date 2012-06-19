@@ -2,5 +2,5 @@
   <?php 
     echo $form 
   ?>
-  <INPUT type="submit" value="Valider">
+  <INPUT type="submit" class="btn-success" value="Valider">
 </form>

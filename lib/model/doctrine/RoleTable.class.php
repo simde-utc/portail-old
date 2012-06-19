@@ -16,4 +16,13 @@ class RoleTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Role');
     }
+    
+    public function getUnsecureRole()
+    {
+      $q = $this->createQuery('q')
+          ->select('q.id, q.name')
+          ->where('q.id <> 1')
+          ->orderBy('q.sort');
+      return $q;
+    }
 }

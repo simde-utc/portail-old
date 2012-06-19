@@ -90,21 +90,32 @@ class profileActions extends sfActions
       $this->redirect('profile_show');
     }
     $this->setTemplate('error');
-   // $this->redirect('profile_show');
   }
   
   //infoSupp
     public function executeEditInfoSupp(sfWebRequest $request)
   {
-    $this->profile = $this->getRoute()->getObject();
-    $this->form = new ProfileFormInfoSupp($this->profile); 
+    //$this->profile = $this->getRoute()->getObject();
+    //$this->form = new ProfileFormInfoSupp($this->profile); 
+    $this->forward404Unless($sport = Doctrine::getTable('UserSport')->find(array($request->getParameter('id'))), sprintf('Event does not exist (%s).', $request->getParameter('id')));
+    $this->form = new UserSportForm($sport);
   }
   
   public function executeUpdateInfoSupp(sfWebRequest $request)
   {
-    $this->forward404Unless($this->profile = Doctrine_Core::getTable('profile')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
-    $this->form = new ProfileFormInfoSupp($this->profile); 
-    $this->processFormInfoSupp($request, $this->form);
+//    $this->forward404Unless($this->profile = Doctrine_Core::getTable('profile')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
+//    $this->form = new ProfileFormInfoSupp($this->profile); 
+//    $this->processFormInfoSupp($request, $this->form);
+      
+      $tainted_values = $request->getParameter('sport');
+      $sport = Doctrine::getTable('UserSport')->find($tainted_values['id']);
+
+      $this->form = new UserSportForm($sport);
+
+      if ($request->isMethod('post') && $this->form->bindAndSave($tainted_values))
+        $this->redirect('profile_show');
+
+      $this->setTemplate('error');
   }
   
     protected function processFormInfoSupp(sfWebRequest $request, sfForm $form)
@@ -118,30 +129,9 @@ class profileActions extends sfActions
     $this->setTemplate('error');
    // $this->redirect('profile_show');
   }
+  
 
- //parcour UTC
-    public function executeEditParcoursUTC(sfWebRequest $request)
-  {
-    $this->profile = $this->getRoute()->getObject();
-    $this->form = new ProfileFormParcoursUTC($this->profile); 
-  }
-  
-  public function executeUpdateParcoursUTC(sfWebRequest $request)
-  {
-    $this->form = new ProfileFormParcoursUTC();   
-    $this->processFormInfoPerso($request, $this->form);
-  }
-  
-  protected function processFormParcoursUTC(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
-      $form->save();
-      $this->redirect('profile_show');
-    }
-    $this->redirect('profile_show');
-  }
+
   
 //    protected function processForm(sfWebRequest $request, sfForm $form)
 //  {

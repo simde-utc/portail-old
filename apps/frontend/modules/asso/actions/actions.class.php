@@ -43,14 +43,17 @@ class assoActions extends sfActions
   {
     $this->asso = $this->getRoute()->getObject();
     $this->redirectUnless($this->asso, 'assos_list');
-    if($pole = $this->asso->isPole())
-      $this->assos = AssoTable::getInstance()->getAssosList($pole->getPrimaryKey())->execute();
+    if($this->asso->isPole())
+        {
+          $pole = PoleTable::getInstance()->findOneBy('asso_id',$this->asso->getId());
+          $this->assos = AssoTable::getInstance()->getAssosList($pole->getId())->execute();
+        }
   }
 
   public function executeEdit(sfWebRequest $request)
   {
     $this->redirectUnless($asso = $this->getRoute()->getObject(), 'assos_list');
-    if(!$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$asso->getLogin());
@@ -62,7 +65,7 @@ class assoActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))), sprintf('Object asso does not exist (%s).', $request->getParameter('id')));
-    if(!$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$asso->getLogin());
@@ -120,6 +123,7 @@ class assoActions extends sfActions
     $this->events = EventTable::getInstance()->getEventsList($this->asso)->execute();
   }
 
+<<<<<<< HEAD
   public function executeBureau()
   {
     $this->asso = $this->getRoute()->getObject();
@@ -134,16 +138,24 @@ class assoActions extends sfActions
     $this->albums = AlbumTable::getInstance()->getAlbumsList($this->asso)->execute();
   }
 
+=======
+>>>>>>> 26ff3013cc4044e1aba25f4ae179891e3097e882
   public function executeTrombinoscope()
   {
     $this->asso = $this->getRoute()->getObject();
     $this->redirectUnless($this->asso, 'assos_list');
-    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
+    $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
+    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso, false)->execute();    
   }
 
   public function executeJoin()
   {
     $asso = $this->getRoute()->getObject();
+    if(!$asso->getJoignable())
+    {
+      $this->getUser()->setFlash('error', 'On ne peut pas rejoindre cette association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
     if(!$this->getUser()->isAuthenticated())
     {
       $this->getUser()->setFlash('error', 'Vous devez être connecté pour rejoindre une association.');
@@ -210,6 +222,20 @@ class assoActions extends sfActions
     $asso->removeFollower($this->getUser()->getGuardUser());
     $this->getUser()->setFlash('success', 'Vous ne suivez plus les actualités de cette association.');
     $this->redirect('asso/show?login='.$asso->getLogin());
+  }
+
+  public function executeMember()
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->redirectUnless($this->asso, 'assos_list');
+    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($this->asso->getLogin(), 0x02))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$this->asso->getLogin());
+    }
+    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->andWhere('q.role_id <> 1')->execute();
+    
+    $this->roles = RoleTable::getInstance()->findAll();
   }
 
 }

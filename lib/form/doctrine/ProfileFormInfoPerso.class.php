@@ -10,11 +10,14 @@
  */
 class ProfileFormInfoPerso extends BaseProfileForm
 {
-
   public function configure()
   {
+      $this->widgetSchema->setLabel('mobile', '<b>Portable</b>');
+      $this->widgetSchema->setLabel('home_place', '<b>Adresse Etu</b>');
+      $this->widgetSchema->setLabel('family_place', '<b>Autre Adresse</b>');
       $this->useFields(array("id","mobile"));
-      
+      $this->embedRelation('HomePlace');
+      $this->embedRelation('FamilyPlace');
   }
 
 }

@@ -293,10 +293,14 @@ p { text-align : justify; }
   clear: both;
 }
 
-#column-left #my_flux .my_fluxx .barre {
+#column-left #my_flux .all_abonnements .barre, #column-left #my_flux .events_abonnements .barre, #column-left #my_flux .articles_abonnements .barre {
   margin: 2px auto;
   border-top: 1px solid #000;
   clear: both;
+}
+
+#all_but {
+  border-bottom: 3px solid black;
 }
 
 #column-right #contact {
@@ -490,10 +494,10 @@ p { text-align : justify; }
 
 #asso-menu {
   background: #009cdd;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#009cdd", endColorstr="#30596a"); /* Pour IE seulement et mode gradient à linear */
+  /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#009cdd", endColorstr="#30596a");
   background-image: -webkit-gradient(linear, left top, left bottom, from(#009cdd), to(#30596a));
   background-image: -moz-linear-gradient(top center, #009cdd, #30596a);
-  background-image: -o-linear-gradient(top, #009cdd, #30596a); /*uniquement en mode linear*/
+  background-image: -o-linear-gradient(top, #009cdd, #30596a); */
   height: 30px;
   margin-top: -31px;
 }
@@ -652,6 +656,28 @@ a.btn-danger {
     width: 100px;
 }
 
+#infoPerso .label{
+    display: inline;
+}
+
+#profile .radio_list{
+    list-style: none;
+}
+
+#profile .radio_list label{
+    width: 60px;
+    display: inline;
+}
+
+#profile select{
+    width: auto;
+}
+
+.modifier {
+    cursor: url('/images/button/modifier.png'), auto;
+}
+
+
 .part h1 .titleaction {
 	float: right;
 	font-size: 12px;
@@ -685,6 +711,18 @@ a.btn-danger {
 .part img.affiche {
   float: right;
   margin: 15px 0px 15px 15px;
+}
+
+#aide h2{
+    margin: 0 auto 7px;
+    display: block;
+    font-weight: normal;
+    width: auto;
+    font-family: impact;
+    font-size: 21px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom:thin solid #000;
 }
 
 .poleae {
@@ -845,3 +883,21 @@ a.btn-danger {
 }
 
 #bureau img, #trombi img { height: 120px; }
+
+ul.membres li {
+  float: left;
+  width: 120px;
+  height: 155px;
+  bacground: #ccc;
+  list-style-type: none;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+}
+
+ul.membres li img {
+  height: 120px;
+}
+
+.form-filters label { float: left; width: 130px; }
+.form-filters input, .form-filters select {  }

@@ -123,7 +123,7 @@ class assoActions extends sfActions
     $this->events = EventTable::getInstance()->getEventsList($this->asso)->execute();
   }
 
-<<<<<<< HEAD
+
   public function executeBureau()
   {
     $this->asso = $this->getRoute()->getObject();
@@ -138,8 +138,6 @@ class assoActions extends sfActions
     $this->albums = AlbumTable::getInstance()->getAlbumsList($this->asso)->execute();
   }
 
-=======
->>>>>>> 26ff3013cc4044e1aba25f4ae179891e3097e882
   public function executeTrombinoscope()
   {
     $this->asso = $this->getRoute()->getObject();

@@ -1,4 +1,3 @@
-<?php use_helper('Thumb') ?>
 <div id="my_services">
   <h1>Mes Services Favoris</h1>
   <?php if($services && $services->count() > 0): ?>

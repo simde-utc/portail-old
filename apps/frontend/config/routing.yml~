@@ -447,13 +447,13 @@ services:
   param: {module: services, action: show}
   
 services_follow:
-  url: /services/:service/follow
+  url: /services/:nom/follow
   class: sfDoctrineRoute
   param: { module: services, action: follow }
-  options: { model: MembreService, type: object }
+  options: { model: Service, type: object }
   
 services_unfollow:
-  url: /services/:service/unfollow
+  url: /services/:nom/unfollow
   class: sfDoctrineRoute
   param: { module: services, action: unfollow }
   options: { model: MembreService, type: object }

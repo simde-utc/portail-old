@@ -27,10 +27,11 @@ class servicesActions extends sfActions
    public function executeFollow(sfWebRequest $request)
   {
     $service = $this->getRoute()->getObject();
-    echo $service;
+    $this->getUser()->setFlash('error','n° service ='.$service->getNom());
     if($this->getUser()->getGuardUser()->isFollowerService($service->getService()->getId()))
     {
-      $this->getUser()->setFlash('error', 'Vous avez déjà mis en favori ce service.');
+//      $this->getUser()->setFlash('error', 'Vous avez déjà mis en favori ce service.');
+ $this->getUser()->setFlash('error','n° service ='.$service->getMembre());
       $this->redirect('services/show');
     }
     $service->addFollower($this->getUser()->getGuardUser(), $service->getService());

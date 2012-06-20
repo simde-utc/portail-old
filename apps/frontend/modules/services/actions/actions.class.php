@@ -27,12 +27,12 @@ class servicesActions extends sfActions
    public function executeFollow(sfWebRequest $request)
   {
     $service = $this->getRoute()->getObject();
-    if($this->getUser()->getGuardUser()->isFollowerService($service->getService()->getId()))
+    if($this->getUser()->getGuardUser()->isFollowerService($service))
     {
       $this->getUser()->setFlash('error', 'Vous avez déjà mis en favori ce service.');
       $this->redirect('services/show');
     }
-    $service->addFollower($this->getUser()->getGuardUser(), $service->getService());
+    $service->addFollower($this->getUser()->getGuardUser(), $service);
     $this->getUser()->setFlash('success', 'Vous avez maintenant ajouté ce service dans vos favoris.');
     $this->redirect('services/show');
   }
@@ -41,7 +41,7 @@ class servicesActions extends sfActions
   {
     $service = $this->getRoute()->getObject();
     
-    if(!$this->getUser()->getGuardUser()->isFollowerService($service->getId()))
+    if(!$this->getUser()->getGuardUser()->isFollowerService($service))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas en favori ce service.');
       $this->redirect('services/show');

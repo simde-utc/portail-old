@@ -9,4 +9,4 @@
   <?php else: ?>
     <p>Vous n'avez aucun services favoris.</p>
   <?php endif; ?>
-</div>t
+</div>

@@ -23,7 +23,7 @@
        <?php// if(image exists): ?>
                   <?php doThumb($image->getName(), 'albums', array('width'=>800, 'height'=>600), 'scale') ?>
         <?php// endif ?>
-      <?php  echo "<a href='http://simde/uploads/albums/thumb/800x600_" . $image->getName() . "' title='" .  $image->getLegend() . "'>"; ?>
+      <?php  echo "<a href='http://portail-social.emilienkenler.com/uploads/albums/thumb/800x600_" . $image->getName() . "' title='" .  $image->getLegend() . "'>"; ?>
       <?php echo showThumb($image->getName(), 'albums', array('width'=>130, 'height'=>120), 'scale') ?>
       <?php  echo "</a>" ;?>
       <h5><?php echo $image->getLegend() ?></h5>

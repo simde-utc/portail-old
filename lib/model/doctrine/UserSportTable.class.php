@@ -16,4 +16,11 @@ class UserSportTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('UserSport');
     }
+    
+    public function getAllMySport($profile)
+    {
+      $q = $this->createQuery('q')
+          ->where('q.user_id = ?',$profile);
+      return $q;
+    }
 }

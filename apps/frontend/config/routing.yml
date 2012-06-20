@@ -496,11 +496,25 @@ register_resend:
   url: /inscription/activation
   param: { module: sfGuardRegister, action: resend }
   
-#Etudiants
 abonnement_list:
   url: /abonnement/:show
   param: { module: abonnement, action: show}
  
+services:
+  url: /services
+  param: {module: services, action: show}
+  
+services_follow:
+  url: /services/:nom/follow
+  class: sfDoctrineRoute
+  param: { module: services, action: follow }
+  options: { model: Service, type: object }
+  
+services_unfollow:
+  url: /services/:nom/unfollow
+  class: sfDoctrineRoute
+  param: { module: services, action: unfollow }
+  options: { model: Service, type: object }
  
 #Aide
 aide:

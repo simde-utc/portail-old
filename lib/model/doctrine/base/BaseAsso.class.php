@@ -11,7 +11,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property string $login
  * @property integer $pole_id
  * @property integer $type_id
- * @property string $url_site
+ * @property string $summary
  * @property string $description
  * @property string $logo
  * @property boolean $active
@@ -19,7 +19,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property string $salle
  * @property string $phone
  * @property string $facebook
- * @property string $summary
+ * @property boolean $joignable
  * @property Pole $Pole
  * @property TypeAsso $Type
  * @property Doctrine_Collection $Album
@@ -28,12 +28,15 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @property Doctrine_Collection $Event
  * @property Doctrine_Collection $Article
  * @property Doctrine_Collection $Abonnement
+ * @property Doctrine_Collection $CharteInfo
+ * @property Doctrine_Collection $Materiel
+ * @property Doctrine_Collection $Emprunt
  * 
  * @method string              getName()        Returns the current record's "name" value
  * @method string              getLogin()       Returns the current record's "login" value
  * @method integer             getPoleId()      Returns the current record's "pole_id" value
  * @method integer             getTypeId()      Returns the current record's "type_id" value
- * @method string              getUrlSite()     Returns the current record's "url_site" value
+ * @method string              getSummary()     Returns the current record's "summary" value
  * @method string              getDescription() Returns the current record's "description" value
  * @method string              getLogo()        Returns the current record's "logo" value
  * @method boolean             getActive()      Returns the current record's "active" value
@@ -41,7 +44,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method string              getSalle()       Returns the current record's "salle" value
  * @method string              getPhone()       Returns the current record's "phone" value
  * @method string              getFacebook()    Returns the current record's "facebook" value
- * @method string              getSummary()     Returns the current record's "summary" value
+ * @method boolean             getJoignable()   Returns the current record's "joignable" value
  * @method Pole                getPole()        Returns the current record's "Pole" value
  * @method TypeAsso            getType()        Returns the current record's "Type" value
  * @method Doctrine_Collection getAlbum()       Returns the current record's "Album" collection
@@ -50,11 +53,14 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Doctrine_Collection getEvent()       Returns the current record's "Event" collection
  * @method Doctrine_Collection getArticle()     Returns the current record's "Article" collection
  * @method Doctrine_Collection getAbonnement()  Returns the current record's "Abonnement" collection
+ * @method Doctrine_Collection getCharteInfo()  Returns the current record's "CharteInfo" collection
+ * @method Doctrine_Collection getMateriel()    Returns the current record's "Materiel" collection
+ * @method Doctrine_Collection getEmprunt()     Returns the current record's "Emprunt" collection
  * @method Asso                setName()        Sets the current record's "name" value
  * @method Asso                setLogin()       Sets the current record's "login" value
  * @method Asso                setPoleId()      Sets the current record's "pole_id" value
  * @method Asso                setTypeId()      Sets the current record's "type_id" value
- * @method Asso                setUrlSite()     Sets the current record's "url_site" value
+ * @method Asso                setSummary()     Sets the current record's "summary" value
  * @method Asso                setDescription() Sets the current record's "description" value
  * @method Asso                setLogo()        Sets the current record's "logo" value
  * @method Asso                setActive()      Sets the current record's "active" value
@@ -62,7 +68,7 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setSalle()       Sets the current record's "salle" value
  * @method Asso                setPhone()       Sets the current record's "phone" value
  * @method Asso                setFacebook()    Sets the current record's "facebook" value
- * @method Asso                setSummary()     Sets the current record's "summary" value
+ * @method Asso                setJoignable()   Sets the current record's "joignable" value
  * @method Asso                setPole()        Sets the current record's "Pole" value
  * @method Asso                setType()        Sets the current record's "Type" value
  * @method Asso                setAlbum()       Sets the current record's "Album" collection
@@ -71,6 +77,9 @@ Doctrine_Manager::getInstance()->bindComponent('Asso', 'doctrine');
  * @method Asso                setEvent()       Sets the current record's "Event" collection
  * @method Asso                setArticle()     Sets the current record's "Article" collection
  * @method Asso                setAbonnement()  Sets the current record's "Abonnement" collection
+ * @method Asso                setCharteInfo()  Sets the current record's "CharteInfo" collection
+ * @method Asso                setMateriel()    Sets the current record's "Materiel" collection
+ * @method Asso                setEmprunt()     Sets the current record's "Emprunt" collection
  * 
  * @package    simde
  * @subpackage model
@@ -84,10 +93,12 @@ abstract class BaseAsso extends sfDoctrineRecord
         $this->setTableName('asso');
         $this->hasColumn('name', 'string', 50, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 50,
              ));
         $this->hasColumn('login', 'string', 32, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 32,
              ));
         $this->hasColumn('pole_id', 'integer', null, array(
@@ -96,9 +107,9 @@ abstract class BaseAsso extends sfDoctrineRecord
         $this->hasColumn('type_id', 'integer', null, array(
              'type' => 'integer',
              ));
-        $this->hasColumn('url_site', 'string', 100, array(
+        $this->hasColumn('summary', 'string', 150, array(
              'type' => 'string',
-             'length' => 100,
+             'length' => 150,
              ));
         $this->hasColumn('description', 'string', null, array(
              'type' => 'string',
@@ -109,9 +120,13 @@ abstract class BaseAsso extends sfDoctrineRecord
              ));
         $this->hasColumn('active', 'boolean', null, array(
              'type' => 'boolean',
+             'notnull' => true,
+             'default' => true,
              ));
         $this->hasColumn('passation', 'boolean', null, array(
              'type' => 'boolean',
+             'notnull' => true,
+             'default' => false,
              ));
         $this->hasColumn('salle', 'string', 6, array(
              'type' => 'string',
@@ -125,9 +140,10 @@ abstract class BaseAsso extends sfDoctrineRecord
              'type' => 'string',
              'length' => 100,
              ));
-        $this->hasColumn('summary', 'string', 150, array(
-             'type' => 'string',
-             'length' => 150,
+        $this->hasColumn('joignable', 'boolean', null, array(
+             'type' => 'boolean',
+             'notnull' => true,
+             'default' => true,
              ));
 
         $this->option('collate', 'utf8_unicode_ci');
@@ -166,6 +182,18 @@ abstract class BaseAsso extends sfDoctrineRecord
              'foreign' => 'asso_id'));
 
         $this->hasMany('Abonnement', array(
+             'local' => 'id',
+             'foreign' => 'asso_id'));
+
+        $this->hasMany('CharteInfo', array(
+             'local' => 'id',
+             'foreign' => 'asso_id'));
+
+        $this->hasMany('Materiel', array(
+             'local' => 'id',
+             'foreign' => 'asso_id'));
+
+        $this->hasMany('Emprunt', array(
              'local' => 'id',
              'foreign' => 'asso_id'));
 

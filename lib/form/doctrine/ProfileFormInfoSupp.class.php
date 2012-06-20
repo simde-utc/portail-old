@@ -13,6 +13,8 @@ class ProfileFormInfoSupp extends BaseProfileForm
 
   public function configure()
   {
+      $this->widgetSchema->setLabel('devise', '<b>Devise</b>');
+      $this->widgetSchema->setLabel('nickname', '<b>Surnom</b>');
       $this->useFields(array("id","devise","nickname"));
   }
 

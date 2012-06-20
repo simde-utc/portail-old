@@ -111,7 +111,7 @@ Profile:
     FamilyPlace: { local: family_place, foreign: id, class: Place }
     Branche: { local: branche_id, foreign: id }
     Filiere: { local: filiere_id, foreign: id }
-    Semestre: { local: semestre, foreign: id }
+    UserSemestre: { local: semestre, foreign: id }
 
 UserSemestre:
   connection: doctrine
@@ -240,6 +240,34 @@ Abonnement:
   relations:
     Asso: { local: asso_id, foreign: id }
     User: { local: user_id, foreign: id, class: sfGuardUser }  
+    
+Service:
+  connection: doctrine 
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string, notnull: true }
+    resume: { type: string(150), notnull: true }
+    logo: { type: string }
+    url: { type: string }
+    type_id: { type: integer, notnull: true }
+  relations:
+    Type: { local: type_id, foreign: id, class: ServiceType }
+    
+MembreService:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    membre: { type: integer, notnull: true }
+    service: { type: integer, notnull: true }
+  relations:
+    User: { local: membre, foreign: id, class: sfGuardUser }  
+    Service: { local: service, foreign: id }
+     
+ServiceType:
+  connection: doctrine
+  columns:
+    name: { type: string(50) }
+    
 
 CharteInfo:
   connection: doctrine
@@ -331,3 +359,4 @@ Annonce:
     Departement: { onUpdate: CASCADE, local: departement_id, foreign: id }
     Branche: { onUpdate: CASCADE, local: branche_id, foreign: id }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+    

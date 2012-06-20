@@ -29,7 +29,7 @@ class MembreServiceTable extends Doctrine_Table
     }
     
 
-    public function getCurrenServiceFollower($service, $user) {
+    public function getCurrentServiceFollower($service, $user) {
       $q = $this->createQuery('q')
             ->where('q.service = ?', $service)
             ->andWhere('q.membre = ?', $user);

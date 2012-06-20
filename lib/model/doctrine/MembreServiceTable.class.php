@@ -23,8 +23,7 @@ class MembreServiceTable extends Doctrine_Table
             ->where('ar.membre = ?', $user_id)
             ->andWhere('ar.service = se.id')
             ->leftJoin('ar.Service se')
-            ->orderBy('ar.updated_at desc')
-            ->limit(5);            
+            ->orderBy('ar.updated_at desc');
       return $q;
     }
     

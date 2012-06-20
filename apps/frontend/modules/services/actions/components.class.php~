@@ -1,0 +1,12 @@
+<?php
+
+class servicesComponents extends sfComponents
+{
+
+  public function executeMyServicesFavoris()
+  {
+    $this->services = MembresServicesTable::getInstance()->getServicesFavoris($this->getUser()->getGuardUser()->getId())->execute();
+  }
+
+
+}

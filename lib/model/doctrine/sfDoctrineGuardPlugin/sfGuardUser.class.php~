@@ -77,7 +77,7 @@ class sfGuardUser extends PluginsfGuardUser
   
    public function isFollowerService($service)
   {
-    $res = MembreServiceTable::getInstance()->getCurrentServiceFollower($service, $this->getId())->fetchOne();
+    $res = MembreServiceTable::getInstance()->getCurrentServiceFollower($service->getService(), $this->getId())->fetchOne();
     return $res ? true : false;
   }
 }

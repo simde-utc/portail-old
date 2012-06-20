@@ -1,11 +1,11 @@
 <?php use_helper('Thumb') ?>
 <div id="my_flux">
   <h1>Mon Flux</h1>
+  <?php if($abonnements && $abonnements->count() > 0): ?>
   <h4><a href="" id="all_but">Tout</a>
   <a href="" id="events_but">Événements</a>
   <a href="" id="articles_but">Articles</a>
   </h4>
-  <?php if($abonnements && $abonnements->count() > 0): ?>
   
     <?php foreach ($abonnements as $abonnement):?>
       <?php if($abonnement['article'] == 'event'): ?>

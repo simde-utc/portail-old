@@ -4,7 +4,7 @@ newfieldscount = 0;
 function addNewField(num){
   return $.ajax({
     type: 'GET',
-    url: 'http://portail-social.emilienkenler.com/add?num='+num,
+    url: '/add?num='+num,
     async: false
   }).responseText;
 }

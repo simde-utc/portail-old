@@ -15,7 +15,7 @@ class ImageForm extends BaseImageForm
        unset($this['created_at'], $this['updated_at'], $this['album_id']);
        
   $this->setWidget('name', new sfWidgetFormInputFileEditable(array(
-    'file_src'    => 'http://simde/uploads/albums/thumb/130x120_'.$this->getObject()->name, // le chemin modifié ici peut créer un header pb...
+    'file_src'    => '/uploads/albums/thumb/130x120_'.$this->getObject()->name, // le chemin modifié ici peut créer un header pb...
     'edit_mode'   => !$this->isNew(),
     'is_image'    => true,
     'with_delete' => true,

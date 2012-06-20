@@ -20,9 +20,9 @@ class Service extends BaseService
       $serviceFollower->save();
   }
   
-  public function removeFollower(sfGuardUser $user)
+  public function removeFollower(sfGuardUser $user, Service $service)
   {
-    $assoFollower = MembreServiceTable::getInstance()->getCurrentServiceFollower($this->getService(),$user->getPrimaryKey())->fetchOne();
+    $assoFollower = MembreServiceTable::getInstance()->getCurrentServiceFollower($service->getPrimaryKey(),$user->getPrimaryKey())->fetchOne();
     $assoFollower->delete();
   }
 }

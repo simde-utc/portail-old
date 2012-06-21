@@ -193,23 +193,17 @@ p { text-align : justify; }
 
 #content{
   width: 620px;
-  margin: auto;
   background: #fff;
   padding: 10px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  float:left;
 }
 
-#column-left{
+#column-left, #column-right{
   float: left;
   width: 175px;
-  margin: auto;
-}
-
-#column-right{
-  float: right;
-  width: 175px;
-  margin: auto;
+  margin: 8px;
 }
 
 #footer{

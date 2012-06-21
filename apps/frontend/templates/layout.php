@@ -76,10 +76,7 @@
         <?php else: ?>
           <?php include_partial('home/bienvenue') ?>
         <?php endif ?>
-      </div>
-      <div id="column-right">
-        <?php include_component('asso','contact') ?>
-      </div>      
+      </div> 
       <div id="content">
         <?php if($sf_user->hasFlash('error')): ?>
         <div class="alert alert-block alert-error">
@@ -107,7 +104,9 @@
         <?php endif ?>
         <?php echo $sf_content ?>
       </div>
-      <div style="clear: both;"></div>
+      <div id="column-right">
+        <?php include_component('asso','contact') ?>
+      </div>
     </div>
     <div id="footer">
       <div class="wrap">

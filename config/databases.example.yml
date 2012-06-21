@@ -2,6 +2,14 @@
 # http://www.symfony-project.org/reference/1_4/en/07-Databases
 
 all:
+  # BDD de gesmail. Attention, l'ordre est important.
+  gesmail:
+  class: sfDoctrineDatabase
+  param:
+    dsn: 'mysql:host=localhost;dbname=mail'
+    username: root
+    password: root
+  
   doctrine:
     class: sfDoctrineDatabase
     param:

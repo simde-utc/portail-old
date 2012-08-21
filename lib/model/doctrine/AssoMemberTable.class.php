@@ -48,11 +48,16 @@ class AssoMemberTable extends Doctrine_Table {
 
     return $q;
   }
-
-  public function getCurrentAssoMember($asso, $user) {
+  public function getAssoMember($asso, $user) {
     $q = $this->createQuery('q')
             ->where('q.asso_id = ?', $asso)
-            ->andWhere('q.user_id = ?', $user)
+            ->andWhere('q.user_id = ?', $user);
+    return $q;
+  }
+
+
+  public function getCurrentAssoMember($asso, $user) {
+    $q = $this->getAssoMember($asso, $user)
             ->andWhere('q.semestre_id = ?', sfConfig::get('app_portail_current_semestre'));
     return $q;
   }

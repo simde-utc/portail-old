@@ -44,10 +44,24 @@ class assoActions extends sfActions
     $this->asso = $this->getRoute()->getObject();
     $this->redirectUnless($this->asso, 'assos_list');
     if($this->asso->isPole())
-        {
-          $pole = PoleTable::getInstance()->findOneBy('asso_id',$this->asso->getId());
-          $this->assos = AssoTable::getInstance()->getAssosList($pole->getId())->execute();
-        }
+    {
+      $pole = PoleTable::getInstance()->findOneBy('asso_id', $this->asso->getId());
+      $this->assos = AssoTable::getInstance()->getAssosList($pole->getId())->execute();
+    }
+
+    /*
+     * Si par le passé l'utilisateur a été membre de l'association,
+     * mais que ce n'est plus le cas actuellement,
+     * il faut afficher une alerte l'invitant à se réinscire.
+     */
+    if($this->asso->getJoignable()
+            && $this->getUser()->isAuthenticated()
+            && !$this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
+    {
+        $r = AssoMemberTable::getInstance()->getAssoMember($this->asso->getId(),$this->getUser()->getGuardUser()->getId())->execute();
+        if($r->count() > 0)
+          $this->getUser()->setFlash('warning', 'Vous avez été membre de cette association par le passé.<br /> Pour la rejoindre à nouveau <a href="' . $this->generateUrl('asso_join', $this->asso) .'">cliquez ici</a>.');
+    }
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -128,7 +142,7 @@ class assoActions extends sfActions
     $this->asso = $this->getRoute()->getObject();
     $this->redirectUnless($this->asso, 'assos_list');
     $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
-    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso, false)->execute();    
+    $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso, false)->execute();
   }
 
   public function executeJoin()
@@ -182,7 +196,7 @@ class assoActions extends sfActions
       $this->redirect('asso/show?login='.$this->asso->getLogin());
     }
     $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->andWhere('q.role_id <> 1')->execute();
-    
+
     $this->roles = RoleTable::getInstance()->findAll();
   }
 

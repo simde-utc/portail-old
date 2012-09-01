@@ -76,6 +76,14 @@ class AssoMemberTable extends Doctrine_Table
     return $q;
   }
 
+  public function wasPresident($asso,$user)
+  {
+    $q = $this->getAssoMember($asso, $user)
+              ->andWhere('q.semestre_id = ?', sfConfig::get('app_portail_current_semestre') - 1);
+    $r = $q->fetchOne();
+    return ($r && $r->getRoleId() == 1);
+  }
+
   public function getDroits($user_id)
   {
     $q = $this->createQuery('q')

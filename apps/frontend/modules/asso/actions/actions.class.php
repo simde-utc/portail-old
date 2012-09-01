@@ -49,30 +49,50 @@ class assoActions extends sfActions
       $this->assos = AssoTable::getInstance()->getAssosList($pole->getId())->execute();
     }
 
-    /*
-     * Si par le passé l'utilisateur a été membre de l'association,
-     * mais que ce n'est plus le cas actuellement,
-     * il faut afficher une alerte l'invitant à se réinscire.
-     */
-    if($this->asso->getJoignable()
-            && $this->getUser()->isAuthenticated()
-            && !$this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
+    if($this->getUser()->isAuthenticated())
     {
-      $r = AssoMemberTable::getInstance()->getAssoMember($this->asso->getId(), $this->getUser()->getGuardUser()->getId())->execute();
-      if($r->count() > 0)
-        $this->getUser()->setFlash('warning', 'Vous avez été membre de cette association par le passé.<br /> Pour la rejoindre à nouveau <a href="'.$this->generateUrl('asso_join', $this->asso).'">cliquez ici</a>.');
-    }
-    /*
-     * Si l'utilisateur est membre
-     * et que l'association n'a pas de président,
-     * on lui propose de suivre la procédure de signature de charte.
-     */
-    if($this->getUser()->isAuthenticated()
-            && $this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
-    {
+      /*
+       * Si par le passé l'utilisateur a été membre de l'association,
+       * mais que ce n'est plus le cas actuellement,
+       * il faut afficher une alerte l'invitant à se réinscire.
+       */
+      if($this->asso->getJoignable()
+              && !$this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
+      {
+        $r = AssoMemberTable::getInstance()->getAssoMember($this->asso->getId(), $this->getUser()->getGuardUser()->getId())->execute();
+        if($r->count() > 0)
+          $this->getUser()->setFlash('warning', 'Vous avez été membre de cette association par le passé.<br /> Pour la rejoindre à nouveau <a href="'.$this->generateUrl('asso_join', $this->asso).'">cliquez ici</a>.');
+      }
+      /*
+       * Si l'utilisateur est membre
+       * et que l'association n'a pas de président,
+       * on lui propose de suivre la procédure de signature de charte.
+       */
       $pres = AssoMemberTable::getInstance()->getPresident($this->asso)->fetchOne();
-      if(!$pres)
+      if(!$pres
+              && $this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
+      {
         $this->getUser()->setFlash('warning', 'Le président de cette association ne s\'est pas manifesté.<br />Si vous êtes le président, merci de suivre la <a href="'.$this->generateUrl('asso_charte', $this->asso).'">procédure suivante.</a>');
+      }
+      /*
+       * Si l'utilisateur est l'ancien président et que l'association n'a pas de président
+       *
+       */
+      if(!$pres
+              && ($asso_member = AssoMemberTable::getInstance()->wasPresident($this->asso->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->isSuperAdmin())
+              && $c = CharteInfoTable::getInstance()->getByAssoAndSemestre($this->asso->getId())->andWhere('q.confirmation = ?', false)->execute())
+      {
+        if($c->count() > 0)
+        {
+          $msg = 'En tant qu\'ancien président de cette association, vous devez valider les demandes de passation.<br />
+          Les demandes suivantes ont été effectuées :<br /><ul>';
+          foreach($c as $charte)
+          {
+            $msg .= '<li><b>'.$charte->getResponsable()->getName().'</b> le <em>'.$charte->getDate().'</em> - <a href="'.$this->generateUrl('asso_charte_confirm', $charte).'">Confirmer</a> / <a href="'.$this->generateUrl('asso_charte_refuse', $charte).'">Refuser</a></li>';
+          }
+          $this->getUser()->setFlash('info', $msg);
+        }
+      }
     }
   }
 
@@ -94,19 +114,19 @@ class assoActions extends sfActions
     $asso = AssoTable::getInstance()->find($request->getParameter('asso_id'));
 
     if(!($this->getUser()->isAuthenticated())
-      && $this->getUser()->getGuardUser()->isMember($asso->getLogin))
+            && $this->getUser()->getGuardUser()->isMember($asso->getLogin))
     {
       $pres = AssoMemberTable::getInstance()->getPresident($this->asso)->fetchOne();
       if($pres)
       {
-        $this->getUser()->setFlash('warning','Cette association a déjà un président.');
+        $this->getUser()->setFlash('warning', 'Cette association a déjà un président.');
       }
-      $this->getUser()->setFlash('error','Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$asso->getLogin());
     }
     if(!$request->getParameter('check') == $this->getUser()->getUserName())
     {
-      $this->getUser()->setFlash('error','La signature n\'est pas correcte.');
+      $this->getUser()->setFlash('error', 'La signature n\'est pas correcte.');
       $this->redirect('asso/show?login='.$asso->getLogin());
     }
     $charte = new CharteInfo();
@@ -116,11 +136,40 @@ class assoActions extends sfActions
     $charte->setDate(date('Y-m-d'));
     $charte->save();
 
-    $asso_member = AssoMemberTable::getInstance()->getCurrentAssoMember($asso->getId(),$this->getUser()->getGuardUser()->getId())->fetchOne();
+    $this->getUser()->setFlash('success', 'La charte a été signée, l\'ancien président doit venir valider la demande de passation.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
+
+  public function executeCharteRefuse(sfWebRequest $request)
+  {
+    $charte = $this->getRoute()->getObject();
+    $this->redirectUnless($charte, 'assos_list');
+
+    $asso = $charte->getAsso();
+    $charte->delete();
+
+    $this->getUser()->setFlash('success', 'Vous avez refusé une demande de passation.');
+
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
+
+  public function executeCharteConfirm(sfWebRequest $request)
+  {
+    $charte = $this->getRoute()->getObject();
+    $this->redirectUnless($charte, 'assos_list');
+
+    $pres = $charte->getResponsable();
+    $asso = $charte->getAsso();
+
+    $asso_member = AssoMemberTable::getInstance()->getCurrentAssoMember($asso->getId(), $pres->getId())->fetchOne();
     $asso_member->setRoleId(1);
     $asso_member->save();
 
-    $this->getUser()->setFlash('success','La charte a été signée, vous êtes maintenant président de l\'association.');
+    $charte->setConfirmation(true);
+    $charte->save();
+    
+    $this->getUser()->setFlash('success', 'Le nouveau président est : '.$pres->getName().'.');
+
     $this->redirect('asso/show?login='.$asso->getLogin());
   }
 

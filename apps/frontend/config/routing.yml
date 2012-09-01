@@ -111,6 +111,18 @@ asso_charte:
   param: { module: asso, action: charte }
   options: { model: Asso, type: object }
 
+asso_charte_confirm:
+  url: /asso/:id/charte/confirm
+  class: sfDoctrineRoute
+  param: { module: asso, action: charteConfirm }
+  options: { model: CharteInfo, type: object }
+
+asso_charte_refuse:
+  url: /asso/:id/charte/refuse
+  class: sfDoctrineRoute
+  param: { module: asso, action: charteRefuse }
+  options: { model: CharteInfo, type: object }
+
 #Articles
 articles_list:
   url:   /article

@@ -58,10 +58,70 @@ class assoActions extends sfActions
             && $this->getUser()->isAuthenticated()
             && !$this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
     {
-        $r = AssoMemberTable::getInstance()->getAssoMember($this->asso->getId(),$this->getUser()->getGuardUser()->getId())->execute();
-        if($r->count() > 0)
-          $this->getUser()->setFlash('warning', 'Vous avez été membre de cette association par le passé.<br /> Pour la rejoindre à nouveau <a href="' . $this->generateUrl('asso_join', $this->asso) .'">cliquez ici</a>.');
+      $r = AssoMemberTable::getInstance()->getAssoMember($this->asso->getId(), $this->getUser()->getGuardUser()->getId())->execute();
+      if($r->count() > 0)
+        $this->getUser()->setFlash('warning', 'Vous avez été membre de cette association par le passé.<br /> Pour la rejoindre à nouveau <a href="'.$this->generateUrl('asso_join', $this->asso).'">cliquez ici</a>.');
     }
+    /*
+     * Si l'utilisateur est membre
+     * et que l'association n'a pas de président,
+     * on lui propose de suivre la procédure de signature de charte.
+     */
+    if($this->getUser()->isAuthenticated()
+            && $this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
+    {
+      $pres = AssoMemberTable::getInstance()->getPresident($this->asso)->fetchOne();
+      if(!$pres)
+        $this->getUser()->setFlash('warning', 'Le président de cette association ne s\'est pas manifesté.<br />Si vous êtes le président, merci de suivre la <a href="'.$this->generateUrl('asso_charte', $this->asso).'">procédure suivante.</a>');
+    }
+  }
+
+  public function executeCharte(sfWebRequest $request)
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->redirectUnless($this->asso, 'assos_list');
+    if(!($this->getUser()->isAuthenticated()
+            && $this->getUser()->getGuardUser()->isMember($this->asso->getLogin())))
+    {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+  }
+
+  public function executeChartePost(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+    $asso = AssoTable::getInstance()->find($request->getParameter('asso_id'));
+
+    if(!($this->getUser()->isAuthenticated())
+      && $this->getUser()->getGuardUser()->isMember($asso->getLogin))
+    {
+      $pres = AssoMemberTable::getInstance()->getPresident($this->asso)->fetchOne();
+      if($pres)
+      {
+        $this->getUser()->setFlash('warning','Cette association a déjà un président.');
+      }
+      $this->getUser()->setFlash('error','Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    if(!$request->getParameter('check') == $this->getUser()->getUserName())
+    {
+      $this->getUser()->setFlash('error','La signature n\'est pas correcte.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    $charte = new CharteInfo();
+    $charte->setAsso($asso);
+    $charte->setResponsableId($this->getUser()->getGuardUser()->getId());
+    $charte->setSemestreId(sfConfig::get('app_portail_current_semestre'));
+    $charte->setDate(date('Y-m-d'));
+    $charte->save();
+
+    $asso_member = AssoMemberTable::getInstance()->getCurrentAssoMember($asso->getId(),$this->getUser()->getGuardUser()->getId())->fetchOne();
+    $asso_member->setRoleId(1);
+    $asso_member->save();
+
+    $this->getUser()->setFlash('success','La charte a été signée, vous êtes maintenant président de l\'association.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
   }
 
   public function executeEdit(sfWebRequest $request)

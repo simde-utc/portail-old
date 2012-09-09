@@ -104,7 +104,7 @@ class assoActions extends sfActions
     $charte->setDate(date('Y-m-d'));
     $charte->save();
 
-    $this->getUser()->setFlash('success', 'La charte a été signée, l\'ancien président doit venir valider la demande de passation.');
+    $this->getUser()->setFlash('success', 'La charte a été signée. La demande doit maintenant être validée par l\'ancien président ou le BDE.');
     $this->redirect('asso/show?login='.$asso->getLogin());
   }
 

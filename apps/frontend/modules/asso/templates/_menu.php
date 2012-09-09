@@ -10,7 +10,10 @@
       <a href="<?php echo url_for('gesmail', $asso) ?>">Gestion des mails</a>
     <?php endif ?>
     <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x40)): ?>
-      <a href="<?php echo url_for('materiel',$asso) ?>">Matériel</a>
+      <a href="<?php echo url_for('materiel', $asso) ?>">Matériel</a>
+    <?php endif ?>
+    <?php if($charte): ?>
+      <a href="<?php echo url_for('asso_charte', $asso) ?>">Passation</a>
     <?php endif ?>
   </div>
 </div>

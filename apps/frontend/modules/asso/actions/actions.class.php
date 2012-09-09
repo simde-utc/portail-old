@@ -62,21 +62,6 @@ class assoActions extends sfActions
       if($r->count() > 0)
         $this->getUser()->setFlash('warning', 'Vous avez été membre de cette association par le passé.<br /> Pour la rejoindre à nouveau <a href="'.$this->generateUrl('asso_join', $this->asso).'">cliquez ici</a>.');
     }
-    /*
-     * Si l'utilisateur est membre
-     * et que l'association n'a pas de président,
-     * on lui propose de suivre la procédure de signature de charte.
-     */
-    if($this->getUser()->isAuthenticated()
-            && $this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
-    {
-      $pres = AssoMemberTable::getInstance()->getPresident($this->asso)->fetchOne();
-      if(!$pres)
-        $this->getUser()->setFlash('warning', 'Le président de cette association ne s\'est pas manifesté.<br />Si vous êtes le président, merci de suivre la <a href="'.$this->generateUrl('asso_charte', $this->asso).'">procédure suivante.</a>');
-    }
-    /*
-     * Si l'
-     */
   }
 
   public function executeCharte(sfWebRequest $request)
@@ -97,19 +82,19 @@ class assoActions extends sfActions
     $asso = AssoTable::getInstance()->find($request->getParameter('asso_id'));
 
     if(!($this->getUser()->isAuthenticated())
-      && $this->getUser()->getGuardUser()->isMember($asso->getLogin))
+            && $this->getUser()->getGuardUser()->isMember($asso->getLogin))
     {
       $pres = AssoMemberTable::getInstance()->getPresident($this->asso)->fetchOne();
       if($pres)
       {
-        $this->getUser()->setFlash('warning','Cette association a déjà un président.');
+        $this->getUser()->setFlash('warning', 'Cette association a déjà un président.');
       }
-      $this->getUser()->setFlash('error','Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login='.$asso->getLogin());
     }
     if(!$request->getParameter('check') == $this->getUser()->getUserName())
     {
-      $this->getUser()->setFlash('error','La signature n\'est pas correcte.');
+      $this->getUser()->setFlash('error', 'La signature n\'est pas correcte.');
       $this->redirect('asso/show?login='.$asso->getLogin());
     }
     $charte = new CharteInfo();
@@ -119,11 +104,11 @@ class assoActions extends sfActions
     $charte->setDate(date('Y-m-d'));
     $charte->save();
 
-    $asso_member = AssoMemberTable::getInstance()->getCurrentAssoMember($asso->getId(),$this->getUser()->getGuardUser()->getId())->fetchOne();
+    $asso_member = AssoMemberTable::getInstance()->getCurrentAssoMember($asso->getId(), $this->getUser()->getGuardUser()->getId())->fetchOne();
     $asso_member->setRoleId(1);
     $asso_member->save();
 
-    $this->getUser()->setFlash('success','La charte a été signée, vous êtes maintenant président de l\'association.');
+    $this->getUser()->setFlash('success', 'La charte a été signée, vous êtes maintenant président de l\'association.');
     $this->redirect('asso/show?login='.$asso->getLogin());
   }
 

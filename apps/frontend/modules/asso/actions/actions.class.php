@@ -104,11 +104,7 @@ class assoActions extends sfActions
     $charte->setDate(date('Y-m-d'));
     $charte->save();
 
-    $asso_member = AssoMemberTable::getInstance()->getCurrentAssoMember($asso->getId(), $this->getUser()->getGuardUser()->getId())->fetchOne();
-    $asso_member->setRoleId(1);
-    $asso_member->save();
-
-    $this->getUser()->setFlash('success', 'La charte a été signée, vous êtes maintenant président de l\'association.');
+    $this->getUser()->setFlash('success', 'La charte a été signée, l\'ancien président doit venir valider la demande de passation.');
     $this->redirect('asso/show?login='.$asso->getLogin());
   }
 

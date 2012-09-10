@@ -159,10 +159,13 @@ CharteInfo:
   connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
-    date: { type: date, notnull: true }
+    date: { type: datetime, notnull: true }
+    ip: { type: string(15), notnull: true }
     semestre_id: { type: integer, notnull: true }
     asso_id : { type: integer, notnull : true }
+    asso_name: { type: string(20), notnull: true }
     responsable_id: { type: integer, notnull: true }
+    login: { type: string(20), notnull: true }
     confirmation: { type: boolean, notnull: true, default: false }
   relations:
     Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }

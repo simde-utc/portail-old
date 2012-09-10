@@ -99,7 +99,10 @@ class assoActions extends sfActions
     }
     $charte = new CharteInfo();
     $charte->setAsso($asso);
+    $charte->setAssoName($asso->getLogin());
     $charte->setResponsableId($this->getUser()->getGuardUser()->getId());
+    $charte->setLogin($this->getUser()->getGuardUser()->getUsername());
+    $charte->setIp($_SERVER['REMOTE_ADDR']);
     $charte->setSemestreId(sfConfig::get('app_portail_current_semestre'));
     $charte->setDate(date('Y-m-d'));
     $charte->save();

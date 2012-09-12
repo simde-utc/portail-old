@@ -39,8 +39,8 @@
         <p>
           En saisissant mon login <em><?php echo $sf_user->getUsername() ?></em> ci-dessous et en cliquant sur <i>Valider</i>, je déclare :</p>
           <ul>
-            <li>prendre la responsabilité du compte de l'association <em><?php echo $asso->getName() ?></em> (login <em><?php echo $asso->getLogin() ?></em>).</li>
-            <li>avoir pris connaissance de la charte ci-dessus et l'approuver.</li>
+            <li>prendre la responsabilité du compte de l'association <em><?php echo $asso->getName() ?></em> (login <em><?php echo $asso->getLogin() ?></em>)</li>
+            <li>avoir pris connaissance de la charte ci-dessus et l'approuver</li>
           </ul>
         </p>
         <input type="text" name="check" /><br />

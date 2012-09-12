@@ -104,7 +104,7 @@ class assoActions extends sfActions
     $charte->setLogin($this->getUser()->getGuardUser()->getUsername());
     $charte->setIp($_SERVER['REMOTE_ADDR']);
     $charte->setSemestreId(sfConfig::get('app_portail_current_semestre'));
-    $charte->setDate(date('Y-m-d'));
+    $charte->setDate(date('Y-m-d H:i:s'));
     $charte->save();
 
     $this->getUser()->setFlash('success', 'La charte a été signée. La demande doit maintenant être validée par l\'ancien président ou le BDE.');

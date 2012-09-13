@@ -8,8 +8,7 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class assoActions extends sfActions
-{
+class assoActions extends sfActions {
 
   /**
    * Liste des associations
@@ -55,34 +54,35 @@ class assoActions extends sfActions
      * il faut afficher une alerte l'invitant à se réinscire.
      */
     if($this->asso->getJoignable()
-            && $this->getUser()->isAuthenticated()
-            && !$this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
+        && $this->getUser()->isAuthenticated()
+        && !$this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
     {
       $r = AssoMemberTable::getInstance()->getAssoMember($this->asso->getId(), $this->getUser()->getGuardUser()->getId())->execute();
       if($r->count() > 0)
-        $this->getUser()->setFlash('warning', 'Vous avez été membre de cette association par le passé.<br /> Pour la rejoindre à nouveau <a href="'.$this->generateUrl('asso_join', $this->asso).'">cliquez ici</a>.');
+        $this->getUser()->setFlash('warning', 'Vous avez été membre de cette association par le passé.<br /> Pour la rejoindre à nouveau <a href="' . $this->generateUrl('asso_join', $this->asso) . '">cliquez ici</a>.');
     }
 
-      /*  
-       * Si l'utilisateur est l'ancien président et que l'association n'a pas de président  
-       *
-       */
-      if(!$pres
-              && ($asso_member = AssoMemberTable::getInstance()->wasPresident($this->asso->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->isSuperAdmin())
-              && $c = CharteInfoTable::getInstance()->getByAssoAndSemestre($this->asso->getId())->andWhere('q.confirmation = ?', false)->execute())
+    /*
+     * Si l'utilisateur est l'ancien président et que l'association n'a pas de président  
+     *
+     */
+    $pres = AssoMemberTable::getInstance()->getPresident($this->asso)->fetchOne();
+    if($this->getUser()->isAuthenticated() && !$pres
+        && ($asso_member = AssoMemberTable::getInstance()->wasPresident($this->asso->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->isSuperAdmin())
+        && $c = CharteInfoTable::getInstance()->getByAssoAndSemestre($this->asso->getId())->andWhere('q.confirmation = ?', false)->execute())
+    {
+      if($c->count() > 0)
       {
-        if($c->count() > 0)
-        {
-          $msg = 'En tant qu\'ancien président de cette association, vous devez valider les demandes de passation.<br />
+        $msg = 'En tant qu\'ancien président de cette association, vous devez valider les demandes de passation.<br />
           Les demandes suivantes ont été effectuées :<br /><ul>';
-          foreach($c as $charte)
-          {
-            $msg .= '<li><b>'.$charte->getResponsable()->getName().'</b> le <em>'.$charte->getDate().'</em> - <a href="'.$this->generateUrl('asso_charte_confirm', $charte).'">Confirmer</a> / <a href="'.$this->generateUrl('asso_charte_refuse', $charte).'">Refuser</a></li>';
-          }
-          $msg .= '</ul>';
-          $this->getUser()->setFlash('info', $msg);
+        foreach($c as $charte)
+        {
+          $msg .= '<li><b>' . $charte->getResponsable()->getName() . '</b> le <em>' . $charte->getDate() . '</em> - <a href="' . $this->generateUrl('asso_charte_confirm', $charte) . '">Confirmer</a> / <a href="' . $this->generateUrl('asso_charte_refuse', $charte) . '">Refuser</a></li>';
         }
+        $msg .= '</ul>';
+        $this->getUser()->setFlash('info', $msg);
       }
+    }
   }
 
   public function executeCharte(sfWebRequest $request)
@@ -90,10 +90,10 @@ class assoActions extends sfActions
     $this->asso = $this->getRoute()->getObject();
     $this->redirectUnless($this->asso, 'assos_list');
     if(!($this->getUser()->isAuthenticated()
-            && $this->getUser()->getGuardUser()->isMember($this->asso->getLogin())))
+        && $this->getUser()->getGuardUser()->isMember($this->asso->getLogin())))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('asso/show?login='.$this->asso->getLogin());
+      $this->redirect('asso/show?login=' . $this->asso->getLogin());
     }
   }
 
@@ -103,7 +103,7 @@ class assoActions extends sfActions
     $asso = AssoTable::getInstance()->find($request->getParameter('asso_id'));
 
     if(!($this->getUser()->isAuthenticated())
-            && $this->getUser()->getGuardUser()->isMember($asso->getLogin))
+        && $this->getUser()->getGuardUser()->isMember($asso->getLogin))
     {
       $pres = AssoMemberTable::getInstance()->getPresident($this->asso)->fetchOne();
       if($pres)
@@ -111,12 +111,12 @@ class assoActions extends sfActions
         $this->getUser()->setFlash('warning', 'Cette association a déjà un président.');
       }
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('asso/show?login='.$asso->getLogin());
+      $this->redirect('asso/show?login=' . $asso->getLogin());
     }
     if(!$request->getParameter('check') == $this->getUser()->getUserName())
     {
       $this->getUser()->setFlash('error', 'La signature n\'est pas correcte.');
-      $this->redirect('asso/charte?login='.$asso->getLogin());
+      $this->redirect('asso/charte?login=' . $asso->getLogin());
     }
     $charte = new CharteInfo();
     $charte->setAsso($asso);
@@ -129,7 +129,7 @@ class assoActions extends sfActions
     $charte->save();
 
     $this->getUser()->setFlash('success', 'La charte a été signée. La demande doit maintenant être validée par l\'ancien président ou le BDE.');
-    $this->redirect('asso/show?login='.$asso->getLogin());
+    $this->redirect('asso/show?login=' . $asso->getLogin());
   }
 
   public function executeCharteRefuse(sfWebRequest $request)
@@ -142,7 +142,7 @@ class assoActions extends sfActions
 
     $this->getUser()->setFlash('success', 'Vous avez refusé une demande de passation.');
 
-    $this->redirect('asso/show?login='.$asso->getLogin());
+    $this->redirect('asso/show?login=' . $asso->getLogin());
   }
 
   public function executeCharteConfirm(sfWebRequest $request)
@@ -159,10 +159,10 @@ class assoActions extends sfActions
 
     $charte->setConfirmation(true);
     $charte->save();
-    
-    $this->getUser()->setFlash('success', 'Le nouveau président est : '.$pres->getName().'.');
 
-    $this->redirect('asso/show?login='.$asso->getLogin());
+    $this->getUser()->setFlash('success', 'Le nouveau président est : ' . $pres->getName() . '.');
+
+    $this->redirect('asso/show?login=' . $asso->getLogin());
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -171,7 +171,7 @@ class assoActions extends sfActions
     if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('asso/show?login='.$asso->getLogin());
+      $this->redirect('asso/show?login=' . $asso->getLogin());
     }
     $this->form = new AssoForm($asso);
   }
@@ -183,7 +183,7 @@ class assoActions extends sfActions
     if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('asso/show?login='.$asso->getLogin());
+      $this->redirect('asso/show?login=' . $asso->getLogin());
     }
     $this->form = new AssoForm($asso);
     $this->processForm($request, $this->form);
@@ -198,7 +198,7 @@ class assoActions extends sfActions
     {
       $asso = $form->save();
 
-      $this->redirect('asso/show?login='.$asso->getLogin());
+      $this->redirect('asso/show?login=' . $asso->getLogin());
     }
   }
 
@@ -252,21 +252,21 @@ class assoActions extends sfActions
     if(!$asso->getJoignable())
     {
       $this->getUser()->setFlash('error', 'On ne peut pas rejoindre cette association.');
-      $this->redirect('asso/show?login='.$asso->getLogin());
+      $this->redirect('asso/show?login=' . $asso->getLogin());
     }
     if(!$this->getUser()->isAuthenticated())
     {
       $this->getUser()->setFlash('error', 'Vous devez être connecté pour rejoindre une association.');
-      $this->redirect('asso/show?login='.$asso->getLogin());
+      $this->redirect('asso/show?login=' . $asso->getLogin());
     }
     if($this->getUser()->getGuardUser()->isMember($asso->getLogin()))
     {
       $this->getUser()->setFlash('error', 'Vous êtes déjà inscrit à cette association.');
-      $this->redirect('asso/show?login='.$asso->getLogin());
+      $this->redirect('asso/show?login=' . $asso->getLogin());
     }
     $asso->addMember($this->getUser()->getGuardUser());
     $this->getUser()->setFlash('success', 'Vous êtes maintenant membre de cette association.');
-    $this->redirect('asso/show?login='.$asso->getLogin());
+    $this->redirect('asso/show?login=' . $asso->getLogin());
   }
 
   public function executeLeave()
@@ -275,16 +275,16 @@ class assoActions extends sfActions
     if(!$this->getUser()->isAuthenticated())
     {
       $this->getUser()->setFlash('error', 'Vous devez être déconnecté pour quitter une association.');
-      $this->redirect('asso/show?login='.$asso->getLogin());
+      $this->redirect('asso/show?login=' . $asso->getLogin());
     }
     if(!$this->getUser()->getGuardUser()->isMember($asso->getLogin()))
     {
       $this->getUser()->setFlash('error', 'Vous n\'êtes pas inscrit à cette association.');
-      $this->redirect('asso/show?login='.$asso->getLogin());
+      $this->redirect('asso/show?login=' . $asso->getLogin());
     }
     $asso->removeMember($this->getUser()->getGuardUser());
     $this->getUser()->setFlash('success', 'Vous n\'êtes plus membre de cette association.');
-    $this->redirect('asso/show?login='.$asso->getLogin());
+    $this->redirect('asso/show?login=' . $asso->getLogin());
   }
 
   public function executeMember()
@@ -294,7 +294,7 @@ class assoActions extends sfActions
     if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($this->asso->getLogin(), 0x02))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('asso/show?login='.$this->asso->getLogin());
+      $this->redirect('asso/show?login=' . $this->asso->getLogin());
     }
     $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->andWhere('q.role_id <> 1')->execute();
 

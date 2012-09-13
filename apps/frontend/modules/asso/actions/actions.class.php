@@ -62,6 +62,27 @@ class assoActions extends sfActions
       if($r->count() > 0)
         $this->getUser()->setFlash('warning', 'Vous avez été membre de cette association par le passé.<br /> Pour la rejoindre à nouveau <a href="'.$this->generateUrl('asso_join', $this->asso).'">cliquez ici</a>.');
     }
+
+      /*  
+       * Si l'utilisateur est l'ancien président et que l'association n'a pas de président  
+       *
+       */
+      if(!$pres
+              && ($asso_member = AssoMemberTable::getInstance()->wasPresident($this->asso->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->isSuperAdmin())
+              && $c = CharteInfoTable::getInstance()->getByAssoAndSemestre($this->asso->getId())->andWhere('q.confirmation = ?', false)->execute())
+      {
+        if($c->count() > 0)
+        {
+          $msg = 'En tant qu\'ancien président de cette association, vous devez valider les demandes de passation.<br />
+          Les demandes suivantes ont été effectuées :<br /><ul>';
+          foreach($c as $charte)
+          {
+            $msg .= '<li><b>'.$charte->getResponsable()->getName().'</b> le <em>'.$charte->getDate().'</em> - <a href="'.$this->generateUrl('asso_charte_confirm', $charte).'">Confirmer</a> / <a href="'.$this->generateUrl('asso_charte_refuse', $charte).'">Refuser</a></li>';
+          }
+          $msg .= '</ul>';
+          $this->getUser()->setFlash('info', $msg);
+        }
+      }
   }
 
   public function executeCharte(sfWebRequest $request)
@@ -108,6 +129,39 @@ class assoActions extends sfActions
     $charte->save();
 
     $this->getUser()->setFlash('success', 'La charte a été signée, l\'ancien président doit venir valider la demande de passation.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
+
+  public function executeCharteRefuse(sfWebRequest $request)
+  {
+    $charte = $this->getRoute()->getObject();
+    $this->redirectUnless($charte, 'assos_list');
+
+    $asso = $charte->getAsso();
+    $charte->delete();
+
+    $this->getUser()->setFlash('success', 'Vous avez refusé une demande de passation.');
+
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
+
+  public function executeCharteConfirm(sfWebRequest $request)
+  {
+    $charte = $this->getRoute()->getObject();
+    $this->redirectUnless($charte, 'assos_list');
+
+    $pres = $charte->getResponsable();
+    $asso = $charte->getAsso();
+
+    $asso_member = AssoMemberTable::getInstance()->getCurrentAssoMember($asso->getId(), $pres->getId())->fetchOne();
+    $asso_member->setRoleId(1);
+    $asso_member->save();
+
+    $charte->setConfirmation(true);
+    $charte->save();
+    
+    $this->getUser()->setFlash('success', 'Le nouveau président est : '.$pres->getName().'.');
+
     $this->redirect('asso/show?login='.$asso->getLogin());
   }
 

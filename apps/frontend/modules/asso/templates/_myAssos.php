@@ -14,8 +14,8 @@
   <?php else: ?>
     Vous ne participez à aucune association.
   <?php endif; ?>
+  <?php if($prev_assos && $prev_assos->count() > 0): ?>
     <h1>Précédentes assos</h1>
-     <?php if($prev_assos && $prev_assos->count() > 0): ?>
     <?php foreach($prev_assos as $asso): ?>
       <div class="my_asso">
         <a href="<?php echo url_for('assos_show',$asso) ?>"><?php echo showThumb($asso->getLogo(), 'assos', array('width'=>32, 'height'=>32), 'center') ?></a>

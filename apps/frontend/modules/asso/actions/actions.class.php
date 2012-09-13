@@ -59,7 +59,7 @@ class assoActions extends sfActions {
     {
       $r = AssoMemberTable::getInstance()->getAssoMember($this->asso->getId(), $this->getUser()->getGuardUser()->getId())->execute();
       if($r->count() > 0)
-        $this->getUser()->setFlash('warning', 'Vous avez été membre de cette association par le passé.<br /> Pour la rejoindre à nouveau <a href="' . $this->generateUrl('asso_join', $this->asso) . '">cliquez ici</a>.');
+        $this->flashwarn = 'Vous avez été membre de cette association par le passé.<br /> Pour la rejoindre à nouveau <a href="' . $this->generateUrl('asso_join', $this->asso) . '">cliquez ici</a>.';
     }
 
     /*
@@ -80,7 +80,7 @@ class assoActions extends sfActions {
           $msg .= '<li><b>' . $charte->getResponsable()->getName() . '</b> le <em>' . $charte->getDate() . '</em> - <a href="' . $this->generateUrl('asso_charte_confirm', $charte) . '">Confirmer</a> / <a href="' . $this->generateUrl('asso_charte_refuse', $charte) . '">Refuser</a></li>';
         }
         $msg .= '</ul>';
-        $this->getUser()->setFlash('info', $msg);
+        $this->flashinfo = $msg;
       }
     }
   }

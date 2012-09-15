@@ -132,7 +132,7 @@ p { text-align : justify; }
   background: #FFF;
   margin: 0 auto;
   width: 1010px;
-  height: 190px;
+  height: 200px;
   padding: 5px;
   margin-top: -27px;
   -webkit-border-bottom-right-radius: 5px;
@@ -166,16 +166,17 @@ p { text-align : justify; }
 #calendrier .event {
   display: inline-block;
   width: 330px;
-  height: 145px;
+  height: 155px;
   vertical-align: top;
   color: #343434;
   border-right: #000 1px solid;
   text-align: left;
+  overflow: hidden;
 }
 
 #calendrier .event img { float: left; margin-right: 10px; margin-left: 30px; background: #000; height:112px; width: 112px; }
 #calendrier .event h2 { font-size: 13px; font-weight: bold; margin: 0; color: #343434; text-transform: uppercase; }
-#calendrier .event h3 { font-size: 12px; font-weight: bold; color: #ee4401; margin: 0; margin-top: 20px; text-transform: uppercase; text-align: left; }
+#calendrier .event h3 { font-size: 12px; font-weight: bold; color: #ee4401; margin: 0; margin-top: 5px; text-transform: uppercase; text-align: left; }
 #calendrier .event .infos { font-size: 12px; color: #353535; font-weight: bold;}
 #calendrier .event a.more { display: block; background: url('/images/button/more.png') no-repeat; 
                             width: 113px; height: 22px; margin-top: 5px; margin-left: 190px; padding-top: 10px;

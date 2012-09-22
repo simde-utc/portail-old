@@ -115,12 +115,13 @@
           <h2>Services</h2>
           <a href="/gesmail">Gestion des mails assos</a><br/>
           <a href="/resa">Réservation de salles</a><br/>
-          <a href="/mail">Webmail assos</a>
+          <a href="/mail">Webmail assos</a><br /><br />
         </div>
         <div id="footer-right">
           <h2>Liens</h2>
           <a href="http://ent.utc.fr">ENT</a><br/>
           <a href="/simde">SiMDE</a><br/>
+          <a href="/wiki">Wiki des assos</a><br/>
           <a href="http://www.utc.fr">UTC</a>
         </div>
       </div>

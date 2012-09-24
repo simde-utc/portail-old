@@ -584,6 +584,8 @@ a.btn-danger {
     text-transform: uppercase;
     color: white;
     font-size: 12px;
+    padding: 1em 0em;
+    line-height: 1.2em;
 }
 .part .event a {
   color: white;

@@ -44,10 +44,4 @@ all:
   mailer:
     param:
       transport:
-        class: Swift_SmtpTransport
-        param:
-          host:       smtp.gmail.com
-          port:       465
-          encryption: ssl
-          username: ~
-          password: ~
+        class: Swift_MailTransport

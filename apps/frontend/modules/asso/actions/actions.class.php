@@ -154,6 +154,13 @@ class assoActions extends sfActions {
     $asso = $charte->getAsso();
 
     $asso_member = AssoMemberTable::getInstance()->getCurrentAssoMember($asso->getId(), $pres->getId())->fetchOne();
+    
+    // Si le président a quitté l'asso entre temps...
+    if(!$asso_member){
+      $asso->addMember($pres);
+      $asso_member = AssoMemberTable::getInstance()->getCurrentAssoMember($asso->getId(), $pres->getId())->fetchOne();
+    }
+    
     $asso_member->setRoleId(1);
     $asso_member->save();
 

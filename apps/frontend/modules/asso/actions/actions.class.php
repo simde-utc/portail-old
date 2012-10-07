@@ -164,6 +164,23 @@ class assoActions extends sfActions {
     $asso_member->setRoleId(1);
     $asso_member->save();
 
+    // Envoi d'un mail de confirmation
+    $message = $this->getMailer()->compose(
+      array('simde@assos.utc.fr' => 'SiMDE'),
+      $pres->getEmailAddress(),
+      'Validation de la charte assos',
+      <<<EOF
+Bonjour,
+
+Votre signature de charte vient d'être validée, vous êtes donc maintenant président de l'association {$asso->getName()}.
+ 
+Rendez-vous sur le portail pour mettre à jour sa page ou attribuer des droits à d'autres membres !
+
+L'équipe du SiMDE
+EOF
+);
+    $this->getMailer()->send($message);
+    
     $charte->setConfirmation(true);
     $charte->save();
 

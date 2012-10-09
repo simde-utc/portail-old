@@ -1,0 +1,33 @@
+charte_info:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CharteInfo
+    module:               charte_info
+    prefix_path:          /chartes
+    column:               id
+    with_wildcard_routes: true
+
+cotisants:
+  url: /cotisants
+  param: { module: cotisants, action: index }
+
+cotisants_edit:
+  url: /cotisants/edit
+  param: { module: cotisants, action: edit }
+  
+cotisants_cotisation:
+  url: /cotisants/cotisation
+  param: { module: cotisants, action: cotisation }
+
+cas:
+  url: /cas
+  param: { module: cas, action: login }
+
+cas_logout:
+  url: /cas/logout
+  param: { module: cas, action: logout }
+
+# default rules
+homepage:
+  url:   /
+  param: { module: home, action: index }

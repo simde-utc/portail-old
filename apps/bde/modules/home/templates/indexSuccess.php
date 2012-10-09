@@ -1,0 +1,1 @@
+<p>Le SiMDE c'est bien !</p>

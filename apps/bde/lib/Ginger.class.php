@@ -1,7 +1,7 @@
 <?php
 class Ginger extends KoalaClient {
   public function __construct(){
-    $this->url = "http://localhost:8888/ginger/web/v1/";
+    $this->url = sfConfig::get('app_portail_ginger_url');
   }
   
   public function apiCall($endpoint, $params = array(), $method = "GET") {

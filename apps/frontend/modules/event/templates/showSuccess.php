@@ -21,5 +21,5 @@
     Lieu : <?php echo $event->getPlace(); ?>
   </p>
   <p><?php echo nl2br($event->getSummary()) ?></p>
-  <p><?php echo nl2br($event->getDescription()) ?></p>
+  <p><?php echo nl2br($event->getDescription(ESC_XSSSAFE)) ?></p>
 </div>

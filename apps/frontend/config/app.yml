@@ -27,6 +27,8 @@ all:
       HTML:
         DefinitionID:              'portail definition' 
         DefinitionRev:             1
+      AutoFormat:
+        Custom:                    'Linkify'
 
 dev:
   cas:

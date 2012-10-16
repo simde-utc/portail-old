@@ -22,7 +22,7 @@
             <?php if($article->getSummary()): ?>
               <?php echo nl2br($article->getSummary()) ?> <a href="<?php echo url_for('article/show?id='.$article->getId()) ?>">En savoir plus...</a>
             <?php else: ?>
-              <?php echo nl2br($article->getText()) ?>
+              <?php echo nl2br($article->getText(ESC_XSSSAFE)) ?>
             <?php endif; ?>
           </p>
           <br style="clear: both;" />

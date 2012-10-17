@@ -4,3 +4,6 @@
 [submodule "plugins/sfCASPlugin"]
 	path = plugins/sfCASPlugin
 	url = git://github.com/jeanmonod/sfCASPlugin.git
+[submodule "lib/vendor/ginger-client"]
+	path = lib/vendor/ginger-client
+	url = git://github.com/apuyou/ginger-client.git

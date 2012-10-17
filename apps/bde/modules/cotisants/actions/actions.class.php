@@ -23,12 +23,35 @@ class cotisantsActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     if($login = $request->getParameter("login")){
-      $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
-      $this->cotisant = $ginger->getLogin($login);
-      $this->cotisations = $ginger->getCotisations($login);
+      try {
+        $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
+        $this->cotisant = $ginger->getUser($login);
+        $this->cotisations = $ginger->getCotisations($login);
+      }
+      catch (ApiException $ex){
+        if($ex->getCode() == 404){
+          $this->error = "Utilisateur non trouvé";
+        }
+        else {
+          $this->error = $ex->getCode()." - ".$ex->getMessage();
+        }
+      }
+      
+      
+      $this->formcotisation = new CotisantsCotiserForm();
+      $this->formcotisation->setDefault('login', $login);
+      
+      if($this->cotisant->is_cotisant){
+        $this->cotisant->is_cotisant_texte = "Oui";
+        
+        // On retire le champ montant
+        $this->formcotisation->hideMontant();
+      }
+      else {
+        $this->cotisant->is_cotisant_texte = "Non";
+      }
+        
     }
-    $this->formcotisation = new CotisantsCotiserForm();
-    $this->formcotisation->setDefault('login', $login);
   }
   
   public function executeCotisation(sfWebRequest $request) {
@@ -42,11 +65,19 @@ class cotisantsActions extends sfActions
         }
         $fin = "$yearend-08-31";
         
-        $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
-        $ginger->addCotisation($login, $debut, $fin);
+        $montant = intval($request->getParameter("montant"));
+        
+        try {
+          $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
+          $ginger->addCotisation($login, $debut, $fin, $montant);
+        }
+        catch (ApiException $ex){
+          $this->getUser()->setFlash('error', "Impossible d'enregistrer la cotisation : ".$this->error = $ex->getCode()." - ".$ex->getMessage());
+        }
       }
       else if($request->getParameter("type") == "Radier"){
         //TODO
+        $this->getUser()->setFlash('error', "Fonctionnalité indisponible");
       }
     }
     $this->redirect('cotisants/edit?login='.$login);

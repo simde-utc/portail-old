@@ -6,6 +6,13 @@ class CotisantsCotiserForm extends BaseForm
   {
     $this->setWidgets(array(
       'login' => new sfWidgetFormInputHidden(),
+      'montant' => new sfWidgetFormInputText(),
     ));
+    $this->widgetSchema->setFormFormatterName('list');
+  }
+  
+  public function hideMontant(){
+    unset($this->widgetSchema["montant"]);
+    unset($this->validatorSchema["montant"]);
   }
 }

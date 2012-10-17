@@ -23,7 +23,7 @@ class cotisantsActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     if($login = $request->getParameter("login")){
-      $ginger = new Ginger();
+      $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
       $this->cotisant = $ginger->getLogin($login);
       $this->cotisations = $ginger->getCotisations($login);
     }
@@ -42,7 +42,7 @@ class cotisantsActions extends sfActions
         }
         $fin = "$yearend-08-31";
         
-        $ginger = new Ginger();
+        $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
         $ginger->addCotisation($login, $debut, $fin);
       }
       else if($request->getParameter("type") == "Radier"){

@@ -23,4 +23,3 @@ all:
     current_semestre: 2
     default_join_role: 3
     ginger_key: abc
-    ginger_url: http://localhost:8888/ginger/web/v1/

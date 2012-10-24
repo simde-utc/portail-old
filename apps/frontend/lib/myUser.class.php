@@ -20,41 +20,29 @@ class myUser extends sfGuardSecurityUser
 
     private function registerUser($username, $data = NULL)
     {
-        $cotisants = simplexml_load_file('http://assos.utc.fr/simde/api/cotisants.php?login=' . $username);
-        if($cotisants->nom
-                && $cotisants->prenom
-                && $cotisants->ecole)
-        {
-            if(!$data)
-                $data = new sfGuardUser();
-            $data->setUsername($username);
+        try {
+          $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
+          $cotisants = $ginger->getUser($username);
+          
+          if(!$data)
+              $data = new sfGuardUser();
+          
+          $data->setUsername($username);
+          $data->setEmailAddress($cotisants->mail);
+          $data->setFirstName($cotisants->prenom);
+          $data->setLastName($cotisants->nom);
+          $data->setIsActive(true);
+          $data->save();
 
-            switch($cotisants->ecole)
-            {
-                case 'utc': $email = 'etu.utc.fr';
-                    break;
-                case 'escom': $email = 'escom.fr';
-                    break;
-                default: $email = '';
-            }
-            $data->setEmailAddress($username . '@' . $email);
-            $data->setFirstName(ucfirst(strtolower($cotisants->prenom)));
-            $data->setLastName(ucfirst(strtolower($cotisants->nom)));
-            $data->setIsActive(true);
-            $data->save();
-
-            $profile = new Profile();
-            $profile->setUser($data);
-            $profile->setDomain($cotisants->ecole);
-            $profile->save();
+          $profile = new Profile();
+          $profile->setUser($data);
+          $profile->setDomain($cotisants->type);
+          $profile->save();
         }
-        /**
-         * @todo Gérer non etu
-         */
-        else
-        {
-            die("Vous n'êtes pas dans notre base étudiants.");
+        catch (ApiException $ex){
+          die("Il n'a pas ete possible de vous identifier. Merci de contacter simde@assos.utc.fr en precisant votre login et le code d'erreur ".$ex->getCode().".");
         }
+        
         return $data;
     }
 

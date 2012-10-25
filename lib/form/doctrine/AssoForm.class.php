@@ -13,9 +13,11 @@ class AssoForm extends BaseAssoForm
   public function configure()
   {
     sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
-    $this->useFields(array(
-        'name', 'pole_id','type_id','logo','summary','description','salle','phone','facebook','joignable'
-    ));
+    
+    unset($this->widgetSchema['created_at'],
+            $this->widgetSchema['updated_at'],
+            $this->validatorSchema['created_at'],
+            $this->validatorSchema['updated_at']);
     
     $this->widgetSchema['logo'] = new sfWidgetFormInputFileEditable(array(
       'file_src' => doThumb($this->getObject()->getLogo(), 'assos', array('width'=>150, 'height'=>150), 'scale'),

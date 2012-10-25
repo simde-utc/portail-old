@@ -22,6 +22,7 @@ all:
   portail:
     current_semestre: 3
     default_join_role: 3
+    ginger_key: abc
   sfXssSafePlugin:
     definition:
       HTML:

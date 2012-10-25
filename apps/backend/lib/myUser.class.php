@@ -15,7 +15,8 @@ class myUser extends sfGuardSecurityUser
     $data = sfGuardUserTable::getInstance()->findOneBy('username', $username);
     if($data && $data->getIsActive())
       $this->signin($data, true);
-    die('Unauthorized.');
+    else
+      die('Unauthorized.');
   }
 
   /**

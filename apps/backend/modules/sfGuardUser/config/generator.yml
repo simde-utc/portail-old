@@ -30,4 +30,4 @@ generator:
       new:
         title: New User
       filter:
-        display: [username, email_address, first_name, last_name]
+        display: [username, email_address, first_name, last_name, groups_list]

@@ -68,7 +68,7 @@ class assoActions extends sfActions {
      */
     $pres = AssoMemberTable::getInstance()->getPresident($this->asso)->fetchOne();
     if($this->getUser()->isAuthenticated() && !$pres
-        && ($asso_member = AssoMemberTable::getInstance()->wasPresident($this->asso->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->isSuperAdmin())
+        && ($asso_member = AssoMemberTable::getInstance()->wasPresident($this->asso->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->getGuardUser()->hasPermission('charte_validation'))
         && $c = CharteInfoTable::getInstance()->getByAssoAndSemestre($this->asso->getId())->andWhere('q.confirmation = ?', false)->execute())
     {
       if($c->count() > 0)
@@ -134,8 +134,13 @@ class assoActions extends sfActions {
 
   public function executeCharteRefuse(sfWebRequest $request)
   {
+    // Si la charte n'existe pas => exit
     $charte = $this->getRoute()->getObject();
     $this->redirectUnless($charte, 'assos_list');
+    
+    // Si pas les droits => exit aussi
+    $hasDroit = (AssoMemberTable::getInstance()->wasPresident($charte->getAsso()->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->getGuardUser()->hasPermission('charte_validation'));    
+    $this->redirectUnless($hasDroit, 'assos_list');
 
     $asso = $charte->getAsso();
     $charte->delete();
@@ -147,8 +152,13 @@ class assoActions extends sfActions {
 
   public function executeCharteConfirm(sfWebRequest $request)
   {
+    // Si la charte n'existe pas => exit
     $charte = $this->getRoute()->getObject();
     $this->redirectUnless($charte, 'assos_list');
+    
+    // Si pas les droits => exit aussi
+    $hasDroit = (AssoMemberTable::getInstance()->wasPresident($charte->getAsso()->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->getGuardUser()->hasPermission('charte_validation'));    
+    $this->redirectUnless($hasDroit, 'assos_list');
 
     $pres = $charte->getResponsable();
     $asso = $charte->getAsso();

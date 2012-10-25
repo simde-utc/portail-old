@@ -17,6 +17,12 @@ class gesmailActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+    // Redirection temporaire
+    $asso = AssoTable::getInstance()->getOneByLogin($request->getParameter('login'))->select('q.id, q.login')->fetchOne();
+    $this->getUser()->setFlash('info', 'La gestion des mails est disponible à l\'adresse http://assos.utc.fr/gesmail et sera prochainement intégrée au portail.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
+
+    
     // Droits d'accès
     $asso = AssoTable::getInstance()->getOneByLogin($request->getParameter('login'))->select('q.id, q.login')->fetchOne();
     if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x80))

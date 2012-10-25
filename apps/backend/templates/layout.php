@@ -65,7 +65,9 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Utilisateurs</li>
-              <li><a href="<?php echo url_for('sf_guard_user') ?>">Liste des utilisateurs</a></li>
+              <li><a href="<?php echo url_for('sf_guard_user') ?>">Utilisateurs</a></li>
+              <li><a href="<?php echo url_for('sf_guard_group') ?>">Groupes</a></li>
+              <li><a href="<?php echo url_for('sf_guard_permission') ?>">Permissions</a></li>
               <li class="nav-header">Associations</li>
               <li><a href="<?php echo url_for('asso') ?>">Liste des associations</a></li>
               <li><a href="<?php echo url_for('asso_new') ?>">Nouvelle association</a></li>

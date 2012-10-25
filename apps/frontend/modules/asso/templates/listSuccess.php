@@ -1,5 +1,6 @@
 <?php use_stylesheet('asso.css') ?>
 <?php use_helper('Text') ?>
+<?php use_helper('Thumb') ?>
 
 <div id="poles_list">
   <ul>

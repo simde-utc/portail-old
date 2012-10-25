@@ -18,6 +18,9 @@ class assoActions extends sfActions {
    */
   public function executeIndex(sfWebRequest $request)
   {
+    // Redirection (car cette page n'est pas présentable)
+    $this->redirect('home/index');
+    
     $pole_id = $this->getRequestParameter('pole');
     $this->poles = PoleTable::getInstance()->getAllWithInfos()->execute();
     foreach($this->poles as $p)

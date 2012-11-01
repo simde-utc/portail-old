@@ -34,10 +34,9 @@ class ArticleForm extends BaseArticleForm {
     $this->validatorSchema['image_delete'] = new sfValidatorBoolean();
     
     $this->widgetSchema->setLabel('name', 'Titre');
-    $this->widgetSchema->setLabel('summary', 'Résumé en une ligne');
     $this->widgetSchema->setLabel('text', 'Contenu');
     $this->widgetSchema->setLabel('image', 'Ilustration');
-    $this->useFields(array('asso_id', 'name', 'summary', 'text', 'image'));
+    $this->useFields(array('asso_id', 'name', 'text', 'image'));
   }
 
 }

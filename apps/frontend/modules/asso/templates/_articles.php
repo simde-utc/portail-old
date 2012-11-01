@@ -11,7 +11,8 @@
     <div id="article_list">
       <?php foreach($articles as $article) : ?>
         <div class="article">
-          <h2 style="background: <?php echo $article->getPole()->getCouleur() ?>"><?php echo $article->getName() ?>
+          <h2 style="background: <?php echo $article->getPole()->getCouleur() ?>">
+            <a href="<?php echo url_for('article/show?id='.$article->getId()) ?>" title="Lire <?php echo $article->getName() ?>"><?php echo $article->getName() ?></a>
             <span class="sub">
               <?php echo format_date($article->getCreatedAt(), 'P', 'fr'); ?>
               <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04)): ?>
@@ -23,11 +24,7 @@
             <?php echo showThumb($article->getImage(), 'articles', array('width'=>250, 'height'=>150, 'class' => 'affiche'), 'scale') ?><br />
           <?php endif; ?>
           <p>
-            <?php if($article->getSummary()): ?>
-              <?php echo nl2br($article->getSummary()) ?> <a href="<?php echo url_for('article/show?id='.$article->getId()) ?>">En savoir plus...</a>
-            <?php else: ?>
-              <?php echo nl2br($article->getText()) ?>
-            <?php endif; ?>
+            <?php echo nl2br($article->getText()) ?>
           </p>
           <br style="clear: both;" />
         </div>

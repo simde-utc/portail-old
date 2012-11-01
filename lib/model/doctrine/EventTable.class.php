@@ -50,11 +50,15 @@ class EventTable extends Doctrine_Table
    * Fetch the list of all events in future.
    *  
    */
-  public function getFutureEventsList()
+  public function getFutureEventsList($max = 0)
   {
     $q = $this->createQuery('a')
             ->addOrderBy('a.start_date ASC');
     $q = $q->where("a.end_date > NOW()");
+    
+    if($max > 0){
+      $q->limit($max);
+    }
 
     return $q;
   }

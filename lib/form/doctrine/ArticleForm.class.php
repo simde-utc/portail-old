@@ -22,6 +22,8 @@ class ArticleForm extends BaseArticleForm {
                 'with_delete' => true,
                 'delete_label' => "Supprimer cette illustration"
             ));
+    
+    $this->widgetSchema['text'] = new sfWidgetFormTextarea(array(), array('rows' => '20'));
 
     $this->validatorSchema['image'] = new sfValidatorFileImage(array(
     	'required' => false,

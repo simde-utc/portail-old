@@ -71,7 +71,7 @@ class assoActions extends sfActions {
      */
     $pres = AssoMemberTable::getInstance()->getPresident($this->asso)->fetchOne();
     if($this->getUser()->isAuthenticated() && !$pres
-        && ($asso_member = AssoMemberTable::getInstance()->wasPresident($this->asso->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->getGuardUser()->hasPermission('charte_validation'))
+        && ($asso_member = AssoMemberTable::getInstance()->wasPresident($this->asso->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->getGuardUser()->hasPermission('chartes_valider'))
         && $c = CharteInfoTable::getInstance()->getByAssoAndSemestre($this->asso->getId())->andWhere('q.confirmation = ?', false)->execute())
     {
       if($c->count() > 0)
@@ -142,7 +142,7 @@ class assoActions extends sfActions {
     $this->redirectUnless($charte, 'assos_list');
     
     // Si pas les droits => exit aussi
-    $hasDroit = (AssoMemberTable::getInstance()->wasPresident($charte->getAsso()->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->getGuardUser()->hasPermission('charte_validation'));    
+    $hasDroit = (AssoMemberTable::getInstance()->wasPresident($charte->getAsso()->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->getGuardUser()->hasPermission('chartes_valider'));    
     $this->redirectUnless($hasDroit, 'assos_list');
 
     $asso = $charte->getAsso();
@@ -160,7 +160,7 @@ class assoActions extends sfActions {
     $this->redirectUnless($charte, 'assos_list');
     
     // Si pas les droits => exit aussi
-    $hasDroit = (AssoMemberTable::getInstance()->wasPresident($charte->getAsso()->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->getGuardUser()->hasPermission('charte_validation'));    
+    $hasDroit = (AssoMemberTable::getInstance()->wasPresident($charte->getAsso()->getId(), $this->getUser()->getGuardUser()->getId()) || $this->getUser()->getGuardUser()->hasPermission('chartes_valider'));    
     $this->redirectUnless($hasDroit, 'assos_list');
 
     $pres = $charte->getResponsable();

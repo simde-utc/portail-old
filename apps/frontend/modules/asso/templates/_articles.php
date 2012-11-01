@@ -24,7 +24,7 @@
             <?php echo showThumb($article->getImage(), 'articles', array('width'=>250, 'height'=>150, 'class' => 'affiche'), 'scale') ?><br />
           <?php endif; ?>
           <p>
-            <?php echo nl2br($article->getText()) ?>
+            <?php echo nl2br($article->getText(ESC_XSSSAFE)) ?>
           </p>
           <br style="clear: both;" />
         </div>

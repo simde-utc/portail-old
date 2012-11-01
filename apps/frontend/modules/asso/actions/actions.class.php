@@ -222,7 +222,7 @@ EOF
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login=' . $asso->getLogin());
     }
-    $this->form = new AssoForm($asso);
+    $this->form = new AssoFormUser($asso);
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');

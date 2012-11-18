@@ -24,10 +24,7 @@ Installation
 L'ensemble des fichiers de configuration sont enregistrés avec une extension `.dist`. Il faut les copier en retirant ce `.dist` puis les personnaliser.
 
 * Les réglages de base de données sont dans `config/databases.yml`
-* Chaque application a une configuration spécifique :
- * `apps/backend/config/app.yml`
- * `apps/bde/config/app.yml`
- * `apps/frontend/config/app.yml`
+* Les réglages de l'application : `config/app.yml`
 
 Contribuer
 ----------

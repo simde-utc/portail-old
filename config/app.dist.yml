@@ -19,7 +19,11 @@ all:
     mime_type:
       auto_detect: true
       library: gd_mime_type
+  # Les valeurs ci-dessous sont a personnaliser
   portail:
+    # Semestre actuel
     current_semestre: 2
+    # Role que récupère un user joignant une asso
     default_join_role: 3
+    # Clé pour ginger (laisser tel quel pour le dev)
     ginger_key: abc

@@ -3,26 +3,6 @@ all:
     allow_login_with_email: true
     remember_key_expiration_age:  604800   # 7 days in seconds
     remember_cookie_name:         portailSiMDERememberMe
-  cas:
-    # Exemple for https://cas-server-name:8443/cas-path
-    server_name: 'cas.utc.fr'
-    server_port: 443
-    server_path: 'cas'
-    # SSL certificat location, can be:
-    #  relative to sf_root_dir, ex:    "data/cas/cert/mycert.pem"
-    #  absolute ex:                    "/usr/var/certif/xxx.pem"
-    #  disabled for dev context ex:    false
-    server_cert: "../data/cas.pem"
-  sfImageTransformPlugin:
-    default_adapter: GD
-    default_image: default.jpg
-    mime_type:
-      auto_detect: true
-      library: gd_mime_type
-  portail:
-    current_semestre: 3
-    default_join_role: 3
-    ginger_key: abc
   sfXssSafePlugin:
     definition:
       HTML:

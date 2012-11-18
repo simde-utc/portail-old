@@ -15,7 +15,9 @@ class myUser extends sfGuardSecurityUser
         $data = sfGuardUserTable::getInstance()->findOneBy('username', $username);
         if(!$data || ($data->getPassword() == NULL && !$data->getIsActive()))
             $data = $this->registerUser($username, $data);
-        $this->signin($data, true);
+        
+        if($data)
+          $this->signin($data, true);
     }
 
     private function registerUser($username, $data = NULL)
@@ -38,12 +40,14 @@ class myUser extends sfGuardSecurityUser
           $profile->setUser($data);
           $profile->setDomain($cotisants->type);
           $profile->save();
+          
+          return $data;
         }
         catch (ApiException $ex){
-          die("Il n'a pas ete possible de vous identifier. Merci de contacter simde@assos.utc.fr en precisant votre login et le code d'erreur ".$ex->getCode().".");
+          $this->setFlash('error', "Il n'a pas été possible de vous identifier. Merci de contacter simde@assos.utc.fr en précisant votre login et le code d'erreur ".$ex->getCode().".");          
         }
         
-        return $data;
+        return false;
     }
 
     /**

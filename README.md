@@ -21,10 +21,7 @@ La connexion se fait via le CAS de l'UTC.
 Installation
 ------------
 
-L'ensemble des fichiers de configuration sont enregistrés avec une extension `.dist`. Il faut les copier en retirant ce `.dist` puis les personnaliser.
-
-* Les réglages de base de données sont dans `config/databases.yml`
-* Les réglages de l'application : `config/app.yml`
+Voir sur le wiki : [Bien commencer](https://github.com/simde-utc/portail/wiki/Bien-commencer)
 
 Contribuer
 ----------

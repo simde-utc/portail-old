@@ -23,8 +23,19 @@ class myUser extends sfGuardSecurityUser
     private function registerUser($username, $data = NULL)
     {
         try {
-          $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
-          $cotisants = $ginger->getUser($username);
+          $gingerKey = sfConfig::get('app_portail_ginger_key');
+          
+          if($gingerKey != "abc"){
+            $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
+            $cotisants = $ginger->getUser($username);
+          }
+          else {
+            $cotisants = new stdClass();
+            $cotisants->mail = $username."@etu.utc.fr";
+            $cotisants->prenom = "Le";
+            $cotisants->nom = "Testeur";
+            $cotisants->type = "etu";
+          }
           
           if(!$data)
               $data = new sfGuardUser();

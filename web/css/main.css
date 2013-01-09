@@ -826,3 +826,7 @@ ul.membres li img {
 .nav a {
   color: #08C;
 }
+
+.ejs {
+  visibility: hidden;
+}

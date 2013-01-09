@@ -13,10 +13,10 @@
     </p>
   <?php endif ?>
   <p>
-    <a href="mailto:<?php echo $asso->getLogin() ?>@assos.utc.fr"><?php echo $asso->getLogin() ?>@assos.utc.fr</a><br />
+    <a class="ejs"><?php echo $asso->getLogin() ?></a><br />
     <a href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a>
       <?php if ($asso->getFacebook()): ?>
-      <a href="<?php echo $asso->getFacebook() ?>">Notre facebook</a>
+      <a href="<?php echo $asso->getFacebook() ?>">facebook</a>
   <?php endif ?>
   </p>
 </div>

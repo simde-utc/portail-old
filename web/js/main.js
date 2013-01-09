@@ -24,5 +24,12 @@ $(document).ready(function(){
     if (min<10)	min = '0'+min;
     $(".horloge").html( d.getDate() + ' ' + mois[d.getMonth()] + ' ' +d.getFullYear() + ' <span class="barre">' + heure + ':' + min +'</span>');
   }, 1000);
+  
+  $(".ejs").each(function(){
+    var a = $(this).html() + "@assos.utc." + "fr";
+    $(this).html(a);
+    $(this).attr("href", "mailto:" + a);
+    $(this).css("visibility", "visible");
+  });
 
 });

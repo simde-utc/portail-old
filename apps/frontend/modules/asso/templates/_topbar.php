@@ -12,7 +12,7 @@
     <?php echo nl2br($asso->getDescription(ESC_XSSSAFE)) ?>
   </div>
   <a class="website" href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a><br />
-  <a class="email "href="mailto:<?php echo $asso->getLogin() ?>@assos.utc.fr"><?php echo $asso->getLogin() ?>@assos.utc.fr</a><br />
+  <a class="email ejs"><?php echo $asso->getLogin() ?></a><br />
   <br />
   <?php if($asso->getJoignable()): ?>
     <?php if($sf_user->isAuthenticated()): ?>

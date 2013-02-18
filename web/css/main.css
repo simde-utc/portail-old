@@ -193,7 +193,7 @@ p { text-align : justify; }
 /* ------------------------------- */
 
 #content{
-  width: 620px;
+  width: 813px;
   background: #fff;
   padding: 10px;
   -webkit-border-radius: 5px;
@@ -201,7 +201,7 @@ p { text-align : justify; }
   float:left;
 }
 
-#column-left, #column-right{
+#column-left {
   float: left;
   width: 175px;
   margin: 8px;
@@ -753,7 +753,6 @@ a.btn-danger {
 }
 
 #topbar{
-  width: 598px;
   padding: 10px;
 }
 

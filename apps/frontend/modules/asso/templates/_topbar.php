@@ -13,6 +13,15 @@
   </div>
   <a class="website" href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a><br />
   <a class="email ejs"><?php echo $asso->getLogin() ?></a><br />
+  <?php if ($asso->getPhone()): ?>
+  <span class="phone"><?php echo $asso->getPhone() ?></span><br />
+  <?php endif ?>
+  <?php if ($asso->getSalle()): ?>
+  Salle : <?php echo $asso->getSalle() ?><br />
+  <?php endif ?>
+  <?php if ($asso->getFacebook()): ?>
+  <a href="<?php echo $asso->getFacebook() ?>">facebook</a><br />
+  <?php endif ?>
   <br />
   <?php if($asso->getJoignable()): ?>
     <?php if($sf_user->isAuthenticated()): ?>

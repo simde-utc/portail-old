@@ -13,6 +13,15 @@
   </div>
   <a class="website" href="<?php echo $asso->getUrlSite() ?>"><?php echo $asso->getUrlSite() ?></a><br />
   <a class="email ejs"><?php echo $asso->getLogin() ?></a><br />
+  <?php if ($asso->getFacebook()): ?>
+  <a class="facebook" href="<?php echo $asso->getFacebook() ?>"><?php echo $asso->getFacebook() ?></a><br />
+  <?php endif ?>
+  <?php if ($asso->getPhone()): ?>
+  <span class="phone"><?php echo $asso->getPhone() ?></span><br />
+  <?php endif ?>
+  <?php if ($asso->getSalle()): ?>
+  <span class="salle"><?php echo $asso->getSalle() ?></span><br />
+  <?php endif ?>
   <br />
   <?php if($asso->getJoignable()): ?>
     <?php if($sf_user->isAuthenticated()): ?>
@@ -22,7 +31,7 @@
         <a href="<?php echo url_for('asso_leave', $asso) ?>" class="btn"><i class="icon-remove"></i> Quitter cette association</a><br />
       <?php endif; ?>
     <?php else: ?>
-      Connectez-vous pour rejoindre cette association
+        <a href="<?php echo url_for('cas') ?>" class="btn"><i class="icon-arrow-right"></i> Connectez-vous pour rejoindre cette association</a><br />
     <?php endif ?>
   <?php endif; ?>
 </div>

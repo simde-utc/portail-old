@@ -31,7 +31,7 @@
         <a href="<?php echo url_for('asso_leave', $asso) ?>" class="btn"><i class="icon-remove"></i> Quitter cette association</a><br />
       <?php endif; ?>
     <?php else: ?>
-      Connectez-vous pour rejoindre cette association
+        <a href="<?php echo url_for('cas') ?>" class="btn"><i class="icon-arrow-right"></i> Connectez-vous pour rejoindre cette association</a><br />
     <?php endif ?>
   <?php endif; ?>
 </div>

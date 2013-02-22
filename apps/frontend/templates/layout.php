@@ -104,9 +104,7 @@
         <?php endif ?>
         <?php echo $sf_content ?>
       </div>
-      <div id="column-right">
-        <?php include_component('asso','contact') ?>
-      </div>
+
     </div>
     <div id="footer">
       <div class="wrap">

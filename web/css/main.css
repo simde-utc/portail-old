@@ -193,7 +193,7 @@ p { text-align : justify; }
 /* ------------------------------- */
 
 #content{
-  width: 620px;
+  width: 813px;
   background: #fff;
   padding: 10px;
   -webkit-border-radius: 5px;
@@ -201,7 +201,7 @@ p { text-align : justify; }
   float:left;
 }
 
-#column-left, #column-right{
+#column-left {
   float: left;
   width: 175px;
   margin: 8px;
@@ -727,6 +727,24 @@ a.btn-danger {
   vertical-align: middle;
 }
 
+#topbar .facebook:before , #assos_list .facebook:before {
+  content: url('/images/icons/facebook.png');
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+#topbar .phone:before , #assos_list .phone:before {
+  content: url('/images/icons/phone.png');
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+#topbar .salle:before , #assos_list .salle:before {
+  content: url('/images/icons/door_open.png');
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
 #asso{
   padding : 10px;
   width:598px;
@@ -753,7 +771,6 @@ a.btn-danger {
 }
 
 #topbar{
-  width: 598px;
   padding: 10px;
 }
 

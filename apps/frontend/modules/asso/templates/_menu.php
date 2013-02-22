@@ -1,3 +1,4 @@
+<?php if($asso): ?>
 <div class="wrap">
   <div id="asso-menu" style="background:<?php echo $couleur ?>">
     <a href="<?php echo url_for('assos_show', $asso) ?>"><i class="icon-home icon-white"></i> <?php echo $asso->getName() ?></a>
@@ -19,3 +20,4 @@
     <?php endif ?>
   </div>
 </div>
+<?php endif ?>

@@ -56,11 +56,11 @@ class assoComponents extends sfComponents
       $this->asso = AssoTable::getInstance()->getOneByLogin($login)->select('q.id, q.login')->fetchOne();
     else
       $this->asso = AssoTable::getInstance()->getOneById(1)->select('q.id, q.login')->fetchOne(); // BDE
-
-    if($this->asso->isPole())
-      $this->couleur = PoleTable::getInstance()->findOneBy('asso_id', $this->asso->getId())->getCouleur();
-    else
-      $this->couleur = $this->asso->getPole()->getCouleur();
+    if($this->asso)
+      if($this->asso->isPole())
+        $this->couleur = PoleTable::getInstance()->findOneBy('asso_id', $this->asso->getId())->getCouleur();
+      else
+        $this->couleur = $this->asso->getPole()->getCouleur();
 
     /*
      * Si l'utilisateur est membre
@@ -68,7 +68,8 @@ class assoComponents extends sfComponents
      * on lui propose de suivre la procédure de signature de charte.
      */
     if($this->getUser()->isAuthenticated()
-            && $this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
+      && $this->asso
+      && $this->getUser()->getGuardUser()->isMember($this->asso->getLogin()))
     {
       $pres = AssoMemberTable::getInstance()->getPresident($this->asso)->fetchOne();
       $this->charte = (!$pres)?true:false;

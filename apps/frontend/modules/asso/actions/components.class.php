@@ -56,11 +56,12 @@ class assoComponents extends sfComponents
       $this->asso = AssoTable::getInstance()->getOneByLogin($login)->select('q.id, q.login')->fetchOne();
     else
       $this->asso = AssoTable::getInstance()->getOneById(1)->select('q.id, q.login')->fetchOne(); // BDE
-    if($this->asso)
+    if($this->asso) {
       if($this->asso->isPole())
         $this->couleur = PoleTable::getInstance()->findOneBy('asso_id', $this->asso->getId())->getCouleur();
       else
         $this->couleur = $this->asso->getPole()->getCouleur();
+    }
 
     /*
      * Si l'utilisateur est membre

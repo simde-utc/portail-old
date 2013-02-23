@@ -1,9 +1,9 @@
-[submodule "lib/vendor/symfony"]
-	path = lib/vendor/symfony
-	url = git://github.com/MiLk/symfony.git
 [submodule "plugins/sfCASPlugin"]
 	path = plugins/sfCASPlugin
 	url = git://github.com/jeanmonod/sfCASPlugin.git
 [submodule "lib/vendor/ginger-client"]
 	path = lib/vendor/ginger-client
 	url = git://github.com/simde-utc/ginger-client.git
+[submodule "lib/vendor/symfony"]
+	path = lib/vendor/symfony
+	url = git://github.com/symfony/symfony1.git

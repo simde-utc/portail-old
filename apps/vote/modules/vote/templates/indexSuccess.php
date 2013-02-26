@@ -5,11 +5,11 @@
     <h3><?php echo $liste->getNom() ?></h3>
     <h4>Programme:</h4>
     <p>
-      <?php echo html_entity_decode($liste->getDescription()) ?>
+      <?php echo $liste->getDescription(ESC_RAW) ?>
     </p>
     <h4>Membres:</h4>
     <p>
-      <?php echo html_entity_decode($liste->getMembres()) ?>
+      <?php echo $liste->getMembres(ESC_RAW) ?>
     </p>
   </div>
 <?php endforeach ?>
@@ -17,7 +17,7 @@
 <?php if($is_cotisant): ?>
   <?php if(!$has_voted): ?>
     <?php foreach($listes as $liste): ?>
-      <a href="<?php echo url_for('vote',$liste) ?>" class="btn btn-primary liste">Je vote <?php echo $liste->getNom() ?></a>
+      <a href="<?php echo url_for('vote',$liste) ?>" onclick="return confirm('Êtes-vous sûr de vouloir voter pour <?php echo addslashes($liste->getNom(ESC_RAW)) ?> ?');" class="btn btn-primary liste">Je vote <?php echo $liste->getNom() ?></a>
     <?php endforeach ?>
   <?php else: ?>
     Vous avez déjà voté.

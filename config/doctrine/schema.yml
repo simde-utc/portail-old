@@ -244,3 +244,27 @@ Partenaire:
     logo: { type: string(100) }
     url: { type: string(255) }
     description: { type: string }
+
+VoteListe:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string(100), notnull: true }
+    description: { type: string, notnull: true }
+    membres: { type: string, notnull: true }
+    semestre_id: { type: integer, notnull: true }
+    count: { type: integer, notnull: true, default: 0 }
+  relations:
+    Semestre: { local: semestre_id, foreign: id }
+
+Vote:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    ip: { type: string(15), notnull: true }
+    semestre_id: { type: integer, notnull: true }
+    user_id: { type: integer, notnull: true }
+    login: { type: string(20), notnull: true }
+  relations:
+    Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }

@@ -15,11 +15,15 @@ class voteActions extends sfActions
   }
 
   public function executeVote(sfWebRequest $request) {
-    $liste = $this->getRoute()->getObject();
-    if(!$liste) {
+    $liste_id = $request->getParameter('id');
+    if($liste_id != 0)
+      $liste = $this->getRoute()->getObject();
+    else
+      $liste = 0;
+    if($liste_id != 0 && !$liste) {
       $this->getUser()->setFlash('error','Cette liste n\'existe pas.');
     } else
-    if($liste->getSemestreId() != sfConfig::get('app_portail_current_semestre')) {
+    if($liste_id != 0 && $liste->getSemestreId() != sfConfig::get('app_portail_current_semestre')) {
       $this->getUser()->setFlash('error','Vous ne pouvez pas voter pour cette liste.');
     } else
     if(!$this->isCotisant()) {
@@ -35,10 +39,12 @@ class voteActions extends sfActions
         $vote->setLogin($this->getUser()->getGuardUser()->getUsername());
         $vote->save();
 
-        $pdo = Doctrine_Manager::getInstance()->getCurrentConnection()->getDbh();
-        $stmt = $pdo->prepare('UPDATE `vote_liste` SET `count`=(`count`+1) WHERE `id` = :id');
-        $stmt->bindParam(':id', $liste->getPrimaryKey(), PDO::PARAM_INT);
-        $stmt->execute();
+        if($liste_id != 0) {
+          $pdo = Doctrine_Manager::getInstance()->getCurrentConnection()->getDbh();
+          $stmt = $pdo->prepare('UPDATE `vote_liste` SET `count`=(`count`+1) WHERE `id` = :id');
+          $stmt->bindParam(':id', $liste->getPrimaryKey(), PDO::PARAM_INT);
+          $stmt->execute();
+        }
 
         $this->getUser()->setFlash('success','Votre vote a été pris en compte.');
       }

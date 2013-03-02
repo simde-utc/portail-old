@@ -19,6 +19,7 @@
     <?php foreach($listes as $liste): ?>
       <a href="<?php echo url_for('vote',$liste) ?>" onclick="return confirm('Êtes-vous sûr de vouloir voter pour <?php echo addslashes($liste->getNom(ESC_RAW)) ?> ?');" class="btn btn-primary liste">Je vote <?php echo $liste->getNom() ?></a>
     <?php endforeach ?>
+    <a href="<?php echo url_for('vote',array('id' => 0)) ?>" onclick="return confirm('Êtes-vous sûr de vouloir voter blanc ?');" class="btn btn-primary liste">Je vote Blanc</a>
   <?php else: ?>
     Vous avez déjà voté.
   <?php endif ?>

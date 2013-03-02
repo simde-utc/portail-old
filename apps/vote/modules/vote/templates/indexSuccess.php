@@ -3,11 +3,11 @@
 <?php foreach($listes as $liste): ?>
   <div class="well liste">
     <h3><?php echo $liste->getNom() ?></h3>
-    <h4>Programme:</h4>
+    <h4>Programme</h4>
     <p>
       <?php echo $liste->getDescription(ESC_RAW) ?>
     </p>
-    <h4>Membres:</h4>
+    <h4>Membres</h4>
     <p>
       <?php echo $liste->getMembres(ESC_RAW) ?>
     </p>

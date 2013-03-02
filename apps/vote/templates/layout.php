@@ -25,26 +25,14 @@
           <a class="brand" href="<?php echo url_for('homepage') ?>">Élections BDE</a>
           <div class="btn-group pull-right">
             <?php if(!$sf_user->isAuthenticated()): ?>
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
+              <a class="btn" href="<?php echo url_for('cas') ?>">
                 <i class="icon-user"></i> Connexion
-                <b class="caret"></b>
               </a>
-              <ul class="dropdown-menu pull-right">
-                <li><a href="<?php echo url_for('cas') ?>">Je suis étudiant</a></li>
-                <li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>
-                <li class="divider"></li>
-                <li><a href="<?php echo url_for('sf_guard_register') ?>">Inscription extérieur</a></li>
-              </ul>
             <?php else: ?>
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
+              <span class="btn">
                 <i class="icon-user"></i> <?php echo $sf_user->getGuardUser()->getName() ?>
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu pull-right">
-                <li><a href="<?php echo url_for('cas_logout') ?>">Déconnexion du CAS</a></li>
-                <li class="divider"></li>
-                <li><a href="<?php echo url_for('sf_guard_signout') ?>">Déconnexion du portail</a></li>
-              </ul>
+              </span>
+              <a class="btn" href="<?php echo url_for('cas_logout') ?>">Déconnexion du CAS</a>
             <?php endif ?>
           </div>
           <?php /*

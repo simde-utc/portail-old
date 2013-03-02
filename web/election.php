@@ -3,5 +3,5 @@
 
 require_once(dirname(__FILE__).'/../config/ProjectConfiguration.class.php');
 
-$configuration = ProjectConfiguration::getApplicationConfiguration('vote', 'prod', false);
+$configuration = ProjectConfiguration::getApplicationConfiguration('election', 'prod', false);
 sfContext::createInstance($configuration)->dispatch();

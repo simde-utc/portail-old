@@ -15,7 +15,8 @@ generator:
       actions: ~
       fields:  ~
       list:    ~
-      filter:  ~
+      filter:
+        display: [nom, description, membres, semestre_id, count]
       form:    ~
       edit:    ~
       new:     ~

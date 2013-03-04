@@ -1,0 +1,21 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: vote, action: index }
+
+vote:
+  url:   /vote/:id
+  class: sfDoctrineRoute
+  param: { module: vote, action: vote }
+  options: { model: VoteListe, type: object }
+
+cas:
+  url: /cas
+  param: { module: cas, action: login }
+
+cas_logout:
+  url: /cas/logout
+  param: { module: cas, action: logout }

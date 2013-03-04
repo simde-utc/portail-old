@@ -1,3 +1,12 @@
+vote_liste:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                VoteListe
+    module:               vote_liste
+    prefix_path:          /vote_liste
+    column:               id
+    with_wildcard_routes: true
+
 event_type:
   class: sfDoctrineRouteCollection
   options:

@@ -83,6 +83,8 @@
               <li class="nav-header">SiMDE</li>
               <li><a href="<?php echo url_for('charte_info') ?>">Signatures Chartes Info</a></li>
               <li><a href="<?php echo url_for('charte_info_new') ?>">Nouvelle Charte Info</a></li>
+              <li class="nav-header">Elections BDE</li>
+              <li><a href="<?php echo url_for('vote_liste') ?>">Edition des listes</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

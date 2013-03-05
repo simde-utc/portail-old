@@ -1,6 +1,9 @@
 <?php
 
-if(date('dmY') !== "06032013") {
+$start = mktime(8,0,0,3,6,2013);
+$end = mktime(23,59,59,3,6,2013);
+$time = time();
+if($time < $start || $time > $end) {
 	echo 'Il n\'y a pas d\'&eacute;lection aujourd\'hui, repassez plus tard.';
 	exit;
 }

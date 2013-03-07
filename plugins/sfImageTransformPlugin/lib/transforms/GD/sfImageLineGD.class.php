@@ -247,7 +247,7 @@ class sfImageLineGD extends sfImageTransformAbstract
    */
   public function setStyle($style)
   {
-    if (is_numeric($style = $style))
+    if (is_numeric($style))
     {
       $this->style = $style;
 

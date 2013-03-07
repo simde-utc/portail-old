@@ -16,7 +16,7 @@
           <img src="/images/logo_bde.png" alt="BDE UTC" width="163px" height="110px" />
         </a>
         <?php if(0): ?>
-        <form class="form-inline"><label>Rerchercher une info</label>
+        <form class="form-inline"><label>Rechercher une info</label>
           <input type="text" class="input-medium" />
           <button type="submit" class="btn">Chercher</button>
         </form>

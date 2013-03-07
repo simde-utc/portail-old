@@ -268,3 +268,37 @@ Vote:
   relations:
     Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+
+Budget:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    nom: { type: string(255), notnull: true }
+    budget_categorie_id: { type: integer, notnull: false }
+    nombre: { type: integer, notnull: true, default: 0 }
+    prix_unitaire: { type: integer, notnull: true, default: 0 }
+    commentaire: { type: string, notnull: false }
+    semestre_id: { type: integer, notnull: true }
+    date_trx: { type: date, notnull: true }
+    budget_id: { type: integer, notnull: false }
+    moyen_id: { type: integer, notnull: false }
+    moyen_commentaire: { type: string, notnull: false }
+  relations:
+    Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
+    Budget: { onUpdate: CASCADE, local: budget_id, foreign: id }
+    Moyen: { onUpdate: CASCADE, local: moyen_id, foreign: id }
+    BudgetCategorie: { onUpdate: CASCADE, local: budget_categorie_id, foreign: id }
+
+BudgetCategorie:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+BudgetMoyen:
+  connection: doctrine
+  columns:
+    nom: { type: string, notnull: true }

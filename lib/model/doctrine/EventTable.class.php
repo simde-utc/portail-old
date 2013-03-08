@@ -22,7 +22,7 @@ class EventTable extends Doctrine_Table
    * 
    * Fetch the list of all events sorted by date.
    * 
-   * @param int $asso_id
+   * @param int $asso
    */
   public function getEventsList($asso = null)
   {

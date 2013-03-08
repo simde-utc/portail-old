@@ -54,7 +54,7 @@ class assoActions extends sfActions {
     /*
      * Si par le passé l'utilisateur a été membre de l'association,
      * mais que ce n'est plus le cas actuellement,
-     * il faut afficher une alerte l'invitant à se réinscire.
+     * il faut afficher une alerte l'invitant à se réinscrire.
      */
     if($this->asso->getJoignable()
         && $this->getUser()->isAuthenticated()

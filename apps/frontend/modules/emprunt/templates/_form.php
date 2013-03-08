@@ -2,7 +2,7 @@
 <?php use_javascripts_for_form($form) ?>
 <div class="well">
   Emprunt de : <?php echo $materiel->getNom() ?><br />
-  Propritétaire : <?php echo $materiel->getAsso()->getName() ?><br />
+  Propriétaire : <?php echo $materiel->getAsso()->getName() ?><br />
   Emprunteur : <?php echo $sf_user->getUsername() ?><br />
   <br />
   <form class="editform" action="<?php echo url_for('emprunt/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>

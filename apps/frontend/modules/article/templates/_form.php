@@ -15,7 +15,7 @@
           
           &nbsp;<a class="btn" href="<?php echo url_for('assos_show',array('login' => ($form->getObject()->isNew()) ? $sf_request->getParameter('login',null) : $form->getObject()->getAsso()->getLogin())) ?>">Retour à l'association</a>
           <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Supprimer', 'article/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Êtes-vous sur de vouloir supprimer défintivement cet article ?', 'class' => 'btn btn-danger')) ?>
+            &nbsp;<?php echo link_to('Supprimer', 'article/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Êtes-vous sur de vouloir supprimer définitivement cet article ?', 'class' => 'btn btn-danger')) ?>
           <?php endif; ?>
         </td>
       </tr>

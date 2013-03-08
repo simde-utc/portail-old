@@ -37,7 +37,7 @@ class ArticleForm extends BaseArticleForm {
     
     $this->widgetSchema->setLabel('name', 'Titre');
     $this->widgetSchema->setLabel('text', 'Contenu');
-    $this->widgetSchema->setLabel('image', 'Ilustration');
+    $this->widgetSchema->setLabel('image', 'Illustration');
     $this->useFields(array('asso_id', 'name', 'text', 'image'));
   }
 

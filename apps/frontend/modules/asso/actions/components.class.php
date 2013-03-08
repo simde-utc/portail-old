@@ -10,7 +10,7 @@ class assoComponents extends sfComponents
 
   public function executeEvents()
   {
-    $this->events = EventTable::getInstance()->getEventsList($this->asso)->execute();
+    $this->events = EventTable::getInstance()->getFutureEventsList(4, $this->asso)->execute();
   }
 
   public function executeBureau()

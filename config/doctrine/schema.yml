@@ -273,6 +273,7 @@ Budget:
   connection: doctrine
   actAs: { Timestampable: ~, SoftDelete: ~ }
   columns:
+    asso_id: {type: integer, notnull: true}
     nom: { type: string(255), notnull: true }
     budget_categorie_id: { type: integer, notnull: false }
     nombre: { type: integer, notnull: true, default: 0 }
@@ -288,6 +289,7 @@ Budget:
     Budget: { onUpdate: CASCADE, local: budget_id, foreign: id }
     Moyen: { onUpdate: CASCADE, local: moyen_id, foreign: id }
     BudgetCategorie: { onUpdate: CASCADE, local: budget_categorie_id, foreign: id }
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
 
 BudgetCategorie:
   connection: doctrine

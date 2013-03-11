@@ -6,6 +6,14 @@ homepage:
   url:   /
   param: { module: budgetPrevisionnel, action: index }
 
+cas:
+  url: /cas
+  param: { module: cas, action: login }
+
+cas_logout:
+  url: /cas/logout
+  param: { module: cas, action: logout }
+
 budget_previsionnel:
   class: sfDoctrineRouteCollection
   options:

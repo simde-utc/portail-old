@@ -4,7 +4,7 @@
 # default rules
 homepage:
   url:   /
-  param: { module: budgetPrevisionnel, action: index }
+  param: { module: asso, action: index }
 
 cas:
   url: /cas
@@ -22,3 +22,10 @@ budget_previsionnel:
     prefix_path:          /budget_previsionnel
     column:               id
     with_wildcard_routes: true
+
+budget_list:
+  url: /budget/asso/:login
+  class: sfDoctrineRoute
+  param: { module: budget, action: index }
+  options: { model: Asso, type: object }
+

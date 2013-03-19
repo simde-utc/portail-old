@@ -120,7 +120,8 @@
           <a href="http://ent.utc.fr">ENT</a><br/>
           <a href="/simde">SiMDE</a><br/>
           <a href="/wiki">Wiki des assos</a><br/>
-          <a href="http://www.utc.fr">UTC</a>
+          <a href="http://www.utc.fr">UTC</a><br/>
+          <a href="https://github.com/simde-utc/portail">Dépôt GitHub</a>
         </div>
       </div>
     </div>

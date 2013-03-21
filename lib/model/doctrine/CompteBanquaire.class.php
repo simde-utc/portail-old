@@ -12,4 +12,8 @@
  */
 class CompteBanquaire extends BaseCompteBanquaire
 {
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }

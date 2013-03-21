@@ -12,4 +12,8 @@
  */
 class TransactionMoyen extends BaseTransactionMoyen
 {
+    public function __toString()
+    {
+        return $this->nom;
+    }
 }

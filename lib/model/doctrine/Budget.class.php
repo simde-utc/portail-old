@@ -12,4 +12,5 @@
  */
 class Budget extends BaseBudget
 {
+    
 }

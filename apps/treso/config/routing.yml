@@ -22,3 +22,35 @@ budget_previsionnel:
     prefix_path:          /budget_previsionnel
     column:               id
     with_wildcard_routes: true
+
+
+
+budget_categorie:
+  url: /budget_categorie/asso/:login
+  class: sfDoctrineRoute
+  param: {module: budgetCategorie, action: index}
+  options: {model: Asso, type: object}
+
+budget_categorie_edit:
+  url: /budget_categorie/edit/:id
+  class: sfDoctrineRoute
+  param: {module: budgetCategorie, action: edit}
+  options: {model: budgetCategorie, type: object}
+
+budget_categorie_new:
+  url: /budget_categorie/new/:login
+  class: sfDoctrineRoute
+  param: {module: budgetCategorie, action: new}
+  options: {model: Asso, type: object}
+
+budget_categorie_update:
+  url: /budget_categorie/update/:id
+  param: {module: budgetCategorie, action: update}
+
+budget_categorie_delete:
+  url: /budget_categorie/delete/:id
+  param: {module: budgetCategorie, action: delete}
+
+budget_categorie_create:
+  url: /budget_categorie/create
+  param: {module: budgetCategorie, action: create}

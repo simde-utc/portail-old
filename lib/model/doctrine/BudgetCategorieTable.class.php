@@ -12,6 +12,14 @@ class BudgetCategorieTable extends Doctrine_Table
      *
      * @return object BudgetCategorieTable
      */
+    
+    public function getCategories($asso_id)
+    {
+		$q = $this->createQuery('q')
+      			  ->where('q.asso_id = ?', $asso_id);
+		return $q->execute();
+    }
+    
     public static function getInstance()
     {
         return Doctrine_Core::getTable('BudgetCategorie');

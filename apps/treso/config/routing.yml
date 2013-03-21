@@ -23,8 +23,6 @@ budget_previsionnel:
     column:               id
     with_wildcard_routes: true
 
-
-
 budget_categorie:
   url: /budget_categorie/asso/:login
   class: sfDoctrineRoute
@@ -54,3 +52,34 @@ budget_categorie_delete:
 budget_categorie_create:
   url: /budget_categorie/create
   param: {module: budgetCategorie, action: create}
+
+
+compte:
+  url:   /compte/asso/:login
+  class: sfDoctrineRoute
+  param: { module: compte, action: index }
+  options: { model: Asso, type: object }
+
+compte_edit:
+  url:  /compte/edit/:id
+  class: sfDoctrineRoute
+  param: { module: compte, action: edit }
+  options: { model: Article, type: object }
+
+compte_update:
+  url:  /compte/update/:id
+  param: { module: compte, action: update }
+
+compte_delete:
+  url:  /compte/delete/:id
+  param: { module: compte, action: delete }
+
+compte_new:
+  url: /compte/new/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: compte, action: new }
+
+compte_create:
+  url: /compte/create
+  param: { module: compte, action: create }

@@ -16,10 +16,6 @@ class budgetCategorieActions extends sfActions
     $this->budget_categories = BudgetCategorieTable::getInstance()->getCategories($this->asso->getId());
   }
 
-  public function executeShow(sfWebRequest $request)
-  {
-  }
-
   public function executeNew(sfWebRequest $request)
   {
     $this->asso = $this->getRoute()->getObject();

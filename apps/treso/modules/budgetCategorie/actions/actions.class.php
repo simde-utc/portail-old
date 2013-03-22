@@ -12,7 +12,7 @@ class budgetCategorieActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->asso = $this->getRoute()->getObject();
+    $this->asso = $this->getRoute()->getObject();    
     $this->budget_categories = BudgetCategorieTable::getInstance()->getCategories($this->asso->getId());
   }
 
@@ -53,9 +53,10 @@ class budgetCategorieActions extends sfActions
 
   public function executeDelete(sfWebRequest $request)
   {
-    $request->checkCSRFProtection();
+    // $request->checkCSRFProtection();
 
-    $this->forward404Unless($budget_categorie = Doctrine_Core::getTable('BudgetCategorie')->find(array($request->getParameter('id'))), sprintf('Object budget_categorie does not exist (%s).', $request->getParameter('id')));
+    // $this->forward404Unless($budget_categorie = Doctrine_Core::getTable('BudgetCategorie')->find(array($request->getParameter('id'))), sprintf('Object budget_categorie does not exist (%s).', $request->getParameter('id')));
+    $budget_categorie = $this->getRoute()->getObject();
     $asso = $budget_categorie->getAsso();
     $budget_categorie->delete();
     $this->redirect($this->generateUrl('budget_categorie', array(

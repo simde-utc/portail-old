@@ -15,16 +15,19 @@
     <?php foreach ($categories as $categorie): ?>
     <tr data-categorie-id="<?php echo $categorie->getPrimaryKey() ?>">
       <td><b><?php echo $categorie->getNom() ?></b> (<?php echo format_currency($categorie->getTotal(), '€', 'fr_FR') ?>)</td>
-      <td><a href="#" class="btn btn-primary">Ajouter un poste</a></td>
-      <td><a href="#" class="btn btn-danger">Supprimer</a></td>
-      <td><a href="#" class="btn">Modifier</a></td>
+      <td><a href="<?php echo url_for('budget_poste_new', array('budget' => $budget->getPrimaryKey(), 'categorie' => $categorie->getPrimaryKey())) ?>" class="btn btn-primary">Ajouter un poste</a></td>
+      <td class="btn-group">
+          <a href="<?php echo url_for('budget_categorie_delete', $categorie) ?>" class="btn btn-danger">Supprimer</a>
+          <a href="<?php echo url_for('budget_categorie_edit', $categorie) ?>" class="btn">Modifier</a>
+      </td>
     </tr>
-	   	<?php foreach ($categorie->getPostesForBudget($budget) as $poste): ?>
-	   		<tr data-poste-id="<?php echo $poste->getPrimaryKey() ?>">
-          <td><?php echo $poste->getNom() ?> (<?php echo format_currency($poste->getTotal(), '€', 'fr_FR') ?>)</td>
+      <?php foreach ($categorie->getPostesForBudget($budget) as $poste): ?>
+        <tr data-poste-id="<?php echo $poste->getPrimaryKey() ?>">
+          <td style="padding-left:40px;" ><?php echo $poste->getNom() ?> (<?php echo format_currency($poste->getTotal(), '€', 'fr_FR') ?>)</td>
           <td></td>
-          <td><a href="#" class="btn btn-danger">Supprimer</a></td>
-          <td><a href="#" class="btn">Modifier</a></td>
+          <td class="btn-group">
+              <a href="<?php echo url_for('budget_poste_delete', $poste) ?>" class="btn btn-danger">Supprimer</a>
+              <a href="<?php echo url_for('budget_poste_edit', $poste) ?>" class="btn">Modifier</a></td>
         </tr>
 	   	<?php endforeach; ?>
     <?php endforeach; ?>

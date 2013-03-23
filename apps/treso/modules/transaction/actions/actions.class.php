@@ -18,16 +18,19 @@ class transactionActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new TransactionForm();
     $this->asso = $this->getRoute()->getObject();
-    $this->form->setDefault('asso_id', $this->getRoute()->getObject()->getPrimaryKey());
+    $transaction = new Transaction();
+    $transaction->setAsso($this->asso);
+    $this->form = new TransactionForm($transaction);
   }
 
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-    $this->form = new TransactionForm();
+    $transaction = new Transaction();
+    $this->asso = AssoTable::getInstance()->find($request->getParameter('transaction')['asso_id']);
+    $transaction->setAsso($this->asso);
+    $this->form = new TransactionForm($transaction);
 
     $this->processForm($request, $this->form);
   //  $this->asso;

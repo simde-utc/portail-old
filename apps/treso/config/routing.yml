@@ -147,3 +147,28 @@ transaction_new:
   class: sfDoctrineRoute
   options: { model: Asso, type: object }
   param: { module: transaction, action: new }
+
+# BudgetPoste
+budget_poste_new:
+  url: /budget/poste/new/:budget/:categorie
+  param: { module: budgetPoste, action: new }
+
+budget_poste_update:
+  url:  /budget/poste/update/:id
+  param: { module: budgetPoste, action: update }
+
+budget_poste_edit:
+  url:  /budget/poste/edit/:id
+  class: sfDoctrineRoute
+  param: { module: budgetPoste, action: edit }
+  options: { model: BudgetPoste, type: object }
+
+budget_poste_delete:
+  url:  /budget/poste/delete/:id
+  class: sfDoctrineRoute
+  param: { module: budgetPoste, action: delete }
+  options: { model: BudgetPoste, type: object }
+
+budget_poste_create:
+  url: /budget/poste/create
+  param: { module: budgetPoste, action: create }

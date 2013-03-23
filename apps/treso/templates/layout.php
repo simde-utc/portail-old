@@ -43,14 +43,14 @@
               </ul>
             <?php endif ?>
           </div>
-          <?php include_component('asso', 'myAssos') ?>
+          <?php include_component('asso', 'myAssos', array('current_asso' => get_slot('current_asso'))) ?>
         </div>
       </div>
     </div>
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span2">
-          <?php include_component('asso', 'menu') ?>
+          <?php include_component('asso', 'menu', array('asso' => get_slot('current_asso'))) ?>
         </div><!--/span-->
         <div class="span10">
           <div class="well">

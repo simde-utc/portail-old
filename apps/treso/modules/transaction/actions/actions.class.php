@@ -14,6 +14,7 @@ class transactionActions extends sfActions
   {
     $this->asso = $this->getRoute()->getObject();
     $this->transactions = TransactionTable::getInstance()->getAllForAsso($this->asso)->execute();
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeNew(sfWebRequest $request)
@@ -22,25 +23,29 @@ class transactionActions extends sfActions
     $transaction = new Transaction();
     $transaction->setAsso($this->asso);
     $this->form = new TransactionForm($transaction);
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
+    $request_transaction = $request->getParameter('transaction');
+    $this->asso = AssoTable::getInstance()->find($request_transaction['asso_id']);
     $transaction = new Transaction();
-    $this->asso = AssoTable::getInstance()->find($request->getParameter('transaction')['asso_id']);
     $transaction->setAsso($this->asso);
     $this->form = new TransactionForm($transaction);
 
     $this->processForm($request, $this->form);
   //  $this->asso;
     $this->setTemplate('new');
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($transaction = Doctrine_Core::getTable('Transaction')->find(array($request->getParameter('id'))), sprintf('Object transaction does not exist (%s).', $request->getParameter('id')));
     $this->form = new TransactionForm($transaction);
+    $this->getResponse()->setSlot('current_asso', $transaction->getAsso());
   }
 
   public function executeUpdate(sfWebRequest $request)
@@ -52,6 +57,7 @@ class transactionActions extends sfActions
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
+    $this->getResponse()->setSlot('current_asso', $transaction->getAsso());
   }
 
   public function executeDelete(sfWebRequest $request)

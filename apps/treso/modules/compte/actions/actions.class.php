@@ -14,6 +14,7 @@ class compteActions extends sfActions
   {
     $this->asso = $this->getRoute()->getObject();
     $this->compte_banquaires = CompteBanquaireTable::getInstance()->getAllForAsso($this->asso)->execute();
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeNew(sfWebRequest $request)
@@ -21,6 +22,7 @@ class compteActions extends sfActions
     $this->asso = $this->getRoute()->getObject();
     $this->form = new CompteBanquaireForm();
     $this->form->setDefault('asso_id',$this->asso->getPrimaryKey());
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -32,12 +34,14 @@ class compteActions extends sfActions
     $this->processForm($request, $this->form);
 
     $this->setTemplate('new');
+    $this->getResponse()->setSlot('current_asso', $this->form->getObject()->getAsso());
   }
 
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($compte_banquaire = Doctrine_Core::getTable('CompteBanquaire')->find(array($request->getParameter('id'))), sprintf('Object compte_banquaire does not exist (%s).', $request->getParameter('id')));
     $this->form = new CompteBanquaireForm($compte_banquaire);
+    $this->getResponse()->setSlot('current_asso', $compte_banquaire->getAsso());
   }
 
   public function executeUpdate(sfWebRequest $request)
@@ -49,6 +53,7 @@ class compteActions extends sfActions
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
+    $this->getResponse()->setSlot('current_asso', $compte_banquaire->getAsso());
   }
 
   public function executeDelete(sfWebRequest $request)

@@ -17,7 +17,14 @@ class BudgetCategorieTable extends Doctrine_Table
     {
 		$q = $this->createQuery('q')
       			  ->where('q.asso_id = ?', $asso_id);
-		return $q->execute();
+		return $q;
+    }
+
+    public function getActiveCategories($asso_id)
+    {
+      $q = $this->getCategories($asso_id);
+      $q->where('q.deleted_at IS NULL');
+      return $q->execute();
     }
     
     public static function getInstance()

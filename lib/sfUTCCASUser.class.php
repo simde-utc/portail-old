@@ -63,12 +63,15 @@ class sfUTCCASUser extends sfGuardSecurityUser
      *  CAS server
      * @param  boolean $onlyLocal   Set it to true, to logout from the application, but stay login in the CAS
      */
-    public function logout($url, $onlyLocal = false) {
+    public function logout($url = null, $onlyLocal = false) {
         parent::signOut();
         $this->username = null;
         if (!$onlyLocal) {
             sfCAS::initPhpCAS();
-            phpCAS::logoutWithUrl($url);
+            if(!empty($url))
+                phpCAS::logoutWithUrl($url);
+            else
+                phpCas::logout ();
         }
     }
 

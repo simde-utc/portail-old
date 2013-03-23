@@ -12,8 +12,21 @@
  */
 class BudgetCategorie extends BaseBudgetCategorie
 {
-	public function __toString()
-	{
-		return $this->getNom();
-	}
+
+    public function __toString() {
+        return $this->getNom();
+    }
+
+    public function getPostesForBudget($budget) {
+        return BudgetPosteTable::getInstance()->createQuery('q')
+                        ->where('q.budget_categorie_id=?', $this->getPrimaryKey())
+                        ->andWhere('q.budget_id=?', $budget->getPrimaryKey())
+                        ->andWhere('q.deleted_at IS NULL')
+                        ->execute();
+    }
+
+    public function getTotal() {
+        return $this['MontantTotal'] ? $this['MontantTotal'] : 0;
+    }
+
 }

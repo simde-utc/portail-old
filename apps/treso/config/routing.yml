@@ -20,14 +20,47 @@ transaction:
   param: { module: transaction, action: index }
   options: { model: Asso, type: object }
 
-budget_previsionnel:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                Budget
-    module:               budgetPrevisionnel
-    prefix_path:          /budget_previsionnel
-    column:               id
-    with_wildcard_routes: true
+# Budget
+
+budget_list:
+  url: /budget/asso/:login
+  class: sfDoctrineRoute
+  param: { module: budget, action: index }
+  options: { model: Asso, type: object }
+
+budget_new:
+  url: /budget/new/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: budget, action: new }
+
+budget_show:
+  url: /budget/show/:id
+  class: sfDoctrineRoute
+  param: { module: budget, action: show }
+  options: { model: Budget, type: object }
+
+budget_update:
+  url:  /budget/update/:id
+  param: { module: budget, action: update }
+
+budget_edit:
+  url:  /budget/edit/:id
+  class: sfDoctrineRoute
+  param: { module: budget, action: edit }
+  options: { model: Budget, type: object }
+
+budget_delete:
+  url:  /budget/delete/:id
+  class: sfDoctrineRoute
+  param: { module: budget, action: delete }
+  options: { model: Budget, type: object }
+
+budget_create:
+  url: /budget/create
+  param: { module: budget, action: create }
+
+# Comptes
 
 budget_categorie:
   url: /budget_categorie/asso/:login

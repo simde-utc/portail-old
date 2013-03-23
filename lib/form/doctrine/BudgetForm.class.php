@@ -12,5 +12,8 @@ class BudgetForm extends BaseBudgetForm
 {
   public function configure()
   {
+  	$this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
+  	$this->setDefault('semestre_id', sfConfig::get('app_portail_current_semestre'));
+  	unset($this['created_at'], $this['updated_at']);
   }
 }

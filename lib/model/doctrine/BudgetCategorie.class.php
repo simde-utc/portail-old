@@ -12,4 +12,8 @@
  */
 class BudgetCategorie extends BaseBudgetCategorie
 {
+	public function __toString()
+	{
+		return $this->getNom();
+	}
 }

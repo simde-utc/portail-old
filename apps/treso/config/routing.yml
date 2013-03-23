@@ -78,9 +78,7 @@ budget_categorie_update:
 
 budget_categorie_delete:
   url: /budget_categorie/delete/:id
-  class: sfDoctrineRoute
   param: {module: budgetCategorie, action: delete}
-  options: {model: budgetCategorie, type: object}
 
 budget_categorie_create:
   url: /budget_categorie/create

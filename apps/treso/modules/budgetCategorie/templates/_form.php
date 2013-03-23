@@ -14,7 +14,7 @@
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<a href="<?php echo url_for('budget_categorie_delete', $budget_categorie)?>" class='btn btn-danger'>Supprimer</a>
           <?php endif; ?>
-          <input type="submit" value="Valider" class="btn btn-success"/>
+          <input type="submit" value="Valider" class="btn btn-primary"/>
         </td>
       </tr>
     </tfoot>

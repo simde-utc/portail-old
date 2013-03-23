@@ -50,14 +50,7 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span2">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Mon asso</li>
-              <li><a href="#">Budget</a></li>
-              <li><a href="#">Comptes</a></li>
-              <li><a href="#">Notes de frais</a></li>
-            </ul>
-          </div><!--/.well -->
+          <?php include_component('asso', 'menu') ?>
         </div><!--/span-->
         <div class="span10">
           <div class="well">

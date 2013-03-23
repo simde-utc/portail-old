@@ -294,7 +294,7 @@ BudgetPoste:
     budget_categorie_id: { type: integer, notnull: true }
     nombre: { type: integer, notnull: true, default: 1 }
     prix_unitaire: { type: decimal(8), scale: 4, notnull: true, default: 0 }
-    commentaire: { type: string, notnull: true }
+    commentaire: { type: string, notnull: false }
     budget_id: { type: integer, notnull: true }
   relations:
     Budget: { onUpdate: CASCADE, local: budget_id, foreign: id }
@@ -307,7 +307,7 @@ BudgetCategorie:
   columns:
     asso_id: { type: integer, notnull: true }
     nom: { type: string(255), notnull: true }
-    commentaire: { type: string, notnull: true }
+    commentaire: { type: string, notnull: false }
   relations:
     Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
 
@@ -319,12 +319,12 @@ Transaction:
     compte_id: { type: integer, notnull: true }
     libelle: { type: string(255), notnull: true }
     montant: { type: decimal(8), scale: 4, notnull: true, default: 0 }
-    commentaire: { type: string, notnull: true }
+    commentaire: { type: string, notnull: false }
     date_transaction: { type: date, notnull: true }
     date_rapprochement: { type: date, notnull: false }
     budget_poste_id: { type: integer }
     moyen_id: { type: integer, notnull: true }
-    moyen_commentaire: { type: string, notnull: true }
+    moyen_commentaire: { type: string, notnull: false }
     note_de_frais_id: { type: integer }
   relations:
     BudgetPoste: { onUpdate: CASCADE, local: budget_poste_id, foreign: id }
@@ -336,7 +336,7 @@ TransactionMoyen:
   connection: doctrine
   columns:
     nom: { type: string(255), notnull: true }
-    detail: { type: string(255), notnull: true }
+    detail: { type: string(255), notnull: false }
 
 # Document:
 #   connection: doctrine
@@ -404,7 +404,7 @@ Subvention:
     asso_id: { type: integer, notnull: true }
     nom: { type: string(255), notnull: true }
     montant : { type: decimal(8), scale: 4, notnull: true }
-    commentaire : { type: string, notnull: true }
+    commentaire : { type: string, notnull: false }
   relations:
     Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
 
@@ -412,7 +412,7 @@ AvanceTreso:
   connection: doctrine
   columns:
     asso_id: { type: integer, notnull: true }
-    commentaire: { type: string, notnull: true }
+    commentaire: { type: string, notnull: false }
     transaction_id: { type: integer, notnull: true }
   relations:
     Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }

@@ -29,8 +29,9 @@ class transactionActions extends sfActions
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
+    $request_transaction = $request->getParameter('transaction');
+    $this->asso = AssoTable::getInstance()->find($request_transaction['asso_id']);
     $transaction = new Transaction();
-    $this->asso = AssoTable::getInstance()->find($request->getParameter('transaction')['asso_id']);
     $transaction->setAsso($this->asso);
     $this->form = new TransactionForm($transaction);
 

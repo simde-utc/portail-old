@@ -37,7 +37,7 @@ all:
     use_database:           true
     
     # sfGuardRegister retiré des modules
-    enabled_modules:        [default, sfGuardAuth]
+    enabled_modules:        [default, sfGuardAuth, utcCas]
     login_module:           sfGuardAuth
     login_action:           signin
     secure_module:          sfGuardAuth

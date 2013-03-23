@@ -6,5 +6,17 @@
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
 <?php echo $form ?>
-<p><input type="submit" value="Valider" class="btn btn-primary"/></p>
+<p>
+    <tfoot>
+      <tr>
+        <td colspan="2">
+          <?php echo $form->renderHiddenFields(false) ?>
+            &nbsp;<a href="<?php echo url_for('transaction',(!$form->getObject()->isNew()) ? $form->getObject()->getAsso() : $asso) ?>" class="btn">Retour liste</a>
+          <?php if (!$form->getObject()->isNew()): ?>
+            &nbsp;<?php echo link_to('Supprimer', 'transaction/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Voulez-vous vraiment supprimer cette transaction ?', 'class' => 'btn btn-danger')) ?>
+          <?php endif; ?>
+          <input type="submit" value="Valider" class="btn btn-primary"/>
+        </td>
+      </tr>
+    </tfoot>
 </form>

@@ -24,4 +24,11 @@ class TransactionTable extends Doctrine_Table
               ->andWhere('q.deleted_at IS NULL');
       return $q;
     }
+    
+    public function getActiveCount($asso)
+    {
+        $q = $this->getAllForAsso($asso);
+        $a = $q->count();
+        return $a;
+    }
 }

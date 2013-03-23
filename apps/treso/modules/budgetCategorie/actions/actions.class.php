@@ -26,9 +26,11 @@ class budgetCategorieActions extends sfActions
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
-
+    $budget_categorie = new BudgetCategorie();
+    $this->asso = AssoTable::getInstance()->find($request->getParameter('budget_categorie')['asso_id']);
+    $budget_categorie->setAsso($this->asso);
+    
     $this->form = new BudgetCategorieForm();
-
     $this->processForm($request, $this->form);
 
     $this->setTemplate('new');
@@ -38,6 +40,7 @@ class budgetCategorieActions extends sfActions
   {
     $this->forward404Unless($budget_categorie = Doctrine_Core::getTable('BudgetCategorie')->find(array($request->getParameter('id'))), sprintf('Object budget_categorie does not exist (%s).', $request->getParameter('id')));
     $this->budget_categorie = Doctrine_Core::getTable('BudgetCategorie')->find(array($request->getParameter('id')));
+    $this->asso = $this->budget_categorie->getAsso();
     $this->form = new BudgetCategorieForm($budget_categorie);
   }
 
@@ -46,7 +49,7 @@ class budgetCategorieActions extends sfActions
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($budget_categorie = Doctrine_Core::getTable('BudgetCategorie')->find(array($request->getParameter('id'))), sprintf('Object budget_categorie does not exist (%s).', $request->getParameter('id')));
     $this->form = new BudgetCategorieForm($budget_categorie);
-
+    $this->asso = $budget_categorie->getAsso();
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');

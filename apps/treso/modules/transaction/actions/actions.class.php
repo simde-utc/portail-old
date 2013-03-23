@@ -34,9 +34,7 @@ class transactionActions extends sfActions
     $transaction = new Transaction();
     $transaction->setAsso($this->asso);
     $this->form = new TransactionForm($transaction);
-
     $this->processForm($request, $this->form);
-  //  $this->asso;
     $this->setTemplate('new');
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
@@ -64,11 +62,8 @@ class transactionActions extends sfActions
   {
     $request->checkCSRFProtection();
     $this->forward404Unless($transaction = Doctrine_Core::getTable('Transaction')->find(array($request->getParameter('id'))), sprintf('Object transaction does not exist (%s).', $request->getParameter('id')));
-    $a = $transaction->getAsso()->getName();
-
     $transaction->delete();
-
-    $this->redirect('transaction', array('login' => $a ));
+    $this->redirect('transaction', array('login' => $transaction->getAsso()->getName() ));
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

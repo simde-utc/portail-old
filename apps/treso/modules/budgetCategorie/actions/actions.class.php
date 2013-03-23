@@ -54,9 +54,13 @@ class budgetCategorieActions extends sfActions
 
   public function executeDelete(sfWebRequest $request)
   {
-    $budget_categorie = $this->getRoute()->getObject();
-    $asso = $budget_categorie->getAsso();
+
+    $request->checkCSRFProtection();
+
+    $this->forward404Unless($budget_categorie = Doctrine_Core::getTable('BudgetCategorie')->find(array($request->getParameter('id'))), sprintf('Object budget_categorie does not exist (%s).', $request->getParameter('id')));
     $budget_categorie->delete();
+
+    $asso = $budget_categorie->getAsso();
     $this->redirect($this->generateUrl('budget_categorie', array(
             'login' => $asso->getName())));
   }

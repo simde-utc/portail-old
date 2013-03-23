@@ -12,7 +12,7 @@
           <?php echo $form->renderHiddenFields(false) ?> 
           &nbsp;<a href="<?php echo url_for('budget_categorie',(!$form->getObject()->isNew()) ? $form->getObject()->getAsso() : $asso) ?>" class="btn">Retour</a>
           <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<a href="<?php echo url_for('budget_categorie_delete', $budget_categorie)?>" onclick="if (confirm('Are you sure?')) { var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'post'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', 'sf_method'); m.setAttribute('value', 'delete'); f.appendChild(m);var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_csrf_token'); m.setAttribute('value', '6b532d12ed0a064e8d4644df3006e02b'); f.appendChild(m);f.submit(); };return false;" class='btn btn-danger'><i class="icon-trash icon-white"></i> Supprimer</a>
+            &nbsp;<?php echo link_to('<i class="icon-trash icon-white"></i>&nbsp;&nbsp;Supprimer', 'budgetCategorie/delete?id='.$budget_categorie->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
           <?php endif; ?>
           <input type="submit" value="Valider" class="btn btn-primary"/>
         </td>

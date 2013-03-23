@@ -22,6 +22,7 @@ class budgetActions extends sfActions
     if ($this->checkAuthorisation($this->asso)) {
       $this->budgets = BudgetTable::getInstance()->getBudgetsForAsso($this->asso)->execute();
     }
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeShow(sfWebRequest $request)
@@ -31,6 +32,7 @@ class budgetActions extends sfActions
       $this->categories = $this->budget->getCategories()->execute();
       $this->assos = $this->budget->getAsso();
     }
+    $this->getResponse()->setSlot('current_asso', $this->assos);
   }
 
   public function executeNew(sfWebRequest $request)
@@ -40,6 +42,7 @@ class budgetActions extends sfActions
       $this->form = new BudgetForm();
       $this->form->setDefault('asso_id', $this->asso->getPrimaryKey());
     }
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -58,6 +61,7 @@ class budgetActions extends sfActions
     if ($this->checkAuthorisation($this->asso)) {
       $this->form = new BudgetForm($this->budget);
     }
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeUpdate(sfWebRequest $request)
@@ -69,6 +73,8 @@ class budgetActions extends sfActions
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
+    
+    $this->getResponse()->setSlot('current_asso', $this->form->getObject()->getAsso());
   }
 
   public function executeDelete(sfWebRequest $request)

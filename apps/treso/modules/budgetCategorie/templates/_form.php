@@ -14,7 +14,7 @@
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('Delete', 'budgetCategorie/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
           <?php endif; ?>
-          <input type="submit" value="Save" class="btn"/>
+          <input type="submit" value="Save" class="btn btn-primary"/>
         </td>
       </tr>
     </tfoot>

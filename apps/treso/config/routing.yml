@@ -13,15 +13,8 @@ cas:
 cas_logout:
   url: /cas/logout
   param: { module: cas, action: logout }
-    
-transaction:
-  url:   /transaction/asso/:login
-  class: sfDoctrineRoute
-  param: { module: transaction, action: index }
-  options: { model: Asso, type: object }
 
 # Budget
-
 budget_list:
   url: /budget/asso/:login
   class: sfDoctrineRoute
@@ -60,8 +53,7 @@ budget_create:
   url: /budget/create
   param: { module: budget, action: create }
 
-# Comptes
-
+# BudgetCategorie
 budget_categorie:
   url: /budget_categorie/asso/:login
   class: sfDoctrineRoute
@@ -94,7 +86,7 @@ budget_categorie_create:
   url: /budget_categorie/create
   param: {module: budgetCategorie, action: create}
 
-
+# Compte
 compte:
   url:   /compte/asso/:login
   class: sfDoctrineRoute
@@ -124,6 +116,13 @@ compte_new:
 compte_create:
   url: /compte/create
   param: { module: compte, action: create }
+
+# Transaction
+transaction:
+  url:   /transaction/asso/:login
+  class: sfDoctrineRoute
+  param: { module: transaction, action: index }
+  options: { model: Asso, type: object }
 
 transaction_edit:
   url:  /transaction/edit/:id

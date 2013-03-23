@@ -1,8 +1,15 @@
 <?php use_helper('Number') ?>
 
-<h1><?php echo $budget->getNom() ?></h1>
+<h1>Budget <?php echo $budget->getNom() ?> pour <?php echo $budget->getAsso()->getName() ?></h1>
 
+<p>
+    <a class="btn btn-success" href="<?php echo url_for('budget_categorie_new', $budget->getAsso()) ?>">
+        <i class="icon-plus icon-white"></i>&nbsp;&nbsp;
+        Ajouter une catégorie
+    </a>
+</p>
 
+<?php if(count($categories) > 0): ?>
 <table class="table table-striped table-bordered table-hover">
   <tbody>
     <?php foreach ($categories as $categorie): ?>
@@ -23,5 +30,15 @@
     <?php endforeach; ?>
   </tbody>
 </table>
+<?php endif ?>
 
-<p><a class="btn btn-warning" href="<?php echo url_for('budget_delete', $budget) ?>">Clore le budget</a> <a class="btn btn-info" href="<?php echo url_for('budget_edit', $budget) ?>">Modifier le nom du budget</a></p>
+<p>
+    <a class="btn btn-danger" href="<?php echo url_for('budget_delete', $budget) ?>">
+        <i class="icon-trash icon-white"></i>&nbsp;&nbsp;
+        Supprimer le budget
+    </a>
+    <a class="btn btn-info" href="<?php echo url_for('budget_edit', $budget) ?>">
+        <i class="icon-pencil icon-white"></i>&nbsp;&nbsp;
+        Modifier le nom du budget
+    </a>
+</p>

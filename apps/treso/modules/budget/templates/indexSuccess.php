@@ -1,12 +1,12 @@
 <h1>Budgets en cours</h1>
 
-<?php if (count($budgets) == 0) { ?>
+<?php if (count($budgets) == 0): ?>
   <p><br/>
     <b>Aucun budget actif !</b><br/>
     Créez un nouveau budget prévisionnel pour commencer.
     <br/>
   </p>
-<?php } else { ?>
+<?php else: ?>
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
@@ -25,6 +25,6 @@
       <?php endforeach; ?>
     </tbody>
   </table>
-<?php } ?>
+<?php endif; ?>
 
-  <a class="btn btn-success" href="<?php echo url_for('budget_new', $asso) ?>">Créer un budget prévisionnel</a>
+<a class="btn btn-success" href="<?php echo url_for('budget_new', $asso) ?>"><i class="icon-plus icon-white"></i>&nbsp;&nbsp;Créer un budget prévisionnel</a>

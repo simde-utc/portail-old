@@ -19,7 +19,7 @@ class BudgetTable extends Doctrine_Table
 
     public function getBudgetsForAsso($asso)
     {
-    	$q = $this->createQuery('q')->where('q.asso_id=?', $asso->getPrimaryKey());
+    	$q = $this->createQuery('q')->where('q.asso_id=?', $asso->getPrimaryKey())->andWhere('q.deleted_at IS NULL');
     	return $q;
     }
 }

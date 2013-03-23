@@ -12,4 +12,7 @@
  */
 class Budget extends BaseBudget
 {
+	public function getCategories() {
+		return BudgetCategorieTable::getInstance()->getCategoriesForBudget($this)->andWhere('BudgetCategorie.deleted_at is NULL');
+	}
 }

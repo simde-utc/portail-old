@@ -1,30 +1,30 @@
-<h1>Budgets List</h1>
+<h1>Budgets en cours</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Asso</th>
-      <th>Nom</th>
-      <th>Semestre</th>
-      <th>Created at</th>
-      <th>Updated at</th>
-      <th>Deleted at</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($budgets as $budget): ?>
-    <tr>
-      <td><a href="#"><?php echo $budget->getId() ?></a></td>
-      <td><?php echo $budget->getAssoId() ?></td>
-      <td><?php echo $budget->getNom() ?></td>
-      <td><?php echo $budget->getSemestreId() ?></td>
-      <td><?php echo $budget->getCreatedAt() ?></td>
-      <td><?php echo $budget->getUpdatedAt() ?></td>
-      <td><?php echo $budget->getDeletedAt() ?></td>
-    </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
+<?php if (count($budgets) == 0) { ?>
+  <p><br/>
+    <b>Aucun budget actif !</b><br/>
+    Créez un nouveau budget prévisionnel pour commencer.
+    <br/>
+  </p>
+<?php } else { ?>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Semestre</th>
+        <th>Date de création</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($budgets as $budget): ?>
+      <tr>
+        <td><a href="<?php echo url_for('budget_show', array('id' => $budget->getPrimaryKey())) ?>"><?php echo $budget->getNom() ?></a></td>
+        <td><?php echo $budget->getSemestre() ?></td>
+        <td><?php echo $budget->getCreatedAt() ?></td>
+      </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+<?php } ?>
 
-  <a href="#">New</a>
+  <a class="btn btn-success" href="<?php echo url_for('budget_new', $asso) ?>">Créer un budget prévisionnel</a>

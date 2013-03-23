@@ -12,4 +12,7 @@
  */
 class BudgetPoste extends BaseBudgetPoste
 {
+	public function getTotal() {
+		return $this->getPrixUnitaire() * $this->getNombre();
+	}
 }

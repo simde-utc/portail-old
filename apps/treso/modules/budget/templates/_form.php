@@ -10,23 +10,13 @@
       <tr>
         <td colspan="2">
           <?php echo $form->renderHiddenFields(false) ?>
-          &nbsp;<a href="<?php echo url_for('budget/index') ?>">Back to list</a>
-          <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'budget/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
-          <?php endif; ?>
-          <input type="submit" value="Save" />
+          &nbsp;<a class="btn" href="<?php echo url_for('budget_'.($form->getObject()->isNew() ? 'list' : 'show'), (!$form->getObject()->isNew() ? $form->getObject() : $asso)) ?>">Retour</a>
+          <input class="btn btn-primary" type="submit" value="Enregistrer" />
         </td>
       </tr>
     </tfoot>
     <tbody>
       <?php echo $form->renderGlobalErrors() ?>
-      <tr>
-        <th><?php echo $form['asso_id']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['asso_id']->renderError() ?>
-          <?php echo $form['asso_id'] ?>
-        </td>
-      </tr>
       <tr>
         <th><?php echo $form['nom']->renderLabel() ?></th>
         <td>
@@ -39,27 +29,6 @@
         <td>
           <?php echo $form['semestre_id']->renderError() ?>
           <?php echo $form['semestre_id'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['created_at']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['created_at']->renderError() ?>
-          <?php echo $form['created_at'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['updated_at']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['updated_at']->renderError() ?>
-          <?php echo $form['updated_at'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['deleted_at']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['deleted_at']->renderError() ?>
-          <?php echo $form['deleted_at'] ?>
         </td>
       </tr>
     </tbody>

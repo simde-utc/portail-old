@@ -29,8 +29,8 @@ class budgetCategorieActions extends sfActions
     $budget_categorie = new BudgetCategorie();
     $this->asso = AssoTable::getInstance()->find($request->getParameter('budget_categorie')['asso_id']);
     $budget_categorie->setAsso($this->asso);
-    
-    $this->form = new BudgetCategorieForm();
+
+    $this->form = new BudgetCategorieForm($budget_categorie);
     $this->processForm($request, $this->form);
 
     $this->setTemplate('new');

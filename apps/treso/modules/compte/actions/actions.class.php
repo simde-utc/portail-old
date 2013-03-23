@@ -58,7 +58,7 @@ class compteActions extends sfActions
     $this->forward404Unless($compte_banquaire = Doctrine_Core::getTable('CompteBanquaire')->find(array($request->getParameter('id'))), sprintf('Object compte_banquaire does not exist (%s).', $request->getParameter('id')));
     $compte_banquaire->delete();
 
-    $this->redirect('compte/index');
+    $this->redirect('compte', $compte_banquaire->getAsso());
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

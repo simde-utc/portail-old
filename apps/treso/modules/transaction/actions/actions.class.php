@@ -30,7 +30,7 @@ class transactionActions extends sfActions
     $this->form = new TransactionForm();
 
     $this->processForm($request, $this->form);
-
+  //  $this->asso;
     $this->setTemplate('new');
   }
 
@@ -54,11 +54,12 @@ class transactionActions extends sfActions
   public function executeDelete(sfWebRequest $request)
   {
     $request->checkCSRFProtection();
-
     $this->forward404Unless($transaction = Doctrine_Core::getTable('Transaction')->find(array($request->getParameter('id'))), sprintf('Object transaction does not exist (%s).', $request->getParameter('id')));
+    $a = $transaction->getAsso()->getName();
+
     $transaction->delete();
 
-    $this->redirect('transaction/index');
+    $this->redirect('transaction', array('login' => $a ));
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

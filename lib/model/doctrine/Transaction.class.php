@@ -12,4 +12,8 @@
  */
 class Transaction extends BaseTransaction
 {
+    public function __toString()
+    {
+        return $this->libelle;
+    }
 }

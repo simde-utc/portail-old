@@ -4,7 +4,7 @@
 # default rules
 homepage:
   url:   /
-  param: { module: budgetPrevisionnel, action: index }
+  param: { module: asso, action: index }
 
 cas:
   url: /cas
@@ -13,6 +13,12 @@ cas:
 cas_logout:
   url: /cas/logout
   param: { module: cas, action: logout }
+    
+transaction:
+  url:   /transaction/asso/:login
+  class: sfDoctrineRoute
+  param: { module: transaction, action: index }
+  options: { model: Asso, type: object }
 
 budget_previsionnel:
   class: sfDoctrineRouteCollection
@@ -52,3 +58,27 @@ compte_new:
 compte_create:
   url: /compte/create
   param: { module: compte, action: create }
+
+transaction_edit:
+  url:  /transaction/edit/:id
+  class: sfDoctrineRoute
+  param: { module: transaction, action: edit }
+  options: { model: Transaction, type: object }
+
+transaction_update:
+  url:  /transaction/update/:id
+  param: { module: transaction, action: update }
+
+transaction_delete:
+  url:  /transaction/delete/:id
+  param: { module: transaction, action: delete }
+  
+transaction_create:
+  url: /transaction/create
+  param: { module: transaction, action: create }
+  
+transaction_new:
+  url: /transaction/:login/new
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: transaction, action: new }

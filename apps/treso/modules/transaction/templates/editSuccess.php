@@ -1,3 +1,3 @@
-<h1>Edit Budget</h1>
+<h1>Edit Transaction</h1>
 
 <?php include_partial('form', array('form' => $form)) ?>

@@ -2,7 +2,20 @@ body {
   padding-top: 60px;
 }
 
+.table-treso-categorie td:nth-child(1), .table-treso-categorie td:nth-child(2) {
+  font-weight: bold;
+}
+
+.table-treso-ligne td:nth-child(1) {
+  padding-left: 40px;
+}
+
+.table-treso-budget td:nth-child(4), .table-treso-budget td:nth-child(5) {
+  text-align: right;
+}
+
 .error_list{color :#FF0000;}
 .error_list li{list-style: none}
 
 .table{margin-top:10px;}
+

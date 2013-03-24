@@ -1,4 +1,10 @@
-<?php use_helper('Number') ?>
+<?php use_helper('Number');
+
+function format_montant($montant) {
+  $tot = '<td>' . format_currency(abs($montant), '€', 'fr_FR') . '</td>';
+  return ($montant >= 0) ? "<td></td>".$tot : $tot."<td></td>";
+}
+?>
 
 <h1>Budget <?php echo $budget->getNom() ?> pour <?php echo $budget->getAsso()->getName() ?></h1>
 
@@ -10,22 +16,33 @@
 </p>
 
 <?php if(count($categories) > 0): ?>
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover table-treso-budget">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Dépense</th>
+      <th>Recette</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
   <tbody>
     <?php foreach ($categories as $categorie): ?>
-    <tr data-categorie-id="<?php echo $categorie->getPrimaryKey() ?>">
-      <td><b><?php echo $categorie->getNom() ?></b> (<?php echo format_currency($categorie->getTotal(), '€', 'fr_FR') ?>)</td>
+    <tr class="table-treso-categorie">
+      <td><?php echo $categorie->getNom() ?></td>
+      <?php echo format_montant($categorie->getTotal()) ?>
       <td><a href="<?php echo url_for('budget_poste_new', array('budget' => $budget->getPrimaryKey(), 'categorie' => $categorie->getPrimaryKey())) ?>" class="btn btn-primary">Ajouter un poste</a></td>
-      <td class="btn-group">
-          <a href="<?php echo url_for('budget_categorie_delete', $categorie) ?>" class="btn btn-danger">Supprimer</a>
+      <td>
+          <a href="<?php echo url_for('budget_categorie_delete', array('id' => $categorie->getPrimaryKey())) ?>" class="btn btn-danger">Supprimer</a>
           <a href="<?php echo url_for('budget_categorie_edit', $categorie) ?>" class="btn">Modifier</a>
       </td>
     </tr>
       <?php foreach ($categorie->getPostesForBudget($budget) as $poste): ?>
-        <tr data-poste-id="<?php echo $poste->getPrimaryKey() ?>">
-          <td style="padding-left:40px;" ><?php echo $poste->getNom() ?> (<?php echo format_currency($poste->getTotal(), '€', 'fr_FR') ?>)</td>
+        <tr class="table-treso-ligne">
+          <td><?php echo $poste->getNom() ?></td>
+          <?php echo format_montant($poste->getTotal()) ?>
           <td></td>
-          <td class="btn-group">
+          <td>
               <a href="<?php echo url_for('budget_poste_delete', $poste) ?>" class="btn btn-danger">Supprimer</a>
               <a href="<?php echo url_for('budget_poste_edit', $poste) ?>" class="btn">Modifier</a></td>
         </tr>

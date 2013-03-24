@@ -38,4 +38,10 @@ class BudgetCategorieTable extends Doctrine_Table
     			  ->andWhere('q.asso_id = ?', $budget->getAssoId());
     	return $q;
     }
+
+    public function getAllForAsso($asso)
+    {
+        $q = $this->createQuery('q')->where('q.asso_id=?',$asso->getPrimaryKey())->andWhere('q.deleted_at IS NULL');
+        return $q;
+    }
 }

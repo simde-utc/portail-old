@@ -15,10 +15,11 @@ class budgetPosteActions extends sfActions
     $this->forward404Unless($this->budget = BudgetTable::getInstance()->find(array($request->getParameter('budget'))), sprintf('Object budget does not exist (%s).', $request->getParameter('budget')));
     $this->forward404Unless($this->categorie = BudgetCategorieTable::getInstance()->find(array($request->getParameter('categorie'))), sprintf('Object budget does not exist (%s).', $request->getParameter('categorie')));
 
-    $this->form = new BudgetPosteForm();
-    $this->form->setDefault('budget_id', $this->budget->getPrimaryKey());
-    $this->form->setDefault('budget_categorie_id', $this->categorie->getPrimaryKey());
-    $this->form->setDefault('asso_id', $this->budget->getAssoId());
+    $poste = new BudgetPoste();
+    $poste->setBudget($this->budget);
+    $poste->setBudgetCategorie($this->categorie);
+    $poste->setAsso($this->budget->getAsso());
+    $this->form = new BudgetPosteForm($poste);
 
     $this->getResponse()->setSlot('current_asso', $this->budget->getAsso());
   }

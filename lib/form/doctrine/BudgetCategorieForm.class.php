@@ -10,10 +10,8 @@
  */
 class BudgetCategorieForm extends BaseBudgetCategorieForm
 {
-
     public function configure() {
         $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
         unset($this['created_at'], $this['updated_at'], $this['deleted_at']);
     }
-
 }

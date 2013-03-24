@@ -60,12 +60,8 @@ class portailWidgetFormDate extends sfWidgetFormInput
    */
   public function render($name, $value = ' ', $attributes = array(), $errors = array())
   {
-    $input = parent::render($name, $value);
-    $icon = $this->renderContentTag('i', '', array('class'=>'icon-calendar'));
-    $span = $this->renderContentTag('span',
-                                    $icon,
-                                    array('class'=>'add-on'));
-    $id = $this->generateId($name.'_date_picker');
+    $input = parent::render($name, $value, array('class'=>'date'));
+    $id = $this->generateId($name);
     $js = '<script type="text/javascript">
         jQuery(window).bind("load", function() {
               jQuery("#'.$id.'").datepicker({weekStart:1,
@@ -73,13 +69,6 @@ class portailWidgetFormDate extends sfWidgetFormInput
                                              autoclose:true});
         })
       </script>';
-    return $this->renderContentTag('div',
-                                   "\n".$input."\n".$span."\n",
-                                   array('class'=>'input-append date',
-                                         'data-date'=>$value,
-                                         'data-date-format'=>$this->getOption('format'),
-                                         'id'=>$id
-                                        )
-                                  ) . "\n" . $js;
+    return $input . "\n" . $js;
   }
 }

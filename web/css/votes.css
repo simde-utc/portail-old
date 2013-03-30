@@ -1,0 +1,21 @@
+body {
+  padding-top: 60px;
+}
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.liste {
+  display: inline-block;
+  width: 388px;
+  border-color: #CCC;
+  margin: 20px 10px;
+  vertical-align: top;
+}
+
+a.liste {
+  padding: 9px 19px;
+  width: 237px;
+}

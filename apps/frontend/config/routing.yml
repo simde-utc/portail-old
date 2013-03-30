@@ -13,7 +13,7 @@ cas:
 cas_logout:
   url: /cas/logout
   param: { module: cas, action: logout }
-  
+
 #Asso
 assos_list:
   url:   /asso
@@ -46,12 +46,13 @@ asso_bureau:
   class: sfDoctrineRoute
   param: { module: asso, action: bureau }
   options: { model: Asso, type: object }
+
 asso_albums:
   url:   /asso/albums/:login
   class: sfDoctrineRoute
   param: { module: asso, action: albums }
   options: { model: Asso, type: object }
-  
+
 asso_trombi:
   url:   /asso/trombi/:login
   class: sfDoctrineRoute
@@ -84,12 +85,16 @@ asso_search_json:
   url:   /asso/search.json
   param: { module: asso, action: search, sf_format: json }
 
+asso_charte_post:
+  url: /asso/charte
+  param: {module: asso, action: chartePost }
+
 asso_edit:
   url: /asso/:login/edit
   class: sfDoctrineRoute
   param: { module: asso, action: edit }
   options: { model: Asso, type: object }
-  
+
 asso_join:
   url: /asso/:login/join
   class: sfDoctrineRoute
@@ -101,7 +106,7 @@ asso_leave:
   class: sfDoctrineRoute
   param: { module: asso, action: leave }
   options: { model: Asso, type: object }
-  
+
 asso_follow:
   url: /asso/:login/follow
   class: sfDoctrineRoute
@@ -117,18 +122,36 @@ asso_unfollow:
 asso_update:
   url: /asso/:id/update
   param: { module: asso, action: update }
-    
+
+asso_charte:
+  url: /asso/:login/charte
+  class: sfDoctrineRoute
+  param: { module: asso, action: charte }
+  options: { model: Asso, type: object }
+
+asso_charte_confirm:
+  url: /asso/:id/charte/confirm
+  class: sfDoctrineRoute
+  param: { module: asso, action: charteConfirm }
+  options: { model: CharteInfo, type: object }
+
+asso_charte_refuse:
+  url: /asso/:id/charte/refuse
+  class: sfDoctrineRoute
+  param: { module: asso, action: charteRefuse }
+  options: { model: CharteInfo, type: object }
+
 #Articles
 articles_list:
   url:   /article
   param: { module: article, action: index }
-  
+
 articles_list_asso:
   url:   /article/asso/:login
   class: sfDoctrineRoute
   param: { module: article, action: list }
   options: { model: Asso, type: object }
-  
+
 article_show:
   url:   /article/show/:id
   class: sfDoctrineRoute
@@ -144,20 +167,19 @@ article_edit:
 article_update:
   url:  /article/update/:id
   param: { module: article, action: update }
-  
+
 article_delete:
   url:  /article/delete/:id
-  param: { module: article, action: delete }   
+  param: { module: article, action: delete }
 article_create:
   url: /article/create
-  param: { module: article, action: create } 
+  param: { module: article, action: create }
+
 article_new:
   url: /article/:login/new
   class: sfDoctrineRoute
   options: { model: Asso, type: object }
   param: { module: article, action: new }
-
-
 
 # Album
 albums_list:
@@ -194,21 +216,21 @@ album_new:
   param: { module: album, action: new }
   options: { model: Asso, type: object }
   
-add:
-  url: /add
-  param: { module: album, action: add }
-
-edit:
-  url: /edit
-  param: { module: album, action: edit }
-
-submit:
-  url: /submit
-  param: { module: album, action: submit }
-
-new:
-  url: /new
-  param: { module: album, action: new }
+#add:
+#  url: /add
+#  param: { module: album, action: add }
+#
+#edit:
+#  url: /edit
+#  param: { module: album, action: edit }
+#
+#submit:
+#  url: /submit
+#  param: { module: album, action: submit }
+#
+#new:
+#  url: /new
+#  param: { module: album, action: new }
   
 #Uv
 uv_list:
@@ -319,20 +341,20 @@ profile_infoSupp_add:
 #profile_update:
 #  url:  /profile/update
 #  param: { module: profile, action: update }
-  
+
 #Events
 events_list:
   url: /event.:sf_format
   param: { module: event, action: index }
   requirements:
     sf_format: (?:html|json)
-  
+
 events_list_asso:
   url:   /event/asso/:id
   class: sfDoctrineRoute
   param: { module: event, action: list }
   options: { model: Asso, type: object }
-  
+
 event_show:
   url: /event/show/:id
   class: sfDoctrineRoute
@@ -355,6 +377,22 @@ event_delete:
 event_create:
   url: /event/create
   param: { module: event, action: create } 
+event_new:
+  url: /event/:login/new
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: event, action: new }
+
+event_update:
+  url:  /event/update/:id
+  param: { module: event, action: update }
+
+event_delete:
+  url:  /event/delete/:id
+  param: { module: event, action: delete }
+event_create:
+  url: /event/create
+  param: { module: event, action: create }
 event_new:
   url: /event/:login/new
   class: sfDoctrineRoute
@@ -387,7 +425,7 @@ materiel_edit:
 materiel_update:
   url:  /materiel/update/:id
   param: { module: materiel, action: update }
-  
+
 materiel_delete:
   url:  /materiel/delete/:id
   class: sfDoctrineRoute
@@ -440,44 +478,44 @@ emprunt_rendre:
   param: { module: emprunt, action: rendre }
 
 #Annonce
-annonce:
-  url:   /annonce
-  param: { module: annonce, action: index }
+#annonce:
+#  url:   /annonce
+#  param: { module: annonce, action: index }
 
-annonce_show:
-  url:   /annonce/show/:id
-  class: sfDoctrineRoute
-  param: { module: annonce, action: show }
-  options: { model: Materiel, type: object }
+#annonce_show:
+#  url:   /annonce/show/:id
+#  class: sfDoctrineRoute
+#  param: { module: annonce, action: show }
+#  options: { model: Materiel, type: object }
 
-annonce_edit:
-  url:  /annonce/edit/:id
-  class: sfDoctrineRoute
-  param: { module: annonce, action: edit }
-  options: { model: Materiel, type: object }
+#annonce_edit:
+#  url:  /annonce/edit/:id
+#  class: sfDoctrineRoute
+#  param: { module: annonce, action: edit }
+#  options: { model: Materiel, type: object }
 
-annonce_update:
-  url:  /annonce/update/:id
-  param: { module: annonce, action: update }
+#annonce_update:
+#  url:  /annonce/update/:id
+#  param: { module: annonce, action: update }
 
-annonce_delete:
-  url:  /annonce/delete/:id
-  class: sfDoctrineRoute
-  param: { module: annonce, action: delete }
-  options: { model: Materiel, type: object }
+#annonce_delete:
+#  url:  /annonce/delete/:id
+#  class: sfDoctrineRoute
+#  param: { module: annonce, action: delete }
+#  options: { model: Materiel, type: object }
 
-annonce_create:
-  url: /annonce/create
-  param: { module: annonce, action: create }
+#annonce_create:
+#  url: /annonce/create
+#  param: { module: annonce, action: create }
 
-annonce_new:
-  url: /annonce/new
-  param: { module: annonce, action: new }
+#annonce_new:
+#  url: /annonce/new
+#  param: { module: annonce, action: new }
 
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }
-        
+
 sf_guard_signout:
   url:   /logout
   param: { module: sfGuardAuth, action: signout }
@@ -521,19 +559,46 @@ aide:
   url: /aide
   param: { module: aide, action: show}
 
+gesmail_create:
+  url: /asso/:login/gesmail/create
+  param: { module: gesmail, action: create }
+
+gesmail_docreate:
+  url: /asso/:login/gesmail/docreate
+  param: { module: gesmail, action: docreate }
+
+gesmail_delete:
+  url: /asso/:login/gesmail/dodelete/:id
+  param: { module: gesmail, action: dodelete }
+
+gesmail_box_delete:
+  url: /asso/:login/gesmail/delete/:box
+  param: { module: gesmail, action: delete }
+
+gesmail_box_add:
+  url: /asso/:login/gesmail/add/:box
+  param: { module: gesmail, action: add }
+
+gesmail_box:
+  url: /asso/:login/gesmail/:box
+  class: sfDoctrineRoute
+  param: { module: gesmail, action: index }
+  options: { model: Asso, type: object }
+
+gesmail:
+  url: /asso/:login/gesmail
+  class: sfDoctrineRoute
+  param: { module: gesmail, action: index }
+  options: { model: Asso, type: object }
+
 
 # generic rules
 # please, remove them by adding more specific rules
-
 #default_index:
 #  url:   /:module
 #  param: { action: index }
-
-#default:
-#  url:   /:module/:action/*
-
-
 #default_json:
 #  url:   /json/:module/:action/*
 #  param: { sf_format: json }
+#default:
 #  url:   /:module/:action/*

@@ -31,12 +31,13 @@ all:
 
     # Output escaping settings
     escaping_strategy:      true
-    escaping_method:        ESC_XSSSAFE
+    escaping_method:        ESC_SPECIALCHARS 
 
     # Enable the database manager
     use_database:           true
-    enabled_modules: [gallery, photos, slideshow, uploader]
-    enabled_modules:        [default, sfGuardAuth, sfGuardRegister]
+    
+    # sfGuardRegister retiré des modules
+    enabled_modules:        [default, sfGuardAuth, gallery, photos, slideshow, uploader]
     login_module:           sfGuardAuth
     login_action:           signin
     secure_module:          sfGuardAuth

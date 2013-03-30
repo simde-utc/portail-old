@@ -8,8 +8,7 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class annonceActions extends sfActions
-{
+class annonceActions extends sfActions {
 
   public function executeIndex(sfWebRequest $request)
   {
@@ -25,13 +24,18 @@ class annonceActions extends sfActions
     }
     else
       $query = Doctrine_Core::getTable('Annonce')
-              ->createQuery('a')
-              ->orderBy('a.created_at DESC');
+          ->createQuery('a')
+          ->orderBy('a.created_at DESC');
     $this->annonces = $query->execute();
   }
 
   public function executeNew(sfWebRequest $request)
   {
+    if(!$this->getUser()->isAuthenticated())
+    {
+      $this->getUser()->setFlash('error', 'Vous devez être connecté pour effectuer cette action.');
+      $this->redirect('annonce');
+    }
     $this->form = new AnnonceForm();
     if($this->getUser()->isAuthenticated())
       $this->form->setDefaultUser($this->getUser()->getGuardUser()->getId());
@@ -82,7 +86,7 @@ class annonceActions extends sfActions
     {
       $annonce = $form->save();
 
-      $this->redirect('annonce/edit?id='.$annonce->getId());
+      $this->redirect('annonce/edit?id=' . $annonce->getId());
     }
   }
 

@@ -22,7 +22,7 @@ class EventTable extends Doctrine_Table
    * 
    * Fetch the list of all events sorted by date.
    * 
-   * @param int $asso_id
+   * @param int $asso
    */
   public function getEventsList($asso = null)
   {
@@ -34,9 +34,6 @@ class EventTable extends Doctrine_Table
 
     if(!is_null($asso))
     {
-    /* if($asso->isPole())
-      $q = $q->leftJoin('Asso as')->where("as.pole_id = ?",$asso->getPrimaryKey());
-      else */
       $q = $q->where("a.asso_id = ?", $asso->getPrimaryKey());
       if($asso->getLogin() == 'picasso')
         $q = $q->orWhere('a.type_id = ?',2);
@@ -50,11 +47,22 @@ class EventTable extends Doctrine_Table
    * Fetch the list of all events in future.
    *  
    */
-  public function getFutureEventsList()
+  public function getFutureEventsList($max = 0, $asso = null)
   {
     $q = $this->createQuery('a')
             ->addOrderBy('a.start_date ASC');
     $q = $q->where("a.end_date > NOW()");
+    if(!is_null($asso))
+    {
+      $q = $q->andWhere("a.asso_id = ?", $asso->getPrimaryKey());
+      if($asso->getLogin() == 'picasso'){
+      	$q = $q->orWhere('a.type_id = ?', 2);
+      }
+    }
+    
+    if($max > 0){
+      $q->limit($max);
+    }
 
     return $q;
   }
@@ -67,7 +75,7 @@ class EventTable extends Doctrine_Table
   }
 
   public function getEventsFollowed($user_id){
-  $q = $this->createQuery('ev')
+    $q = $this->createQuery('ev')
         ->select ('as.name, ev.*')
         ->where('ev.asso_id = as.id')
         ->andWhere('ab.user_id = ?', $user_id)
@@ -75,6 +83,6 @@ class EventTable extends Doctrine_Table
         ->leftJoin('as.Abonnement ab')
         ->orderBy('ev.updated_at desc')
         ->limit(3);            
-  return $q;
+    return $q;
   }
 }

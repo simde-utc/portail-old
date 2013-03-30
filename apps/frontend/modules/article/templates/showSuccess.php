@@ -15,5 +15,5 @@
 
   <p>Publié par <a href="<?php echo url_for('assos_show',$article->getAsso())?>" title="Voir la page de <?php echo $article->getAsso()->getName() ?>"><?php echo $article->getAsso()->getName() ?></a><br /></p>
   <p><?php echo nl2br($article->getSummary()) ?></p>
-  <p><?php echo nl2br($article->getText()) ?></p>
+  <p><?php echo nl2br($article->getText(ESC_XSSSAFE)) ?></p>
 </div>

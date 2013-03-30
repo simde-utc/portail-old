@@ -65,7 +65,9 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Utilisateurs</li>
-              <li><a href="<?php echo url_for('sf_guard_user') ?>">Liste des utilisateurs</a></li>
+              <li><a href="<?php echo url_for('sf_guard_user') ?>">Utilisateurs</a></li>
+              <li><a href="<?php echo url_for('sf_guard_group') ?>">Groupes</a></li>
+              <li><a href="<?php echo url_for('sf_guard_permission') ?>">Permissions</a></li>
               <li class="nav-header">Associations</li>
               <li><a href="<?php echo url_for('asso') ?>">Liste des associations</a></li>
               <li><a href="<?php echo url_for('asso_new') ?>">Nouvelle association</a></li>
@@ -76,9 +78,13 @@
               <li><a href="<?php echo url_for('role_new') ?>">Nouveau rôle</a></li>
               <li><a href="<?php echo url_for('semestre') ?>">Liste des semestres</a></li>
               <li><a href="<?php echo url_for('semestre_new') ?>">Nouveau semestre</a></li>
+              <li><a href="<?php echo url_for('event_type') ?>">Liste des types d'événements</a></li>
+              <li><a href="<?php echo url_for('event_type_new') ?>">Nouveau type d'événements</a></li>
               <li class="nav-header">SiMDE</li>
               <li><a href="<?php echo url_for('charte_info') ?>">Signatures Chartes Info</a></li>
               <li><a href="<?php echo url_for('charte_info_new') ?>">Nouvelle Charte Info</a></li>
+              <li class="nav-header">Elections BDE</li>
+              <li><a href="<?php echo url_for('vote_liste') ?>">Edition des listes</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

@@ -22,6 +22,8 @@ class ArticleForm extends BaseArticleForm {
                 'with_delete' => true,
                 'delete_label' => "Supprimer cette illustration"
             ));
+    
+    $this->widgetSchema['text'] = new sfWidgetFormTextarea(array(), array('rows' => '20'));
 
     $this->validatorSchema['image'] = new sfValidatorFileImage(array(
     	'required' => false,
@@ -34,10 +36,9 @@ class ArticleForm extends BaseArticleForm {
     $this->validatorSchema['image_delete'] = new sfValidatorBoolean();
     
     $this->widgetSchema->setLabel('name', 'Titre');
-    $this->widgetSchema->setLabel('summary', 'Résumé en une ligne');
     $this->widgetSchema->setLabel('text', 'Contenu');
-    $this->widgetSchema->setLabel('image', 'Ilustration');
-    $this->useFields(array('asso_id', 'name', 'summary', 'text', 'image'));
+    $this->widgetSchema->setLabel('image', 'Illustration');
+    $this->useFields(array('asso_id', 'name', 'text', 'image'));
   }
 
 }

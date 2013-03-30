@@ -247,7 +247,7 @@ class sfImageLineImageMagick extends sfImageTransformAbstract
    */
   public function setStyle($style)
   {
-    if (is_numeric($style = $style))
+    if (is_numeric($style))
     {
       $this->style = $style;
 
@@ -281,7 +281,7 @@ class sfImageLineImageMagick extends sfImageTransformAbstract
     $draw->setFillColor($this->getColor());
     
     $draw->line($this->getStartX(), $this->getStartY(), $this->getEndX(), $this->getEndY());
-    
+
     $resource->drawImage($draw);
 
     return $image;

@@ -20,7 +20,7 @@ class ArticleTable extends Doctrine_Table {
    * 
    * Fetch the list of all articles sorted by date.
    * 
-   * @param int $pole_id
+   * @param int $asso
    */
   public function getArticlesList($asso = null) {
     $q = $this->createQuery('a')

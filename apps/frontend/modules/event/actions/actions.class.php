@@ -11,7 +11,7 @@
 class eventActions extends sfActions
 {
   /*
-   * @todo gérer les parametres d'url start et end ! 
+   * @todo gérer les paramètres d'url start et end !
    * 
    * 
    */
@@ -89,7 +89,7 @@ class eventActions extends sfActions
 
   /**
    * Liste des event
-   * On affiche la liste des events de l'asso specifié
+   * On affiche la liste des events de l'asso spécifié
    *
    * @param sfRequest $request A request object
    */
@@ -124,10 +124,4 @@ class eventActions extends sfActions
       $this->redirect('event/show?id='.$event->getId());
     }
   }
-<<<<<<< HEAD
-  
-  
-=======
-
->>>>>>> 9a945a1ee42da6f33934b1a8509aef508f9e2e4c
 }

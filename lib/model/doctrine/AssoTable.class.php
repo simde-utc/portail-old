@@ -72,6 +72,22 @@ class AssoTable extends Doctrine_Table
     return $q;
   }
 
+  public function getMyPrevAssos($user_id)
+  {
+    $current = $this->getMyAssos($user_id)->execute();
+    $list = array();
+    foreach($current as $asso)
+      array_push($list,$asso->getId());
+    
+    $q = $this->createQuery('q')
+            ->select('q.id, q.login, q.name, q.logo, m.id')
+            ->leftJoin('q.AssoMember m')
+            ->where('m.user_id = ?', $user_id)
+            ->andWhere('m.semestre_id = ?', sfConfig::get('app_portail_current_semestre')-1)
+            ->andWhereNotIn('q.id', $list);
+    return $q;
+  }
+
   public function getRandom()
   {
     $q = $this->createQuery('q')

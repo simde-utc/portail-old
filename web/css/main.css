@@ -132,7 +132,7 @@ p { text-align : justify; }
   background: #FFF;
   margin: 0 auto;
   width: 1010px;
-  height: 190px;
+  height: 200px;
   padding: 5px;
   margin-top: -27px;
   -webkit-border-bottom-right-radius: 5px;
@@ -166,16 +166,17 @@ p { text-align : justify; }
 #calendrier .event {
   display: inline-block;
   width: 330px;
-  height: 145px;
+  height: 155px;
   vertical-align: top;
   color: #343434;
   border-right: #000 1px solid;
   text-align: left;
+  overflow: hidden;
 }
 
 #calendrier .event img { float: left; margin-right: 10px; margin-left: 30px; background: #000; height:112px; width: 112px; }
 #calendrier .event h2 { font-size: 13px; font-weight: bold; margin: 0; color: #343434; text-transform: uppercase; }
-#calendrier .event h3 { font-size: 12px; font-weight: bold; color: #ee4401; margin: 0; margin-top: 20px; text-transform: uppercase; text-align: left; }
+#calendrier .event h3 { font-size: 12px; font-weight: bold; color: #ee4401; margin: 0; margin-top: 5px; text-transform: uppercase; text-align: left; }
 #calendrier .event .infos { font-size: 12px; color: #353535; font-weight: bold;}
 #calendrier .event a.more { display: block; background: url('/images/button/more.png') no-repeat; 
                             width: 113px; height: 22px; margin-top: 5px; margin-left: 190px; padding-top: 10px;
@@ -192,24 +193,18 @@ p { text-align : justify; }
 /* ------------------------------- */
 
 #content{
-  width: 620px;
-  margin: auto;
+  width: 813px;
   background: #fff;
   padding: 10px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  float:left;
 }
 
-#column-left{
+#column-left {
   float: left;
   width: 175px;
-  margin: auto;
-}
-
-#column-right{
-  float: right;
-  width: 175px;
-  margin: auto;
+  margin: 8px;
 }
 
 #footer{
@@ -293,19 +288,6 @@ p { text-align : justify; }
   clear: both;
 }
 
-#column-left #my_flux .all_abonnements .barre, #column-left #my_flux .events_abonnements .barre, #column-left #my_flux .articles_abonnements .barre {
-  margin: 2px auto;
-  border-top: 1px solid #000;
-  clear: both;
-}
-
-#all_but {
-  border-bottom: 3px solid black;
-}
-
-#all_but a:hover{
-  text-decoration: none;
-}
 #column-right #contact {
   background: #353535;
   -webkit-border-radius: 5px;
@@ -611,6 +593,8 @@ a.btn-danger {
     text-transform: uppercase;
     color: white;
     font-size: 12px;
+    padding: 1em 0em;
+    line-height: 1.2em;
 }
 .part .event a {
   color: white;
@@ -627,8 +611,8 @@ a.btn-danger {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    font-family: impact;
-    font-size: 15px;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 12px;
     color: white;
     padding: 5px;
     text-transform: uppercase;
@@ -730,7 +714,6 @@ a.btn-danger {
     cursor: url('/images/button/modifier.png'), auto;
 }
 
-
 .part h1 .titleaction {
 	float: right;
 	font-size: 12px;
@@ -811,7 +794,8 @@ a.btn-danger {
 .part .more:hover{
     background: #CECCCC;
 }
-#assos_list #services_list {
+
+#assos_list, #services_list {
   list-style:none;
   line-height:200%;
   margin:20px auto;
@@ -850,13 +834,31 @@ a.btn-danger {
   margin-right: 5px;
   vertical-align: middle;
 }
-#assos_list .website:hover #services_list .ebsite:hover{
+#assos_list .website:hover #services_list .website:hover{
   text-decoration:none;
   color:#fff;
   background-color:#75c34b;
 }
 #topbar .email:before , #assos_list .email:before {
   content: url('/images/icons/mail.png');
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+#topbar .facebook:before , #assos_list .facebook:before {
+  content: url('/images/icons/facebook.png');
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+#topbar .phone:before , #assos_list .phone:before {
+  content: url('/images/icons/phone.png');
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+#topbar .salle:before , #assos_list .salle:before {
+  content: url('/images/icons/door_open.png');
   margin-right: 5px;
   vertical-align: middle;
 }
@@ -887,7 +889,6 @@ a.btn-danger {
 }
 
 #topbar{
-  width: 598px;
   padding: 10px;
 }
 
@@ -954,3 +955,13 @@ ul.membres li img {
 
 .form-filters label { float: left; width: 130px; }
 .form-filters input, .form-filters select {  }
+
+#annonce_offre_1 + label,#annonce_offre_1, #annonce_offre_0 + label, #annonce_offre_0 { display: inline-block; margin: 0 5px; }
+
+.nav a {
+  color: #08C;
+}
+
+.ejs {
+  visibility: hidden;
+}

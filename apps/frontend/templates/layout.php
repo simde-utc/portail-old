@@ -19,7 +19,7 @@
           <img src="/images/logo_bde.png" alt="BDE UTC" width="163px" height="110px" />
         </a>
         <?php if(0): ?>
-        <form class="form-inline"><label>Rerchercher une info</label>
+        <form class="form-inline"><label>Rechercher une info</label>
           <input type="text" class="input-medium" />
           <button type="submit" class="btn">Chercher</button>
         </form>
@@ -34,7 +34,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="<?php echo url_for('cas') ?>">Étudiant UTC (CAS)</a></li>
-                <li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>
+                <?php /*<li><a href="<?php echo url_for('sf_guard_signin') ?>">Extérieur</a></li>*/ ?>
               </ul>
             </li>
           </ul>
@@ -47,7 +47,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><a href="<?php echo url_for('profile_show') ?>">Mon Profil</a></li>
-                <li><a href="<?php echo url_for('sf_guard_signout') ?>">Me déconnecter</a></li>
+                <li><a href="<?php echo url_for('sf_guard_signout') ?>">Se déconnecter</a></li>
               </ul>
             </li>
           </ul>
@@ -61,7 +61,7 @@
         <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Toutes les associations</a>
         <a href="<?php echo url_for('agenda_detail') ?>" class="barre">Calendrier</a>
         <a href="<?php echo url_for('services')?>" class="barre" id= "lienlisteservices"> Tous les services </a>
-        <a href="<?php echo url_for('annonce') ?>" class="barre">Annonces</a>
+        <?php /*<a href="<?php echo url_for('annonce') ?>" class="barre">Annonces</a>*/ ?>
         <span class="horloge">
           <?php echo format_date(time(), "D", 'fr') ?>
           <span class="barre"><?php echo format_date(time(), "t", 'fr') ?></span>
@@ -75,24 +75,21 @@
       <?php include_component('asso', 'menu') ?>
     <?php endif ?>
     <div class="wrap">
-      <div id="column-left">        
+      <div id="column-left">
         <?php if($sf_user->isAuthenticated()): ?>
           <?php include_component('asso', 'myAssos') ?>
         <?php else: ?>
           <?php include_partial('home/bienvenue') ?>
         <?php endif ?>
-        <br>
         <?php if($sf_user->isAuthenticated()): ?>
+            <br>
           <?php include_component('abonnement', 'myFlux') ?>
         <?php endif ?>
-        <br>
         <?php if($sf_user->isAuthenticated()): ?>
+          <br>
           <?php include_component('services', 'myServicesFavoris') ?>
         <?php endif ?>
-      </div>
-      <div id="column-right">
-        <?php include_component('asso','contact') ?>
-      </div>      
+      </div>   
       <div id="content">
         <?php if($sf_user->hasFlash('error')): ?>
         <div class="alert alert-block alert-error">
@@ -120,7 +117,7 @@
         <?php endif ?>
         <?php echo $sf_content ?>
       </div>
-      <div style="clear: both;"></div>
+
     </div>
     <div id="footer">
       <div class="wrap">
@@ -129,14 +126,14 @@
           <h2>Services</h2>
           <a href="/gesmail">Gestion des mails assos</a><br/>
           <a href="/resa">Réservation de salles</a><br/>
-          <a href="/mail">Webmail assos</a><br/><br/>
+          <a href="/mail">Webmail assos</a><br /><br />
         </div>
         <div id="footer-right">
           <h2>Liens</h2>
           <a href="http://ent.utc.fr">ENT</a><br/>
           <a href="/simde">SiMDE</a><br/>
-          <a href="http://www.utc.fr">UTC</a><br/>
-          <a href="/aide">Aide</a>
+          <a href="/wiki">Wiki des assos</a><br/>
+          <a href="http://www.utc.fr">UTC</a>
         </div>
       </div>
     </div>

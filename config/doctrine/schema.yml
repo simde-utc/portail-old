@@ -1,7 +1,7 @@
 options:
   collate: utf8_unicode_ci
   charset: utf8
-  
+
 Asso:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -229,7 +229,7 @@ Activation:
     activation_key: { type: string }
   relations:
     sfGuardUser: { onUpdate: CASCADE, local: user_id, foreign: id, foreignAlias: Activations}
-   
+
 Abonnement:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -267,16 +267,18 @@ ServiceType:
   connection: doctrine
   columns:
     name: { type: string(50) }
-    
 
 CharteInfo:
   connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
-    date: { type: date, notnull: true }
+    date: { type: datetime, notnull: true }
+    ip: { type: string(15), notnull: true }
     semestre_id: { type: integer, notnull: true }
     asso_id : { type: integer, notnull : true }
+    asso_name: { type: string(20), notnull: true }
     responsable_id: { type: integer, notnull: true }
+    login: { type: string(20), notnull: true }
     confirmation: { type: boolean, notnull: true, default: false }
   relations:
     Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
@@ -345,18 +347,44 @@ Annonce:
     titre: { type: string(250), notnull: true }
     texte: { type: string, notnull: true }
     offre: { type: boolean, notnull: true, default: 1 }
-    ville: { type: string }
+    lieu: { type: string(100) }
     prix: { type: float, notnull: true, default: 0.00 }
-    departement_id: { type: integer }
-    branche_id: { type: integer }
-    debut: { type: timestamp }
-    fin: { type: timestamp }
     user_id: { type: integer }
     email: { type: string(100) }
     password: { type: string(32) }
   relations:
     Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: AnnoncesCategorie }
-    Departement: { onUpdate: CASCADE, local: departement_id, foreign: id }
-    Branche: { onUpdate: CASCADE, local: branche_id, foreign: id }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
-    
+
+Partenaire:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string(100) }
+    logo: { type: string(100) }
+    url: { type: string(255) }
+    description: { type: string }
+
+VoteListe:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string(100), notnull: true }
+    description: { type: string, notnull: true }
+    membres: { type: string, notnull: true }
+    semestre_id: { type: integer, notnull: true }
+    count: { type: integer, notnull: true, default: 0 }
+  relations:
+    Semestre: { local: semestre_id, foreign: id }
+
+Vote:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    ip: { type: string(15), notnull: true }
+    semestre_id: { type: integer, notnull: true }
+    user_id: { type: integer, notnull: true }
+    login: { type: string(20), notnull: true }
+  relations:
+    Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }

@@ -25,6 +25,6 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 
     $signoutUrl = sfConfig::get('app_sf_guard_plugin_success_signout_url', $request->getReferer());
 
-    $this->forward('cas','logout');
+    $this->forward('utcCas','logout');
   }
 }

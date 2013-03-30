@@ -63,11 +63,11 @@ asso:
 
 cas:
   url: /cas
-  param: { module: cas, action: login }
+  param: { module: utcCas, action: login }
 
 cas_logout:
   url: /cas/logout
-  param: { module: cas, action: logout }
+  param: { module: utcCas, action: logout }
 
 # default rules
 homepage:

@@ -33,7 +33,7 @@ function format_montant($montant) {
       <?php echo format_montant($categorie->getTotal()) ?>
       <td><a href="<?php echo url_for('budget_poste_new', array('budget' => $budget->getPrimaryKey(), 'categorie' => $categorie->getPrimaryKey())) ?>" class="btn btn-primary">Ajouter un poste</a></td>
       <td>
-          <a href="<?php echo url_for('budget_categorie_delete', array('id' => $categorie->getPrimaryKey())) ?>" class="btn btn-danger">Supprimer</a>
+          <?php echo link_to('<i class="icon-trash icon-white"></i>&nbsp;&nbsp;Supprimer', 'budgetCategorie/delete?id='.$categorie->getPrimaryKey(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
           <a href="<?php echo url_for('budget_categorie_edit', $categorie) ?>" class="btn">Modifier</a>
       </td>
     </tr>

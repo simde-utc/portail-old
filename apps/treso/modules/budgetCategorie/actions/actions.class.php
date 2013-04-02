@@ -14,6 +14,8 @@ class budgetCategorieActions extends sfActions
   {
     $this->asso = $this->getRoute()->getObject();    
     $this->budget_categories = BudgetCategorieTable::getInstance()->getActiveCategories($this->asso->getId());
+
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeNew(sfWebRequest $request)
@@ -21,6 +23,7 @@ class budgetCategorieActions extends sfActions
     $this->asso = $this->getRoute()->getObject();
     $this->form = new BudgetCategorieForm();
     $this->form->setDefault('asso_id', $this->asso->getPrimaryKey());
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -34,6 +37,7 @@ class budgetCategorieActions extends sfActions
     $this->processForm($request, $this->form);
 
     $this->setTemplate('new');
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -42,6 +46,7 @@ class budgetCategorieActions extends sfActions
     $this->budget_categorie = Doctrine_Core::getTable('BudgetCategorie')->find(array($request->getParameter('id')));
     $this->asso = $this->budget_categorie->getAsso();
     $this->form = new BudgetCategorieForm($budget_categorie);
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeUpdate(sfWebRequest $request)
@@ -53,6 +58,7 @@ class budgetCategorieActions extends sfActions
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
+    $this->getResponse()->setSlot('current_asso', $this->form->getObject()->getAsso());
   }
 
   public function executeDelete(sfWebRequest $request)

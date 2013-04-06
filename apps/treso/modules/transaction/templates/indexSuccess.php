@@ -4,9 +4,6 @@
 
 <table style="margin: 20px auto;" class="table table-bordered table-striped table-transaction">
   <thead>
-    <?php if(TransactionTable::getInstance()->getActiveCount($asso) > 20) {?>
-      <a href="<?php echo url_for('transaction_new', $asso) ?>" class="btn btn-success"><i class="icon-plus icon-black"></i>&nbsp;&nbsp;Nouvelle transaction</a>
-    <?php } ?>
     <tr>
       <th>Compte</th>
       <th>Libelle</th>
@@ -48,3 +45,4 @@
 </table>
 
 <a href="<?php echo url_for('transaction_new', $asso) ?>" class="btn btn-success"><i class="icon-plus icon-white"></i>&nbsp;&nbsp;Nouvelle transaction</a>
+<a href="<?php echo url_for('transaction_pdf', $asso) ?>" class="btn btn-primary"><i class="icon-share-alt icon-white"></i>&nbsp;&nbsp;Export pdf</a>

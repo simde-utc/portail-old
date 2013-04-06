@@ -20,8 +20,11 @@ class TransactionTable extends Doctrine_Table
     public function getAllForAsso($asso)
     {
       $q = $this->createQuery('q')
+              ->leftJoin('q.CompteBanquaire c')
+              ->leftJoin('q.TransactionMoyen m')
               ->where('q.asso_id = ?',$asso->getPrimaryKey())
-              ->andWhere('q.deleted_at IS NULL');
+              ->andWhere('q.deleted_at IS NULL')
+              ->orderBy('q.compte_id, q.date_transaction');
       return $q;
     }
     

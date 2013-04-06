@@ -52,4 +52,5 @@ class BudgetCategorieTable extends Doctrine_Table
         $q = $this->createQuery('q')->where('q.asso_id=?',$asso->getPrimaryKey())->andWhere('q.deleted_at IS NULL');
         return $q;
     }
+
 }

@@ -16,4 +16,20 @@ class Budget extends BaseBudget {
         return BudgetCategorieTable::getInstance()->getCategoriesForBudget($this)->andWhere('BudgetCategorie.deleted_at is NULL');
     }
 
+    public function getCategoriesWithEntry(){
+        $q = $this->getCategories()
+        ->leftJoin('BudgetPoste b')
+        ->andwhere('b.budget_categorie_id = q.id')
+        ->andWhere('b.id IS NOT NULL');
+        return $q;
+    }
+
+    public function getCategoriesWithoutEntry(){
+        $q = $this->getCategories()
+        ->leftJoin('BudgetPoste b')
+        ->andwhere('b.budget_categorie_id = q.id')
+        ->andWhere('b.id IS NULL');
+        return $q;
+    }
+
 }

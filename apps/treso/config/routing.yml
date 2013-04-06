@@ -72,6 +72,12 @@ budget_categorie_new:
   param: {module: budgetCategorie, action: new}
   options: {model: Asso, type: object}
 
+budget_categorie_new_from_budget:
+  url: /budget_categorie/new_from_budget/:id
+  class: sfDoctrineRoute
+  param: {module: budgetCategorie, action: newFromBudget}
+  options: {model: Budget, type: object}
+
 budget_categorie_update:
   url: /budget_categorie/update/:id
   param: {module: budgetCategorie, action: update}

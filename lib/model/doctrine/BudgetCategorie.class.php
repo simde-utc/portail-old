@@ -29,4 +29,12 @@ class BudgetCategorie extends BaseBudgetCategorie
         return $this['MontantTotal'] ? $this['MontantTotal'] : 0;
     }
 
+    public function countPoste()
+    {
+        $q = Doctrine_Query::create()
+        ->from('BudgetPoste bp')
+        ->where('bp.budget_categorie_id = ?', $this->getId());
+        return $q->count();
+    }
+
 }

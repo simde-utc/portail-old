@@ -73,7 +73,7 @@ class compteActions extends sfActions
     {
       $compte_banquaire = $form->save();
 
-      $this->redirect('compte/edit?id='.$compte_banquaire->getId());
+      $this->redirect('compte', $form->getObject()->getAsso());
     }
   }
 }

@@ -17,7 +17,14 @@ class BudgetCategorieTable extends Doctrine_Table
     {
 		$q = $this->createQuery('q')
       			  ->where('q.asso_id = ?', $asso_id);
-		return $q->execute();
+		return $q;
+    }
+
+    public function getActiveCategories($asso_id)
+    {
+      $q = $this->getCategories($asso_id);
+      $q->where('q.deleted_at IS NULL');
+      return $q->execute();
     }
     
     public static function getInstance()
@@ -35,7 +42,14 @@ class BudgetCategorieTable extends Doctrine_Table
                   ->andWhere('BudgetPoste.deleted_at IS NULL');
     	// on sélectionne les budgets de l'asso
     	$q->select('q.*, ('.$subq->getDql().') as MontantTotal')
-    			  ->andWhere('q.asso_id = ?', $budget->getAssoId());
+    			  ->andWhere('q.asso_id = ?', $budget->getAssoId())
+                  ->andWhere('q.deleted_at IS NULL');
     	return $q;
+    }
+
+    public function getAllForAsso($asso)
+    {
+        $q = $this->createQuery('q')->where('q.asso_id=?',$asso->getPrimaryKey())->andWhere('q.deleted_at IS NULL');
+        return $q;
     }
 }

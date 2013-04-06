@@ -2,7 +2,7 @@
 
 <h1>Liste des transactions de l'association <?php echo $asso?> </h1>
 
-<table style="margin: 20px auto;" class="table table-bordered table-striped">
+<table style="margin: 20px auto;" class="table table-bordered table-striped table-transaction">
   <thead>
     <?php if(TransactionTable::getInstance()->getActiveCount($asso) > 20) {?>
       <a href="<?php echo url_for('transaction_new', $asso) ?>" class="btn btn-success"><i class="icon-plus icon-black"></i>&nbsp;&nbsp;Nouvelle transaction</a>

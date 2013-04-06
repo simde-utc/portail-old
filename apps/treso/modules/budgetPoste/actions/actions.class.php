@@ -15,27 +15,36 @@ class budgetPosteActions extends sfActions
     $this->forward404Unless($this->budget = BudgetTable::getInstance()->find(array($request->getParameter('budget'))), sprintf('Object budget does not exist (%s).', $request->getParameter('budget')));
     $this->forward404Unless($this->categorie = BudgetCategorieTable::getInstance()->find(array($request->getParameter('categorie'))), sprintf('Object budget does not exist (%s).', $request->getParameter('categorie')));
 
-    $this->form = new BudgetPosteForm();
-    $this->form->setDefault('budget_id', $this->budget->getPrimaryKey());
-    $this->form->setDefault('budget_categorie_id', $this->categorie->getPrimaryKey());
-    $this->form->setDefault('asso_id', $this->budget->getAssoId());
+    $poste = new BudgetPoste();
+    $poste->setBudget($this->budget);
+    $poste->setBudgetCategorie($this->categorie);
+    $poste->setAsso($this->budget->getAsso());
+    $this->form = new BudgetPosteForm($poste);
+
+    $this->getResponse()->setSlot('current_asso', $this->budget->getAsso());
   }
 
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-    $this->form = new BudgetPosteForm();
+    $request_poste = $request->getParameter('budget_poste');
+    $this->budget = BudgetTable::getInstance()->find($request_poste['budget_id']);
+    $this->asso = $this->budget->getAsso();
+    $poste = new BudgetPoste();
+    $poste->setAsso($this->asso);
+    $this->form = new BudgetPosteForm($poste);
 
     $this->processForm($request, $this->form);
 
     $this->setTemplate('new');
+    $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($this->poste = Doctrine_Core::getTable('BudgetPoste')->find(array($request->getParameter('id'))), sprintf('Object budget_poste does not exist (%s).', $request->getParameter('id')));
     $this->form = new BudgetPosteForm($this->poste);
+    $this->getResponse()->setSlot('current_asso', $this->poste->getAsso());
   }
 
   public function executeUpdate(sfWebRequest $request)
@@ -47,6 +56,7 @@ class budgetPosteActions extends sfActions
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
+    $this->getResponse()->setSlot('current_asso', $this->poste->getAsso());
   }
 
   public function executeDelete(sfWebRequest $request)

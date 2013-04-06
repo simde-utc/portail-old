@@ -22,7 +22,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Admin Portail</a>
+          <a class="brand" href="<?php echo url_for('homepage') ?>">Outil de Trésorerie</a>
           <div class="btn-group pull-right">
             <?php if(!$sf_user->isAuthenticated()): ?>
               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">

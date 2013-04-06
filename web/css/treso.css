@@ -1,21 +1,32 @@
 body {
-  padding-top: 60px;
+    padding-top: 60px;
+}
+
+.table-transaction tbody tr.recette td, .table-transaction tbody tr.recette th {
+    background-color: lightgreen;
+}
+.table-transaction tbody tr.depense td, .table-transaction tbody tr.depense th {
+    background-color: #ffc5b4
+}
+
+#transaction-form label {
+    display: inline-block;
+    min-width: 130px;
 }
 
 .table-treso-categorie td:nth-child(1), .table-treso-categorie td:nth-child(2) {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .table-treso-ligne td:nth-child(1) {
-  padding-left: 40px;
+    padding-left: 40px;
 }
 
 .table-treso-budget td:nth-child(4), .table-treso-budget td:nth-child(5) {
-  text-align: right;
+    text-align: right;
 }
 
 .error_list{color :#FF0000;}
 .error_list li{list-style: none}
 
 .table{margin-top:10px;}
-

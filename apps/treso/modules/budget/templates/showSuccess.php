@@ -30,7 +30,6 @@ function format_montant($montant) {
 
 <h1>Budget <?php echo $budget->getNom() ?> pour <?php echo $budget->getAsso()->getName() ?></h1>
 
-<?php if(count($categories) > 0): ?>
   <table class="table table-striped table-bordered table-hover table-treso-budget">
     <thead>
       <tr>
@@ -71,7 +70,6 @@ function format_montant($montant) {
   </tr>
 </tbody>
 </table>
-<?php endif; ?>
 
 <p>
 

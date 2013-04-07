@@ -31,8 +31,7 @@ class BudgetCategorie extends BaseBudgetCategorie
 
     public function countPoste()
     {
-        $q = Doctrine_Query::create()
-        ->from('BudgetPoste bp')
+        $q = $this->createQuery('bp')
         ->where('bp.budget_categorie_id = ?', $this->getId());
         return $q->count();
     }

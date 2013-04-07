@@ -84,12 +84,3 @@ function format_montant($montant) {
     Modifier le nom du budget
   </a>
 </p>
-
-<script>
-$( document ).ready(function() {
-    $( "a" ).click(function( event ) {
-        alert( "As you can see, the link no longer took you to jquery.com" );
-        event.preventDefault();
-    });
-});
-</script>

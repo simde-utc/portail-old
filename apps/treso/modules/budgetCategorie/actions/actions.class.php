@@ -100,8 +100,7 @@ class budgetCategorieActions extends sfActions
       $asso = $budget_categorie->getAsso();
 
       if (preg_match("/new_from_budget/", $referer)){
-        $budget = BudgetTable::getInstance()->find($request->getParameter('budget_categorie')['id_budget']); 
-        $this->redirect($this->generateUrl('budget_show', $budget));
+        $this->redirect($this->generateUrl('budget_show', array('id' => $request->getParameter('budget_categorie')['id_budget'])));
       }
       else
         $this->redirect($this->generateUrl('budget_categorie', array('login' => $asso->getName())));

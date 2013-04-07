@@ -25,7 +25,7 @@ class Budget extends BaseBudget {
     }
 
     public function getCategoriesWithoutEntry(){
-        $q = BudgetCategorieTable::getInstance()->createQuery('q')->where('q.asso_id = ?', $this->getAssoId())->andwhere('q.deleted_at IS NULL')
+        $q = BudgetCategorieTable::getInstance()->getActiveCategories($this->getAssoId())
         ->andWhere('(SELECT COUNT(*) FROM BudgetPoste b WHERE b.budget_categorie_id = q.id) = 0');
         return $q;
     }

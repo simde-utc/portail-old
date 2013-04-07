@@ -12,7 +12,7 @@ class transactionActions extends sfActions {
 
   public function executeIndex(sfWebRequest $request) {
     $this->asso = $this->getRoute()->getObject();
-    $this->transactions = TransactionTable::getInstance()->getAllForAsso($this->asso)->execute();
+    $this->transactions = TransactionTable::getInstance()->getJournalForAsso($this->asso)->execute();
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 

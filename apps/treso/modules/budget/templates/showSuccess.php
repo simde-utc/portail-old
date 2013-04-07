@@ -6,59 +6,81 @@ function format_montant($montant) {
 }
 ?>
 
+
+
+<div class="btn-group" style="float:right">
+  <a class="btn btn-success"  href="<?php echo url_for("budget_categorie_new_from_budget", $budget) ?>">
+    <i class="icon-plus icon-white"></i>
+    Ajouter une catégorie
+  </a>
+  <button class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li>
+
+      <a href="<?php echo url_for('budget_categorie', $assos);?>">
+        Gestion des catégories
+      </a>
+    </li>
+  </ul>
+</div>
+
 <h1>Budget <?php echo $budget->getNom() ?> pour <?php echo $budget->getAsso()->getName() ?></h1>
 
-<p>
-    <a class="btn btn-success" href="<?php echo url_for('budget_categorie_new', $budget->getAsso()) ?>">
-        <i class="icon-plus icon-white"></i>&nbsp;&nbsp;
-        Ajouter une catégorie
-    </a>
-</p>
-
 <?php if(count($categories) > 0): ?>
-<table class="table table-striped table-bordered table-hover table-treso-budget">
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Dépense</th>
-      <th>Recette</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($categories as $categorie): ?>
-    <tr class="table-treso-categorie">
-      <td><?php echo $categorie->getNom() ?></td>
-      <?php echo format_montant($categorie->getTotal()) ?>
-      <td><a href="<?php echo url_for('budget_poste_new', array('budget' => $budget->getPrimaryKey(), 'categorie' => $categorie->getPrimaryKey())) ?>" class="btn btn-primary">Ajouter un poste</a></td>
-      <td>
-          <a href="<?php echo url_for('budget_categorie_delete', array('id' => $categorie->getPrimaryKey())) ?>" class="btn btn-danger">Supprimer</a>
-          <a href="<?php echo url_for('budget_categorie_edit', $categorie) ?>" class="btn">Modifier</a>
-      </td>
-    </tr>
+  <table class="table table-striped table-bordered table-hover table-treso-budget">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Dépense</th>
+        <th>Recette</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($categories as $categorie): ?>
+      <tr class="table-treso-categorie">
+        <td><?php echo $categorie->getNom() ?></td>
+        <?php echo format_montant($categorie->getTotal()) ?>
+        <td><a href="<?php echo url_for('budget_poste_new', array('budget' => $budget->getPrimaryKey(), 'categorie' => $categorie->getPrimaryKey())) ?>" class="btn btn-success"><i class="icon-plus icon-white"></i></a></td>
+      </tr>
       <?php foreach ($categorie->getPostesForBudget($budget) as $poste): ?>
-        <tr class="table-treso-ligne">
-          <td><?php echo $poste->getNom() ?></td>
-          <?php echo format_montant($poste->getTotal()) ?>
-          <td></td>
-          <td>
-              <a href="<?php echo url_for('budget_poste_delete', $poste) ?>" class="btn btn-danger">Supprimer</a>
-              <a href="<?php echo url_for('budget_poste_edit', $poste) ?>" class="btn">Modifier</a></td>
+      <tr class="table-treso-ligne">
+        <td><?php echo $poste->getNom() ?></td>
+        <?php echo format_montant($poste->getTotal()) ?>
+        <td>
+          <a href="<?php echo url_for('budget_poste_delete', $poste) ?>" class="btn btn-danger"><i class="icon-trash icon-white"></i></a>
+          <a href="<?php echo url_for('budget_poste_edit', $poste) ?>" class="btn"><i class="icon-pencil icon-black"></a></td>
         </tr>
-	   	<?php endforeach; ?>
+      <?php endforeach; ?>
     <?php endforeach; ?>
-  </tbody>
+    <tr class="table-treso-categorie">
+      <td>
+       <select>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select> 
+    </td>
+    <td></td>
+    <td></td>
+    <td>Valider</td>
+  </tr>
+</tbody>
 </table>
 <?php endif ?>
 
 <p>
-    <a class="btn btn-danger" href="<?php echo url_for('budget_delete', $budget) ?>">
-        <i class="icon-trash icon-white"></i>&nbsp;&nbsp;
-        Supprimer le budget
-    </a>
-    <a class="btn btn-info" href="<?php echo url_for('budget_edit', $budget) ?>">
-        <i class="icon-pencil icon-white"></i>&nbsp;&nbsp;
-        Modifier le nom du budget
-    </a>
+
+  <a class="btn btn-danger" href="<?php echo url_for('budget_delete', $budget) ?>">
+    <i class="icon-trash icon-white"></i>&nbsp;&nbsp;
+    Supprimer le budget
+  </a>
+  <a class="btn btn" href="<?php echo url_for('budget_edit', $budget) ?>">
+    <i class="icon-pencil icon-black"></i>&nbsp;&nbsp;
+    Modifier le nom du budget
+  </a>
 </p>

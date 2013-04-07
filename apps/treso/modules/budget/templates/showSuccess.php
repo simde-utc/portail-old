@@ -1,5 +1,7 @@
 <?php use_helper('Number');
 
+use_javascript('treso_unused_categories.js');
+
 function format_montant($montant) {
   $tot = '<td>' . format_currency(abs($montant), '€', 'fr_FR') . '</td>';
   return ($montant >= 0) ? "<td></td>".$tot : $tot."<td></td>";
@@ -28,7 +30,6 @@ function format_montant($montant) {
 
 <h1>Budget <?php echo $budget->getNom() ?> pour <?php echo $budget->getAsso()->getName() ?></h1>
 
-<?php if(count($categories) > 0): ?>
   <table class="table table-striped table-bordered table-hover table-treso-budget">
     <thead>
       <tr>
@@ -56,22 +57,19 @@ function format_montant($montant) {
       <?php endforeach; ?>
     <?php endforeach; ?>
     <tr class="table-treso-categorie">
-      <td>
-       <select>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+      <td>Catégories vides
+       <select id="unused-categories-list">
+        <?php foreach ($unused_categories as $categorie): ?>
+        <option value="<?php echo $categorie->getPrimaryKey() ?>"><?php echo $categorie->getNom() ?></option>
+        <?php endforeach; ?>
       </select> 
     </td>
     <td></td>
     <td></td>
-    <td>Valider</td>
+    <td><a href="#" id="unused-categories-btn" data-url-base="<?php echo url_for('budget_poste_new', array('budget'=>$budget->getPrimaryKey(), 'categorie'=>'')) ?>" class="btn btn-success"><i class="icon-white icon-plus"></i></a></td>
   </tr>
 </tbody>
 </table>
-<?php endif ?>
 
 <p>
 

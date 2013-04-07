@@ -16,4 +16,9 @@ class NoteDeFraisTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('NoteDeFrais');
     }
+
+    public function getAllForAsso($asso) {
+        $q = $this->createQuery('q')->where('q.asso_id = ?', $asso->getPrimaryKey())->andWhere('q.deleted_at IS NULL');
+        return $q;
+    }
 }

@@ -34,4 +34,11 @@ class TransactionTable extends Doctrine_Table
         $a = $q->count();
         return $a;
     }
+
+    public function getRemboursablesForAsso($asso)
+    {
+      $q = $this->getAllForAsso($asso);
+      $q->andWhere('q.moyen_id = 6')->andWhere('q.deleted_at IS NULL')->andWhere('q.note_de_frais_id IS NULL');
+      return $q;
+    }
 }

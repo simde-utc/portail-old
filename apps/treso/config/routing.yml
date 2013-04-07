@@ -176,3 +176,26 @@ budget_poste_delete:
 budget_poste_create:
   url: /budget/poste/create
   param: { module: budgetPoste, action: create }
+
+# Note de frais
+ndf:
+  url:   /noteDeFrais/asso/:login
+  class: sfDoctrineRoute
+  param: { module: noteDeFrais, action: index }
+  options: { model: Asso, type: object }
+
+ndf_show:
+  url:  /noteDeFrais/:id
+  class: sfDoctrineRoute
+  param: { module: noteDeFrais, action: show }
+  options: { model: NoteDeFrais, type: object }
+
+ndf_new:
+  url: /noteDeFrais/new/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: noteDeFrais, action: new }
+
+ndf_create:
+  url: /noteDeFrais/create
+  param: { module: noteDeFrais, action: create }

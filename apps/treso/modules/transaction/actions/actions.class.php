@@ -16,6 +16,11 @@ class transactionActions extends sfActions {
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
+  public function executeShow(sfWebRequest $request) {
+    $this->transaction = $this->getRoute()->getObject();
+    $this->getResponse()->setSlot('current_asso', $this->transaction->getAsso());
+  }
+
   public function executeNew(sfWebRequest $request) {
     $this->asso = $this->getRoute()->getObject();
     $transaction = new Transaction();

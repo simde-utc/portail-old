@@ -58,7 +58,7 @@ foreach ($transactions as $transaction):
         <tr class="depense">
           <?php $debit += $transaction->getMontant() ?>
         <?php endif; ?>
-        <td><?php echo $transaction->getLibelle() ?></td>
+        <td><a href="<?php echo url_for('transaction_show', $transaction) ?>"><?php echo $transaction->getLibelle() ?></a></td>
         <td><?php if ($transaction->getMontant() >= 0) echo format_montant($transaction->getMontant()) ?></td>
         <td><?php if ($transaction->getMontant() < 0) echo format_montant($transaction->getMontant()) ?></td>
         <td><?php echo format_date($transaction->getDateTransaction(), 'D', 'fr'); ?></br>> <?php echo format_date($transaction->getDateRapprochement(), 'D', 'fr'); ?></td>      <td><?php echo $transaction->getTransactionMoyen() ?></br><em><?php echo $transaction->getMoyenCommentaire() ?></em></td>

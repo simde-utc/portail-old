@@ -58,6 +58,7 @@
             <ul class="nav nav-list">
               <li><?php echo link_to('Gestion des cotisants', 'cotisants/index') ?></li>
               <li><?php echo link_to('Chartes info', 'charte_info/index') ?></li>
+              <li><?php echo link_to('Weekmail', 'weekmail/index') ?></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

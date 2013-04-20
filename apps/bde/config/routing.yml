@@ -1,3 +1,7 @@
+weekmail:
+  url: /weekmail
+  param: { module: weekmail, action: index }
+
 charte_info:
   class: sfDoctrineRouteCollection
   options:

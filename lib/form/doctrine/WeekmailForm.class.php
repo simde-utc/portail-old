@@ -12,5 +12,9 @@ class WeekmailForm extends BaseWeekmailForm
 {
   public function configure()
   {
+      unset($this['created_at'],$this['updated_at']);
+      $this->widgetSchema['published_at']->setLabel('Publication');
+      $this->widgetSchema['published_at']->addOption('format', '%day%/%month%/%year%');
+      $this->widgetSchema['published_at']->setDefault(date("d/m/Y"));
   }
 }

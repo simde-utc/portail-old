@@ -286,5 +286,7 @@ WeekmailArticle:
     text : { type: string, notnull: true }
     image: { type: string }
     summary: { type: string(150) }
+    weekmail_id: { type: integer }
   relations:
     Asso: { local: asso_id, foreign: id }
+    Weekmail: { local: weekmail_id, foreign: id }

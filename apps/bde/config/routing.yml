@@ -1,6 +1,28 @@
 weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }
+weekmail_show:
+  url:   /article/show/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: show }
+  options: { model: Weekmail, type: object }
+weekmail_edit:
+  url:  /article/edit/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: edit }
+  options: { model: Weekmail, type: object }
+weekmail_update:
+  url:  /weekmail/update/:id
+  param: { module: weekmail, action: update }
+weekmail_delete:
+  url:  /weekmail/delete/:id
+  param: { module: weekmail, action: delete }
+weekmail_create:
+  url: /weekmail/create
+  param: { module: weekmail, action: create }
+weekmail_new:
+  url: /weekmail/new
+  param: { module: weekmail, action: new }
 
 charte_info:
   class: sfDoctrineRouteCollection

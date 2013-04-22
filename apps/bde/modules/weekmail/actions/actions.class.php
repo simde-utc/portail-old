@@ -18,5 +18,10 @@ class weekmailActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->articles = ArticleTable::getInstance()->getArticlesForWeekmail()->execute();
+    $this->weekmails = WeekmailTable::getInstance()->getLast()->execute();
+  }
+  
+  public function executeNew(sfWebRequest $request) {
+      $this->form = new WeekmailForm();
   }
 }

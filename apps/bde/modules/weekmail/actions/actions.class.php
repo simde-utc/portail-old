@@ -14,6 +14,7 @@ class weekmailActions extends sfActions
   {
     $this->articles = ArticleTable::getInstance()->getArticlesForWeekmail()->execute();
     $this->weekmails = WeekmailTable::getInstance()->getLast()->execute();
+    $this->current_weekmails = WeekmailTable::getInstance()->getCurrent()->execute();
   }
 
   public function executeNew(sfWebRequest $request)
@@ -54,6 +55,9 @@ class weekmailActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->forward404Unless($weekmail = Doctrine_Core::getTable('Weekmail')->find(array($request->getParameter('id'))), sprintf('Object weekmail does not exist (%s).', $request->getParameter('id')));
+    foreach($weekmail->getWeekmailArticle() as $article) {
+     $article->delete();   
+    }
     $weekmail->delete();
 
     $this->redirect('weekmail/index');
@@ -66,7 +70,52 @@ class weekmailActions extends sfActions
     {
       $weekmail = $form->save();
 
-      $this->redirect('weekmail/edit?id='.$weekmail->getId());
+      $this->redirect('weekmail/index');
     }
+  }
+  
+  public function executePublish(sfWebRequest $request) {
+      $weekmail = $this->getRoute()->getObject();
+      $weekmail->setPublishedAt(date('Y-m-d',strtotime("next Monday")));
+      $weekmail->save();
+      $this->redirect('weekmail/index');
+  }
+  
+  public function executeRefuse(sfWebRequest $request) {
+      $article = $this->getRoute()->getObject();
+      $article->setIsWeekmail(false);
+      $article->save();
+      $this->redirect('weekmail/index');
+  }
+  
+  public function executeAccept(sfWebRequest $request) {
+      $weekmail = WeekmailTable::getInstance()->getCurrent()->fetchOne();
+      if(!$weekmail) {
+          $this->getUser()->setFlash('error', 'Aucun Weekmail en attente de publication !');
+          $this->redirect('weekmail/index');
+      }
+      
+      $article = $this->getRoute()->getObject();
+      $article->setIsWeekmail(false);
+      
+      $weekmail_article = new WeekmailArticle();
+      $weekmail_article->setAssoId($article->getAssoId());
+      $weekmail_article->setName($article->getName());
+      $weekmail_article->setText($article->getText());
+      $weekmail_article->setImage($article->getImage());
+      $weekmail_article->setSummary($article->getSummary());
+      $weekmail_article->setWeekmailId($weekmail->getId());
+      
+      $weekmail_article->save();
+      $article->save();
+      $this->redirect('weekmail/index');
+  }
+  
+  public function executeDeleteArticle(sfWebRequest $request)
+  {
+    $article = $this->getRoute()->getObject();
+    $article->delete();
+
+    $this->redirect('weekmail/index');
   }
 }

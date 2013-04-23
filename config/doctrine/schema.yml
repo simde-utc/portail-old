@@ -273,7 +273,7 @@ Weekmail:
   connection: doctrine
   actAs:  { Timestampable: ~ }
   columns:
-    published_at: { type: date, notnull: true }
+    published_at: { type: date }
     edito: { type: string }
     editar: { type: string }
 

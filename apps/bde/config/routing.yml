@@ -23,6 +23,26 @@ weekmail_create:
 weekmail_new:
   url: /weekmail/new
   param: { module: weekmail, action: new }
+weekmail_publish:
+  url: /weekmail/publish/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: publish }
+  options: { model: Weekmail, type: object }
+weekmail_refuse:
+  url: /weekmail/refuse/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: refuse }
+  options: { model: Article, type: object }
+weekmail_accept:
+  url: /weekmail/accept/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: accept }
+  options: { model: Article, type: object }
+weekmail_delete_article:
+  url:  /weekmail/delete_article/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: deleteArticle }
+  options: { model: WeekmailArticle, type: object }
 
 charte_info:
   class: sfDoctrineRouteCollection

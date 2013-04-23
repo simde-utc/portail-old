@@ -17,8 +17,16 @@ class WeekmailTable extends Doctrine_Table
         return Doctrine_Core::getTable('Weekmail');
     }
     
+    public function getCurrent() {
+        $q = $this->createQuery('q')
+                ->where('q.published_at IS NULL')
+                ->orderBy('q.created_at ASC');
+        return $q;
+    }
+    
     public function getLast($count = 4) {
         $q = $this->createQuery('q')
+                ->where('q.published_at IS NOT NULL')
                 ->orderBy('q.published_at DESC')
                 ->limit($count);
         return $q;

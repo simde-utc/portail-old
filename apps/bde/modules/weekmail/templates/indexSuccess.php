@@ -12,8 +12,8 @@
     <tbody>
         <?php foreach ($current_weekmails as $weekmail): ?>
             <tr>
-                <td><?php echo $weekmail->getEdito() ?></td>
-                <td><?php echo $weekmail->getEditar() ?></td>
+                <td><?php echo nl2br($weekmail->getEdito()) ?></td>
+                <td><?php echo nl2br($weekmail->getEditar()) ?></td>
                 <td>
                     <div class="btn-group">
                         <a href="<?php echo url_for('weekmail_edit', $weekmail) ?>" class="btn btn-primary"><i class="icon-pencil icon-white"></i>&nbsp;&nbsp;Editer</a>
@@ -38,10 +38,10 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3"><strong>Résumé: </strong><?php echo $article->getSummary() ?></td>
+                <td colspan="3"><strong>Résumé: </strong><?php echo nl2br($article->getSummary()) ?></td>
             </tr>
             <tr class="article_text">
-                <td colspan="3"><strong>Texte: </strong><?php echo $article->getText() ?></td>
+                <td colspan="3"><strong>Texte: </strong><?php echo nl2br($article->getText()) ?></td>
             </tr>
             <?php endforeach ?>
         <?php endforeach; ?>
@@ -65,10 +65,10 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3"><strong>Résumé: </strong><?php echo $article->getSummary() ?></td>
+            <td colspan="3"><strong>Résumé: </strong><?php echo nl2br($article->getSummary()) ?></td>
         </tr>
         <tr class="article_text">
-            <td colspan="3"><strong>Texte: </strong><?php echo $article->getText() ?></td>
+            <td colspan="3"><strong>Texte: </strong><?php echo nl2br($article->getText()) ?></td>
         </tr>
     <?php endforeach; ?>
 </table>
@@ -87,11 +87,17 @@
             <tr>
                 <td>
                     <?php echo $weekmail->getPublishedAt() ?>
+                    (<?php echo count($weekmail->getWeekmailArticle()) ?> articles)
                     <?php if (strtotime($weekmail->getPublishedAt()) > time()): ?><em>(Non publié)</em><?php endif ?>
                 </td>
                 <td><?php echo $weekmail->getEdito() ?></td>
                 <td><?php echo $weekmail->getEditar() ?></td>
-                <td><a href="<?php echo url_for('weekmail_edit', $weekmail) ?>" class="btn btn-primary"><i class="icon-pencil icon-white"></i>&nbsp;&nbsp;Editer</a></td>
+                <td>
+                    <div class="btn-group">
+                        <a href="<?php echo url_for('weekmail_edit', $weekmail) ?>" class="btn btn-primary"><i class="icon-pencil icon-white"></i>&nbsp;&nbsp;Editer</a>
+                        <?php echo link_to('<i class="icon-trash icon-white"></i>&nbsp;&nbsp;Supprimer', 'weekmail/delete?id='.$weekmail->getId(), array('method' => 'delete', 'confirm' => 'Êtes-vous sur de vouloir supprimer définitivement ce  ?', 'class' => 'btn btn-danger')) ?>
+                    </div>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>

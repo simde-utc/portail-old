@@ -105,6 +105,7 @@ class weekmailActions extends sfActions
       $weekmail_article->setImage($article->getImage());
       $weekmail_article->setSummary($article->getSummary());
       $weekmail_article->setWeekmailId($weekmail->getId());
+      $weekmail_article->setArticleId($article->getId());
       
       $weekmail_article->save();
       $article->save();

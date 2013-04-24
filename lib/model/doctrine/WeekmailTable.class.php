@@ -20,6 +20,7 @@ class WeekmailTable extends Doctrine_Table
     public function getCurrent() {
         $q = $this->createQuery('q')
                 ->where('q.published_at IS NULL')
+                ->orWhere('q.published_at = ?',0)
                 ->orderBy('q.created_at ASC');
         return $q;
     }
@@ -27,8 +28,13 @@ class WeekmailTable extends Doctrine_Table
     public function getLast($count = 4) {
         $q = $this->createQuery('q')
                 ->where('q.published_at IS NOT NULL')
+                ->andWhere('q.published_at <> ?', 0)
                 ->orderBy('q.published_at DESC')
                 ->limit($count);
         return $q;
+    }
+    
+    public function getLastPublished($count = 1) {
+        return $this->getLast($count)->andWhere('q.published_at < NOW()');
     }
 }

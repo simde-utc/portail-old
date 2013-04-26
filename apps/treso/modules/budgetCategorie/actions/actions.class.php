@@ -13,7 +13,7 @@ class budgetCategorieActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->asso = $this->getRoute()->getObject();    
-    $this->budget_categories = BudgetCategorieTable::getInstance()->getActiveCategories($this->asso->getId());
+    $this->budget_categories = BudgetCategorieTable::getInstance()->getActiveCategories($this->asso->getId())->execute();
 
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }

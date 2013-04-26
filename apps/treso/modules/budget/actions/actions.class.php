@@ -30,6 +30,7 @@ class budgetActions extends sfActions
     $this->budget = $this->getRoute()->getObject();
     if ($this->checkAuthorisation($this->budget->getAsso())) {
       $this->categories = $this->budget->getCategoriesWithEntry()->execute();
+      $this->unused_categories = $this->budget->getCategoriesWithoutEntry()->execute();
       $this->assos = $this->budget->getAsso();
     }
     $this->getResponse()->setSlot('current_asso', $this->assos);

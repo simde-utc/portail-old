@@ -128,6 +128,12 @@ transaction:
   param: { module: transaction, action: index }
   options: { model: Asso, type: object }
 
+transaction_show:
+  url:  /transaction/show/:id
+  class: sfDoctrineRoute
+  param: { module: transaction, action: show }
+  options: { model: Transaction, type: object }
+
 transaction_edit:
   url:  /transaction/edit/:id
   class: sfDoctrineRoute
@@ -141,11 +147,11 @@ transaction_update:
 transaction_delete:
   url:  /transaction/delete/:id
   param: { module: transaction, action: delete }
-  
+
 transaction_create:
   url: /transaction/create
   param: { module: transaction, action: create }
-  
+
 transaction_new:
   url: /transaction/:login/new
   class: sfDoctrineRoute

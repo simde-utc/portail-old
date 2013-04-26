@@ -62,7 +62,7 @@ class noteDeFraisActions extends sfActions
       $transaction = new Transaction();
       $transaction->asso_id = $parameters['asso_id'];
       $transaction->compte_id = $parameters['compte_id'];
-      $transaction->libelle = $parameters['nom'];
+      $transaction->libelle = 'Remboursement ' . $parameters['nom'];
       $transaction->commentaire = 'Remboursement des achats suivants :\n'; // Voir ci-dessous
       $transaction->montant = 0; // On fera le total plus tard !
       $transaction->date_transaction = date('Y-m-d');
@@ -74,11 +74,8 @@ class noteDeFraisActions extends sfActions
       $note_de_frais = $form->save();
 
       foreach ($parameters['transactions'] as $transaction_id) {
-        $transaction2 = TransactionTable::getInstance()->find($transaction_id);
-        $transaction2->setNoteDeFrais($note_de_frais);
-        $transaction->montant += $transaction2->getMontant();
-        $transaction->commentaire .=  $this->format_transaction($transaction2).'\n';
-        $transaction2->save();
+        $transaction2 = $note_de_frais->addAchatFromId($transaction_id);
+        $transaction->commentaire .=  $this->format_transaction($transaction2)."\n";
       }
 
       $transaction->save();

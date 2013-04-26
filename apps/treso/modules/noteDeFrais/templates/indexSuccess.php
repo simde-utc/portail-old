@@ -1,4 +1,4 @@
-<?php use_helper('Number') ?>
+<?php use_helper('Number', 'Date') ?>
 <h1>Note de Frais</h1>
 
 <table class="table table-bordered table-striped table-hover">
@@ -17,7 +17,7 @@
       <td><?php echo $transaction->getLibelle() ?></td>
       <td><?php echo $transaction->getMoyenCommentaire() ?></td>
       <td><?php echo format_currency(abs($transaction->getMontant()), '€', 'fr_FR') ?></td>
-      <td><?php echo $transaction->getDateTransaction() ?></td>
+      <td><?php echo format_date($transaction->getDateTransaction(), 'D', 'fr') ?></td>
     </tr>
     <?php endforeach; ?>
   </tbody>
@@ -41,7 +41,7 @@
     <tr>
       <td><a href="<?php echo url_for('ndf_show', $ndf) ?>"><?php echo $ndf->getNom() ?></a></td>
       <td><?php echo format_currency(abs($ndf->getTransaction()->getMontant()), '€', 'fr_FR') ?></td>
-      <td><?php echo $ndf->getTransaction()->getDateTransaction() ?></td>
+      <td><?php echo format_date($ndf->getTransaction()->getDateTransaction(), 'D', 'fr') ?></td>
     </tr>
     <?php endforeach; ?>
   </tbody>

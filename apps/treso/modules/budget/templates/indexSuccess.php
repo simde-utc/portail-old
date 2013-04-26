@@ -1,3 +1,4 @@
+<?php use_helper('Date') ?>
 <h1>Budgets en cours</h1>
 
 <?php if (count($budgets) == 0): ?>
@@ -20,7 +21,7 @@
       <tr>
         <td><a href="<?php echo url_for('budget_show', array('id' => $budget->getPrimaryKey())) ?>"><?php echo $budget->getNom() ?></a></td>
         <td><?php echo $budget->getSemestre() ?></td>
-        <td><?php echo $budget->getCreatedAt() ?></td>
+        <td><?php echo format_date($budget->getCreatedAt(), 'D', 'fr') ?></td>
       </tr>
       <?php endforeach; ?>
     </tbody>

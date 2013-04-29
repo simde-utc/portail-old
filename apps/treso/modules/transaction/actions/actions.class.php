@@ -70,20 +70,16 @@ class transactionActions extends sfActions {
   }
 
   public function executePdf(sfWebRequest $request) {
-    $transaction = $this->getRoute()->getObject();
-    $pdf = new Pdf($transaction->getAsso());
+    $asso = $this->getRoute()->getObject();
+    $pdf = new Pdf($asso);
+    $transactions = TransactionTable::getInstance()->getAllForAsso($asso)->execute();
     
-    $html = '<table style="text-align:center;">
-      <tr>
-        <td>LOL</td>
-        <td>LI</td>
-        <td>LOL</td>
-       </tr>
-       </table>';
-    
+    $html = $this->getPartial('transaction/pdf',compact(array('transactions','asso')));
+
     $path = $pdf->generate('transactions',$html);
     
     header('Content-type: application/pdf');
     readfile($path);
+    return sfView::NONE;
   }
 }

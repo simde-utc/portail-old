@@ -110,6 +110,11 @@ class sfTCPDF extends TCPDF
    */
   public function __get($name)
   {
+    if (!isset($this->userData))
+    {
+      return null;
+    }
+
     if (array_key_exists($name, $this->userData))
     {
       return $this->userData[$name];

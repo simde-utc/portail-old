@@ -157,6 +157,12 @@ transaction_new:
   class: sfDoctrineRoute
   options: { model: Asso, type: object }
   param: { module: transaction, action: new }
+  
+transaction_pdf:
+  url:  /transaction/pdf/:login
+  class: sfDoctrineRoute
+  param: { module: transaction, action: pdf }
+  options: { model: Asso, type: object }
 
 # BudgetPoste
 budget_poste_new:

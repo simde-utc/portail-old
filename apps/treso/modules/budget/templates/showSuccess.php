@@ -73,6 +73,10 @@ function format_montant($montant) {
 
 <p>
 
+  <a class="btn btn-primary" href="<?php echo url_for('budget_export', $budget) ?>">
+    <i class="icon-share-alt icon-white"></i>&nbsp;&nbsp;
+    Exporter en PDF
+  </a>
   <a class="btn btn-danger" href="<?php echo url_for('budget_delete', $budget) ?>">
     <i class="icon-trash icon-white"></i>&nbsp;&nbsp;
     Supprimer le budget

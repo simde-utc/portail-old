@@ -33,6 +33,12 @@ budget_show:
   param: { module: budget, action: show }
   options: { model: Budget, type: object }
 
+budget_export:
+  url: /budget/export/:id
+  class: sfDoctrineRoute
+  param: { module: budget, action: export }
+  options: { model: Budget, type: object }
+
 budget_update:
   url:  /budget/update/:id
   param: { module: budget, action: update }

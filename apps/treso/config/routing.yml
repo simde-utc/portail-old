@@ -208,6 +208,12 @@ ndf_show:
   param: { module: noteDeFrais, action: show }
   options: { model: NoteDeFrais, type: object }
 
+ndf_export:
+  url: /noteDeFrais/justificatif/:id
+  class: sfDoctrineRoute
+  param: { module: noteDeFrais, action: justificatif }
+  options: { model: NoteDeFrais, type: object }
+
 ndf_new:
   url: /noteDeFrais/new/:login
   class: sfDoctrineRoute

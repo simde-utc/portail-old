@@ -25,6 +25,22 @@ class noteDeFraisActions extends sfActions
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
+  public function executeJustificatif(sfWebRequest $request)
+  {
+    $note_de_frais = $this->getRoute()->getObject();
+    $user = $this->getUser();
+    $asso = $note_de_frais->getAsso();
+    $pdf = new Pdf($asso);
+
+    $html = $this->getPartial('noteDeFrais/pdf',compact(array('note_de_frais', 'asso', 'user')));
+
+    $path = $pdf->generate('transactions',$html);
+
+    header('Content-type: application/pdf');
+    readfile($path);
+    return sfView::NONE;
+  }
+
   public function executeNew(sfWebRequest $request)
   {
     $this->asso = $this->getRoute()->getObject();
@@ -63,7 +79,7 @@ class noteDeFraisActions extends sfActions
       $transaction->asso_id = $parameters['asso_id'];
       $transaction->compte_id = $parameters['compte_id'];
       $transaction->libelle = 'Remboursement ' . $parameters['nom'];
-      $transaction->commentaire = 'Remboursement des achats suivants :\n'; // Voir ci-dessous
+      $transaction->commentaire = "Remboursement des achats suivants :\n"; // Voir ci-dessous
       $transaction->montant = 0; // On fera le total plus tard !
       $transaction->date_transaction = date('Y-m-d');
       $transaction->moyen_id = $parameters['moyen_id'];

@@ -29,11 +29,12 @@
 
 <table class="table table-bordered table-striped table-hover">
   <thead>
-    <tr><th colspan="3" style="text-align: center;">Note de frais précédentes (<?php echo count($note_de_frais); ?>)</th></tr>
+    <tr><th colspan="4" style="text-align: center;">Note de frais précédentes (<?php echo count($note_de_frais); ?>)</th></tr>
     <tr>
       <th>Nom</th>
       <th>Montant</th>
       <th>Date</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -42,6 +43,7 @@
       <td><a href="<?php echo url_for('ndf_show', $ndf) ?>"><?php echo $ndf->getNom() ?></a></td>
       <td><?php echo format_currency(abs($ndf->getTransaction()->getMontant()), '€', 'fr_FR') ?></td>
       <td><?php echo format_date($ndf->getTransaction()->getDateTransaction(), 'D', 'fr') ?></td>
+      <td><a class="btn btn-primary" href="<?php echo url_for('ndf_export', $ndf) ?>"><i class="icon-share-alt icon-white"></i> Justificatif</a></td>
     </tr>
     <?php endforeach; ?>
   </tbody>

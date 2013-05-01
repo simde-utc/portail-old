@@ -19,4 +19,9 @@
     <br/><br/>
     <b>Cet achat a été remboursé par la note de frais du <?php echo format_date($ndf->getCreatedAt(), 'D', 'fr') ?> à <?php echo $ndf->getNom() ?></b>
   <?php endif; ?>
+  <?php if(!is_null($transaction->getBudgetPosteId())):
+    $poste = $transaction->getBudgetPoste(); ?>
+    <br/><br/>
+    Cette transaction est liée au budget <a href=<?php echo url_for('budget_show', $poste->getBudget()) ?>><?php echo $poste ?></a>
+  <?php endif; ?>
 </p>

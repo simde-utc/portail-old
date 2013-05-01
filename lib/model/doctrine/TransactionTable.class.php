@@ -17,7 +17,7 @@ class TransactionTable extends Doctrine_Table
         return Doctrine_Core::getTable('Transaction');
     }
     
-    public function getAllForAsso($asso)
+    public function getAllForAsso($asso, $semestre = null)
     {
       $q = $this->createQuery('q')
               ->leftJoin('q.CompteBanquaire c')
@@ -25,12 +25,13 @@ class TransactionTable extends Doctrine_Table
               ->where('q.asso_id = ?',$asso->getPrimaryKey())
               ->andWhere('q.deleted_at IS NULL')
               ->orderBy('q.compte_id, q.date_transaction');
+if($semestre) $q - $q->andWhere('q.semestre_id = ?', $semestre);
       return $q;
     }
     
-    public function getJournalForAsso($asso)
+    public function getJournalForAsso($asso, $semestre = null)
     {
-      return $this->getAllForAsso($asso)->andWhere('q.note_de_frais_id IS NULL');
+      return $this->getAllForAsso($asso, $semestre)->andWhere('q.note_de_frais_id IS NULL');
     }
 
     public function getActiveCount($asso)

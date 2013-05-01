@@ -35,5 +35,4 @@ class BudgetCategorie extends BaseBudgetCategorie
         ->where('bp.budget_categorie_id = ?', $this->getId());
         return $q->count();
     }
-
 }

@@ -7,13 +7,19 @@
 class simdePdf extends sfTCPDF
 {
   protected $asso;
-  public function __construct(Asso $asso) {
+  protected $custom_header_title;
+  protected $custom_header_string;
+  public function __construct(Asso $asso, $custom_header_title = '', $custom_header_string = '') {
     parent::__construct(PDF_PAGE_ORIENTATION,PDF_UNIT,PDF_PAGE_FORMAT,true);
     $this->asso = $asso;
+    $this->custom_header_title = $custom_header_title;
+    $this->custom_header_string = $custom_header_string;
   }
 
 
   public function Header() {
+    $this->header_title = $this->custom_header_title;
+    $this->header_string = $this->custom_header_string;
     parent::Header();
   }
   

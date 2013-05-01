@@ -76,7 +76,7 @@ class transactionActions extends sfActions {
 
   public function executePdf(sfWebRequest $request) {
     $asso = $this->getRoute()->getObject();
-    $pdf = new Pdf($asso);
+    $pdf = new Pdf($asso, $asso->getName() . ' : Livre de compte');
     $transactions = TransactionTable::getInstance()->getAllForAsso($asso)->execute();
     
     $html = $this->getPartial('transaction/pdf',compact(array('transactions','asso')));

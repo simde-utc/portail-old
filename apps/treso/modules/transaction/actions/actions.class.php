@@ -12,8 +12,13 @@ class transactionActions extends sfActions {
 
   public function executeIndex(sfWebRequest $request) {
     $this->asso = $this->getRoute()->getObject();
-    $this->transactions = TransactionTable::getInstance()->getAllForAsso($this->asso)->execute();
+    $this->transactions = TransactionTable::getInstance()->getJournalForAsso($this->asso)->execute();
     $this->getResponse()->setSlot('current_asso', $this->asso);
+  }
+
+  public function executeShow(sfWebRequest $request) {
+    $this->transaction = $this->getRoute()->getObject();
+    $this->getResponse()->setSlot('current_asso', $this->transaction->getAsso());
   }
 
   public function executeNew(sfWebRequest $request) {
@@ -69,4 +74,17 @@ class transactionActions extends sfActions {
     }
   }
 
+  public function executePdf(sfWebRequest $request) {
+    $asso = $this->getRoute()->getObject();
+    $pdf = new Pdf($asso);
+    $transactions = TransactionTable::getInstance()->getAllForAsso($asso)->execute();
+    
+    $html = $this->getPartial('transaction/pdf',compact(array('transactions','asso')));
+
+    $path = $pdf->generate('transactions',$html);
+    
+    header('Content-type: application/pdf');
+    readfile($path);
+    return sfView::NONE;
+  }
 }

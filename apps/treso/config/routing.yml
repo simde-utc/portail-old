@@ -33,6 +33,12 @@ budget_show:
   param: { module: budget, action: show }
   options: { model: Budget, type: object }
 
+budget_export:
+  url: /budget/export/:id
+  class: sfDoctrineRoute
+  param: { module: budget, action: export }
+  options: { model: Budget, type: object }
+
 budget_update:
   url:  /budget/update/:id
   param: { module: budget, action: update }
@@ -71,6 +77,12 @@ budget_categorie_new:
   class: sfDoctrineRoute
   param: {module: budgetCategorie, action: new}
   options: {model: Asso, type: object}
+
+budget_categorie_new_from_budget:
+  url: /budget_categorie/new_from_budget/:id
+  class: sfDoctrineRoute
+  param: {module: budgetCategorie, action: newFromBudget}
+  options: {model: Budget, type: object}
 
 budget_categorie_update:
   url: /budget_categorie/update/:id
@@ -122,6 +134,12 @@ transaction:
   param: { module: transaction, action: index }
   options: { model: Asso, type: object }
 
+transaction_show:
+  url:  /transaction/show/:id
+  class: sfDoctrineRoute
+  param: { module: transaction, action: show }
+  options: { model: Transaction, type: object }
+
 transaction_edit:
   url:  /transaction/edit/:id
   class: sfDoctrineRoute
@@ -135,16 +153,22 @@ transaction_update:
 transaction_delete:
   url:  /transaction/delete/:id
   param: { module: transaction, action: delete }
-  
+
 transaction_create:
   url: /transaction/create
   param: { module: transaction, action: create }
-  
+
 transaction_new:
   url: /transaction/:login/new
   class: sfDoctrineRoute
   options: { model: Asso, type: object }
   param: { module: transaction, action: new }
+  
+transaction_pdf:
+  url:  /transaction/pdf/:login
+  class: sfDoctrineRoute
+  param: { module: transaction, action: pdf }
+  options: { model: Asso, type: object }
 
 # BudgetPoste
 budget_poste_new:
@@ -170,3 +194,32 @@ budget_poste_delete:
 budget_poste_create:
   url: /budget/poste/create
   param: { module: budgetPoste, action: create }
+
+# Note de frais
+ndf:
+  url:   /noteDeFrais/asso/:login
+  class: sfDoctrineRoute
+  param: { module: noteDeFrais, action: index }
+  options: { model: Asso, type: object }
+
+ndf_show:
+  url:  /noteDeFrais/:id
+  class: sfDoctrineRoute
+  param: { module: noteDeFrais, action: show }
+  options: { model: NoteDeFrais, type: object }
+
+ndf_export:
+  url: /noteDeFrais/justificatif/:id
+  class: sfDoctrineRoute
+  param: { module: noteDeFrais, action: justificatif }
+  options: { model: NoteDeFrais, type: object }
+
+ndf_new:
+  url: /noteDeFrais/new/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: noteDeFrais, action: new }
+
+ndf_create:
+  url: /noteDeFrais/create
+  param: { module: noteDeFrais, action: create }

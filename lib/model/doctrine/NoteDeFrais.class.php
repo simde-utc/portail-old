@@ -12,4 +12,17 @@
  */
 class NoteDeFrais extends BaseNoteDeFrais
 {
+    public function addAchatFromId($achat) {
+        $transaction = TransactionTable::getInstance()->find($achat);
+        if ($transaction == false)
+            return false;
+        $this->addAchat($transaction);
+        return $transaction;
+    }
+    
+    public function addAchat(Transaction $transaction) {
+        $transaction->setNoteDeFrais($this);
+        $transaction->save();
+        $this->getTransaction()->montant += $transaction->getMontant();
+    }
 }

@@ -22,9 +22,8 @@ class BudgetCategorieTable extends Doctrine_Table
 
     public function getActiveCategories($asso_id)
     {
-      $q = $this->getCategories($asso_id);
-      $q->where('q.deleted_at IS NULL');
-      return $q->execute();
+      $q = $this->getCategories($asso_id)->andWhere('q.deleted_at IS NULL');
+      return $q;
     }
     
     public static function getInstance()
@@ -52,4 +51,5 @@ class BudgetCategorieTable extends Doctrine_Table
         $q = $this->createQuery('q')->where('q.asso_id=?',$asso->getPrimaryKey())->andWhere('q.deleted_at IS NULL');
         return $q;
     }
+
 }

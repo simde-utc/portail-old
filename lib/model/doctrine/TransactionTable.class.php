@@ -28,10 +28,22 @@ class TransactionTable extends Doctrine_Table
       return $q;
     }
     
+    public function getJournalForAsso($asso)
+    {
+      return $this->getAllForAsso($asso)->andWhere('q.note_de_frais_id IS NULL');
+    }
+
     public function getActiveCount($asso)
     {
         $q = $this->getAllForAsso($asso);
         $a = $q->count();
         return $a;
+    }
+
+    public function getRemboursablesForAsso($asso)
+    {
+      $q = $this->getAllForAsso($asso);
+      $q->andWhere('q.moyen_id = 6')->andWhere('q.deleted_at IS NULL')->andWhere('q.note_de_frais_id IS NULL');
+      return $q;
     }
 }

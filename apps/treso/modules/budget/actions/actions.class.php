@@ -29,10 +29,29 @@ class budgetActions extends sfActions
   {
     $this->budget = $this->getRoute()->getObject();
     if ($this->checkAuthorisation($this->budget->getAsso())) {
-      $this->categories = $this->budget->getCategories()->execute();
+      $this->categories = $this->budget->getCategoriesWithEntry()->execute();
+      $this->unused_categories = $this->budget->getCategoriesWithoutEntry()->execute();
       $this->assos = $this->budget->getAsso();
     }
     $this->getResponse()->setSlot('current_asso', $this->assos);
+  }
+
+  public function executeExport(sfWebRequest $request)
+  {
+    $budget = $this->getRoute()->getObject();
+    $asso = $budget->getAsso();
+    if ($this->checkAuthorisation($budget->getAsso())) {
+      $pdf = new Pdf($asso);
+      $categories = $budget->getCategoriesWithEntry()->execute();
+
+      $html = $this->getPartial('budget/pdf',compact(array('categories','asso', 'budget', 'transactions')));
+
+      $path = $pdf->generate('transactions',$html);
+
+      header('Content-type: application/pdf');
+      readfile($path);
+    }
+    return sfView::NONE;
   }
 
   public function executeNew(sfWebRequest $request)

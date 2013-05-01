@@ -25,7 +25,7 @@
     <?php if ($label == 'debit') : ?>
       <label></label>
       <?php echo $widget->render() ?>
-    <?php echo $widget->renderError() ?>
+      <?php echo $widget->renderError() ?>
       <br/>
     <?php endif ?>
 

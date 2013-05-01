@@ -14,7 +14,7 @@ foreach ($transactions as $transaction):
   if ($oldName != '' && $oldName != $transaction->getCompteBanquaire()->getNom()):
     ?>
     <caption style="font-weight: bold; padding-bottom: 10px"><?php echo $oldName . " - Total : " . ($credit + $debit) . " €"; ?></caption>
-    <tr>
+    <tr class="total">
       <td></td>
       <td><strong><?php echo $credit; ?></strong></td>
       <td><strong><?php echo $debit; ?></strong></td>
@@ -67,9 +67,9 @@ foreach ($transactions as $transaction):
         </td>
       </tr>
     <?php endforeach; ?>
- <caption style="font-weight: bold; padding-bottom: 10px"><?php echo $oldName . " - Total : " . ($credit + $debit) . " €"; ?></caption>
+  <caption style="font-weight: bold; padding-bottom: 10px"><?php echo $oldName . " - Total : " . ($credit + $debit) . " €"; ?></caption>
 
-  <tr>
+  <tr class="total">
     <td></td>
     <td><strong><?php echo $credit; ?></strong></td>
     <td><strong><?php echo $debit; ?></strong></td>
@@ -77,6 +77,5 @@ foreach ($transactions as $transaction):
   </tr>
 </tbody>
 </table>
-
 
 <a href="<?php echo url_for('transaction_new', $asso) ?>" class="btn btn-success"><i class="icon-plus icon-white"></i>&nbsp;&nbsp;Nouvelle transaction</a>

@@ -3,10 +3,14 @@ body {
 }
 
 .table-transaction tbody tr.recette td, .table-transaction tbody tr.recette th {
-    background-color: lightgreen;
+    background-color: #dff0d8;
 }
 .table-transaction tbody tr.depense td, .table-transaction tbody tr.depense th {
-    background-color: #ffc5b4
+    background-color: #f2dede
+}
+
+.table-transaction tbody tr.total td, .table-transaction tbody tr.depense th {
+    background-color: #d9edf7
 }
 
 #transaction-form label {

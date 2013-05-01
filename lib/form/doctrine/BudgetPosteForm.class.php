@@ -24,5 +24,7 @@ class BudgetPosteForm extends BaseBudgetPosteForm
     ));
     $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['budget_id'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['prix_unitaire'] = new ValidatorNumberNotNull(array('not_null' => true));
+    $this->validatorSchema['nombre'] = new sfValidatorNumber(array('min' => 1));
   }
 }

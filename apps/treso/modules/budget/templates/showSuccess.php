@@ -51,8 +51,11 @@ function format_montant($montant) {
         <td><?php echo $poste->getNom() ?></td>
         <?php echo format_montant($poste->getTotal()) ?>
         <td>
-          <a href="<?php echo url_for('budget_poste_delete', $poste) ?>" class="btn btn-danger"><i class="icon-trash icon-white"></i></a>
-          <a href="<?php echo url_for('budget_poste_edit', $poste) ?>" class="btn"><i class="icon-pencil icon-black"></a></td>
+          <div class="btn-group">
+            <a href="<?php echo url_for('budget_poste_edit', $poste) ?>" class="btn"><i class="icon-pencil"></i>&nbsp;&nbsp;Editer</a>
+            <a href="<?php echo url_for('budget_poste_delete', $poste) ?>" class="btn btn-danger"><i class="icon-trash icon-white"></i></a>
+          </div>
+        </td>
         </tr>
       <?php endforeach; ?>
     <?php endforeach; ?>
@@ -70,6 +73,16 @@ function format_montant($montant) {
   </tr>
 </tbody>
 </table>
+
+<!-- Graphic -->
+<p>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+
+</p>
 
 <p>
 

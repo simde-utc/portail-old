@@ -21,11 +21,11 @@ class TransactionForm extends BaseTransactionForm {
         'model' => $this->getRelatedModelName('CompteBanquaire'),
         'query' => CompteBanquaireTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),
     ));
-
+    
     $this->widgetSchema['date_transaction'] = new portailWidgetFormDate();
     $this->widgetSchema['date_rapprochement'] = new portailWidgetFormDate();
 
-    unset($this['created_at'], $this['updated_at'], $this['deleted_at'], $this['note_de_frais_id'], $this['budget_poste_id']);
+    unset($this['created_at'], $this['updated_at'], $this['deleted_at'], $this['note_de_frais_id']);
 
     $this->widgetSchema['debit'] = new portailWidgetFormMontant();
     $this->validatorSchema['debit'] = new sfValidatorBoolean();    
@@ -42,6 +42,7 @@ class TransactionForm extends BaseTransactionForm {
         'date_rapprochement',
         'date_rapprochement',
         'moyen_id',
+        'budget_poste_id',
         'moyen_commentaire'));
 
     $this->validatorSchema['moyen_commentaire']->setOption('required', false);
@@ -50,7 +51,9 @@ class TransactionForm extends BaseTransactionForm {
   public function processValues($values) {
     $isDebit = $values['debit'];
     if ($isDebit)
-      $values['montant'] = - $values['montant'];
+      $values['montant'] = - abs($values['montant']);
+    else
+      $values['montant'] = abs($values['montant']);
     return parent::processValues($values);
   }
 }

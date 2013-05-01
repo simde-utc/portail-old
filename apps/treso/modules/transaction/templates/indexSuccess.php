@@ -13,9 +13,8 @@ $debit = 0;
 foreach ($transactions as $transaction):
   if ($oldName != '' && $oldName != $transaction->getCompteBanquaire()->getNom()):
     ?>
-
     <caption style="font-weight: bold; padding-bottom: 10px"><?php echo $oldName . " - Total : " . format_currency($credit + $debit, '€', 'fr'); ?></caption>
-    <tr>
+    <tr class="total">
       <td></td>
       <td><strong><?php echo format_currency($credit, '€', 'fr'); ?></strong></td>
       <td><strong><?php echo format_currency($debit, '€', 'fr'); ?></strong></td>
@@ -73,7 +72,7 @@ foreach ($transactions as $transaction):
     <?php endforeach; ?>
   <caption style="font-weight: bold; padding-bottom: 10px"><?php echo $oldName . " - Total : " . format_currency($credit + $debit, '€', 'fr'); ?></caption>
 
-  <tr>
+  <tr class="total">
     <td></td>
     <td><strong><?php echo format_currency($credit, '€', 'fr'); ?></strong></td>
     <td><strong><?php echo format_currency($debit, '€', 'fr'); ?></strong></td>

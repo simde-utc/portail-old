@@ -43,7 +43,7 @@ class BudgetCategorieTable extends Doctrine_Table
     	$q->select('q.*, ('.$subq->getDql().') as MontantTotal')
     			  ->andWhere('q.asso_id = ?', $budget->getAssoId())
                   ->andWhere('q.deleted_at IS NULL');
-                  
+
     	return $q;
     }
 

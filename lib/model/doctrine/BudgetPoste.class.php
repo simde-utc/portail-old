@@ -21,7 +21,7 @@ class BudgetPoste extends BaseBudgetPoste
     }
 
     public function getSumPoste(){
-    	$s = Doctrine_Query::create()->from('Transaction t') //BudgetPosteTable::getInstance()->createQuery('q')
+    	$s = TransactionTable::getInstance()->createQuery('t') //BudgetPosteTable::getInstance()->createQuery('q')
                         ->select('SUM(t.montant) AS sumPoste')
                         ->where('t.budget_poste_id=?', $this->getPrimaryKey())
                         ->andWhere('t.deleted_at IS NULL')->fetchOne();

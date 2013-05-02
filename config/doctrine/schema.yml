@@ -235,7 +235,7 @@ Annonce:
   relations:
     Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: AnnoncesCategorie }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
-    
+
 Partenaire:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -268,6 +268,7 @@ Vote:
   relations:
     Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+
     
 InfoJobCategorie:
   actAs: { Timestampable: ~ }
@@ -346,3 +347,26 @@ InfoJobAbonnementDisponibilite:
     Categorie: { onUpdate: CASCADE, local: disponibilite_id, foreign: id, class: InfoJobDispobilite }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
        
+Weekmail:
+  connection: doctrine
+  actAs:  { Timestampable: ~ }
+  columns:
+    published_at: { type: date }
+    edito: { type: string }
+    editar: { type: string }
+
+WeekmailArticle:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    name : { type: string(200), notnull: true }
+    text : { type: string, notnull: true }
+    image: { type: string }
+    summary: { type: string(150) }
+    weekmail_id: { type: integer }
+    article_id: { type: integer }
+  relations:
+    Asso: { local: asso_id, foreign: id }
+    Weekmail: { local: weekmail_id, foreign: id }
+    Article: { local: article_id, foreign: id }

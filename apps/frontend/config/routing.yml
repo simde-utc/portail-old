@@ -8,11 +8,11 @@ homepage:
 
 cas:
   url: /cas
-  param: { module: cas, action: login }
+  param: { module: utcCas, action: login }
 
 cas_logout:
   url: /cas/logout
-  param: { module: cas, action: logout }
+  param: { module: utcCas, action: logout }
 
 #Asso
 assos_list:
@@ -381,6 +381,9 @@ gesmail:
   param: { module: gesmail, action: index }
   options: { model: Asso, type: object }
 
+weekmail:
+  url: /weekmail
+  param: { module: weekmail, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules

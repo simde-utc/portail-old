@@ -24,6 +24,8 @@ class ArticleForm extends BaseArticleForm {
             ));
     
     $this->widgetSchema['text'] = new sfWidgetFormTextarea(array(), array('rows' => '20'));
+    
+    $this->widgetSchema['summary'] = new sfWidgetFormTextarea(array(), array('rows' => '5'));
 
     $this->validatorSchema['image'] = new sfValidatorFileImage(array(
     	'required' => false,
@@ -38,7 +40,10 @@ class ArticleForm extends BaseArticleForm {
     $this->widgetSchema->setLabel('name', 'Titre');
     $this->widgetSchema->setLabel('text', 'Contenu');
     $this->widgetSchema->setLabel('image', 'Illustration');
-    $this->useFields(array('asso_id', 'name', 'text', 'image'));
+    $this->widgetSchema->setLabel('is_weekmail', 'Paraître dans le Weekmail ?');
+    $this->widgetSchema['is_weekmail']->setAttribute('style', 'width: 15px;');
+    $this->widgetSchema->setLabel('summary', 'Résumé pour le Weekmail');
+    $this->useFields(array('asso_id', 'name', 'text', 'image','is_weekmail','summary'));
   }
 
 }

@@ -32,7 +32,7 @@
               <span class="btn">
                 <i class="icon-user"></i> <?php echo $sf_user->getGuardUser()->getName() ?>
               </span>
-              <a class="btn" href="<?php echo url_for('cas_logout') ?>">Déconnexion du CAS</a>
+              <a class="btn" href="<?php echo url_for('cas_logout') ?>">Déconnexion</a>
             <?php endif ?>
           </div>
           <?php /*

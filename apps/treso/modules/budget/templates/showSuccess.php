@@ -28,7 +28,7 @@ function format_montant($montant) {
   </ul>
 </div>
 
-<h1>Budget <?php echo $budget->getNom() ?> pour <?php echo $budget->getAsso()->getName() ?></h1>
+<h1 id="title_budget">Budget <?php echo $budget->getNom() ?> pour <?php echo $budget->getAsso()->getName() ?></h1>
 
   <table class="table table-striped table-bordered table-hover table-treso-budget">
     <thead>
@@ -40,7 +40,25 @@ function format_montant($montant) {
       </tr>
     </thead>
     <tbody>
+      <!-- for graphic -->
+      <?php $debit_array = array();
+            $credit_array = array();
+            $total_debit = 0;
+            $total_credit = 0; ?>
       <?php foreach ($categories as $categorie): ?>
+      
+      <?php
+        $debit_sum = $categorie->getDebitSum($budget)['sum'];
+        $credit_sum = $categorie->getCreditSum($budget)['sum'];
+        if($debit_sum != NULL){
+          $debit_array[$categorie->getNom()] = abs($debit_sum);
+          $total_debit += abs($debit_sum);
+        }
+        if($credit_sum != NULL)
+          $credit_array[$categorie->getNom()] = abs($credit_sum);
+          $total_credit += abs($credit_sum);
+        ?>
+
       <tr class="table-treso-categorie">
         <td><?php echo $categorie->getNom() ?></td>
         <?php echo format_montant($categorie->getTotal()) ?>
@@ -59,6 +77,22 @@ function format_montant($montant) {
         </tr>
       <?php endforeach; ?>
     <?php endforeach; ?>
+  
+
+    <?php
+      foreach ($debit_array as $key => $value) {
+        $for_high_debit_array[] = array($key, round($value/$total_debit * 100, 2, PHP_ROUND_HALF_UP));
+      }
+
+      foreach ($credit_array as $key => $value) {
+        $for_high_credit_array[] = array($key, round($value/$total_credit * 100, 2, PHP_ROUND_HALF_UP));
+      }
+     ?>
+    <script type="text/javascript">
+      var _data_debit = <?php echo json_encode($for_high_debit_array); ?>;
+      var _data_credit = <?php echo json_encode($for_high_credit_array); ?>;
+    </script>
+
     <tr class="table-treso-categorie">
       <td>Catégories vides
        <select id="unused-categories-list">
@@ -75,14 +109,10 @@ function format_montant($montant) {
 </table>
 
 <!-- Graphic -->
-<p>
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
-
-<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
-
-
-</p>
+<div style="margin:50px">
+       <div style="display:inline-block" id="graphe_depense" style="min-width: 400px; height: 200px; margin: 10 auto"></div>
+       <div style="display:inline-block" id="graphe_recette" style="min-width: 400px; height: 200px; margin: 10 auto"></div>
+</div>
 
 <p>
 

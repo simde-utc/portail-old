@@ -41,12 +41,14 @@
       <tr>
         <th><?php echo $form['prix_unitaire']->renderLabel() ?></th>
         <td>
+          <p>
           <?php echo $form['prix_unitaire']->renderError() ?>
-          <?php echo $form['prix_unitaire'] ?>
-        </td>
-        <td>
-          <?php echo $form['debit']->render() ?>
-          <?php echo $form['debit']->renderError() ?>
+          <?php echo $form['prix_unitaire'] ?> 
+          </p>
+          <p>
+            <?php echo $form['debit']->render() ?>
+            <?php echo $form['debit']->renderError() ?>
+          </p>
         </td>
       </tr>
       <tr>

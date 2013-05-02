@@ -6,6 +6,23 @@ function format_montant($montant) {
   $tot = '<td>' . format_currency(abs($montant), '€', 'fr_FR') . '</td>';
   return ($montant >= 0) ? "<td></td>".$tot : $tot."<td></td>";
 }
+
+function format_progressbar($percentage, $sum, $total) {
+
+  if ($percentage >= 0 && $percentage < 30) {
+    return '<div class="bar bar-danger" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>';
+  }
+  else if ($percentage >= 30 && $percentage < 70) {
+    return '<div class="bar bar-warning" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>';
+          }
+  else if ($percentage >= 70 && $percentage <= 105) {
+    return '<div class="bar bar-success" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>';
+          }
+  else {
+    return '<div class="bar bar-danger" style="width: 100%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>';
+  }
+}
+
 ?>
 
 
@@ -34,6 +51,7 @@ function format_montant($montant) {
     <thead>
       <tr>
         <th>Nom</th>
+        <th>En cours</th>
         <th>Dépense</th>
         <th>Recette</th>
         <th>Actions</th>
@@ -48,8 +66,9 @@ function format_montant($montant) {
       <?php foreach ($categories as $categorie): ?>
       
       <?php
-        $debit_sum = $categorie->getDebitSum($budget)['sum'];
-        $credit_sum = $categorie->getCreditSum($budget)['sum'];
+        $debit_sum = $categorie->getDebitSum($budget);
+        $credit_sum = $categorie->getCreditSum($budget);
+
         if($debit_sum != NULL){
           $debit_array[$categorie->getNom()] = abs($debit_sum);
           $total_debit += abs($debit_sum);
@@ -61,13 +80,25 @@ function format_montant($montant) {
 
       <tr class="table-treso-categorie">
         <td><?php echo $categorie->getNom() ?></td>
+        <td></td>
         <?php echo format_montant($categorie->getTotal()) ?>
         <td><a href="<?php echo url_for('budget_poste_new', array('budget' => $budget->getPrimaryKey(), 'categorie' => $categorie->getPrimaryKey())) ?>" class="btn btn-success"><i class="icon-plus icon-white"></i></a></td>
       </tr>
       <?php foreach ($categorie->getPostesForBudget($budget) as $poste): ?>
       <tr class="table-treso-ligne">
         <td><?php echo $poste->getNom() ?></td>
-        <?php echo format_montant($poste->getTotal()) ?>
+
+        <!-- progressbar -->
+        <td>
+          <div class="progress">
+            <?php $_sum = $poste->getSumPoste();
+                  $_total = $poste->getTotal();
+                  $_percentage = number_format($_sum/$_total * 100, 2);
+             ?>
+            <?php echo format_progressbar($_percentage, $_sum, $_total) ?>
+          </div>
+        </td>
+        <?php echo format_montant($_total) ?>
         <td>
           <div class="btn-group">
             <a href="<?php echo url_for('budget_poste_edit', $poste) ?>" class="btn"><i class="icon-pencil"></i>&nbsp;&nbsp;Editer</a>
@@ -77,17 +108,18 @@ function format_montant($montant) {
         </tr>
       <?php endforeach; ?>
     <?php endforeach; ?>
-  
 
     <?php
+
       foreach ($debit_array as $key => $value) {
-        $for_high_debit_array[] = array($key, round($value/$total_debit * 100, 2, PHP_ROUND_HALF_UP));
+        $for_high_debit_array[] = array($key, floatval(number_format($value/$total_debit * 100, 2)));
       }
 
       foreach ($credit_array as $key => $value) {
-        $for_high_credit_array[] = array($key, round($value/$total_credit * 100, 2, PHP_ROUND_HALF_UP));
+        $for_high_credit_array[] = array($key, floatval(number_format($value/$total_credit * 100, 2)));
       }
      ?>
+
     <script type="text/javascript">
       var _data_debit = <?php echo json_encode($for_high_debit_array); ?>;
       var _data_credit = <?php echo json_encode($for_high_credit_array); ?>;
@@ -101,6 +133,7 @@ function format_montant($montant) {
         <?php endforeach; ?>
       </select> 
     </td>
+    <td></td>
     <td></td>
     <td></td>
     <td><a href="#" id="unused-categories-btn" data-url-base="<?php echo url_for('budget_poste_new', array('budget'=>$budget->getPrimaryKey(), 'categorie'=>'')) ?>" class="btn btn-success"><i class="icon-white icon-plus"></i></a></td>

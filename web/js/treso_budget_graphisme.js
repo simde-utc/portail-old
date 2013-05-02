@@ -1,4 +1,5 @@
 $(function () {
+    console.debug(_data_debit);
     var chart_debit;
     var title_budget = document.getElementById('title_budget');
     $(document).ready(function () {
@@ -36,7 +37,6 @@ $(function () {
             }]
         });
     });
-    
 });
 
 $(function () {

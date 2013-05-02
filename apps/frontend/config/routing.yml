@@ -315,6 +315,17 @@ emprunt_rendre:
 #annonce_new:
 #  url: /annonce/new
 #  param: { module: annonce, action: new }
+  
+#InfoJob
+infojob_index:
+    url: /infojob
+    param: { module: infojob, action: index }
+    
+infojob_offre_show:
+  url:   /infojob/show/:id
+  class: sfDoctrineRoute
+  param: { module: infojob, action: show }
+  options: { model: Materiel, type: object }
 
 sf_guard_signin:
   url:   /login

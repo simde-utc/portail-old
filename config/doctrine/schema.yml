@@ -235,7 +235,7 @@ Annonce:
   relations:
     Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: AnnoncesCategorie }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
-
+    
 Partenaire:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -268,3 +268,81 @@ Vote:
   relations:
     Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+    
+InfoJobCategorie:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  columns:
+    name: { type: string(100), notnull: true }
+    description: { type: string(255), notnull: true }
+    
+InfoJobDispobilite:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  columns:
+    name: { type: string(100), notnull: true }
+
+InfoJobOffre:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  columns:
+    categorie_id: { type: integer, notnull: true }
+    user_id: { type: integer }
+    titre: { type: string(250), notnull: true }
+    texte: { type: string, notnull: true }
+    lieu: { type: string(250) }
+    remuneration: { type: string(250), notnull: true }
+    email: { type: string(100) }
+    telephone: { type: string(20) }
+    expiration_date : { type: datetime }
+    archivage_date: { type: datetime }
+  relations:
+    Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: InfoJobCategorie }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+
+InfoJobOffreDisponibilite:
+  connection: doctrine
+  columns:
+    offre_id: { type: integer, notnull: true }
+    disponibilite_id: { type: integer, notnull: true }
+  relations:
+    Offre: { onUpdate: CASCADE, local: offre_id, foreign: id, class: InfoJobOffre }
+    Disponibilite: { onUpdate: CASCADE, local: disponibilite_id, foreign: id, class: InfoJobDispobilite }
+  
+    
+InfoJobSignalement:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  columns:
+    offre_id: { type: integer, notnull: true }
+    type_id: { type: integer, notnull: true }
+    commentaire: { type: string(255) }
+    archivage_date: { type: datetime }
+  relations:
+    Offre: { onUpdate: CASCADE, local: offre_id, foreign: id, class: InfoJobOffre }
+    Type: { onUpdate: CASCADE, local: type_id, foreign: id, class: InfoJobSignalementType }
+    
+InfoJobSignalementType:
+  connection: doctrine
+  columns:
+    name: { type: string(100), notnull: true }
+   
+InfoJobAbonnementCategorie:
+  connection: doctrine
+  columns:
+    categorie_id : { type: integer, notnull: true }
+    user_id: { type: integer, notnull: true }
+  relations:
+    Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: InfoJobCategorie }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+      
+       
+InfoJobAbonnementDisponibilite:
+  connection: doctrine
+  columns:
+    disponibilite_id : { type: integer, notnull: true }
+    user_id: { type: integer, notnull: true }
+  relations:
+    Categorie: { onUpdate: CASCADE, local: disponibilite_id, foreign: id, class: InfoJobDispobilite }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+       

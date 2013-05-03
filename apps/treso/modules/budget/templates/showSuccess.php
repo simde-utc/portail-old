@@ -66,16 +66,10 @@ function format_progressbar($percentage, $sum, $total) {
       <?php foreach ($categories as $categorie): ?>
       
       <?php
-        $debit_sum = $categorie->getDebitSum($budget);
-        $credit_sum = $categorie->getCreditSum($budget);
+        $debit_sum = 0;
+        $credit_sum = 0; //$categorie->getCreditSum($budget);
 
-        if($debit_sum != NULL){
-          $debit_array[$categorie->getNom()] = abs($debit_sum);
-          $total_debit += abs($debit_sum);
-        }
-        if($credit_sum != NULL)
-          $credit_array[$categorie->getNom()] = abs($credit_sum);
-          $total_credit += abs($credit_sum);
+        
         ?>
 
       <tr class="table-treso-categorie">
@@ -93,6 +87,10 @@ function format_progressbar($percentage, $sum, $total) {
           <div class="progress">
             <?php $_sum = $poste->getSumPoste();
                   $_total = $poste->getTotal();
+                  if ($_total > 0)
+                    $credit_sum+=$_total;
+                  else
+                    $debit_sum+=$_total;
                   $_percentage = number_format($_sum/$_total * 100, 2);
              ?>
             <?php echo format_progressbar($_percentage, $_sum, $_total) ?>
@@ -107,7 +105,18 @@ function format_progressbar($percentage, $sum, $total) {
         </td>
         </tr>
       <?php endforeach; ?>
+      <?php 
+        if($debit_sum != 0){
+          $debit_array[$categorie->getNom()] = abs($debit_sum);
+          $total_debit += abs($debit_sum);
+        }
+        if($credit_sum != 0)
+          $credit_array[$categorie->getNom()] = abs($credit_sum);
+          $total_credit += abs($credit_sum);
+       ?>
     <?php endforeach; ?>
+
+
 
     <?php
 

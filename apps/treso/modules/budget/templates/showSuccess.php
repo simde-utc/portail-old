@@ -7,19 +7,21 @@ function format_montant($montant) {
   return ($montant >= 0) ? "<td></td>".$tot : $tot."<td></td>";
 }
 
-function format_progressbar($percentage, $sum, $total) {
-
+function format_progressbar($sum, $total) {
+  $percentage = $sum/$total * 100;
   if ($percentage >= 0 && $percentage < 30) {
-    return '<div class="bar bar-danger" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>';
+    return '<div class="progress">
+    <div class="bar bar-danger" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>
+    </div>';
   }
   else if ($percentage >= 30 && $percentage < 70) {
-    return '<div class="bar bar-warning" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>';
+    return '<div class="progress"><div class="bar bar-warning" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div></div>';
           }
-  else if ($percentage >= 70 && $percentage <= 105) {
-    return '<div class="bar bar-success" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>';
+  else if ($percentage >= 70 && $percentage <= 120) {
+    return '<div class="progress"><div class="bar bar-success" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div></div>';
           }
   else {
-    return '<div class="bar bar-danger" style="width: 100%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>';
+    return '<div class="progress progress-striped"><div class="bar bar-danger" style="width: 100%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div></div>';
   }
 }
 
@@ -79,22 +81,21 @@ function format_progressbar($percentage, $sum, $total) {
         <td><a href="<?php echo url_for('budget_poste_new', array('budget' => $budget->getPrimaryKey(), 'categorie' => $categorie->getPrimaryKey())) ?>" class="btn btn-success"><i class="icon-plus icon-white"></i></a></td>
       </tr>
       <?php foreach ($categorie->getPostesForBudget($budget) as $poste): ?>
-      <tr class="table-treso-ligne">
-        <td><?php echo $poste->getNom() ?></td>
 
-        <!-- progressbar -->
-        <td>
-          <div class="progress">
-            <?php $_sum = $poste->getSumPoste();
+      <?php $_sum = $poste->getSumPoste();
                   $_total = $poste->getTotal();
                   if ($_total > 0)
                     $credit_sum+=$_total;
                   else
                     $debit_sum+=$_total;
-                  $_percentage = number_format($_sum/$_total * 100, 2);
              ?>
-            <?php echo format_progressbar($_percentage, $_sum, $_total) ?>
-          </div>
+
+      <tr class="table-treso-ligne">
+        <td><?php echo $poste->getNom() ?></td>
+
+        <!-- progressbar -->
+        <td>
+            <?php echo format_progressbar($_sum, $_total) ?>
         </td>
         <?php echo format_montant($_total) ?>
         <td>

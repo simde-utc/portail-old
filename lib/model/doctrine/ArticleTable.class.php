@@ -44,4 +44,11 @@ class ArticleTable extends Doctrine_Table {
     return $q;
   }
 
+  public function getArticlesForWeekmail() {
+      $q = $this->createQuery('a')
+              ->select('a.*, as.name')
+              ->leftJoin('a.Asso as')
+              ->where('a.is_weekmail = ?', true);
+      return $q;
+  }
 }

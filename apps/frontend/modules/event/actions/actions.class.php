@@ -11,7 +11,7 @@
 class eventActions extends sfActions
 {
   /*
-   * @todo gérer les parametres d'url start et end ! 
+   * @todo gérer les paramètres d'url start et end !
    * 
    * 
    */
@@ -89,7 +89,7 @@ class eventActions extends sfActions
 
   /**
    * Liste des event
-   * On affiche la liste des events de l'asso specifié
+   * On affiche la liste des events de l'asso spécifié
    *
    * @param sfRequest $request A request object
    */

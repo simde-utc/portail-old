@@ -41,6 +41,6 @@
   </table>
   <p>Toutes les adresses listées ci-dessus reçoivent les messages envoyés à la liste.</p>
   <?php if(!empty($box->extension)): ?>
-  <p><a class="btn btn-danger" onclick="return confirm('Ceci supprimera définitevement cette adresse et tout son contenu. Êtes-vous sur de vouloir poursuivre ?');" href="<?php echo url_for('gesmail_delete', array('login' => $asso->getLogin(), 'id' => $box->idbox)) ?>">Supprimer cette adresse</a></p>
+  <p><a class="btn btn-danger" onclick="return confirm('Ceci supprimera définitivement cette adresse et tout son contenu. Êtes-vous sur de vouloir poursuivre ?');" href="<?php echo url_for('gesmail_delete', array('login' => $asso->getLogin(), 'id' => $box->idbox)) ?>">Supprimer cette adresse</a></p>
   <?php endif; ?>
 </div>

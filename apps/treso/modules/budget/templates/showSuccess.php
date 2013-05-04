@@ -9,16 +9,13 @@ function format_montant($montant) {
 
 function format_progressbar($sum, $total) {
   $percentage = $sum/$total * 100;
-  if ($percentage >= 0 && $percentage < 30) {
+  if ($percentage >= 0 && $percentage < 80) {
     return '<div class="progress">
-    <div class="bar bar-danger" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>
+    <div class="bar bar-success" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>
     </div>';
   }
-  else if ($percentage >= 30 && $percentage < 70) {
+  else if ($percentage >= 80 && $percentage < 100) {
     return '<div class="progress"><div class="bar bar-warning" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div></div>';
-          }
-  else if ($percentage >= 70 && $percentage <= 120) {
-    return '<div class="progress"><div class="bar bar-success" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div></div>';
           }
   else {
     return '<div class="progress progress-striped"><div class="bar bar-danger" style="width: 100%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div></div>';

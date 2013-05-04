@@ -8,7 +8,12 @@ function format_montant($montant) {
 }
 ?>
 
-
+<?php if(sfConfig::get('app_portail_current_semestre') > $budget->getSemestreId()): ?>
+<div class="alert alert-block alert-error">
+   <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Attention !</strong> Ce budget prévisionnel correspond au semestre <?php echo $budget->getSemestre() ?>.
+</div>
+<?php endif; ?>
 
 <div class="btn-group" style="float:right">
   <a class="btn btn-success"  href="<?php echo url_for("budget_categorie_new_from_budget", $budget) ?>">

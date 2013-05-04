@@ -1,5 +1,0 @@
-# Login and logout action should never be secure
-login:
-  is_secure: false
-logout:
-  is_secure: false

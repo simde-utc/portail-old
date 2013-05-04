@@ -9,12 +9,12 @@ function format_montant($montant) {
 
 function format_progressbar($sum, $total) {
   $percentage = $sum/$total * 100;
-  if ($percentage >= 0 && $percentage < 80) {
+  if ($percentage >= 0 && $percentage < 90) {
     return '<div class="progress">
     <div class="bar bar-success" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div>
     </div>';
   }
-  else if ($percentage >= 80 && $percentage < 100) {
+  else if ($percentage >= 90 && $percentage < 100) {
     return '<div class="progress"><div class="bar bar-warning" style="width: '.$percentage.'%;"><span class="percentage">'.number_format(abs($sum), 1).'/'.number_format(abs($total),1).'</span></div></div>';
           }
   else {
@@ -57,7 +57,6 @@ function format_progressbar($sum, $total) {
       </tr>
     </thead>
     <tbody>
-      <!-- for graphic -->
       <?php $debit_array = array();
             $credit_array = array();
             $total_debit = 0;
@@ -66,9 +65,7 @@ function format_progressbar($sum, $total) {
       
       <?php
         $debit_sum = 0;
-        $credit_sum = 0; //$categorie->getCreditSum($budget);
-
-        
+        $credit_sum = 0;
         ?>
 
       <tr class="table-treso-categorie">
@@ -90,7 +87,6 @@ function format_progressbar($sum, $total) {
       <tr class="table-treso-ligne">
         <td><?php echo $poste->getNom() ?></td>
 
-        <!-- progressbar -->
         <td>
             <?php echo format_progressbar($_sum, $_total) ?>
         </td>

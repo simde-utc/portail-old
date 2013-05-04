@@ -370,6 +370,9 @@ gesmail:
   param: { module: gesmail, action: index }
   options: { model: Asso, type: object }
 
+weekmail:
+  url: /weekmail
+  param: { module: weekmail, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules

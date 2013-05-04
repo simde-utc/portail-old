@@ -86,11 +86,8 @@ class transactionActions extends tresoActions {
     $this->checkAuthorisation($asso);
     $pdf = new Pdf($asso, $asso->getName() . ' : Livre de compte');
     $transactions = TransactionTable::getInstance()->getAllForAsso($asso)->execute();
-    
     $html = $this->getPartial('transaction/pdf',compact(array('transactions','asso')));
-
     $path = $pdf->generate('transactions',$html);
-    
     header('Content-type: application/pdf');
     readfile($path);
     return sfView::NONE;

@@ -46,7 +46,7 @@ function format_montant($montant) {
             $total_debit = 0;
             $total_credit = 0; ?>
       <?php foreach ($categories as $categorie): ?>
-      
+
       <?php
         $debit_sum = $categorie->getDebitSum($budget)['sum'];
         $credit_sum = $categorie->getCreditSum($budget)['sum'];
@@ -77,8 +77,6 @@ function format_montant($montant) {
         </tr>
       <?php endforeach; ?>
     <?php endforeach; ?>
-  
-
     <?php
       foreach ($debit_array as $key => $value) {
         $for_high_debit_array[] = array($key, round($value/$total_debit * 100, 2, PHP_ROUND_HALF_UP));
@@ -99,7 +97,7 @@ function format_montant($montant) {
         <?php foreach ($unused_categories as $categorie): ?>
         <option value="<?php echo $categorie->getPrimaryKey() ?>"><?php echo $categorie->getNom() ?></option>
         <?php endforeach; ?>
-      </select> 
+      </select>
     </td>
     <td></td>
     <td></td>

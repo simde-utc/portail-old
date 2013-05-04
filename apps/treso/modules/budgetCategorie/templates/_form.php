@@ -9,7 +9,7 @@
     <tfoot>
       <tr>
         <td colspan="2">
-          <?php echo $form->renderHiddenFields(false) ?> 
+          <?php echo $form->renderHiddenFields(false) ?>
           &nbsp;<a href="<?php echo url_for('budget_categorie',(!$form->getObject()->isNew()) ? $form->getObject()->getAsso() : $asso) ?>" class="btn">Retour</a>
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('<i class="icon-trash icon-white"></i>&nbsp;&nbsp;Supprimer', 'budgetCategorie/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>

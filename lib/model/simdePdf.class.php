@@ -16,13 +16,12 @@ class simdePdf extends sfTCPDF
     $this->custom_header_string = $custom_header_string;
   }
 
-
   public function Header() {
     $this->header_title = $this->custom_header_title;
     $this->header_string = $this->custom_header_string;
     parent::Header();
   }
-  
+
   public function Footer() {
     parent::Footer();
     $this->SetY($this->y + 2);

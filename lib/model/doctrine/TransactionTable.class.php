@@ -16,7 +16,7 @@ class TransactionTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Transaction');
     }
-    
+
     public function getAllForAsso($asso, $semestre = null)
     {
       $q = $this->createQuery('q')
@@ -25,7 +25,7 @@ class TransactionTable extends Doctrine_Table
               ->where('q.asso_id = ?',$asso->getPrimaryKey())
               ->andWhere('q.deleted_at IS NULL')
               ->orderBy('q.compte_id, q.date_transaction');
-if($semestre) $q - $q->andWhere('q.semestre_id = ?', $semestre);
+      if($semestre) $q - $q->andWhere('q.semestre_id = ?', $semestre);
       return $q;
     }
     

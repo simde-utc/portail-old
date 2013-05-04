@@ -163,7 +163,7 @@ transaction_new:
   class: sfDoctrineRoute
   options: { model: Asso, type: object }
   param: { module: transaction, action: new }
-  
+
 transaction_pdf:
   url:  /transaction/pdf/:login
   class: sfDoctrineRoute

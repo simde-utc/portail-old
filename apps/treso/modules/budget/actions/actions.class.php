@@ -88,7 +88,7 @@ class budgetActions extends tresoActions
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
-    
+
     $this->getResponse()->setSlot('current_asso', $this->form->getObject()->getAsso());
   }
 

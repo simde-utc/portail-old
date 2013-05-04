@@ -19,9 +19,9 @@
                     <ul style="list-style: none; margin: 0 auto;">
                         <?php foreach ($weekmail->getWeekmailArticle() as $article): ?>
                             <li style="border-bottom: 1px dashed #999; margin: 10px auto;">
-                                <div class="btn-group" style="display: inline-block; vertical-align: middle;">
-                                    <a href="" class="btn btn-primary"><i class="icon-pencil icon-white"></i></a>
-                                    <a href="<?php echo url_for('weekmail_delete_article', $article) ?>" class="btn btn-danger"><i class="icon-trash icon-white"></i></a>
+                                <div class="btn-group" style="display: inline-block; vertical-align: bottom;">
+                                    <a href="" class="btn btn-primary btn-mini"><i class="icon-pencil icon-white"></i></a>
+                                    <a href="<?php echo url_for('weekmail_delete_article', $article) ?>" class="btn btn-danger btn-mini"><i class="icon-trash icon-white"></i></a>
                                 </div>
                                 <?php echo $article->getAsso()->getName() ?>
                                 <?php echo $article->getName() ?>
@@ -50,7 +50,7 @@
             <td>
                 <a href="javascript:;" class="article_name"><?php echo $article->getName() ?></a>
             </td>
-            <td><?php echo nl2br($article->getSummary()) ?></td>
+            <td style="width: 60%;"><?php echo nl2br($article->getSummary()) ?></td>
             <td>
                 <div class="btn-group">
                     <a href="<?php echo url_for('weekmail_accept', $article) ?>" class="btn btn-success"><i class="icon-ok icon-white"></i></a>

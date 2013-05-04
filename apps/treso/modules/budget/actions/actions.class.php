@@ -36,7 +36,7 @@ class budgetActions extends tresoActions
     $asso = $budget->getAsso();
     $this->checkAuthorisation($budget->getAsso());
 
-    $pdf = new Pdf($asso);
+    $pdf = new Pdf($asso, 'Budget Prévisionnel', 'fr');
     $categories = $budget->getCategoriesWithEntry()->execute();
 
     $html = $this->getPartial('budget/pdf',compact(array('categories','asso', 'budget', 'transactions')));

@@ -30,9 +30,9 @@ class noteDeFraisActions extends sfActions
     $note_de_frais = $this->getRoute()->getObject();
     $user = $this->getUser();
     $asso = $note_de_frais->getAsso();
-    $pdf = new Pdf($asso);
+    $pdf = new Pdf($asso, 'Note de frais', 'fr');
 
-    $html = $this->getPartial('noteDeFrais/pdf',compact(array('note_de_frais', 'asso', 'user')));
+    $html = $this->getPartial('noteDeFrais/pdf', compact(array('note_de_frais', 'asso', 'user')));
 
     $path = $pdf->generate('transactions',$html);
 

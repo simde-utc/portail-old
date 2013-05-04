@@ -16,7 +16,7 @@ class Pdf
     $this->config = sfTCPDFPluginConfigHandler::loadConfig();
     sfTCPDFPluginConfigHandler::includeLangFile($culture);
 
-    $this->pdf = new simdePdf($asso, 'Association '.$asso->getName(), 'Livre de compte');
+    $this->pdf = new simdePdf($asso, 'Association '.$asso->getName(), $title);
 
     $this->asso = $asso;
 

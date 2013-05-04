@@ -47,14 +47,15 @@ class sfGuardUser extends PluginsfGuardUser
   /**
    * @param type $asso
    * @param type $droit 
-   *  0x01 - modification de l'asso
-   *  0x02 - gestion des membres
-   *  0x04 - gestion des articles
-   *  0x08 - gestion des events
-   *  0x10 - gestion des roles
-   *  0x20 - changement de pres
-   *  0x40 - gestion du materiel
-   *  0x80 - gestion des mails
+   *  0x001 - modification de l'asso
+   *  0x002 - gestion des membres
+   *  0x004 - gestion des articles
+   *  0x008 - gestion des events
+   *  0x010 - gestion des roles
+   *  0x020 - changement de pres
+   *  0x040 - gestion du materiel
+   *  0x080 - gestion des mails
+   *  0x100 - gestion de la trésorerie
    * @return type 
    */
   public function hasAccess($asso,$droit)

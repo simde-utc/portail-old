@@ -8,21 +8,24 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class transactionActions extends sfActions {
+class transactionActions extends tresoActions {
 
   public function executeIndex(sfWebRequest $request) {
     $this->asso = $this->getRoute()->getObject();
+    $this->checkAuthorisation($this->asso);
     $this->transactions = TransactionTable::getInstance()->getJournalForAsso($this->asso)->execute();
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
   public function executeShow(sfWebRequest $request) {
     $this->transaction = $this->getRoute()->getObject();
+    $this->checkAuthorisation($this->transaction->getAsso());
     $this->getResponse()->setSlot('current_asso', $this->transaction->getAsso());
   }
 
   public function executeNew(sfWebRequest $request) {
     $this->asso = $this->getRoute()->getObject();
+    $this->checkAuthorisation($this->asso);
     $transaction = new Transaction();
     $transaction->setAsso($this->asso);
     $this->form = new TransactionForm($transaction);
@@ -33,6 +36,7 @@ class transactionActions extends sfActions {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
     $request_transaction = $request->getParameter('transaction');
     $this->asso = AssoTable::getInstance()->find($request_transaction['asso_id']);
+    $this->checkAuthorisation($this->asso);
     $transaction = new Transaction();
     $transaction->setAsso($this->asso);
     $this->form = new TransactionForm($transaction);
@@ -43,6 +47,7 @@ class transactionActions extends sfActions {
 
   public function executeEdit(sfWebRequest $request) {
     $this->forward404Unless($transaction = Doctrine_Core::getTable('Transaction')->find(array($request->getParameter('id'))), sprintf('Object transaction does not exist (%s).', $request->getParameter('id')));
+    $this->checkAuthorisation($transaction->getAsso());
     $this->form = new TransactionForm($transaction);
     $this->getResponse()->setSlot('current_asso', $transaction->getAsso());
   }
@@ -50,6 +55,7 @@ class transactionActions extends sfActions {
   public function executeUpdate(sfWebRequest $request) {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($transaction = Doctrine_Core::getTable('Transaction')->find(array($request->getParameter('id'))), sprintf('Object transaction does not exist (%s).', $request->getParameter('id')));
+    $this->checkAuthorisation($transaction->getAsso());
     $this->form = new TransactionForm($transaction);
 
     $this->processForm($request, $this->form);
@@ -61,6 +67,7 @@ class transactionActions extends sfActions {
   public function executeDelete(sfWebRequest $request) {
     $request->checkCSRFProtection();
     $this->forward404Unless($transaction = Doctrine_Core::getTable('Transaction')->find(array($request->getParameter('id'))), sprintf('Object transaction does not exist (%s).', $request->getParameter('id')));
+    $this->checkAuthorisation($transaction->getAsso());
     $transaction->delete();
     $this->redirect('transaction', array('login' => $transaction->getAsso()->getName()));
   }
@@ -76,6 +83,7 @@ class transactionActions extends sfActions {
 
   public function executePdf(sfWebRequest $request) {
     $asso = $this->getRoute()->getObject();
+    $this->checkAuthorisation($asso);
     $pdf = new Pdf($asso, $asso->getName() . ' : Livre de compte');
     $transactions = TransactionTable::getInstance()->getAllForAsso($asso)->execute();
     

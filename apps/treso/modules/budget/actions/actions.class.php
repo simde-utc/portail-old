@@ -36,11 +36,10 @@ class budgetActions extends tresoActions
     $asso = $budget->getAsso();
     $this->checkAuthorisation($budget->getAsso());
 
-    $pdf = new Pdf($asso, '', 'fr');
     $categories = $budget->getCategoriesWithEntry()->execute();
 
-    $html = $this->getPartial('budget/pdf',compact(array('categories','asso', 'budget', 'transactions')));
     $nom = $budget->getPrimaryKey() . '-' . date('Y-m-d-H-i-s') . '-' . Doctrine_Inflector::urlize($budget->getNom());
+    $html = $this->getPartial('budget/pdf',compact(array('categories','asso', 'budget', 'transactions')));
 
     $doc = new Document();
     $doc->setNom('Export du budget prévisionnel');

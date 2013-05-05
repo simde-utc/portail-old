@@ -18,7 +18,47 @@ class transactionActions extends sfActions {
 
   public function executeShow(sfWebRequest $request) {
     $this->transaction = $this->getRoute()->getObject();
+    $this->documents = DocumentTable::getInstance()->getAllForTransaction($this->transaction)->execute();
+
+    $document = new Document();
+    $document->asso_id = $this->transaction->getAssoId();
+    $document->transaction_id = $this->transaction->getPrimaryKey();
+    $this->form = new DocumentForm($document);
+
     $this->getResponse()->setSlot('current_asso', $this->transaction->getAsso());
+  }
+
+  public function executeAddDocument(sfWebRequest $request) {
+    $this->forward404Unless($request->isMethod(sfRequest::PUT));
+
+    $document = $request->getParameter('document');
+
+    $this->transaction = TransactionTable::getInstance()->find($document['transaction_id']);
+    $asso = AssoTable::getInstance()->find($document['asso_id']);
+
+    $form = new DocumentForm();
+    $files = $request->getFiles($form->getName());
+    $form->bind($request->getParameter($form->getName()), $files);
+
+    $infos = new finfo(FILEINFO_MIME_TYPE);
+
+    if ($form->isValid() and $infos->file($files['fichier']['tmp_name']) == 'application/pdf') {
+      // build filename, path, move the file and save everything
+      $fichier = $this->transaction->getPrimaryKey() . '-' . date('Y-m-d-H-i-s') . '-' . Doctrine_Inflector::urlize($files['fichier']['name']);
+      $path = sfConfig::get('app_portail_dossier_assos') . '/' . $asso->getLogin() . '/' . 'tresorerie/documents/' . $fichier;
+ 
+      move_uploaded_file($files['fichier']['tmp_name'], $path);
+
+      $form->setValue('fichier', $fichier);
+      $form->setValue('auteur', $this->getUser()->getGuardUser()->getPrimaryKey());
+      $doc = $form->save();
+
+      $this->redirect('transaction_show', $transaction);
+    } else {
+      $this->form = $form;
+      $this->setTemplate('show', $this->transaction);
+      $this->getResponse()->setSlot('current_asso', $this->asso);
+    }
   }
 
   public function executeNew(sfWebRequest $request) {
@@ -76,13 +116,19 @@ class transactionActions extends sfActions {
 
   public function executePdf(sfWebRequest $request) {
     $asso = $this->getRoute()->getObject();
-    $pdf = new Pdf($asso, $asso->getName() . ' : Livre de compte');
     $transactions = TransactionTable::getInstance()->getAllForAsso($asso)->execute();
-    
-    $html = $this->getPartial('transaction/pdf',compact(array('transactions','asso')));
 
-    $path = $pdf->generate('transactions',$html);
-    
+    $html = $this->getPartial('transaction/pdf',compact(array('transactions','asso')));
+    $nom = date('Y-m-d-H-i-s');
+
+    $doc = new Document();
+    $doc->setNom('Export du journal des transactions');
+    $doc->setAsso($asso);
+    $doc->setUser($this->getUser());
+    $doc->setTypeFromSlug('transactions');
+    $path = $doc->generatePDF($asso->getName() . ' : Livre de compte', $nom, $html);
+    $doc->save();
+
     header('Content-type: application/pdf');
     readfile($path);
     return sfView::NONE;

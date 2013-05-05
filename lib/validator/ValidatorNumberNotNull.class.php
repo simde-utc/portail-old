@@ -10,9 +10,7 @@ class ValidatorNumberNotNull extends sfValidatorNumber{
   protected function configure($options = array(), $messages = array())
   {
     parent::configure($options, $messages);
- 
     $this->addMessage('not_nullity', 'This field should not be 0');
- 
     $this->addOption('not_null');
   }
  
@@ -22,11 +20,9 @@ class ValidatorNumberNotNull extends sfValidatorNumber{
   protected function doClean($value)
   {
     $clean = parent::doClean($value);
- 
     if($clean == 0){
         throw new sfValidatorError($this, 'not_nullity');
     }
- 
     return $clean;
   }
 }

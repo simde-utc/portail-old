@@ -8,11 +8,12 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class noteDeFraisActions extends sfActions
+class noteDeFraisActions extends tresoActions
 {
   public function executeIndex(sfWebRequest $request)
   {
     $this->asso = $this->getRoute()->getObject();
+    $this->checkAuthorisation($this->asso);
     $this->note_de_frais = NoteDeFraisTable::getInstance()->getAllForAsso($this->asso)->execute();
     $this->transactions = TransactionTable::getInstance()->getRemboursablesForAsso($this->asso)->execute();
     $this->getResponse()->setSlot('current_asso', $this->asso);
@@ -22,6 +23,7 @@ class noteDeFraisActions extends sfActions
   {
     $this->note_de_frais = $this->getRoute()->getObject();
     $this->asso = $this->note_de_frais->getAsso();
+    $this->checkAuthorisation($this->asso);
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
@@ -30,6 +32,8 @@ class noteDeFraisActions extends sfActions
     $note_de_frais = $this->getRoute()->getObject();
     $user = $this->getUser();
     $asso = $note_de_frais->getAsso();
+
+    $this->checkAuthorisation($asso);
 
     $html = $this->getPartial('noteDeFrais/pdf', compact(array('note_de_frais', 'asso', 'user')));
     $nom = $note_de_frais->getPrimaryKey() . '-' . date('Y-m-d-H-i-s') . '-' . Doctrine_Inflector::urlize($note_de_frais->getNom());
@@ -51,6 +55,7 @@ class noteDeFraisActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     $this->asso = $this->getRoute()->getObject();
+    $this->checkAuthorisation($this->asso);
     $this->ndf = new NoteDeFrais();
     $this->ndf->setAsso($this->asso);
     $this->form = new NoteDeFraisForm($this->ndf);
@@ -63,6 +68,7 @@ class noteDeFraisActions extends sfActions
     $this->form = new NoteDeFraisForm();
     $request_params = $request->getParameter($this->form->getName());
     $this->asso = AssoTable::getInstance()->find($request_params['asso_id']);
+    $this->checkAuthorisation($this->asso);
 
     $this->ndf = new NoteDeFrais();
     $this->ndf->setAsso($this->asso);

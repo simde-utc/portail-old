@@ -8,11 +8,12 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class budgetCategorieActions extends sfActions
+class budgetCategorieActions extends tresoActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->asso = $this->getRoute()->getObject();    
+    $this->asso = $this->getRoute()->getObject();
+    $this->checkAuthorisation($this->asso);
     $this->budget_categories = BudgetCategorieTable::getInstance()->getActiveCategories($this->asso->getId())->execute();
 
     $this->getResponse()->setSlot('current_asso', $this->asso);
@@ -21,6 +22,7 @@ class budgetCategorieActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     $this->asso = $this->getRoute()->getObject();
+    $this->checkAuthorisation($this->asso);
     $this->form = new BudgetCategorieForm();
     $this->form->setDefault('asso_id', $this->asso->getPrimaryKey());
 
@@ -32,6 +34,7 @@ class budgetCategorieActions extends sfActions
     $this->budget = $this->getRoute()->getObject();
 
     $this->asso = $this->budget->getAsso();
+    $this->checkAuthorisation($this->asso);
     $this->form = new BudgetCategorieForm();
     $this->form->setDefault('asso_id', $this->asso->getPrimaryKey());
     $this->form->setDefault('id_budget', $this->budget->getPrimaryKey());
@@ -45,7 +48,9 @@ class budgetCategorieActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
     $budget_categorie = new BudgetCategorie();
-    $this->asso = AssoTable::getInstance()->find($request->getParameter('budget_categorie')['asso_id']);
+    $request_params = $request->getParameter('budget_categorie');
+    $this->asso = AssoTable::getInstance()->find($request_params['asso_id']);
+    $this->checkAuthorisation($this->asso);
 
     $budget_categorie->setAsso($this->asso);
     $this->form = new BudgetCategorieForm($budget_categorie);
@@ -60,6 +65,7 @@ class budgetCategorieActions extends sfActions
     $this->forward404Unless($budget_categorie = Doctrine_Core::getTable('BudgetCategorie')->find(array($request->getParameter('id'))), sprintf('Object budget_categorie does not exist (%s).', $request->getParameter('id')));
     $this->budget_categorie = Doctrine_Core::getTable('BudgetCategorie')->find(array($request->getParameter('id')));
     $this->asso = $this->budget_categorie->getAsso();
+    $this->checkAuthorisation($this->asso);
     $this->form = new BudgetCategorieForm($budget_categorie);
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
@@ -70,6 +76,7 @@ class budgetCategorieActions extends sfActions
     $this->forward404Unless($budget_categorie = Doctrine_Core::getTable('BudgetCategorie')->find(array($request->getParameter('id'))), sprintf('Object budget_categorie does not exist (%s).', $request->getParameter('id')));
     $this->form = new BudgetCategorieForm($budget_categorie);
     $this->asso = $budget_categorie->getAsso();
+    $this->checkAuthorisation($this->asso);
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
@@ -84,6 +91,7 @@ class budgetCategorieActions extends sfActions
     $this->forward404Unless($budget_categorie = Doctrine_Core::getTable('BudgetCategorie')->find(array($request->getParameter('id'))), sprintf('Object budget_categorie does not exist (%s).', $request->getParameter('id')));
 
     $asso = $budget_categorie->getAsso();
+    $this->checkAuthorisation($asso);
     $budget_categorie->delete();
 
     $this->redirect($referer ? $referer : $default);
@@ -98,9 +106,11 @@ class budgetCategorieActions extends sfActions
     {
       $budget_categorie = $form->save();
       $asso = $budget_categorie->getAsso();
+      $this->checkAuthorisation($asso);
 
       if (preg_match("/new_from_budget/", $referer)){
-        $this->redirect($this->generateUrl('budget_show', array('id' => $request->getParameter('budget_categorie')['id_budget'])));
+        $request_params = $request->getParameter('budget_categorie');
+        $this->redirect($this->generateUrl('budget_show', array('id' => $request_params['id_budget'])));
       }
       else
         $this->redirect($this->generateUrl('budget_categorie', array('login' => $asso->getName())));

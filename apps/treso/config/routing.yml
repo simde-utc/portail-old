@@ -8,11 +8,11 @@ homepage:
 
 cas:
   url: /cas
-  param: { module: cas, action: login }
+  param: { module: utcCas, action: login }
 
 cas_logout:
   url: /cas/logout
-  param: { module: cas, action: logout }
+  param: { module: utcCas, action: logout }
 
 # Budget
 budget_list:
@@ -237,6 +237,4 @@ document_show:
 
 document_delete_from_transaction:
   url: /documents/delete_from_transaction/:id
-  class: sfDoctrineRoute
-  options: { model: Document, type: object }
   param: { module: document, action: deleteFromTransaction }

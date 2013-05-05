@@ -45,7 +45,7 @@ use_javascript('treso-notedefrais.js') ?>
         <td><a href="<?php echo url_for('document_show', $document); ?>"><?php echo $document ?></a></td>
         <td><?php echo $document->getCreatedAt() ?></td>
         <td><?php echo $document->getDocumentType() ?></td>
-        <td><?php echo link_to('<i class="icon-trash icon-white"></i>', 'document_delete_from_transaction', $document, array('method' => 'delete', 'confirm' => "Attention, après suppresion il sera impossible de récupérer ce fichier.\nSupprimer quand même", 'class' => 'btn btn-danger')) ?></td>
+        <td><?php echo link_to('<i class="icon-trash icon-white"></i>', 'document/deleteFromTransaction?id='.$document->getPrimaryKey(), array('method' => 'delete', 'confirm' => "Attention, après suppresion il sera impossible de récupérer ce fichier.\nSupprimer quand même ?", 'class' => 'btn btn-danger')) ?></td>
       </tr>
     <?php endforeach; ?>
   </table>

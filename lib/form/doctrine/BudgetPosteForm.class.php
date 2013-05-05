@@ -12,7 +12,7 @@ class BudgetPosteForm extends BaseBudgetPosteForm
 {
   public function configure()
   {
-  	unset($this['created_at'], $this['updated_at'], $this['deleted_at']);
+    unset($this['created_at'], $this['updated_at'], $this['deleted_at']);
     $this->widgetSchema['budget_categorie_id'] = new sfWidgetFormDoctrineChoice(array(
           'model' => $this->getRelatedModelName('BudgetCategorie'),
           'query' => BudgetCategorieTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),

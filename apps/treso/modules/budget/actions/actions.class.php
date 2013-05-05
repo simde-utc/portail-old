@@ -45,7 +45,7 @@ class budgetActions extends tresoActions
     $doc = new Document();
     $doc->setNom('Export du budget prévisionnel');
     $doc->setAsso($asso);
-    $doc->setUser($this->getUser());
+    $doc->setUser($this->getUser()->getGuardUser());
     $doc->setTypeFromSlug('budgets');
     $path = $doc->generatePDF('Budget Prévisionnel', $nom, $html);
 
@@ -94,7 +94,7 @@ class budgetActions extends tresoActions
     $this->processForm($request, $this->form);
 
     $this->setTemplate('edit');
-    
+
     $this->getResponse()->setSlot('current_asso', $this->form->getObject()->getAsso());
   }
 

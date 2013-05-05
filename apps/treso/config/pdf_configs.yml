@@ -5,7 +5,7 @@ default:
 
   # Disable default TCPDF default config
   K_TCPDF_EXTERNAL_CONFIG: true
-  
+
   # Auto-detected parameters (leave empty for auto-detection) ##################
   K_PATH_MAIN:
   K_PATH_URL:

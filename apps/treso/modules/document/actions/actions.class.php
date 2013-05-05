@@ -58,9 +58,11 @@ class documentActions extends tresoActions
 
   public function executeDeleteFromTransaction(sfWebRequest $request)
   {
-    $obj = $this->getRoute()->getObject();
-    $transaction = $obj->getTransaction();
-    $obj->deleteAndUnlink();
+    $request->checkCSRFProtection();
+    $this->forward404Unless($document = DocumentTable::getInstance()->find(array($request->getParameter('id'))), sprintf('Object document does not exist (%s).', $request->getParameter('id')));
+    $this->checkAuthorisation($document->getAsso());
+    $transaction = $document->getTransaction();
+    $document->deleteAndUnlink();
 
     $this->redirect('transaction_show', $transaction);
   }

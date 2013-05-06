@@ -19,4 +19,12 @@ class BudgetPoste extends BaseBudgetPoste
     {
       return $this->getNom();
     }
+
+    public function getSumPoste(){
+    	$s = TransactionTable::getInstance()->createQuery('t')
+                        ->select('SUM(t.montant) AS sumPoste')
+                        ->where('t.budget_poste_id=?', $this->getPrimaryKey())
+                        ->andWhere('t.deleted_at IS NULL')->fetchOne();
+		return $s['sumPoste'];
+    }
 }

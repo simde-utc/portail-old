@@ -16,7 +16,7 @@ class BudgetCategorieTable extends Doctrine_Table
     public function getCategories($asso_id)
     {
       $q = $this->createQuery('q')
-            ->where('q.asso_id = ?', $asso_id);
+                ->where('q.asso_id = ?', $asso_id);
       return $q;
     }
 
@@ -36,13 +36,13 @@ class BudgetCategorieTable extends Doctrine_Table
       $q = $this->createQuery('q');
       // sous requête pour associer à chaque requête le total du montant de ses postes 
       $subq = $q->createSubquery()->select('SUM(BudgetPoste.prix_unitaire*BudgetPoste.nombre)')->from('BudgetPoste')
-                        ->where('BudgetPoste.budget_categorie_id=q.id')
-                    ->andWhere('BudgetPoste.budget_id=?', $budget->getPrimaryKey())
+                ->where('BudgetPoste.budget_categorie_id=q.id')
+                ->andWhere('BudgetPoste.budget_id=?', $budget->getPrimaryKey())
                 ->andWhere('BudgetPoste.deleted_at IS NULL');
       // on sélectionne les budgets de l'asso
       $q->select('q.*, ('.$subq->getDql().') as MontantTotal')
-                        ->andWhere('q.asso_id = ?', $budget->getAssoId())
-                ->andWhere('q.deleted_at IS NULL');
+          ->andWhere('q.asso_id = ?', $budget->getAssoId())
+          ->andWhere('q.deleted_at IS NULL');
       return $q;
     }
 

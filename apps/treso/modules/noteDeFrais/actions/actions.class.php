@@ -33,11 +33,18 @@ class noteDeFraisActions extends tresoActions
     $user = $this->getUser();
     $asso = $note_de_frais->getAsso();
     $this->checkAuthorisation($asso);
-    $pdf = new Pdf($asso);
 
-    $html = $this->getPartial('noteDeFrais/pdf',compact(array('note_de_frais', 'asso', 'user')));
+    $html = $this->getPartial('noteDeFrais/pdf', compact(array('note_de_frais', 'asso', 'user')));
+    $nom = $note_de_frais->getPrimaryKey() . '-' . date('Y-m-d-H-i-s') . '-' . Doctrine_Inflector::urlize($note_de_frais->getNom());
 
-    $path = $pdf->generate('transactions',$html);
+    $doc = new Document();
+    $doc->setNom('Justificatif à signer');
+    $doc->setAsso($asso);
+    $doc->setUser($this->getUser()->getGuardUser());
+    $doc->transaction_id = $note_de_frais->transaction_id;
+    $doc->setTypeFromSlug('note_de_frais');
+    $path = $doc->generatePDF('Note de frais', $nom, $html);
+    $doc->save();
 
     header('Content-type: application/pdf');
     readfile($path);

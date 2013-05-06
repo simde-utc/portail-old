@@ -170,6 +170,10 @@ transaction_pdf:
   param: { module: transaction, action: pdf }
   options: { model: Asso, type: object }
 
+transaction_add_document:
+  url: /transaction/add_doc/:id
+  param: { module: transaction, action: addDocument }
+
 # BudgetPoste
 budget_poste_new:
   url: /budget/poste/new/:budget/:categorie
@@ -223,3 +227,14 @@ ndf_new:
 ndf_create:
   url: /noteDeFrais/create
   param: { module: noteDeFrais, action: create }
+
+# Documents
+document_show:
+  url: /documents/show/:id
+  class: sfDoctrineRoute
+  options: { model: Document, type: object }
+  param: { module: document, action: show }
+
+document_delete_from_transaction:
+  url: /documents/delete_from_transaction/:id
+  param: { module: document, action: deleteFromTransaction }

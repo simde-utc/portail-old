@@ -28,7 +28,7 @@
   </form>
   <h1>Consultation des annonces</h1>
   <?php if($sf_user->isAuthenticated()): ?>
-    <a href="<?php echo url_for('annonce/new') ?>" style="float:right;color:#FFF" class="btn btn-primary">Poster une annonce</a><br />
+    <a href="<?php echo url_for('infojob/new') ?>" style="float:right;color:#FFF" class="btn btn-primary">Poster une annonce</a><br />
   <?php endif ?>
   <br />
 

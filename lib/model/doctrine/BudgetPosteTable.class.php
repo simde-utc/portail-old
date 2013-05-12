@@ -16,4 +16,14 @@ class BudgetPosteTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('BudgetPoste');
     }
+    
+    public function getAllForAsso($asso)
+    {
+      $q = $this->createQuery('q')
+               ->where('q.asso_id = ?', $asso->getPrimaryKey())
+               ->andWhere('q.deleted_at IS NULL');
+      
+      return $q;
+    }
+    
 }

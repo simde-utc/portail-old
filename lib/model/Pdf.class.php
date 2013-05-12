@@ -16,7 +16,7 @@ class Pdf
     $this->config = sfTCPDFPluginConfigHandler::loadConfig();
     sfTCPDFPluginConfigHandler::includeLangFile($culture);
 
-    $this->pdf = new simdePdf($asso);
+    $this->pdf = new simdePdf($asso, 'Association '.$asso->getName(), $title);
 
     $this->asso = $asso;
 
@@ -38,19 +38,17 @@ class Pdf
     $this->pdf->setFooterMargin(20);
   }
 
-  public function generate($type, $html) {
-    if (!in_array($type, array('transactions')))
-      throw new sfException('Type de pdf incorrect!');
-
+  public function generate($type, $html, $nom="test") {
     //$this->pdf->AliasNbPages();
     $this->pdf->AddPage();
 
     $this->pdf->writeHTML($html);
 
-    if (!is_dir(sfConfig::get('sf_data_dir') . "/documents/" . $type))
-      mkdir(sfConfig::get('sf_data_dir') . "/documents/" . $type);
+    $folder = sfConfig::get('app_portail_dossier_assos') . "/" . $this->asso->getLogin() . "/documents/" . $type;
+    if (!is_dir($folder))
+      mkdir($folder);
 
-    $path = sfConfig::get('sf_data_dir') . "/documents/" . $type . "/test.pdf";
+    $path = $folder . "/".$nom.".pdf";
     $this->pdf->Output($path, "F");
     return $path;
   }

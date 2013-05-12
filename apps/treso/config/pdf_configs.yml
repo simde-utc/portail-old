@@ -5,7 +5,7 @@ default:
 
   # Disable default TCPDF default config
   K_TCPDF_EXTERNAL_CONFIG: true
-  
+
   # Auto-detected parameters (leave empty for auto-detection) ##################
   K_PATH_MAIN:
   K_PATH_URL:
@@ -29,7 +29,7 @@ default:
   # header description string
   PDF_HEADER_STRING: "BDE-UTC: Outil de Trésorerie"
   # image logo
-  PDF_HEADER_LOGO: "tcpdf_logo.jpg"
+  PDF_HEADER_LOGO: "../../../../../web/images/logo_bde.png"
   # header logo image width [mm]
   PDF_HEADER_LOGO_WIDTH: 30
   # document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch]
@@ -49,7 +49,7 @@ default:
   # default main font name
   PDF_FONT_NAME_MAIN: "helvetica"
   # default main font size
-  PDF_FONT_SIZE_MAIN: "10"
+  PDF_FONT_SIZE_MAIN: "16"
   # default data font name
   PDF_FONT_NAME_DATA: "helvetica"
   # default data font size

@@ -31,14 +31,14 @@ class TransactionForm extends BaseTransactionForm {
         'model' => $this->getRelatedModelName('BudgetPoste'),
         'query' => BudgetPosteTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),
     ));
-    
+        
     $this->widgetSchema['date_transaction'] = new portailWidgetFormDate();
     $this->widgetSchema['date_rapprochement'] = new portailWidgetFormDate();
 
     unset($this['created_at'], $this['updated_at'], $this['deleted_at'], $this['note_de_frais_id']);
 
     $this->widgetSchema['debit'] = new portailWidgetFormMontant();
-    $this->validatorSchema['debit'] = new sfValidatorBoolean();    
+    $this->validatorSchema['debit'] = new sfValidatorBoolean();
 
     $this->getWidgetSchema()->setPositions(array(
         'id',

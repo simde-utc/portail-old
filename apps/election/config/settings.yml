@@ -33,8 +33,8 @@ all:
 
     # Enable the database manager
     use_database:           true
-    login_module:           cas
+    login_module:           utcCas
     login_action:           login
     secure_module:          sfGuardAuth
     secure_action:          secure
-    enabled_modules: [default, sfGuardAuth]
+    enabled_modules: [default, sfGuardAuth, utcCas]

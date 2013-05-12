@@ -19,7 +19,7 @@ class NoteDeFrais extends BaseNoteDeFrais
         $this->addAchat($transaction);
         return $transaction;
     }
-    
+
     public function addAchat(Transaction $transaction) {
         $transaction->setNoteDeFrais($this);
         $transaction->save();

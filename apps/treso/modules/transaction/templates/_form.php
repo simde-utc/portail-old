@@ -5,9 +5,7 @@
   <?php if (!$form->getObject()->isNew()): ?>
     <input type="hidden" name="sf_method" value="put" />
   <?php endif; ?>
-    
-    <?php echo $form->renderGlobalErrors() ?>
-
+  <?php echo $form->renderGlobalErrors() ?>
   <?php foreach ($form as $label => $widget) : ?>
     <?php if (!$widget->isHidden() && !in_array($label, array('montant', 'debit'))): ?>
       <?php echo $widget->renderLabel() ?>
@@ -25,7 +23,7 @@
     <?php if ($label == 'debit') : ?>
       <label></label>
       <?php echo $widget->render() ?>
-    <?php echo $widget->renderError() ?>
+      <?php echo $widget->renderError() ?>
       <br/>
     <?php endif ?>
 

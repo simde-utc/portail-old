@@ -16,7 +16,7 @@ class CompteBanquaireTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('CompteBanquaire');
     }
-    
+
     public function getAllForAsso($asso) {
         $q = $this->createQuery('q')
                   ->where('q.asso_id = ?', $asso->getPrimaryKey())

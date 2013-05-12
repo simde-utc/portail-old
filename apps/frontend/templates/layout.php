@@ -16,7 +16,7 @@
           <img src="/images/logo_bde.png" alt="BDE UTC" width="163px" height="110px" />
         </a>
         <?php if(0): ?>
-        <form class="form-inline"><label>Rerchercher une info</label>
+        <form class="form-inline"><label>Rechercher une info</label>
           <input type="text" class="input-medium" />
           <button type="submit" class="btn">Chercher</button>
         </form>
@@ -120,7 +120,8 @@
           <a href="http://ent.utc.fr">ENT</a><br/>
           <a href="/simde">SiMDE</a><br/>
           <a href="/wiki">Wiki des assos</a><br/>
-          <a href="http://www.utc.fr">UTC</a>
+          <a href="http://www.utc.fr">UTC</a><br/>
+          <a href="https://github.com/simde-utc/portail">Dépôt GitHub</a>
         </div>
       </div>
     </div>

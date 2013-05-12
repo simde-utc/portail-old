@@ -12,7 +12,7 @@ class BudgetPosteForm extends BaseBudgetPosteForm
 {
   public function configure()
   {
-  	unset($this['created_at'], $this['updated_at'], $this['deleted_at']);
+    unset($this['created_at'], $this['updated_at'], $this['deleted_at']);
     $this->widgetSchema['budget_categorie_id'] = new sfWidgetFormDoctrineChoice(array(
           'model' => $this->getRelatedModelName('BudgetCategorie'),
           'query' => BudgetCategorieTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),
@@ -24,5 +24,21 @@ class BudgetPosteForm extends BaseBudgetPosteForm
     ));
     $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['budget_id'] = new sfWidgetFormInputHidden();
+    // $this->widgetSchema['prix_unitaire'] = new portailWidgetFromInputTextAbsolu();
+    $this->validatorSchema['prix_unitaire'] = new ValidatorNumberNotNull(array('not_null' => true));
+    $this->validatorSchema['nombre'] = new sfValidatorNumber(array('min' => 1));
+
+    $this->widgetSchema['debit'] = new portailWidgetFormMontant();
+    $this->validatorSchema['debit'] = new sfValidatorBoolean();
+
+  }
+
+  public function processValues($values) {
+    $isDebit = $values['debit'];
+    if ($isDebit)
+      $values['prix_unitaire'] = - abs($values['prix_unitaire']);
+    else
+      $values['prix_unitaire'] = abs($values['prix_unitaire']);
+    return parent::processValues($values);
   }
 }

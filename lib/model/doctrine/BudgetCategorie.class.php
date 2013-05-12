@@ -29,6 +29,24 @@ class BudgetCategorie extends BaseBudgetCategorie
         return $this['MontantTotal'] ? $this['MontantTotal'] : 0;
     }
 
+    public function getSum($budget){
+        return Doctrine_Query::create()->from('BudgetPoste q') //BudgetPosteTable::getInstance()->createQuery('q')
+                        ->select('SUM(q.prix_unitaire * q.nombre) AS sum')
+                        ->where('q.budget_categorie_id=?', $this->getPrimaryKey())
+                        ->andWhere('q.budget_id=?', $budget->getPrimaryKey())
+                        ->andWhere('q.deleted_at IS NULL');
+    }
+
+    public function getCreditSum($budget) {
+        return $this->getSum($budget)->andWhere('q.prix_unitaire > 0')->fetchOne()['sum'];
+        // return $this['MontantPositiveTotal'] ? $this['MontantPositiveTotal'] : 0;
+    }
+
+    public function getDebitSum($budget) {
+        return $this->getSum($budget)->andWhere('q.prix_unitaire < 0')->fetchOne()['sum'];
+        // return $this['MontantNegativeTotal'] ? $this['MontantNegativeTotal'] : 0;
+    }
+
     public function countPoste()
     {
         $q = $this->createQuery('bp')

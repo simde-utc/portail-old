@@ -3,7 +3,7 @@ $result = array();
 foreach ($events as $event){
   $result[] = array(
     "id" => ($event->getId()),
-    "title" => ($event->getAsso()->getName()." - " .$event->getName()), 
+    "title" => ($event->getAsso()->getName(ESC_XSSSAFE)." - " .$event->getName(ESC_XSSSAFE)), 
     "start" => (strtotime($event->getStartDate())),
     "end" => (strtotime($event->getEndDate())),
     "url" => url_for('event_show',$event),

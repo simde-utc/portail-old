@@ -40,12 +40,12 @@ class AssoForm extends BaseAssoForm
     $this->widgetSchema->setLabel('name', 'Nom');
     $this->widgetSchema->setLabel('pole_id', 'Pôle');
     $this->widgetSchema->setLabel('type_id', 'Structure');
-    $this->widgetSchema->setLabel('summary', "L'assos en une ligne");
+    $this->widgetSchema->setLabel('summary', "L'asso en une ligne");
     $this->widgetSchema->setLabel('salle', 'Local');
     $this->widgetSchema->setLabel('phone', 'Téléphone');
     $this->widgetSchema->setLabel('facebook', 'Page Facebook');
     $this->widgetSchema->setLabel('joignable', 'Joignable');
     
-    $this->getWidget('pole_id')->setOption('query',PoleTable::getInstance()->getAllWithInfos());
+    $this->getWidget('pole_id')->setOption('query', PoleTable::getInstance()->getAllWithInfos());
   }
 }

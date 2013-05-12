@@ -8,12 +8,13 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class budgetPosteActions extends sfActions
+class budgetPosteActions extends tresoActions
 {
   public function executeNew(sfWebRequest $request)
   {
     $this->forward404Unless($this->budget = BudgetTable::getInstance()->find(array($request->getParameter('budget'))), sprintf('Object budget does not exist (%s).', $request->getParameter('budget')));
     $this->forward404Unless($this->categorie = BudgetCategorieTable::getInstance()->find(array($request->getParameter('categorie'))), sprintf('Object budget does not exist (%s).', $request->getParameter('categorie')));
+    $this->checkAuthorisation($this->budget->getAsso());
 
     $poste = new BudgetPoste();
     $poste->setBudget($this->budget);
@@ -30,6 +31,7 @@ class budgetPosteActions extends sfActions
     $request_poste = $request->getParameter('budget_poste');
     $this->budget = BudgetTable::getInstance()->find($request_poste['budget_id']);
     $this->asso = $this->budget->getAsso();
+    $this->checkAuthorisation($this->asso);
     $poste = new BudgetPoste();
     $poste->setAsso($this->asso);
     $this->form = new BudgetPosteForm($poste);
@@ -43,6 +45,7 @@ class budgetPosteActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($this->poste = Doctrine_Core::getTable('BudgetPoste')->find(array($request->getParameter('id'))), sprintf('Object budget_poste does not exist (%s).', $request->getParameter('id')));
+    $this->checkAuthorisation($this->poste->getAsso());
     $this->form = new BudgetPosteForm($this->poste);
     $this->getResponse()->setSlot('current_asso', $this->poste->getAsso());
   }
@@ -51,6 +54,7 @@ class budgetPosteActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($this->poste = Doctrine_Core::getTable('BudgetPoste')->find(array($request->getParameter('id'))), sprintf('Object budget_poste does not exist (%s).', $request->getParameter('id')));
+    $this->checkAuthorisation($this->poste->getAsso());
     $this->form = new BudgetPosteForm($this->poste);
 
     $this->processForm($request, $this->form);
@@ -62,6 +66,7 @@ class budgetPosteActions extends sfActions
   public function executeDelete(sfWebRequest $request)
   {
     $this->forward404Unless($budget_poste = Doctrine_Core::getTable('BudgetPoste')->find(array($request->getParameter('id'))), sprintf('Object budget_poste does not exist (%s).', $request->getParameter('id')));
+    $this->checkAuthorisation($budget_poste->getAsso());
     $budget_id = $budget_poste->getBudgetId();
     $budget_poste->delete();
 

@@ -159,7 +159,7 @@ CharteInfo:
   connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
-    date: { type: datetime, notnull: true }
+    date: { type: timestamp, notnull: true }
     ip: { type: string(15), notnull: true }
     semestre_id: { type: integer, notnull: true }
     asso_id : { type: integer, notnull : true }

@@ -347,7 +347,7 @@ Document:
     fichier: { type: string(255), notnull: true }
     auteur: { type: integer, notnull: true }
     reference: { type: string(255) }
-    type_id: { type: int, notnull: true }
+    type_id: { type: integer, notnull: true }
   relations:
     Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
     Transaction: { onUpdate: CASCADE, local: transaction_id, foreign: id }

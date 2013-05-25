@@ -50,9 +50,9 @@ class Adddocument extends Doctrine_Migration_Base
              ),
              'type_id' => 
              array(
-              'type' => 'int',
+              'type' => 'integer',
               'notnull' => true,
-              'length' => NULL,
+              'length' => 8,
              ),
              'created_at' => 
              array(

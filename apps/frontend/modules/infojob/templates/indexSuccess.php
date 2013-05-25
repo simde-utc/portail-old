@@ -38,10 +38,9 @@
         <a href="<?php echo url_for('annonce/edit?id=' . $annonce->getId()) ?>"  style="float:left;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
       <?php endif ?>
       <h2><?php echo $annonce->getTitre() ?></h2>
-      <h3><?php echo ($annonce->getOffre() ? 'Je propose' : 'Je cherche' ) ?> <?php echo $annonce->getCategorie() ?></h3>
       <p><?php echo $annonce->getTexte() ?></p>
       <p>
-        <?php if($annonce->getPrix() != '0.00'): ?>Prix : <?php echo $annonce->getPrix() ?>€<br /><?php endif ?>
+        <?php if($annonce->getRemuneration() != '0.00'): ?>Prix : <?php echo $annonce->getRemuneration() ?>€<br /><?php endif ?>
         <?php if($annonce->getLieu()): ?>Lieu : <?php echo $annonce->getLieu() ?><br /><?php endif ?>
       </p>
       <p style="font-style: italic;">

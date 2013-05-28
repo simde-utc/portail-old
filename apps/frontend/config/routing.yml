@@ -325,7 +325,7 @@ infojob_offre_show:
   url:   /infojob/show/:id
   class: sfDoctrineRoute
   param: { module: infojob, action: show }
-  options: { model: Materiel, type: object }
+  options: { model: InfoJobOffre, type: object }
 
 sf_guard_signin:
   url:   /login

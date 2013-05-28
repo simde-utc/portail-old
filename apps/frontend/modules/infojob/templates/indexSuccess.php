@@ -54,6 +54,7 @@
           ?>
         <?php endif; ?>
       </p>
+      <a href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>">Voir la fiche</a>
     </div>
   <?php endforeach; ?>
 

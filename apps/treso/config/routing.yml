@@ -1,0 +1,240 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: asso, action: index }
+
+cas:
+  url: /cas
+  param: { module: utcCas, action: login }
+
+cas_logout:
+  url: /cas/logout
+  param: { module: utcCas, action: logout }
+
+# Budget
+budget_list:
+  url: /budget/asso/:login
+  class: sfDoctrineRoute
+  param: { module: budget, action: index }
+  options: { model: Asso, type: object }
+
+budget_new:
+  url: /budget/new/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: budget, action: new }
+
+budget_show:
+  url: /budget/show/:id
+  class: sfDoctrineRoute
+  param: { module: budget, action: show }
+  options: { model: Budget, type: object }
+
+budget_export:
+  url: /budget/export/:id
+  class: sfDoctrineRoute
+  param: { module: budget, action: export }
+  options: { model: Budget, type: object }
+
+budget_update:
+  url:  /budget/update/:id
+  param: { module: budget, action: update }
+
+budget_edit:
+  url:  /budget/edit/:id
+  class: sfDoctrineRoute
+  param: { module: budget, action: edit }
+  options: { model: Budget, type: object }
+
+budget_delete:
+  url:  /budget/delete/:id
+  class: sfDoctrineRoute
+  param: { module: budget, action: delete }
+  options: { model: Budget, type: object }
+
+budget_create:
+  url: /budget/create
+  param: { module: budget, action: create }
+
+# BudgetCategorie
+budget_categorie:
+  url: /budget_categorie/asso/:login
+  class: sfDoctrineRoute
+  param: {module: budgetCategorie, action: index}
+  options: {model: Asso, type: object}
+
+budget_categorie_edit:
+  url: /budget_categorie/edit/:id
+  class: sfDoctrineRoute
+  param: {module: budgetCategorie, action: edit}
+  options: {model: budgetCategorie, type: object}
+
+budget_categorie_new:
+  url: /budget_categorie/new/:login
+  class: sfDoctrineRoute
+  param: {module: budgetCategorie, action: new}
+  options: {model: Asso, type: object}
+
+budget_categorie_new_from_budget:
+  url: /budget_categorie/new_from_budget/:id
+  class: sfDoctrineRoute
+  param: {module: budgetCategorie, action: newFromBudget}
+  options: {model: Budget, type: object}
+
+budget_categorie_update:
+  url: /budget_categorie/update/:id
+  param: {module: budgetCategorie, action: update}
+
+budget_categorie_delete:
+  url: /budget_categorie/delete/:id
+  param: {module: budgetCategorie, action: delete}
+
+budget_categorie_create:
+  url: /budget_categorie/create
+  param: {module: budgetCategorie, action: create}
+
+# Compte
+compte:
+  url:   /compte/asso/:login
+  class: sfDoctrineRoute
+  param: { module: compte, action: index }
+  options: { model: Asso, type: object }
+
+compte_edit:
+  url:  /compte/edit/:id
+  class: sfDoctrineRoute
+  param: { module: compte, action: edit }
+  options: { model: Article, type: object }
+
+compte_update:
+  url:  /compte/update/:id
+  param: { module: compte, action: update }
+
+compte_delete:
+  url:  /compte/delete/:id
+  param: { module: compte, action: delete }
+
+compte_new:
+  url: /compte/new/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: compte, action: new }
+
+compte_create:
+  url: /compte/create
+  param: { module: compte, action: create }
+
+# Transaction
+transaction:
+  url:   /transaction/asso/:login
+  class: sfDoctrineRoute
+  param: { module: transaction, action: index }
+  options: { model: Asso, type: object }
+
+transaction_show:
+  url:  /transaction/show/:id
+  class: sfDoctrineRoute
+  param: { module: transaction, action: show }
+  options: { model: Transaction, type: object }
+
+transaction_edit:
+  url:  /transaction/edit/:id
+  class: sfDoctrineRoute
+  param: { module: transaction, action: edit }
+  options: { model: Transaction, type: object }
+
+transaction_update:
+  url:  /transaction/update/:id
+  param: { module: transaction, action: update }
+
+transaction_delete:
+  url:  /transaction/delete/:id
+  param: { module: transaction, action: delete }
+
+transaction_create:
+  url: /transaction/create
+  param: { module: transaction, action: create }
+
+transaction_new:
+  url: /transaction/:login/new
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: transaction, action: new }
+
+transaction_pdf:
+  url:  /transaction/pdf/:login
+  class: sfDoctrineRoute
+  param: { module: transaction, action: pdf }
+  options: { model: Asso, type: object }
+
+transaction_add_document:
+  url: /transaction/add_doc/:id
+  param: { module: transaction, action: addDocument }
+
+# BudgetPoste
+budget_poste_new:
+  url: /budget/poste/new/:budget/:categorie
+  param: { module: budgetPoste, action: new }
+
+budget_poste_update:
+  url:  /budget/poste/update/:id
+  param: { module: budgetPoste, action: update }
+
+budget_poste_edit:
+  url:  /budget/poste/edit/:id
+  class: sfDoctrineRoute
+  param: { module: budgetPoste, action: edit }
+  options: { model: BudgetPoste, type: object }
+
+budget_poste_delete:
+  url:  /budget/poste/delete/:id
+  class: sfDoctrineRoute
+  param: { module: budgetPoste, action: delete }
+  options: { model: BudgetPoste, type: object }
+
+budget_poste_create:
+  url: /budget/poste/create
+  param: { module: budgetPoste, action: create }
+
+# Note de frais
+ndf:
+  url:   /noteDeFrais/asso/:login
+  class: sfDoctrineRoute
+  param: { module: noteDeFrais, action: index }
+  options: { model: Asso, type: object }
+
+ndf_show:
+  url:  /noteDeFrais/:id
+  class: sfDoctrineRoute
+  param: { module: noteDeFrais, action: show }
+  options: { model: NoteDeFrais, type: object }
+
+ndf_export:
+  url: /noteDeFrais/justificatif/:id
+  class: sfDoctrineRoute
+  param: { module: noteDeFrais, action: justificatif }
+  options: { model: NoteDeFrais, type: object }
+
+ndf_new:
+  url: /noteDeFrais/new/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: noteDeFrais, action: new }
+
+ndf_create:
+  url: /noteDeFrais/create
+  param: { module: noteDeFrais, action: create }
+
+# Documents
+document_show:
+  url: /documents/show/:id
+  class: sfDoctrineRoute
+  options: { model: Document, type: object }
+  param: { module: document, action: show }
+
+document_delete_from_transaction:
+  url: /documents/delete_from_transaction/:id
+  param: { module: document, action: deleteFromTransaction }

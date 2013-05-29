@@ -1,3 +1,38 @@
+infojob:
+  url: /infojob
+  param: { module: infojob, action: index }
+
+infojob_signalement:
+  url: /infojob/signalement
+  param: { module: infojob, action: signalement }
+
+info_job_offre:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                InfoJobOffre
+    module:               infojob_offre
+    prefix_path:          /infojob/offre
+    column:               id
+    with_wildcard_routes: true
+
+info_job_dispobilite:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                InfoJobDispobilite
+    module:               infojob_disponibilite
+    prefix_path:          /infojob/disponibilite
+    column:               id
+    with_wildcard_routes: true
+
+info_job_categorie:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                InfoJobCategorie
+    module:               infojob_categorie
+    prefix_path:          /infojob/categorie
+    column:               id
+    with_wildcard_routes: true
+
 weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }

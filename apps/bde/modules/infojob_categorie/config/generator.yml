@@ -19,7 +19,6 @@ generator:
         name: {label: Nom}
       list:
         title: Catégories d'emploi
-        hide: [id, created_at, updated_at]
         actions: ~
         batch_actions: {}
         object_actions:

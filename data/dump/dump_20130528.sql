@@ -61,7 +61,8 @@ INSERT INTO `type_asso` (`id`, `name`) VALUES
 INSERT INTO `sf_guard_user` (`id`, `first_name`, `last_name`, `email_address`, `username`, `algorithm`, `salt`, `password`, `is_active`, `is_super_admin`, `last_login`, `created_at`, `updated_at`) VALUES
 (1, NULL, NULL, 'kenlerem@etu.utc.fr', 'kenlerem', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (2, NULL, NULL, 'puyouart@etu.utc.fr', 'puyouart', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
-(3, NULL, NULL, 'mguffroy@etu.utc.fr', 'mguffroy', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
+(3, NULL, NULL, 'mguffroy@etu.utc.fr', 'mguffroy', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(4, NULL, NULL, 'ytournad@etu.utc.fr', 'ytournad', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
 UPDATE `sf_guard_user` SET `is_active`= 0;
 
 INSERT INTO `asso_member` (`id`, `user_id`, `asso_id`, `role_id`, `semestre_id`, `created_at`, `updated_at`) VALUES
@@ -85,18 +86,18 @@ INSERT INTO `info_job_abonnement_disponibilite` (`id`, `disponibilite_id`, `user
 (1, 1, 4),
 (2, 2, 4);
 
-INSERT INTO `info_job_categorie` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Soutien scolaire', 'Description soutien scolaire. Cours chez les particuliers, etc.', '2013-05-25 00:00:00', '2013-05-25 19:49:30'),
-(2, 'Aide à domicile', 'Service aux particuliers à domicile, etc.', '2013-05-25 00:00:00', '2013-05-25 19:49:36'),
-(3, 'Restauration', 'Description restauration', '2013-05-25 00:00:00', '2013-05-25 19:49:42'),
-(4, 'Manutention', 'Description manutention', '2013-05-25 00:00:00', '2013-05-25 19:49:46'),
-(5, 'Divers', 'Tout ce qui ne rentre pas les autres catégories', '2013-05-25 00:00:00', '2013-05-25 19:49:50');
+INSERT INTO `info_job_categorie` (`id`, `name`, `description`) VALUES
+(1, 'Soutien scolaire', 'Description soutien scolaire. Cours chez les particuliers, etc.'),
+(2, 'Aide à domicile', 'Service aux particuliers à domicile, etc.'),
+(3, 'Restauration', 'Description restauration'),
+(4, 'Manutention', 'Description manutention'),
+(5, 'Divers', 'Tout ce qui ne rentre pas les autres catégories');
 
-INSERT INTO `info_job_dispobilite` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Semaine', '2013-05-25 00:00:00', '2013-05-25 19:50:01'),
-(2, 'Week-end', '2013-05-25 00:00:00', '2013-05-25 19:50:06'),
-(3, 'Soirs', '2013-05-25 00:00:00', '2013-05-25 19:50:25'),
-(4, 'Vacances', '2013-05-25 00:00:00', '2013-05-25 19:50:31');
+INSERT INTO `info_job_dispobilite` (`id`, `name`) VALUES
+(1, 'Semaine'),
+(2, 'Week-end'),
+(3, 'Soirs'),
+(4, 'Vacances');
 
 INSERT INTO `info_job_offre` (`id`, `categorie_id`, `user_id`, `titre`, `texte`, `lieu`, `remuneration`, `email`, `telephone`, `expiration_date`, `archivage_date`, `created_at`, `updated_at`) VALUES
 (1, 1, NULL, 'Soutien scolaire chez Acadomia', 'Acadomia dispose d’un réseau de 120 agences, suit plus de 100 000 élèves avec l’aide de 25 000 « enseignants » encadrés par plus de 500 conseillers pédagogiques3. Toute personne titulaire d''un bac + 3 (licence) peut être employée comme enseignant.\r\nComme toutes les entreprises de services à la personne, la prestation offerte par la société - comme celle offerte individuellement par un étudiant déclaré - ouvre droit à un crédit d''impôt et/ou réduction d''impôt pour l''emploi à domicile de 50 % ce qui a favorisé son développement et celui de tout le secteur', 'Compiègne et alentours', '~10 € / h NET', 'compiegne@acadomia.fr', '0344538291', '2013-08-01 00:00:00', NULL, '2013-05-25 00:00:00', '2013-05-25 00:00:00'),

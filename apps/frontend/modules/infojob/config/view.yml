@@ -3,3 +3,4 @@
 
 default:
   stylesheets:    [jquery-ui-1.8.12.custom.css, bootstrap.min.css, main.css, carousel.css, infojob.css]
+  javascripts:    [jquery-1.7.2.min.js, jquery-ui-1.8.12.custom.min.js, bootstrap.min.js, search.js, jquery.contentcarousel.js, main.js]

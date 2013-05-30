@@ -19,7 +19,7 @@ generator:
         archivage_date: {label: Archivée ?}
       list:
         title: Offres
-        display: [titre, email, expiration_date, archivage_date, _show]
+        display: [titre, email, expiration_date, archivage_date, _showlink]
         actions: {}
         batch_actions: {}
         object_actions:

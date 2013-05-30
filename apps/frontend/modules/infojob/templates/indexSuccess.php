@@ -13,19 +13,6 @@
     </ul>
   </div>
 
-  <h1>Critères de recherche</h1>
-  <br />
-  <form class="form-horizontal form-filters well" method="post" action="">
-    <?php foreach($filters as $row): ?>
-      <div>
-        <?php if(!$row->isHidden()): ?>
-          <?php echo $row->renderLabel(); ?>
-        <?php endif ?>
-        <?php echo $row->render(); ?>
-      </div>
-    <?php endforeach ?>
-    <input type="submit" value="Rechercher" class="btn btn-primary" />
-  </form>
   <h1>Consultation des annonces</h1>
   <?php if($sf_user->isAuthenticated()): ?>
     <a href="<?php echo url_for('infojob/new') ?>" style="float:right;color:#FFF" class="btn btn-primary">Poster une annonce</a><br />

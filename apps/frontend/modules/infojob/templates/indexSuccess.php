@@ -1,23 +1,15 @@
 <div class="part" >
   <?php include_partial('infojob/topbar') ?>
-  <h1>InfoJob TODO : page d'accueil, à modifier.</h1>
+  <h1>InfoJob, le service emploi du BDE-UTC</h1>
   <div class="well">
-    <b>Les annonces postées sur ce portail ne traitent pas les catégories suivantes :</b><br><br>
-    <ul>
-      <li>les offres de logements de particulier ou d'agence car gérées par l'association <a href="http://www.utc.fr/alesc/">ALESC</a></li>
-      <li>les offres de stage en entreprise car gérées par le service de l'UTC sur : <a href="http://utcenligne.utc.fr/">http://utcenligne.utc.fr/</a></li>
-      <li>les offres de job de type projets car gérées par la Junior Entreprise <a href="http://wwwassos.utc.fr/usec">USEC</a></li>
-      <li>les offres de covoiturage car gérées par l'association <a href="http://assos.utc.fr/edi">EDI</a></li>
-      <li>les offres de soutien scolaire entre étudiants car gérées par l'association <a href="http://assos.utc.fr/tutorutc">Tutor'utc</a></li>
-      <li>D'autres annonces sont également disponibles sur <a href="http://interne.utc.fr/spip.php?page=all-pa#annonce">le site interne de l'UTC</a></li>
-    </ul>
+    <p>Bienvenue sur le service InfoJob du BDE-UTC. Ici mettre le texte de présentation et la vidéo. TODO</p>
   </div>
-
-  <h1>Consultation des annonces</h1>
   <?php if($sf_user->isAuthenticated()): ?>
-    <a href="<?php echo url_for('infojob/new') ?>" style="float:right;color:#FFF" class="btn btn-primary">Poster une annonce</a><br />
+    <a href="<?php echo url_for('infojob/new') ?>" style="color:#FFF" class="btn btn-primary btn-large">Poster une offre d'emploi</a><br />
   <?php endif ?>
   <br />
+
+  <h1>Dernières annonces postées</h1>
 
   <?php foreach($annonces as $annonce): ?>
     <div class="well">

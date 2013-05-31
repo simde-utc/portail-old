@@ -318,6 +318,7 @@ InfoJobOffre:
     telephone: { type: string(20) }
     expiration_date : { type: datetime }
     archivage_date: { type: datetime }
+    emailkey: { type: string(32), notnull: true }
   relations:
     Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: InfoJobCategorie }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }

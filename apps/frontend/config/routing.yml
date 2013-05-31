@@ -317,14 +317,44 @@ emprunt_rendre:
 #  param: { module: annonce, action: new }
   
 #InfoJob
-infojob_index:
+infojob_home:
     url: /infojob
     param: { module: infojob, action: index }
+
+infojob_offre_home:
+    url: /infojob/offres
+    param: { module: infojob, action: offres }
     
 infojob_offre_show:
   url:   /infojob/show/:id
   class: sfDoctrineRoute
   param: { module: infojob, action: show }
+  options: { model: InfoJobOffre, type: object }
+
+infojob_offre_new:
+  url:  /infojob/new
+  param: { module: infojob, action: new }
+
+infojob_offre_create:
+  url:  /infojob/create
+  param: { module: infojob, action: create }
+
+infojob_offre_edit:
+  url:  /infojob/edit/:key
+  param: { module: infojob, action: edit }
+
+infojob_offre_update:
+  url:  /infojob/update/:key
+  param: { module: infojob, action: update }
+
+infojob_offre_delete:
+  url:  /infojob/delete/:key
+  param: { module: infojob, action: delete }
+
+infojob_offre_email:
+  url: /infojob/email/:id
+  class: sfDoctrineRoute
+  param: { module: infojob, action: email }
   options: { model: InfoJobOffre, type: object }
 
 sf_guard_signin:

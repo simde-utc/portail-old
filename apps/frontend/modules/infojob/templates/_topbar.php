@@ -1,18 +1,39 @@
 <!-- Menu du haut commun au service infojob TODO, voir exemple dans apps/frontend/modules/assos/templates/_topbar.php -->
 <div class="well">
 <div class="row-fluid">
-  <div class="span4" style="height:100px;">
-  <a href="#" class="btn-job">Voir les offres</a>
+  <div class="span4" style="height:150px;">
+  	<h1>Etudiants
+  	</h1>
+  	<center><span>
+  	<img src="/images/icones/job.png" style="witdh:90px; height:70px">
+  	</span>
+  	</center>
+  	
+  	 <br/>
+  	<center><a href="#" class="btn-job">Voir les offres</a>
+  	</center>
   </div>
+  
   <div class="span4" style="height:100px">
+  <h1>Entreprise et particuliers</h1>
+ 	<center><span>
  
-  <a href="#" class="btn-offres">Déposer une offre</a>
-  <span class="span-job">Blabla</span>
-  
+ 	 <img src="/images/icones/entreprise.jpg" style="line-height:normal;witdh:90px; height:70px">
+  	</span>
+  	</center>
+  	  <br/>
+  	
+  	 	<center><a href="#" class="btn-offres">Déposer une offre</a></center>
   </div>
   
   <div class="span4" style="height:100px">
-<a href="#" class="btn-comptes">Gérer mon compte</a></div>
-
+  	<h1>Etudiants</h1>
+	 <center><span><img src="/images/icones/etudiant.jpg" style="witdh:90px; height:70px">
+  	 </span>
+  	 </center>
+  	 <br/>
+  	 <center><a href="#" class="btn-comptes">Gérer mon compte</a>
+  	</center>
+  </div>
 </div>
 </div>

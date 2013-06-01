@@ -108,5 +108,15 @@ class infojobActions extends sfActions {
   {
     // TODO
   }
+  
+    public function executeMonprofil(sfWebRequest $request)
+  {
+     $query = Doctrine_Core::getTable('InfoJobOffre')
+        ->createQuery('a')
+        ->limit(5)
+        ->orderBy('a.created_at DESC');
+    $this->annonces = $query->execute();
+  }
+  
 }
 

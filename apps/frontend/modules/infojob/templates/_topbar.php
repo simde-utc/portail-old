@@ -10,7 +10,7 @@
   	</center>
   	
   	 <br/>
-  	<center><a href="#" class="btn-job">Voir les offres</a>
+  	<center><a href="http://portail.local/frontend_dev.php/infojob/offres" class="btn-job">Voir les offres</a>
   	</center>
   </div>
   

@@ -325,6 +325,10 @@ infojob_offre_home:
     url: /infojob/offres
     param: { module: infojob, action: offres }
     
+infojob_monprofil:
+    url: /infojob/monprofil
+    param: { module: infojob, action: monprofil }
+    
 infojob_offre_show:
   url:   /infojob/show/:id
   class: sfDoctrineRoute

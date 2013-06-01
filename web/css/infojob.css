@@ -1,7 +1,33 @@
-.infojob-ca-item{
+
+
+.span-job{
 	position:relative;
 	float:left;
-	width:200px;
-	height:100%;
+	width:80px;
+	height:80px;
 	text-align:center;
+	background-image: url("/images/job.png");
 }
+
+
+.span-job{
+	position:relative;
+	float:left;
+	width:80px;
+	height:80px;
+	text-align:center;
+	background-image: url("/images/job.png");
+}
+
+.span-job{
+	position:relative;
+	float:left;
+	width:80px;
+	height:80px;
+	text-align:center;
+	background-image: url("/images/job.png");
+}
+
+.btn-job{background-color: RGB(141,198,63) !important;padding:9px 14px;font-size:15px;line-height:normal;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;color:RGB(0, 0, 0) !important;font-size:16px;font-family: 'Arial Black', sans-serif;}
+.btn-offres{background-color: RGB(244, 121, 55) !important;padding:9px 14px;font-size:15px;line-height:normal;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;color:RGB(0, 0, 0) !important;font-size:16px;font-family: 'Arial Black', sans-serif;}
+.btn-comptes{background-color: RGB(0, 174, 239) !important;padding:9px 14px;font-size:15px;line-height:normal;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;  color:RGB(0, 0, 0) !important;font-size:16px;font-family: 'Arial Black', sans-serif;}

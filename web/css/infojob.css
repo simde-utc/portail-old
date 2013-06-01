@@ -6,27 +6,55 @@
 	width:80px;
 	height:80px;
 	text-align:center;
-	background-image: url("/images/job.png");
+	background-image: url("/icones/images/job.png");
 }
 
 
-.span-job{
+.span-offre{
 	position:relative;
 	float:left;
 	width:80px;
 	height:80px;
 	text-align:center;
-	background-image: url("/images/job.png");
+	background-image: url("/icones/images/job.png");
 }
-
-.span-job{
+.span-etudiant{
 	position:relative;
 	float:left;
 	width:80px;
 	height:80px;
 	text-align:center;
-	background-image: url("/images/job.png");
+	background-image: url("/icones/images/etudiant.png");
 }
+.span-hotesse{
+	position:relative;
+	float:left;
+	width:80px;
+	height:80px;
+	text-align:center;
+	background-image: url("/icones/images/hotesse.png");
+}
+
+
+.span-aide{
+	position:relative;
+	float:left;
+	width:80px;
+	height:80px;
+	text-align:center;
+	background-image: url("/icones/images/aide-domicile.png");
+}
+
+.span-autre{
+	position:relative;
+	float:left;
+	width:80px;
+	height:80px;
+	text-align:center;
+	background-image: url("/icones/images/autrejob.png");
+}
+
+
 
 .btn-job{background-color: RGB(141,198,63) !important;padding:9px 14px;font-size:15px;line-height:normal;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;color:RGB(42, 42, 42) !important;font-size:16px;font-family: 'Arial Black', sans-serif;}
 .btn-offres{background-color: RGB(244, 121, 55) !important;padding:9px 14px;font-size:15px;line-height:normal;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;color:RGB(42, 42, 42) !important;font-size:16px;font-family: 'Arial Black', sans-serif;}

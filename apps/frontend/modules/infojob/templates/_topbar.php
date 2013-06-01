@@ -2,7 +2,7 @@
 <div class="well">
 <div class="row-fluid">
   <div class="span4" style="height:150px;">
-  	<h1>Etudiants
+  	<h1><center>Etudiants</center>
   	</h1>
   	<center><span>
   	<img src="/images/icones/job.png" style="witdh:90px; height:70px">
@@ -15,7 +15,7 @@
   </div>
   
   <div class="span4" style="height:100px">
-  <h1>Entreprise et particuliers</h1>
+  <h1><center>Entreprise et particuliers</center></h1>
  	<center><span>
  
  	 <img src="/images/icones/entreprise.jpg" style="line-height:normal;witdh:90px; height:70px">
@@ -27,7 +27,7 @@
   </div>
   
   <div class="span4" style="height:100px">
-  	<h1>Etudiants</h1>
+  	<h1><center>Etudiants</center></h1>
 	 <center><span><img src="/images/icones/etudiant.jpg" style="witdh:90px; height:70px">
   	 </span>
   	 </center>

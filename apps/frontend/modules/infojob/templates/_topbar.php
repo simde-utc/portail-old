@@ -32,7 +32,7 @@
   	 </span>
   	 </center>
   	 <br/>
-  	 <center><a href="#" class="btn-comptes">Gérer mon compte</a>
+  	 <center><a href="http://portail.local/frontend_dev.php/infojob/monprofil" class="btn-comptes">Gérer mon compte</a>
   	</center>
   </div>
 </div>

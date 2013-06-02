@@ -238,3 +238,10 @@ document_show:
 document_delete_from_transaction:
   url: /documents/delete_from_transaction/:id
   param: { module: document, action: deleteFromTransaction }
+
+# Cheques
+cheque_list:
+  url: /cheque/asso/:login
+  class: sfDoctrineRoute
+  param: { module: cheque, action: index }
+  options: { model: Asso, type: object }

@@ -141,7 +141,10 @@ function format_progressbar($sum, $total) {
     <td></td>
     <td></td>
     <td></td>
-    <td><a href="#" id="unused-categories-btn" data-url-base="<?php echo url_for('budget_poste_new', array('budget'=>$budget->getPrimaryKey(), 'categorie'=>'')) ?>" class="btn btn-success"><i class="icon-white icon-plus"></i></a></td>
+    <td><?php if (count($unused_categories) != 0)
+            echo "<a href=\"#\" id=\"unused-categories-btn\" data-url-base=".url_for('budget_poste_new', array('budget'=>$budget->getPrimaryKey(), 'categorie'=>''))." class=\"btn btn-success\"><i class=\"icon-white icon-plus\"></i></a>";
+        ?>
+    </td>
   </tr>
 </tbody>
 </table>

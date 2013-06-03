@@ -1,15 +1,25 @@
 <div class="part" >
   <?php include_partial('infojob/topbar') ?>
-  <div class="well">
+  <div class="well"  style="border:1 px grey solid">
     <?php if($sf_user->isAuthenticated() && $annonce->getUserId() == $sf_user->getGuardUser()->getId()): ?>
       <a href="<?php echo url_for('annonce/edit?id=' . $annonce->getId()) ?>"  style="float:left;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
     <?php endif ?>
     <h2><?php echo $annonce->getTitre() ?></h2>
     <p><?php echo $annonce->getTexte() ?></p>
+    <div class="row-fluid">
+    <div class="span2">
+    <!--TODO swicth sur l'icône -->
+    <img src="/images/icones/job.png" style="witdh:90px; height:70px">
+  	</span>
+  	</div>
+  	<div class= "span10">
     <p>
-      <?php if($annonce->getRemuneration() != '0.00'): ?>Prix : <?php echo $annonce->getRemuneration() ?>€<br /><?php endif ?>
-      <?php if($annonce->getLieu()): ?>Lieu : <?php echo $annonce->getLieu() ?><br /><?php endif ?>
+      <?php if($annonce->getRemuneration() != '0.00'): ?><b>Prix :</b> <?php echo $annonce->getRemuneration() ?> €<br /><?php endif ?>
+      <?php if($annonce->getLieu()): ?><b>Lieu:</b> <?php echo $annonce->getLieu() ?><br /><?php endif ?>
     </p>
+    </div>
+     </div>
+    
     <p style="font-style: italic;">
       Posté le <?php echo $annonce->getCreatedAt() ?>
       <?php if($sf_user->isAuthenticated()): ?>
@@ -21,6 +31,8 @@
         ?>
       <?php endif; ?>
     </p>
+  
     <?php include_partial('infojob/showcontact') ?>
+    
   </div>
 </div>

@@ -1,7 +1,63 @@
-.infojob-ca-item{
+
+
+.span-job{
 	position:relative;
 	float:left;
-	width:200px;
-	height:100%;
+	width:80px;
+	height:80px;
 	text-align:center;
+	background-image: url("/images//icones/job.png");
 }
+
+
+.span-offre{
+	position:relative;
+	float:left;
+	width:80px;
+	height:80px;
+	text-align:center;
+	background-image: url("/images/icones/job.png")no-repeat center center fixed;
+        background-size: 50px 50 px;
+}
+.span-etudiant{
+	position:relative;
+	float:left;
+	width:80px;
+	height:80px;
+	text-align:center;
+	background-image: url("/images/icones/etudiant.png");
+}
+.span-hotesse{
+	position:relative;
+	float:left;
+	width:80px;
+	height:80px;
+	text-align:center;
+	background-image: url("/images/icones/hotesse.png");
+}
+
+
+.span-aide{
+	position:relative;
+	float:left;
+	width:80px;
+	height:80px;
+	text-align:center;
+	background-image: url("images//icones/aide-domicile.png");
+}
+
+.span-autre{
+	position:relative;
+	float:left;
+	width:80px;
+	height:80px;
+	text-align:center;
+	background-image: url("/icones/images/autrejob.png");
+}
+
+.btn-gris{background-color: RGB(119, 120, 123) !important;padding:9px 14px;font-size:15px;line-height:normal;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;color:RGB(42, 42, 42) !important;font-size:16px;font-family: 'Arial Black', sans-serif;padding: 5px 10px;}
+
+.btn-jaune{background-color: RGB(250,213,32) !important;padding:9px 14px;font-size:15px;line-height:normal;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;color:RGB(42, 42, 42) !important;font-size:16px;font-family: 'Arial Black', sans-serif;padding: 5px 10px;}
+.btn-job{background-color: RGB(141,198,63) !important;padding:9px 14px;font-size:15px;line-height:normal;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;color:RGB(42, 42, 42) !important;font-size:16px;font-family: 'Arial Black', sans-serif;}
+.btn-offres{background-color: RGB(244, 121, 55) !important;padding:9px 14px;font-size:15px;line-height:normal;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;color:RGB(42, 42, 42) !important;font-size:16px;font-family: 'Arial Black', sans-serif;}
+.btn-comptes{background-color: RGB(0, 174, 239) !important;padding:9px 14px;font-size:15px;line-height:normal;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;  color:RGB(42, 42, 42) !important;font-size:16px;font-family: 'Arial Black', sans-serif;}

@@ -12,9 +12,15 @@ class InfoJobOffreForm extends BaseInfoJobOffreForm
 {
   public function configure()
   {
-      unset(
-        $this['created_at'],
-        $this['updated_at']
+      $hidden_fields = array(
+        'emailkey',
+        'user_id',
+        'created_at',
+        'updated_at',
+        'archivage_date'
       );
+      foreach($hidden_fields as $hidden_field) {
+        $this->widgetSchema[$hidden_field]= new sfWidgetFormInputHidden();
+      }
   }
 }

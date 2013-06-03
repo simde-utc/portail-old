@@ -4,9 +4,7 @@
   <div class="well">
     <p>Bienvenue sur le service InfoJob du BDE-UTC. Ici mettre le texte de présentation et la vidéo. TODO</p>
   </div>
-  <?php if($sf_user->isAuthenticated()): ?>
-    <a href="<?php echo url_for('infojob/new') ?>" style="color:#FFF" class="btn btn-primary btn-large">Poster une offre d'emploi</a><br />
-  <?php endif ?>
+  <a href="<?php echo url_for('infojob/new') ?>" style="color:#FFF" class="btn btn-primary btn-large">Poster une offre d'emploi</a><br />
   <br />
 
   <h1>Dernières annonces postées</h1>
@@ -14,7 +12,7 @@
   <?php foreach($annonces as $annonce): ?>
     <div class="well">
       <?php if($sf_user->isAuthenticated() && $annonce->getUserId() == $sf_user->getGuardUser()->getId()): ?>
-        <a href="<?php echo url_for('annonce/edit?id=' . $annonce->getId()) ?>"  style="float:left;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
+        <a href="<?php echo url_for('annonce/edit?id=' . $annonce->getEmailkey()) ?>"  style="float:left;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
       <?php endif ?>
       <h2><?php echo $annonce->getTitre() ?></h2>
       <p><?php echo $annonce->getTexte() ?></p>

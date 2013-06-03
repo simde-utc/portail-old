@@ -357,6 +357,18 @@ infojob_offre_email:
   param: { module: infojob, action: email }
   options: { model: InfoJobOffre, type: object }
 
+infojob_offre_signal:
+  url: /infojob/signal/:id
+  class: sfDoctrineRoute
+  param: { module: infojob, action: signal }
+  options: { model: InfoJobOffre, type: object }
+
+infojob_offre_signaldo:
+  url: /infojob/signaldo/:id
+  class: sfDoctrineRoute
+  param: { module: infojob, action: signaldo }
+  options: { model: InfoJobOffre, type: object }
+
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }

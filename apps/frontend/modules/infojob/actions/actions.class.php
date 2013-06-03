@@ -99,12 +99,23 @@ class infojobActions extends sfActions {
         $form->setUserId($this->getUser()->getGuardUser()->getId());
 
       $annonce = $form->save();
+      // TODO Envoyer email.
 
       $this->redirect('annonce/edit?key=' . $annonce->getEmailkey());
     }
   }
 
   public function executeEmail(sfWebRequest $request)
+  {
+    // TODO
+  }
+
+  public function executeSignal(sfWebRequest $request)
+  {
+    // TODO
+  }
+
+  public function executeSignaldo(sfWebRequest $request)
   {
     // TODO
   }

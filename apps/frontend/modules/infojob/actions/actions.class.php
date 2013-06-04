@@ -11,10 +11,21 @@ class infojobActions extends sfActions {
 
   public function executeIndex(sfWebRequest $request)
   {
-    $query = Doctrine_Core::getTable('InfoJobOffre')
-        ->createQuery('a')
-        ->limit(5)
-        ->orderBy('a.created_at DESC');
+    $this->filters = new InfoJobOffreFormFilter();
+    if($request->getMethod() == sfRequest::POST)
+    {
+      $this->filters->bind($request->getParameter($this->filters->getName()));
+      if($this->filters->isValid())
+      {
+        $query = $this->filters->buildQuery($this->filters->getValues());
+      }
+    }
+    else {
+      $query = Doctrine_Core::getTable('InfoJobOffre')
+          ->createQuery('a')
+          ->limit(5)
+          ->orderBy('a.created_at DESC');
+    }
     $this->annonces = $query->execute();
   }
   
@@ -22,6 +33,7 @@ class infojobActions extends sfActions {
   {
     // TODO voir exemple dans apps/frontend/modules/assos/actions.class.php, fonction executeShow()
     $this->annonce = $this->getRoute()->getObject();
+
   }
 
   public function executeOffres(sfWebRequest $request)

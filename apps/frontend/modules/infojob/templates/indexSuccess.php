@@ -13,7 +13,7 @@
     <div class="well">
       <?php if($sf_user->isAuthenticated() && $annonce->getUserId() == $sf_user->getGuardUser()->getId()): ?>
         <a href="<?php echo url_for('annonce/edit?id=' . $annonce->getEmailkey()) ?>"  style="float:left;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
-      <?php endif ?>
+      <?php endif; ?>
       <h2><?php echo $annonce->getTitre() ?></h2>
       <p><?php echo $annonce->getTexte() ?></p>
       <p>

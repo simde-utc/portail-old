@@ -31,6 +31,33 @@ class infojobActions extends sfActions {
         ->limit(5)
         ->orderBy('a.created_at DESC');
     $this->annonces = $query->execute();
+      $query = Doctrine_Core::getTable('InfoJobDisponibilite')
+        ->createQuery('a');
+    $this->disponibilites = $query->execute();
+    $this->filters = new InfoJobOffreFormFilter();
+    if($request->getMethod() == sfRequest::POST)
+
+
+    {
+
+
+      $this->filters->bind($request->getParameter($this->filters->getName()));
+
+
+      if($this->filters->isValid())
+
+
+      {
+
+
+        $query = $this->filters->buildQuery($this->filters->getValues());
+
+
+      }
+
+
+    }
+
   }
 
   public function executeNew(sfWebRequest $request)

@@ -6,7 +6,7 @@
 	width:80px;
 	height:80px;
 	text-align:center;
-	background-image: url("/images//icones/job.png");
+	background-image: url("/images/icones/job.png");
 }
 
 
@@ -43,7 +43,7 @@
 	width:80px;
 	height:80px;
 	text-align:center;
-	background-image: url("images//icones/aide-domicile.png");
+	background-image: url("images/icones/aide-domicile.png");
 }
 
 .span-autre{
@@ -53,6 +53,15 @@
 	height:80px;
 	text-align:center;
 	background-image: url("/icones/images/autrejob.png");
+}
+input[type="checkbox"] {
+    display:none;
+}
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    background:url(check_radio_sheet.png) left top no-repeat;
 }
 
 .btn-gris{background-color: RGB(119, 120, 123) !important;padding:9px 14px;font-size:15px;line-height:normal;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;color:RGB(42, 42, 42) !important;font-size:16px;font-family: 'Arial Black', sans-serif;padding: 5px 10px;}

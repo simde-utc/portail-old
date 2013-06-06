@@ -5,12 +5,12 @@
   	<h1><center>Etudiants</center>
   	</h1>
   	<center><span>
-  	<img src="/images/icones/job.png" style="witdh:90px; height:70px">
+  	<img src="/images/icones/job.jpg" style="witdh:90px; height:70px">
   	</span>
   	</center>
   	
   	 <br/>
-  	<center><a href="http://portail.local/frontend_dev.php/infojob/offres" class="btn-job">Voir les offres</a>
+  	<center><a href="<?php echo url_for('infojob/offres') ?>" class="btn-job">Voir les offres</a>
   	</center>
   </div>
   

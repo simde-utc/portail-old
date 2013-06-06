@@ -1,11 +1,6 @@
 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css" />
-<script type="text/javascript">
 
-
+<script>
 $(document).ready(function() {
 	var i=0;
 	//stocker annonces
@@ -29,6 +24,7 @@ $("#checkbox-1a").change(function() {
 
 
 });
+</script>
 
 </script>
 
@@ -36,23 +32,48 @@ $("#checkbox-1a").change(function() {
 
   <?php include_partial('infojob/topbar') ?>
 
-      <div class="well"  style=" width:770px;height:100px;">
-      	<h1>Rechercher une offre</h1>
-    		<div class="row-fluid">  
-    			<div class="span6">
-   					 <form method="post">
-        			 <fieldset>
-                		<h3>Catégories</h3>
-                
-        			</fieldset>
-       
-       			 </div>
-       			 
-        		<div class="span6">
-        
-				</div>
-        	</div>
+      <div class="well"  style=" width:770px;height:300px;">
+      <h1>Critères de recherche</h1>
+
+
+  <br/>
+
+
+  <form class="form-horizontal form-filters well" method="post" action="">
+
+
+    <?php foreach($filters as $row): ?>
+
+
+      <div>
+
+
+        <?php if(!$row->isHidden()): ?>
+
+
+          <?php echo $row->renderLabel(); ?>
+
+
+        <?php endif ?>
+
+
+        <?php echo $row->render(); ?>
+
+
       </div>
+
+
+    <?php endforeach ?>
+
+
+    <input type="submit" value="Rechercher" class="btn-gris" />
+
+
+  </form>
+
+      
+	  </div>
+        	
   
     <?php foreach($annonces as $annonce): ?>
     <div class="well">

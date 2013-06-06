@@ -8,8 +8,11 @@
     <p><?php echo $annonce->getTexte() ?></p>
     <div class="row-fluid">
     <div class="span2">
+    
     <!--TODO swicth sur l'icône -->
-    <img src="/images/icones/job.png" style="witdh:90px; height:70px">
+    
+    
+  <img src="/images/icones/<?php echo str_replace('', '-', $annonce->getCategorie()) ?>.jpg" style="witdh:90px; height:70px">
   	</span>
   	</div>
   	<div class= "span10">

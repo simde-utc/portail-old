@@ -26,37 +26,21 @@ class infojobActions extends sfActions {
 
   public function executeOffres(sfWebRequest $request)
   {
-    $query = Doctrine_Core::getTable('InfoJobOffre')
-        ->createQuery('a')
-        ->limit(5)
-        ->orderBy('a.created_at DESC');
-    $this->annonces = $query->execute();
-      $query = Doctrine_Core::getTable('InfoJobDisponibilite')
-        ->createQuery('a');
-    $this->disponibilites = $query->execute();
     $this->filters = new InfoJobOffreFormFilter();
     if($request->getMethod() == sfRequest::POST)
-
-
     {
-
-
       $this->filters->bind($request->getParameter($this->filters->getName()));
-
-
       if($this->filters->isValid())
-
-
       {
-
-
         $query = $this->filters->buildQuery($this->filters->getValues());
-
-
       }
-
-
     }
+    else
+      $query = Doctrine_Core::getTable('InfoJobOffre')
+          ->createQuery('a')
+          ->orderBy('a.created_at DESC')
+          ->limit(5);
+    $this->annonces = $query->execute();
 
   }
 

@@ -32,14 +32,9 @@ $("#checkbox-1a").change(function() {
 
   <?php include_partial('infojob/topbar') ?>
 
-      <div class="well"  style=" width:770px;height:300px;">
-      <h1>Critères de recherche</h1>
-
-
-  <br/>
-
-
-  <form class="form-horizontal form-filters well" method="post" action="">
+      <div class="well">
+      <h1>Critères de recherche</h1> 
+       <form class="form-horizontal form-filters well" method="post" action="">
 
 
     <?php foreach($filters as $row): ?>
@@ -51,25 +46,27 @@ $("#checkbox-1a").change(function() {
         <?php if(!$row->isHidden()): ?>
 
 
+          <br/>
+        
           <?php echo $row->renderLabel(); ?>
 
 
         <?php endif ?>
 
 
-        <?php echo $row->render(); ?>
+      <?php echo $row->render(); ?>
 
 
       </div>
 
 
     <?php endforeach ?>
+    <br/>
+  <input type="submit" value="Rechercher" class="btn-vert" />
+
+ </form>
 
 
-    <input type="submit" value="Rechercher" class="btn-gris" />
-
-
-  </form>
 
       
 	  </div>

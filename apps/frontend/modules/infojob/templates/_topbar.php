@@ -10,7 +10,7 @@
   	</center>
   	
   	 <br/>
-  	<center><a href="<?php echo url_for('infojob/offres') ?>" class="btn-job">Voir les offres</a>
+  	<center><a href="<?php echo url_for('infojob/offres') ?>" class="btn-vert">Voir les offres</a>
   	</center>
   </div>
   
@@ -23,7 +23,7 @@
   	</center>
   	  <br/>
   	
-  	 	<center><a href="#" class="btn-offres">Déposer une offre</a></center>
+  	 	<center><a href="#" class="btn-rouge">Déposer une offre</a></center>
   </div>
   
   <div class="span4" style="height:100px">
@@ -32,7 +32,7 @@
   	 </span>
   	 </center>
   	 <br/>
-  	 <center><a href="http://portail.local/frontend_dev.php/infojob/monprofil" class="btn-comptes">Gérer mon compte</a>
+  	 <center><a href="<?php echo url_for('infojob/monprofil') ?>" class="btn-bleue">Gérer mon compte</a>
   	</center>
   </div>
 </div>

@@ -32,7 +32,6 @@ class noteDeFraisActions extends tresoActions
     $note_de_frais = $this->getRoute()->getObject();
     $user = $this->getUser();
     $asso = $note_de_frais->getAsso();
-
     $this->checkAuthorisation($asso);
 
     $html = $this->getPartial('noteDeFrais/pdf', compact(array('note_de_frais', 'asso', 'user')));

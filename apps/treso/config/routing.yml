@@ -271,3 +271,10 @@ avances_new_with_asso:
 avances_create:
   url: /avances/create
   param: { module: avances, action: create }
+
+# Cheques
+cheque_list:
+  url: /cheque/asso/:login
+  class: sfDoctrineRoute
+  param: { module: cheque, action: index }
+  options: { model: Asso, type: object }

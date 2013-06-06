@@ -38,11 +38,15 @@ class BudgetCategorie extends BaseBudgetCategorie
     }
 
     public function getCreditSum($budget) {
-        return $this->getSum($budget)->andWhere('q.prix_unitaire > 0')->fetchOne();
+        $sum = $this->getSum($budget)->andWhere('q.prix_unitaire > 0')->fetchOne();
+        return $sum['sum'];
+        // return $this['MontantPositiveTotal'] ? $this['MontantPositiveTotal'] : 0;
     }
 
     public function getDebitSum($budget) {
-        return $this->getSum($budget)->andWhere('q.prix_unitaire < 0')->fetchOne();
+        $sum = $this->getSum($budget)->andWhere('q.prix_unitaire < 0')->fetchOne();
+        return $sum['sum'];
+        // return $this['MontantNegativeTotal'] ? $this['MontantNegativeTotal'] : 0;
     }
 
     public function countPoste()

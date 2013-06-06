@@ -21,7 +21,17 @@ class TransactionForm extends BaseTransactionForm {
         'model' => $this->getRelatedModelName('CompteBanquaire'),
         'query' => CompteBanquaireTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),
     ));
-
+    
+    $this->widgetSchema['budget_poste_id'] = new sfWidgetFormDoctrineChoice(array(
+        'model' => $this->getRelatedModelName('BudgetPoste'),
+        'query' => BudgetPosteTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),
+        'add_empty' => true
+    ));
+    $this->validatorSchema['budget_poste_id'] = new sfValidatorDoctrineChoice(array(
+        'model' => $this->getRelatedModelName('BudgetPoste'),
+        'query' => BudgetPosteTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),
+    ));
+        
     $this->widgetSchema['date_transaction'] = new portailWidgetFormDate();
     $this->widgetSchema['date_rapprochement'] = new portailWidgetFormDate();
 

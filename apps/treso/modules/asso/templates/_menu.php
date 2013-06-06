@@ -6,6 +6,9 @@
         <li><a href="<?php echo url_for('transaction',$asso) ?>">Livre de compte</a></li>
         <li><a href="<?php echo url_for('compte',$asso) ?>">Comptes bancaires</a></li>
         <li><a href="<?php echo url_for('ndf',$asso) ?>">Notes de frais</a></li>
+        <?php if($asso->isPole()): ?>
+            <li><a href="<?php echo url_for('avances',$asso) ?>">Avances de trésorerie</a></li>
+        <?php endif ?>
         <?php endif ?>
     </ul>
 </div><!--/.well -->

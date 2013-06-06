@@ -1,10 +1,11 @@
 
-
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
 <script type="text/javascript">
+
+
 $(document).ready(function() {
 	var i=0;
 	//stocker annonces
@@ -30,96 +31,55 @@ $("#checkbox-1a").change(function() {
 });
 
 </script>
+
 <div class="part" >
 
   <?php include_partial('infojob/topbar') ?>
-<div class="container-fluid">
-   <div class="row-fluid"style="margin-right:3%;">
-      <div class="span3"style=" height:500px;">
-     
-        	<div data-role="collapsible" data-mini="true" data-content-theme="c">
-  							 <h3>Emploi</h3>
-  							 <div  data-role="fieldcontain" data-count-theme="c" >
-                				<fieldset data-role="controlgroup" data-count-theme="c" style="width:200px;" data-mini="true">
-                   			
-                   				 <input type="checkbox" name="checkbox-1a" id="checkbox-1a"  class="custom" />
-                   				 
-                   				 <label for="checkbox-1a">
-                   				 Vente
-                   				 
-                   				 </label>
-                   				
-                   				
-                   				 
 
-                  			   <input type="checkbox" name="checkbox-2a" data-bind="checked: myValue, click: myAction"  id="checkbox-2a" class="custom" />
-                    		  <label for="checkbox-2a">Cours particuliers</label>
-
-                    		 <input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom" />
-                    		<label for="checkbox-3a">Babysitting</label>
-
-                   			 <input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom" />
-                   			 <label for="checkbox-4a">Aide scolaire</label>
-                			</fieldset>
-            			</div>
-			</div>
-				<div data-role="collapsible"  data-mini="true"data-content-theme="c">
-  							 <h3>Disponibilités</h3>
-   							<div  data-role="fieldcontain" style="width:210px;">
-                				<fieldset data-role="controlgroup" style="width:200px;"data-mini="true">
-                   
-                   				 <input type="checkbox" name="checkbox-1a" id="checkbox-1a" class="custom" />
-                   				 <label for="checkbox-1a">Soir</label>
-
-                  			   <input type="checkbox" name="checkbox-2a" id="checkbox-2a" class="custom" />
-                    		  <label for="checkbox-2a">Weekend</label>
-
-                    		 <input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom" />
-                    		<label for="checkbox-3a">Jour Fériés</label>
-
-                   			 <input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom" />
-                   			 <label for="checkbox-4a">Ete</label>
-                			</fieldset>
-            			</div>
-    			</div>
-    			
+      <div class="well"  style=" width:770px;height:100px;">
+      	<h1>Rechercher une offre</h1>
+    		<div class="row-fluid">  
+    			<div class="span6">
+   					 <form method="post">
+        			 <fieldset>
+                		<h3>Catégories</h3>
+                
+        			</fieldset>
+       
+       			 </div>
+       			 
+        		<div class="span6">
+        
+				</div>
+        	</div>
       </div>
-      <div class="span8" style="height:600px;">
-		<div data-role="collapsible"  date-mini="true"data-collapsed="false" data-theme="a" data-content-theme="c">
-    		<h4>Post récemment ajoutés</h4>
-    			<ul data-role="listview" id="listesAnnonces">
-    			<?php foreach($annonces as $annonce): ?>
-    			//faire un switch sur l'annonce catégorie pour l'icone 
- 					<li data-icon="arrow-r">
- 					
- 					<span class=""></span>
- 					
- 					<a href="<?php echo url_for('infojob/show?id='.$annonce->getId()) ?>">
-     				 <?php echo $annonce->getTitre() ?>	
-      				<p>
-        				<?php if($annonce->getLieu()): ?>Lieu : <?php echo $annonce->getLieu() ?><br /><?php endif ?>
-      				</p>
-      				<p style="font-style: italic;">
-        			Posté le <?php echo $annonce->getCreatedAt() ?>
-       				 <?php if($sf_user->isAuthenticated()): ?>
-          			par : <?php if($annonce->getUserId() != NULL): ?>
-           			 <a href="mailto:<?php echo $annonce->getUser()->getEmailAddress() ?>"><?php echo $annonce->getUser()->getName(); ?></a>
-            		<?php
-         			 else: echo $annonce->getEmail();
-          			endif;
-         			 ?>
-        			<?php endif; ?>
-        			
-      				</p>
-      					</a></li>
-    	
- 					 <?php endforeach; ?>
-					
-					
-				</ul>
-     </div>
-     </div>
-   </div>
+  
+    <?php foreach($annonces as $annonce): ?>
+    <div class="well">
+      <?php if($sf_user->isAuthenticated() && $annonce->getUserId() == $sf_user->getGuardUser()->getId()): ?>
+        <a href="<?php echo url_for('annonce/edit?id=' . $annonce->getEmailkey()) ?>"  style="float:left;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
+      <?php endif ?>
+      <h2><?php echo $annonce->getTitre() ?></h2>
+      <p><?php echo $annonce->getTexte() ?></p>
+      <p>
+        <?php if($annonce->getRemuneration() != '0.00'): ?>Prix : <?php echo $annonce->getRemuneration() ?>€<br /><?php endif ?>
+        <?php if($annonce->getLieu()): ?>Lieu : <?php echo $annonce->getLieu() ?><br /><?php endif ?>
+      </p>
+      <p style="font-style: italic;">
+        Posté le <?php echo $annonce->getCreatedAt() ?>
+        <?php if($sf_user->isAuthenticated()): ?>
+          par : <?php if($annonce->getUserId() != NULL): ?>
+            <a href="mailto:<?php echo $annonce->getUser()->getEmailAddress() ?>"><?php echo $annonce->getUser()->getName(); ?></a>
+            <?php
+          else: echo $annonce->getEmail();
+          endif;
+          ?>
+        <?php endif; ?>
+      </p>
+     <a  class="btn-jaune" href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>">Voir la fiche</a>
+     
+    </div>
+  <?php endforeach; ?>
     
 
 </div>

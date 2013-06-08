@@ -47,8 +47,10 @@ $("#checkbox-1a").change(function() {
 
 
           <br/>
+          <b>
         
           <?php echo $row->renderLabel(); ?>
+          </b>
 
 
         <?php endif ?>
@@ -62,7 +64,7 @@ $("#checkbox-1a").change(function() {
 
     <?php endforeach ?>
     <br/>
-  <input type="submit" value="Rechercher" class="btn-vert" />
+  <input type="submit" value="Rechercher" class="btn btn-primary" />
 
  </form>
 
@@ -94,7 +96,7 @@ $("#checkbox-1a").change(function() {
           ?>
         <?php endif; ?>
       </p>
-     <a  class="btn-jaune" href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>">Voir la fiche</a>
+     <a  class="btn btn-info" href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>">Voir la fiche</a>
      
     </div>
   <?php endforeach; ?>

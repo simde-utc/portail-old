@@ -5,6 +5,4 @@
     <p>Bienvenue sur le service InfoJob du BDE-UTC. Ici mettre le texte de présentation et la vidéo. TODO</p>
   </div>
 
-
-
 </div>

@@ -11,15 +11,18 @@
 class InfoJobOffreFormFilter extends BaseInfoJobOffreFormFilter
 {
   public function configure()
+  
   {
+  	 
   	 $this->widgetSchema['lieu']->setOption('with_empty', false);
   	 $this->widgetSchema['titre']->setOption('with_empty', false);
   	 $this->widgetSchema['texte']->setOption('with_empty', false);
+  	// $this->widgetSchema['disponibilite']->setOption('with_empty', false);
  
   	 $this->setDefault('lieu', 'Votre email ici');
   	$this->widgetSchema->setLabels(array(
   'categorie'    => 'Quel type demploi?',
-  'titre'   => 'Titre',
+  'titre'   => 'Selectionnez une catégorie',
   'lieu' => 'Ou?',
   'texte'=>'mot?'));
 

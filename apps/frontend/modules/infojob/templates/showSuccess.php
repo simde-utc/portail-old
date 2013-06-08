@@ -25,17 +25,18 @@
     
     <p style="font-style: italic;">
       Posté le <?php echo $annonce->getCreatedAt() ?>
-      <?php if($sf_user->isAuthenticated()): ?>
-        par : <?php if($annonce->getUserId() != NULL): ?>
-          <a href="mailto:<?php echo $annonce->getUser()->getEmailAddress() ?>"><?php echo $annonce->getUser()->getName(); ?></a>
-          <?php
-        else: echo $annonce->getEmail();
-        endif;
-        ?>
+      <?php if($annonce->getUserId() != NULL): ?>
+        par :
+        <a href="mailto:<?php echo $annonce->getUser()->getEmailAddress() ?>"><?php echo $annonce->getUser()->getName(); ?></a>
       <?php endif; ?>
     </p>
-  
-    <?php include_partial('infojob/showcontact') ?>
-    
+
+    <?php if($sf_user->isAuthenticated()): ?>
+      <a href="mailto:<?php echo $annonce->getEmail(); ?>"><?php echo $annonce->getEmail(); ?></a>
+      <p><?php echo $annonce->getTelephone(); ?></p>
+    <?php else: ?>
+      <a href="<?php echo url_for('cas') ?>" class="btn-jaune">Connectez-vous<i class="icon-white icon-share-alt"></a>
+    <?php endif; ?>
+    <a href="<?php echo url_for('infojob/offres') ?>" class="btn-gris"><i class="icon-arrow-left"></i> Retour</a>
   </div>
 </div>

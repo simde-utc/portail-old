@@ -46,7 +46,7 @@ class Pdf
 
     $folder = sfConfig::get('app_portail_dossier_assos') . "/" . $this->asso->getLogin() . "/documents/" . $type;
     if (!is_dir($folder))
-      mkdir($folder);
+      mkdir($folder, 0700, true);
 
     $path = $folder . "/".$nom.".pdf";
     $this->pdf->Output($path, "F");

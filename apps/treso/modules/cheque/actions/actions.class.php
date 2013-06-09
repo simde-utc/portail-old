@@ -23,4 +23,15 @@ class chequeActions extends tresoActions
     $this->cheques = TransactionTable::getInstance()->getChequesEmis($this->asso)->execute();
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
+  
+  public function executeEncaisser(sfWebRequest $request)
+  {
+    $transaction = $this->getRoute()->getObject();
+    $asso = $transaction->getAsso();
+    $this->checkAuthorisation($asso);
+    
+    $transaction->setDateRapprochement(date("Y-m-d"));
+    $transaction->save();
+    $this->redirect($this->generateUrl('cheque_list',$asso));
+  }
 }

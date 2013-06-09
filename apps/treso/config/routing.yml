@@ -278,3 +278,9 @@ cheque_list:
   class: sfDoctrineRoute
   param: { module: cheque, action: index }
   options: { model: Asso, type: object }
+
+cheque_encaisser:
+  url: /cheque/:id
+  class: sfDoctrineRoute
+  param: { module: cheque, action: encaisser }
+  options: { model: Transaction, type: object }

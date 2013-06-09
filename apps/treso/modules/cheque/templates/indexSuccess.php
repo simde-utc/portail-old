@@ -8,6 +8,7 @@
       <th>Montant</th>
       <th>Date transaction</br>Date rapprochement</th>
       <th>Moyen</br>Commentaire</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,11 @@
       <td><?php echo format_currency($transaction->getMontant(), '€', 'fr'); ?></td>
       <td><?php echo format_date($transaction->getDateTransaction(), 'D', 'fr'); ?><br /> <?php echo format_date($transaction->getDateRapprochement(), 'D', 'fr'); ?></td>
       <td><?php echo $transaction->getTransactionMoyen() ?><br /><em><?php echo $transaction->getMoyenCommentaire() ?></em></td>
+      <td>
+        <?php if(!$transaction->getDateRapprochement()): ?>
+        <a href="<?php echo url_for('cheque_encaisser', $transaction) ?>" class="btn"><i class="icon-check"></i>&nbsp;&nbsp;Encaisser</a>
+        <?php endif ?>
+      </td>
     </tr>
     <?php endforeach; ?>    
   </tbody>

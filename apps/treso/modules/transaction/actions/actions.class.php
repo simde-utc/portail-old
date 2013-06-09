@@ -72,6 +72,7 @@ class transactionActions extends tresoActions {
 
   public function executeNew(sfWebRequest $request) {
     if ($request->getParameter('poste_id')){
+      $this->forward404Unless(is_numeric($request->getParameter('poste_id')));
       $this->asso = AssoTable::getInstance()->find($request->getParameter('asso_id'));
       $this->poste_id = $request->getParameter('poste_id');
     } else {

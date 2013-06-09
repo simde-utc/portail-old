@@ -134,11 +134,19 @@ class infojobActions extends sfActions {
   
     public function executeMonprofil(sfWebRequest $request)
   {
-     $query = Doctrine_Core::getTable('InfoJobOffre')
+   $this->form = new InfoJobAbonnementCategorieForm();
+    $this->processForm($request, $this->form);
+
+//mettre la partie disponibilité du formulaire
+	$this->form2 = new InfoJobAbonnementDisponibiliteForm();
+    $this->processForm($request, $this->form2);
+
+ /*  
+$query = Doctrine_Core::getTable('InfoJobOffre')
         ->createQuery('a')
         ->limit(5)
         ->orderBy('a.created_at DESC');
-    $this->annonces = $query->execute();
+    $this->annonces = $query->execute();*/
   }
 }
 

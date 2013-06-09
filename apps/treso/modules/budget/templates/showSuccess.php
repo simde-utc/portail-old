@@ -97,7 +97,8 @@ function format_progressbar($sum, $total) {
         </td>
         <?php echo format_montant($_total) ?>
         <td>
-          <div class="btn-group">
+          <div class="btn-group pull-right">
+            <a href="<?php echo url_for('transaction_new_with_budget_poste', array('asso_id' => $assos->getPrimaryKey(), 'poste_id' => $poste->getPrimaryKey())) ?>" class="btn"><i class="icon-plus"></i>&nbsp;&nbsp;Transaction</a>
             <a href="<?php echo url_for('budget_poste_edit', $poste) ?>" class="btn"><i class="icon-pencil"></i>&nbsp;&nbsp;Editer</a>
             <a href="<?php echo url_for('budget_poste_delete', $poste) ?>" class="btn btn-danger"><i class="icon-trash icon-white"></i></a>
           </div>
@@ -141,7 +142,10 @@ function format_progressbar($sum, $total) {
     <td></td>
     <td></td>
     <td></td>
-    <td><a href="#" id="unused-categories-btn" data-url-base="<?php echo url_for('budget_poste_new', array('budget'=>$budget->getPrimaryKey(), 'categorie'=>'')) ?>" class="btn btn-success"><i class="icon-white icon-plus"></i></a></td>
+    <td><?php if (count($unused_categories) != 0): ?>
+            <a href="#" id="unused-categories-btn" data-url-base="<?php echo url_for('budget_poste_new', array('budget'=>$budget->getPrimaryKey(), 'categorie'=>'')) ?>" class="btn btn-success"><i class="icon-white icon-plus"></i></a>
+        <?php endif; ?>
+    </td>
   </tr>
 </tbody>
 </table>

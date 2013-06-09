@@ -158,6 +158,10 @@ transaction_create:
   url: /transaction/create
   param: { module: transaction, action: create }
 
+transaction_new_with_budget_poste:
+  url: /transaction/:asso_id/new/:poste_id
+  param: { module: transaction, action: new }
+
 transaction_new:
   url: /transaction/:login/new
   class: sfDoctrineRoute

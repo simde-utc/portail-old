@@ -15,6 +15,7 @@
         </td>
       </tr>
     </tfoot>
+    <br>
     <tbody>
       <?php echo $form->renderGlobalErrors() ?>
       <tr>
@@ -41,14 +42,15 @@
       <tr>
         <th><?php echo $form['prix_unitaire']->renderLabel() ?></th>
         <td>
-          <p>
           <?php echo $form['prix_unitaire']->renderError() ?>
           <?php echo $form['prix_unitaire'] ?> 
-          </p>
-          <p>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td>
             <?php echo $form['debit']->render() ?>
             <?php echo $form['debit']->renderError() ?>
-          </p>
         </td>
       </tr>
       <tr>

@@ -6,6 +6,7 @@ class Version52 extends Doctrine_Migration_Base
 {
     public function up()
     {
+        $this->dropTable('avance_treso');
         $this->createTable('avance_treso', array(
              'id' => 
              array(

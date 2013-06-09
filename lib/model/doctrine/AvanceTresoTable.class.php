@@ -16,4 +16,10 @@ class AvanceTresoTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('AvanceTreso');
     }
+
+    public function getAllforEmetteur($asso)
+    {
+        $q = $this->createQuery('q')->where('q.emetteur_id = ?', $asso->getPrimaryKey());
+        return $q;
+    }
 }

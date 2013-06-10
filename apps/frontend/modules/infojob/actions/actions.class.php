@@ -137,16 +137,23 @@ class infojobActions extends sfActions {
    $this->form = new InfoJobAbonnementCategorieForm();
     $this->processForm($request, $this->form);
 
-//mettre la partie disponibilité du formulaire
+//mettre la partie abonnement disponibilité du formulaire
 	$this->form2 = new InfoJobAbonnementDisponibiliteForm();
     $this->processForm($request, $this->form2);
 
- /*  
-$query = Doctrine_Core::getTable('InfoJobOffre')
+ /*
+$query = Doctrine_Core::getTable('InfoJobABonnementCategorie')
         ->createQuery('a')
         ->limit(5)
         ->orderBy('a.created_at DESC');
-    $this->annonces = $query->execute();*/
+    $this->annonces = $query->execute();
+  /*
+$query2= Doctrine_Core::getTable('InfoJobABonnementDisponibilite')
+        ->createQuery('a')
+        ->limit(5)
+        ->orderBy('a.created_at DESC');
+    $this->annonces = $query2->execute();
+*/
   }
 }
 

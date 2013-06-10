@@ -12,5 +12,12 @@ class InfoJobAbonnementCategorieForm extends BaseInfoJobAbonnementCategorieForm
 {
   public function configure()
   {
+      $hidden_fields = array(
+         'user_id',
+        'id',
+      );
+      foreach($hidden_fields as $hidden_field) {
+        $this->widgetSchema[$hidden_field]= new sfWidgetFormInputHidden();
   }
+}
 }

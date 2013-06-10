@@ -37,8 +37,9 @@
     </p>    
     <br/>
     <br/>
-  
-    <a href="<?php echo url_for('infojob/offres') ?>" class="btn active"><i class="icon-arrow-left"></i> Retour</a>
+  <div class="row-fluid">
+  <div class="span8">
+   
 
     <?php if($sf_user->isAuthenticated()): ?>
       <a href="mailto:<?php echo $annonce->getEmail(); ?>"><?php echo $annonce->getEmail(); ?></a>
@@ -46,9 +47,12 @@
     <?php else: ?>
      <a href="#" class="btn btn-warning active">Connectez-vous <i class="icon-black icon-user"></i></a>
     <?php endif; ?>
-    
-     <a href="<?php echo url_for('infojob/signal?id=' . $annonce->getId())?>" >Signaler l'annonce >> </a>
-
+    </div>
+    <div class="span4">
+     <a href="<?php echo url_for('infojob/offres') ?>" class="btn active"><i class="icon-arrow-left"></i> Retour</a>
+     <a href="<?php echo url_for('infojob/signal?id=' . $annonce->getId())?>"class="btn btn-danger btn-small"><i class="icon-warning-sign"></i> Signaler l'annonce</a>
+     </div>
+	</div>
    
   </div>
 </div>

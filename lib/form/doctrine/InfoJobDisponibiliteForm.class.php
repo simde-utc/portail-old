@@ -1,16 +1,16 @@
 <?php
 
 /**
- * InfoJobSignalement form.
+ * InfoJobDisponibilite form.
  *
  * @package    simde
  * @subpackage form
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class InfoJobSignalementForm extends BaseInfoJobSignalementForm
+class InfoJobDisponibiliteForm extends BaseInfoJobDisponibiliteForm
 {
   public function configure()
-  { 	unset($this['created_at'], $this['updated_at'], $this['expiration_date'], $this['archivage_date'],$this['offre_id']);
+  {
   }
 }

@@ -17,6 +17,7 @@ class infojobActions extends sfActions {
       $this->filters->bind($request->getParameter($this->filters->getName()));
       if($this->filters->isValid())
       {
+      		
         $query = $this->filters->buildQuery($this->filters->getValues());
       }
     }
@@ -37,26 +38,39 @@ class infojobActions extends sfActions {
   }
 
   public function executeOffres(sfWebRequest $request)
-  {
-    $this->filters = new InfoJobOffreFormFilter();
+  { 
+	$this->filters = new InfoJobOffreFormFilter();
     if($request->getMethod() == sfRequest::POST)
     {
       $this->filters->bind($request->getParameter($this->filters->getName()));
       if($this->filters->isValid())
       {
       	$champs=$this->filters->getValues();
-      	$dispo=$champs['texte']['text'];
+      	$dispo=$champs['disponibilite'];
+      
       	echo $dispo;
-      	exit;
-      	//faire requête jointure
-        $query = $this->filters->buildQuery($this->filters->getValues());
+      	echo $dispo;
+      	
+      	
+      	
+      	 
+      	$query= Doctrine_Query::create()
+           ->select('titre')
+           ->from('InfoJobOffre a')
+           ->where('a.categorie_id=?',5);
+        
+        
+         //$query = $this->filters->buildQuery($this->filters->getValues());
+        
+        
       }
     }
-    else
+    else {
       $query = Doctrine_Core::getTable('InfoJobOffre')
           ->createQuery('a')
-          ->orderBy('a.created_at DESC')
-          ->limit(5);
+          ->limit(5)
+          ->orderBy('a.created_at DESC');
+    }
     $this->annonces = $query->execute();
 
   }
@@ -140,7 +154,8 @@ class infojobActions extends sfActions {
 
   public function executeSignal(sfWebRequest $request)
   {
-    // TODO
+    echo 'signal';
+    $this->form = new InfoJobSignalementForm();
   }
 
   public function executeSignaldo(sfWebRequest $request)
@@ -150,19 +165,7 @@ class infojobActions extends sfActions {
   
     public function executeMonprofil(sfWebRequest $request)
   {
-   $this->form = new InfoJobAbonnementCategorieForm();
-    $this->processForm($request, $this->form);
-
-//mettre la partie disponibilité du formulaire
-	$this->form2 = new InfoJobAbonnementDisponibiliteForm();
-    $this->processForm($request, $this->form2);
-
- /*  
-$query = Doctrine_Core::getTable('InfoJobOffre')
-        ->createQuery('a')
-        ->limit(5)
-        ->orderBy('a.created_at DESC');
-    $this->annonces = $query->execute();*/
+  
   }
 }
 

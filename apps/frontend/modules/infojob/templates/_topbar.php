@@ -1,4 +1,5 @@
 <!-- Menu du haut commun au service infojob TODO, voir exemple dans apps/frontend/modules/assos/templates/_topbar.php -->
+
 <div class="well">
 <div class="row-fluid">
   <div class="span4" style="height:150px;">

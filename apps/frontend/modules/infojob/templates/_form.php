@@ -10,9 +10,9 @@
       <tr>
         <th></th>
         <td>
-          <input class="btn btn-primary" type="submit" value="Save" />
+          <input class="btn btn-primary" type="submit" value="Enregistrer" />
 
-          &nbsp;<a href="<?php echo url_for('infojob/index') ?>" class="btn">Retour à l'accueil</a>
+          &nbsp;<a href="<?php echo url_for('infojob/index') ?>"class="btn active">Retour à l'acceuil <i class="icon-home"></i></a>
           <?php if(!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('Delete', 'infojob/delete?key='.$form->getObject()->getEmailkey(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
           <?php endif; ?>

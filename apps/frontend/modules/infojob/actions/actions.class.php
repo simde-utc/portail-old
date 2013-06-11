@@ -154,13 +154,19 @@ class infojobActions extends sfActions {
 
   public function executeSignal(sfWebRequest $request)
   {
-    echo 'signal';
+  
     $this->form = new InfoJobSignalementForm();
   }
 
   public function executeSignaldo(sfWebRequest $request)
-  {
-    // TODO
+  {  $this->forward404Unless($request->isMethod(sfRequest::POST));
+
+    $this->form = new InfoJobSignalementForm();
+
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('offres');
+   
   }
   
       public function executeMonprofil(sfWebRequest $request)

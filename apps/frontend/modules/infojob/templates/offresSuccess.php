@@ -1,33 +1,5 @@
 
 
-<script>
-$(document).ready(function() {
-	var i=0;
-	//stocker annonces
-
-$("#checkbox-1a").change(function() {
-	if(i==0) {alert("box is checked");
-			  //faire un filtre sur le label
-			  //reafficher annonces
-			  $("#listesAnnonces").empty().append('<li>Box is checked</li>');
-			  i=1;}
-			  
-		else{alert("box unchecked") ;
-			   $("#listesAnnonces").empty().append('<li>Box is unchecked</li>');
-			   	//récuperer toutes les box qui sont checked
-			   	//reafficher annonces
-			   	
-			 i=0;}
-		
-});
-	
-
-
-});
-</script>
-
-</script>
-
 <div class="part" >
 
   <?php include_partial('infojob/topbar') ?>
@@ -47,16 +19,16 @@ $("#checkbox-1a").change(function() {
 
 
           <br/>
-          <b>
+          <strong>
         
           <?php echo $row->renderLabel(); ?>
-          </b>
-
+          </strong>
+<br/>
 
         <?php endif ?>
 
 
-      <?php echo $row->render(); ?>
+    <strong>  <?php echo $row->render(); ?></strong>
 
 
       </div>
@@ -73,17 +45,17 @@ $("#checkbox-1a").change(function() {
       
 	  </div>
         	
-  
+  <h1>Annonces</h1>
     <?php foreach($annonces as $annonce): ?>
     <div class="well">
       <?php if($sf_user->isAuthenticated() && $annonce->getUserId() == $sf_user->getGuardUser()->getId()): ?>
         <a href="<?php echo url_for('annonce/edit?id=' . $annonce->getEmailkey()) ?>"  style="float:left;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
       <?php endif ?>
-      <h2><?php echo $annonce->getTitre() ?></h2>
+      <h2>Annonce n° <?php echo $annonce->getId() ?> : <?php echo $annonce->getTitre() ?></h2>
       <p><?php echo $annonce->getTexte() ?></p>
       <p>
-        <?php if($annonce->getRemuneration() != '0.00'): ?>Prix : <?php echo $annonce->getRemuneration() ?>€<br /><?php endif ?>
-        <?php if($annonce->getLieu()): ?>Lieu : <?php echo $annonce->getLieu() ?><br /><?php endif ?>
+        <?php if($annonce->getRemuneration() != '0.00'): ?><strong>Prix</strong> : <?php echo $annonce->getRemuneration() ?>€<br /><?php endif ?>
+        <?php if($annonce->getLieu()): ?><strong>Lieu</strong> : <?php echo $annonce->getLieu() ?><br /><?php endif ?>
       </p>
       <p style="font-style: italic;">
         Posté le <?php echo $annonce->getCreatedAt() ?>

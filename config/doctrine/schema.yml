@@ -299,7 +299,7 @@ InfoJobCategorie:
     name: { type: string(100), notnull: true }
     description: { type: string(255), notnull: true }
     
-InfoJobDispobilite:
+InfoJobDisponibilite:
   connection: doctrine
   columns:
     name: { type: string(100), notnull: true }

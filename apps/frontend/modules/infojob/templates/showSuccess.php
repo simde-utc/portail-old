@@ -8,10 +8,13 @@
     <p><?php echo $annonce->getTexte() ?></p>
     <div class="row-fluid">
     <div class="span2">
+    
     <!--TODO swicth sur l'icône -->
-    <img src="/images/icones/job.png" style="witdh:90px; height:70px">
-  	</span>
+    
+  <img src="/images/icones/<?php echo str_replace('', '-', $annonce->getCategorie()) ?>.jpg" style="witdh:90px; height:70px">
+  	
   	</div>
+  	 
   	<div class= "span10">
     <p>
       <?php if($annonce->getRemuneration() != '0.00'): ?><b>Prix :</b> <?php echo $annonce->getRemuneration() ?> €<br /><?php endif ?>
@@ -19,6 +22,9 @@
     </p>
     </div>
      </div>
+    <br/>
+    <br/>
+   
     
     <p style="font-style: italic;">
       Posté le <?php echo $annonce->getCreatedAt() ?>
@@ -26,14 +32,25 @@
         par :
         <a href="mailto:<?php echo $annonce->getUser()->getEmailAddress() ?>"><?php echo $annonce->getUser()->getName(); ?></a>
       <?php endif; ?>
-    </p>
+    </p>    
+    <br/>
+    <br/>
+  <div class="row-fluid">
+  <div class="span8">
+   
 
     <?php if($sf_user->isAuthenticated()): ?>
       <a href="mailto:<?php echo $annonce->getEmail(); ?>"><?php echo $annonce->getEmail(); ?></a>
       <p><?php echo $annonce->getTelephone(); ?></p>
     <?php else: ?>
-      <a href="<?php echo url_for('cas') ?>" class="btn-jaune">Connectez-vous<i class="icon-white icon-share-alt"></a>
+     <a href="#" class="btn btn-warning active">Connectez-vous <i class="icon-black icon-user"></i></a>
     <?php endif; ?>
-    <a href="<?php echo url_for('infojob/offres') ?>" class="btn-gris"><i class="icon-arrow-left"></i> Retour</a>
+    </div>
+    <div class="span4">
+     <a href="<?php echo url_for('infojob/offres') ?>" class="btn active"><i class="icon-arrow-left"></i> Retour</a>
+     <a href="<?php echo url_for('infojob/signal?id=' . $annonce->getId())?>"class="btn btn-danger btn-small"><i class="icon-warning-sign"></i> Signaler l'annonce</a>
+     </div>
+	</div>
+   
   </div>
 </div>

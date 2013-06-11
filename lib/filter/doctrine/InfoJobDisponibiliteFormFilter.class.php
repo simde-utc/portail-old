@@ -1,14 +1,14 @@
 <?php
 
 /**
- * InfoJobDispobilite filter form.
+ * InfoJobDisponibilite filter form.
  *
  * @package    simde
  * @subpackage filter
  * @author     Your name here
  * @version    SVN: $Id: sfDoctrineFormFilterTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class InfoJobDispobiliteFormFilter extends BaseInfoJobDispobiliteFormFilter
+class InfoJobDisponibiliteFormFilter extends BaseInfoJobDisponibiliteFormFilter
 {
   public function configure()
   {

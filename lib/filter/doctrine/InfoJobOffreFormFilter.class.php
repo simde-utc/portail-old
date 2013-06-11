@@ -11,6 +11,37 @@
 class InfoJobOffreFormFilter extends BaseInfoJobOffreFormFilter
 {
   public function configure()
+  
   {
+  
+      
+  	 $this->widgetSchema['lieu']->setOption('with_empty', false);
+  	 $this->widgetSchema['titre']->setOption('with_empty', false);
+  	 $this->widgetSchema['texte']->setOption('with_empty', false);
+  	// $this->widgetSchema['disponibilite']->setOption('with_empty', false);
+
+ 
+
+
+         
+
+
+   /* $this->widgetSchema['tools']  = new sfWidgetFormSelectCheckbox(array(
+                                        'choices'   => $dispo,
+                                        
+                                     ));*/
+  	 $this->setDefault('lieu', 'Votre email ici');
+  	$this->widgetSchema->setLabels(array(
+  'categorie'    => 'Quel type demploi?',
+  'titre'   => 'Titre',
+  'lieu' => 'Ou?',
+  'texte'=>'mot?'));
+
+
+   
+
+  	 
+
+  	unset($this['created_at'], $this['updated_at'], $this['expiration_date'], $this['emailkey'], $this['user_id'], $this['archivage_date'],$this['email'], $this['telephone'],$this['remuneration']);
   }
 }

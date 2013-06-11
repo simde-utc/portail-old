@@ -32,13 +32,14 @@ class InfoJobOffreFormFilter extends BaseInfoJobOffreFormFilter
                                      ));*/
   	 $this->setDefault('lieu', 'Votre email ici');
   	$this->widgetSchema->setLabels(array(
-  'categorie'    => 'Quel type demploi?',
-  'titre'   => 'Titre',
-  'lieu' => 'Ou?',
-  'texte'=>'mot?'));
+  'Categorie '   =>' Selectionnez une catégorie',
+ 'titre'   => ' Saisissez le titre de l annonce',
+  'lieu' => 'Avez-vous des préférences géorgraphiques',
+  'texte'=>'Saisissez un mot clé'));
 
 
    
+
 
   	 
 

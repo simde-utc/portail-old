@@ -93,27 +93,27 @@ INSERT INTO `info_job_categorie` (`id`, `name`, `description`) VALUES
 (4, 'Manutention', 'Description manutention'),
 (5, 'Divers', 'Tout ce qui ne rentre pas les autres catégories');
 
-INSERT INTO `info_job_dispobilite` (`id`, `name`) VALUES
+INSERT INTO `info_job_disponibilite` (`id`, `name`) VALUES
 (1, 'Semaine'),
 (2, 'Week-end'),
 (3, 'Soirs'),
 (4, 'Vacances');
 
-INSERT INTO `info_job_offre` (`id`, `categorie_id`, `user_id`, `titre`, `texte`, `lieu`, `remuneration`, `email`, `telephone`, `expiration_date`, `archivage_date`, `created_at`, `updated_at`, `emailkey`) VALUES
-(1, 1, NULL, 'Soutien scolaire chez Acadomia', 'Acadomia dispose d’un réseau de 120 agences, suit plus de 100 000 élèves avec l’aide de 25 000 « enseignants » encadrés par plus de 500 conseillers pédagogiques3. Toute personne titulaire d''un bac + 3 (licence) peut être employée comme enseignant.\r\nComme toutes les entreprises de services à la personne, la prestation offerte par la société - comme celle offerte individuellement par un étudiant déclaré - ouvre droit à un crédit d''impôt et/ou réduction d''impôt pour l''emploi à domicile de 50 % ce qui a favorisé son développement et celui de tout le secteur', 'Compiègne et alentours', '~10 € / h NET', 'compiegne@acadomia.fr', '0344538291', '2013-08-01 00:00:00', NULL, '2013-05-25 00:00:00', '2013-05-25 00:00:00', 'd1146c37a47de5b860e7770a0dd461da'),
-(2, 3, 2, 'Subway Rue Saint-Corneille', '', 'Rue Saint-Corneille, 60200 Compiègne', '9 € / h', 'compiegne-corneille@subway.com', '057492391', NULL, NULL, '2013-05-25 00:00:00', '2013-05-25 00:00:00', 'c5c469380bfe6f347c291c80271ddeeb'),
-(3, 2, NULL, 'Tonte pelouse', 'Tondre la pelouse chez moi. Je suis une personne âgée qui ne peut plus assurer l''entretien de mes espaces verts.', '11 Rue Jean-Baptiste Vaquette de Gribeauval, Lacroix Saint-Ouen', '12 € / h cash', 'meme60@pelouse.fr', '0376129845', NULL, '2013-05-24 00:00:00', '2013-05-23 00:00:00', '2013-05-23 00:00:00', 'ac1371c2ed132933430e868cbb1da2f7'),
-(4, 5, NULL, 'Détaillant / vendeur de rue', 'Revente de produits stupéfiants les soirs au Pic''.', 'Pic'' asso, Compiègne', '30 % sur la marchandise revendue', 'haschich@thcforall.org', NULL, '2013-08-29 00:00:00', NULL, '2013-05-25 00:00:00', '2013-05-25 00:00:00', '629b68e2aab5c45cb25f5f8537929e74');
+INSERT INTO `info_job_offre` (`id`, `categorie_id`, `user_id`, `titre`, `texte`, `lieu`, `remuneration`, `email`, `telephone`, `expiration_date`, `archivage_date`, `created_at`, `updated_at`, `emailkey`, `validationkey`) VALUES
+(1, 1, NULL, 'Soutien scolaire chez Acadomia', 'Acadomia dispose d’un réseau de 120 agences, suit plus de 100 000 élèves avec l’aide de 25 000 « enseignants » encadrés par plus de 500 conseillers pédagogiques3. Toute personne titulaire d''un bac + 3 (licence) peut être employée comme enseignant.\r\nComme toutes les entreprises de services à la personne, la prestation offerte par la société - comme celle offerte individuellement par un étudiant déclaré - ouvre droit à un crédit d''impôt et/ou réduction d''impôt pour l''emploi à domicile de 50 % ce qui a favorisé son développement et celui de tout le secteur', 'Compiègne et alentours', '~10 € / h NET', 'compiegne@acadomia.fr', '0344538291', '2013-08-01 00:00:00', NULL, '2013-05-25 00:00:00', '2013-05-25 00:00:00', 'd1146c37a47de5b860e7770a0dd461da', 'd1146c37a47de5b860e7770a0dd341da'),
+(2, 3, 2, 'Subway Rue Saint-Corneille', '', 'Rue Saint-Corneille, 60200 Compiègne', '9 € / h', 'compiegne-corneille@subway.com', '057492391', NULL, NULL, '2013-05-25 00:00:00', '2013-05-25 00:00:00', 'c5c469380bfe6f347c291c80271ddeeb', 'c5c469380bfe6f347c291c80271bbeeb'),
+(3, 2, NULL, 'Tonte pelouse', 'Tondre la pelouse chez moi. Je suis une personne âgée qui ne peut plus assurer l''entretien de mes espaces verts.', '11 Rue Jean-Baptiste Vaquette de Gribeauval, Lacroix Saint-Ouen', '12 € / h cash', 'meme60@pelouse.fr', '0376129845', NULL, '2013-05-24 00:00:00', '2013-05-23 00:00:00', '2013-05-23 00:00:00', 'ac1371c2ed132933430e868cbb1da2f7', 'ac1371c2ed132933430e868cbb1da2aa'),
+(4, 5, NULL, 'Détaillant / vendeur de rue', 'Revente de produits stupéfiants les soirs au Pic''.', 'Pic'' asso, Compiègne', '30 % sur la marchandise revendue', 'haschich@thcforall.org', NULL, '2013-08-29 00:00:00', NULL, '2013-05-25 00:00:00', '2013-05-25 00:00:00', '629b68e2aab5c45cb25f5f8537929e74', '629b68e2aab5c45cb25f5f8537929evv');
 
-INSERT INTO `info_job_offre_disponibilite` (`id`, `offre_id`, `disponibilite_id`) VALUES
-(1, 1, 1),
-(2, 1, 2),
-(3, 2, 3),
-(4, 2, 1),
-(5, 2, 2),
-(6, 2, 4),
-(7, 3, 2),
-(8, 3, 4);
+INSERT INTO `info_job_offre_disponibilite` (`offre_id`, `disponibilite_id`) VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 1),
+(2, 2),
+(2, 4),
+(3, 2),
+(3, 4);
 
 INSERT INTO `info_job_signalement` (`id`, `offre_id`, `type_id`, `commentaire`, `archivage_date`, `created_at`, `updated_at`) VALUES
 (1, 4, 2, 'Vente de produits stupéfiants', NULL, '2013-05-25 19:45:08', '2013-05-25 19:45:08');

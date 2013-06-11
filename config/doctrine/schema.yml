@@ -316,21 +316,29 @@ InfoJobOffre:
     remuneration: { type: string(250), notnull: true }
     email: { type: string(100) }
     telephone: { type: string(20) }
+    validation_date : { type: datetime }
     expiration_date : { type: datetime }
     archivage_date: { type: datetime }
     emailkey: { type: string(32), notnull: true }
+    validationkey: { type: string(32), notnull: true }
   relations:
     Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: InfoJobCategorie }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+    Disponibilites:
+      class: InfoJobDisponibilite
+      onUpdate: CASCADE
+      refClass: InfoJobOffreDisponibilite
+      local: offre_id
+      foreign: disponibilite_id
 
 InfoJobOffreDisponibilite:
   connection: doctrine
   columns:
-    offre_id: { type: integer, notnull: true }
-    disponibilite_id: { type: integer, notnull: true }
+    offre_id: { type: integer, primary: true }
+    disponibilite_id: { type: integer, primary: true }
   relations:
-    Offre: { onUpdate: CASCADE, local: offre_id, foreign: id, class: InfoJobOffre }
-    Disponibilite: { onUpdate: CASCADE, local: disponibilite_id, foreign: id, class: InfoJobDispobilite }
+    Offre: { onUpdate: CASCADE, local: offre_id, foreign: id, class: InfoJobOffre, foreignAlias: OffreDisponibilites }
+    Disponibilite: { onUpdate: CASCADE, local: disponibilite_id, foreign: id, class: InfoJobDispobilite, foreignAlias: OffreDisponibilites }
   
     
 InfoJobSignalement:

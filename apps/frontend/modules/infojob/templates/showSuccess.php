@@ -38,6 +38,7 @@
       <div class="span4">
         <a href="<?php echo url_for('infojob/offres') ?>" class="btn active"><i class="icon-arrow-left"></i> Retour</a>
         <a href="<?php echo url_for('infojob/signal?id=' . $annonce->getId())?>"class="btn btn-danger btn-small" rel="nofollow"><i class="icon-warning-sign"></i>Signaler l'annonce</a>
+        <br/><br/>
         <a href="#TODO" rel="nofollow">Ceci est votre offre ?</a>
       </div>
     </div>

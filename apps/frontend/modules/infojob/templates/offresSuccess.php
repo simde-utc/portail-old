@@ -40,7 +40,7 @@
         ?>
       <?php endif; ?>
     </p>
-    <a  class="btn btn-info" href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>">Voir la fiche</a>
+    <a href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>" class="btn btn-info" style="color: #FFFFFF;">Voir la fiche</a>
   </div>
   <?php endforeach; ?>
 </div>

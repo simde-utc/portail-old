@@ -12,5 +12,7 @@ class InfoJobSignalementForm extends BaseInfoJobSignalementForm
 {
   public function configure()
   { 	unset($this['created_at'], $this['updated_at'], $this['expiration_date'], $this['archivage_date'],$this['offre_id']);
+  		
+  		 $this->widgetSchema['commentaire'] = new  sfWidgetFormTextarea();
   }
 }

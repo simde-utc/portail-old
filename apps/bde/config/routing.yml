@@ -2,9 +2,15 @@ infojob:
   url: /infojob
   param: { module: infojob, action: index }
 
-infojob_signalement:
-  url: /infojob/signalement
-  param: { module: infojob, action: signalement }
+info_job_signalement:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                InfoJobSignalement
+    module:               infojob_signalement
+    prefix_path:          /infojob_signalement
+    column:               id
+    with_wildcard_routes: true
+
 
 info_job_offre:
   class: sfDoctrineRouteCollection

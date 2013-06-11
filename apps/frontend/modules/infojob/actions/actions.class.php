@@ -11,6 +11,15 @@ class infojobActions extends sfActions {
 
   public function executeIndex(sfWebRequest $request)
   {
+  }
+  
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->annonce = $this->getRoute()->getObject();
+  }
+
+  public function executeOffres(sfWebRequest $request)
+  {
     $this->filters = new InfoJobOffreFormFilter();
     if($request->getMethod() == sfRequest::POST)
     {
@@ -26,22 +35,6 @@ class infojobActions extends sfActions {
           ->limit(5)
           ->orderBy('a.created_at DESC');
     }
-    $this->annonces = $query->execute();
-  }
-  
-  public function executeShow(sfWebRequest $request)
-  {
-    // TODO voir exemple dans apps/frontend/modules/assos/actions.class.php, fonction executeShow()
-    $this->annonce = $this->getRoute()->getObject();
-
-  }
-
-  public function executeOffres(sfWebRequest $request)
-  {
-    $query = Doctrine_Core::getTable('InfoJobOffre')
-        ->createQuery('a')
-        ->limit(5)
-        ->orderBy('a.created_at DESC');
     $this->annonces = $query->execute();
   }
 
@@ -109,6 +102,9 @@ class infojobActions extends sfActions {
       $form->setEmailkey(md5(microtime().rand()));
       if($this->getUser()->isAuthenticated())
         $form->setUserId($this->getUser()->getGuardUser()->getId());
+      // Ajouter la date de création et de mise à jour.
+      $form->setCreatedAt(now());
+      $form->setUpdatedAt(now());
 
       $annonce = $form->save();
       // TODO Envoyer email.
@@ -132,13 +128,8 @@ class infojobActions extends sfActions {
     // TODO
   }
   
-    public function executeMonprofil(sfWebRequest $request)
+  public function executeMonprofil(sfWebRequest $request)
   {
-     $query = Doctrine_Core::getTable('InfoJobOffre')
-        ->createQuery('a')
-        ->limit(5)
-        ->orderBy('a.created_at DESC');
-    $this->annonces = $query->execute();
   }
 }
 

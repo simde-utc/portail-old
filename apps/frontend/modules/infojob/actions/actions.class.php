@@ -21,7 +21,7 @@ class infojobActions extends sfActions {
 
   public function executeOffres(sfWebRequest $request)
   { 
-	$this->filters = new InfoJobOffreFormFilter();
+	  $this->filters = new InfoJobOffreFormFilter();
     if($request->getMethod() == sfRequest::POST)
     {
       $this->filters->bind($request->getParameter($this->filters->getName()));

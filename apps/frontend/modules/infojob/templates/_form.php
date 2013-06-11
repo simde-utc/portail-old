@@ -14,7 +14,7 @@
 
           &nbsp;<a href="<?php echo url_for('infojob/index') ?>" class="btn">Retour à l'accueil</a>
           <?php if(!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'infojob/delete?key='.$form->getObject()->getEmailkey(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
+            &nbsp;<?php echo link_to('Delete', 'infojob/delete?key='.$form->getObject()->getEmailkey(), array('method' => 'delete', 'confirm' => 'Etes-vous sûr de vouloir supprimer l\'annonce ?', 'class' => 'btn btn-danger')) ?>
           <?php endif; ?>
 
           <?php echo $form->renderHiddenFields(false) ?>

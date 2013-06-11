@@ -27,24 +27,7 @@ class infojobActions extends sfActions {
       $this->filters->bind($request->getParameter($this->filters->getName()));
       if($this->filters->isValid())
       {
-      	$champs=$this->filters->getValues();
-      	$dispo=$champs['disponibilite'];
-      
-      	echo $dispo;
-      	echo $dispo;
-      	
-      	
-      	
-      	 
-      	$query= Doctrine_Query::create()
-           ->select('titre')
-           ->from('InfoJobOffre a')
-           ->where('a.categorie_id=?',5);
-        
-        
-         //$query = $this->filters->buildQuery($this->filters->getValues());
-        
-        
+      	$query = $this->filters->buildQuery($this->filters->getValues());
       }
     }
     else {

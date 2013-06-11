@@ -1,40 +1,31 @@
+
 <!-- Menu du haut commun au service infojob TODO, voir exemple dans apps/frontend/modules/assos/templates/_topbar.php -->
 
+
 <div class="well">
-<div class="row-fluid">
-  <div class="span4" style="height:150px;">
-  	<h1><center>Etudiants</center>
-  	</h1>
-  	<center><span>
-  	<img src="/images/icones/job.jpg" style="witdh:90px; height:70px">
-  	</span>
-  	</center>
-  	
-  	 <br/>
-  	<center><a href="<?php echo url_for('infojob/offres') ?>" class="btn btn-success">Voir les offres</a>
-  	</center>
-  </div>
-  
-  <div class="span4" style="height:100px">
-  <h1><center>Entreprise et particuliers</center></h1>
- 	<center><span>
- 
- 	 <img src="/images/icones/entreprise.jpg" style="line-height:normal;witdh:90px; height:70px">
-  	</span>
-  	</center>
-  	  <br/>
-  	
-  	 	<center><a href="#" class="btn btn-warning">Déposer une offre</a></center>
-  </div>
-  
-  <div class="span4" style="height:100px">
-  	<h1><center>Etudiants</center></h1>
-	 <center><span><img src="/images/icones/etudiant.jpg" style="witdh:90px; height:70px">
-  	 </span>
-  	 </center>
-  	 <br/>
-  	 <center><a href="<?php echo url_for('infojob/monprofil') ?>" class="btn btn-info">Gérer mon compte</a>
-  	</center>
+  <div class="row-fluid" style="text-align:center;">
+    <div class="span4">
+    	<h1>Etudiants</h1>
+    	<div><img src="/images/icones/job.jpg" style="witdh:90px; height:70px;"></div>
+      <br/>
+    	<div><a href="<?php echo url_for('infojob/offres') ?>" class="btn btn-success" style="color: #FFFFFF;">Voir les offres</a></div>
+    </div>
+    
+    <div class="span4">
+      <h1>Entreprise et particuliers</h1>
+      <div><img src="/images/icones/entreprise.jpg" style="line-height:normal;witdh:90px; height:70px;"></div>
+	    <br/>
+	   	<div><a href="<?php echo url_for('infojob/new') ?>" class="btn btn-warning" style="color: #FFFFFF;">Déposer une offre</a></div>
+    </div>
+    
+    <div class="span4">
+      <h1>Etudiants</h1>
+	    <div><img src="/images/icones/etudiant.jpg" style="line-height:normal;witdh:90px; height:70px;"></div>
+      <br/>
+    	<div><a href="<?php echo url_for('infojob/monprofil') ?>" class="btn btn-info" style="color: #FFFFFF;">Gérer mon compte</a></div>
+    </div>
   </div>
 </div>
-</div>
+
+
+

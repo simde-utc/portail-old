@@ -7,27 +7,16 @@
     <h2><?php echo $annonce->getTitre() ?></h2>
     <p><?php echo $annonce->getTexte() ?></p>
     <div class="row-fluid">
-    <div class="span2">
-    
-    <!--TODO swicth sur l'icône -->
-    
-    <span>
-  <img src="/images/icones/<?php echo str_replace('', '-', $annonce->getCategorie()) ?>.jpg" style="witdh:90px; height:70px">
-  	</span>
-  	
-  	</div>
-  	 
-  	<div class= "span10">
-    <p>
-      <?php if($annonce->getRemuneration() != '0.00'): ?><b>Prix :</b> <?php echo $annonce->getRemuneration() ?> €<br /><?php endif ?>
-      <?php if($annonce->getLieu()): ?><b>Lieu:</b> <?php echo $annonce->getLieu() ?><br /><?php endif ?>
-    </p>
+      <div class="span2"><img src="/images/icones/<?php echo str_replace('', '-', $annonce->getCategorie()) ?>.jpg" style="witdh:90px; height:70px"></div>
+    	<div class= "span10">
+        <p>
+          <?php if($annonce->getRemuneration() != '0.00'): ?><b>Prix :</b> <?php echo $annonce->getRemuneration() ?> €<br /><?php endif ?>
+          <?php if($annonce->getLieu()): ?><b>Lieu:</b> <?php echo $annonce->getLieu() ?><br /><?php endif ?>
+        </p>
+      </div>
     </div>
-     </div>
     <br/>
     <br/>
-   
-    
     <p style="font-style: italic;">
       Posté le <?php echo $annonce->getCreatedAt() ?>
       <?php if($annonce->getUserId() != NULL): ?>
@@ -37,22 +26,21 @@
     </p>    
     <br/>
     <br/>
-  <div class="row-fluid">
-  <div class="span8">
-   
-
-    <?php if($sf_user->isAuthenticated()): ?>
-      <a href="mailto:<?php echo $annonce->getEmail(); ?>"><?php echo $annonce->getEmail(); ?></a>
-      <p><?php echo $annonce->getTelephone(); ?></p>
-    <?php else: ?>
-     <a href="#" class="btn btn-warning active">Connectez-vous <i class="icon-black icon-user"></i></a>
-    <?php endif; ?>
+    <div class="row-fluid">
+      <div class="span8">
+        <?php if($sf_user->isAuthenticated()): ?>
+        <a href="mailto:<?php echo $annonce->getEmail(); ?>"><?php echo $annonce->getEmail(); ?></a>
+        <p><?php echo $annonce->getTelephone(); ?></p>
+        <?php else: ?>
+        <a href="#" class="btn btn-warning active">Connectez-vous<i class="icon-black icon-user"></i></a>
+        <?php endif; ?>
+      </div>
+      <div class="span4">
+        <a href="<?php echo url_for('infojob/offres') ?>" class="btn active"><i class="icon-arrow-left"></i> Retour</a>
+        <a href="<?php echo url_for('infojob/signal?id=' . $annonce->getId())?>"class="btn btn-danger btn-small" rel="nofollow"><i class="icon-warning-sign"></i>Signaler l'annonce</a>
+        <br/><br/>
+        <a href="#TODO" rel="nofollow">Ceci est votre offre ?</a>
+      </div>
     </div>
-    <div class="span4">
-     <a href="<?php echo url_for('infojob/offres') ?>" class="btn active"><i class="icon-arrow-left"></i> Retour</a>
-     <a href="<?php echo url_for('infojob/signal?id=' . $annonce->getId())?>"class="btn btn-danger btn-small"><i class="icon-warning-sign"></i> Signaler l'annonce</a>
-     </div>
-	</div>
-   
   </div>
 </div>

@@ -130,7 +130,7 @@ function format_progressbar($sum, $total) {
       var _data_debit = <?php echo json_encode($for_high_debit_array); ?>;
       var _data_credit = <?php echo json_encode($for_high_credit_array); ?>;
     </script>
-
+<?php if(count($unused_categories) > 0): ?>
     <tr class="table-treso-categorie">
       <td>Catégories vides
        <select id="unused-categories-list">
@@ -147,6 +147,7 @@ function format_progressbar($sum, $total) {
         <?php endif; ?>
     </td>
   </tr>
+<?php endif; ?>
 </tbody>
 </table>
 

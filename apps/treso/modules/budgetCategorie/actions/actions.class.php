@@ -113,7 +113,7 @@ class budgetCategorieActions extends tresoActions
         $this->redirect($this->generateUrl('budget_show', array('id' => $request_params['id_budget'])));
       }
       else
-        $this->redirect($this->generateUrl('budget_categorie', array('login' => $asso->getName())));
+        $this->redirect($this->generateUrl('budget_categorie', array('login' => $asso->getLogin())));
     }
   }
 }

@@ -26,4 +26,11 @@ class PoleTable extends Doctrine_Table
     return $q;
   }
 
+  public function getOneByAsso($asso)
+  {
+    $q = $this->createQuery('p')
+      ->where('p.asso_id = ?', $asso->getPrimaryKey());
+    return $q->fetchOne();
+  }
+
 }

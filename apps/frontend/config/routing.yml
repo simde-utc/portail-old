@@ -368,10 +368,8 @@ infojob_offre_signal:
   options: { model: InfoJobOffre, type: object }
 
 infojob_offre_signaldo:
-  url: /infojob/signaldo/:id
-  class: sfDoctrineRoute
+  url: /infojob/signaldo
   param: { module: infojob, action: signaldo }
-  options: { model: InfoJobOffre, type: object }
 
 sf_guard_signin:
   url:   /login

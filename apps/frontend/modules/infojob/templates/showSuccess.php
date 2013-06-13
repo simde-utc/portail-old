@@ -32,7 +32,7 @@
         <a href="mailto:<?php echo $annonce->getEmail(); ?>"><?php echo $annonce->getEmail(); ?></a>
         <p><?php echo $annonce->getTelephone(); ?></p>
         <?php else: ?>
-        <a href="#" class="btn btn-warning active">Connectez-vous<i class="icon-black icon-user"></i></a>
+        <a href="<?php echo url_for('cas') ?>" class="btn btn-warning active">Connectez-vous<i class="icon-black icon-user"></i></a>
         <?php endif; ?>
       </div>
       <div class="span4">

@@ -90,7 +90,27 @@ class infojobActions extends sfActions {
       $this->redirect('annonce/edit?key=' . $annonce->getEmailkey());
     }
   }
-
+  
+  
+    protected function processFormSignalement(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+  
+    if($form->isValid())
+    {
+        $form->getObject()->setCreatedAt(time());
+        
+    	$form->getObject()->setUpdatedAt(time());
+      	
+    
+      $signalement = $form->save();
+      $this->getUser()->setFlash('success','Merci davoir');
+      $this->redirect('infojob_offre_show', array('id' => $signalement->getOffreId()));
+    }
+  }
+  
+ 
+  
   public function executeEmail(sfWebRequest $request)
   {
     // TODO
@@ -98,29 +118,30 @@ class infojobActions extends sfActions {
 
   public function executeSignal(sfWebRequest $request)
   {
-
     $this->form = new InfoJobSignalementForm();
+    $this->form->setDefault('offre_id',$request->getParameter('id'));
   }
+
 
   public function executeSignaldo(sfWebRequest $request)
-  {  $this->forward404Unless($request->isMethod(sfRequest::POST));
+  { 
+  	$this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
 
     $this->form = new InfoJobSignalementForm();
 
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('offres');
-   
+    $this->processFormSignalement($request, $this->form);
+    $this->setTemplate('signal');
   }
+  
   
   public function executeMonprofil(sfWebRequest $request)
   {
     $this->form = new InfoJobAbonnementCategorieForm();
-    $this->processForm($request, $this->form);
+ 	//   $this->processForm($request, $this->form);
 
     //mettre la partie abonnement disponibilité du formulaire
 	  $this->form2 = new InfoJobAbonnementDisponibiliteForm();
-    $this->processForm($request, $this->form2);
+    //$this->processForm($request, $this->form2);
 
      /*
     $query = Doctrine_Core::getTable('InfoJobABonnementCategorie')

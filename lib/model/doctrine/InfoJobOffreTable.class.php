@@ -14,6 +14,26 @@ class InfoJobOffreTable extends Doctrine_Table
      */
     public static function getInstance()
     {
-        return Doctrine_Core::getTable('InfoJobOffre');
+      return Doctrine_Core::getTable('InfoJobOffre');
+    }
+
+    public function getLastOffreList($number = 5) {
+      return $query = Doctrine_Core::getTable('InfoJobOffre')
+             ->createQuery('a')
+             ->limit($number)
+             ->where('a.validation_date IS NOT NULL')
+             ->andWhere('a.archivage_date IS NULL')
+             ->andWhere('a.expiration_date IS NULL OR a.expiration_date > NOW()')
+             ->orderBy('a.created_at DESC');
+    }
+
+    public function getOffreByEmailKey($emailKey) {
+      return Doctrine_Core::getTable('InfoJobOffre')
+             ->createQuery('a')
+             ->limit(1)
+             ->where('a.emailkey = ?', $emailKey)
+             ->andWhere('a.validation_date IS NOT NULL')
+             ->andWhere('a.archivage_date IS NULL')
+             ->andWhere('a.expiration_date < NOW()');
     }
 }

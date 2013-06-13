@@ -30,12 +30,7 @@
     <?php if($sf_user->isAuthenticated() && $annonce->getUserId() == $sf_user->getGuardUser()->getId()): ?>
       <a href="<?php echo url_for('annonce/edit?id=' . $annonce->getEmailkey()) ?>"  style="float:left;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
     <?php endif ?>
-    <h2>Annonce n°<?php echo $annonce->getId() ?>:<?php echo $annonce->getTitre() ?></h2>
-    <p><?php echo $annonce->getTexte() ?></p>
-    <p>
-      <?php if($annonce->getRemuneration() != '0.00'): ?><strong>Prix</strong> : <?php echo $annonce->getRemuneration() ?>€<br /><?php endif ?>
-      <?php if($annonce->getLieu()): ?><strong>Lieu :</strong> <?php echo $annonce->getLieu() ?><br /><?php endif ?>
-    </p>
+    <h2>Annonce n°<?php echo $annonce->getId() ?> : <?php echo $annonce->getTitre() ?></h2>
     <p style="font-style: italic;">
       Posté le <?php echo $annonce->getCreatedAt() ?>
       <?php if($sf_user->isAuthenticated()): ?>
@@ -46,6 +41,11 @@
         endif;
         ?>
       <?php endif; ?>
+    </p>
+    <p><?php echo $annonce->getTexte() ?></p>
+    <p>
+      <?php if($annonce->getRemuneration() != '0.00'): ?><strong>Prix</strong> : <?php echo $annonce->getRemuneration() ?>€<br /><?php endif ?>
+      <?php if($annonce->getLieu()): ?><strong>Lieu :</strong> <?php echo $annonce->getLieu() ?><br /><?php endif ?>
     </p>
     <a href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>" class="btn btn-info" style="color: #FFFFFF;">Voir la fiche</a>
   </div>

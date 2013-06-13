@@ -16,25 +16,18 @@ class infojobActions extends sfActions {
   public function executeShow(sfWebRequest $request)
   {
     $this->annonce = $this->getRoute()->getObject();
-
   }
 
   public function executeOffres(sfWebRequest $request)
   { 
 	  $this->filters = new InfoJobOffreFormFilter();
-    if($request->getMethod() == sfRequest::POST)
-    {
+    if($request->getMethod() == sfRequest::POST) {
       $this->filters->bind($request->getParameter($this->filters->getName()));
       if($this->filters->isValid())
-      {
       	$query = $this->filters->buildQuery($this->filters->getValues());
-      }
     }
     else {
-      $query = Doctrine_Core::getTable('InfoJobOffre')
-          ->createQuery('a')
-          ->limit(5)
-          ->orderBy('a.created_at DESC');
+      $query = InfoJobOffreTable::getInstance()->getLastOffreList();
     }
     $this->annonces = $query->execute();
 
@@ -47,52 +40,36 @@ class infojobActions extends sfActions {
 
   public function executeCreate(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
-
+    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->form = new InfoJobOffreForm();
-
     $this->processForm($request, $this->form);
-
     $this->setTemplate('new');
   }
 
   public function executeEdit(sfWebRequest $request)
   {
-    $query = Doctrine_Core::getTable('InfoJobOffre')
-        ->createQuery('a')
-        ->where('a.emailkey = ?', $request->getParameter('key'));
-    $annonce = $query->execute()[0];
-    $this->forward404Unless(!empty($annonce), sprintf('Object annonce does not exist (%s).', $request->getParameter('key')));
-    $this->form = new InfoJobOffreForm($annonce);
+    $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
+    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
+    $this->form = new InfoJobOffreForm($annonces[0]);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $query = Doctrine_Core::getTable('InfoJobOffre')
-        ->createQuery('a')
-        ->where('a.emailkey = ?', $request->getParameter('key'));
-    $annonce = $query->execute()[0];
-    $this->forward404Unless(!empty($annonce), sprintf('Object annonce does not exist (%s).', $request->getParameter('key')));
-    $this->form = new InfoJobOffreForm($annonce);
-
+    $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
+    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
+    $this->form = new InfoJobOffreForm($annonce[0]);
     $this->processForm($request, $this->form);
-
+    $this->getUser()->setFlash('success', 'L\'annonce a bien été mise à jour.');
     $this->setTemplate('edit');
   }
 
   public function executeDelete(sfWebRequest $request)
   {
     $request->checkCSRFProtection();
-
-    $query = Doctrine_Core::getTable('InfoJobOffre')
-        ->createQuery('a')
-        ->where('a.emailkey = ?', $request->getParameter('key'));
-    $annonce = $query->execute()[0];
-    $this->forward404Unless(!empty($annonce), sprintf('Object annonce does not exist (%s).', $request->getParameter('key')));
-    $annonce->delete();
-
-    $this->redirect('annonce/index');
+    $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
+    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
+    $annonce[0]->delete();
+    $this->redirect('infojob/index');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -101,16 +78,15 @@ class infojobActions extends sfActions {
     if($form->isValid())
     {
       // TODO Vérifier que la clé générée est unique.
-      $form->setEmailkey(md5(microtime().rand()));
-      if($this->getUser()->isAuthenticated())
-        $form->setUserId($this->getUser()->getGuardUser()->getId());
+      $form->getObject()->setEmailkey(md5(microtime().rand()));
+      $form->getObject()->setValidationkey(md5(microtime().rand()));
+      if($this->getObject()->getUser()->isAuthenticated())
+        $form->getObject()->²setUserId($this->getUser()->getGuardUser()->getId());
       // Ajouter la date de création et de mise à jour.
-      $form->setCreatedAt(now());
+      $form->getObject()->setCreatedAt(now());
       $form->setUpdatedAt(now());
-
       $annonce = $form->save();
       // TODO Envoyer email.
-
       $this->redirect('annonce/edit?key=' . $annonce->getEmailkey());
     }
   }

@@ -14,7 +14,7 @@
 
           &nbsp;<a href="<?php echo url_for('annonce/index') ?>" class="btn">Retour aux annonces</a>
           <?php if(!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'annonce/delete?id='.$form->getObject()->getEmailkey(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
+            &nbsp;<?php echo link_to('Delete', 'annonce/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'class' => 'btn btn-danger')) ?>
           <?php endif; ?>
 
           <?php echo $form->renderHiddenFields(false) ?>

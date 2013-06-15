@@ -1,10 +1,20 @@
 
+
 <div class="part" >
   <?php include_partial('infojob/topbar') ?>
 
-  <div class="well">
-    <h1>Filtrer les offres</h1> 
-    <form class="form-horizontal form-filters well" method="post" action="">
+<div>
+
+<div class="accordion"  id="accordion2">
+
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+       <h1>Filtrer les offres</h1> 
+      </a>
+    
+    
+    <div id="collapseOne"  class="accordion-body collapse ">
+      
+        <form class="form-horizontal form-filters well" method="post" action="">
       <?php foreach($filters as $row): ?>
       <div>
         <?php if(!$row->isHidden()): ?>
@@ -20,9 +30,14 @@
       <input type="submit" value="Rechercher" class="btn btn-primary" />
     </form>
   </div>
-
-
-  <h1>Annonces</h1>
+    
+  </div>
+  
+  <br/>
+  <br/>
+  
+  
+    <h1>Annonces</h1>
   <?php foreach($annonces as $annonce): ?>
   <div class="well">
   

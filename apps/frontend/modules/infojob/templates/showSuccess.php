@@ -7,7 +7,15 @@
     <h2><?php echo $annonce->getTitre() ?></h2>
     <p><?php echo $annonce->getTexte() ?></p>
     <div class="row-fluid">
-      <div class="span2"><img src="/images/icones/<?php echo str_replace('', '-', $annonce->getCategorie()) ?>.jpg" style="witdh:90px; height:70px"></div>
+    <?php 
+    $file="/images/icones/".$annonce->getCategorie().".jpg";
+    echo $file;
+    if (file_exists($file)==0)
+	 $file="/images/icones/autre.jpg";
+    	
+    ?>
+      <div class="span2">
+      <img src=<?php echo $file ?> style="witdh:90px; height:70px"></div>
     	<div class= "span10">
         <p>
           <?php if($annonce->getRemuneration() != '0.00'): ?><b>Prix :</b> <?php echo $annonce->getRemuneration() ?> €<br /><?php endif ?>

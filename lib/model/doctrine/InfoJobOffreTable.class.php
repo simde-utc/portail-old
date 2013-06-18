@@ -32,7 +32,6 @@ class InfoJobOffreTable extends Doctrine_Table
              ->createQuery('a')
              ->limit(1)
              ->where('a.emailkey = ?', $emailKey)
-             ->andWhere('a.validation_date IS NOT NULL')
              ->andWhere('a.archivage_date IS NULL')
              ->andWhere('a.expiration_date < NOW()');
     }

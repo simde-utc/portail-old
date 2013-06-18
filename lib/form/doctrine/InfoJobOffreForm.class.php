@@ -13,22 +13,20 @@ class InfoJobOffreForm extends BaseInfoJobOffreForm
   public function configure()
   {
     // Cacher ou supprimer certains champs.
-    $hidden_fields = array(
+    $unsetted_fields = array(
       'user_id',
+      'created_at',
+      'updated_at',
+      'emailkey',
+      'validationkey',
       'archivage_date',
-      'validation_date',
+      'archivage_date',
+      'validation_date'
     );
-    foreach($hidden_fields as $hidden_field) {
-      $this->widgetSchema[$hidden_field]= new sfWidgetFormInputHidden();
+    foreach($unsetted_fields as $unsetted_field) {
+      unset($this->widgetSchema[$unsetted_field]);
+    	unset($this->validatorSchema[$unsetted_field]);
     }
-    unset($this->widgetSchema['created_at']);
-  	unset($this->validatorSchema['created_at']);
-  	unset($this->widgetSchema['updated_at']);
-  	unset($this->validatorSchema['updated_at']);
-    unset($this->widgetSchema['emailkey']);
-  	unset($this->validatorSchema['emailkey']);
-  	unset($this->widgetSchema['validationkey']);
-  	unset($this->validatorSchema['validationkey']);
     // Configurer le formulaire.
     $this->widgetSchema['expiration_date'] = new sfWidgetFormJQueryDate();
     $this->widgetSchema->setLabels(array(

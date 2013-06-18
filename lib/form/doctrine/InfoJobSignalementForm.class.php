@@ -12,20 +12,21 @@ class InfoJobSignalementForm extends BaseInfoJobSignalementForm
 {
   public function configure()
   {
-  		
-  		 $this->widgetSchema['commentaire'] = new  sfWidgetFormTextarea();
-  		 
-  		  $hidden_fields = array(
-        'offre_id',
-        'archivage_date'
-      );
-      
-      	unset($this->widgetSchema['created_at']);
-      	unset($this->validatorSchema['created_at']);
-      	unset($this->widgetSchema['updated_at']);
-      	unset($this->validatorSchema['updated_at']);
-  		foreach($hidden_fields as $hidden_field) {
-        $this->widgetSchema[$hidden_field]= new sfWidgetFormInputHidden();
-      }
+    $this->widgetSchema['commentaire'] = new  sfWidgetFormTextarea();
+	  $hidden_fields = array(
+      'offre_id',
+    );
+		foreach($hidden_fields as $hidden_field) {
+      $this->widgetSchema[$hidden_field]= new sfWidgetFormInputHidden();
+    }
+    $unsetted_fields = array(
+      'created_at',
+      'updated_at',
+      'archivage_date'
+    );
+    foreach($unsetted_fields as $unsetted_field) {
+      unset($this->widgetSchema[$unsetted_field]);
+    	unset($this->validatorSchema[$unsetted_field]);
+    }
   }
 }

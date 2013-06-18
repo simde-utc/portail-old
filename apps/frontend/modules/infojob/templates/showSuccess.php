@@ -33,20 +33,19 @@
     <br/>
     <br/>
     <div class="row-fluid">
-      <div class="span8">
+      <div class="span9">
         <?php if($sf_user->isAuthenticated()): ?>
         <b>Email: </b><a href="mailto:<?php echo $annonce->getEmail(); ?>"><?php echo $annonce->getEmail(); ?></a><br/>
         <b>Téléphone: </b> <p><?php echo $annonce->getTelephone(); ?></p>
         <?php else: ?>
-        <a href="<?php echo url_for('cas') ?>" class="btn btn-warning active">Connectez-vous<i class="icon-black icon-user"></i></a>
-        
-        //redirect
+        <a href="<?php echo url_for('cas') ?>" class="btn btn-warning active" style="color: #000000;">Connectez-vous <i class="icon-black icon-user"></i></a>
+
         <?php endif; ?>
       </div>
-      <div class="span4">
+      <div class="span3">
         <a href="<?php echo url_for('infojob/offres') ?>" class="btn active"><i class="icon-arrow-left"></i> Retour</a>
-        <a href="<?php echo url_for('infojob/signal?id=' . $annonce->getId())?>"class="btn btn-danger btn-small" rel="nofollow"><i class="icon-warning-sign"></i>Signaler l'annonce</a>
         <br/><br/>
+        <a href="<?php echo url_for('infojob/signal?id=' . $annonce->getId())?>" rel="nofollow">Signaler l'annonce</a><br/>
         <a href="#TODO" rel="nofollow">Ceci est votre offre ?</a>
       </div>
     </div>

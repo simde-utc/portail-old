@@ -326,7 +326,7 @@ InfoJobOffre:
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
     Disponibilites:
       class: InfoJobDisponibilite
-      onUpdate: CASCADE
+      onDelete: CASCADE
       refClass: InfoJobOffreDisponibilite
       local: offre_id
       foreign: disponibilite_id

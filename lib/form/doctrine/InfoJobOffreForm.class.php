@@ -12,26 +12,33 @@ class InfoJobOffreForm extends BaseInfoJobOffreForm
 {
   public function configure()
   {
-      $hidden_fields = array(
-        'emailkey',
-        'user_id',
-        'created_at',
-        'updated_at',
-        'archivage_date',
-        'validation_date',
-        'validationkey'
-      );
-      foreach($hidden_fields as $hidden_field) {
-        $this->widgetSchema[$hidden_field]= new sfWidgetFormInputHidden();
-      }
-      $this->widgetSchema['expiration_date'] = new sfWidgetFormJQueryDate();
-      $this->widgetSchema->setLabels(array(
-        'categorie_id' => 'Type d\'emploi',
-        'disponibilite_list' => 'Disponibilité demandée',
-        'texte' => 'Description de l\'emploi et modalités',
-        'remuneration' => 'Rémunération',
-        'email' => 'Adresse email',
-        'telephone' => 'Téléphone',
-      ));
+    // Cacher ou supprimer certains champs.
+    $hidden_fields = array(
+      'user_id',
+      'archivage_date',
+      'validation_date',
+    );
+    foreach($hidden_fields as $hidden_field) {
+      $this->widgetSchema[$hidden_field]= new sfWidgetFormInputHidden();
+    }
+    unset($this->widgetSchema['created_at']);
+  	unset($this->validatorSchema['created_at']);
+  	unset($this->widgetSchema['updated_at']);
+  	unset($this->validatorSchema['updated_at']);
+    unset($this->widgetSchema['emailkey']);
+  	unset($this->validatorSchema['emailkey']);
+  	unset($this->widgetSchema['validationkey']);
+  	unset($this->validatorSchema['validationkey']);
+    // Configurer le formulaire.
+    $this->widgetSchema['expiration_date'] = new sfWidgetFormJQueryDate();
+    $this->widgetSchema->setLabels(array(
+      'categorie_id' => 'Type d\'emploi',
+      'disponibilites_list' => 'Disponibilité requise',
+      'texte' => 'Description de l\'emploi et modalités',
+      'remuneration' => 'Rémunération',
+      'email' => 'Adresse email',
+      'telephone' => 'Téléphone',
+      'expiration_date' => 'Date d\'expiration (facultatif)',
+    ));
   }
 }

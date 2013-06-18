@@ -71,45 +71,6 @@ class infojobActions extends sfActions {
     $annonce[0]->delete();
     $this->redirect('infojob/index');
   }
-
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if($form->isValid())
-    {
-      // TODO Vérifier que la clé générée est unique.
-      $form->getObject()->setEmailkey(md5(microtime().rand()));
-      $form->getObject()->setValidationkey(md5(microtime().rand()));
-      if($this->getObject()->getUser()->isAuthenticated())
-        $form->getObject()->²setUserId($this->getUser()->getGuardUser()->getId());
-      // Ajouter la date de création et de mise à jour.
-      $form->getObject()->setCreatedAt(now());
-      $form->setUpdatedAt(now());
-      $annonce = $form->save();
-      // TODO Envoyer email.
-      $this->redirect('annonce/edit?key=' . $annonce->getEmailkey());
-    }
-  }
-  
-  
-    protected function processFormSignalement(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-  
-    if($form->isValid())
-    {
-        $form->getObject()->setCreatedAt(time());
-        
-    	$form->getObject()->setUpdatedAt(time());
-      	
-    
-      $signalement = $form->save();
-      $this->getUser()->setFlash('success','Merci davoir');
-      $this->redirect('infojob_offre_show', array('id' => $signalement->getOffreId()));
-    }
-  }
-  
- 
   
   public function executeEmail(sfWebRequest $request)
   {
@@ -156,6 +117,39 @@ class infojobActions extends sfActions {
             ->orderBy('a.created_at DESC');
         $this->annonces = $query2->execute();
     */
+  }
+
+  protected function processForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if($form->isValid())
+    {
+      // TODO Vérifier que la clé générée est unique.
+      $form->getObject()->setEmailkey(md5(microtime().rand()));
+      $form->getObject()->setValidationkey(md5(microtime().rand()));
+      if($this->getUser()->isAuthenticated())
+        $form->getObject()->setUserId($this->getUser()->getGuardUser()->getId());
+      // Ajouter la date de création et de mise à jour.
+      $form->getObject()->setCreatedAt(time());
+    	$form->getObject()->setUpdatedAt(time());
+      $annonce = $form->save();
+      // TODO Envoyer email.
+      $this->redirect('infojob_offre_edit', array('key' => $annonce->getEmailkey()));
+    }
+  }
+  
+  protected function processFormSignalement(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if($form->isValid())
+    {
+      // Ajouter la date de création et de mise à jour.
+      $form->getObject()->setCreatedAt(time());
+    	$form->getObject()->setUpdatedAt(time());
+      $signalement = $form->save();
+      $this->getUser()->setFlash('success','Merci davoir');
+      $this->redirect('infojob_offre_show', array('id' => $signalement->getOffreId()));
+    }
   }
 }
 

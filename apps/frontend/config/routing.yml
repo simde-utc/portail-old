@@ -356,10 +356,8 @@ infojob_offre_delete:
   param: { module: infojob, action: delete }
 
 infojob_offre_email:
-  url: /infojob/email/:id
-  class: sfDoctrineRoute
+  url: /infojob/email/:key
   param: { module: infojob, action: email }
-  options: { model: InfoJobOffre, type: object }
 
 infojob_offre_signal:
   url: /infojob/signal/:id

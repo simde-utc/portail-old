@@ -12,4 +12,11 @@
  */
 class InfoJobOffre extends BaseInfoJobOffre
 {
+  public function activate() {
+    // TODO
+  }
+
+  public function archive() {
+    // TODO
+  }
 }

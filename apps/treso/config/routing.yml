@@ -158,6 +158,10 @@ transaction_create:
   url: /transaction/create
   param: { module: transaction, action: create }
 
+transaction_new_with_budget_poste:
+  url: /transaction/:asso_id/new/:poste_id
+  param: { module: transaction, action: new }
+
 transaction_new:
   url: /transaction/:login/new
   class: sfDoctrineRoute
@@ -238,3 +242,49 @@ document_show:
 document_delete_from_transaction:
   url: /documents/delete_from_transaction/:id
   param: { module: document, action: deleteFromTransaction }
+
+# Avances de tréso
+avances:
+  url: /avances/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: avances, action: index }
+
+avances_interdit:
+  url: /avances/interdit/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: avances, action: interdit }
+
+avances_show:
+  url: /avances/show/:id
+  class: sfDoctrineRoute
+  options: { model: AvanceTreso, type: object }
+  param: { module: avances, action: show }
+
+avances_new:
+  url: /avances/new/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: avances, action: new }
+
+avances_new_with_asso:
+  url: /avances/new/:login1/to/:login2
+  param: { module: avances, action: newWithAsso }
+
+avances_create:
+  url: /avances/create
+  param: { module: avances, action: create }
+
+# Cheques
+cheque_list:
+  url: /cheque/asso/:login
+  class: sfDoctrineRoute
+  param: { module: cheque, action: index }
+  options: { model: Asso, type: object }
+
+cheque_encaisser:
+  url: /cheque/:id
+  class: sfDoctrineRoute
+  param: { module: cheque, action: encaisser }
+  options: { model: Transaction, type: object }

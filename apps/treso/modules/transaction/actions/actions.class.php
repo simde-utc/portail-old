@@ -71,11 +71,22 @@ class transactionActions extends tresoActions {
   }
 
   public function executeNew(sfWebRequest $request) {
-    $this->asso = $this->getRoute()->getObject();
+    if ($request->getParameter('poste_id')){
+      $this->forward404Unless(is_numeric($request->getParameter('poste_id')));
+      $this->asso = AssoTable::getInstance()->find($request->getParameter('asso_id'));
+      $this->poste_id = $request->getParameter('poste_id');
+    } else {
+      $this->asso = $this->getRoute()->getObject();
+    }
+
     $this->checkAuthorisation($this->asso);
     $transaction = new Transaction();
     $transaction->setAsso($this->asso);
     $this->form = new TransactionForm($transaction);
+    if (isset($this->poste_id)) {
+      $this->form->setDefault('budget_poste_id', $this->poste_id);
+    }
+    $this->getResponse()->setSlot('current_asso', $this->asso);
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 

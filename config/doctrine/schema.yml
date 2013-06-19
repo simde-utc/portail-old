@@ -321,7 +321,7 @@ Transaction:
     commentaire: { type: string, notnull: false }
     date_transaction: { type: date, notnull: true }
     date_rapprochement: { type: date, notnull: false }
-    budget_poste_id: { type: integer }
+    budget_poste_id: { type: integer, notnull: false }
     moyen_id: { type: integer, notnull: true }
     moyen_commentaire: { type: string, notnull: false }
     note_de_frais_id: { type: integer }
@@ -413,12 +413,16 @@ Subvention:
 AvanceTreso:
   connection: doctrine
   columns:
+    emetteur_id: { type: integer, notnull: true }
     asso_id: { type: integer, notnull: true }
-    commentaire: { type: string, notnull: false }
+    commentaire: { type: string, notnull: true }
     transaction_id: { type: integer, notnull: true }
+    transaction_emetteur_id: { type: integer, notnull: true }
   relations:
+    Emetteur: { onUpdate: CASCADE, local: emetteur_id, foreign: id, class: Asso }
     Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
     Transaction: { onUpdate: CASCADE, local: transaction_id, foreign: id }
+    TransactionEmetteur: { onUpdate: CASCADE, local: transaction_emetteur_id, foreign: id, class: Transaction }
 
 Weekmail:
   connection: doctrine

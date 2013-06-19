@@ -117,6 +117,13 @@ class AssoTable extends Doctrine_Table
     return $q;
   }
 
+  public function getAllForPole($pole)
+  {
+    $q = $this->createQuery('q')
+            ->where('q.pole_id = ?', $pole->getPrimaryKey());
+    return $q;
+  }
+
   /**
    * 
    * Method to use the zend framework for search

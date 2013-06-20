@@ -355,9 +355,9 @@ infojob_offre_delete:
   url:  /infojob/delete/:key
   param: { module: infojob, action: delete }
 
-infojob_offre_email:
-  url: /infojob/email/:key
-  param: { module: infojob, action: email }
+infojob_offre_activate:
+  url: /infojob/activate/:key
+  param: { module: infojob, action: activate }
 
 infojob_offre_signal:
   url: /infojob/signal/:id

@@ -15,6 +15,7 @@ class infojobActions extends sfActions {
   
   public function executeShow(sfWebRequest $request)
   {
+    // TODO faire une requête pour ne pas afficher l'offre si elle est archivée / périmée / signalée, etc.
     $this->annonce = $this->getRoute()->getObject();
   }
 
@@ -53,6 +54,12 @@ class infojobActions extends sfActions {
     $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
     $this->form = new InfoJobOffreForm($annonces[0]);
     // Si l'annonce n'a pas encore été validée, afficher une notification.
+    $message = Swift_Message::newInstance()
+      ->setFrom('bde@assos.utc.fr')
+      ->setTo('test@gmail.com')
+      ->setSubject('Subject');
+    $message->setBody($this->getPartial('validationemail', array('annonce' =>$annonces[0])));
+    $this->getMailer()->send($message);
     if($annonces[0]->getValidationDate() == NULL)
       $this->getUser()->setFlash('warning', 'Cette annonce n\'a pas encore été validée. Veuillez suivre le lien envoyé par email pour que l\'annonce soit publiée.');
   }
@@ -61,7 +68,7 @@ class infojobActions extends sfActions {
   {
     $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
     $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
-    $this->form = new InfoJobOffreForm($annonce[0]);
+    $this->form = new InfoJobOffreForm($annonces[0]);
     $this->processForm($request, $this->form);
     $this->setTemplate('edit');
   }
@@ -75,10 +82,11 @@ class infojobActions extends sfActions {
     $this->redirect('infojob/index');
   }
   
-  public function executeEmail(sfWebRequest $request)
+  public function executeActivate(sfWebRequest $request)
   {
     $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
     $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
+    $this->forward404Unless($annonces[0]->getValidationDate() == NULL, sprintf('L\'annonce a déjà été activée (%s).', $request->getParameter('key')));
     $annonces[0]->activate();
     $this->getUser()->setFlash('success', 'L\'annonce a bien été activée.');
     $this->redirect('infojob_offre_show', array('id' => $annonces[0]->getId()));
@@ -170,10 +178,9 @@ class infojobActions extends sfActions {
   }
 
   protected function sendValidationEmail($annonce) {
-    // TODO à tester
     $message = Swift_Message::newInstance()
-      ->setFrom('from@example.com')
-      ->setTo('yoan.tournade@gmail.com')
+      ->setFrom('bde@assos.utc.fr')
+      ->setTo($annonce->getEmail())
       ->setSubject('Subject');
     $message->setBody($this->getPartial('validationemail', array('annonce' =>$annonce)));
     $this->getMailer()->send($message);

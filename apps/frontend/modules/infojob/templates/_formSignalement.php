@@ -1,26 +1,7 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
-<h1>Signaler une annonce </h1>
-<style>
-input, textarea, .uneditable-input{
-	width:400px;
-	height:200px;
-	}
-	
-label{
-	font:bold;
-	}
-	
-select{
-	width:400px;
-	
-	}
-</style>
-<form class="well" action="<?php echo url_for('infojob/signaldo')?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
-	Si le contenu de cette annonce vous parait inapproprié, vous pouvez nous la signaler. Indiquez-nous pourquoi vous estimez que l'annonce devrait être retirée.
-	<br/>
-	<br/>
-    <input type="hidden" name="sf_method" value="put" />
+<form class="well infojob-form" action="<?php echo url_for('infojob/signaldo')?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
+  <input type="hidden" name="sf_method" value="put" />
   <table>
     <tfoot>
       <tr>

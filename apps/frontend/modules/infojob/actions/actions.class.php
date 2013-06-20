@@ -20,7 +20,7 @@ class infojobActions extends sfActions {
   }
 
   public function executeOffres(sfWebRequest $request)
-  { 
+  {
 	  $this->filters = new InfoJobOffreFormFilter();
     if($request->getMethod() == sfRequest::POST) {
       $this->filters->bind($request->getParameter($this->filters->getName()));
@@ -31,7 +31,7 @@ class infojobActions extends sfActions {
       $query = InfoJobOffreTable::getInstance()->getLastOffreList();
     }
     $this->annonces = $query->execute();
-
+    $this->isGet = $request->getMethod() == sfRequest::GET;
   }
 
   public function executeNew(sfWebRequest $request)

@@ -18,13 +18,12 @@ class InfoJobOffreTable extends Doctrine_Table
     }
 
     public function getLastOffreList($number = 5) {
-      return $query = Doctrine_Core::getTable('InfoJobOffre')
+      return $this->addStandardFilters(
+              Doctrine_Core::getTable('InfoJobOffre')
              ->createQuery('a')
              ->limit($number)
-             ->where('a.validation_date IS NOT NULL')
-             ->andWhere('a.archivage_date IS NULL')
-             ->andWhere('a.expiration_date IS NULL OR a.expiration_date > NOW()')
-             ->orderBy('a.created_at DESC');
+             ->orderBy('a.created_at DESC')
+      );
     }
 
     public function getOffreByEmailKey($emailKey) {
@@ -33,6 +32,12 @@ class InfoJobOffreTable extends Doctrine_Table
              ->limit(1)
              ->where('a.emailkey = ?', $emailKey)
              ->andWhere('a.archivage_date IS NULL')
-             ->andWhere('a.expiration_date < NOW()');
+             ->andWhere('expiration_date IS NULL OR a.expiration_date < NOW()');
     }
+
+  public function addStandardFilters($query) {
+    return $query->andWhere('validation_date IS NOT NULL')
+                 ->andWhere('archivage_date IS NULL')
+                 ->andWhere('expiration_date IS NULL OR expiration_date > NOW()');
+  }
 }

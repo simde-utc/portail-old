@@ -18,6 +18,7 @@ class InfoJobOffre extends BaseInfoJobOffre
   }
 
   public function archive() {
-    // TODO
+    $this->setDateTimeObject('archivage_date', new DateTime());
+    $this->save();
   }
 }

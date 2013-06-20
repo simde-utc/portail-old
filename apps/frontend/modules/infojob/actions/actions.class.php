@@ -26,6 +26,7 @@ class infojobActions extends sfActions {
       $this->filters->bind($request->getParameter($this->filters->getName()));
       if($this->filters->isValid())
       	$query = $this->filters->buildQuery($this->filters->getValues());
+        $query = InfoJobOffreTable::getInstance()->addStandardFilters($query)->orderBy('created_at DESC');
     }
     else {
       $query = InfoJobOffreTable::getInstance()->getLastOffreList();
@@ -37,6 +38,7 @@ class infojobActions extends sfActions {
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new InfoJobOffreForm();
+    $this->form->setDefault('expiration_date', NULL);
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -54,12 +56,6 @@ class infojobActions extends sfActions {
     $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
     $this->form = new InfoJobOffreForm($annonces[0]);
     // Si l'annonce n'a pas encore été validée, afficher une notification.
-    $message = Swift_Message::newInstance()
-      ->setFrom('bde@assos.utc.fr')
-      ->setTo('test@gmail.com')
-      ->setSubject('Subject');
-    $message->setBody($this->getPartial('validationemail', array('annonce' =>$annonces[0])));
-    $this->getMailer()->send($message);
     if($annonces[0]->getValidationDate() == NULL)
       $this->getUser()->setFlash('warning', 'Cette annonce n\'a pas encore été validée. Veuillez suivre le lien envoyé par email pour que l\'annonce soit publiée.');
   }
@@ -86,7 +82,10 @@ class infojobActions extends sfActions {
   {
     $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
     $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
-    $this->forward404Unless($annonces[0]->getValidationDate() == NULL, sprintf('L\'annonce a déjà été activée (%s).', $request->getParameter('key')));
+    if($annonces[0]->getValidationDate() != NULL) {
+      $this->getUser()->setFlash('warning', 'L\'annonce a déjà été activée.');
+      $this->redirect('infojob_offre_show', array('id' => $annonces[0]->getId()));
+    }
     $annonces[0]->activate();
     $this->getUser()->setFlash('success', 'L\'annonce a bien été activée.');
     $this->redirect('infojob_offre_show', array('id' => $annonces[0]->getId()));

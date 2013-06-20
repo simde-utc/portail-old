@@ -21,14 +21,15 @@ class InfoJobOffreForm extends BaseInfoJobOffreForm
       'validationkey',
       'archivage_date',
       'archivage_date',
-      'validation_date'
+      'validation_date',
+      'expiration_date'
     );
     foreach($unsetted_fields as $unsetted_field) {
       unset($this->widgetSchema[$unsetted_field]);
     	unset($this->validatorSchema[$unsetted_field]);
     }
     // Configurer le formulaire.
-    $this->widgetSchema['expiration_date'] = new sfWidgetFormJQueryDate();
+    // TODO permettre de saisir la date d'expiration.
     $this->widgetSchema->setLabels(array(
       'categorie_id' => 'Type d\'emploi',
       'disponibilites_list' => 'Disponibilité requise',
@@ -38,5 +39,6 @@ class InfoJobOffreForm extends BaseInfoJobOffreForm
       'telephone' => 'Téléphone',
       'expiration_date' => 'Date d\'expiration (facultatif)',
     ));
+    $this->validatorSchema['email'] = new sfValidatorEmail();
   }
 }

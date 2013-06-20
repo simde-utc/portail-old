@@ -4,12 +4,16 @@
     <?php if($sf_user->isAuthenticated() && $annonce->getUserId() == $sf_user->getGuardUser()->getId()): ?>
       <a href="<?php echo url_for('annonce/edit?id=' . $annonce->getId()) ?>"  style="float:left;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
     <?php endif ?>
-    <h2><?php echo $annonce->getTitre() ?></h2>
-    <p><?php echo $annonce->getTexte() ?></p>
+    <h2>Annonce n° <?php echo $annonce->getId() ?>: <?php echo $annonce->getTitre() ?></h2>
+      <p style="font-style: italic;">
+      Posté le <?php echo $annonce->getCreatedAt() ?>
+    
+    </p> 
+    <b>Descriptif: </b><p><?php echo $annonce->getTexte() ?></p>
     <div class="row-fluid">
     <?php 
     $file="/images/icones/".$annonce->getCategorie().".jpg";
-    echo $file;
+   
     if (file_exists($file)==0)
 	 $file="/images/icones/autre.jpg";
     	
@@ -25,22 +29,17 @@
     </div>
     <br/>
     <br/>
-    <p style="font-style: italic;">
-      Posté le <?php echo $annonce->getCreatedAt() ?>
-      <?php if($annonce->getUserId() != NULL): ?>
-        par :
-        <a href="mailto:<?php echo $annonce->getUser()->getEmailAddress() ?>"><?php echo $annonce->getUser()->getName(); ?></a>
-      <?php endif; ?>
-    </p>    
+     
     <br/>
     <br/>
     <div class="row-fluid">
       <div class="span9">
         <?php if($sf_user->isAuthenticated()): ?>
-        <a href="mailto:<?php echo $annonce->getEmail(); ?>"><?php echo $annonce->getEmail(); ?></a>
-        <p><?php echo $annonce->getTelephone(); ?></p>
+        <b>Email: </b><a href="mailto:<?php echo $annonce->getEmail(); ?>"><?php echo $annonce->getEmail(); ?></a><br/>
+        <b>Téléphone: </b> <p><?php echo $annonce->getTelephone(); ?></p>
         <?php else: ?>
-        <a href="<?php echo url_for('cas') ?>" class="btn btn-warning active">Connectez-vous <i class="icon-black icon-user"></i></a>
+        <a href="<?php echo url_for('cas') ?>" class="btn btn-warning active" style="color: #000000;">Connectez-vous <i class="icon-black icon-user"></i></a>
+
         <?php endif; ?>
       </div>
       <div class="span3">

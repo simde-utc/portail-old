@@ -1,5 +1,13 @@
 
-
+<script>
+  $("#accordion2").collapse({
+    toggle: false
+  }).on('show',function (e) {
+        $(e.target).find(".icon-chevron-right icon-white").removeClass("icon-chevron-right icon-white").addClass("icon-chevron-down");
+      }).on('hide', function (e) {
+        $(e.target).find(".icon-chevron-down").removeClass("icon-chevron-down").addClass("icon-chevron-right");
+      });
+</script>
 <div class="part" >
   <?php include_partial('infojob/topbar') ?>
 
@@ -8,11 +16,11 @@
 <div class="accordion"  id="accordion2">
 
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-       <h1>Filtrer les offres</h1> 
+       <h1><i class="icon-chevron-right icon-white"></i>Filtrer les offres</h1> 
       </a>
     
     
-    <div id="collapseOne"  class="accordion-body collapse ">
+    <div id="collapseOne"  class="accordion-body collapse-on">
       
         <form class="form-horizontal form-filters well" method="post" action="">
       <?php foreach($filters as $row): ?>

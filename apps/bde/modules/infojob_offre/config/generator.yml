@@ -21,9 +21,11 @@ generator:
         title: Offres
         display: [titre, email, expiration_date, archivage_date, _lien]
         actions: {}
-        batch_actions: {}
+        batch_actions:
+          archiver: ~
         object_actions:
           _edit: ~
+          archiver: ~
       filter:
         display: [titre, texte, lieu, email, created_at, archivage_date]
       form: ~

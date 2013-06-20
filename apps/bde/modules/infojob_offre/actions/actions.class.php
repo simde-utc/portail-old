@@ -13,4 +13,23 @@ require_once dirname(__FILE__).'/../lib/infojob_offreGeneratorHelper.class.php';
  */
 class infojob_offreActions extends autoInfojob_offreActions
 {
+  public function executeBatchArchiver(sfWebRequest $request) {
+    $ids = $request->getParameter('ids');
+    $q = Doctrine_Query::create()
+      ->from('InfoJobOffre a')
+      ->whereIn('a.id', $ids);
+    foreach ($q->execute() as $offre) {
+      $offre->archive();
+    }
+    $this->getUser()->setFlash('notice', 'Les offres ont bien étés archivées.');
+    $this->redirect('info_job_offre');
+  }
+
+  public function executeListArchiver(sfWebRequest $request)
+  {
+    $offre = $this->getRoute()->getObject();
+    $offre->archive();
+    $this->getUser()->setFlash('notice', 'L\'offre a bien été archivé.');
+    $this->redirect('info_job_offre');
+  }
 }

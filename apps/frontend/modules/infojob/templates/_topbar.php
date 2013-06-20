@@ -1,7 +1,3 @@
-
-<!-- Menu du haut commun au service infojob TODO, voir exemple dans apps/frontend/modules/assos/templates/_topbar.php -->
-
-
 <div class="well">
   <div class="row-fluid" style="text-align:center;">
     <div class="span6">
@@ -19,6 +15,3 @@
     </div>
   </div>
 </div>
-
-
-

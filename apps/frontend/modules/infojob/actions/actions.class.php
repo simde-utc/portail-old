@@ -75,7 +75,7 @@ class infojobActions extends sfActions {
     $request->checkCSRFProtection();
     $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
     $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
-    $annonces[0]->delete();
+    $annonces[0]->archive();
     $this->redirect('infojob/index');
   }
   

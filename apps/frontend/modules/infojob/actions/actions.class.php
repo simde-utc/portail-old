@@ -15,8 +15,9 @@ class infojobActions extends sfActions {
   
   public function executeShow(sfWebRequest $request)
   {
-    // TODO faire une requête pour ne pas afficher l'offre si elle est archivée / périmée / signalée, etc.
-    $this->annonce = $this->getRoute()->getObject();
+    $annonces = InfoJobOffreTable::getInstance()->getOffreById($request->getParameter('id'))->execute();
+    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas ou a été archivée (%s).', $request->getParameter('id')));
+    $this->annonce = $annonces[0];
   }
 
   public function executeOffres(sfWebRequest $request)
@@ -110,26 +111,7 @@ class infojobActions extends sfActions {
   
   public function executeMonprofil(sfWebRequest $request)
   {
-    $this->form = new InfoJobAbonnementCategorieForm();
- 	//   $this->processForm($request, $this->form);
-
-    //mettre la partie abonnement disponibilité du formulaire
-	  $this->form2 = new InfoJobAbonnementDisponibiliteForm();
-    //$this->processForm($request, $this->form2);
-
-     /*
-    $query = Doctrine_Core::getTable('InfoJobABonnementCategorie')
-            ->createQuery('a')
-            ->limit(5)
-            ->orderBy('a.created_at DESC');
-        $this->annonces = $query->execute();
-      /*
-    $query2= Doctrine_Core::getTable('InfoJobABonnementDisponibilite')
-            ->createQuery('a')
-            ->limit(5)
-            ->orderBy('a.created_at DESC');
-        $this->annonces = $query2->execute();
-    */
+    // TODO à faire.
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

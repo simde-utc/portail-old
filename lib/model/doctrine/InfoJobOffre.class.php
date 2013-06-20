@@ -13,12 +13,18 @@
 class InfoJobOffre extends BaseInfoJobOffre
 {
   public function activate() {
+    if($this->getValidationDate() != NULL)
+      return false;
     $this->setDateTimeObject('validation_date', new DateTime());
     $this->save();
+    return true;
   }
 
   public function archive() {
+    if($this->getArchivageDate() != NULL)
+      return false;
     $this->setDateTimeObject('archivage_date', new DateTime());
     $this->save();
+    return true;
   }
 }

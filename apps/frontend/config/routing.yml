@@ -331,9 +331,7 @@ infojob_monprofil:
     
 infojob_offre_show:
   url:   /infojob/show/:id
-  class: sfDoctrineRoute
   param: { module: infojob, action: show }
-  options: { model: InfoJobOffre, type: object }
 
 infojob_offre_new:
   url:  /infojob/new

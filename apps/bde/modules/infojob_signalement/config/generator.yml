@@ -18,8 +18,12 @@ generator:
         title: Offres signalées
         display: [type_id, commentaire, _lien]
         actions: {}
-        batch_actions: {}
-        object_actions: {}
+        batch_actions:
+          valider: ~
+          annuler: ~
+        object_actions:
+          valider: ~
+          annuler: ~
       filter:
         class: false
       form: ~

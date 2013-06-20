@@ -7,32 +7,41 @@
  */
 class InfoJobOffreTable extends Doctrine_Table
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return object InfoJobOffreTable
-     */
-    public static function getInstance()
-    {
-      return Doctrine_Core::getTable('InfoJobOffre');
-    }
+  /**
+   * Returns an instance of this class.
+   *
+   * @return object InfoJobOffreTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('InfoJobOffre');
+  }
 
-    public function getLastOffreList($number = 5) {
+  public function getLastOffreList($number = 5) {
+    return $this->addStandardFilters(
+            Doctrine_Core::getTable('InfoJobOffre')
+           ->createQuery('a')
+           ->limit($number)
+           ->orderBy('a.created_at DESC')
+    );
+  }
+
+  public function getOffreByEmailKey($emailKey) {
+    return Doctrine_Core::getTable('InfoJobOffre')
+           ->createQuery('a')
+           ->limit(1)
+           ->where('a.emailkey = ?', $emailKey)
+           ->andWhere('a.archivage_date IS NULL')
+           ->andWhere('expiration_date IS NULL OR a.expiration_date < NOW()');
+  }
+
+  public function getOffreById($id) {
       return $this->addStandardFilters(
               Doctrine_Core::getTable('InfoJobOffre')
-             ->createQuery('a')
-             ->limit($number)
-             ->orderBy('a.created_at DESC')
+               ->createQuery('a')
+               ->limit(1)
+               ->where('a.id = ?', $id)
       );
-    }
-
-    public function getOffreByEmailKey($emailKey) {
-      return Doctrine_Core::getTable('InfoJobOffre')
-             ->createQuery('a')
-             ->limit(1)
-             ->where('a.emailkey = ?', $emailKey)
-             ->andWhere('a.archivage_date IS NULL')
-             ->andWhere('expiration_date IS NULL OR a.expiration_date < NOW()');
     }
 
   public function addStandardFilters($query) {

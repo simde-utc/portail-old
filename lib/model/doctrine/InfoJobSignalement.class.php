@@ -12,4 +12,8 @@
  */
 class InfoJobSignalement extends BaseInfoJobSignalement
 {
+  public function archive() {
+    $this->setDateTimeObject('archivage_date', new DateTime());
+    $this->save();
+  }
 }

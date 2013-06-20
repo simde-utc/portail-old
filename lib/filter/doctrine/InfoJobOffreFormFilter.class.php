@@ -19,7 +19,7 @@ class InfoJobOffreFormFilter extends BaseInfoJobOffreFormFilter
 	  $this->widgetSchema['texte']->setOption('with_empty', false);
 	  $this->setDefault('lieu', 'Votre email ici');
     $this->widgetSchema->setLabels(array(
-      'categorie_id'    => 'Type d\'emploi ?',
+      'categorie_id'    => 'Type d\'emploi',
       'disponibilites_list'    => 'Disponibilité',
       'titre'   => 'Titre',
       'lieu' => 'Lieu',

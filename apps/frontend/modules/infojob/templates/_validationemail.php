@@ -62,7 +62,7 @@
                                                                     <h2 style="color:#0E7693; font-size:22px; padding-top:12px;">Merci d&#39;avoir choisi InfoJob !</h2>
 
                                                                     <div align="left" class="article-content">
-                                                                        <p>Vous pouvez à tout moment gérer votre annonce en cliquant sur le lien suivant : <a href="<?php echo url_for('infojob/edit?key=' . $annonce->getEmailkey(), true); ?>"><?php echo url_for('infojob/edit?key=' . $annonce->getEmailkey(), true); ?></a></p>
+                                                                        <p>Vous pouvez à tout moment gérer votre annonce en cliquant sur le lien suivant : <a href="<?php echo url_for('infojob/activate?key=' . $annonce->getEmailkey(), true); ?>"><?php echo url_for('infojob/activate?key=' . $annonce->getEmailkey(), true); ?></a></p>
     
                                                                     </div>
                                                                 </td>

@@ -162,7 +162,7 @@ class infojobActions extends sfActions {
           ->setFrom('bde@assos.utc.fr')
           ->setTo($annonce->getEmail())
           ->setSubject('Création de votre annonce sur InfoJob');
-        $message->setBody($this->getPartial('validationemail', array('annonce' =>$annonce)));
+        $message->setBody($this->getPartial('validationemail', array('annonce' =>$annonce)), 'text/html');
         $this->getMailer()->send($message);
       }
       else

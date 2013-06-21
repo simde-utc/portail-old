@@ -125,7 +125,7 @@ class infojobActions extends sfActions {
           ->setFrom('bde@assos.utc.fr')
           ->setTo($annonces[0]->getEmail())
           ->setSubject('Modification de votre annonce sur InfoJob');
-    $message->setBody($this->getPartial('myofferemail', array('annonce' =>$annonces[0])));
+    $message->setBody($this->getPartial('myofferemail', array('annonce' =>$annonces[0])), 'text/html');
     $this->getMailer()->send($message);
     $this->getUser()->setFlash('success', 'Un email vient de vous être envoyé.');
     $this->redirect('infojob_offre_show', array('id' => $annonces[0]->getId()));

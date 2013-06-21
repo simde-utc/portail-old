@@ -99,7 +99,6 @@ class infojobActions extends sfActions {
     $this->form->getObject()->setOffreId($request->getParameter('id'));
   }
 
-
   public function executeSignaldo(sfWebRequest $request)
   { 
   	$this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
@@ -108,6 +107,29 @@ class infojobActions extends sfActions {
     $this->setTemplate('signal');
   }
   
+  public function executeMyoffer(sfWebRequest $request)
+  {
+    $annonces = InfoJobOffreTable::getInstance()->getOffreById($request->getParameter('id'))->execute();
+    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas ou a été archivée (%s).', $request->getParameter('id')));
+    $this->annonce = $annonces[0];
+  }
+
+  public function executeMyofferdo(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+    $annonces = InfoJobOffreTable::getInstance()->getOffreById($request->getPostParameter('offre_id'))->execute();
+    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas ou a été archivée (%s).', $request->getParameter('id')));
+    $this->annonce = $annonces[0];
+    // Envoyer l'email.
+    $message = Swift_Message::newInstance()
+          ->setFrom('bde@assos.utc.fr')
+          ->setTo($annonces[0]->getEmail())
+          ->setSubject('Modification de votre annonce sur InfoJob');
+    $message->setBody($this->getPartial('myofferemail', array('annonce' =>$annonces[0])));
+    $this->getMailer()->send($message);
+    $this->getUser()->setFlash('success', 'Un email vient de vous être envoyé.');
+    $this->redirect('infojob_offre_show', array('id' => $annonces[0]->getId()));
+  }
   
   public function executeMonprofil(sfWebRequest $request)
   {
@@ -136,7 +158,12 @@ class infojobActions extends sfActions {
         // Si l'annonce vient d'être créée.
         $this->getUser()->setFlash('success', 'L\'annonce a bien été créée. Vous allez recevoir prochainement un email pour valider sa publication.');
         // Envoyer l'email de validation.
-        $this->sendValidationEmail($annonce);
+        $message = Swift_Message::newInstance()
+          ->setFrom('bde@assos.utc.fr')
+          ->setTo($annonce->getEmail())
+          ->setSubject('Création de votre annonce sur InfoJob');
+        $message->setBody($this->getPartial('validationemail', array('annonce' =>$annonce)));
+        $this->getMailer()->send($message);
       }
       else
         $this->getUser()->setFlash('success', 'L\'annonce a bien été mise à jour.');
@@ -156,15 +183,6 @@ class infojobActions extends sfActions {
       $this->getUser()->setFlash('success','L\'annonce a bien été signalée et sera vérifiée prochainement par le BDE-UTC.');
       $this->redirect('infojob_offre_show', array('id' => $signalement->getOffreId()));
     }
-  }
-
-  protected function sendValidationEmail($annonce) {
-    $message = Swift_Message::newInstance()
-      ->setFrom('bde@assos.utc.fr')
-      ->setTo($annonce->getEmail())
-      ->setSubject('Subject');
-    $message->setBody($this->getPartial('validationemail', array('annonce' =>$annonce)));
-    $this->getMailer()->send($message);
   }
 }
 

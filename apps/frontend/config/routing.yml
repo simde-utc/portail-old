@@ -357,6 +357,14 @@ infojob_offre_activate:
   url: /infojob/activate/:key
   param: { module: infojob, action: activate }
 
+infojob_offre_myoffer:
+  url: /infojob/myoffer/:id
+  param: { module: infojob, action: myoffer }
+
+infojob_offre_myofferdo:
+  url: /infojob/myoffer
+  param: { module: infojob, action: myofferdo }
+
 infojob_offre_signal:
   url: /infojob/signal/:id
   class: sfDoctrineRoute

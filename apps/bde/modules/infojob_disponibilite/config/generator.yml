@@ -7,7 +7,7 @@ generator:
     with_show:             false
     singular:              ~
     plural:                ~
-    route_prefix:          info_job_dispobilite
+    route_prefix:          info_job_disponibilite
     with_doctrine_route:   true
     actions_base_class:    sfActions
 
@@ -25,7 +25,12 @@ generator:
           _edit: ~
       filter:
         class: false
-      form: ~
+      form:
+        display:
+          [name]
+        actions:
+          _save: ~
+          _list: ~
       edit:
         title: Modifier un type de disponibilité
       new:

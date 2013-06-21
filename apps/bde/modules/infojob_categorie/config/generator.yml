@@ -25,7 +25,12 @@ generator:
           _edit: ~
       filter:
         class: false
-      form: ~
+      form:
+        display:
+          [name]
+        actions:
+          _save: ~
+          _list: ~
       edit:
         title: Modifier une catégorie
       new:

@@ -21,10 +21,10 @@ info_job_offre:
     column:               id
     with_wildcard_routes: true
 
-info_job_dispobilite:
+info_job_disponibilite:
   class: sfDoctrineRouteCollection
   options:
-    model:                InfoJobDispobilite
+    model:                InfoJobDisponibilite
     module:               infojob_disponibilite
     prefix_path:          /infojob/disponibilite
     column:               id

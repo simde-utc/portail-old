@@ -65,7 +65,7 @@ INSERT INTO `sf_guard_user` (`id`, `first_name`, `last_name`, `email_address`, `
 (4, 'Yoan', 'Tournade', 'ytournad@etu.utc.fr', 'ytournad', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (5, 'Soukaina', 'Bouaziz', 'sbouaziz@etu.utc.fr', 'sbouaziz', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (6, 'Victor', 'Thery', 'theryvic@etu.utc.fr', 'theryvic', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
-(7, 'Patrick', 'Trigano', 'ptrigano@etu.utc.fr', 'ptrigano', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
+(7, 'Philippe', 'Trigano', 'ptrigano@etu.utc.fr', 'ptrigano', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
 UPDATE `sf_guard_user` SET `is_active`= 0;
 
 INSERT INTO `asso_member` (`id`, `user_id`, `asso_id`, `role_id`, `semestre_id`, `created_at`, `updated_at`) VALUES

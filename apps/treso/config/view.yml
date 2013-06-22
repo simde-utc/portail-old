@@ -1,0 +1,20 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        BDE-UTC : Outil de trésorerie
+    #description:  symfony project
+    #keywords:     symfony, project
+    #language:     en
+    #robots:       index, follow
+
+  stylesheets:    [bootstrap.min.css,treso.css]
+
+  javascripts:    [jquery-1.7.2.min.js, bootstrap.min.js, treso.js, treso_budget_graphisme.js, highcharts.js]
+
+  has_layout:     true
+  layout:         layout

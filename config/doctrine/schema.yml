@@ -269,6 +269,161 @@ Vote:
     Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
 
+# Système de trésorerie
+
+Budget:
+  connection: doctrine
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    semestre_id: { type: integer, notnull: true }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Semestre : { onUpdate: CASCADE, local: semestre_id, foreign: id }
+
+BudgetPoste:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    budget_categorie_id: { type: integer, notnull: true }
+    nombre: { type: integer, notnull: true, default: 1 }
+    prix_unitaire: { type: decimal(8), scale: 4, notnull: true, default: 0 }
+    commentaire: { type: string, notnull: false }
+    budget_id: { type: integer, notnull: true }
+  relations:
+    Budget: { onUpdate: CASCADE, local: budget_id, foreign: id }
+    BudgetCategorie: { onUpdate: CASCADE, local: budget_categorie_id, foreign: id }
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+BudgetCategorie:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    commentaire: { type: string, notnull: false }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+Transaction:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    compte_id: { type: integer, notnull: true }
+    libelle: { type: string(255), notnull: true }
+    montant: { type: decimal(8), scale: 4, notnull: true, default: 0 }
+    commentaire: { type: string, notnull: false }
+    date_transaction: { type: date, notnull: true }
+    date_rapprochement: { type: date, notnull: false }
+    budget_poste_id: { type: integer, notnull: false }
+    moyen_id: { type: integer, notnull: true }
+    moyen_commentaire: { type: string, notnull: false }
+    note_de_frais_id: { type: integer }
+  relations:
+    BudgetPoste: { onUpdate: CASCADE, local: budget_poste_id, foreign: id }
+    TransactionMoyen: { onUpdate: CASCADE, local: moyen_id, foreign: id }
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    CompteBanquaire: { onUpdate: CASCADE, local: compte_id, foreign: id }
+
+TransactionMoyen:
+  connection: doctrine
+  columns:
+    nom: { type: string(255), notnull: true }
+    detail: { type: string(255), notnull: false }
+
+Document:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    transaction_id: { type: integer }
+    nom: { type: string(255), notnull: true }
+    fichier: { type: string(255), notnull: true }
+    auteur: { type: integer, notnull: true }
+    reference: { type: string(255) }
+    type_id: { type: integer, notnull: true }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Transaction: { onUpdate: CASCADE, local: transaction_id, foreign: id }
+    User: { local: auteur, class: sfGuardUser, foreign: id }
+    DocumentType: { local: type_id, foreign: id }
+
+DocumentType:
+  connection: doctrine
+  columns:
+    nom : { type: string(255), notnull: true }
+    slug : { type: string(255), notnull: true }
+    detail : { type: string, notnull: true }
+
+
+# DocumentTemplate:
+#   connection: doctrine
+#   columns:
+#     nom: { type: string(255), notnull: true } #on utilise le slug pour retrouver le fichier de template
+#     commentaire: { type: string, notnull: true }
+#     type_id : { type: integer, notnull: true }
+#     champs : { type: string, notnull: true }
+#   relations:
+#     DocumentType: { local: type_id, foreign: id }
+
+CompteBanquaire:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    banque: { type: string(255), notnull: true }
+    num_compte: { type: string(255), notnull: true }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+NoteDeFrais:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    transaction_id: { type: integer, notnull: true }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Achats:
+      type: many
+      local: id
+      foreign: note_de_frais_id
+      class: Transaction
+    Transaction: { onUpdate: CASCADE, local: transaction_id, foreign: id }
+
+Subvention:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    montant : { type: decimal(8), scale: 4, notnull: true }
+    commentaire : { type: string, notnull: false }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+AvanceTreso:
+  connection: doctrine
+  columns:
+    emetteur_id: { type: integer, notnull: true }
+    asso_id: { type: integer, notnull: true }
+    commentaire: { type: string, notnull: true }
+    transaction_id: { type: integer, notnull: true }
+    transaction_emetteur_id: { type: integer, notnull: true }
+  relations:
+    Emetteur: { onUpdate: CASCADE, local: emetteur_id, foreign: id, class: Asso }
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Transaction: { onUpdate: CASCADE, local: transaction_id, foreign: id }
+    TransactionEmetteur: { onUpdate: CASCADE, local: transaction_emetteur_id, foreign: id, class: Transaction }
+
 Weekmail:
   connection: doctrine
   actAs:  { Timestampable: ~ }

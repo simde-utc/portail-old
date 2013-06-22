@@ -33,5 +33,6 @@ class ProjectConfiguration extends sfProjectConfiguration
 
     require_once sfConfig::get('sf_lib_dir').'/vendor/ginger-client/Ginger.class.php';
 
+    $this->enablePlugins('sfTCPDFPlugin');
   }
 }

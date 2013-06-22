@@ -27,3 +27,5 @@ all:
     default_join_role: 3
     # Clé pour ginger (laisser tel quel pour le dev)
     ginger_key: abc
+    #Dossier où sont montés les espaces assos
+    dossier_assos: /path/to/folder

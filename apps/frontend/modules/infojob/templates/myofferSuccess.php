@@ -9,6 +9,6 @@
       <input class="btn btn-primary" type="submit" value="Renvoyer un email au créateur de l'annonce" />
     </form>
     <br/>
-    &nbsp;<a href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>"class="btn active">Retour à l'annonce</i></a>
+    &nbsp;<a href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>"class="btn" style="color: #000000;"><i class="icon-arrow-left"></i> Retour à l'annonce</a>
   </div>
 </div>

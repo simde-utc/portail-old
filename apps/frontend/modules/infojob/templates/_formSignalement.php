@@ -8,7 +8,7 @@
         <th></th>
         <td>
           <input class="btn btn-primary" type="submit" value="Signaler" />
-          &nbsp;<a href="<?php echo url_for('infojob/show?id=' . $form->getObject()->getOffreId()) ?>"class="btn active">Retour à l'annonce</i></a>
+          &nbsp;<a href="<?php echo url_for('infojob/show?id=' . $form->getObject()->getOffreId()) ?>"class="btn" style="color: #000000;"><i class="icon-arrow-left"></i> Retour à l'annonce</a>
           <?php echo $form->renderHiddenFields(false) ?>
         </td>
       </tr>

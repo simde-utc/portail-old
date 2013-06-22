@@ -13,9 +13,9 @@
           <input class="btn btn-primary" type="submit" value="Enregistrer" />
 
           <?php if($form->getObject()->isNew()) : ?>
-            &nbsp;<a href="<?php echo url_for('infojob/index'); ?>" class="btn active">Retour à l'accueil <i class="icon-home"></i></a>
+            &nbsp;<a href="<?php echo url_for('infojob/index'); ?>" class="btn" style="color: #000000;">Retour à l'accueil <i class="icon-home"></i></a>
           <?php else: ?>
-            &nbsp;<?php echo link_to('Retour à l\'annonce', 'infojob/show?id='.$form->getObject()->getId(), array('class' => 'btn active')) ?>
+            &nbsp;<a href="<?php echo url_for('infojob/show?id=' . $form->getObject()->getId()); ?>" class="btn" style="color: #000000;"><i class="icon-arrow-left"></i> Retour à l'annonce</a>
             &nbsp;<?php echo link_to('Supprimer l\'annonce', 'infojob/delete?key='.$form->getObject()->getEmailkey(), array('method' => 'delete', 'confirm' => 'Etes-vous sûr de vouloir supprimer l\'annonce ?', 'class' => 'btn btn-danger')) ?>
           <?php endif;
           echo $form->renderHiddenFields(false) ?>

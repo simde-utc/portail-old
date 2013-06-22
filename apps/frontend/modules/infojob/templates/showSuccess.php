@@ -2,7 +2,7 @@
   <?php include_partial('infojob/topbar') ?>
   <div class="well"  style="border:1 px grey solid">
     <?php if($sf_user->isAuthenticated() && $annonce->getUserId() == $sf_user->getGuardUser()->getId()): ?>
-      <a href="<?php echo url_for('annonce/edit?key=' . $annonce->getId()) ?>"  style="float:left;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
+      <a href="<?php echo url_for('infojob/edit?key=' . $annonce->getEmailKey()) ?>"  style="float:right;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
     <?php endif ?>
     <h2>Annonce n° <?php echo $annonce->getId() ?> : <?php echo $annonce->getTitre() ?></h2>
       <p style="font-style: italic;">
@@ -43,7 +43,7 @@
         <?php endif; ?>
       </div>
       <div class="span3">
-        <a href="<?php echo url_for('infojob/offres') ?>" class="btn active"><i class="icon-arrow-left"></i> Retour</a>
+        <a href="<?php echo url_for('infojob/offres') ?>#infojob-annonces" class="btn" style="color: #000000;">Retour <i class="icon-home"></i></a>
         <br/><br/>
         <a href="<?php echo url_for('infojob/signal?id=' . $annonce->getId())?>" rel="nofollow">Signaler l'annonce</a><br/>
         <a href="<?php echo url_for('infojob/myoffer?id=' . $annonce->getId())?>" rel="nofollow">C'est votre offre ?</a>

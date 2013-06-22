@@ -12,7 +12,7 @@
     <b>Descriptif : </b><p><?php echo $annonce->getTexte() ?></p>
     <br/>
     <p>
-      <?php if($annonce->getRemuneration() != '0.00'): ?><b>Prix :</b> <?php echo $annonce->getRemuneration() ?><br /><?php endif ?>
+      <?php if($annonce->getRemuneration() != '0.00'): ?><b>Rémunération :</b> <?php echo $annonce->getRemuneration() ?><br /><?php endif ?>
       <?php if($annonce->getLieu()) : ?><b>Lieu :</b> <?php echo $annonce->getLieu() ?><br /><?php endif ?>
     </p>
     <br/>

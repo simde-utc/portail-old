@@ -64,9 +64,9 @@
         ?>
       <?php endif; ?>
     </p>
-    <p><?php echo $annonce->getTexte() ?></p>
+    <p><?php use_helper('Text'); echo truncate_text($annonce->getTexte(), 250, ' <a href="' . url_for('infojob/show?id=' . $annonce->getId()). '">(...)</a>'); ?></p>
     <p>
-      <?php if($annonce->getRemuneration()): ?><strong>Prix</strong> : <?php echo $annonce->getRemuneration() ?><br /><?php endif ?>
+      <?php if($annonce->getRemuneration()): ?><strong>Rémunération</strong> : <?php echo $annonce->getRemuneration() ?><br /><?php endif ?>
       <?php if($annonce->getLieu()): ?><strong>Lieu :</strong> <?php echo $annonce->getLieu() ?><br /><?php endif ?>
     </p>
     <a href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>" class="btn btn-info" style="color: #FFFFFF;">Voir la fiche</a>

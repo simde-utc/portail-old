@@ -38,7 +38,21 @@
     <?php if($sf_user->isAuthenticated() && $annonce->getUserId() == $sf_user->getGuardUser()->getId()): ?>
       <a href="<?php echo url_for('infojob/edit?key=' . $annonce->getEmailkey()) ?>"  style="float:right;margin-top:12px; margin-right: 5px;"><i class="icon-pencil"></i></a>
     <?php endif ?>
-    <h2>Annonce n°<?php echo $annonce->getId() ?> : <?php echo $annonce->getTitre() ?></h2>
+    <div class="row-fluid">
+      <div class="span1">
+        <?php 
+        // TODO Faire un helper.
+        $file = '/images/icones/' . $annonce->getCategorieId() . '.png';
+        if(!file_exists(sfConfig::get('sf_root_dir') . '/web' . $file))
+          $file = "/images/icones/autre.png";
+        ?>
+        <img src="<?php echo $file; ?>" style="witdh:30px; height:30px">
+      </div>
+      <div class="span10">
+        <h2>Annonce n°<?php echo $annonce->getId() ?> : <?php echo $annonce->getTitre() ?></h2>
+      </div>
+    </div>
+
     <p style="font-style: italic;">
       Posté le <?php echo $annonce->getCreatedAt() ?>
       <?php if($sf_user->isAuthenticated()): ?>
@@ -52,7 +66,7 @@
     </p>
     <p><?php echo $annonce->getTexte() ?></p>
     <p>
-      <?php if($annonce->getRemuneration() != '0.00'): ?><strong>Prix</strong> : <?php echo $annonce->getRemuneration() ?><br /><?php endif ?>
+      <?php if($annonce->getRemuneration()): ?><strong>Prix</strong> : <?php echo $annonce->getRemuneration() ?><br /><?php endif ?>
       <?php if($annonce->getLieu()): ?><strong>Lieu :</strong> <?php echo $annonce->getLieu() ?><br /><?php endif ?>
     </p>
     <a href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>" class="btn btn-info" style="color: #FFFFFF;">Voir la fiche</a>

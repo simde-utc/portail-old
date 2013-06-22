@@ -94,7 +94,8 @@ INSERT INTO `info_job_categorie` (`id`, `name`, `description`) VALUES
 (2, 'Aide à domicile', 'Service aux particuliers à domicile, etc.'),
 (3, 'Restauration', 'Description restauration'),
 (4, 'Manutention', 'Description manutention'),
-(5, 'Divers', 'Tout ce qui ne rentre pas les autres catégories');
+(5, 'Divers', 'Tout ce qui ne rentre pas les autres catégories'),
+(6, 'Standardiste', 'Description standardiste'),;
 
 INSERT INTO `info_job_disponibilite` (`id`, `name`) VALUES
 (1, 'Semaine'),

@@ -22,7 +22,7 @@
       <img src=<?php echo $file ?> style="witdh:90px; height:70px"></div>
     	<div class= "span10">
         <p>
-          <?php if($annonce->getRemuneration() != '0.00'): ?><b>Prix :</b> <?php echo $annonce->getRemuneration() ?> €<br /><?php endif ?>
+          <?php if($annonce->getRemuneration() != '0.00'): ?><b>Prix :</b> <?php echo $annonce->getRemuneration() ?><br /><?php endif ?>
           <?php if($annonce->getLieu()): ?><b>Lieu:</b> <?php echo $annonce->getLieu() ?><br /><?php endif ?>
         </p>
       </div>

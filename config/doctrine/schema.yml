@@ -292,7 +292,7 @@ BudgetPoste:
     nom: { type: string(255), notnull: true }
     budget_categorie_id: { type: integer, notnull: true }
     nombre: { type: integer, notnull: true, default: 1 }
-    prix_unitaire: { type: decimal(8), scale: 4, notnull: true, default: 0 }
+    prix_unitaire: { type: decimal(8), scale: 2, notnull: true, default: 0 }
     commentaire: { type: string, notnull: false }
     budget_id: { type: integer, notnull: true }
   relations:
@@ -317,7 +317,7 @@ Transaction:
     asso_id: { type: integer, notnull: true }
     compte_id: { type: integer, notnull: true }
     libelle: { type: string(255), notnull: true }
-    montant: { type: decimal(8), scale: 4, notnull: true, default: 0 }
+    montant: { type: decimal(8), scale: 2, notnull: true, default: 0 }
     commentaire: { type: string, notnull: false }
     date_transaction: { type: date, notnull: true }
     date_rapprochement: { type: date, notnull: false }
@@ -405,7 +405,7 @@ Subvention:
   columns:
     asso_id: { type: integer, notnull: true }
     nom: { type: string(255), notnull: true }
-    montant : { type: decimal(8), scale: 4, notnull: true }
+    montant : { type: decimal(8), scale: 2, notnull: true }
     commentaire : { type: string, notnull: false }
   relations:
     Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }

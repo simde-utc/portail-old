@@ -127,7 +127,19 @@ class transactionActions extends tresoActions {
     $this->forward404Unless($transaction = Doctrine_Core::getTable('Transaction')->find(array($request->getParameter('id'))), sprintf('Object transaction does not exist (%s).', $request->getParameter('id')));
     $this->checkAuthorisation($transaction->getAsso());
     $transaction->delete();
-    $this->redirect('transaction', array('login' => $transaction->getAsso()->getName()));
+    $this->redirect('transaction', array('login' => $transaction->getAsso()->getLogin()));
+  }
+
+  public function executeRapprocher(sfWebRequest $request) {
+      $transaction = $this->getRoute()->getObject();
+      $this->checkAuthorisation($transaction->getAsso());
+
+      if(!$transaction->date_rapprochement) {
+          $transaction->date_rapprochement = new Doctrine_Expression('NOW()');
+          $transaction->save();
+      }
+
+      $this->redirect('transaction', array('login' => $transaction->getAsso()->getName()));
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form) {

@@ -178,6 +178,12 @@ transaction_add_document:
   url: /transaction/add_doc/:id
   param: { module: transaction, action: addDocument }
 
+transaction_rapprocher:
+  url:  /transaction/rapprocher/:id
+  class: sfDoctrineRoute
+  param: { module: transaction, action: rapprocher }
+  options: { model: Transaction, type: object }
+
 # BudgetPoste
 budget_poste_new:
   url: /budget/poste/new/:budget/:categorie

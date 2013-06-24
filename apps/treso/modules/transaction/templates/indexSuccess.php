@@ -2,8 +2,8 @@
 
 <h1>Liste des transactions de l'association <?php echo $asso ?> </h1>
 
-<?php if (count($transactions) > 5) : ?>
-  <a href="<?php echo url_for('transaction_new', $asso) ?>" class="btn btn-success"><i class="icon-plus icon-black"></i>&nbsp;&nbsp;Nouvelle transaction</a>
+<?php if (count($transactions) > 10) : ?>
+  <a href="<?php echo url_for('transaction_new', $asso) ?>" class="btn btn-success"><i class="icon-plus icon-white"></i>&nbsp;&nbsp;Nouvelle transaction</a>
 <?php endif; ?>
 
 <?php
@@ -35,7 +35,7 @@ foreach ($transactions as $transaction):
           <th>Libellé</th>
           <th>Crédit</th>
           <th>Débit</th>
-          <th>Date transaction</br>Date rapprochement</th>
+          <th>Date Transaction</th>
           <th>Moyen</br>Commentaire</th>
           <th>Actions</th>
         </tr>
@@ -60,10 +60,19 @@ foreach ($transactions as $transaction):
           </a></td>
         <td><?php if ($transaction->getMontant() >= 0) echo format_currency($transaction->getMontant(), '€', 'fr'); ?></td>
         <td><?php if ($transaction->getMontant() < 0) echo format_currency($transaction->getMontant(), '€', 'fr'); ?></td>
-        <td><?php echo format_date($transaction->getDateTransaction(), 'D', 'fr'); ?><br /> <?php echo format_date($transaction->getDateRapprochement(), 'D', 'fr'); ?></td>
-        <td><?php echo $transaction->getTransactionMoyen() ?><br /><em><?php echo $transaction->getMoyenCommentaire() ?></em></td>
+        <td>
+          <?php if($transaction->getDateRapprochement()): ?>
+          <i class="icon icon-check"></i>
+        <?php endif; ?>
+        <?php echo format_date($transaction->getDateTransaction(), 'D', 'fr'); ?></td>
+        <td><?php echo $transaction->getTransactionMoyen() ?>
+        <?php if(strlen($transaction->getMoyenCommentaire()) > 5) echo '<br />'; ?>
+        <em><?php echo $transaction->getMoyenCommentaire() ?></em></td>
         <td>
           <div class="btn-group">
+            <a href="<?php echo url_for('transaction_rapprocher', $transaction) ?>" class="btn
+              <?php if($transaction->getDateRapprochement()) echo 'disabled'; ?>
+              "><i class="icon-check"></i></a>
             <a href="<?php echo url_for('transaction/edit?id=' . $transaction->getId()) ?>" class="btn"><i class="icon-pencil"></i>&nbsp;&nbsp;Editer</a>
             <?php echo link_to('<i class="icon-trash icon-white"></i>', 'transaction/delete?id=' . $transaction->getId(), array('method' => 'delete', 'confirm' => 'Voulez-vous vraiment supprimer cette transaction ?', 'class' => 'btn btn-danger')) ?>
           </div>

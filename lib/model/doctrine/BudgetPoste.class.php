@@ -20,6 +20,11 @@ class BudgetPoste extends BaseBudgetPoste
       return $this->getNom();
     }
 
+    public function transactionNewRepr()
+    {
+        return sprintf('%s / %s', $this->getBudget()->getNom(), $this->getNom());
+    }
+
     public function getSumPoste(){
     	$s = TransactionTable::getInstance()->createQuery('t')
                         ->select('SUM(t.montant) AS sumPoste')

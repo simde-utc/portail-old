@@ -14,11 +14,18 @@ class NoteDeFraisForm extends BaseNoteDeFraisForm
   {
     $this->widgetSchema['asso_id'] = new SfWidgetFormInputHidden();
 
-    $this->widgetSchema['transactions'] = new sfWidgetFormDoctrineChoice(array(
+    $this->widgetSchema['transactions'] = new portailWidgetFormDoctrineChoice(array(
+          'label' => 'Achats',
           'model' => 'Transaction',
           'query' => TransactionTable::getInstance()->getRemboursablesForAsso($this->getObject()->getAsso()),
           'add_empty' => false,
-          'multiple' => true
+          'multiple' => true,
+          'method' => 'noteDeFraisRepr',
+          'renderer_class' => 'portailWidgetFormSelectCheckbox',
+          'renderer_options' => array(
+                                      'dynamic_attributes' => array('data-montant' => 'getMontantAbsolute',
+                                                                    'data-nom' => 'getMoyenCommentaire')
+                                      )
     ));
     $this->validatorSchema['transactions'] = new sfValidatorDoctrineChoice(array(
           'model' => 'Transaction',
@@ -47,7 +54,7 @@ class NoteDeFraisForm extends BaseNoteDeFraisForm
       'query' => CompteBanquaireTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),
     ));
 
-    $this->widgetSchema['moyen_commentaire'] = new sfWidgetFormTextarea();
+    $this->widgetSchema['moyen_commentaire'] = new sfWidgetFormInput();
     $this->validatorSchema['moyen_commentaire'] = new sfValidatorString(array('required' => false));
 
     unset($this['created_at'], $this['updated_at'], $this['deleted_at']);

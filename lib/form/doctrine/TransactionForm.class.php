@@ -55,6 +55,7 @@ class TransactionForm extends BaseTransactionForm {
         'budget_poste_id',
         'moyen_commentaire'));
 
+    $this->widgetSchema['moyen_commentaire'] = new sfWidgetFormInput();
     $this->validatorSchema['moyen_commentaire']->setOption('required', false);
   }
 

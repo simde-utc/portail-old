@@ -13,7 +13,7 @@ $debit = 0;
 foreach ($transactions as $transaction):
   if ($oldName != '' && $oldName != $transaction->getCompteBanquaire()->getNom()):
     ?>
-    <caption style="font-weight: bold; padding-bottom: 10px"><?php echo $oldName . " - Total : " . format_currency($credit + $debit, '€', 'fr'); ?></caption>
+    <caption style="font-weight: bold; padding-bottom: 10px"><?php echo $oldName . " - Total : " . format_currency($transaction->getCompteBanquaire()->getSoldeRapproche(), '€', 'fr'); ?></caption>
     <tr class="total">
       <td></td>
       <td><strong><?php echo format_currency($credit, '€', 'fr'); ?></strong></td>
@@ -79,7 +79,13 @@ foreach ($transactions as $transaction):
         </td>
       </tr>
     <?php endforeach; ?>
-  <caption style="font-weight: bold; padding-bottom: 10px"><?php echo $oldName . " - Total : " . format_currency($credit + $debit, '€', 'fr'); ?></caption>
+    <caption style="font-weight: bold; padding-bottom: 10px">
+    <?php echo $oldName ?>
+    <?php echo " | Actuel : " . format_currency($transaction->getCompteBanquaire()->getSoldeActuel(), '€', 'fr'); ?>
+    <?php echo " | Rapproché : " . format_currency($transaction->getCompteBanquaire()->getSoldeRapproche(), '€', 'fr'); ?>
+    <?php echo " | Minimum : " . format_currency($transaction->getCompteBanquaire()->getSoldeProjeteMinimum(), '€', 'fr'); ?>
+    <?php echo " | Maximum : " . format_currency($transaction->getCompteBanquaire()->getSoldeProjeteMaximum(), '€', 'fr'); ?>
+    </caption>
 
   <tr class="total">
     <td></td>

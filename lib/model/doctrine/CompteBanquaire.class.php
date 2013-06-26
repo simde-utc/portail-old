@@ -12,7 +12,82 @@
  */
 class CompteBanquaire extends BaseCompteBanquaire
 {
+    private $soldes = array();
+
     public function __toString() {
         return $this->getNom();
+    }
+
+    /* Cette fonction pas terrible
+     * malheuresement doctrine ne supporte pas les constructions
+     * FROM (SELECT ...) donc on ne peut pas grouper les requêtes en une seule
+     */
+    public function retrieveSoldes()
+    {
+        // filtre de base pour les transactions
+        $q = Doctrine_Query::create();
+        $q->select('SUM(t.montant) as total')
+            ->from('Transaction t')
+            ->where('t.compte_id = ?', $this->getPrimaryKey())
+            ->andWhere('t.note_de_frais_id IS NULL AND t.deleted_at IS NULL')
+            ->groupBy('t.compte_id');
+        $qmax = clone $q;
+        $qmin = clone $q;
+
+        // transactions rapprochées
+        $q->andWhere('t.date_rapprochement IS NOT NULL');
+        $res = $q->execute();
+        if (count($res) == 0)
+            $rapproche = 0;
+        else
+            $rapproche = $this->soldes['rapproche'] = $res[0]['total'];
+
+        // total des dépenses non rapprochées
+        $qmin->andWhere('t.date_rapprochement IS NULL AND t.montant < 0');
+        $res = $qmin->execute();
+        if (count($res) == 0)
+            $minimum = 0;
+        else
+            $minimum = $res[0]['total'];
+
+        // total des recettes non rapprochées
+        $qmax->andWhere('t.date_rapprochement IS NULL AND t.montant > 0');
+        $res = $qmax->execute();
+        if (count($res) == 0)
+            $maximum = 0;
+        else
+            $maximum = $res[0]['total'];
+
+        $this->soldes['actuel'] = $rapproche + $minimum + $maximum;
+        $this->soldes['minimum'] = $rapproche + $minimum;
+        $this->soldes['maximum'] = $rapproche + $maximum;
+    }
+
+    public function getSoldeActuel()
+    {
+        if (!count($this->soldes))
+            $this->retrieveSoldes();
+        return $this->soldes['actuel'];
+    }
+
+    public function getSoldeRapproche()
+    {
+        if (!count($this->soldes))
+            $this->retrieveSoldes();
+        return $this->soldes['rapproche'];
+    }
+
+    public function getSoldeProjeteMinimum()
+    {
+        if (!count($this->soldes))
+            $this->retrieveSoldes();
+        return $this->soldes['minimum'];
+    }
+
+    public function getSoldeProjeteMaximum()
+    {
+        if (!count($this->soldes))
+            $this->retrieveSoldes();
+        return $this->soldes['maximum'];
     }
 }

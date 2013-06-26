@@ -54,7 +54,8 @@ class NoteDeFraisForm extends BaseNoteDeFraisForm
       'query' => CompteBanquaireTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),
     ));
 
-    $this->widgetSchema['moyen_commentaire'] = new sfWidgetFormInput();
+    $this->widgetSchema['moyen_commentaire'] = new sfWidgetFormInput(array(),
+      array('placeholder' => 'n° du chèque ou laisser vide'));
     $this->validatorSchema['moyen_commentaire'] = new sfValidatorString(array('required' => false));
 
     unset($this['created_at'], $this['updated_at'], $this['deleted_at']);

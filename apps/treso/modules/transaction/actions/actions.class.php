@@ -14,8 +14,29 @@ class transactionActions extends tresoActions {
     $this->asso = $this->getRoute()->getObject();
 
     $this->checkAuthorisation($this->asso);
-    $this->transactions = TransactionTable::getInstance()->getJournalForAsso($this->asso)->orderBy('q.date_transaction DESC')->execute();
     $this->getResponse()->setSlot('current_asso', $this->asso);
+
+    $this->compte = CompteBanquaireTable::getInstance()->getAllForAsso($this->asso)->fetchOne();
+    if (is_null($this->compte))
+      $this->setTemplate('noCompte');
+    else {
+      $this->chooser = new sfWidgetFormDoctrineChoice(array('model'=>'CompteBanquaire',
+          'query' => CompteBanquaireTable::getInstance()->getAllForAsso($this->asso)));
+      $this->transactions = TransactionTable::getInstance()->getJournalForCompte($this->compte)->execute();
+    }
+  }
+
+  public function executeCompte(sfWebRequest $request) {
+    $this->forward404Unless($this->compte = $this->getRoute()->getObject());
+    $this->asso = $this->compte->getAsso();
+
+    $this->checkAuthorisation($this->asso);
+    $this->getResponse()->setSlot('current_asso', $this->asso);
+
+    $this->chooser = new sfWidgetFormDoctrineChoice(array('model'=>'CompteBanquaire',
+          'query' => CompteBanquaireTable::getInstance()->getAllForAsso($this->asso)));
+    $this->transactions = TransactionTable::getInstance()->getJournalForCompte($this->compte)->execute();
+    $this->setTemplate('index');
   }
 
   public function executeShow(sfWebRequest $request) {
@@ -76,12 +97,20 @@ class transactionActions extends tresoActions {
       $this->asso = AssoTable::getInstance()->find($request->getParameter('asso_id'));
       $this->poste_id = $request->getParameter('poste_id');
     } else {
-      $this->asso = $this->getRoute()->getObject();
+      $this->forward404Unless($obj = $this->getRoute()->getObject());
+      if ($obj instanceof Asso)
+        $this->asso = $obj;
+      else if ($obj instanceof CompteBanquaire) {
+        $compte = $obj;
+        $this->asso = $compte->getAsso();
+      }
     }
 
     $this->checkAuthorisation($this->asso);
     $transaction = new Transaction();
     $transaction->setAsso($this->asso);
+    if (isset($compte))
+      $transaction->setCompteBanquaire($compte);
     $this->form = new TransactionForm($transaction);
     if (isset($this->poste_id)) {
       $this->form->setDefault('budget_poste_id', $this->poste_id);
@@ -139,7 +168,7 @@ class transactionActions extends tresoActions {
           $transaction->save();
       }
 
-      $this->redirect('transaction', array('login' => $transaction->getAsso()->getName()));
+      $this->redirect('transaction', array('login' => $transaction->getAsso()->getLogin()));
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form) {
@@ -152,20 +181,21 @@ class transactionActions extends tresoActions {
   }
 
   public function executePdf(sfWebRequest $request) {
-    $asso = $this->getRoute()->getObject();
-    $this->checkAuthorisation($asso);
+    $compte = $this->getRoute()->getObject();
+    $this->checkAuthorisation($compte->getAsso());
 
-    $transactions = TransactionTable::getInstance()->getAllForAsso($asso)->execute();
+    $transactions = TransactionTable::getInstance()->getJournalForCompte($compte)
+                                                   ->orderBy('q.date_transaction ASC')->execute();
 
-    $html = $this->getPartial('transaction/pdf',compact(array('transactions','asso')));
+    $html = $this->getPartial('transaction/pdf',compact(array('transactions','compte')));
     $nom = date('Y-m-d-H-i-s');
 
     $doc = new Document();
     $doc->setNom('Export du journal des transactions');
-    $doc->setAsso($asso);
+    $doc->setAsso($compte->getAsso());
     $doc->setUser($this->getUser()->getGuardUser());
     $doc->setTypeFromSlug('transactions');
-    $path = $doc->generatePDF($asso->getName() . ' : Livre de compte', $nom, $html);
+    $path = $doc->generatePDF($compte->getAsso()->getName() . ' : Journal du compte ' . $compte->getNom(), $nom, $html);
     $doc->save();
 
     header('Content-type: application/pdf');

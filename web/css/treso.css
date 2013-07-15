@@ -2,6 +2,10 @@ body {
     padding-top: 60px;
 }
 
+.table-transaction tbody td {
+    padding: 4px;
+}
+
 .table-transaction tbody tr.recette td, .table-transaction tbody tr.recette th {
     background-color: #dff0d8;
 }
@@ -32,6 +36,14 @@ body {
 
 .table-treso-budget td:nth-child(n+4) {
     text-align: right;
+}
+
+.table-transaction tr .reduce {
+    white-space: nowrap;
+}
+
+.table-transaction tr .expand {
+    width: 80%;
 }
 
 .error_list{color :#FF0000;}

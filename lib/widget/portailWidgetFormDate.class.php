@@ -66,7 +66,9 @@ class portailWidgetFormDate extends sfWidgetFormInput
         jQuery(window).bind("load", function() {
               jQuery("#'.$id.'").datepicker({weekStart:1,
                                              language:"fr",
-                                             autoclose:true});
+                                             autoclose:true,
+                                             format:"'.$this->getOption('format').'"
+                                            });
         })
       </script>';
     return $input . "\n" . $js;

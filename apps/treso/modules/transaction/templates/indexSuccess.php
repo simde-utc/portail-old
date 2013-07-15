@@ -34,6 +34,7 @@
 $credit = 0;
 $debit = 0;
 $solde = $compte->getSoldeActuel();
+$prec = 0;
 foreach ($transactions as $transaction):
   if ($prec)
     $solde -= $prec->getMontant();

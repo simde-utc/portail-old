@@ -77,3 +77,33 @@ INSERT INTO `profile` (`id`, `user_id`, `domain`, `nickname`, `birthday`, `sexe`
 (NULL, 2, 'utc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (NULL, 3, 'utc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
 SET foreign_key_checks = 1;
+
+INSERT INTO `sf_guard_permission` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'chartes_valider', 'Validation des chartes informatique.', '2012-10-25 11:29:43', '2012-10-25 11:39:33'),
+(2, 'cotisants_tout', 'Accès en lecture/écriture à l''outil cotisant', '2012-10-25 11:30:00', '2012-10-25 11:39:41'),
+(3, 'chartes_voir', 'Voir la liste des chartes informatiques.', '2012-10-25 11:38:22', '2012-10-25 11:38:22');
+
+INSERT INTO `sf_guard_group` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'BDE', 'Accès à l''appli BDE (gestion des cotisants et liste des chartes) et validation des chartes dans le site.', '2012-10-25 11:27:53', '2012-10-25 11:27:53'),
+(2, 'SiMDE', 'Validation des chartes', '2012-11-01 11:06:52', '2012-11-01 11:06:52');
+
+INSERT INTO `sf_guard_group_permission` (`group_id`, `permission_id`, `created_at`, `updated_at`) VALUES
+(1, 1, '2012-10-25 11:29:43', '2012-10-25 11:29:43'),
+(1, 2, '2012-10-25 11:30:00', '2012-10-25 11:30:00'),
+(1, 3, '2012-10-25 11:41:21', '2012-10-25 11:41:21'),
+(2, 1, '2012-11-01 11:06:52', '2012-11-01 11:06:52');
+
+UPDATE `role` SET `droits`=(`droits`+256) WHERE `id` IN (1,2);
+INSERT INTO `document_type` (`id`, `nom`, `slug`, `detail`) VALUES
+(1, 'Facture', 'factures', 'Il faut toujours avoir la facture !'),
+(2, 'Note de frais', 'note_de_frais', 'Justificatif à signer par les deux parties'),
+(3, 'Budget', 'budgets', 'Export du budget prévisionnel'),
+(4, 'Transactions', 'transactions', 'Export du journal des transactions'),
+(5, 'Devis', 'devis', 'Avant la facture');
+INSERT INTO `transaction_moyen` (`id`, `nom`, `detail`) VALUES
+(1, 'Chèque', 'Préciser le numéro de chèque'),
+(2, 'CB', ''),
+(3, 'Virement', ''),
+(4, 'Espèces', 'À éviter autant que possible'),
+(5, 'Payutc', 'Uniquement possible sur les comptes payutc.'),
+(6, 'Membre', 'À utiliser si un membre a payé, afin de pouvoir faire une note de frais plus tard');

@@ -16,4 +16,17 @@ class Transaction extends BaseTransaction
     {
         return $this->libelle;
     }
+
+    public function noteDeFraisRepr()
+    {
+        // On est obligé de charger le helper Number pour formatter le montant correctement
+        sfApplicationConfiguration::getActive()->loadHelpers('Number');
+
+        return sprintf("%s - %s - %s", $this->moyen_commentaire, $this->libelle, format_currency(abs($this->montant), '€', 'fr_FR'));
+    }
+
+    public function getMontantAbsolute()
+    {
+        return abs($this->getMontant());
+    }
 }

@@ -14,7 +14,7 @@ class transactionActions extends tresoActions {
     $this->asso = $this->getRoute()->getObject();
 
     $this->checkAuthorisation($this->asso);
-    $this->transactions = TransactionTable::getInstance()->getJournalForAsso($this->asso)->execute();
+    $this->transactions = TransactionTable::getInstance()->getJournalForAsso($this->asso)->orderBy('q.date_transaction DESC')->execute();
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 

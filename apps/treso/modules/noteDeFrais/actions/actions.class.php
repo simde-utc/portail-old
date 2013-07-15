@@ -38,7 +38,7 @@ class noteDeFraisActions extends tresoActions
     $nom = $note_de_frais->getPrimaryKey() . '-' . date('Y-m-d-H-i-s') . '-' . Doctrine_Inflector::urlize($note_de_frais->getNom());
 
     $doc = new Document();
-    $doc->setNom('Justificatif à signer');
+    $doc->setNom('Attestation à signer');
     $doc->setAsso($asso);
     $doc->setUser($this->getUser()->getGuardUser());
     $doc->transaction_id = $note_de_frais->transaction_id;

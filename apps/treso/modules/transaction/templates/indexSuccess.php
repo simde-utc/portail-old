@@ -2,7 +2,7 @@
 
 <h1>Liste des transactions de l'association <?php echo $asso ?> </h1>
 
-<?php if (count($transactions) > 20) : ?>
+<?php if (count($transactions) > 5) : ?>
   <a href="<?php echo url_for('transaction_new', $asso) ?>" class="btn btn-success"><i class="icon-plus icon-black"></i>&nbsp;&nbsp;Nouvelle transaction</a>
 <?php endif; ?>
 

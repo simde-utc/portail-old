@@ -38,7 +38,7 @@ class CompteBanquaire extends BaseCompteBanquaire
         $q->andWhere('t.date_rapprochement IS NOT NULL');
         $res = $q->execute();
         if (count($res) == 0)
-            $rapproche = 0;
+            $rapproche = $this->soldes['rapproche'] = 0;
         else
             $rapproche = $this->soldes['rapproche'] = $res[0]['total'];
 

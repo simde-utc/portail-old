@@ -18,16 +18,15 @@ class CompteBanquaire extends BaseCompteBanquaire
         return $this->getNom();
     }
 
-    /* Cette fonction pas terrible
+    /* Cette fonction est pas terrible
      * malheuresement doctrine ne supporte pas les constructions
      * FROM (SELECT ...) donc on ne peut pas grouper les requêtes en une seule
      */
     public function retrieveSoldes()
     {
         // filtre de base pour les transactions
-        $q = Doctrine_Query::create();
+        $q = TransactionTable::getInstance()->createQuery('t');
         $q->select('SUM(t.montant) as total')
-            ->from('Transaction t')
             ->where('t.compte_id = ?', $this->getPrimaryKey())
             ->andWhere('t.note_de_frais_id IS NULL AND t.deleted_at IS NULL')
             ->groupBy('t.compte_id');

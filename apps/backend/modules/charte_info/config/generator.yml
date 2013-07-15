@@ -14,7 +14,8 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
+      list:
+        display: [id, date, ip, Semestre, Asso, Responsable, login, confirmation, created_at]
       filter:
         display: [semestre_id, asso_id, responsable_id, confirmation]
       form:    ~

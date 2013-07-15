@@ -21,3 +21,6 @@ lib/model/om/*
 lib/model/map/*
 web/*Plugin/*
 /config/app.yml
+data/documents/*
+plugins/sfTCPDFPlugin/lib/tcpdf/cache/
+.idea/

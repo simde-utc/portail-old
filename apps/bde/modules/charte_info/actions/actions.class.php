@@ -13,4 +13,13 @@ require_once dirname(__FILE__).'/../lib/charte_infoGeneratorHelper.class.php';
  */
 class charte_infoActions extends autoCharte_infoActions
 {
+  public function executeIndex(sfWebRequest $request) {
+    // sorting
+    if (!$request->getParameter('sort') && !$this->isValidSortColumn($request->getParameter('sort'))) {
+      $request->setParameter('sort', 'date');
+      $request->setParameter('sort_type', 'desc');
+    }
+
+    parent::executeIndex($request);
+  }
 }

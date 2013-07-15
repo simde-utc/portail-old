@@ -62,6 +62,15 @@ class TransactionForm extends BaseTransactionForm {
     $this->widgetSchema['moyen_commentaire'] = new sfWidgetFormInput(array(),
         array('placeholder' => 'n° de chèque ou nom de membre'));
     $this->validatorSchema['moyen_commentaire']->setOption('required', false);
+
+    $this->validatorSchema['date_rapprochement'] = new sfValidatorDate(array('required' => false));
+
+    $this->validatorSchema->setPostValidator(
+        new sfValidatorSchemaCompare('date_rapprochement', sfValidatorSchemaCompare::GREATER_THAN, 'date_transaction',
+            array(),
+            array('invalid' => 'La date de rapprochement doit être supérieure à la date de la transaction')
+  )
+);
   }
 
   public function processValues($values) {

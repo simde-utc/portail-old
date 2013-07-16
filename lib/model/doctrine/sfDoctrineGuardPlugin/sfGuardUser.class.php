@@ -69,14 +69,14 @@ class sfGuardUser extends PluginsfGuardUser
   {
     return $this->hasPermission($asso);
   }
-  
+
   public function isFollower($asso)
   {
     $res = AbonnementTable::getInstance()->getCurrentAssoFollower($asso, $this->getId())->fetchOne();
     return $res ? true : false;
   }
-  
-   public function isFollowerService($service)
+
+  public function isFollowerService($service)
   {
     $res = MembreServiceTable::getInstance()->getCurrentServiceFollower($service, $this->getId())->fetchOne();
     return $res ? true : false;

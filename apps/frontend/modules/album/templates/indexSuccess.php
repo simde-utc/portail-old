@@ -11,9 +11,6 @@
 <div class="well">
 <div class="event-item">
   <h3><span class="badge badge-info"><?php echo $compteur; ?></span>  <a href="<?php echo url_for('album/show?id='.$album->getId())?>"><?php echo $album->getName(); ?></a></h3>
-
-
-  
   <ul class="thumbnails">
           <?php foreach($album->getImages() as $image): ?>
             <?php if($image->getName() != ""): ?>
@@ -26,8 +23,6 @@
    <?php endif;?>
       <?php endforeach;?>
 </ul>
-  
-  
 </div></div>
 <?php endforeach; ?>
 

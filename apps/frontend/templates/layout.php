@@ -89,7 +89,7 @@
           <br>
           <?php include_component('services', 'myServicesFavoris') ?>
         <?php endif ?>
-      </div>   
+      </div>
       <div id="content">
         <?php if($sf_user->hasFlash('error')): ?>
         <div class="alert alert-block alert-error">

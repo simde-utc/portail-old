@@ -125,7 +125,7 @@ class Asso extends BaseAsso {
     if($this->getPole())
       return $this->getPole()->__toString();
   }
-  
+
   public function addFollower(sfGuardUser $user)
   {
       $assoFollower = new Abonnement();

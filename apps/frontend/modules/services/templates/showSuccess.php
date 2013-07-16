@@ -4,7 +4,7 @@
   <h1> Les Services Asso</h1>
   <ul id="services_list">
     <br>
-    <?php foreach ($services as $service):?> 
+    <?php foreach ($services as $service):?>
       <?php if($service->getTypeId() =='1') : ?>
         <li>
         <a href="<?php echo $service->getUrl() ?>"><h3><?php echo $service->getNom() ?></h3> </a><br />
@@ -37,7 +37,7 @@
   <h1> Les Services UTC</h1>
   <ul id="services_list">
     <br>
-    <?php foreach ($services as $service):?> 
+    <?php foreach ($services as $service):?>
       <?php if($service->getTypeId() =='2') : ?>
         <li>
           <a href="<?php echo $service->getUrl() ?>"><h3><?php echo $service->getNom() ?></h3> </a><br />
@@ -69,7 +69,7 @@
   <h1> Les Services de la Ville</h1>
   <ul id="services_list">
     <br>
-    <?php foreach ($services as $service):?> 
+    <?php foreach ($services as $service):?>
       <?php if($service->getTypeId() =='3') : ?>
         <li>
           <a href="<?php echo $service->getUrl() ?>"><h3><?php echo $service->getNom() ?></h3> </a><br />

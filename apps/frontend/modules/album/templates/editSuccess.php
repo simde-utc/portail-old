@@ -8,12 +8,10 @@
 <?php endif ?>
 <br /><br />
 <form class="editform well form-horizontal" action="<?php echo url_for('@submit') ?>" method="post" enctype="multipart/form-data" >
-          <?php echo $form->renderHiddenFields(false) ?>
-  
-    
+  <?php echo $form->renderHiddenFields(false) ?>
   <?php echo $form->renderGlobalErrors() ?>
   <?php echo $form['asso_id']->renderLabel()?> <?php echo $form['asso_id'] ?>
-    <br/>  
+    <br/>
   <?php echo $form['name']->renderLabel()?> <?php echo $form['name'] ?>
     <br/>
   <?php echo $form['location']->renderLabel()?> <?php echo $form['location'] ?>

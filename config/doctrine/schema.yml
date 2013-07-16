@@ -121,7 +121,6 @@ UserSemestre:
     num: { type: string(4) }
     abroad: { type: string(30) }
     semestre_id: {type: integer }
-
   relations:
     Profile: { local: user_id, foreign: id }
     Branche: { local: branche_id, foreign: id }
@@ -133,7 +132,6 @@ UserUv:
     uv_id: { type: integer }
     user_semestre_id: { type: integer }
     note: { type: string(2) }
- 
   relations:
     Uv: { local: uv_id, foreign: id }
     UserSemestre: { local: user_semestre_id, foreign: id }
@@ -143,7 +141,6 @@ UserSport:
   columns:
     user_id: { type: integer }
     sport_id: { type: integer }
- 
   relations:
     Profile: { local: user_id, foreign: id }
     Sport: { local: sport_id, foreign: id }
@@ -152,7 +149,7 @@ Sport:
   connection: doctrine
   columns:
     name: { type: string(30), notnull: true }
- 
+
 Uv:
   connection: doctrine
   columns:
@@ -235,14 +232,14 @@ Abonnement:
   actAs: { Timestampable: ~ }
   columns:
     user_id: { type: integer, notnull: true }
-    asso_id: { type: integer } 
+    asso_id: { type: integer }
     type_publication: { type: integer, notnull: true }
   relations:
     Asso: { local: asso_id, foreign: id }
-    User: { local: user_id, foreign: id, class: sfGuardUser }  
-    
+    User: { local: user_id, foreign: id, class: sfGuardUser }
+
 Service:
-  connection: doctrine 
+  connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
     nom: { type: string, notnull: true }
@@ -252,7 +249,7 @@ Service:
     type_id: { type: integer, notnull: true }
   relations:
     Type: { local: type_id, foreign: id, class: ServiceType }
-    
+
 MembreService:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -260,9 +257,9 @@ MembreService:
     membre: { type: integer, notnull: true }
     service: { type: integer, notnull: true }
   relations:
-    User: { local: membre, foreign: id, class: sfGuardUser }  
+    User: { local: membre, foreign: id, class: sfGuardUser }
     Service: { local: service, foreign: id }
-     
+
 ServiceType:
   connection: doctrine
   columns:

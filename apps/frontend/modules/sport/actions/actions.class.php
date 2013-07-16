@@ -70,7 +70,7 @@ class sportActions extends sfActions
       $this->redirect('sport/edit?id='.$sport->getId());
     }
   }
-  
+
   public function executeAdd(sfWebRequest $request)
   {
       $this->forward404unless($request->isXmlHttpRequest());

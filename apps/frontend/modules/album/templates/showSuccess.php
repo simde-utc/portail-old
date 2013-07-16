@@ -40,4 +40,3 @@
 <a class="btn btn-warning" href="<?php echo url_for('album/edit?id='.$album->getId()) ?>"><i class="icon-edit icon-white"></i> Modifier</a>
 &nbsp;
 <?php echo link_to('<i class="icon-trash icon-white"></i> Supprimer', 'album/delete?id='. $album->getId(), array('method' => 'delete', 'confirm' => 'Êtes-vous sur de vouloir supprimer défintivement cet album photo ?', 'class' => 'btn btn-danger')) ?>
-          

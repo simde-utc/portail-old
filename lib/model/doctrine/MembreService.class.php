@@ -12,8 +12,5 @@
  */
 class MembreService extends BaseMembreService
 {
-  
-  
-  
 
 }

@@ -280,7 +280,7 @@ EOF
     $this->redirectUnless($this->asso, 'assos_list');
     $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
   }
-  
+
   public function executeAlbums()
   {
     $this->asso = $this->getRoute()->getObject();

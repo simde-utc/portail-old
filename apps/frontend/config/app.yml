@@ -16,11 +16,11 @@ all:
         photos_max_number: 10
         photos_unit_max_weight: 1100000
         photos_max_weight: 21000000
- 
+
         global_max_weight: 21000000
         main_path: /uploads/gallery
- 
-        min_file_size: 1 
+
+        min_file_size: 1
         max_file_size: 1000000000
   sfXssSafePlugin:
     definition:

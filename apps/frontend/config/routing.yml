@@ -185,7 +185,7 @@ article_new:
 albums_list:
   url:   /album
   param: { module: album, action: index }
-  
+
 album_show:
   url:   /album/show/:id
   class: sfDoctrineRoute
@@ -201,21 +201,21 @@ album_edit:
 album_update:
   url:  /album/update/:id
   param: { module: album, action: update }
-  
+
 album_delete:
   url:  /album/delete/:id
-  param: { module: album, action: delete } 
-  
+  param: { module: album, action: delete }
+
 album_create:
   url: /album/create
-  param: { module: album, action: create } 
-  
+  param: { module: album, action: create }
+
 album_new:
   url: /album/new/:login
   class: sfDoctrineRoute
   param: { module: album, action: new }
   options: { model: Asso, type: object }
-  
+
 #add:
 #  url: /add
 #  param: { module: album, action: add }
@@ -231,7 +231,7 @@ album_new:
 #new:
 #  url: /new
 #  param: { module: album, action: new }
-  
+
 #Uv
 uv_list:
   url:   /uv
@@ -240,14 +240,14 @@ uv_list:
 uv_update:
   url:  /uv/update/:id
   param: { module: uv, action: update }
-  
+
 uv_delete:
   url:  /uv/delete/:id
-  param: { module: uv, action: delete } 
-  
+  param: { module: uv, action: delete }
+
 uv_create:
   url: /uv/create
-  param: { module: uv, action: create } 
+  param: { module: uv, action: create }
 
 uv_new:
   url: /uv/new
@@ -257,7 +257,7 @@ uv_edit:
   url:  /uv/edit/:id
   class: sfDoctrineRoute
   param: { module: uv, action: edit }
-  options: { model: Uv, type: object }  
+  options: { model: Uv, type: object }
 
 #Sport
 sport_list:
@@ -267,14 +267,14 @@ sport_list:
 sport_update:
   url:  /sport/update/:id
   param: { module: sport, action: update }
-  
+
 sport_delete:
   url:  /sport/delete/:id
-  param: { module: sport, action: delete } 
-  
+  param: { module: sport, action: delete }
+
 sport_create:
   url: /sport/create
-  param: { module: sport, action: create } 
+  param: { module: sport, action: create }
 
 sport_new:
   url: /sport/new
@@ -284,7 +284,7 @@ sport_edit:
   url:  /sport/edit/:id
   class: sfDoctrineRoute
   param: { module: sport, action: edit }
-  options: { model: Sport, type: object }   
+  options: { model: Sport, type: object }
 
 #Profile
 profile_show:
@@ -310,7 +310,7 @@ profile_infoPerso_edit:
 profile_infoPerso_update:
   url:  /profile/infoPerso/update/:id
   param: { module: profile, action: updateInfoPerso }
- 
+
 profile_infoSupp_edit:
   url:  /profile/infoSupp/edit/:id
   class: sfDoctrineRoute
@@ -319,16 +319,15 @@ profile_infoSupp_edit:
 
 profile_infoSupp_update:
   url:  /profile/infoSupp/update/:id
-  param: { module: profile, action: updateInfoSupp }  
+  param: { module: profile, action: updateInfoSupp }
 
- 
 #profile_infoSupp_edit:
 #  url:  /profile/infoSupp/edit
 #  param: { module: profile, action: editInfoSupp }
 #
 #profile_infoSupp_submit:
 #  url:  /profile/infoSupp/submit
-#  param: { module: profile, action: updateInfoSupp }  
+#  param: { module: profile, action: updateInfoSupp }
 
 profile_infoSupp_add:
   url: /profile/add
@@ -366,17 +365,17 @@ event_edit:
   class: sfDoctrineRoute
   param: { module: event, action: edit }
   options: { model: Event, type: object }
-  
+
 event_update:
   url:  /event/update/:id
   param: { module: event, action: update }
-  
+
 event_delete:
   url:  /event/delete/:id
-  param: { module: event, action: delete }   
+  param: { module: event, action: delete }
 event_create:
   url: /event/create
-  param: { module: event, action: create } 
+  param: { module: event, action: create }
 event_new:
   url: /event/:login/new
   class: sfDoctrineRoute
@@ -533,27 +532,27 @@ register_activation:
 register_resend:
   url: /inscription/activation
   param: { module: sfGuardRegister, action: resend }
-  
+
 abonnement_list:
   url: /abonnement/:show
   param: { module: abonnement, action: show}
- 
+
 services:
   url: /services
   param: {module: services, action: show}
-  
+
 services_follow:
   url: /services/:nom/follow
   class: sfDoctrineRoute
   param: { module: services, action: follow }
   options: { model: Service, type: object }
-  
+
 services_unfollow:
   url: /services/:nom/unfollow
   class: sfDoctrineRoute
   param: { module: services, action: unfollow }
   options: { model: Service, type: object }
- 
+
 #Aide
 aide:
   url: /aide

@@ -2,7 +2,6 @@
   <h1>
     Aide
   </h1>
-    
     <h2>
         Modifier ses informations
     </h2>
@@ -24,22 +23,19 @@
             <param name="Volume" value="-200">
 
             <!-- pour afficher le media player par défaut dans Firefox: -->
-            <embed type="application/x-mplayer2" 
+            <embed type="application/x-mplayer2"
                     name="MediaPlayer1"
                     width="580" height="400"
-                    pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" 
-                    src="/videos/profile.avi" 
+                    pluginspage="http://www.microsoft.com/Windows/MediaPlayer/"
+                    src="/videos/profile.avi"
                     autostart="False"
                     showcontrols="True"
-                    showstatusbar="False" 
+                    showstatusbar="False"
                     showdisplay="False"
                     showtracker="False"
                     autorewind="True"
                     volume="-200"
             ></embed>
-
-    </object> 
+    </object>
     </div>
-
-
 </div>

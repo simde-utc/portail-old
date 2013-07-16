@@ -27,11 +27,8 @@
     <?php endif;?>
         <?php endforeach;?>
     </ul>
-  
-  
 </div></div>
 <?php endforeach; ?>
     <?php else: ?>
       Cette association n'a pas encore publié d'albums photos.
     <?php endif ?>
-

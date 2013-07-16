@@ -262,17 +262,17 @@ p { text-align : justify; }
   padding-top: 8px;
 }
 
-#column-left #my_assos .my_asso {
+#column-left .my_asso {
   padding: 5px;
   background: #FFF;
 }
 
-#column-left #my_assos .my_asso img {
+#column-left .my_asso img {
   float: left;
   margin-bottom: 5px;
 }
 
-#column-left #my_assos .my_asso h2 {
+#column-left .my_asso h2 {
   font-weight: bold;
   font-size: 12px;
   text-transform: uppercase;
@@ -282,7 +282,7 @@ p { text-align : justify; }
   margin-top: 8px;
   
 }
-#column-left #my_assos .my_asso .barre {
+#column-left .my_asso .barre {
   margin: 2px auto;
   border-top: 1px solid #000;
   clear: both;
@@ -809,11 +809,16 @@ a.btn-danger {
 
 #assos_list li, #services_list li{
   padding : 10px;
-  width:600px;
+  width:790px;
   min-height : 120px;
   border: 1px solid #efefef;
   margin: 0 15px 15px 0;
   background: #fff;
+}
+
+#services_list li {
+    min-height: 85px;
+    margin-bottom: 15px;
 }
 
 #assos_list h3 a, #services_list h3 a{
@@ -843,6 +848,11 @@ a.btn-danger {
   color:#fff;
   background-color:#75c34b;
 }
+
+#services_list .btn {
+    color: #000000;
+}
+
 #topbar .email:before , #assos_list .email:before {
   content: url('/images/icons/mail.png');
   margin-right: 5px;

@@ -3,3 +3,6 @@ editIdentiteSuccess:
 
 editInfoPersoSuccess:
   has_layout: false
+
+showSuccess:
+  javascripts: [profile.js, sportform.js]

@@ -103,7 +103,7 @@ Profile:
     photo: { type: string }
     weekmail: { type: boolean }
     autorisation_photo: { type: boolean }
-    devise: { type: string(300) }
+    devise: { type: string(255) }
 
   relations:
     User: { local: user_id, foreign: id, class: sfGuardUser, foreignType: one }

@@ -116,7 +116,7 @@ class assoActions extends sfActions {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login=' . $asso->getLogin());
     }
-    if(!$request->getParameter('check') == $this->getUser()->getUserName())
+    if($request->getParameter('check') != $this->getUser()->getUserName())
     {
       $this->getUser()->setFlash('error', 'La signature n\'est pas correcte.');
       $this->redirect('asso/charte?login=' . $asso->getLogin());

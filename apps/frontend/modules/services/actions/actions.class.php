@@ -18,11 +18,11 @@ class servicesActions extends sfActions {
         $service = $this->getRoute()->getObject();
         if ($this->getUser()->getGuardUser()->isFollowerService($service)) {
             $this->getUser()->setFlash('error', 'Vous avez déjà mis en favori ce service.');
-            $this->redirect('services/show');
+            $this->redirect('services');
         }
         $service->addFollower($this->getUser()->getGuardUser(), $service);
         $this->getUser()->setFlash('success', 'Vous avez maintenant ajouté ce service dans vos favoris.');
-        $this->redirect('services/show');
+        $this->redirect('services');
     }
 
     public function executeUnfollow(sfWebRequest $request) {
@@ -30,11 +30,11 @@ class servicesActions extends sfActions {
 
         if (!$this->getUser()->getGuardUser()->isFollowerService($service)) {
             $this->getUser()->setFlash('error', 'Vous n\'avez pas en favori ce service.');
-            $this->redirect('services/show');
+            $this->redirect('services');
         }
         $service->removeFollower($this->getUser()->getGuardUser(), $service);
         $this->getUser()->setFlash('success', 'Vous n\'avez plus en favori ce service.');
-        $this->redirect('services/show');
+        $this->redirect('services');
     }
 
 }

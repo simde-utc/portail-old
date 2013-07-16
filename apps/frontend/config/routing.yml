@@ -553,11 +553,6 @@ services_unfollow:
   param: { module: services, action: unfollow }
   options: { model: Service, type: object }
 
-#Aide
-aide:
-  url: /aide
-  param: { module: aide, action: show}
-
 gesmail_create:
   url: /asso/:login/gesmail/create
   param: { module: gesmail, action: create }

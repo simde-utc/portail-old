@@ -1,8 +1,13 @@
 <div class="part" id="profile">
   <h1>Mon Profil</h1>
 
-  <h2><a href="javascript:;" class="modifier editIdentite"
-         data-url="<?php echo url_for('profile_identite_edit', array('id' => $profile->getId())) ?>">Identité</a></h2>
+  <h2>
+    <a class="btn pull-right editIdentite"
+       data-url="<?php echo url_for('profile_identite_edit', array('id' => $profile->getId())) ?>">
+      <i class="icon-pencil"></i>
+    </a>
+    Identité
+  </h2>
   <img id="trombi" style="float: left;"
        src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $sf_user->getGuardUser()->getUsername() ?>">
 
@@ -28,6 +33,8 @@
         <b>Date de Naissance</b> : <?php echo $birthday[2] . '/' . $birthday[1] . '/' . $birthday[0] ?><br>
       <?php endif; ?>
     </div>
+    <div id="identite-form">
+    </div>
   </div>
   <div class="span2">
     <?php if ($profile->getBranche()): ?>
@@ -48,10 +55,11 @@
   </div>
 </div>
 <h2>
-  <a href="javascript:;" class="modifier editInfoPerso"
-       data-url="<?php echo url_for('profile_infoPerso_edit', array('id' => $profile->getId())) ?>">
-    Informations personnelles
+  <a class="btn pull-right editInfoPerso"
+     data-url="<?php echo url_for('profile_infoPerso_edit', array('id' => $profile->getId())) ?>">
+    <i class="icon-pencil"></i>
   </a>
+  Informations personnelles
 </h2>
 <div id="infoPerso">
   <?php
@@ -90,9 +98,15 @@
 
   ?>
 </div>
-<h2><a href="javascript:;" class="modifier editInfoSupp"
-       data-url="<?php echo url_for('profile_infoSupp_edit', array('id' => $profile->getId())) ?>">Informations
-    supplémentaires</a></h2>
+<div id="infoPerso-form">
+</div>
+<h2>
+  <a class="btn pull-right editInfoSupp"
+     data-url="<?php echo url_for('profile_infoSupp_edit', array('id' => $profile->getId())) ?>">
+    <i class="icon-pencil"></i>
+  </a>
+  Informations supplémentaires
+</h2>
 <div id="infoSupp">
   <?php
   //infos supp
@@ -111,6 +125,8 @@
     echo "<div class='row' style='text-align:center;'><i>Pas d'informations disponibles. </i></div>";
   }
   ?>
+</div>
+<div id="infoSupp-form">
 </div>
 <h2>
   Parcours UTC
@@ -143,7 +159,6 @@
       <i>Pas d'historique des UVs disponible. </i>
     </div>
   <?php endif ?>
-  ?>
 </div>
 
 <h2>Parcours Asso</h2>

@@ -572,6 +572,10 @@ a.btn-danger {
     margin: 0 auto;
 }
 
+#profile h2 .btn.pull-right {
+    margin-top: 7px;
+}
+
 #topbar a.btn {
   color: #000;
 }

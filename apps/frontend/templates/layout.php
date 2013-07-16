@@ -117,7 +117,7 @@
         <?php endif ?>
         <?php echo $sf_content ?>
       </div>
-
+      <div style="clear: both;"></div>
     </div>
     <div id="footer">
       <div class="wrap">

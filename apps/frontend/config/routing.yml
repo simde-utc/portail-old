@@ -523,7 +523,7 @@ abonnement_list:
 
 services:
   url: /services
-  param: {module: services, action: show}
+  param: {module: services, action: index}
 
 services_follow:
   url: /services/:nom/follow

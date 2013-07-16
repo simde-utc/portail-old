@@ -16,7 +16,7 @@
             <?php echo $service->getResume() ?>
             <br />
             <?php if ($sf_user->isAuthenticated()): ?>
-              <?php if (!$sf_user->getGuardUser()->isFollowerService($service)): ?>
+              <?php if (!in_array($service->getId(),$sf_data->getRaw('membre_services'))): ?>
                 <a href="<?php echo url_for('services_follow', $service) ?>" class="btn"><i class="icon-plus"></i>
                   Ajouter aux favoris</a><br/>
               <?php else: ?>
@@ -46,7 +46,7 @@
             <?php echo $service->getResume() ?>
             <br />
             <?php if ($sf_user->isAuthenticated()): ?>
-              <?php if (!$sf_user->getGuardUser()->isFollowerService($service)): ?>
+                <?php if (!in_array($service->getId(),$sf_data->getRaw('membre_services'))): ?>
                 <a href="<?php echo url_for('services_follow', $service) ?>" class="btn"><i class="icon-plus"></i>
                   Ajouter aux favoris</a><br/>
               <?php else: ?>
@@ -76,7 +76,7 @@
             <?php echo $service->getResume() ?>
             <br />
             <?php if ($sf_user->isAuthenticated()): ?>
-              <?php if (!$sf_user->getGuardUser()->isFollowerService($service)): ?>
+                <?php if (!in_array($service->getId(),$sf_data->getRaw('membre_services'))): ?>
                 <a href="<?php echo url_for('services_follow', $service) ?>" class="btn"><i class="icon-plus"></i>
                   Ajouter aux favoris</a><br/>
               <?php else: ?>

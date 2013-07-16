@@ -23,13 +23,10 @@ class assoComponents extends sfComponents
     $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
   }
 
-  /**
-   * @todo: n'afficher que les assos auxquelles on participe actuellement
-   */
   public function executeMyAssos()
   {
     $this->assos = AssoTable::getInstance()->getMyAssos($this->getUser()->getGuardUser()->getId())->execute();
-    $this->prev_assos = AssoTable::getInstance()->getMyPrevAssos($this->getUser()->getGuardUser()->getId())->execute();
+    $this->prev_assos = AssoTable::getInstance()->getMyPrevAssos($this->getUser()->getGuardUser()->getId(), $this->assos)->execute();
   }
 
   public function executeRandomAsso()

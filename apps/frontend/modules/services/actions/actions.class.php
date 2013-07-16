@@ -8,13 +8,22 @@
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class servicesActions extends sfActions {
+class servicesActions extends sfActions
+{
 
-    public function executeIndex(sfWebRequest $request) {
+    public function executeIndex(sfWebRequest $request)
+    {
         $this->services = ServiceTable::getInstance()->getServicesList()->execute();
+        $this->membre_services = array();
+        if ($this->getUser()->isAuthenticated()) {
+            $membre_services = MembreServiceTable::getInstance()->getServicesFavoris($this->getUser()->getGuardUser()->getId())->execute();
+            foreach ($membre_services as $membre_service)
+                array_push($this->membre_services,intval($membre_service->getService()->getId()));
+        }
     }
 
-    public function executeFollow(sfWebRequest $request) {
+    public function executeFollow(sfWebRequest $request)
+    {
         $service = $this->getRoute()->getObject();
         if ($this->getUser()->getGuardUser()->isFollowerService($service)) {
             $this->getUser()->setFlash('error', 'Vous avez déjà mis en favori ce service.');
@@ -25,7 +34,8 @@ class servicesActions extends sfActions {
         $this->redirect('services');
     }
 
-    public function executeUnfollow(sfWebRequest $request) {
+    public function executeUnfollow(sfWebRequest $request)
+    {
         $service = $this->getRoute()->getObject();
 
         if (!$this->getUser()->getGuardUser()->isFollowerService($service)) {

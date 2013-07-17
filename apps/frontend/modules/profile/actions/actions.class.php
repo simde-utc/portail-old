@@ -25,7 +25,7 @@ class profileActions extends sfActions
     if (!$this->getUser()->isAuthenticated())
       $this->redirect("homepage");
 
-    $this->profile = $this->getUser()->getProfile();
+    $this->profile = $this->getUser()->getFullProfile();
     $this->semestres = UserSemestreTable::getInstance()->getAllByProfile($this->profile)->execute();
 
   }

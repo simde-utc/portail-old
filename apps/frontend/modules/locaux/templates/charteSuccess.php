@@ -17,7 +17,7 @@
         <INPUT type="checkbox" name="locaux_pic" value="1">Locaux du PIC<br/>
         <INPUT type="checkbox" name="bureau_polar" value="1">Bureau du Polar<br/>
         <INPUT type="checkbox" name="perm_polar" value="1">Permanence du Polar<br/>
-        <INPUT type="checkbox" name="salles_musique" value="1">Salle de musique<br/>
+        <INPUT type="checkbox" name="salles_musique" value="1">Salles de musique<br/>
 
         <br/>
         <p>Entrez le motif de la demande ci dessous:</p>

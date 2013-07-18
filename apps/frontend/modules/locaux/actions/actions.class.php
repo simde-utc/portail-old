@@ -19,8 +19,8 @@ class locauxActions extends sfActions
   
   public function executeCharte(sfWebRequest $request)
   {
-
-  }
+ 
+   }
 
   public function executeLocauxCtrl(sfWebRequest $request)
   {

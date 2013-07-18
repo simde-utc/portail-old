@@ -374,6 +374,11 @@ weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }
 
+#Locaux
+locaux:
+  url: /Locaux
+  param: { module: locaux, action: index}  
+
 # generic rules
 # please, remove them by adding more specific rules
 

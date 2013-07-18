@@ -56,6 +56,7 @@
         <a href="<?php echo url_for('homepage') ?>">Accueil</a>
         <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Toutes les associations</a>
         <a href="<?php echo url_for('agenda_detail') ?>" class="barre">Calendrier</a>
+        <a href="<?php echo url_for('locaux_charte') ?>" class="barre">Charte Locaux</a>
         <?php /*<a href="<?php echo url_for('annonce') ?>" class="barre">Annonces</a>*/ ?>
         <span class="horloge">
           <?php echo format_date(time(), "D", 'fr') ?>
@@ -113,7 +114,7 @@
           <h2>Services</h2>
           <a href="/gesmail">Gestion des mails assos</a><br/>
           <a href="/resa">Réservation de salles</a><br/>
-          <a href="/mail">Webmail assos</a><br /><br />
+          <a href="/mail">Webmail assos</a><br />
         </div>
         <div id="footer-right">
           <h2>Liens</h2>

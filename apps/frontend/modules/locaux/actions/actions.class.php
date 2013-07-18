@@ -10,27 +10,21 @@
  */
 class locauxActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
+  /**
+  * Executes index action
+  *
+  * @param sfRequest $request A request object
+  */
+
+  
+  public function executeCharte(sfWebRequest $request)
   {
-    $this->charte_locauxs = Doctrine_Core::getTable('CharteLocaux')
-      ->createQuery('a')
-      ->execute();
+
   }
 
-  public function executeNew(sfWebRequest $request)
+  public function executeLocauxCtrl(sfWebRequest $request)
   {
     $this->form = new CharteLocauxForm();
-  }
-
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-    $this->form = new CharteLocauxForm();
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -50,15 +44,6 @@ class locauxActions extends sfActions
     $this->setTemplate('edit');
   }
 
-  public function executeDelete(sfWebRequest $request)
-  {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($charte_locaux = Doctrine_Core::getTable('CharteLocaux')->find(array($request->getParameter('id'))), sprintf('Object charte_locaux does not exist (%s).', $request->getParameter('id')));
-    $charte_locaux->delete();
-
-    $this->redirect('locaux/index');
-  }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
   {

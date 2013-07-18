@@ -470,6 +470,7 @@ CharteLocaux:
     perm_polar: { type: boolean, notnull: true, default: false }
     salles_musique: { type: boolean, notnull: true, default: false }
     statut: {type: int(1), notnull: true}
+    motif: {type: string}
   relations:
     Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
     Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }

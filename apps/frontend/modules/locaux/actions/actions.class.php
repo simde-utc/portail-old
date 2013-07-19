@@ -21,6 +21,7 @@ class locauxActions extends sfActions
   {
     $this->assos = AssoTable::getInstance()->getMyAssos($this->getUser()->getGuardUser()->getId())->execute();
     $this->form = new CharteLocauxForm();
+    $this->form->setDefault('asso_id', $this->assos);
    }
 
   public function executeLocauxCtrl(sfWebRequest $request)

@@ -12,7 +12,8 @@ class CharteLocauxTable extends Doctrine_Table
      *
      * @return object CharteLocauxTable
      */
-    public static function getInstance()
+  
+	  public static function getInstance()
     {
         return Doctrine_Core::getTable('CharteLocaux');
     }

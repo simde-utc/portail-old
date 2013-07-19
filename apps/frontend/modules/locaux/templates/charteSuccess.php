@@ -24,7 +24,7 @@
         <p>Entrez le motif de la demande ci dessous:</p>
         <textarea  type="text" name="motif" rows="5" cols="500">
         </textarea>
-        
+        <?php echo $form ?>
         <br/>
         <input type="submit" class="btn btn-primary" value="Valider" />
       </form>

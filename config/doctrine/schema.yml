@@ -455,12 +455,9 @@ CharteLocaux:
     date: { type: timestamp, notnull: true }
     ip: { type: string(15), notnull: true }
     semestre_id: { type: integer, notnull: true }
-    pole_id : {type: integer, notnull: true}
     asso_id : { type: integer, notnull : true }
-    asso_name: { type: string(20), notnull: true }
     login: { type: string(20), notnull: true }
-    nom: { type: string(20), notnull: true }
-    prenom: { type: string(20), notnull: true }
+    user_id: { type: integer, notnull: true }
     porte_mde: { type: boolean, notnull: true, default: false }
     bat_a: { type: boolean, notnull: true, default: false }
     locaux_pic: { type: boolean, notnull: true, default: false }
@@ -474,4 +471,4 @@ CharteLocaux:
   relations:
     Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
     Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
-    Pole: { local: pole_id, foreign: id }
+    Responsable: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }

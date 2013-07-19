@@ -4,9 +4,10 @@
     <div class="well">
       <form method="post" action="<?php echo url_for('locaux_ctrl') ?>">
         <p>Pour quelle association désirez-vous signez la charte (vous devez être membre de l'association)</p>
-        <select name="assoc_id"><!--Rendre automatique la mise en place des champs assoc-->
-          <option value="1">BDE</option>
-          <option value="2">SIMDE</option>
+        <select name="asso_id"><!--Rendre automatique la mise en place des champs assoc-->
+          <?php foreach ($assos as $asso): ?>
+          <option value="<?php echo $asso->getId() ?>"><?php echo $asso->getName() ?></option>
+          <?php endforeach; ?>
         </select>
         <br/>
         <br/>
@@ -25,13 +26,6 @@
         </textarea>
         
         <br/>
-        <br/>
-        <p>En saisissant mon login <em><?php echo $sf_user->getUsername() ?></em> ci-dessous et en cliquant sur <i>Valider</i>, je déclare :</p>
-        <p><ul>
-          <li>avoir pris connaissance de la charte ci-dessus et l'approuver</li>
-          </ul>
-        </p>
-        <input type="text" name="check" /><br />
         <input type="submit" class="btn btn-primary" value="Valider" />
       </form>
     </div>

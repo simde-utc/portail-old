@@ -1,8 +1,15 @@
 <div class="part">
       <h1>Récapitulatif de saisie:</h1>
-      <p>Nom: <?php echo $sf_user->getName() ?></p>
-      <p>Prénom: <?php echo $sf_user->getName() ?></p>
-      <p>Association: <?php /*echo $assoc*/ ?></p>
+      <p>Nom: <?php echo $lastname ?></p>
+      <p>Prénom: <?php echo $firstname ?></p>
+    <?php foreach($assos as $asso): ?>
+    <?php $asso_id=$asso->getId();
+      if($asso_id==$_POST['asso_id']) {
+      echo "<p>Association:";
+      echo $asso->getName();
+      echo "</p>"; /*Pas Beau mais j'arrive pas à faire la requete doctrine*/
+    } ?>
+    <?php endforeach; ?>
       <p>Accès demandés:
         <ul>
         <?php /*Attention ça pique aux yeux*/

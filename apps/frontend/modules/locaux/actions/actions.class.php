@@ -27,7 +27,35 @@ class locauxActions extends sfActions
     $this->firstname = $this->getUser()-> getGuardUser()->getFirstName();
     $this->lastname = $this->getUser()->getGuardUser()->getLastName();
     $this->assos = AssoTable::getInstance()->getMyAssos($this->getUser()->getGuardUser()->getId())->execute();
-    $this->form = new CharteLocauxForm();
+  }
+
+  public function executeLocauxPost(sfWebRequest $request)
+  {
+    if($request->getParameter('check') != $this->getUser()->getUserName())
+    {
+      $this->getUser()->setFlash('error', 'La signature n\'est pas correcte.');
+      $this->redirect('locaux_charte');
+    }
+    $charte = new CharteLocaux();
+    $charte->setLogin($this->getUser()->getGuardUser()->getUserName());
+    $charte->setUserId($this->getUser()->getGuardUser()->getId());
+    $charte->setStatut(0);
+    $charte->setPorteMde($_POST['porte_mde']);
+    $charte->setBatA($_POST['bat_a']);
+    $charte->setLocauxPic($_POST['locaux_pic']);
+    $charte->setBureauPolar($_POST['bureau_polar']);
+    $charte->setPermPolar($_POST['perm_polar']);
+    $charte->setMdeComplete($_POST['mde_complete']);
+    $charte->setSallesMusique($_POST['salles_musique']);
+    $charte->setAssoId($_POST['asso_id']);
+    $charte->setIp($_SERVER['REMOTE_ADDR']);
+    $charte->setSemestreId(sfConfig::get('app_portail_current_semestre'));
+    $charte->setDate(date('Y-m-d H:i:s'));
+    $charte->setMotif($_POST['motif']);
+    $charte->save();
+
+    $this->getUser()->setFlash('success', 'La charte a été signée. La demande doit maintenant être validée par le président de l\'association et par le BDE.');
+    $this->redirect('homepage');
   }
 
   public function executeEdit(sfWebRequest $request)

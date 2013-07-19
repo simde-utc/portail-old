@@ -383,6 +383,10 @@ locaux_ctrl:
   url: /locaux/confirmation
   param: { module: locaux, action: locauxCtrl}
 
+locaux_post:
+  url: /locaux/post
+  param: {module: locaux, action: locauxPost }
+
 
 # generic rules
 # please, remove them by adding more specific rules

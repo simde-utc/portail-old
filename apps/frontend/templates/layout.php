@@ -56,7 +56,6 @@
         <a href="<?php echo url_for('homepage') ?>">Accueil</a>
         <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Toutes les associations</a>
         <a href="<?php echo url_for('agenda_detail') ?>" class="barre">Calendrier</a>
-        <a href="<?php echo url_for('locaux_charte') ?>" class="barre">Charte Locaux</a>
         <?php /*<a href="<?php echo url_for('annonce') ?>" class="barre">Annonces</a>*/ ?>
         <span class="horloge">
           <?php echo format_date(time(), "D", 'fr') ?>

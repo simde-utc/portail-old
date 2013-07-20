@@ -376,17 +376,20 @@ weekmail:
 
 #Locaux
 locaux_charte:
-  url: /locaux
-  param: { module: locaux, action: charte} 
+  url: /asso/:login/locaux
+  class: sfDoctrineRoute
+  param: { module: locaux, action: charte }
+  options: { model: Asso, type: object } 
 
 locaux_ctrl:
   url: /locaux/confirmation
-  param: { module: locaux, action: locauxCtrl}
-
+  param: { module: locaux, action: locauxCtrl }
+  
 locaux_post:
-  url: /locaux/post
+  url: /asso/:login/locaux/post
+  class: sfDoctrineRoute
   param: {module: locaux, action: locauxPost }
-
+  options: { model: Asso, type: object }
 
 # generic rules
 # please, remove them by adding more specific rules

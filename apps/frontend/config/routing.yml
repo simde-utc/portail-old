@@ -382,8 +382,10 @@ locaux_charte:
   options: { model: Asso, type: object } 
 
 locaux_ctrl:
-  url: /locaux/confirmation
+  url: /locaux/:id
+  class: sfDoctrineRoute
   param: { module: locaux, action: locauxCtrl }
+  options: { model: CharteLocaux, type: object }
   
 locaux_post:
   url: /asso/:login/locaux/post

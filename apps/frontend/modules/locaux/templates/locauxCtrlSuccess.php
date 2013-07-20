@@ -2,11 +2,11 @@
 	  <h1>Charte locaux</h1>
 	  <p> Blablabla Voici la charte locaux blabla</p>
 	  <div class="well">
-		  <form method="post" action="<?php echo url_for('locaux_post', $asso) ?>">
+		  <?php /*<form method="post" action="<?php echo url_for('locaux_post', $asso) ?>"> */?>
 		  <h1>Récapitulatif de saisie:</h1>
 		  <p>Nom: <?php echo $lastname ?></p>
 		  <p>Prénom: <?php echo $firstname ?></p>
-		  <p>Association: <?php echo $form['asso'] ?></p>
+		  <p>Association: <?php echo $asso ?></p>
 		  <p>Accès demandés:
 			<ul>
 			<?php /*
@@ -30,6 +30,6 @@
 			</p>
 			<input type="text" name="check" /><br />
 			<input type="submit" class="btn btn-primary" value="Valider" />
-		  </form>
+		  <?php /*</form>*/ ?>
 	</div>
 </div>

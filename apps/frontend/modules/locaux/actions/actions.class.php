@@ -22,6 +22,7 @@ class locauxActions extends sfActions
 	$this->asso = $this->getRoute()->getObject();
     $this->form = new CharteLocauxForm();
     $this->form->setDefault('asso_id', $this->asso->getPrimaryKey());
+    $this->processForm($request, $this->form);
    }
 
 
@@ -29,8 +30,8 @@ class locauxActions extends sfActions
   {
 	
 	$this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-	
-	$this->asso = $request->getParameter('charte_locaux[asso_id]');
+	$charte = $this->getRouting()->getObject();
+	$this->asso = $request->getParameter('asso_id');
     $this->firstname = $this->getUser()-> getGuardUser()->getFirstName();
     $this->lastname = $this->getUser()->getGuardUser()->getLastName();
   }
@@ -89,7 +90,7 @@ class locauxActions extends sfActions
     {
       $charte_locaux = $form->save();
 
-      $this->redirect('locaux/edit?id='.$charte_locaux->getId());
+      $this->redirect($this->generateUrl('locaux_ctrl',$charte_locaux));
     }
   }
 }

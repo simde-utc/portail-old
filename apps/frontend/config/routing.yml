@@ -381,6 +381,10 @@ locaux_charte:
   param: { module: locaux, action: charte }
   options: { model: Asso, type: object } 
 
+locaux_create:
+  url: /locaux/create
+  param: { module: locaux, action: create }
+
 locaux_ctrl:
   url: /locaux/:id
   class: sfDoctrineRoute
@@ -388,10 +392,8 @@ locaux_ctrl:
   options: { model: CharteLocaux, type: object }
   
 locaux_post:
-  url: /asso/:login/locaux/post
-  class: sfDoctrineRoute
+  url: /locaux/post
   param: {module: locaux, action: locauxPost }
-  options: { model: Asso, type: object }
 
 # generic rules
 # please, remove them by adding more specific rules

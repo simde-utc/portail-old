@@ -22,18 +22,19 @@ class locauxActions extends sfActions
 	$this->asso = $this->getRoute()->getObject();
     $this->form = new CharteLocauxForm();
     $this->form->setDefault('asso_id', $this->asso->getPrimaryKey());
-    $this->processForm($request, $this->form);
    }
+
+    public function executeCreate(sfWebRequest $request) {
+      $this->form = new CharteLocauxForm();
+      if($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT))
+          $this->processForm($request, $this->form);
+      $this->setTemplate('charte');
+    }
 
 
   public function executeLocauxCtrl(sfWebRequest $request)
   {
-	
-	$this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-	$charte = $this->getRouting()->getObject();
-	$this->asso = $request->getParameter('asso_id');
-    $this->firstname = $this->getUser()-> getGuardUser()->getFirstName();
-    $this->lastname = $this->getUser()->getGuardUser()->getLastName();
+	$this->charte = $this->getRoute()->getObject();
   }
 
   public function executeLocauxPost(sfWebRequest $request)

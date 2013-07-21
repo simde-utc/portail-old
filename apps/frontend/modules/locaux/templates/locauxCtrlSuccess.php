@@ -4,9 +4,9 @@
 	  <div class="well">
 		  <?php /*<form method="post" action="<?php echo url_for('locaux_post', $asso) ?>"> */?>
 		  <h1>Récapitulatif de saisie:</h1>
-		  <p>Nom: <?php echo $lastname ?></p>
-		  <p>Prénom: <?php echo $firstname ?></p>
-		  <p>Association: <?php echo $asso ?></p>
+		  <p>Nom: <?php echo $sf_user->getGuardUser()->getLastName() ?></p>
+		  <p>Prénom: <?php echo $sf_user->getGuardUser()->getFirstName() ?></p>
+		  <p>Association: <?php echo $charte->getAsso()->getName() ?></p>
 		  <p>Accès demandés:
 			<ul>
 			<?php /*

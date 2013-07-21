@@ -22,6 +22,12 @@ class locauxActions extends sfActions
 	$this->asso = $this->getRoute()->getObject();
     $this->form = new CharteLocauxForm();
     $this->form->setDefault('asso_id', $this->asso->getPrimaryKey());
+    $this->form->setDefault('statut', 0);
+    $this->form->setDefault('semestre_id', sfConfig::get('app_portail_current_semestre'));
+    $this->form->setDefault('ip', $_SERVER['REMOTE_ADDR']);
+    $this->form->setDefault('login', $this->getUser()->getGuardUser()->getUserName());
+    $this->form->setDefault('user_id', $this->getUser()->getGuardUser()->getId());
+    $this->form->setDefault('date', date('Y-m-d H:i:s'));    
    }
 
     public function executeCreate(sfWebRequest $request) {
@@ -39,31 +45,19 @@ class locauxActions extends sfActions
 
   public function executeLocauxPost(sfWebRequest $request)
   {
-    if($request->getParameter('check') != $this->getUser()->getUserName())
+      $this->form = new CharteLocauxForm();
+      if($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT))
+          $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+    if ($this->form->isValid())
     {
-      $this->getUser()->setFlash('error', 'La signature n\'est pas correcte.');
-      $this->redirect('locaux_charte');
+		if($request->getParameter('check') != $this->getUser()->getUserName())
+		{
+			$this->getUser()->setFlash('error', 'La signature n\'est pas correcte.');
+			$this->redirect('locaux_ctrl');
+		}
+			$this->redirect($this->generateUrl('locaux_update',$this->form));
     }
-    $charte = new CharteLocaux();
-    $charte->setLogin($this->getUser()->getGuardUser()->getUserName());
-    $charte->setUserId($this->getUser()->getGuardUser()->getId());
-    $charte->setStatut(0);
-    $charte->setPorteMde($_POST['porte_mde']);
-    $charte->setBatA($_POST['bat_a']);
-    $charte->setLocauxPic($_POST['locaux_pic']);
-    $charte->setBureauPolar($_POST['bureau_polar']);
-    $charte->setPermPolar($_POST['perm_polar']);
-    $charte->setMdeComplete($_POST['mde_complete']);
-    $charte->setSallesMusique($_POST['salles_musique']);
-    $charte->setAssoId($_POST['asso_id']);
-    $charte->setIp($_SERVER['REMOTE_ADDR']);
-    $charte->setSemestreId(sfConfig::get('app_portail_current_semestre'));
-    $charte->setDate(date('Y-m-d H:i:s'));
-    $charte->setMotif($_POST['motif']);
-    $charte->save();
-
-    $this->getUser()->setFlash('success', 'La charte a été signée. La demande doit maintenant être validée par le président de l\'association et par le BDE.');
-    $this->redirect('homepage');
+      $this->redirect('charte');
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -74,13 +68,19 @@ class locauxActions extends sfActions
 
   public function executeUpdate(sfWebRequest $request)
   {
+	$this->charte = $this->getRoute()->getObject();
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($charte_locaux = Doctrine_Core::getTable('CharteLocaux')->find(array($request->getParameter('id'))), sprintf('Object charte_locaux does not exist (%s).', $request->getParameter('id')));
-    $this->form = new CharteLocauxForm($charte_locaux);
+    $this->forward404Unless($charte_locaux = Doctrine_Core::getTable('CharteLocaux')->find(array($charte->getId())), sprintf('Object charte_locaux does not exist (%s).', $request->getParameter('id')));
 
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
+	if($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT))
+	{
+		$this->form = new CharteLocauxForm($charte_locaux);
+		$this->form = setStatut(1);
+        $this->processForm($request, $this->form);
+        $this->getUser()->setFlash('success', 'La charte a été signée. La demande doit maintenant être validée par le président de l\'association et par le BDE.');
+		$this->redirect('homepage');
+	}
+    $this->setTemplate('charte');
   }
 
 

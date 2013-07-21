@@ -390,10 +390,12 @@ locaux_ctrl:
   class: sfDoctrineRoute
   param: { module: locaux, action: locauxCtrl }
   options: { model: CharteLocaux, type: object }
-  
+
 locaux_post:
   url: /locaux/post
-  param: {module: locaux, action: locauxPost }
+  param: { module: locaux, action: locauxPost }
+  
+
 
 # generic rules
 # please, remove them by adding more specific rules

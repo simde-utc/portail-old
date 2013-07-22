@@ -128,6 +128,7 @@
 </div>
 <div id="infoSupp-form">
 </div>
+<?php /*
 <h2>
   Parcours UTC
 </h2>
@@ -160,7 +161,7 @@
     </div>
   <?php endif ?>
 </div>
-
+*/ ?>
 <h2>Parcours Asso</h2>
 <?php if (count($sf_user->getGuardUser()->getAssoMember()) > 0): ?>
   <?php foreach ($sf_user->getGuardUser()->getAssoMember() as $assoMember) : ?>

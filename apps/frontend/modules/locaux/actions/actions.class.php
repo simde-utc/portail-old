@@ -19,7 +19,17 @@ class locauxActions extends sfActions
   
   public function executeCharte(sfWebRequest $request)
   {
+
+	
 	$this->asso = $this->getRoute()->getObject();
+	if(!($this->getUser()->isAuthenticated()) || !($this->getUser()->getGuardUser()->isMember($this->asso->getLogin())))
+	{
+			$this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+			$this->redirect('asso/show?login=' . $this->asso->getLogin());
+		
+	}
+	
+	
     $this->form = new CharteLocauxForm();
     $this->form->setDefault('asso_id', $this->asso->getPrimaryKey());
     $this->form->setDefault('statut', 0);
@@ -32,6 +42,12 @@ class locauxActions extends sfActions
 
     public function executeCreate(sfWebRequest $request) {
       $this->form = new CharteLocauxForm();
+      	if(!($this->getUser()->isAuthenticated()))
+		{
+			$this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+			$this->redirect('homepage');
+		
+		}
       if($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT))
           $this->processForm($request, $this->form);
       $this->setTemplate('charte');
@@ -40,47 +56,45 @@ class locauxActions extends sfActions
 
   public function executeLocauxCtrl(sfWebRequest $request)
   {
+
 	$this->charte = $this->getRoute()->getObject();
+  	if(!($this->getUser()->isAuthenticated()) || $this->charte->getLogin()!= $this->getUser()->getUserName())
+	{
+			$this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+			$this->redirect('homepage');
+
+
+	}
+	if($this->charte->statut !=0)
+	{
+		$this->getUser()->setFlash('error', 'Cette charte a déjà été signée.');
+		$this->redirect('homepage');
+	}
   }
 
   public function executeLocauxPost(sfWebRequest $request)
   {
-      $this->form = new CharteLocauxForm();
+	  if(!($this->getUser()->isAuthenticated()))
+	  {
+			$this->redirect('homepage');
+			$this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+		  
+	  }
+      $charte_locaux= new CharteLocaux();
       if($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT))
-          $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
-    if ($this->form->isValid())
-    {
+      {
 		if($request->getParameter('check') != $this->getUser()->getUserName())
 		{
 			$this->getUser()->setFlash('error', 'La signature n\'est pas correcte.');
-			$this->redirect('locaux_ctrl');
+			$this->redirect('homepage');
 		}
-			$this->redirect($this->generateUrl('locaux_update',$this->form));
-    }
-      $this->redirect('charte');
-  }
-
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($charte_locaux = Doctrine_Core::getTable('CharteLocaux')->find(array($request->getParameter('id'))), sprintf('Object charte_locaux does not exist (%s).', $request->getParameter('id')));
-    $this->form = new CharteLocauxForm($charte_locaux);
-  }
-
-  public function executeUpdate(sfWebRequest $request)
-  {
-	$this->charte = $this->getRoute()->getObject();
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($charte_locaux = Doctrine_Core::getTable('CharteLocaux')->find(array($charte->getId())), sprintf('Object charte_locaux does not exist (%s).', $request->getParameter('id')));
-
-	if($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT))
-	{
-		$this->form = new CharteLocauxForm($charte_locaux);
-		$this->form = setStatut(1);
-        $this->processForm($request, $this->form);
-        $this->getUser()->setFlash('success', 'La charte a été signée. La demande doit maintenant être validée par le président de l\'association et par le BDE.');
+		$charte_locaux = Doctrine_Core::getTable('CharteLocaux')->find(array($request->getParameter('id')));
+		$charte_locaux->setStatut(1);
+		$charte_locaux->save();
+		$this->getUser()->setFlash('success', 'La charte a été signée. La demande doit maintenant être validée par le président de l\'association et par le BDE.');
 		$this->redirect('homepage');
-	}
-    $this->setTemplate('charte');
+	  }
+      $this->redirect('charte');
   }
 
 

@@ -29,6 +29,7 @@
 			</p>
 			<form method="post" action="<?php echo url_for('locaux_post', $charte)?>">
 			<input type="text" name="check" /><br />
+			<input type="hidden" name="id" value="<?php echo $charte->getId() ?>" />
 			<input type="submit" class="btn btn-primary" value="Valider" />
 		  </form>
 	</div>

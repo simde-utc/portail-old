@@ -47,11 +47,11 @@ asso_bureau:
   param: { module: asso, action: bureau }
   options: { model: Asso, type: object }
 
-asso_albums:
-  url:   /asso/albums/:login
-  class: sfDoctrineRoute
-  param: { module: asso, action: albums }
-  options: { model: Asso, type: object }
+#asso_albums:
+#  url:   /asso/albums/:login
+#  class: sfDoctrineRoute
+#  param: { module: asso, action: albums }
+#  options: { model: Asso, type: object }
 
 asso_trombi:
   url:   /asso/trombi/:login
@@ -182,39 +182,39 @@ article_new:
   param: { module: article, action: new }
 
 # Album
-albums_list:
-  url:   /album
-  param: { module: album, action: index }
+#albums_list:
+#  url:   /album
+#  param: { module: album, action: index }
 
-album_show:
-  url:   /album/show/:id
-  class: sfDoctrineRoute
-  param: { module: album, action: show }
-  options: { model: Album, type: object }
+#album_show:
+#  url:   /album/show/:id
+#  class: sfDoctrineRoute
+#  param: { module: album, action: show }
+#  options: { model: Album, type: object }
 
-album_edit:
-  url:  /album/edit/:id
-  class: sfDoctrineRoute
-  param: { module: album, action: edit }
-  options: { model: Album, type: object }
+#album_edit:
+#  url:  /album/edit/:id
+#  class: sfDoctrineRoute
+#  param: { module: album, action: edit }
+#  options: { model: Album, type: object }
 
-album_update:
-  url:  /album/update/:id
-  param: { module: album, action: update }
+#album_update:
+#  url:  /album/update/:id
+#  param: { module: album, action: update }
 
-album_delete:
-  url:  /album/delete/:id
-  param: { module: album, action: delete }
+#album_delete:
+#  url:  /album/delete/:id
+#  param: { module: album, action: delete }
 
-album_create:
-  url: /album/create
-  param: { module: album, action: create }
+#album_create:
+#  url: /album/create
+#  param: { module: album, action: create }
 
-album_new:
-  url: /album/new/:login
-  class: sfDoctrineRoute
-  param: { module: album, action: new }
-  options: { model: Asso, type: object }
+#album_new:
+#  url: /album/new/:login
+#  class: sfDoctrineRoute
+#  param: { module: album, action: new }
+#  options: { model: Asso, type: object }
 
 #add:
 #  url: /add

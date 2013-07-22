@@ -65,12 +65,15 @@ class TransactionForm extends BaseTransactionForm {
 
     $this->validatorSchema['date_rapprochement'] = new sfValidatorDate(array('required' => false));
 
+    // soit la date de rapprochement est nulle, soit elle est plus tard que la date de transaction
     $this->validatorSchema->setPostValidator(
-        new sfValidatorSchemaCompare('date_rapprochement', sfValidatorSchemaCompare::GREATER_THAN, 'date_transaction',
-            array(),
+        new sfValidatorOr(array(
+                new sfValidatorSchemaFilter('date_rapprochement', new portailValidatorNull(array('required'=>false))),
+                new sfValidatorSchemaCompare('date_rapprochement', sfValidatorSchemaCompare::GREATER_THAN, 'date_transaction')
+            ), array(),
             array('invalid' => 'La date de rapprochement doit être supérieure à la date de la transaction')
-  )
-);
+            )
+        );
   }
 
   public function processValues($values) {

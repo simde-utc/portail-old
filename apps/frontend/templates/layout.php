@@ -82,11 +82,9 @@
           <?php include_partial('home/bienvenue') ?>
         <?php endif ?>
         <?php if($sf_user->isAuthenticated()): ?>
-            <br>
           <?php include_component('abonnement', 'myFlux') ?>
         <?php endif ?>
         <?php if($sf_user->isAuthenticated()): ?>
-          <br>
           <?php include_component('services', 'myServicesFavoris') ?>
         <?php endif ?>
       </div>

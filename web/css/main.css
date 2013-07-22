@@ -282,10 +282,14 @@ p { text-align : justify; }
   margin-top: 8px;
   
 }
-#column-left .my_asso .barre {
+#column-left .barre {
   margin: 2px auto;
   border-top: 1px solid #000;
   clear: both;
+}
+
+#column-left #my_flux {
+  margin-bottom: 10px;
 }
 
 #column-right #contact {

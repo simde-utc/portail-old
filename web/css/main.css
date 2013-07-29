@@ -548,7 +548,7 @@ p { text-align : justify; }
 	vertical-align: top;
 }
 .editform input, .editform textarea {
-	width: 380px;
+	width: 580px;
 }
 
 .editform input.btn {

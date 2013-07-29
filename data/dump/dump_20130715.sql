@@ -40,8 +40,8 @@ INSERT INTO `pole` (`id`, `asso_id`, `couleur`) VALUES
 (5, 6, '#ffd520');
 
 INSERT INTO `role` (`id`, `name`, `sort`, `bureau`, `droits`) VALUES
-(1, 'Président', 1, 1, 63),
-(2, 'Bureau', 2, 1, 15),
+(1, 'Président', 1, 1, 319),
+(2, 'Bureau', 2, 1, 271),
 (3, 'Membre', 3, 0, 0),
 (4, 'Info', 4, 0, 0);
 
@@ -93,7 +93,6 @@ INSERT INTO `sf_guard_group_permission` (`group_id`, `permission_id`, `created_a
 (1, 3, '2012-10-25 11:41:21', '2012-10-25 11:41:21'),
 (2, 1, '2012-11-01 11:06:52', '2012-11-01 11:06:52');
 
-UPDATE `role` SET `droits`=(`droits`+256) WHERE `id` IN (1,2);
 INSERT INTO `document_type` (`id`, `nom`, `slug`, `detail`) VALUES
 (1, 'Facture', 'factures', 'Il faut toujours avoir la facture !'),
 (2, 'Note de frais', 'note_de_frais', 'Justificatif à signer par les deux parties'),
@@ -107,3 +106,4 @@ INSERT INTO `transaction_moyen` (`id`, `nom`, `detail`) VALUES
 (4, 'Espèces', 'À éviter autant que possible'),
 (5, 'Payutc', 'Uniquement possible sur les comptes payutc.'),
 (6, 'Membre', 'À utiliser si un membre a payé, afin de pouvoir faire une note de frais plus tard');
+

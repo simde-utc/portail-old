@@ -40,9 +40,9 @@ class portailWidgetFormMontant extends sfWidgetFormInput
     $inp = $this->renderTag('input', array('type' => 'hidden', 'name' => $name));
     $debit = $this->renderContentTag('button', 'Débit', array('type'=>'button', 'class'=>$debit_class));
     $credit = $this->renderContentTag('button', 'Crédit', array('type'=>'button', 'class'=>$credit_class));
-    $buttons = $this->renderContentTag('div', $inp.$debit.$credit, array('class'=>'btn-group',
+    $buttons = $this->renderContentTag('div', $debit.$credit, array('class'=>'btn-group',
                                                                     'data-toggle'=>'buttons-radio',
                                                                      'style' => 'display: inline-block;'));
-    return $buttons;
+    return $inp.$buttons;
   }
 }

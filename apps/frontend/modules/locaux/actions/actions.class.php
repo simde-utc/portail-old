@@ -98,4 +98,31 @@ class locauxActions extends sfActions
       $this->redirect($this->generateUrl('locaux_ctrl',$charte_locaux));
     }
   }
+
+  public function executeLocauxAccept(sfWebRequest $request)
+  {
+    $charte_locaux=$this->getRoute()->getObject();
+    $this->redirectUnless($charte, 'homepage');
+
+    $hasdroit=(AssoMemberTable::getInstance()->wasPresident($charte_locaux->getAssoId(), $this->getUser()->getGuardUser()->getId()));
+    $this->redirectUnless($hasdroit, 'homepage');
+
+    $charte_locaux->setStatut(2);
+    $charte_locaux->save();
+    $this->getUser()->setFlash('success', 'Le président a validé la charte. La demande doit maintenant être validée par le BDE.');
+    $this->redirect('homepage');
+  }
+
+  public function executeLocauxRefuse(sfWebRequest $request)
+  {
+    $charte_locaux=$this->getRoute()->getObject();
+    $this->redirectUnless($charte, 'homepage');
+
+    $hasdroit=(AssoMemberTable::getInstance()->wasPresident($charte_locaux->getAssoId(), $this->getUser()->getGuardUser()->getId()));
+    $this->redirectUnless($hasdroit, 'homepage');
+
+    $charte_locaux->delete();
+    $this->getUser()->setFlash('success', 'Le président a refusé la charte. La requête a été supprimée');
+    $this->redirect('homepage');
+  }
 }

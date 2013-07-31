@@ -394,6 +394,18 @@ locaux_ctrl:
 locaux_post:
   url: /locaux/post
   param: { module: locaux, action: locauxPost }
+
+locaux_accept:
+  url: /locaux/:id/accept
+  class: sfDoctrineRoute
+  param: { module: locaux, action: locauxAccept }
+  options: { model: CharteLocaux, type: object }
+
+locaux_refuse:
+  url: /locaux/:id/refuse
+  class: sfDoctrineRoute
+  param: { module: locaux, action: locauxRefuse }
+  options: { model: CharteLocaux, type: object }
   
 
 

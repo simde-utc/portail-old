@@ -29,7 +29,7 @@ use_javascript('treso-notedefrais.js') ?>
     Cette transaction est liée au poste <a href=<?php echo url_for('budget_show', $poste->getBudget()) ?>><?php echo $poste ?></a> du budget <a href=<?php echo url_for('budget_show', $poste->getBudget()) ?>><?php echo $poste->getBudget()->getNom(); ?></a>
   <?php endif; ?>
 <br/><br/>
-<a href="<?php echo url_for('transaction', $transaction->getAsso()) ?>" class="btn">Retour</a> <a href="<?php echo url_for('transaction_edit', $transaction) ?>" class="btn btn-primary"><i class="icon-white icon-pencil"></i> Éditer</a> 
+<a href="<?php echo url_for('transaction_compte', $transaction->getCompteBanquaire()) ?>" class="btn">Retour</a> <a href="<?php echo url_for('transaction_edit', $transaction) ?>" class="btn btn-primary"><i class="icon-white icon-pencil"></i> Éditer</a> 
 </p>
 <h3>Documents Liés</h3>
   <?php if(count($documents) == 0): ?>

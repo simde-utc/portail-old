@@ -2,5 +2,5 @@
   <?php echo $form->renderHiddenFields() ?>
   <?php echo $form->renderGlobalErrors() ?>
   <?php echo $form ?>
-  <INPUT type="submit" class="btn-success" value="Valider">
+  <input type="submit" class="btn-success" value="Valider" />
 </form>

@@ -11,6 +11,6 @@
       </div>
     <?php endforeach; ?>
   <?php else: ?>
-    <p>Vous n'avez aucun services favoris.</p>
+    <p>Vous n'avez aucun service favori.</p>
   <?php endif; ?>
 </div>

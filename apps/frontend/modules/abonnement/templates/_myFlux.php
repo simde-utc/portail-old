@@ -1,6 +1,6 @@
-<?php if($abonnements && $abonnements->count() > 0): ?>
 <div id="my_flux">
   <h1>Mon Flux</h1>
+  <?php if($abonnements && $abonnements->count() > 0): ?>
     <?php foreach ($abonnements as $abonnement):?>
       <?php if($abonnement['article'] == 'event'): ?>
         <div class="events_abonnements">
@@ -17,5 +17,7 @@
         </div>
       <?php endif; ?>
     <?php endforeach; ?>
+  <?php else: ?>
+    Vous ne suivez aucune association.
+  <?php endif; ?>
 </div>
-<?php endif; ?>

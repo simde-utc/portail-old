@@ -13,7 +13,8 @@ class AssoMemberTable extends Doctrine_Table
    * 
    * @param sfEvent $event 
    */
-  public function postSave($event) {
+  public function postSave($event)
+  {
     parent::postSave($event);
     $this->getUser()->reloadGroupsAndPermissions();
   }
@@ -23,7 +24,8 @@ class AssoMemberTable extends Doctrine_Table
    *
    * @return object AssoMemberTable
    */
-  public static function getInstance() {
+  public static function getInstance()
+  {
     return Doctrine_Core::getTable('AssoMember');
   }
 

@@ -135,11 +135,13 @@ class AssoTable extends Doctrine_Table
         $hits = self::getLuceneIndex()->find($query);
 
         $pks = array();
-        foreach ($hits as $hit) {
+        foreach ($hits as $hit)
+        {
             $pks[] = $hit->pk;
         }
 
-        if (empty($pks)) {
+        if (empty($pks))
+        {
             return array();
         }
 
@@ -159,9 +161,11 @@ class AssoTable extends Doctrine_Table
     {
         ProjectConfiguration::registerZend();
 
-        if (file_exists($index = self::getLuceneIndexFile())) {
+        if (file_exists($index = self::getLuceneIndexFile()))
+        {
             return Zend_Search_Lucene::open($index);
-        } else {
+        } else
+        {
             return Zend_Search_Lucene::create($index);
         }
     }

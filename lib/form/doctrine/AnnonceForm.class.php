@@ -24,7 +24,9 @@ class AnnonceForm extends BaseAnnonceForm {
     $this->widgetSchema['user_id'] = new sfWidgetFormInputHidden();
     unset($this['created_at'], $this['updated_at']);
 
+
     $this->widgetSchema['password'] = new sfWidgetFormInputHidden();
+
 
     $this->validatorSchema->setPostValidator(
         new sfValidatorCallback(array('callback' => array($this, 'checkPassword')))

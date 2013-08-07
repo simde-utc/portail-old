@@ -281,13 +281,6 @@ EOF
     $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
   }
 
-  public function executeAlbums()
-  {
-    $this->asso = $this->getRoute()->getObject();
-    $this->redirectUnless($this->asso, 'assos_list');
-    $this->albums = AlbumTable::getInstance()->getAlbumsList($this->asso)->execute();
-  }
-
   public function executeTrombinoscope()
   {
     $this->asso = $this->getRoute()->getObject();
@@ -302,7 +295,6 @@ EOF
     if(!$asso->getJoignable())
     {
       $this->getUser()->setFlash('error', 'On ne peut pas rejoindre cette association.');
-
       $this->redirect('asso/show?login=' . $asso->getLogin());
     }
     if(!$this->getUser()->isAuthenticated())
@@ -348,6 +340,7 @@ EOF
       $this->redirect('asso/show?login=' . $this->asso->getLogin());
     }
     $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->andWhere('q.role_id <> 1')->execute();
+    
     $this->roles = RoleTable::getInstance()->findAll();
   }
 

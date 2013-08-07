@@ -6,7 +6,6 @@
     <a href="<?php echo url_for('asso_articles', $asso) ?>">Articles</a>
     <a href="<?php echo url_for('asso_events', $asso) ?>">Événements</a>
     <a href="<?php echo url_for('asso_trombi', $asso) ?>">Trombinoscope</a>
-    <?php /* <a href="<?php echo url_for('asso_albums', $asso) ?>">Albums photos</a> */ ?>
     <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x02)): ?>
       <a href="<?php echo url_for('asso_member', $asso) ?>">Gestion des membres</a>
     <?php endif ?>

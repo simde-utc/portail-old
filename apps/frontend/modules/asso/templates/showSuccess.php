@@ -1,5 +1,4 @@
 <?php use_helper('Text') ?>
-
 <?php if(isset($flashwarn) && !empty($flashwarn)): ?>
   <div class="alert alert-block">
     <strong>Avertissement !</strong>

@@ -44,6 +44,7 @@ class assoComponents extends sfComponents
     }
     $this->poles = $poles;
   }
+  
   public function executeMenu(sfWebRequest $request)
   {
     if($login = $request->getParameter('login', null))
@@ -74,5 +75,4 @@ class assoComponents extends sfComponents
     else
       $this->charte = false;
   }
-
 }

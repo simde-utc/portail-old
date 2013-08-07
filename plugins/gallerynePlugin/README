@@ -1,0 +1,90 @@
+#galleryne v1.0													
+  Ce plugin va vous permettre d'oublier toutes les galères relatives à l'upload de fichiers avec Symfony.		
+  Utilisez ce plugin pour uploader vos photos et autres types de fichiers, gérez vos fichiers, retouchez vos images     
+  directement sur le site et integrez le widget partout ou vous en avez besoin, dans votre application.		
+
+* Prérequis														
+ 	Pour la manipulation des images, vous devez avoir soit installé la librairie GD, soit imagemagick		
+
+* Documentation : Allez sur le site officiel : 									
+[http://www.galleryne.com](http://www.galleryne.com "Cliquez pour accéder à la documentation et aux exemples")							 
+
+
+![alt text](http://galleryne.com/images/logo.png "Galleryne, Plugin de gestion de fichiers")
+
+
+## Installation: 
+Pour l'installer, il vous suffit d'executer cette commande :
+
+		plugin:install gallerynePlugin
+
+OU
+
+Télécharger la dernière version sur le site [http://www.galleryne.com](http://www.galleryne.com/uploads/zipball/galleryne.zip "télécharger l'archive")
+
+Extractez ensuite les fichiers dans le repertoire Plugins de votre projet Symfony, puis ajoutez cette ligne dans votre fichier de configuration /config/projectConfiguration.class.php :
+
+		$this->enablePlugins('gallerynePlugin');
+
+Déployez les fichiers resources du plugin (image, javascript, style) :
+
+		symfony publish-assets
+
+Videz le cache :
+
+		symfony cc
+
+Une dernière tâche consiste à activer les modules du plugin pour être capable d'y faire appel.
+Vous devez activer les modules gallery, photos, slideshow et uploader dans le fichier settings.yml relatif à l'application que vous allez utiliser.
+/apps/{application}/settings.yml
+	
+	all:  
+	  .settings:
+	    enabled_modules: [gallery, photos, slideshow, uploader]
+
+
+Vous pouvez désormais avoir accès à toutes les fonctionnalités du plugin, à savoir :
+
+Gestion d'images
+- Créer une galerie d'image
+- Uploader des photos dans une galerie
+- Obtenir des miniatures pour chaque image uploadée
+- Gérer les photos et y éffectuer des actions (recadrage, rotation, symétrie, filtre de couleur etc)
+- Obtenir un slideshow pour une galerie (choix de plusieurs types de slideshow)
+- Pouvoir associer une galerie à n'importe quel objet (Doctrine Behavior Gallerify)
+
+Upload de fichiers (autre qu'images)
+- Uploader des fichiers avec le widget d'upload multiple ajax dans n'importe quel formulaire
+- Ajout de règles de validation relatives aux fichiers uploadés (taille max, nombre max, taille max globale etc )
+- Ajout de règles métiers particulières
+
+
+La configuration du plugin a été poussée à l'extrême pour être totalement adaptable à votre application :
+Vous pouvez ainsi:
+
+# choisir les différentes tailles pour les miniatures :
+
+	galleryne:
+	    thumbnails_sizes:
+	      - 50
+	      - 150
+	      - 300
+
+# choisir la taille des miniatures par défaut (pour l'affichage des vignettes):
+
+	galleryne:
+	    default_size: 50 # si la taille spécifiée n'est pas dans la liste précédente (thumbnail_sizes, une nouvelle miniature de cette taille sera créée) 
+
+# Choisir le comportement à adopter sur les photos lors de la suppression d'une galerie :
+
+	  galleryne:
+	    onDelete: cascade # none or cascade, cascade remove all gallery's photos
+
+# Choisir le chemin pour l'upload des galeries :
+
+	  galleryne:
+	    path_gallery: <?php echo sfConfig::get("sf_upload_dir")."/gallery/" ;?>
+
+# et tellement d'autres...
+
+Retrouvez toutes les informations dont vous avez besoin sur le site [http://www.galleryne.com](http://www.galleryne.com "Cliquez pour accéder à la documentation et aux exemples")

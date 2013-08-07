@@ -31,7 +31,6 @@
  * avoir l 'image par défaut disponible:
  * /images/default.jpg
  *
- * pour générer le thumb:
  * doThumb($user->getAvatar(), 'user', array('width'=>100,'height'=>'150'), 'center', 'default.jpg')
  * OU
  * pour afficher le thumb

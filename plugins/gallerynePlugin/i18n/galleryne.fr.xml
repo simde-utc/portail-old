@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd" >
+<xliff version="1.0">
+  <file original="global" source-language="en" target-language="fr" datatype="plaintext">
+    <header />
+    <body>
+      <trans-unit id="1">
+        <source>Ajouter des images</source>
+        <target>Add pictures</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Body</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Edition</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>galleries</source>
+        <target>Galeries</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>backend.edit.title</source>
+        <target>Modifier une galerie</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Please wait...</source>
+        <target>Patientez s'il vous plait...</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>backend.photo.input.title.label</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>backend.photo.input.path.label</source>
+        <target>Image</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>uploader.label</source>
+        <target>Ajouter des images</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>uploader.drop.label</source>
+        <target>Glissez les fichiers içi pour les envoyer</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>backend.action.edit.setdefault</source>
+        <target>Utiliser cette image comme photo de couverture</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>backend.action.edit</source>
+        <target>Modifier</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>backend.action.remove</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>slideshow.index.title</source>
+        <target>Liste des galeries</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>slideshow.index.empty</source>
+        <target>Aucune galerie n'est disponible</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>backend.gallery.nophotos</source>
+        <target>Aucune image</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>backend.action.greyscale</source>
+        <target>Nuance de gris</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>backend.action.colorize</source>
+        <target>Colorisation</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>backend.action.flip.vertical</source>
+        <target>Symétrie Verticale</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>backend.action.flip.horizontal</source>
+        <target>Symétrie Horizontale</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>backend.action.rotate.left</source>
+        <target>Rotation -90°</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>backend.action.rotate.right</source>
+        <target>Rotation -90°</target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>backend.action.crop</source>
+        <target>Recadrage</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>backend.action.edit.title</source>
+        <target>Modifier la photo</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>backend.action.edit.help</source>
+        <target>Cliquez sur l'image que vous voulez modifier</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>backend.action.edit.purge</source>
+        <target>vider la galerie</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>backend.action.edit.purge.confirmation</source>
+        <target>Cette action va supprimer IRREVERSIBLEMENT toutes les images présentes dans cette galerie. Êtes-vous certain de vouloir continuer ?</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>backend.create.title</source>
+        <target>Création d'une galerie</target>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>backend.edit.title</source>
+        <target>Édition d'une galerie</target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>backend.list.title</source>
+        <target>Les galeries</target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>backend.gallery.photo.description.invite</source>
+        <target>Indiquez la description pour l'image sélectionnée</target>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>list_empty</source>
+        <target>Aucun fichier dans la liste</target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>backend.gallery.index.title</source>
+        <target>Liste des galeries, tout est là.</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>backend.gallery.index.edit</source>
+        <target>Modifier</target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>backend.gallery.index.empty</source>
+        <target>Rien ici... Vous ne pouvez pas laisser cette belle page toute blanche... n'est ce pas ?</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

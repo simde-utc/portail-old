@@ -1,0 +1,1 @@
+                         <div class="qq-uploader"><!--<div class="qq-upload-drop-area"><span>Déposez des fichiers içi</span></div>--><div class="qq-upload-button btn success" style="width: 200px; margin: 0 auto"><span id="status" ></span><?php echo $button_label ?></div><ul class="qq-upload-list"></ul></div>

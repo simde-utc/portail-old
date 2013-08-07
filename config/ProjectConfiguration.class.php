@@ -29,6 +29,8 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfUTCCASPlugin');
     $this->enablePlugins('sfImageTransformPlugin');
     $this->enablePlugins('sfXssSafePlugin');
+    $this->enablePlugins('gallerynePlugin');
+
     sfForm::disableCSRFProtection();
 
     require_once sfConfig::get('sf_lib_dir').'/vendor/ginger-client/Ginger.class.php';

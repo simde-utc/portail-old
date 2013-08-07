@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd" >
+<xliff version="1.0">
+  <file original="global" source-language="en" target-language="fr" datatype="plaintext">
+    <header />
+    <body>
+      <trans-unit>
+        <source>Ajouter des images</source>
+        <target>Add pictures</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Body</source>
+        <target>Message</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Edition</source>
+        <target>Edition</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -11,4 +11,9 @@ class eventComponents extends sfComponents
   {
     $this->events = EventTable::getInstance()->getLastEvents()->execute();
   }
+
+  public function executeLastEventsAsso()
+  {
+    $this->events = EventTable::getInstance()->getEventsList($asso)->execute();
+  }
 }

@@ -234,7 +234,6 @@ EOF
     if($form->isValid())
     {
       $asso = $form->save();
-
       $this->redirect('asso/show?login=' . $asso->getLogin());
     }
   }
@@ -275,6 +274,20 @@ EOF
     $this->events = EventTable::getInstance()->getEventsList($this->asso)->execute();
   }
 
+  public function executeBureau()
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->redirectUnless($this->asso, 'assos_list');
+    $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
+  }
+
+  public function executeAlbums()
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->redirectUnless($this->asso, 'assos_list');
+    $this->albums = AlbumTable::getInstance()->getAlbumsList($this->asso)->execute();
+  }
+
   public function executeTrombinoscope()
   {
     $this->asso = $this->getRoute()->getObject();
@@ -289,6 +302,7 @@ EOF
     if(!$asso->getJoignable())
     {
       $this->getUser()->setFlash('error', 'On ne peut pas rejoindre cette association.');
+
       $this->redirect('asso/show?login=' . $asso->getLogin());
     }
     if(!$this->getUser()->isAuthenticated())
@@ -334,8 +348,42 @@ EOF
       $this->redirect('asso/show?login=' . $this->asso->getLogin());
     }
     $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->andWhere('q.role_id <> 1')->execute();
-
     $this->roles = RoleTable::getInstance()->findAll();
   }
 
+  public function executeFollow()
+  {
+    $asso = $this->getRoute()->getObject();
+    if(!$this->getUser()->isAuthenticated())
+    {
+      $this->getUser()->setFlash('error', 'Vous devez être connecté pour suivre les actualits d\'une association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    if($this->getUser()->getGuardUser()->isFollower($asso->getId()))
+    {
+      $this->getUser()->setFlash('error', 'Vous suivez déjà les actualités de cette association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    $asso->addFollower($this->getUser()->getGuardUser());
+    $this->getUser()->setFlash('success', 'Vous suivez maintenant les actualités de cette association.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
+
+  public function executeUnfollow()
+  {
+    $asso = $this->getRoute()->getObject();
+    if(!$this->getUser()->isAuthenticated())
+    {
+      $this->getUser()->setFlash('error', 'Vous devez être connecté pour quitter une association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    if(!$this->getUser()->getGuardUser()->isFollower($asso->getId()))
+    {
+      $this->getUser()->setFlash('error', 'Vous ne suivez pas les actualités de cette association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    $asso->removeFollower($this->getUser()->getGuardUser());
+    $this->getUser()->setFlash('success', 'Vous ne suivez plus les actualités de cette association.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
 }

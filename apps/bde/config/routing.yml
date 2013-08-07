@@ -1,3 +1,12 @@
+service:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Service
+    module:               service
+    prefix_path:          /service
+    column:               id
+    with_wildcard_routes: true
+
 weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }

@@ -7,10 +7,7 @@
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
-    <?php use_javascript('jquery-1.7.2.min.js') ?>
-    <?php use_javascript('eventform.js') ?>
     <?php include_javascripts() ?>
-
   </head>
   <body>
     <div id="top_bar" class="navbar">

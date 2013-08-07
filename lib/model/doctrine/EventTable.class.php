@@ -32,7 +32,7 @@ class EventTable extends Doctrine_Table
             ->leftJoin('as.Pole p')
             ->addOrderBy('a.created_at DESC');
 
-        if (!is_null($asso)
+        if (!is_null($asso))
         {
             $q = $q->where("a.asso_id = ?", $asso->getPrimaryKey());
             if ($asso->getLogin() == 'picasso')

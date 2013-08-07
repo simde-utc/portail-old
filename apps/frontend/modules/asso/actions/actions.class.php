@@ -234,6 +234,7 @@ EOF
     if($form->isValid())
     {
       $asso = $form->save();
+
       $this->redirect('asso/show?login=' . $asso->getLogin());
     }
   }
@@ -272,13 +273,6 @@ EOF
     $this->asso = $this->getRoute()->getObject();
     $this->redirectUnless($this->asso, 'assos_list');
     $this->events = EventTable::getInstance()->getEventsList($this->asso)->execute();
-  }
-
-  public function executeBureau()
-  {
-    $this->asso = $this->getRoute()->getObject();
-    $this->redirectUnless($this->asso, 'assos_list');
-    $this->bureau = AssoMemberTable::getInstance()->getBureau($this->asso)->execute();
   }
 
   public function executeTrombinoscope()
@@ -340,7 +334,7 @@ EOF
       $this->redirect('asso/show?login=' . $this->asso->getLogin());
     }
     $this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->andWhere('q.role_id <> 1')->execute();
-    
+
     $this->roles = RoleTable::getInstance()->findAll();
   }
 

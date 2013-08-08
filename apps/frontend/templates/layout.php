@@ -15,9 +15,10 @@
             <div class="container">
                 <a class="brand" href="<?php echo url_for('homepage') ?>" title="Accueil"><img src="/images/logo_bde.png" alt="BDE UTC" /></a>
                 <ul class="nav">
-                    <li><a href="<?php echo url_for('asso/index') ?>" id="lienlisteassos">Les associations <span class="caret"></span></a></li>
+                    <li><a href="<?php echo url_for('asso/index') ?>" id="lienlisteassos">Associations<span class="caret"></span></a></li>
                     <li><a href="<?php echo url_for('agenda_detail') ?>">Calendrier</a></li>
-                </ul>       
+                    <li><a href="<?php echo url_for('services')?>" class="barre" id="lienlisteservices">Services</a></li>
+                </ul>
                 <ul class="nav pull-right">
                     <li class="divider-vertical"></li>
                     <?php if(!$sf_user->isAuthenticated()): ?>
@@ -30,6 +31,7 @@
                                 <b class="caret"></b>
                             </a>              
                             <ul class="dropdown-menu">
+                                <li><a href="<?php echo url_for('profile_show') ?>">Mon Profil</a></li>
                                 <li><a href="<?php echo url_for('sf_guard_signout') ?>">Se déconnecter</a></li>
                             </ul>
                         </li>
@@ -60,6 +62,8 @@
           <div class="span2" id="column-left">
             <?php if($sf_user->isAuthenticated()): ?>
               <?php include_component('asso', 'myAssos') ?>
+              <?php include_component('abonnement', 'myFlux') ?>
+              <?php include_component('services', 'myServicesFavoris') ?>
             <?php else: ?>
               <?php include_partial('home/bienvenue') ?>
             <?php endif ?>

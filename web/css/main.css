@@ -114,17 +114,17 @@ p {
   padding-top: 8px;
 }
 
-#column-left #my_assos .my_asso {
+#column-left .my_asso {
   padding: 5px;
   background: #FFF;
 }
 
-#column-left #my_assos .my_asso img {
+#column-left .my_asso img {
   float: left;
   margin-bottom: 5px;
 }
 
-#column-left #my_assos .my_asso h2 {
+#column-left .my_asso h2 {
   font-weight: bold;
   font-size: 12px;
   text-transform: uppercase;
@@ -134,10 +134,14 @@ p {
   margin-top: 8px;
   
 }
-#column-left #my_assos .my_asso .barre {
+#column-left .barre {
   margin: 2px auto;
   border-top: 1px solid #000;
   clear: both;
+}
+
+#column-left #my_flux {
+  margin-bottom: 10px;
 }
 
 /*-------------------------------------------*/
@@ -319,6 +323,19 @@ a.btn-danger {
   color: white;
 }
 
+/*      PROFILE     */
+#profile {
+    line-height: 20px;  
+}
+
+#profile h1{
+    margin: 0 auto;
+}
+
+#profile h2 .btn.pull-right {
+    margin-top: 7px;
+}
+
 #topbar a.btn {
   color: #000;
 }
@@ -359,6 +376,102 @@ a.btn-danger {
     text-transform: uppercase;
 }
 
+#profile h2{
+    margin: 0 auto 7px;
+    display: block;
+    font-weight: normal;
+    width: auto;
+    font-family: impact;
+    font-size: 21px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom:thin solid #000;
+}
+
+#profile h2 a{
+    text-decoration: none;
+    color: #666666;
+}
+
+#profile #trombi{
+    height : 120px;
+    margin-right:20px;
+}
+
+#profile .row{
+    margin-bottom: 10px;
+}
+
+#profile label{
+    display: inline;
+}
+
+#profile select{
+    width: auto;
+}
+
+#profile #infoPerso .span2{
+    width: 100px;
+}
+
+#profile input[type="submit"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#identite .radio_list{
+    list-style: none;
+}
+
+#identite .radio_list label{
+    width: 60px;
+    display: inline;
+}
+
+#identite #profile_branche_id {
+    margin-right: 150px;
+}
+
+#identite #profile_filiere_id {
+    margin-right: 150px;
+}
+
+#identite #profile_semestre {
+    margin-right: 150px;
+}
+
+#infoPerso h3 {
+    margin-left: 140px;
+    margin-top: 10px;
+}
+
+#infoPerso th {
+    padding-right: 11px;
+}
+
+#infoPerso label[for="profile_mobile"]{
+    padding-right: 27px;
+}
+
+#infoSupp label {
+    padding-right: 10px;
+}
+
+#infoSupp #profile_devise {
+    /*margin-right: 300px;*/
+    margin-bottom:  10px;
+}
+
+#sports select {
+    display: block;
+    margin-top: 10px;
+}
+
+.modifier {
+    cursor: url('/images/button/modifier.png'), auto;
+}
+
 .part h1 .titleaction {
 	float: right;
 	font-size: 12px;
@@ -394,6 +507,18 @@ a.btn-danger {
   margin: 15px 0px 15px 15px;
 }
 
+#aide h2{
+    margin: 0 auto 7px;
+    display: block;
+    font-weight: normal;
+    width: auto;
+    font-family: impact;
+    font-size: 21px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom:thin solid #000;
+}
+
 .part .more {
     height: 16px;
     text-align: right;
@@ -411,7 +536,8 @@ a.btn-danger {
 .part .more:hover{
     background: #CECCCC;
 }
-#assos_list {
+
+#assos_list, #services_list {
   list-style:none;
   line-height:200%;
   margin:20px auto;
@@ -419,22 +545,27 @@ a.btn-danger {
   padding: 0;
 }
 
-#assos_list li{
+#assos_list li, #services_list li{
   padding : 10px;
-  width:600px;
+  width:790px;
   min-height : 120px;
   border: 1px solid #efefef;
   margin: 0 15px 15px 0;
   background: #fff;
 }
 
-#assos_list h3 a{
+#services_list li {
+    min-height: 85px;
+    margin-bottom: 15px;
+}
+
+#assos_list h3 a, #services_list h3 a{
   font-size:1.3em;
 }
-#assos_list .desc{
+#assos_list .desc, #services_list .desc{
   margin-left : 100px;
 }
-#assos_list img.logo{
+#assos_list img.logo, #services_list img.logo{
   float:left;
   height:85px;
   width:85px;
@@ -442,19 +573,24 @@ a.btn-danger {
   background-color : #FFF;
   border: 0;
 }
-#assos_list .website{
+#assos_list .website, #services_list .website{
   font-weight:bold;
 }
-#topbar .website:before , #assos_list .website:before {
+#topbar .website:before , #assos_list .website:before , #services_list .website:before {
   content: url('/images/icons/home.png');
   margin-right: 5px;
   vertical-align: middle;
 }
-#assos_list .website:hover{
+#assos_list .website:hover #services_list .website:hover{
   text-decoration:none;
   color:#fff;
   background-color:#75c34b;
 }
+
+#services_list .btn {
+    color: #000000;
+}
+
 #topbar .email:before , #assos_list .email:before {
   content: url('/images/icons/mail.png');
   margin-right: 5px;

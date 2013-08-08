@@ -1,7 +1,7 @@
-<div class="wrap">
     <div id="bigmenu">
+       <div class="row">
         <?php foreach($poles as $pole): ?>
-            <div class="bm_pole">
+            <div class="bm_pole span2">
                 <a href="<?php echo url_for('asso/show?login=' . $pole[0]->getPole()->getInfos()->getLogin()) ?>" title="<?php echo $pole[0]->getPole()->getInfos()->getName() ?>"><?php echo $pole[0]->getPole()->getInfos()->getName() ?></a>
                 <ul>
                     <?php foreach($pole as $asso): ?>
@@ -12,6 +12,5 @@
                 </ul>
             </div>
         <?php endforeach; ?>
-        <br class="clear" />
     </div>
-</div>
+  </div>

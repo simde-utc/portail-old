@@ -47,12 +47,9 @@ p {
     color: #ee4401;
 }
 
-#footer{
+#footer {
   margin-top: 80px;
-  clear:both;
-  height: 270px;
-  width: 100%;
-  background: url('/images/bg_footer.png') repeat-x;
+  background: url(/images/bg_footer.png) repeat-x #393939;
   padding-top: 45px;
   text-transform: uppercase;
 }
@@ -60,21 +57,8 @@ p {
 #footer #splash {
   width: 366px;
   height: 368px;
-  background: url('/images/splash_footer.png') no-repeat;
-  position: absolute;
-  margin-top: -110px;
-}
-
-#footer #footer-left {
-  width: 155px;
-  border-right: 1px solid #FFF;
-  display: inline-block;
-  margin-left: 425px;
-}
-
-#footer #footer-right {
-  margin-left: 45px;
-  display: inline-block;
+  background: url(/images/splash_footer.png) no-repeat;
+  margin-top: -120px;
 }
 
 #footer h2 {
@@ -153,22 +137,6 @@ h1.bulle {
   font-size : 16px;
 }
 
-#column-left #left_login {
-  background: #fff;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-#column-left #form-login input {
-  margin-left: 5px;
-  margin-bottom: 10px;
-}
-#column-left #signin_username, #column-left #signin_password {
-  width: 137px;
-}
-
 #menu {
   background: black;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
@@ -189,11 +157,8 @@ h1.bulle {
 #menu .barre {
   border-left: 1px #FFF solid;
 }
-#menu .horloge { float: right; }
-
 
 #bigmenu {
-  position: fixed;
   color: white;
   background: black;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
@@ -204,7 +169,6 @@ h1.bulle {
   font-family: 'Arial Black', sans-serif;
   font-size: 12px;
   text-transform: uppercase;
-  top: 50px;
   display: none;
   z-index: 11000;
   overflow: hidden;

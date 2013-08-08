@@ -104,15 +104,17 @@
         </div>
     </div>
     <div id="footer">
-      <div class="wrap">
-        <div id="splash"></div>
-        <div id="footer-left">
+      <div class="row-fluid">
+        <div class="span4 offset2" id="splash">
+          
+        </div>
+        <div class="span2 offset1">
           <h2>Services</h2>
           <a href="/gesmail">Gestion des mails assos</a><br/>
           <a href="/resa">Réservation de salles</a><br/>
           <a href="/mail">Webmail assos</a><br /><br />
         </div>
-        <div id="footer-right">
+        <div class="span2">
           <h2>Liens</h2>
           <a href="http://ent.utc.fr">ENT</a><br/>
           <a href="/simde">SiMDE</a><br/>

@@ -1,6 +1,6 @@
 <?php use_helper('Thumb') ?>
 <div id="my_assos">
-  <h1>Mes associations</h1>
+  <h1 class="bulle">Mes associations</h1>
   <?php if($assos && $assos->count() > 0): ?>
     <?php foreach($assos as $asso): ?>
       <div class="my_asso">
@@ -12,7 +12,7 @@
       </div>
     <?php endforeach; ?>
   <?php else: ?>
-    Vous ne participez à aucune association.
+    <p>Vous ne participez à aucune association.</p>
   <?php endif; ?>
   <?php if($prev_assos && $prev_assos->count() > 0): ?>
     <h1>Précédentes assos</h1>

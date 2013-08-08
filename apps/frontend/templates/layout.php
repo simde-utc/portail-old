@@ -74,7 +74,7 @@
               <?php include_partial('home/bienvenue') ?>
             <?php endif ?>
           </div>
-          <div class="span10" id="content">
+          <div class="span10">
             <?php if($sf_user->hasFlash('error')): ?>
             <div class="alert alert-block alert-error">
               <strong>Erreur !</strong>

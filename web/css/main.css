@@ -2,14 +2,23 @@ body {
   color: #2a2a2a;
   padding-top: 40px;
 }
+
 .clear{ clear:both; }
-a:link, a:visited{ color:#888888; text-decoration:none; }
-a:hover{ color:#888888; text-decoration:underline; }
-h1{ font-size:24px; color:#000000; line-height: 18px; }
-h2{ font-size:18px; color:#666666; }
-h3{ font-size:11pt; margin:2px 0px; }
-fieldset { border:0; }
-img { border:0; }
+
+a:link, a:visited {
+  color: #888888;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #888888;
+  text-decoration: underline;
+}
+
+fieldset {
+  border:0;
+}
+
 p {
     text-align : justify;
     font-size: 10pt;
@@ -19,25 +28,12 @@ p {
   margin: 0 auto;
   max-width: 1024px;
 }
-.ui-autocomplete-loading { 
-  background: white url(/images/jquery-ui/ui-anim_basic_16x16.gif) right center no-repeat; 
-}
-
 
 .navbar .brand {
   max-height: 40px;
   overflow: visible;
   padding: 0 0 0 2em;
 }
-
-/* ------------------------------- */
-/*         CALENDRIER              */
-/* ------------------------------- */
-
-/*#calendrier .event img {
-    height:112px;
-    width: 112px;
-}*/
 
 #calendrier {
   padding: 0 1em;
@@ -49,16 +45,6 @@ p {
     font-weight: bold;
     text-transform: uppercase;
     color: #ee4401;
-}
-
-/* ------------------------------- */
-/*        CONTENT                  */
-/* ------------------------------- */
-
-#content{
-  background: #fff;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
 }
 
 #footer{
@@ -103,22 +89,19 @@ p {
   color: #FFF;
 }
 
-#column-left h1 {
+h1.bulle {
+  line-height: 18px;
   color: #FFF;
   text-transform: uppercase;
   font-family: 'Arial Black', sans-serif;
   font-size: 12px;
-  background: url('/images/bg_col_title.png') no-repeat;
+  background: url(/images/bg_col_title.png) no-repeat;
   height: 45px;
   font-weight: normal;
   text-indent: 10px;
   padding-top: 8px;
 }
 
-#column-left .my_asso {
-  padding: 5px;
-  background: #FFF;
-}
 
 #column-left .my_asso img {
   float: left;
@@ -139,10 +122,6 @@ p {
   margin: 2px auto;
   border-top: 1px solid #000;
   clear: both;
-}
-
-#column-left #my_flux {
-  margin-bottom: 10px;
 }
 
 /*-------------------------------------------*/
@@ -386,10 +365,9 @@ a.btn-danger {
     margin-bottom: 40px;
 }
 .part h1, h1.partie {
-    display: block;
+    line-height: 18px;
     background: #505050;
     font-weight: normal;
-    width: auto;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;

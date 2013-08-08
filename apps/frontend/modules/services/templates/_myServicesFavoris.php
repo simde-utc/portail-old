@@ -1,5 +1,5 @@
 <div id="my_services">
-  <h1>Services Favoris</h1>
+  <h1 class="bulle">Services Favoris</h1>
   <?php if (count($services) > 0): ?>
     <?php foreach ($services as $service): ?>
       <div class="my_asso">

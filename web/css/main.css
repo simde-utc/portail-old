@@ -1,6 +1,6 @@
 body {
   color: #2a2a2a;
-  padding-top: 10px;
+  padding-top: 40px;
 }
 .clear{ clear:both; }
 a:link, a:visited{ color:#888888; text-decoration:none; }
@@ -23,16 +23,12 @@ p {
   background: white url(/images/jquery-ui/ui-anim_basic_16x16.gif) right center no-repeat; 
 }
 
-/* ------------------------------- */
-/*         TOP                     */
-/* ------------------------------- */
 
-#top_bar {
-  margin-bottom: -65px;
+.navbar .brand {
+  max-height: 40px;
+  overflow: visible;
+  padding: 0 0 0 2em;
 }
-
-.navbar .brand { max-height: 40px; overflow: visible;padding-top: 0;padding-bottom: 0; }
-.navbar .brand img { height: 75px; }
 
 /* ------------------------------- */
 /*         CALENDRIER              */
@@ -42,6 +38,11 @@ p {
     height:112px;
     width: 112px;
 }*/
+
+#calendrier {
+  padding: 0 1em;
+  box-shadow: 0px 10px 15px #ddd;
+}
 
 #calendrier .event h4 a {
     font-size: 12px;
@@ -189,9 +190,32 @@ p {
   width: 137px;
 }
 
+#menu {
+  background: black;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));
+  background-image: -moz-linear-gradient(top center, #242424, #414141);
+  background-image: -o-linear-gradient(top, #242424, #414141);
+  padding: .5em 1em;
+  font-family: 'Arial Black', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #FFF;
+}
+#menu a {
+  color: #FFF;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+#menu .barre {
+  border-left: 1px #FFF solid;
+}
+#menu .horloge { float: right; }
+
+
 #bigmenu {
   position: fixed;
-    color: white;
+  color: white;
   background: black;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
   background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));

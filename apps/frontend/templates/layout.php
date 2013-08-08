@@ -14,15 +14,10 @@
         <div class="navbar-inner">
             <div class="container">
                 <a class="brand" href="<?php echo url_for('homepage') ?>" title="Accueil"><img src="/images/logo_bde.png" alt="BDE UTC" /></a>
-                <ul class="nav">
-                    <li><a href="<?php echo url_for('asso/index') ?>" id="lienlisteassos">Associations<span class="caret"></span></a></li>
-                    <li><a href="<?php echo url_for('agenda_detail') ?>">Calendrier</a></li>
-                    <li><a href="<?php echo url_for('services')?>" class="barre" id="lienlisteservices">Services</a></li>
-                </ul>
                 <ul class="nav pull-right">
                     <li class="divider-vertical"></li>
                     <?php if(!$sf_user->isAuthenticated()): ?>
-                        <li><a href="<?php echo url_for('cas') ?>">Connexion CAS</a></li>
+                        <li><a href="<?php echo url_for('cas') ?>"><i class="icon-lock icon-white"></i> Connexion CAS</a></li>
                     <?php else: ?>
                         <li class="dropdown" id="drop-connexion">
                             <a href="#drop-connexion" class="dropdown-toggle" data-toggle="dropdown">
@@ -46,9 +41,20 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="span12" id="top_bar">
+            <div class="span12">
                 <img src="/images/background.jpg" />
             </div>
+        </div>
+        
+        <div id="menu">
+          <div class="row">
+            <div class="span12">
+              <a href="<?php echo url_for('homepage') ?>">Accueil</a>
+              <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Associations</a>
+              <a href="<?php echo url_for('agenda_detail') ?>" class="barre">Calendrier</a>
+              <a href="<?php echo url_for('services')?>" class="barre" id= "lienlisteservices">Services</a>
+            </div>
+          </div>
         </div>
         
         <?php include_component('asso', 'bigMenu') ?>

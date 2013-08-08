@@ -1,12 +1,13 @@
 <?php use_helper('Date') ?>
 <?php use_helper('Thumb') ?>
 
-<div class="row">
-    <div class="span12">
-        <h1 class="partie">Prochains événements</h1>
-    </div>
-</div>
-<div id="calendrier" class="row">
+<div id="calendrier">
+  <div class="row-fluid">
+      <div class="span12">
+          <h1 class="partie">Prochains événements</h1>
+      </div>
+  </div>
+  <div class="row-fluid">
     <?php foreach($events as $event) : ?>
         <div class="event span4">
             <div class="media">
@@ -24,4 +25,5 @@
             </div>
         </div>
     <?php endforeach; ?>
+  </div>
 </div>

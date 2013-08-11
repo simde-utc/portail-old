@@ -104,7 +104,7 @@ class locauxActions extends sfActions
     $charte_locaux=$this->getRoute()->getObject();
     $this->redirectUnless($charte, 'homepage');
 
-    $hasdroit=(AssoMemberTable::getInstance()->wasPresident($charte_locaux->getAssoId(), $this->getUser()->getGuardUser()->getId()));
+    $hasdroit=(AssoMemberTable::getInstance()->isPresident($charte_locaux->getAssoId(), $this->getUser()->getGuardUser()->getId()));
     $this->redirectUnless($hasdroit, 'homepage');
 
     $charte_locaux->setStatut(2);
@@ -118,7 +118,7 @@ class locauxActions extends sfActions
     $charte_locaux=$this->getRoute()->getObject();
     $this->redirectUnless($charte, 'homepage');
 
-    $hasdroit=(AssoMemberTable::getInstance()->wasPresident($charte_locaux->getAssoId(), $this->getUser()->getGuardUser()->getId()));
+    $hasdroit=(AssoMemberTable::getInstance()->isPresident($charte_locaux->getAssoId(), $this->getUser()->getGuardUser()->getId()));
     $this->redirectUnless($hasdroit, 'homepage');
 
     $charte_locaux->delete();

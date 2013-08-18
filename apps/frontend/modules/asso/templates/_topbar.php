@@ -26,12 +26,17 @@
   <?php if($asso->getJoignable()): ?>
     <?php if($sf_user->isAuthenticated()): ?>
       <?php if(!$sf_user->getGuardUser()->isMember($asso->getLogin())): ?>
-        <a href="<?php echo url_for('asso_join', $asso) ?>" class="btn"><i class="icon-ok"></i> Rejoindre cette association</a><br />
-      <?php else: ?>
+        <a href="<?php echo url_for('asso_join', $asso) ?>" class="btn"><i class="icon-ok"></i> Rejoindre cette association</a> 
+        <?php if(!$sf_user->getGuardUser()->isFollower($asso->getId())): ?>
+          <a href="<?php echo url_for('asso_follow',$asso) ?>" class="btn"><i class="icon-ok"></i> Suivre cette association</a> 
+        <?php else: ?>
+          <a href="<?php echo url_for('asso_unfollow',$asso) ?>" class="btn"><i class="icon-remove"></i> Ne plus suivre cette association</a><br />
+        <?php endif; ?>
+       <?php else: ?>
         <a href="<?php echo url_for('asso_leave', $asso) ?>" class="btn"><i class="icon-remove"></i> Quitter cette association</a><br />
       <?php endif; ?>
     <?php else: ?>
-        <a href="<?php echo url_for('cas') ?>" class="btn"><i class="icon-arrow-right"></i> Connectez-vous pour rejoindre cette association</a><br />
+        <a href="<?php echo url_for('cas') ?>" class="btn"><i class="icon-arrow-right"></i> Connectez-vous pour rejoindre ou suivre cette association</a><br />
     <?php endif ?>
   <?php endif; ?>
 </div>

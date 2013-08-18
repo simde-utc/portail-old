@@ -101,6 +101,18 @@ asso_leave:
   param: { module: asso, action: leave }
   options: { model: Asso, type: object }
 
+asso_follow:
+  url: /asso/:login/follow
+  class: sfDoctrineRoute
+  param: { module: asso, action: follow }
+  options: { model: Asso, type: object }
+
+asso_unfollow:
+  url: /asso/:login/unfollow
+  class: sfDoctrineRoute
+  param: { module: asso, action: unfollow }
+  options: { model: Asso, type: object }
+
 asso_update:
   url: /asso/:id/update
   param: { module: asso, action: update }
@@ -156,11 +168,105 @@ article_delete:
 article_create:
   url: /article/create
   param: { module: article, action: create }
+
 article_new:
   url: /article/:login/new
   class: sfDoctrineRoute
   options: { model: Asso, type: object }
   param: { module: article, action: new }
+
+#Uv
+uv_list:
+  url:   /uv
+  param: { module: uv, action: index }
+
+uv_update:
+  url:  /uv/update/:id
+  param: { module: uv, action: update }
+
+uv_delete:
+  url:  /uv/delete/:id
+  param: { module: uv, action: delete }
+
+uv_create:
+  url: /uv/create
+  param: { module: uv, action: create }
+
+uv_new:
+  url: /uv/new
+  param: { module: uv, action: new }
+
+uv_edit:
+  url:  /uv/edit/:id
+  class: sfDoctrineRoute
+  param: { module: uv, action: edit }
+  options: { model: Uv, type: object }
+
+#Sport
+sport_list:
+  url:   /sport
+  param: { module: sport, action: index }
+
+sport_update:
+  url:  /sport/update/:id
+  param: { module: sport, action: update }
+
+sport_delete:
+  url:  /sport/delete/:id
+  param: { module: sport, action: delete }
+
+sport_create:
+  url: /sport/create
+  param: { module: sport, action: create }
+
+sport_new:
+  url: /sport/new
+  param: { module: sport, action: new }
+
+sport_edit:
+  url:  /sport/edit/:id
+  class: sfDoctrineRoute
+  param: { module: sport, action: edit }
+  options: { model: Sport, type: object }
+
+#Profile
+profile_show:
+  url:   /profile
+  param: { module: profile, action: show }  
+  
+profile_identite_edit:
+  url:  /profile/identite/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editIdentite }
+
+profile_identite_update:
+  url:  /profile/identite/update/:id
+  param: { module: profile, action: updateIdentite }
+
+profile_infoPerso_edit:
+  url:  /profile/infoPerso/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editInfoPerso }
+
+profile_infoPerso_update:
+  url:  /profile/infoPerso/update/:id
+  param: { module: profile, action: updateInfoPerso }
+
+profile_infoSupp_edit:
+  url:  /profile/infoSupp/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editInfoSupp }
+
+profile_infoSupp_update:
+  url:  /profile/infoSupp/update/:id
+  param: { module: profile, action: updateInfoSupp }
+
+profile_infoSupp_add:
+  url: /profile/add
+  param: { module: sport, action: add }
 
 #Events
 events_list:
@@ -186,6 +292,22 @@ event_edit:
   class: sfDoctrineRoute
   param: { module: event, action: edit }
   options: { model: Event, type: object }
+
+event_update:
+  url:  /event/update/:id
+  param: { module: event, action: update }
+
+event_delete:
+  url:  /event/delete/:id
+  param: { module: event, action: delete }
+event_create:
+  url: /event/create
+  param: { module: event, action: create }
+event_new:
+  url: /event/:login/new
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: event, action: new }
 
 event_update:
   url:  /event/update/:id
@@ -338,6 +460,26 @@ register_resend:
   url: /inscription/activation
   param: { module: sfGuardRegister, action: resend }
 
+abonnement_list:
+  url: /abonnement/:show
+  param: { module: abonnement, action: show}
+
+services:
+  url: /services
+  param: {module: services, action: index}
+
+services_follow:
+  url: /services/:nom/follow
+  class: sfDoctrineRoute
+  param: { module: services, action: follow }
+  options: { model: Service, type: object }
+
+services_unfollow:
+  url: /services/:nom/unfollow
+  class: sfDoctrineRoute
+  param: { module: services, action: unfollow }
+  options: { model: Service, type: object }
+
 gesmail_create:
   url: /asso/:login/gesmail/create
   param: { module: gesmail, action: create }
@@ -376,10 +518,11 @@ weekmail:
 
 # generic rules
 # please, remove them by adding more specific rules
-
 #default_index:
 #  url:   /:module
 #  param: { action: index }
-
+#default_json:
+#  url:   /json/:module/:action/*
+#  param: { sf_format: json }
 #default:
 #  url:   /:module/:action/*

@@ -17,4 +17,14 @@ class CharteLocauxTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('CharteLocaux');
     }
+
+    public function getByAssoAndSemestre($asso_id,$semestre_id = NULL)
+    {
+      if(!$semestre_id)
+        $semestre_id = sfConfig::get('app_portail_current_semestre');
+      $q = $this->createQuery('q')
+          ->where('q.asso_id = ?',$asso_id)
+          ->andWhere('q.semestre_id = ?', $semestre_id);
+      return $q;
+    }
 }

@@ -86,6 +86,37 @@ class assoActions extends sfActions {
         $this->flashinfo = $msg;
       }
     }
+
+
+    /*
+    * Demande de validation de charte locaux à l'actuel président
+    *
+    */
+    if($this->getUser()->isAuthenticated() && $hasdroit=(AssoMemberTable::getInstance()->isPresident($this->asso->getId(), $this->getUser()->getGuardUser()->getId()))
+      && ($cl = CharteLocauxTable::getInstance()->getByAssoAndSemestre($this->asso->getId())->andWhere('q.statut = ?', 1)->execute()))
+    {
+      if($cl->count() > 0)     
+      {
+        $msg = 'En tant qu\'actuel président de cette association vous devez valider les demandes d\'accès étendu aux locaux.<br />
+             Les demandes suivantes ont été effectuées :<br /><ul>';
+        foreach($cl as $locaux)
+        {
+          $msg .= '<li><b>' . $locaux->getResponsable()->getName() . '</b> le <em>' . $locaux->getDate() . '</em><br />Accès demandé:<ul>';
+          if ($locaux->porte_mde == 1) $msg .= '<li>Porte de la MDE</li>';
+          if ($locaux->bat_a == 1) $msg .= '<li>Batiment A</li>';
+          if ($locaux->locaux_pic == 1) $msg .= '<li>Locaux du Pic</li>';
+          if ($locaux->mde_complete == 1) $msg .= '<li>MDE complète</li>';
+          if ($locaux->bureau_polar == 1) $msg .= '<li>Bureau du Polar</li>';
+          if ($locaux->perm_polar == 1) $msg .= '<li>Permanence du Polar</li>';
+          if ($locaux->salles_musique == 1) $msg .= '<li>Salles de musique</li>';
+          $msg .= '</ul><br />';
+          $msg .= 'Motif: <br />' . $locaux->getMotif() . '<br />';
+          $msg .= '<a href="' . $this->generateUrl('locaux_accept', $locaux) . '">Accepter</a> / <a href="' . $this->generateUrl('locaux_refuse', $locaux) . '">Refuser</a></li>';          
+        }
+        $msg .='</ul>';
+        $this->flashinfo = $msg;
+      }     
+    }
   }
 
   public function executeCharte(sfWebRequest $request)

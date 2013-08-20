@@ -28,17 +28,21 @@ class locauxActions extends sfActions
 
     $this->form = new CharteLocauxForm();
     $this->form->setDefault('asso_id', $this->asso->getPrimaryKey());
-    $this->form->setDefault('statut', 0);
-    $this->form->setDefault('semestre_id', sfConfig::get('app_portail_current_semestre'));
-    $this->form->setDefault('ip', $_SERVER['REMOTE_ADDR']);
-    $this->form->setDefault('login', $this->getUser()->getGuardUser()->getUserName());
     $this->form->setDefault('user_id', $this->getUser()->getGuardUser()->getId());
     $this->form->setDefault('date', date('Y-m-d H:i:s'));    
    }
 
   public function executeCreate(sfWebRequest $request) 
   {
-    $this->form = new CharteLocauxForm();
+    $charte = new CharteLocaux();
+    $charte->setStatut(0);
+    $charte->setSemestreId(sfConfig::get('app_portail_current_semestre'));
+    $charte->setIp($_SERVER['REMOTE_ADDR']);
+    $charte->setLogin($this->getUser()->getGuardUser()->getUserName());
+    $charte->setUserId($this->getUser()->getGuardUser()->getId());
+    $charte->setDate(date('Y-m-d H:i:s'));
+
+    $this->form = new CharteLocauxForm($charte);
     if(!($this->getUser()->isAuthenticated()))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
@@ -102,7 +106,7 @@ class locauxActions extends sfActions
   public function executeLocauxAccept(sfWebRequest $request)
   {
     $charte_locaux=$this->getRoute()->getObject();
-    $this->redirectUnless($charte, 'homepage');
+    $this->redirectUnless($charte_locaux, 'homepage');
 
     $hasdroit=(AssoMemberTable::getInstance()->isPresident($charte_locaux->getAssoId(), $this->getUser()->getGuardUser()->getId()));
     $this->redirectUnless($hasdroit, 'homepage');
@@ -116,7 +120,7 @@ class locauxActions extends sfActions
   public function executeLocauxRefuse(sfWebRequest $request)
   {
     $charte_locaux=$this->getRoute()->getObject();
-    $this->redirectUnless($charte, 'homepage');
+    $this->redirectUnless($charte_locaux, 'homepage');
 
     $hasdroit=(AssoMemberTable::getInstance()->isPresident($charte_locaux->getAssoId(), $this->getUser()->getGuardUser()->getId()));
     $this->redirectUnless($hasdroit, 'homepage');

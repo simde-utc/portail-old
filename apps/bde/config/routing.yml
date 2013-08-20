@@ -1,3 +1,12 @@
+charte_locaux:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CharteLocaux
+    module:               charte_locaux
+    prefix_path:          /charte_locaux
+    column:               id
+    with_wildcard_routes: true
+
 weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }

@@ -12,7 +12,7 @@ class CharteLocauxForm extends BaseCharteLocauxForm
 {
   public function configure()
   { 
-        $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
 	  unset( $this['created_at'], $this['updated_at'], $this['semestre_id'], $this['ip'], $this['date'], $this['user_id'], $this['login'], $this['statut'] );
   }
   

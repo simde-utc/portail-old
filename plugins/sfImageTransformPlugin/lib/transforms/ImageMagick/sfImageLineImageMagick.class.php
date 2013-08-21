@@ -281,7 +281,7 @@ class sfImageLineImageMagick extends sfImageTransformAbstract
     $draw->setFillColor($this->getColor());
     
     $draw->line($this->getStartX(), $this->getStartY(), $this->getEndX(), $this->getEndY());
-    
+
     $resource->drawImage($draw);
 
     return $image;

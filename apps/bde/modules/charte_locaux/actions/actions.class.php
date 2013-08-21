@@ -13,4 +13,7 @@ require_once dirname(__FILE__).'/../lib/charte_locauxGeneratorHelper.class.php';
  */
 class charte_locauxActions extends autoCharte_locauxActions
 {
+  public function executeListValide(sfWebRequest $request)
+  {
+  }
 }

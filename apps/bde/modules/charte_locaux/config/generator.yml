@@ -14,8 +14,11 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
+      list:
+        object_actions:
+          valide: ~
+          _delete: ~
+
       filter:  ~
       form:    ~
       edit:    ~
-      new:     ~

@@ -13,12 +13,15 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
+      fields: ~
       list:
-        object_actions:
-          valide: ~
-          _delete: ~
-
-      filter:  ~
+        title: "Chartes d'accès étendu au locaux"
+        display: [id, date, login, asso_id, semestre_id, porte_mde, bat_a, locaux_pic, mde_complete, bureau_polar, perm_polar, salles_musique, statut, motif, created_at]
+        actions: {}
+        batch_actions: {}
+        object_actions: {valider: ~, refuser:~, _delete:~}
+      filter:
+        display: [login, asso_id, semestre_id, porte_mde, bat_a, locaux_pic, mde_complete, bureau_polar, perm_polar, salles_musique, statut]
       form:    ~
       edit:    ~
+      new:     ~

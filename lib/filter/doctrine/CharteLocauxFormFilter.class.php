@@ -13,9 +13,20 @@ class CharteLocauxFormFilter extends BaseCharteLocauxFormFilter
   public function configure()
   {
   //ne marche pas pourqoi????  
-  //$this->widgetSchema['statut'] = new sfWidgetFormChoice(array('choices' => array('' => 'Tous les statuts', 1 => 'Charte acceptée par l\'étudiant', 2 => 'Charte validée par le président', 3 => 'Charte validée par le BDE')));
-  //$this->validatorSchema['statut']= new sfValidatorChoice(array('required' => false, 'choices' => array('', '1', '0', '2', '3')));
-
-   unset( $this['created_at'], $this['updated_at'], $this['ip'], $this['date'], $this['user_id'], $this['motif']);
+  $this->widgetSchema['statut'] = new sfWidgetFormChoice(array('choices' => array( 0 => 'Tous les statuts', 1 => 'Charte acceptée par l\'étudiant', 2 => 'Charte validée par le président', 3 => 'Charte validée par le BDE')));
+  $this->validatorSchema['statut'] = new sfValidatorChoice(array('required' => false, 'choices' => array('', 0, 1, 2, 3)));
   }
+
+    public function getFields()
+  {
+    $fields = parent::getFields();
+    $fields['statut'] = 'Number';
+    return $fields;
+  }
+
+  protected function addStatutColumnQuery(Doctrine_Query $query, $field, $value)
+  {
+    if($value == 0) $query->andWhere( $query->getRootAlias().'.statut <> ?', $value);
+    if($value != 0) $query->andWhere( $query->getRootAlias().'.statut = ?', $value);
+  } 
 }

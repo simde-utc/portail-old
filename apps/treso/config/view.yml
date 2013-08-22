@@ -14,7 +14,7 @@ default:
 
   stylesheets:    [bootstrap.min.css,treso.css]
 
-  javascripts:    [jquery-1.7.2.min.js, bootstrap.min.js, treso.js, treso_budget_graphisme.js, highcharts.js]
+  javascripts:    [jquery-1.7.2.min.js, bootstrap.min.js, treso.js, highcharts.js]
 
   has_layout:     true
   layout:         layout

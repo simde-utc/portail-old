@@ -134,6 +134,12 @@ transaction:
   param: { module: transaction, action: index }
   options: { model: Asso, type: object }
 
+transaction_compte:
+  url:   /transaction/compte/:id
+  class: sfDoctrineRoute
+  param: { module: transaction, action: compte }
+  options: { model: CompteBanquaire, type: object }
+
 transaction_show:
   url:  /transaction/show/:id
   class: sfDoctrineRoute
@@ -168,15 +174,27 @@ transaction_new:
   options: { model: Asso, type: object }
   param: { module: transaction, action: new }
 
+transaction_new_with_compte:
+  url: /transaction/new/:id
+  class: sfDoctrineRoute
+  options: { model: CompteBanquaire, type: object }
+  param: { module: transaction, action: new }
+
 transaction_pdf:
-  url:  /transaction/pdf/:login
+  url:  /transaction/pdf/:id
   class: sfDoctrineRoute
   param: { module: transaction, action: pdf }
-  options: { model: Asso, type: object }
+  options: { model: CompteBanquaire, type: object }
 
 transaction_add_document:
   url: /transaction/add_doc/:id
   param: { module: transaction, action: addDocument }
+
+transaction_rapprocher:
+  url:  /transaction/rapprocher/:id
+  class: sfDoctrineRoute
+  param: { module: transaction, action: rapprocher }
+  options: { model: Transaction, type: object }
 
 # BudgetPoste
 budget_poste_new:

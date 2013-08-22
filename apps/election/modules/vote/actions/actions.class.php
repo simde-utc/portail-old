@@ -54,11 +54,11 @@ class voteActions extends sfActions
 
   private function isCotisant() {
     try {
-      $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
+      $ginger = new \Ginger\Client\GingerClient(sfConfig::get('app_portail_ginger_key'));
       $cotisant = $ginger->getUser($this->getUser()->getUsername());
       return $cotisant->is_cotisant;
     }
-    catch (ApiException $ex){
+    catch (\Ginger\Client\ApiException $ex){
       if($ex->getCode() == 404){
         $error = "Utilisateur non trouvé";
       }

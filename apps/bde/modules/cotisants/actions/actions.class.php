@@ -24,11 +24,11 @@ class cotisantsActions extends sfActions
   {
     if($login = $request->getParameter("login")){
       try {
-        $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
+        $ginger = new \Ginger\Client\GingerClient(sfConfig::get('app_portail_ginger_key'));
         $this->cotisant = $ginger->getUser($login);
         $this->cotisations = $ginger->getCotisations($login);
       }
-      catch (ApiException $ex){
+      catch (\Ginger\Client\ApiException $ex){
         if($ex->getCode() == 404){
           $this->error = "Utilisateur non trouvé";
         }
@@ -68,10 +68,10 @@ class cotisantsActions extends sfActions
         $montant = intval($request->getParameter("montant"));
         
         try {
-          $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
+          $ginger = new \Ginger\Client\GingerClient(sfConfig::get('app_portail_ginger_key'));
           $ginger->addCotisation($login, $debut, $fin, $montant);
         }
-        catch (ApiException $ex){
+        catch (\Ginger\Client\ApiException $ex){
           $this->getUser()->setFlash('error', "Impossible d'enregistrer la cotisation : ".$this->error = $ex->getCode()." - ".$ex->getMessage());
         }
       }

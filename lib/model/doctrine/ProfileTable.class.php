@@ -16,4 +16,19 @@ class ProfileTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Profile');
     }
+
+    public function getProfileForUser($user_id) {
+        $q = $this->createQuery('q')
+            ->select('q.*, u.id, us.*, s.*, b.*, f.*, am.*, hp.*, fp.*')
+            ->leftJoin('q.User u')
+            ->leftJoin('q.UserSemestre us')
+            ->leftJoin('us.Semestre s')
+            ->leftJoin('q.Branche b')
+            ->leftJoin('q.Filiere f')
+            ->leftJoin('u.AssoMember am')
+            ->leftJoin('q.HomePlace hp')
+            ->leftJoin('q.FamilyPlace fp')
+            ->where('q.user_id = ?', $user_id);
+        return $q;
+    }
 }

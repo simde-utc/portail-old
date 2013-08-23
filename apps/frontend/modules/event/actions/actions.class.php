@@ -124,5 +124,4 @@ class eventActions extends sfActions
       $this->redirect('event/show?id='.$event->getId());
     }
   }
-
 }

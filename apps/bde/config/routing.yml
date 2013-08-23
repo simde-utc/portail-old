@@ -39,6 +39,13 @@ info_job_categorie:
     column:               id
     with_wildcard_routes: true
 
+service:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Service
+    module:               service
+    prefix_path:          /service
+
 weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }

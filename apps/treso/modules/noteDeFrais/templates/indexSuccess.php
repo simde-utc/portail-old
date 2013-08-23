@@ -43,7 +43,7 @@
       <td><a href="<?php echo url_for('transaction_show', $ndf->getTransaction()) ?>"><?php echo $ndf->getNom() ?></a></td>
       <td><?php echo format_currency(abs($ndf->getTransaction()->getMontant()), '€', 'fr_FR') ?></td>
       <td><?php echo format_date($ndf->getTransaction()->getDateTransaction(), 'D', 'fr') ?></td>
-      <td><a class="btn btn-primary" href="<?php echo url_for('ndf_export', $ndf) ?>"><i class="icon-share-alt icon-white"></i> Justificatif</a></td>
+      <td><a class="btn btn-primary" href="<?php echo url_for('ndf_export', $ndf) ?>"><i class="icon-share-alt icon-white"></i> Attestation</a></td>
     </tr>
     <?php endforeach; ?>
   </tbody>

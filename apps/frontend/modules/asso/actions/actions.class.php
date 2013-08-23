@@ -116,7 +116,7 @@ class assoActions extends sfActions {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('asso/show?login=' . $asso->getLogin());
     }
-    if(!$request->getParameter('check') == $this->getUser()->getUserName())
+    if($request->getParameter('check') != $this->getUser()->getUserName())
     {
       $this->getUser()->setFlash('error', 'La signature n\'est pas correcte.');
       $this->redirect('asso/charte?login=' . $asso->getLogin());
@@ -338,4 +338,39 @@ EOF
     $this->roles = RoleTable::getInstance()->findAll();
   }
 
+  public function executeFollow()
+  {
+    $asso = $this->getRoute()->getObject();
+    if(!$this->getUser()->isAuthenticated())
+    {
+      $this->getUser()->setFlash('error', 'Vous devez être connecté pour suivre les actualits d\'une association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    if($this->getUser()->getGuardUser()->isFollower($asso->getId()))
+    {
+      $this->getUser()->setFlash('error', 'Vous suivez déjà les actualités de cette association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    $asso->addFollower($this->getUser()->getGuardUser());
+    $this->getUser()->setFlash('success', 'Vous suivez maintenant les actualités de cette association.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
+
+  public function executeUnfollow()
+  {
+    $asso = $this->getRoute()->getObject();
+    if(!$this->getUser()->isAuthenticated())
+    {
+      $this->getUser()->setFlash('error', 'Vous devez être connecté pour quitter une association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    if(!$this->getUser()->getGuardUser()->isFollower($asso->getId()))
+    {
+      $this->getUser()->setFlash('error', 'Vous ne suivez pas les actualités de cette association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    $asso->removeFollower($this->getUser()->getGuardUser());
+    $this->getUser()->setFlash('success', 'Vous ne suivez plus les actualités de cette association.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
 }

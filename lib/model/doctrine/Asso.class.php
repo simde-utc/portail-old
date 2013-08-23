@@ -126,6 +126,20 @@ class Asso extends BaseAsso {
       return $this->getPole()->__toString();
   }
 
+  public function addFollower(sfGuardUser $user)
+  {
+      $assoFollower = new Abonnement();
+      $assoFollower->setAssoId($this);
+      $assoFollower->setUserId($user);
+      $assoFollower->save();
+  }
+
+  public function removeFollower(sfGuardUser $user)
+  {
+    $assoFollower = AbonnementTable::getInstance()->getCurrentAssoFollower($this->getPrimaryKey(),$user->getPrimaryKey())->fetchOne();
+    $assoFollower->delete();
+  }
+
   public function getUrlSite()
   {
     return 'http://assos.utc.fr/' . $this->getLogin();
@@ -136,5 +150,4 @@ class Asso extends BaseAsso {
     $charte = CharteInfoTable::getInstance()->getByAssoAndSemestre($this->getId())->fetchOne();
     return ( $charte ) ? $charte->getConfirmation() : 0;
   }
-
 }

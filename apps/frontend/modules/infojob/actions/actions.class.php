@@ -53,7 +53,6 @@ class infojobActions extends sfActions {
   public function executeEdit(sfWebRequest $request)
   {
     $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
-    // TODO Quand même afficher les annonces archivées, signalées ou expirées, mais ne pas permettre de les modifier.
     $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
     $this->form = new InfoJobOffreForm($annonces[0]);
     // Si l'annonce n'a pas encore été validée, afficher une notification.
@@ -133,7 +132,7 @@ class infojobActions extends sfActions {
   
   public function executeMonprofil(sfWebRequest $request)
   {
-    // TODO à faire.
+    // TODO.
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -152,7 +151,6 @@ class infojobActions extends sfActions {
         $form->getObject()->setDateTimeObject('created_at', new DateTime());
       	$form->getObject()->setDateTimeObject('updated_at', new DateTime());
       }
-      // TODO Faire en sorte que 'expiration_date' soit mis à NULL si aucune valeur n'est renseignée (== 0000-00-00 00:00:00).
       $annonce = $form->save();
       if($isNew) {
         // Si l'annonce vient d'être créée.

@@ -41,11 +41,11 @@ function cross_app_link_to($app, $route, $args=null)
   }
   if ($env == 'dev')
   {
-  	  $path = 'http://' . $host . '/' . $app . '_dev.php' . $routeUrl ;
+  	  $path = '//' . $host . '/' . $app . '_dev.php' . $routeUrl ;
   }
   else
   {
-  	$path = 'http://' . $host . $routeUrl ;
+  	$path = '//' . $host . $routeUrl ;
   }
   return $path ;
 }

@@ -15,9 +15,9 @@ class infojobActions extends sfActions {
   
   public function executeShow(sfWebRequest $request)
   {
-    $annonces = InfoJobOffreTable::getInstance()->getOffreById($request->getParameter('id'))->execute();
-    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas ou a été archivée (%s).', $request->getParameter('id')));
-    $this->annonce = $annonces[0];
+    $annonce = InfoJobOffreTable::getInstance()->getOffreById($request->getParameter('id'))->fetchOne();
+    $this->forward404Unless($annonce != null, sprintf('L\'annonce n\'existe pas ou a été archivée (%s).', $request->getParameter('id')));
+    $this->annonce = $annonce;
   }
 
   public function executeOffres(sfWebRequest $request)
@@ -52,19 +52,19 @@ class infojobActions extends sfActions {
 
   public function executeEdit(sfWebRequest $request)
   {
-    $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
-    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
-    $this->form = new InfoJobOffreForm($annonces[0]);
+    $annonce = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->fetchOne();
+    $this->forward404Unless($annonce != null, sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
+    $this->form = new InfoJobOffreForm($annonce);
     // Si l'annonce n'a pas encore été validée, afficher une notification.
-    if($annonces[0]->getValidationDate() == NULL)
+    if($annonce->getValidationDate() == NULL)
       $this->getUser()->setFlash('warning', 'Cette annonce n\'a pas encore été validée. Veuillez suivre le lien envoyé par email pour que l\'annonce soit publiée.');
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
-    $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
-    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
-    $this->form = new InfoJobOffreForm($annonces[0]);
+    $annonce = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->fetchOne();
+    $this->forward404Unless($annonce != null, sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
+    $this->form = new InfoJobOffreForm($annonce);
     $this->processForm($request, $this->form);
     $this->setTemplate('edit');
   }
@@ -72,23 +72,23 @@ class infojobActions extends sfActions {
   public function executeDelete(sfWebRequest $request)
   {
     $request->checkCSRFProtection();
-    $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
-    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
-    $annonces[0]->archive();
+    $annonce = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->fetchOne();
+    $this->forward404Unless($annonce != null, sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
+    $annonce->archive();
     $this->redirect('infojob/index');
   }
   
   public function executeActivate(sfWebRequest $request)
   {
-    $annonces = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->execute();
-    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
-    if($annonces[0]->getValidationDate() != NULL) {
+    $annonce = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->fetchOne();
+    $this->forward404Unless($annonce != null, sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
+    if($annonce->getValidationDate() != NULL) {
       $this->getUser()->setFlash('warning', 'L\'annonce a déjà été activée.');
-      $this->redirect('infojob_offre_show', array('id' => $annonces[0]->getId()));
+      $this->redirect('infojob_offre_show', array('id' => $annonce->getId()));
     }
-    $annonces[0]->activate();
+    $annonce->activate();
     $this->getUser()->setFlash('success', 'L\'annonce a bien été activée.');
-    $this->redirect('infojob_offre_show', array('id' => $annonces[0]->getId()));
+    $this->redirect('infojob_offre_show', array('id' => $annonce->getId()));
   }
 
   public function executeSignal(sfWebRequest $request)
@@ -108,26 +108,26 @@ class infojobActions extends sfActions {
   
   public function executeMyoffer(sfWebRequest $request)
   {
-    $annonces = InfoJobOffreTable::getInstance()->getOffreById($request->getParameter('id'))->execute();
-    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas ou a été archivée (%s).', $request->getParameter('id')));
-    $this->annonce = $annonces[0];
+    $annonce = InfoJobOffreTable::getInstance()->getOffreById($request->getParameter('id'))->fetchOne();
+    $this->forward404Unless($annonce != null, sprintf('L\'annonce n\'existe pas ou a été archivée (%s).', $request->getParameter('id')));
+    $this->annonce = $annonce;
   }
 
   public function executeMyofferdo(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $annonces = InfoJobOffreTable::getInstance()->getOffreById($request->getPostParameter('offre_id'))->execute();
-    $this->forward404Unless(count($annonces), sprintf('L\'annonce n\'existe pas ou a été archivée (%s).', $request->getParameter('id')));
-    $this->annonce = $annonces[0];
+    $annonce = InfoJobOffreTable::getInstance()->getOffreById($request->getPostParameter('offre_id'))->fetchOne();
+    $this->forward404Unless($annonce != null, sprintf('L\'annonce n\'existe pas ou a été archivée (%s).', $request->getParameter('id')));
+    $this->annonce = $annonce;
     // Envoyer l'email.
     $message = Swift_Message::newInstance()
-          ->setFrom('bde@assos.utc.fr')
-          ->setTo($annonces[0]->getEmail())
+          ->setFrom(sfConfig::get('app_portail_infojob_email'))
+          ->setTo($annonce->getEmail())
           ->setSubject('Modification de votre annonce sur InfoJob');
-    $message->setBody($this->getPartial('myofferemail', array('annonce' =>$annonces[0])), 'text/html');
+    $message->setBody($this->getPartial('myofferemail', array('annonce' =>$annonce)), 'text/html');
     $this->getMailer()->send($message);
     $this->getUser()->setFlash('success', 'Un email vient de vous être envoyé.');
-    $this->redirect('infojob_offre_show', array('id' => $annonces[0]->getId()));
+    $this->redirect('infojob_offre_show', array('id' => $annonce->getId()));
   }
   
   public function executeMonprofil(sfWebRequest $request)
@@ -157,7 +157,7 @@ class infojobActions extends sfActions {
         $this->getUser()->setFlash('success', 'L\'annonce a bien été créée. Vous allez recevoir prochainement un email pour valider sa publication.');
         // Envoyer l'email de validation.
         $message = Swift_Message::newInstance()
-          ->setFrom('bde@assos.utc.fr')
+          ->setFrom(sfConfig::get('app_portail_infojob_email'))
           ->setTo($annonce->getEmail())
           ->setSubject('Création de votre annonce sur InfoJob');
         $message->setBody($this->getPartial('validationemail', array('annonce' =>$annonce)), 'text/html');

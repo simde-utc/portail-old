@@ -12,9 +12,8 @@ class CharteLocauxFormFilter extends BaseCharteLocauxFormFilter
 {
   public function configure()
   {
-  //ne marche pas pourqoi????  
-  $this->widgetSchema['statut'] = new sfWidgetFormChoice(array('choices' => array( 0 => 'Tous les statuts', 1 => 'Charte acceptée par l\'étudiant', 2 => 'Charte validée par le président', 3 => 'Charte validée par le BDE')));
-  $this->validatorSchema['statut'] = new sfValidatorChoice(array('required' => false, 'choices' => array('', 0, 1, 2, 3)));
+    $this->widgetSchema['statut'] = new sfWidgetFormChoice(array('choices' => array( 0 => 'Tous les statuts', 1 => 'Charte acceptée par l\'étudiant', 2 => 'Charte validée par le président', 3 => 'Charte validée par le BDE')));
+    $this->validatorSchema['statut'] = new sfValidatorChoice(array('required' => false, 'choices' => array('', 0, 1, 2, 3)));
   }
 
     public function getFields()

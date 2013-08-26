@@ -25,7 +25,7 @@ class sfUTCCASUser extends sfGuardSecurityUser
             $gingerKey = sfConfig::get('app_portail_ginger_key');
 
             if ($gingerKey != "abc") {
-                $ginger = new Ginger(sfConfig::get('app_portail_ginger_key'));
+                $ginger = new \Ginger\Client\GingerClient(sfConfig::get('app_portail_ginger_key'));
                 $cotisants = $ginger->getUser($username);
             } else {
                 $cotisants = new stdClass();
@@ -51,7 +51,7 @@ class sfUTCCASUser extends sfGuardSecurityUser
             $profile->save();
 
             return $data;
-        } catch (ApiException $ex) {
+        } catch (\Ginger\Client\ApiException $ex) {
             $this->setFlash('error', "Il n'a pas été possible de vous identifier. Merci de contacter simde@assos.utc.fr en précisant votre login et le code d'erreur " . $ex->getCode() . ".");
         }
 

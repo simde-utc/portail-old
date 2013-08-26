@@ -17,7 +17,19 @@ class cotisantsActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    
+    try {
+      $ginger = new \Ginger\Client\GingerClient(sfConfig::get('app_portail_ginger_key'));
+      
+      // Aucune idée pourquoi, mais le foreach ne marche pas sur l'objet, donc je copie dans un array
+      $this->statistiques = array();
+      $results = $ginger->getStats();
+      foreach($results as $semestre => $val){
+        $this->statistiques[$semestre] = $val;
+      }
+    }
+    catch (\Ginger\Client\ApiException $ex){
+      $this->error = $ex->getCode()." - ".$ex->getMessage();
+    }
   }
   
   public function executeEdit(sfWebRequest $request)

@@ -13,6 +13,7 @@
               <th></th>
               <td>
                 <input type="submit" value="Rechercher" class="btn btn-primary" />
+                <a href="<?php echo url_for('infojob/offres?time=' . time() . '#infojob-collapse-filter'); ?>" onclick="window.location.reload(true)" class="btn"  style="float:right;">Réinitialiser</a>
               </td>
             </tr>
           </tfoot>

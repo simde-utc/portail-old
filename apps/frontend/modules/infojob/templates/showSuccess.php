@@ -26,7 +26,7 @@
         <?php endif; ?>
       </div>
       <div class="span3">
-        <a href="<?php echo url_for('infojob/offres') ?>#infojob-annonces" class="btn" style="color: #000000;">Retour <i class="icon-home"></i></a>
+        <a href="<?php echo url_for('infojob/offres') ?>" class="btn" style="color: #000000;">Retour <i class="icon-home"></i></a>
         <br/><br/>
         <a href="<?php echo url_for('infojob/signal?id=' . $annonce->getId())?>" rel="nofollow">Signaler l'annonce</a><br/>
         <a href="<?php echo url_for('infojob/myoffer?id=' . $annonce->getId())?>" rel="nofollow">C'est votre offre ?</a>

@@ -3,9 +3,9 @@
 
   <div id="infojob-filtrer">
     <a data-toggle="collapse" data-target="#infojob-collapse-filter" id="infojob-collapse-link">
-      <h1><i class="icon-chevron-down"></i> Filtrer les offres</h1> 
+      <h1><i class="<?php if($isGet): ?>icon-chevron-right icon-white<?php else: ?>icon-chevron-down<?php endif; ?>"></i> Filtrer les offres</h1> 
     </a>
-    <div id="infojob-collapse-filter"  class="collapse in">
+    <div id="infojob-collapse-filter"  class="collapse <?php if($isGet): ?>off<?php else: ?>in<?php endif; ?>">
       <form class="infojob-form well" method="post" action="#infojob-annonces">
         <table>
           <tfoot>
@@ -30,7 +30,7 @@
     </div>
   </div>
   
-  <h1 id="infojob-annonces"><?php if($isGet): ?>Dernières offres postées. Pour voir plus d'offres, <a href="#infojob-filtrer">faites une recherche</a><?php else: ?>Offres<?php endif; ?></h1>
+  <h1 id="infojob-annonces"><?php if($isGet): ?>Dernières offres postées. Pour voir plus d'offres, <a id="link-show-filters" href="#infojob-filtrer">faites une recherche</a><?php else: ?>Offres<?php endif; ?></h1>
   <?php if(!count($annonces)): ?>
     <p>Aucun résultat</p>
   <?php endif; ?>
@@ -80,9 +80,14 @@ $(document).ready(function() {
   $("#infojob-collapse-filter").collapse({
     toggle: false
   }).on('show',function () {
-        $('#infojob-filtrer').find(".icon-chevron-right").removeClass("icon-chevron-right icon-white").addClass("icon-chevron-down");
+    $('#infojob-filtrer').find(".icon-chevron-right").removeClass("icon-chevron-right icon-white").addClass("icon-chevron-down");
   }).on('hide', function () {
-        $('#infojob-filtrer').find(".icon-chevron-down").removeClass("icon-chevron-down").addClass("icon-chevron-right icon-white");
+    $('#infojob-filtrer').find(".icon-chevron-down").removeClass("icon-chevron-down").addClass("icon-chevron-right icon-white");
+  });
+  $('#link-show-filters').click(function() {
+    if($('#infojob-filtrer').find(".icon-chevron-right").hasClass('icon-chevron-right'))
+      $("#infojob-collapse-filter").collapse('show');
+    return false;
   });
 });
 </script>

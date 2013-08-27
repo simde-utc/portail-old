@@ -2,9 +2,9 @@
   <div class="row-fluid" style="text-align:center;">
     <div class="span6">
     	<h1>Etudiants</h1>
-    	<div><a href="<?php echo url_for('infojob/offres') ?>#infojob-annonces"><img src="/images/icones/job.png" style="witdh:90px; height:70px;"></a></div>
+    	<div><a href="<?php echo url_for('infojob/offres') ?>"><img src="/images/icones/job.png" style="witdh:90px; height:70px;"></a></div>
       <br/>
-    	<div><a href="<?php echo url_for('infojob/offres') ?>#infojob-annonces" class="btn btn-success" style="color: #FFFFFF;">Voir les offres</a></div>
+    	<div><a href="<?php echo url_for('infojob/offres') ?>" class="btn btn-success" style="color: #FFFFFF;">Voir les offres</a></div>
     </div>
     
     <div class="span6">

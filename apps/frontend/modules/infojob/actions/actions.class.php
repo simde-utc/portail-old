@@ -8,10 +8,6 @@
  * @author     Soukaina B, Maureen C, Yoan T
  */
 class infojobActions extends sfActions {
-
-  public function executeIndex(sfWebRequest $request)
-  {
-  }
   
   public function executeShow(sfWebRequest $request)
   {

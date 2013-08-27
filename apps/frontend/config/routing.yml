@@ -441,7 +441,7 @@ emprunt_rendre:
 #InfoJob
 infojob_home:
     url: /infojob
-    param: { module: infojob, action: index }
+    param: { module: infojob, action: offres }
 
 infojob_offre_home:
     url: /infojob/offres

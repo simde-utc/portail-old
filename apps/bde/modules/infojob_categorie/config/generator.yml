@@ -1,0 +1,37 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           InfoJobCategorie
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          info_job_categorie
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions:
+        _new: {label: Ajouter}
+        _edit: {label: Modifier}
+      fields:
+        name: {label: Nom}
+      list:
+        title: Catégories d'emploi
+        actions: ~
+        batch_actions: {}
+        object_actions:
+          _edit: ~
+      filter:
+        class: false
+      form:
+        display:
+          [name]
+        actions:
+          _save: ~
+          _list: ~
+      edit:
+        title: Modifier une catégorie
+      new:
+        title: Ajouter une catégorie

@@ -28,16 +28,20 @@ class charte_locauxActions extends autoCharte_locauxActions
   public function executeListValider(sfWebRequest $request)
   {
     $charte = $this->getRoute()->getObject();
-      if($charte->getStatut() != 2)
-      {
-        if($charte->getStatut() == 3) $this->getUser()->setFlash('error', 'Cette demande d\'accès étendu a déjà été acceptée.');
-        else $this->getUser()->setFlash('error', 'Le président de l\'association n\'a pas accepté cette demande d\'accès étendu.');
-        $this->redirect('charte_locaux');
-      }
+    if($charte->getStatut() != 2)
+    {
+      if($charte->getStatut() == 3) $this->getUser()->setFlash('error', 'Cette demande d\'accès étendu a déjà été acceptée.');
+      else $this->getUser()->setFlash('error', 'Le président de l\'association n\'a pas accepté cette demande d\'accès étendu.');
+      $this->redirect('charte_locaux');
+    }
+    if($charte->getSemestreId() != sfConfig::get('app_portail_current_semestre'))
+    {
+      $this->getUser()->setFlash('error', 'La charte date d\'un semestre antérieur vous ne pouvez la valider.');
+      $this->redirect('charte_locaux');
+    }
     $charte->setStatut(3);
     $charte->save();
     $this->getUser()->setFlash('success', 'Vous avez accepté la demande d\'accès étendu.');
     $this->redirect('charte_locaux'); 
   }
-
 }

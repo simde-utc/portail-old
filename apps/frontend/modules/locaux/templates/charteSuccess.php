@@ -2,9 +2,8 @@
   <h1>Charte d'accès étendu</h1>
   <h2>Charte d’accès étendu à la Maison des Etudiants</h2>
   
-<p> L’accès à la Maison des Etudiants <u><font color="#AA0000">(MDE) EST LIBRE DE 7 H30 À 23H 00 DU LUNDI AU VENDREDI, HORS
-PÉRIODE DE VACANCES , ET LES WEEK - ENDS ET JOURS FÉRIÉ. P OUR LE BÂTIMENT A, LES HORAIRES SONT
-LES MÊMES QU ’INDIQUÉES DANS LE RI DE L ’UTC.</font></u></p>
+<p> L’accès à la Maison des Etudiants <u><font color="#AA0000">(MDE) EST LIBRE DE 7H30 À 23H00 DU LUNDI AU VENDREDI, HORS
+PÉRIODE DE VACANCES, ET LES WEEK-ENDS ET JOURS FÉRIÉS. POUR LE BÂTIMENT A, LES HORAIRES SONT LES MÊMES QU’INDIQUÉES DANS LE RI DE L’UTC.</font></u></p>
 
 <p>L’activation de votre badge sésame (carte d’étudiant) pour l’accès étendu vous garantira l’accès à la MDE
 (semaine, week-end et vacances) suivant le groupe d’accès demandé (un seul groupe d'accès possible).</p>

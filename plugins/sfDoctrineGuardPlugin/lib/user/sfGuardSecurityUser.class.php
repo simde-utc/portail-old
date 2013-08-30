@@ -367,6 +367,12 @@ class sfGuardSecurityUser extends sfBasicSecurityUser
     return $this->getGuardUser() ? $this->getGuardUser()->getProfile() : null;
   }
 
+  public function getFullProfile()
+  {
+    $id = $this->getAttribute('user_id', null, 'sfGuardSecurityUser');
+    return ProfileTable::getInstance()->getProfileForUser($id)->fetchOne();
+  }
+
   /**
    * Adds a group from its name to the current user.
    *

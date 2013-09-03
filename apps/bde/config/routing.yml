@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 charte_locaux:
   class: sfDoctrineRouteCollection
   options:
@@ -8,7 +7,6 @@ charte_locaux:
     column:               id
     with_wildcard_routes: true
 
-=======
 infojob:
   url: /infojob
   param: { module: infojob, action: index }
@@ -57,7 +55,6 @@ service:
     module:               service
     prefix_path:          /service
 
->>>>>>> f472a99373d1e9b8c85a52239124d2bf3c14f512
 weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }

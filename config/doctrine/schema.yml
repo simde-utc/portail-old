@@ -538,7 +538,6 @@ WeekmailArticle:
     Asso: { local: asso_id, foreign: id }
     Weekmail: { local: weekmail_id, foreign: id }
     Article: { local: article_id, foreign: id }
-<<<<<<< HEAD
 
 CharteLocaux:
   connection: doctrine
@@ -564,7 +563,6 @@ CharteLocaux:
     Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
     Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
     Responsable: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
-=======
     
 InfoJobCategorie:
   connection: doctrine
@@ -649,4 +647,4 @@ InfoJobAbonnementDisponibilite:
   relations:
     Categorie: { onUpdate: CASCADE, local: disponibilite_id, foreign: id, class: InfoJobDispobilite }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
->>>>>>> f472a99373d1e9b8c85a52239124d2bf3c14f512
+

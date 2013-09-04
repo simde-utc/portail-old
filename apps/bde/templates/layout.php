@@ -88,12 +88,9 @@
                             <li><?php echo link_to('Gestion des cotisants', 'cotisants/index') ?></li>
                             <li><?php echo link_to('Chartes info', 'charte_info/index') ?></li>
                             <li><?php echo link_to('Weekmail', 'weekmail/index') ?></li>
-<<<<<<< HEAD
                             <li><?php echo link_to('Charte d\'accès étendu aux locaux', 'charte_locaux/index')?></li>
-=======
                             <li><?php echo link_to('InfoJob', 'infojob/index') ?></li>
                             <li><?php echo link_to('Services', 'service/index') ?></li>
->>>>>>> f472a99373d1e9b8c85a52239124d2bf3c14f512
                         </ul>
                     </div><!--/.well -->
                 </div><!--/span-->

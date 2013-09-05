@@ -575,6 +575,41 @@ weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }
 
+#Locaux
+locaux_charte:
+  url: /asso/:login/locaux
+  class: sfDoctrineRoute
+  param: { module: locaux, action: charte }
+  options: { model: Asso, type: object } 
+
+locaux_create:
+  url: /locaux/create
+  param: { module: locaux, action: create }
+
+locaux_ctrl:
+  url: /locaux/:id
+  class: sfDoctrineRoute
+  param: { module: locaux, action: locauxCtrl }
+  options: { model: CharteLocaux, type: object }
+
+locaux_post:
+  url: /locaux/post
+  param: { module: locaux, action: locauxPost }
+
+locaux_accept:
+  url: /locaux/:id/accept
+  class: sfDoctrineRoute
+  param: { module: locaux, action: locauxAccept }
+  options: { model: CharteLocaux, type: object }
+
+locaux_refuse:
+  url: /locaux/:id/refuse
+  class: sfDoctrineRoute
+  param: { module: locaux, action: locauxRefuse }
+  options: { model: CharteLocaux, type: object }
+  
+
+
 # generic rules
 # please, remove them by adding more specific rules
 #default_index:

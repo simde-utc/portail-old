@@ -12,7 +12,7 @@
        src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $sf_user->getGuardUser()->getUsername() ?>">
 
   <div class="row">
-    <?php if ($profile->getDomain() == "utc"): ?>
+    <?php if ($profile->getDomain() == "etu"): ?>
       <div class="span4"
            style="background-image: url('/images/tampon_utc.png'); background-repeat:no-repeat; background-position: right -11px;"/>
     <?php elseif ($profile->getDomain() == "escom"): ?>

@@ -70,10 +70,12 @@
     echo "<div class='row'><div class='span2'><b>Portable</b> : </div>
     <div class='span6'>" . $profile->getMobile() . '<br></div></div>';
   }
-  if ($profile->getHomePlace()->getStreet() != ""
+  if ($profile->getHomePlace() && (
+       $profile->getHomePlace()->getStreet() != ""
     || $profile->getHomePlace()->getZipCode() != ""
     || $profile->getHomePlace()->getCity() != ""
-    || $profile->getHomePlace()->getCountry() != "") {
+    || $profile->getHomePlace()->getCountry() != ""
+  )) {
     $i++;
     echo "<div class='row'><div class='span2'><b>Adresse Etu</b> : </div>
     <div class='span6'>" . $profile->getHomePlace()->getStreet() . '<br>
@@ -81,10 +83,12 @@
     ' . $profile->getHomePlace()->getCountry() . '<br></div></div>';
   }
 
-  if ($profile->getFamilyPlace()->getStreet() != ""
+  if ($profile->getFamilyPlace() && (
+      $profile->getFamilyPlace()->getStreet() != ""
     || $profile->getFamilyPlace()->getZipCode() != ""
     || $profile->getFamilyPlace()->getCity() != ""
-    || $profile->getFamilyPlace()->getCountry() != "") {
+    || $profile->getFamilyPlace()->getCountry() != ""
+  )) {
     $i++;
     echo "<div class='row'><div class='span2'><b>Autre Adresse</b> : </div>
     <div class='span6'>" . $profile->getFamilyPlace()->getStreet() . '<br>

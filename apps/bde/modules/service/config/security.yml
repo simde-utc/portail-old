@@ -1,3 +1,3 @@
 all:
   is_secure: true
-  credentials: services
+  credentials: services_admin

@@ -54,6 +54,8 @@ service:
     model:                Service
     module:               service
     prefix_path:          /service
+    column:               id
+    with_wildcard_routes: true
 
 weekmail:
   url: /weekmail

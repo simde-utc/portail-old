@@ -71,7 +71,7 @@ class infojobActions extends sfActions {
     $annonce = InfoJobOffreTable::getInstance()->getOffreByEmailKey($request->getParameter('key'))->fetchOne();
     $this->forward404Unless($annonce != null, sprintf('L\'annonce n\'existe pas (%s).', $request->getParameter('key')));
     $annonce->archive();
-    $this->redirect('infojob/index');
+    $this->redirect('infojob_home');
   }
   
   public function executeActivate(sfWebRequest $request)

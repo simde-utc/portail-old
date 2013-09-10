@@ -18,6 +18,9 @@
     <?php if($charte): ?>
       <a href="<?php echo url_for('asso_charte', $asso) ?>">Passation</a>
     <?php endif ?>
+    <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->isMember($asso->getLogin())):  ?>
+	  <a href="<?php echo url_for('locaux_charte', $asso) ?>">Charte Locaux</a>
+	<?php endif ?>
   </div>
 </div>
 <?php endif ?>

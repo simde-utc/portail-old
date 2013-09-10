@@ -1,18 +1,21 @@
 <?php use_helper('Number', 'Date');
 use_javascript('treso-notedefrais.js') ?>
-<h1>Affichage d'une transaction</h1>
+<h1>Transaction : <?php echo $transaction->getLibelle(); ?></h1>
 
-<h3><?php echo $transaction->getLibelle(); ?></h3>
 <p>
-  le <?php echo format_date($transaction->getDateTransaction(), 'D', 'fr') ?><br/>
-  <?php echo format_currency($transaction->getMontant(), '€', 'fr_FR') ?> sur <em><?php echo $transaction->getCompteBanquaire()->getNom() ?></em><br/>
+  le <strong><?php echo format_date($transaction->getDateTransaction(), 'D', 'fr') ?></strong><br/>
+  <strong><?php echo format_currency($transaction->getMontant(), '€', 'fr_FR') ?></strong> sur <em><?php echo $transaction->getCompteBanquaire()->getNom() ?></em><br/>
   <?php if(is_null($transaction->getDateRapprochement())) {
-    echo '<b>Non rapproché !</b>';
+    echo '<strong>Non rapprochée !</strong>';
   } else {
-    echo 'Rapproché le '. format_date($transaction->getDateRapprochement(), 'D', 'fr');
+    echo '<i class="icon icon-check"></i> Rapproché le '. format_date($transaction->getDateRapprochement(), 'D', 'fr');
   }
   ?><br/>
-  Payé par <?php echo $transaction->getTransactionMoyen()?> : <?php echo $transaction->getMoyenCommentaire() ?><br/><br/>
+  Payé par <?php echo $transaction->getTransactionMoyen()?>
+  <?php if($transaction->getMoyenCommentaire()): ?>
+  : <?php echo $transaction->getMoyenCommentaire() ?>
+  <?php endif; ?>
+  <br/><br/>
   <em>Commentaire : </em><br/>
   <?php echo nl2br($transaction->getCommentaire()); ?>
   <?php if(!is_null($transaction->getNoteDeFraisId())):
@@ -23,10 +26,11 @@ use_javascript('treso-notedefrais.js') ?>
   <?php if(!is_null($transaction->getBudgetPosteId())):
     $poste = $transaction->getBudgetPoste(); ?>
     <br/><br/>
-    Cette transaction est liée au budget <a href=<?php echo url_for('budget_show', $poste->getBudget()) ?>><?php echo $poste ?></a>
+    Cette transaction est liée au poste <a href=<?php echo url_for('budget_show', $poste->getBudget()) ?>><?php echo $poste ?></a> du budget <a href=<?php echo url_for('budget_show', $poste->getBudget()) ?>><?php echo $poste->getBudget()->getNom(); ?></a>
   <?php endif; ?>
+<br/><br/>
+<a href="<?php echo url_for('transaction_compte', $transaction->getCompteBanquaire()) ?>" class="btn">Retour</a> <a href="<?php echo url_for('transaction_edit', $transaction) ?>" class="btn btn-primary"><i class="icon-white icon-pencil"></i> Éditer</a> 
 </p>
-
 <h3>Documents Liés</h3>
   <?php if(count($documents) == 0): ?>
     <p>Aucun document lié, merci de scanner et d'ajouter la facture pour cette transaction.</p>

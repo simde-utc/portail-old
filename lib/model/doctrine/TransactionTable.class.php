@@ -32,9 +32,16 @@ class TransactionTable extends Doctrine_Table
       return $q;
     }
     
-    public function getJournalForAsso($asso, $semestre = null)
+    public function getJournalForCompte($compte, $semestre = null)
     {
-      return $this->getAllForAsso($asso)->andWhere('q.note_de_frais_id IS NULL');
+      return $this->getAllForAsso($compte->getAsso(), $semestre)
+                  ->select('q.*, p.nom, p.budget_id, p.id, b.id, s.id, s.name, m.id, m.nom')
+                  ->leftJoin('q.BudgetPoste p')
+                  ->leftJoin('p.Budget b')
+                  ->leftJoin('b.Semestre s')
+                  ->andWhere('q.note_de_frais_id IS NULL')
+                  ->andWhere('q.compte_id = ?', $compte->getPrimaryKey())
+                  ->orderBy('q.date_transaction DESC');
     }
 
     public function getActiveCount($asso)
@@ -55,7 +62,7 @@ class TransactionTable extends Doctrine_Table
       $q = $this->createQuery('q')
               ->where('q.moyen_id = 1')
               ->andWhere('q.asso_id = ?',$asso->getId())
-              ->orderBy('q.date_transaction DESC');
+              ->orderBy('q.moyen_commentaire+0 DESC');
       return $q;
     }
 }

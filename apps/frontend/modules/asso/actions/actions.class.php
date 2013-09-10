@@ -86,6 +86,37 @@ class assoActions extends sfActions {
         $this->flashinfo = $msg;
       }
     }
+
+
+    /*
+    * Demande de validation de charte locaux à l'actuel président
+    *
+    */
+    if($this->getUser()->isAuthenticated() && $hasdroit=(AssoMemberTable::getInstance()->isPresident($this->asso->getId(), $this->getUser()->getGuardUser()->getId()))
+      && ($cl = CharteLocauxTable::getInstance()->getByAssoAndSemestre($this->asso->getId())->andWhere('q.statut = ?', 1)->execute()))
+    {
+      if($cl->count() > 0)     
+      {
+        $msg = 'En tant qu\'actuel président de cette association vous devez valider les demandes d\'accès étendu aux locaux.<br />
+             Les demandes suivantes ont été effectuées :<br /><br /><ul>';
+        foreach($cl as $locaux)
+        {
+          $msg .= '<li><b>' . $locaux->getResponsable()->getName() . '</b> le <em>' . $locaux->getDate() . '</em><br />Accès demandé:<ul>';
+          if ($locaux->getPorteMde()) $msg .= '<li>Porte de la MDE</li>';
+          if ($locaux->getBatA()) $msg .= '<li>Batiment A</li>';
+          if ($locaux->getLocauxPic()) $msg .= '<li>Locaux du Pic</li>';
+          if ($locaux->getMdeComplete()) $msg .= '<li>MDE complète</li>';
+          if ($locaux->getBureauPolar()) $msg .= '<li>Bureau du Polar</li>';
+          if ($locaux->getPermPolar()) $msg .= '<li>Permanence du Polar</li>';
+          if ($locaux->getSallesMusique()) $msg .= '<li>Salles de musique</li>';
+          $msg .= '</ul><br />';
+          $msg .= 'Motif: <br />' . $locaux->getMotif() . '<br />';
+          $msg .= '<a href="' . $this->generateUrl('locaux_accept', $locaux) . '">Accepter</a> / <a href="' . $this->generateUrl('locaux_refuse', $locaux) . '">Refuser</a></li>';          
+        }
+        $msg .='</ul><br />';
+        $this->flashinfo = $msg;
+      }     
+    }
   }
 
   public function executeCharte(sfWebRequest $request)
@@ -338,4 +369,39 @@ EOF
     $this->roles = RoleTable::getInstance()->findAll();
   }
 
+  public function executeFollow()
+  {
+    $asso = $this->getRoute()->getObject();
+    if(!$this->getUser()->isAuthenticated())
+    {
+      $this->getUser()->setFlash('error', 'Vous devez être connecté pour suivre les actualits d\'une association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    if($this->getUser()->getGuardUser()->isFollower($asso->getId()))
+    {
+      $this->getUser()->setFlash('error', 'Vous suivez déjà les actualités de cette association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    $asso->addFollower($this->getUser()->getGuardUser());
+    $this->getUser()->setFlash('success', 'Vous suivez maintenant les actualités de cette association.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
+
+  public function executeUnfollow()
+  {
+    $asso = $this->getRoute()->getObject();
+    if(!$this->getUser()->isAuthenticated())
+    {
+      $this->getUser()->setFlash('error', 'Vous devez être connecté pour quitter une association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    if(!$this->getUser()->getGuardUser()->isFollower($asso->getId()))
+    {
+      $this->getUser()->setFlash('error', 'Vous ne suivez pas les actualités de cette association.');
+      $this->redirect('asso/show?login='.$asso->getLogin());
+    }
+    $asso->removeFollower($this->getUser()->getGuardUser());
+    $this->getUser()->setFlash('success', 'Vous ne suivez plus les actualités de cette association.');
+    $this->redirect('asso/show?login='.$asso->getLogin());
+  }
 }

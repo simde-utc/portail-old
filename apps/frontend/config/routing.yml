@@ -607,8 +607,6 @@ locaux_refuse:
   class: sfDoctrineRoute
   param: { module: locaux, action: locauxRefuse }
   options: { model: CharteLocaux, type: object }
-  
-
 
 # generic rules
 # please, remove them by adding more specific rules

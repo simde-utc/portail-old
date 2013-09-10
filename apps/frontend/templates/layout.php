@@ -123,6 +123,7 @@
           <a href="/gesmail">Gestion des mails assos</a><br/>
           <a href="/resa">Réservation de salles</a><br/>
           <a href="/mail">Webmail assos</a><br />
+          <a href="/treso.php">Outil trésorerie</a><br />
         </div>
         <div id="footer-right">
           <h2>Liens</h2>

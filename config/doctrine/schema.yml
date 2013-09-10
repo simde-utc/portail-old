@@ -568,7 +568,6 @@ InfoJobCategorie:
   connection: doctrine
   columns:
     name: { type: string(100), notnull: true }
-    description: { type: string(255), notnull: true }
     
 InfoJobDisponibilite:
   connection: doctrine

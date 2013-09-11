@@ -42,6 +42,9 @@ et doit par conséquent éviter tout incident qui pourrait entraîner la fermetu
           <td><?php echo $form['bat_a'] ?></td>
         </tr>
         <tr>
+          <td><font size="1" color="grey">L'accès MDE complète est réservé au Président du BDE et au responsable locaux du BDE sauf dérogation exceptionnelle.</font></td>
+        </tr>
+        <tr>
           <td><?php echo $form['mde_complete']->renderlabel('MDE complète ') ?></td>
           <td><?php echo $form['mde_complete'] ?></td>
         </tr>

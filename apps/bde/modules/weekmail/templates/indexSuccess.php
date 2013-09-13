@@ -106,6 +106,7 @@
                     (<?php echo count($weekmail->getWeekmailArticle()) ?> articles)
                     <?php if (strtotime($weekmail->getPublishedAt()) > time()): ?><em>(Non publié)</em><?php endif ?>
                 </td>
+                <td><?php echo $weekmail->getMotDuBde() ?></td>
                 <td><?php echo $weekmail->getEdito() ?></td>
                 <td><?php echo $weekmail->getEditar() ?></td>
                 <td>

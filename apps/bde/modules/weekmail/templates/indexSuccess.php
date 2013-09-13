@@ -4,8 +4,9 @@
 <table class="table table-striped table-bordered table-hover">
     <thead>
         <tr>
-            <th style="width: 30%;">Edito</th>
-            <th style="width: 30%;">Editar</th>
+            <th style="width: 20%;">Mot du BDE</th>
+            <th style="width: 20%;">Edito</th>
+            <th style="width: 20%;">Editar</th>
             <th style="width: 20%;">Articles</th>
             <th style="width: 20%;">Actions</th>
         </tr>
@@ -13,6 +14,7 @@
     <tbody>
         <?php foreach ($current_weekmails as $weekmail): ?>
             <tr>
+                <td><?php echo nl2br($weekmail->getMotDuBde()) ?></td>
                 <td><?php echo nl2br($weekmail->getEdito()) ?></td>
                 <td><?php echo nl2br($weekmail->getEditar()) ?></td>
                 <td>
@@ -39,6 +41,29 @@
             </tr>
         <?php endforeach; ?>
     </tbody>
+</table>
+<h1>Events à valider <small>Les événements seront ajoutés au premier Weekmail de la liste précédente</small></h1>
+<table class="table table-striped table-bordered table-hover">
+    <?php foreach ($events as $event): ?>
+        <tr>
+            <td>
+                <?php echo $event->getAsso()->getName() ?>
+            </td>
+            <td>
+                <a href="javascript:;" class="article_name"><?php echo $event->getName() ?></a>
+            </td>
+            <td style="width: 60%;"><?php echo nl2br($event->getSummary()) ?></td>
+            <td>
+                <div class="btn-group">
+                    <a href="<?php echo url_for('weekmail_accept_event', $event) ?>" class="btn btn-success"><i class="icon-ok icon-white"></i></a>
+                    <a href="<?php echo url_for('weekmail_refuse_event', $event) ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
+                </div>
+            </td>
+        </tr>
+        <tr class="article_text">
+            <td colspan="4"><?php echo nl2br($event->getDescription()) ?></td>
+        </tr>
+    <?php endforeach; ?>
 </table>
 <h1>Articles à valider <small>Les articles seront ajoutés au premier Weekmail de la liste précédente</small></h1>
 <table class="table table-striped table-bordered table-hover">

@@ -520,6 +520,7 @@ Weekmail:
   actAs:  { Timestampable: ~ }
   columns:
     published_at: { type: date }
+    mot_du_bde: { type: string }
     edito: { type: string }
     editar: { type: string }
 
@@ -534,10 +535,12 @@ WeekmailArticle:
     summary: { type: string(150) }
     weekmail_id: { type: integer }
     article_id: { type: integer }
+    event_id: { type: integer }
   relations:
     Asso: { local: asso_id, foreign: id }
     Weekmail: { local: weekmail_id, foreign: id }
     Article: { local: article_id, foreign: id }
+    Event: { local: event_id, foreign: id }
 
 CharteLocaux:
   connection: doctrine

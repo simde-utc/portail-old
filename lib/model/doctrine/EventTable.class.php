@@ -86,4 +86,12 @@ class EventTable extends Doctrine_Table
             ->limit(3);
         return $q;
     }
+
+    public function getEventsForWeekmail() {
+        $q = $this->createQuery('e')
+            ->select('e.*, as.name')
+            ->leftJoin('e.Asso as')
+            ->where('e.is_weekmail = ?', true);
+        return $q;
+    }
 }

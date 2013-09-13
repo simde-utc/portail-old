@@ -20,25 +20,37 @@ class articleActions extends sfActions
   {
     try {
       $this->asso = $this->getRoute()->getObject();
-    }
-    catch (Exception $e) {
-      $this->forward('article','index');
+    } catch (Exception $e) {
+      $this->forward('article', 'index');
     }
     $this->articles = ArticleTable::getInstance()->getArticlesList($this->asso->getPrimaryKey())->execute();
   }
-  
+
   public function executeShow(sfWebRequest $request)
   {
     $this->article = $this->getRoute()->getObject();
+
+    $response = $this->getResponse();
+    $response->addMeta('og:title', $this->article->getName());
+    $response->addMeta('og:type', 'Article');
+    sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
+    $response->addMeta('og:image', doThumb($this->article->getImage(), 'articles', array(
+        'width' => 150,
+        'height' => 150),
+      'scale'
+    ));
+    $response->addMeta('og:url', $this->generateUrl('article_show',$this->article,true));
+    $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
   }
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->redirectUnless($asso = $this->getRoute()->getObject(),'assos_list');
-    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x04))
-    {
+    $this->redirectUnless($asso = $this->getRoute()->getObject(), 'assos_list');
+    if (!$this->getUser()->isAuthenticated()
+      || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x04)
+    ) {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('asso/show?login='.$asso->getLogin());
+      $this->redirect('asso/show?login=' . $asso->getLogin());
     }
     $this->form = new ArticleForm();
     $this->form->setDefault('asso_id', $this->getRoute()->getObject()->getId());
@@ -58,10 +70,11 @@ class articleActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($article = $this->getRoute()->getObject());
-    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04))
-    {
+    if (!$this->getUser()->isAuthenticated()
+      || !$this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04)
+    ) {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('asso/show?login='.$article->getAsso()->getLogin());
+      $this->redirect('asso/show?login=' . $article->getAsso()->getLogin());
     }
     $this->form = new ArticleForm($article);
   }
@@ -70,10 +83,11 @@ class articleActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
     $this->forward404Unless($article = Doctrine_Core::getTable('article')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
-    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04))
-    {
+    if (!$this->getUser()->isAuthenticated()
+      || !$this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04)
+    ) {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('asso/show?login='.$article->getAsso()->getLogin());
+      $this->redirect('asso/show?login=' . $article->getAsso()->getLogin());
     }
     $this->form = new ArticleForm($article);
 
@@ -87,10 +101,11 @@ class articleActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->forward404Unless($article = Doctrine_Core::getTable('article')->find(array($request->getParameter('id'))), sprintf('Object article does not exist (%s).', $request->getParameter('id')));
-    if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04))
-    {
+    if (!$this->getUser()->isAuthenticated()
+      || !$this->getUser()->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04)
+    ) {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('asso/show?login='.$article->getAsso()->getLogin());
+      $this->redirect('asso/show?login=' . $article->getAsso()->getLogin());
     }
     $article->delete();
 
@@ -100,11 +115,10 @@ class articleActions extends sfActions
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
+    if ($form->isValid()) {
       $article = $form->save();
 
-      $this->redirect('article/show?id='.$article->getId());
+      $this->redirect('article/show?id=' . $article->getId());
     }
   }
 }

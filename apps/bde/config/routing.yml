@@ -97,6 +97,16 @@ weekmail_accept:
   class: sfDoctrineRoute
   param: { module: weekmail, action: accept }
   options: { model: Article, type: object }
+weekmail_refuse_event:
+  url: /weekmail/refuse_event/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: refuseEvent }
+  options: { model: Event, type: object }
+weekmail_accept_event:
+  url: /weekmail/accept_event/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: acceptEvent }
+  options: { model: Event, type: object }
 weekmail_delete_article:
   url:  /weekmail/delete_article/:id
   class: sfDoctrineRoute

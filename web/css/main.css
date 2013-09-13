@@ -869,6 +869,12 @@ a.btn-danger {
   vertical-align: middle;
 }
 
+#article .facebook:before, #event .facebook:before {
+    content: url('/images/icons/facebook.png');
+    margin-right: 0px;
+    vertical-align: -20%;
+}
+
 #topbar .phone:before , #assos_list .phone:before {
   content: url('/images/icons/phone.png');
   margin-right: 5px;

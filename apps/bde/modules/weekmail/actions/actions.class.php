@@ -151,4 +151,14 @@ class weekmailActions extends sfActions
 
     $this->redirect('weekmail/index');
   }
+
+  public function executeHtml() {
+    $this->weekmail = $this->getRoute()->getObject();
+    $this->rows = 10
+      + WeekmailArticleTable::getInstance()
+        ->getEventsForWeekmail($this->weekmail->getId())->count() * 3
+      + WeekmailArticleTable::getInstance()
+        ->getArticlesForWeekmail($this->weekmail->getId())->count() * 3
+      ;
+  }
 }

@@ -53,7 +53,7 @@
                 <a href="javascript:;" class="article_name"><?php echo $event->getName() ?></a>
             </td>
             <td style="width: 60%;"><?php echo nl2br($event->getSummary()) ?></td>
-            <td>
+            <td style="min-width: 72px;">
                 <div class="btn-group">
                     <a href="<?php echo url_for('weekmail_accept_event', $event) ?>" class="btn btn-success"><i class="icon-ok icon-white"></i></a>
                     <a href="<?php echo url_for('weekmail_refuse_event', $event) ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
@@ -76,7 +76,7 @@
                 <a href="javascript:;" class="article_name"><?php echo $article->getName() ?></a>
             </td>
             <td style="width: 60%;"><?php echo nl2br($article->getSummary()) ?></td>
-            <td>
+            <td style="min-width: 72px;">
                 <div class="btn-group">
                     <a href="<?php echo url_for('weekmail_accept', $article) ?>" class="btn btn-success"><i class="icon-ok icon-white"></i></a>
                     <a href="<?php echo url_for('weekmail_refuse', $article) ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
@@ -93,6 +93,7 @@
     <thead>
         <tr>
             <th>Publié le</th>
+            <th>Mot du BDE</th>
             <th>Edito</th>
             <th>Editar</th>
             <th>Actions</th>
@@ -109,9 +110,14 @@
                 <td><?php echo $weekmail->getMotDuBde() ?></td>
                 <td><?php echo $weekmail->getEdito() ?></td>
                 <td><?php echo $weekmail->getEditar() ?></td>
-                <td>
+                <td style="min-width: 108px;">
                     <div class="btn-group">
-                        <a href="<?php echo url_for('weekmail_edit', $weekmail) ?>" class="btn btn-primary"><i class="icon-pencil icon-white"></i></a>
+                        <a href="<?php echo url_for('weekmail_html', $weekmail) ?>" class="btn">
+                            <i class="icon-envelope"></i>
+                        </a>
+                        <a href="<?php echo url_for('weekmail_edit', $weekmail) ?>" class="btn btn-primary">
+                            <i class="icon-pencil icon-white"></i>
+                        </a>
                         <?php echo link_to('<i class="icon-trash icon-white"></i>', 'weekmail/delete?id=' . $weekmail->getId(), array('method' => 'delete', 'confirm' => 'Êtes-vous sur de vouloir supprimer définitivement ce  ?', 'class' => 'btn btn-danger')) ?>
                     </div>
                 </td>

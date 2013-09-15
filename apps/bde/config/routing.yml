@@ -112,6 +112,11 @@ weekmail_delete_article:
   class: sfDoctrineRoute
   param: { module: weekmail, action: deleteArticle }
   options: { model: WeekmailArticle, type: object }
+weekmail_html:
+  url: /weekmail/html/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: html }
+  options: { model: Weekmail, type: object }
 
 charte_info:
   class: sfDoctrineRouteCollection

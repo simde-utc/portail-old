@@ -29,7 +29,7 @@ class charte_locauxActions extends autoCharte_locauxActions
       <<<EOF
 Bonjour,
 
-Votre demande d'accès étendu a été refusée pour l'association {$charte->getAsso()->getName()} merci de prendre contact avec le BDE pour plus d'information.
+Votre demande d'accès étendu du {$charte->getCreatedAt()} pour l'association {$charte->getAsso()->getName()} a été refusée. Merci de prendre contact avec le BDE pour plus d'informations.
 
 Le BDE
 EOF
@@ -56,6 +56,20 @@ EOF
       $this->redirect('charte_locaux');
     }
     $charte->setStatut(3);
+    
+    $message = $this->getMailer()->compose(
+    array('bde@assos.utc.fr' => 'BDE UTC'),
+    $charte->getResponsable()->getEmailAddress(),
+    'Refus de votre demande d\'accès étendu au locaux',
+    <<<EOF
+Bonjour,
+
+Votre demande d'accès étendu du {$charte->getCreatedAt()} pour l'association {$charte->getAsso()->getName()} a été acceptée.
+
+Le BDE
+EOF
+);
+    $this->getMailer()->send($message);
     $charte->save();
     $this->getUser()->setFlash('success', 'Vous avez accepté la demande d\'accès étendu.');
     $this->redirect('charte_locaux'); 

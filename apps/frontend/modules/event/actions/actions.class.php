@@ -112,6 +112,18 @@ class eventActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->event = $this->getRoute()->getObject();
+
+    $response = $this->getResponse();
+    $response->addMeta('og:title', $this->event->getName());
+    $response->addMeta('og:type', 'Event');
+    sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
+    $response->addMeta('og:image', doThumb($this->event->getAffiche(), 'events', array(
+        'width' => 150,
+        'height' => 150),
+      'scale'
+    ));
+    $response->addMeta('og:url', $this->generateUrl('event_show',$this->event,true));
+    $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

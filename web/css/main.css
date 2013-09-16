@@ -282,16 +282,24 @@ a.btn-danger {
 .part a.alink { display: block; background: url('/images/button/more.png') no-repeat; 
                             width: 113px; height: 22px; margin-top: 5px; margin-left: 500px; padding-top: 10px;
                             text-align: center; font-size: 10px; text-transform: uppercase; }
-.part .event {
+
+.eventbox {
+  padding: 1em;
+  text-align: center;
 }
-.part .event h2 {
+
+.eventbox h2, .eventbox p, .eventbox div {
+  text-align: left;
+}
+
+.eventbox h2 {
     text-transform: uppercase;
     color: white;
     font-size: 12px;
     padding: 1em 0em;
     line-height: 1.2em;
 }
-.part .event a {
+.eventbox a {
   color: white;
 }
 .part {

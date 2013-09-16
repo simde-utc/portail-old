@@ -235,34 +235,6 @@ h1.bulle {
   border: none;
 }
 
-.arrow-e {
-  /*
-   * In Internet Explorer, The"border-style: dashed" will never be
-   * rendered unless "(width * 5) >= border-width" is true.
-   * Since "width" is set to "0", the "dashed-border" remains
-   * invisible to the user, which renders the border just like how
-   * "border-color: transparent" renders.
-   */
-  border-style: dashed;
-  border-color: transparent;
-  border-width: 0.53em;
-  display: -moz-inline-box;
-  display: inline-block;
-  /* Use font-size to control the size of the arrow. */
-  font-size: 14px;
-  height: 0;
-  line-height: 0;
-  position: relative;
-  vertical-align: middle;
-  width: 0;
-  color: white;
-  border-left-width: .53em;
-  border-left-style: solid;
-  border-left-color: white;
-  left: 0.25em;
-  margin-top: -5px;
-}
-
 .editform label:first-child {
 	text-align: right;
 	margin-right: 6px;

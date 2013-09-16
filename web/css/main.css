@@ -219,20 +219,17 @@ h1.bulle {
 
 #asso-menu {
   background: #009cdd;
-  height: 30px;
-  margin-top: -31px;
+  padding: .3em 0;
+  margin-top: .5em;
 }
 
 #asso-menu a {
-  display: inline-block;
+  font-size: 13px;
   text-transform: uppercase;
-  padding: 7px 10px 0 10px;
-  margin-left: -2px;
+  padding: .5em 1em;
   border-right: 1px solid white;
   color: white;
   font-weight: bold;
-  height: 23px;
-  white-space: nowrap;
 }
 #asso-menu a:last-child, #asso-menu a:first-child {
   border: none;

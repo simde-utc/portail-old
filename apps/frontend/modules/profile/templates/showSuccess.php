@@ -12,7 +12,7 @@
        src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $sf_user->getGuardUser()->getUsername() ?>">
 
   <div class="row">
-    <?php if ($profile->getDomain() == "utc"): ?>
+    <?php if ($profile->getDomain() == "etu"): ?>
       <div class="span4"
            style="background-image: url('/images/tampon_utc.png'); background-repeat:no-repeat; background-position: right -11px;"/>
     <?php elseif ($profile->getDomain() == "escom"): ?>
@@ -70,10 +70,12 @@
     echo "<div class='row'><div class='span2'><b>Portable</b> : </div>
     <div class='span6'>" . $profile->getMobile() . '<br></div></div>';
   }
-  if ($profile->getHomePlace()->getStreet() != ""
+  if ($profile->getHomePlace() && (
+       $profile->getHomePlace()->getStreet() != ""
     || $profile->getHomePlace()->getZipCode() != ""
     || $profile->getHomePlace()->getCity() != ""
-    || $profile->getHomePlace()->getCountry() != "") {
+    || $profile->getHomePlace()->getCountry() != ""
+  )) {
     $i++;
     echo "<div class='row'><div class='span2'><b>Adresse Etu</b> : </div>
     <div class='span6'>" . $profile->getHomePlace()->getStreet() . '<br>
@@ -81,10 +83,12 @@
     ' . $profile->getHomePlace()->getCountry() . '<br></div></div>';
   }
 
-  if ($profile->getFamilyPlace()->getStreet() != ""
+  if ($profile->getFamilyPlace() && (
+      $profile->getFamilyPlace()->getStreet() != ""
     || $profile->getFamilyPlace()->getZipCode() != ""
     || $profile->getFamilyPlace()->getCity() != ""
-    || $profile->getFamilyPlace()->getCountry() != "") {
+    || $profile->getFamilyPlace()->getCountry() != ""
+  )) {
     $i++;
     echo "<div class='row'><div class='span2'><b>Autre Adresse</b> : </div>
     <div class='span6'>" . $profile->getFamilyPlace()->getStreet() . '<br>

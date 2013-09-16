@@ -7,7 +7,7 @@
       <?php if ($service->getTypeId() == '1') : ?>
         <li>
           <a href="<?php echo $service->getUrl() ?>" style="float:left;">
-            <?php echo showThumb($service->getLogo(), 'assos', array('width' => 85, 'height' => 85, 'class' => 'logo'), 'center') ?>
+            <?php echo showThumb($service->getLogo(), 'services', array('width' => 85, 'height' => 85, 'class' => 'logo'), 'center') ?>
           </a>
           <a href="<?php echo $service->getUrl() ?>">
             <h3><?php echo $service->getNom() ?></h3>
@@ -37,7 +37,7 @@
       <?php if ($service->getTypeId() == '2') : ?>
         <li>
           <a href="<?php echo $service->getUrl() ?>" style="float:left;">
-            <?php echo showThumb($service->getLogo(), 'assos', array('width' => 85, 'height' => 85, 'class' => 'logo'), 'center') ?>
+            <?php echo showThumb($service->getLogo(), 'services', array('width' => 85, 'height' => 85, 'class' => 'logo'), 'center') ?>
           </a>
           <a href="<?php echo $service->getUrl() ?>">
             <h3><?php echo $service->getNom() ?></h3>
@@ -67,7 +67,7 @@
       <?php if ($service->getTypeId() == '3') : ?>
         <li>
           <a href="<?php echo $service->getUrl() ?>" style="float:left;">
-            <?php echo showThumb($service->getLogo(), 'assos', array('width' => 85, 'height' => 85, 'class' => 'logo'), 'center') ?>
+            <?php echo showThumb($service->getLogo(), 'services', array('width' => 85, 'height' => 85, 'class' => 'logo'), 'center') ?>
           </a>
           <a href="<?php echo $service->getUrl() ?>">
             <h3><?php echo $service->getNom() ?></h3>

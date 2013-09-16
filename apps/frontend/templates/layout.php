@@ -52,6 +52,7 @@
               <a href="<?php echo url_for('homepage') ?>">Accueil</a>
               <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Associations</a>
               <a href="<?php echo url_for('agenda_detail') ?>" class="barre">Calendrier</a>
+              <a href="<?php echo url_for('infojob_home') ?>" class="barre">InfoJob</a>              
               <a href="<?php echo url_for('services')?>" class="barre" id= "lienlisteservices">Services</a>
             </div>
           </div>
@@ -112,7 +113,8 @@
           <h2>Services</h2>
           <a href="/gesmail">Gestion des mails assos</a><br/>
           <a href="/resa">Réservation de salles</a><br/>
-          <a href="/mail">Webmail assos</a><br /><br />
+          <a href="/mail">Webmail assos</a><br />
+          <a href="/treso.php">Outil trésorerie</a><br />
         </div>
         <div class="span2">
           <h2>Liens</h2>

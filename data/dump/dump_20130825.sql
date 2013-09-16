@@ -61,7 +61,8 @@ INSERT INTO `type_asso` (`id`, `name`) VALUES
 INSERT INTO `sf_guard_user` (`id`, `first_name`, `last_name`, `email_address`, `username`, `algorithm`, `salt`, `password`, `is_active`, `is_super_admin`, `last_login`, `created_at`, `updated_at`) VALUES
 (1, NULL, NULL, 'kenlerem@etu.utc.fr', 'kenlerem', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (2, NULL, NULL, 'puyouart@etu.utc.fr', 'puyouart', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
-(3, NULL, NULL, 'mguffroy@etu.utc.fr', 'mguffroy', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
+(3, NULL, NULL, 'mguffroy@etu.utc.fr', 'mguffroy', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(4, 'Yoan', 'Tournade', 'ytournad@etu.utc.fr', 'ytournad', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
 UPDATE `sf_guard_user` SET `is_active`= 0;
 
 INSERT INTO `asso_member` (`id`, `user_id`, `asso_id`, `role_id`, `semestre_id`, `created_at`, `updated_at`) VALUES
@@ -76,7 +77,6 @@ INSERT INTO `profile` (`id`, `user_id`, `domain`, `nickname`, `birthday`, `sexe`
 (NULL, 1, 'utc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (NULL, 2, 'utc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (NULL, 3, 'utc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
-SET foreign_key_checks = 1;
 
 INSERT INTO `sf_guard_permission` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'chartes_valider', 'Validation des chartes informatique.', '2012-10-25 11:29:43', '2012-10-25 11:39:33'),
@@ -107,3 +107,49 @@ INSERT INTO `transaction_moyen` (`id`, `nom`, `detail`) VALUES
 (5, 'Payutc', 'Uniquement possible sur les comptes payutc.'),
 (6, 'Membre', 'À utiliser si un membre a payé, afin de pouvoir faire une note de frais plus tard');
 
+INSERT INTO `info_job_abonnement_categorie` (`id`, `categorie_id`, `user_id`) VALUES
+(1, 2, 4),
+(2, 4, 4);
+
+INSERT INTO `info_job_abonnement_disponibilite` (`id`, `disponibilite_id`, `user_id`) VALUES
+(1, 1, 4),
+(2, 2, 4);
+
+INSERT INTO `info_job_categorie` (`id`, `name`, `description`) VALUES
+(1, 'Soutien scolaire', 'Description soutien scolaire. Cours chez les particuliers, etc.'),
+(2, 'Aide à domicile', 'Service aux particuliers à domicile, etc.'),
+(3, 'Restauration', 'Description restauration'),
+(4, 'Manutention', 'Description manutention'),
+(5, 'Divers', 'Tout ce qui ne rentre pas les autres catégories'),
+(6, 'Standardiste', 'Description standardiste');
+
+INSERT INTO `info_job_disponibilite` (`id`, `name`) VALUES
+(1, 'Semaine'),
+(2, 'Week-end'),
+(3, 'Soirs'),
+(4, 'Vacances');
+
+INSERT INTO `info_job_offre` (`id`, `categorie_id`, `user_id`, `titre`, `texte`, `lieu`, `remuneration`, `email`, `telephone`, `expiration_date`, `archivage_date`, `created_at`, `updated_at`, `emailkey`, `validationkey`, `validation_date`) VALUES
+(1, 1, NULL, 'Soutien scolaire chez Acadomia', 'Acadomia dispose d’un réseau de 120 agences, suit plus de 100 000 élèves avec l’aide de 25 000 « enseignants » encadrés par plus de 500 conseillers pédagogiques3. Toute personne titulaire d''un bac + 3 (licence) peut être employée comme enseignant.\r\nComme toutes les entreprises de services à la personne, la prestation offerte par la société - comme celle offerte individuellement par un étudiant déclaré - ouvre droit à un crédit d''impôt et/ou réduction d''impôt pour l''emploi à domicile de 50 % ce qui a favorisé son développement et celui de tout le secteur', 'Compiègne et alentours', '~10 € / h NET', 'compiegne@acadomia.fr', '0344538291', '2013-08-01 00:00:00', NULL, '2013-05-25 00:00:00', '2013-05-25 00:00:00', 'd1146c37a47de5b860e7770a0dd461da', 'd1146c37a47de5b860e7770a0dd341da', '2015-05-25 00:00:00'),
+(2, 3, 2, 'Subway Rue Saint-Corneille', '', 'Rue Saint-Corneille, 60200 Compiègne', '9 € / h', 'compiegne-corneille@subway.com', '057492391', NULL, NULL, '2013-05-25 00:00:00', '2013-05-25 00:00:00', 'c5c469380bfe6f347c291c80271ddeeb', 'c5c469380bfe6f347c291c80271bbeeb', '2015-05-25 00:00:00'),
+(3, 2, NULL, 'Tonte pelouse', 'Tondre la pelouse chez moi. Je suis une personne âgée qui ne peut plus assurer l''entretien de mes espaces verts.', '11 Rue Jean-Baptiste Vaquette de Gribeauval, Lacroix Saint-Ouen', '12 € / h cash', 'meme60@pelouse.fr', '0376129845', NULL, '2013-05-24 00:00:00', '2013-05-23 00:00:00', '2013-05-23 00:00:00', 'ac1371c2ed132933430e868cbb1da2f7', 'ac1371c2ed132933430e868cbb1da2aa', '2015-05-25 00:00:00'),
+(4, 5, NULL, 'Détaillant / vendeur de rue', 'Revente de produits stupéfiants les soirs au Pic''.', 'Pic'' asso, Compiègne', '30 % sur la marchandise revendue', 'haschich@thcforall.org', NULL, '2013-08-29 00:00:00', NULL, '2013-05-25 00:00:00', '2013-05-25 00:00:00', '629b68e2aab5c45cb25f5f8537929e74', '629b68e2aab5c45cb25f5f8537929evv', '2013-05-25 00:00:00');
+
+INSERT INTO `info_job_offre_disponibilite` (`offre_id`, `disponibilite_id`) VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 1),
+(2, 2),
+(2, 4),
+(3, 2),
+(3, 4);
+
+INSERT INTO `info_job_signalement` (`id`, `offre_id`, `type_id`, `commentaire`, `archivage_date`, `created_at`, `updated_at`) VALUES
+(1, 4, 2, 'Vente de produits stupéfiants', NULL, '2013-05-25 19:45:08', '2013-05-25 19:45:08');
+
+INSERT INTO `info_job_signalement_type` (`id`, `name`) VALUES
+(1, 'Propos injurieux, calomnieux, déplacés, etc.'),
+(2, 'Offre illégale, travail non-déclaré, etc.');
+
+SET foreign_key_checks = 1;

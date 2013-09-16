@@ -1,0 +1,37 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           InfoJobDisponibilite
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          info_job_disponibilite
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions:
+        _new: {label: Ajouter}
+        _edit: {label: Modifier}
+      fields:
+        name: {label: Nom}
+      list:
+        title: Types de disponibilités
+        actions: ~
+        batch_actions: {}
+        object_actions:
+          _edit: ~
+      filter:
+        class: false
+      form:
+        display:
+          [name]
+        actions:
+          _save: ~
+          _list: ~
+      edit:
+        title: Modifier un type de disponibilité
+      new:
+        title: Ajouter un type de disponibilité

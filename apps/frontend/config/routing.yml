@@ -437,6 +437,65 @@ emprunt_rendre:
 #annonce_new:
 #  url: /annonce/new
 #  param: { module: annonce, action: new }
+  
+#InfoJob
+infojob_home:
+    url: /infojob
+    param: { module: infojob, action: offres }
+
+infojob_offre_home:
+    url: /infojob/offres
+    param: { module: infojob, action: offres }
+    
+infojob_monprofil:
+    url: /infojob/monprofil
+    param: { module: infojob, action: monprofil }
+    
+infojob_offre_show:
+  url:   /infojob/show/:id
+  param: { module: infojob, action: show }
+
+infojob_offre_new:
+  url:  /infojob/new
+  param: { module: infojob, action: new }
+
+infojob_offre_create:
+  url:  /infojob/create
+  param: { module: infojob, action: create }
+
+infojob_offre_edit:
+  url:  /infojob/edit/:key
+  param: { module: infojob, action: edit }
+
+infojob_offre_update:
+  url:  /infojob/update/:key
+  param: { module: infojob, action: update }
+
+infojob_offre_delete:
+  url:  /infojob/delete/:key
+  param: { module: infojob, action: delete }
+
+infojob_offre_activate:
+  url: /infojob/activate/:key
+  param: { module: infojob, action: activate }
+
+infojob_offre_myoffer:
+  url: /infojob/myoffer/:id
+  param: { module: infojob, action: myoffer }
+
+infojob_offre_myofferdo:
+  url: /infojob/myoffer
+  param: { module: infojob, action: myofferdo }
+
+infojob_offre_signal:
+  url: /infojob/signal/:id
+  class: sfDoctrineRoute
+  param: { module: infojob, action: signal }
+  options: { model: InfoJobOffre, type: object }
+
+infojob_offre_signaldo:
+  url: /infojob/signaldo
+  param: { module: infojob, action: signaldo }
 
 sf_guard_signin:
   url:   /login
@@ -515,6 +574,39 @@ gesmail:
 weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }
+
+#Locaux
+locaux_charte:
+  url: /asso/:login/locaux
+  class: sfDoctrineRoute
+  param: { module: locaux, action: charte }
+  options: { model: Asso, type: object } 
+
+locaux_create:
+  url: /locaux/create
+  param: { module: locaux, action: create }
+
+locaux_ctrl:
+  url: /locaux/:id
+  class: sfDoctrineRoute
+  param: { module: locaux, action: locauxCtrl }
+  options: { model: CharteLocaux, type: object }
+
+locaux_post:
+  url: /locaux/post
+  param: { module: locaux, action: locauxPost }
+
+locaux_accept:
+  url: /locaux/:id/accept
+  class: sfDoctrineRoute
+  param: { module: locaux, action: locauxAccept }
+  options: { model: CharteLocaux, type: object }
+
+locaux_refuse:
+  url: /locaux/:id/refuse
+  class: sfDoctrineRoute
+  param: { module: locaux, action: locauxRefuse }
+  options: { model: CharteLocaux, type: object }
 
 # generic rules
 # please, remove them by adding more specific rules

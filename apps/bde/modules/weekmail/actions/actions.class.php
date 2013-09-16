@@ -13,6 +13,7 @@ class weekmailActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->articles = ArticleTable::getInstance()->getArticlesForWeekmail()->execute();
+    $this->events = EventTable::getInstance()->getEventsForWeekmail()->execute();
     $this->weekmails = WeekmailTable::getInstance()->getLast()->execute();
     $this->current_weekmails = WeekmailTable::getInstance()->getCurrent()->execute();
   }
@@ -111,6 +112,37 @@ class weekmailActions extends sfActions
       $article->save();
       $this->redirect('weekmail/index');
   }
+
+  public function executeRefuseEvent(sfWebRequest $request) {
+      $event = $this->getRoute()->getObject();
+      $event->setIsWeekmail(false);
+      $event->save();
+      $this->redirect('weekmail/index');
+  }
+  
+  public function executeAcceptEvent(sfWebRequest $request) {
+      $weekmail = WeekmailTable::getInstance()->getCurrent()->fetchOne();
+      if(!$weekmail) {
+          $this->getUser()->setFlash('error', 'Aucun Weekmail en attente de publication !');
+          $this->redirect('weekmail/index');
+      }
+      
+      $event = $this->getRoute()->getObject();
+      $event->setIsWeekmail(false);
+      
+      $weekmail_article = new WeekmailArticle();
+      $weekmail_article->setAssoId($event->getAssoId());
+      $weekmail_article->setName($event->getName());
+      $weekmail_article->setText($event->getDescription());
+      $weekmail_article->setImage($event->getAffiche());
+      $weekmail_article->setSummary($event->getSummary());
+      $weekmail_article->setWeekmailId($weekmail->getId());
+      $weekmail_article->setEventId($event->getId());
+      
+      $weekmail_article->save();
+      $event->save();
+      $this->redirect('weekmail/index');
+  }
   
   public function executeDeleteArticle(sfWebRequest $request)
   {
@@ -118,5 +150,15 @@ class weekmailActions extends sfActions
     $article->delete();
 
     $this->redirect('weekmail/index');
+  }
+
+  public function executeHtml() {
+    $this->weekmail = $this->getRoute()->getObject();
+    $this->rows = 10
+      + WeekmailArticleTable::getInstance()
+        ->getEventsForWeekmail($this->weekmail->getId())->count() * 3
+      + WeekmailArticleTable::getInstance()
+        ->getArticlesForWeekmail($this->weekmail->getId())->count() * 3
+      ;
   }
 }

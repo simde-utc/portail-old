@@ -160,5 +160,33 @@ class weekmailActions extends sfActions
       + WeekmailArticleTable::getInstance()
         ->getArticlesForWeekmail($this->weekmail->getId())->count() * 3
       ;
+
+    $months = array(
+      1 => 'janvier',
+      2 => 'février',
+      3 => 'mars',
+      4 => 'avril',
+      5 => 'mai',
+      6 => 'juin',
+      7 => 'juillet',
+      8 => 'août',
+      9 => 'septembre',
+      10 => 'octobre',
+      11 => 'novembre',
+      12 => 'décembre'
+    );
+    $datetime = new DateTime($this->weekmail->getPublishedAt());
+    $this->date = 'du ';
+    $this->date .= $datetime->format("d");
+    $old = clone $datetime;
+    $datetime->add(new DateInterval('P7D'));
+    if($old->format("m") != $datetime->format("m")) {
+      $this->date .= ' ';
+      $this->date .= $months[intval($old->format("m"))];
+    }
+    $this->date .= ' au ';
+    $this->date .= $datetime->format("d");
+    $this->date .= ' ';
+    $this->date .= $months[intval($datetime->format("m"))];
   }
 }

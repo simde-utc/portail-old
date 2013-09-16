@@ -1,15 +1,9 @@
-<style>
-  <!--
-table { border-collapse:collapse; border-spacing: 0px; border:none; width: 640px; }
-table td { padding: 0px; }
-  -->
-</style>
-<table>
+<table border="0" cellspacing="0" cellpadding="0" width="640">
 <tbody>
 <tr>
   <td style="padding-left: 30px; height: 30px; color: #FFF; background: url('http://wwwassos.utc.fr/bde/weekmail/top_weekmail.jpg') no-repeat"
     colspan="2" >
-    Weekmail du 3 au 10 Juin
+    Weekmail <?php echo $date; ?>
   </td>
 </tr>
 <tr height="150">
@@ -18,7 +12,7 @@ table td { padding: 0px; }
   </td>
 </tr>
 <tr>
-  <td rowspan="<?php echo $rows ?>" width="120" style="vertical-align: top; background-color: #000; text-align: center;">
+  <td rowspan="<?php echo $rows ?>" width="120" valign="top" bgcolor="#000" style="text-align: center;">
       <?php /*<img src="" alt="" style="border: none;"/> */ ?>
     </p>
   </td>
@@ -46,8 +40,10 @@ table td { padding: 0px; }
   </td>
 </tr>
 <tr height="40">
-  <td style="text-align: left; padding-left: 30px; background-color: #000; color: #FFF; font-size: large; font-weight: bold;" id="sommaire">
-    SOMMAIRE
+   <td style="text-align: left; padding-left: 30px;" bgcolor="black" id="sommaire">
+    <strong>
+      <span style="color: #ffffff; font-size: large;">SOMMAIRE</span>
+    </strong>
   </td>
 </tr>
 <tr>
@@ -67,13 +63,15 @@ table td { padding: 0px; }
   </td>
 </tr>
 <tr height="40">
-  <td style="text-align: left; padding-left: 30px; background-color: #000; color: #FFF; font-size: large; font-weight: bold;" id="evenements">
-    EVENEMENTS
+  <td style="test-align: left; padding-left: 30px;" bgcolor="black" id="evenements">
+    <strong>
+      <span style="color: #ffffff; font-size: large;">EVENEMENTS</span>
+    </strong>
   </td>
 </tr>
 <?php foreach(WeekmailArticleTable::getInstance()->getEventsForWeekmail($weekmail->getId())->execute() as $article) : ?>
   <tr>
-    <td bgcolor="<?php echo $article->getAsso()->getPole()->getCouleur() ?>">
+    <td bgcolor="<?php echo $article->getAsso()->getCouleur() ?>">
       <a name="evenement<?php echo $article->getId() ?>"></a>
       &nbsp;<?php echo $article->getName() ?>
     </td>
@@ -93,13 +91,15 @@ table td { padding: 0px; }
 <?php endforeach ?>
 <?php //include_partial('semaineDuPic') ?>
 <tr height="40">
-  <td style="text-align: left; padding-left: 30px; background-color: #000; color: #FFF; font-size: large; font-weight: bold;" id="articles">
-      ARTICLES
+  <td style="test-align: left; padding-left: 30px;" bgcolor="black" id="articles">
+    <strong>
+      <span style="color: #ffffff; font-size: large;">ARTICLES</span>
+    </strong>
   </td>
 </tr>
 <?php foreach(WeekmailArticleTable::getInstance()->getArticlesForWeekmail($weekmail->getId())->execute() as $article) : ?>
   <tr>
-    <td bgcolor="<?php echo $article->getAsso()->getPole()->getCouleur() ?>">
+    <td bgcolor="<?php echo $article->getAsso()->getCouleur() ?>">
       <a name="evenement<?php echo $article->getId() ?>"></a>
       &nbsp;<?php echo $article->getName() ?>
     </td>

@@ -9,7 +9,7 @@ table td { padding: 0px; }
 <tr>
   <td style="padding-left: 30px; height: 30px; color: #FFF; background: url('http://wwwassos.utc.fr/bde/weekmail/top_weekmail.jpg') no-repeat"
     colspan="2" >
-    Weekmail du 3 au 10 Juin
+    Weekmail <?php echo $date; ?>
   </td>
 </tr>
 <tr height="150">

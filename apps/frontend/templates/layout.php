@@ -78,25 +78,21 @@
           <div class="span10">
             <?php if($sf_user->hasFlash('error')): ?>
             <div class="alert alert-block alert-error">
-              <strong>Erreur !</strong>
               <?php echo $sf_user->getFlash('error'); ?>
             </div>
             <?php endif ?>
             <?php if($sf_user->hasFlash('warning')): ?>
             <div class="alert alert-block">
-              <strong>Avertissement !</strong>
               <?php echo $sf_user->getFlash('warning'); ?>
             </div>
             <?php endif ?>
             <?php if($sf_user->hasFlash('info')): ?>
             <div class="alert alert-block alert-info">
-              <strong>Information !</strong>
               <?php echo $sf_user->getFlash('info'); ?>
             </div>
             <?php endif ?>
             <?php if($sf_user->hasFlash('success')): ?>
             <div class="alert alert-block alert-success">
-              <strong>Succès !</strong>
               <?php echo $sf_user->getFlash('success'); ?>
             </div>
             <?php endif ?>

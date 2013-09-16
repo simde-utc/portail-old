@@ -14,7 +14,7 @@
         </div>
       <?php foreach(WeekmailArticleTable::getInstance()->getEventsForWeekmail($weekmail->getId())->execute() as $article) : ?>
         <div class="article">
-          <h2 style="background: <?php echo $article->getAsso()->getPole()->getCouleur() ?>">
+          <h2 style="background: <?php echo $article->getAsso()->getCouleur() ?>">
             <a href="<?php echo url_for('event_show', $article->getEvent()) ?>"><?php echo $article->getName() ?></a>
             <span class="sub">
               <a href="<?php echo url_for('assos_show',$article->getAsso())?>" title="Voir la page de <?php echo $article->getAsso()->getName() ?>"><?php echo $article->getAsso()->getName() ?></a>,
@@ -32,7 +32,7 @@
       <?php endforeach; ?>
       <?php foreach(WeekmailArticleTable::getInstance()->getArticlesForWeekmail($weekmail->getId())->execute() as $article) : ?>
         <div class="article">
-          <h2 style="background: <?php echo $article->getAsso()->getPole()->getCouleur() ?>">
+          <h2 style="background: <?php echo $article->getAsso()->getCouleur() ?>">
             <a href="<?php echo url_for('article_show', $article->getArticle()) ?>"><?php echo $article->getName() ?></a>
             <span class="sub">
               <a href="<?php echo url_for('assos_show',$article->getAsso())?>" title="Voir la page de <?php echo $article->getAsso()->getName() ?>"><?php echo $article->getAsso()->getName() ?></a>,

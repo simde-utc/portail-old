@@ -150,4 +150,11 @@ class Asso extends BaseAsso {
     $charte = CharteInfoTable::getInstance()->getByAssoAndSemestre($this->getId())->fetchOne();
     return ( $charte ) ? $charte->getConfirmation() : 0;
   }
+
+  public function getCouleur() {
+    if($this->isPole())
+      return $this->getPoleInfos()->getCouleur();
+    else
+      return $this->getPole()->getCouleur();
+  }
 }

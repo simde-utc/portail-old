@@ -73,7 +73,7 @@ table td { padding: 0px; }
 </tr>
 <?php foreach(WeekmailArticleTable::getInstance()->getEventsForWeekmail($weekmail->getId())->execute() as $article) : ?>
   <tr>
-    <td bgcolor="<?php echo $article->getAsso()->getPole()->getCouleur() ?>">
+    <td bgcolor="<?php echo $article->getAsso()->getCouleur() ?>">
       <a name="evenement<?php echo $article->getId() ?>"></a>
       &nbsp;<?php echo $article->getName() ?>
     </td>
@@ -99,7 +99,7 @@ table td { padding: 0px; }
 </tr>
 <?php foreach(WeekmailArticleTable::getInstance()->getArticlesForWeekmail($weekmail->getId())->execute() as $article) : ?>
   <tr>
-    <td bgcolor="<?php echo $article->getAsso()->getPole()->getCouleur() ?>">
+    <td bgcolor="<?php echo $article->getAsso()->getCouleur() ?>">
       <a name="evenement<?php echo $article->getId() ?>"></a>
       &nbsp;<?php echo $article->getName() ?>
     </td>

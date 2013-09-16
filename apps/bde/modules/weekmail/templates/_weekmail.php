@@ -13,7 +13,7 @@ table td { padding: 0px; }
   </td>
 </tr>
 <tr height="150">
-  <td colspan="2" bgcolor="#000">
+  <td colspan="2" style="background-color: #000;">
     <?php /* <img src="" alt="" width="640" height="150" style="border: none;" /> */ ?>
   </td>
 </tr>
@@ -22,7 +22,7 @@ table td { padding: 0px; }
       <?php /*<img src="" alt="" style="border: none;"/> */ ?>
     </p>
   </td>
-  <td style="padding-left: 30px;" bgcolor="grey">
+  <td style="padding-left: 30px; background-color: grey;">
     <span style="color: #ffffff;">
       <strong>Le mot du BDE</strong>
     </span>
@@ -34,10 +34,8 @@ table td { padding: 0px; }
   </td>
 </tr>
 <tr height="40">
-  <td style="padding-left: 30px;" bgcolor="black">
-    <strong>
-      <span style="color: #ffffff; font-size: large;">EDITO</span>
-    </strong>
+  <td style="padding-left: 30px; background-color: #000; font-weight: bold; color: #ffffff; font-size: large;">
+    EDITO
   </td>
 </tr>
 <tr>
@@ -73,9 +71,10 @@ table td { padding: 0px; }
 </tr>
 <?php foreach(WeekmailArticleTable::getInstance()->getEventsForWeekmail($weekmail->getId())->execute() as $article) : ?>
   <tr>
-    <td bgcolor="<?php echo $article->getAsso()->getCouleur() ?>">
-      <a name="evenement<?php echo $article->getId() ?>"></a>
-      &nbsp;<?php echo $article->getName() ?>
+    <td style="background-color: <?php echo $article->getAsso()->getCouleur() ?>">
+      <a name="evenement<?php echo $article->getId() ?>">
+        &nbsp;<?php echo $article->getName() ?>
+      </a>
     </td>
   </tr>
   <tr>
@@ -99,9 +98,10 @@ table td { padding: 0px; }
 </tr>
 <?php foreach(WeekmailArticleTable::getInstance()->getArticlesForWeekmail($weekmail->getId())->execute() as $article) : ?>
   <tr>
-    <td bgcolor="<?php echo $article->getAsso()->getCouleur() ?>">
-      <a name="evenement<?php echo $article->getId() ?>"></a>
-      &nbsp;<?php echo $article->getName() ?>
+    <td style="background-color: <?php echo $article->getAsso()->getCouleur() ?>">
+      <a name="evenement<?php echo $article->getId() ?>">
+        &nbsp;<?php echo $article->getName() ?>
+      </a>
     </td>
   </tr>
   <tr>
@@ -118,10 +118,8 @@ table td { padding: 0px; }
   </tr>
 <?php endforeach ?>
 <tr height="40">
-  <td style="padding-left: 30px;" bgcolor="black">
-    <strong>
-      <span style="color: #ffffff; font-size: large;">EDITAR</span>
-    </strong>
+  <td style="padding-left: 30px; background-color: #000; font-weight: bold; color: #ffffff; font-size: large;">
+    EDITAR
   </td>
 </tr>
 <tr>
@@ -129,7 +127,7 @@ table td { padding: 0px; }
     <?php echo nl2br($weekmail->getEditar()) ?>
   </td>
 </tr>
-<tr height="30">
+<tr style="height: 30px;">
   <td colspan="2">
     <img src="http://wwwassos.utc.fr/bde/weekmail/down_weekmail.jpg" alt="" width="640" />
   </td>

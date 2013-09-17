@@ -13,9 +13,9 @@ default:
     #language:     en
     #robots:       noindex, nofollow
 
-  stylesheets:    [jquery-ui-1.8.12.custom.css, bootstrap.min.css, main.css, bootstrap-responsive.min.css]
+  stylesheets:    [bootstrap.min.css, main.css, bootstrap-responsive.min.css]
 
-  javascripts:    [jquery-1.7.2.min.js, jquery-ui-1.8.12.custom.min.js, bootstrap.min.js, search.js, jquery.contentcarousel.js, main.js]
+  javascripts:    [jquery-1.7.2.min.js, bootstrap.min.js, search.js, main.js]
 
   has_layout:     true
   layout:         layout

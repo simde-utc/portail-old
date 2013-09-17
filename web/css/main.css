@@ -644,3 +644,7 @@ ul.membres li img {
 .ejs {
   visibility: hidden;
 }
+
+.alert-block {
+  margin-top: 18px;
+}

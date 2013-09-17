@@ -35,7 +35,7 @@
 
   <p>
     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php
-    echo urlencode(url_for('article_show', $article))
+    echo urlencode(url_for('article_show', $article, true))
     ?>&t=<?php echo urlencode($article->getName()) ?>" target="_blank" class="facebook">
       Partager sur Facebook
     </a>

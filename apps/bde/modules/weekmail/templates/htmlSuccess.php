@@ -1,1 +1,1 @@
-<?php include_partial('weekmail', array('weekmail' => $weekmail, 'rows' => $rows)); ?>
+<?php include_partial('weekmail', array('weekmail' => $weekmail, 'rows' => $rows, 'date' => $date )); ?>

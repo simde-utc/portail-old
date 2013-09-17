@@ -24,11 +24,6 @@ p {
     font-size: 10pt;
 }
 
-.wrap{
-  margin: 0 auto;
-  max-width: 1024px;
-}
-
 .navbar .brand {
   max-height: 40px;
   overflow: visible;
@@ -86,26 +81,13 @@ h1.bulle {
   padding-top: 8px;
 }
 
-
-#column-left .my_asso img {
-  float: left;
-  margin-bottom: 5px;
-}
-
-#column-left .my_asso h2 {
+#my_assos h2 {
   font-weight: bold;
   font-size: 12px;
   text-transform: uppercase;
-  margin: 0 0 0 38px;
   color: #2a2a2a;
   line-height: 1em;
-  margin-top: 8px;
-  
-}
-#column-left .barre {
-  margin: 2px auto;
-  border-top: 1px solid #000;
-  clear: both;
+  margin-top: .8em;
 }
 
 /*-------------------------------------------*/

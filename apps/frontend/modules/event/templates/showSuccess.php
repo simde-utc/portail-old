@@ -36,7 +36,7 @@
   <p><?php echo nl2br($event->getDescription(ESC_XSSSAFE)) ?></p>
   <p>
     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php
-    echo urlencode(url_for('event_show', $event))
+    echo urlencode(url_for('event_show', $event, true))
     ?>&t=<?php echo urlencode($event->getName()) ?>" target="_blank" class="facebook">
       Partager sur Facebook
     </a>

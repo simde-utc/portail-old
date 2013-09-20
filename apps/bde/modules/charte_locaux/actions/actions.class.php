@@ -60,7 +60,7 @@ EOF
     $message = $this->getMailer()->compose(
     array('bde@assos.utc.fr' => 'BDE UTC'),
     $charte->getResponsable()->getEmailAddress(),
-    'Refus de votre demande d\'accès étendu au locaux',
+    'Validation de votre demande d\'accès étendu au locaux',
     <<<EOF
 Bonjour,
 

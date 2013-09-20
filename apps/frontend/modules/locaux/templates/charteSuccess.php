@@ -33,9 +33,15 @@ et doit par conséquent éviter tout incident qui pourrait entraîner la fermetu
       <?php echo $form->renderHiddenFields(false) ?>
       <p>Pour quels lieux désirez-vous l'accès étendu?</p>
       <table>
+	<tr>
+          <td><font size="1" color="grey">L'accès porte de la MDE est pour avoir accès à la MDE jusqu'à 22h pour les réunions.</font></td>
+        </tr>
         <tr>
           <td><?php echo $form['porte_mde']->renderlabel('Porte de la MDE ') ?></td>
           <td><?php echo $form['porte_mde'] ?></td>
+        </tr>
+	<tr>
+          <td><font size="1" color="grey">Donne aussi l'accès "Porte de la MDE" - Pour des réunions le soir au batiment A.</font></td>
         </tr>
         <tr>
           <td><?php echo $form['bat_a']->renderlabel('Batiment A ') ?></td>

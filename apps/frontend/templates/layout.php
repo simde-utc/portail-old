@@ -135,21 +135,22 @@
         </div>
       </div>
     </div>
+<?php if(sfConfig::get('app_portail_piwik_is_enable', false)): ?>
 <!-- Piwik -->
 <script type="text/javascript"> 
   var _paq = _paq || [];
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://assos.utc.fr/piwik//";
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://<?php echo sfConfig::get('app_portail_piwik_address') ?>//";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', 1]);
+    _paq.push(['setSiteId', <?php echo sfConfig::get('app_portail_piwik_site_id') ?>]);
     var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
     g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
   })();
-
 </script>
-<noscript><p><img src="http://assos.utc.fr/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+<noscript><p><img src="http://<?php echo sfConfig::get('app_portail_piwik_address') ?>/piwik.php?idsite=<?php echo sfConfig::get('app_portail_piwik_site_id') ?>" style="border:0" alt="" /></p></noscript>
 <!-- End Piwik Code -->
+<?php endif ?>
   </body>
 </html>

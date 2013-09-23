@@ -32,6 +32,7 @@ class TransactionForm extends BaseTransactionForm {
     $this->validatorSchema['budget_poste_id'] = new sfValidatorDoctrineChoice(array(
         'model' => $this->getRelatedModelName('BudgetPoste'),
         'query' => BudgetPosteTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),
+        'required' => false,
     ));
         
     $this->widgetSchema['date_transaction'] = new portailWidgetFormDate();

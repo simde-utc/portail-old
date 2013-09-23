@@ -31,3 +31,9 @@ all:
     dossier_assos: /path/to/folder
     #Adresse email à partir de laquelle sont envoyés les messages d'InfoJob
     infojob_email: bde@assos.utc.fr
+    # Activer le script piwik
+    piwik_is_enable: false
+    # Url de piwik sans le http:// et sans le / final
+    piwik_address: ~
+    # ID du site sur piwik
+    piwik_site_id: 0

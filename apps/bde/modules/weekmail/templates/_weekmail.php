@@ -2,7 +2,7 @@
 <table border="0" cellspacing="0" cellpadding="0" width="640">
 <tbody>
 <tr>
-  <td style="padding-left: 30px; height: 30px; color: #FFF; background: url('http://wwwassos.utc.fr/bde/weekmail/top_weekmail.jpg') no-repeat"
+  <td style="padding-left: 30px; height: 30px; color: #FFF; background: url('http://assos.utc.fr/bde/weekmail/top_weekmail.jpg') no-repeat"
     colspan="2" >
     Weekmail <?php echo $date; ?>
   </td>
@@ -136,7 +136,7 @@
 </tr>
 <tr height="30">
   <td colspan="2">
-    <img src="http://wwwassos.utc.fr/bde/weekmail/down_weekmail.jpg" alt="" width="640" />
+    <img src="http://assos.utc.fr/bde/weekmail/down_weekmail.jpg" alt="" width="640" />
   </td>
 </tr>
 </tbody>

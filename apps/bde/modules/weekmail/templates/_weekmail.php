@@ -80,9 +80,8 @@
   <tr>
     <td style="text-align: justify; padding: 10px 30px;">
       <p>
-        Du <?php echo format_date($article->getEvent()->getStartDate(), 'f', 'fr') ?> au
-        <?php echo format_date($article->getEvent()->getEndDate(), 'f', 'fr') ?><br />
-        Lieu: <?php echo $article->getEvent()->getPlace() ?><br />
+        <?php echo ucfirst(format_date($article->getEvent()->getStartDate(), 'EEEE d MMMM à H:mm', 'fr')) ?>
+        (<?php echo $article->getEvent()->getPlace() ?>)<br />
       </p>
       <?php echo nl2br($article->getText()) ?>
     </td>

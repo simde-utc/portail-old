@@ -1,3 +1,4 @@
+<?php use_helper('Date'); ?>
 <table border="0" cellspacing="0" cellpadding="0" width="640">
 <tbody>
 <tr>
@@ -78,6 +79,11 @@
   </tr>
   <tr>
     <td style="text-align: justify; padding: 10px 30px;">
+      <p>
+        Du <?php echo format_date($article->getEvent()->getStartDate(), 'f', 'fr') ?> au
+        <?php echo format_date($article->getEvent()->getEndDate(), 'f', 'fr') ?><br />
+        Lieu: <?php echo $article->getEvent()->getPlace() ?><br />
+      </p>
       <?php echo nl2br($article->getText()) ?>
     </td>
   </tr>

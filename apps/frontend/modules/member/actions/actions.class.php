@@ -65,9 +65,10 @@ class memberActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->forward404Unless($asso_member = Doctrine_Core::getTable('AssoMember')->find(array($request->getParameter('id'))), sprintf('Object asso_member does not exist (%s).', $request->getParameter('id')));
+    $asso = $asso_member->getAsso();
     $asso_member->delete();
 
-    $this->redirect('member/index');
+    $this->redirect('assos_show',$asso);
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

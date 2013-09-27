@@ -52,13 +52,13 @@
     <p><a href="#evenements">&Eacute;V&Eacute;NEMENTS</a></p>
     <ul>
     <?php foreach(WeekmailArticleTable::getInstance()->getEventsForWeekmail($weekmail->getId())->execute() as $article) : ?>
-      <li><a href="#evenement<?php echo $article->getId() ?>"><?php echo $article->getName() ?></a></li>
+      <li><a href="#evenement<?php echo $article->getId() ?>"><?php echo $article->getAsso()->getName() ?> : <?php echo $article->getName() ?></a></li>
     <?php endforeach ?>
     </ul>
     <p><a href="#articles">ARTICLES</a></p>
     <ul>
     <?php foreach(WeekmailArticleTable::getInstance()->getArticlesForWeekmail($weekmail->getId())->execute() as $article) : ?>
-      <li><a href="#evenement<?php echo $article->getId() ?>"><?php echo $article->getName() ?></a></li>
+      <li><a href="#evenement<?php echo $article->getId() ?>"><?php echo $article->getAsso()->getName() ?> : <?php echo $article->getName() ?></a></li>
     <?php endforeach ?>
     </ul>
   </td>
@@ -74,7 +74,7 @@
   <tr>
     <td bgcolor="<?php echo $article->getAsso()->getCouleur() ?>">
       <a name="evenement<?php echo $article->getId() ?>"></a>
-      &nbsp;<?php echo $article->getName() ?>
+      &nbsp;<?php echo $article->getAsso()->getName() ?> : <?php echo $article->getName() ?>
     </td>
   </tr>
   <tr>
@@ -106,7 +106,7 @@
   <tr>
     <td bgcolor="<?php echo $article->getAsso()->getCouleur() ?>">
       <a name="evenement<?php echo $article->getId() ?>"></a>
-      &nbsp;<?php echo $article->getName() ?>
+      &nbsp;<?php echo $article->getAsso()->getName() ?> : <?php echo $article->getName() ?>
     </td>
   </tr>
   <tr>

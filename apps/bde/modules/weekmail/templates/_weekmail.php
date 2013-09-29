@@ -1,4 +1,5 @@
 <?php use_helper('Date'); ?>
+<?php use_helper('CrossLink'); ?>
 <table border="0" cellspacing="0" cellpadding="0" width="640">
 <tbody>
 <tr>
@@ -84,6 +85,8 @@
         (<?php echo $article->getEvent()->getPlace() ?>)<br />
       </p>
       <?php echo nl2br($article->getText()) ?>
+      <br />
+      <a href="<?php echo cross_app_link_to('frontend', '@event_show', array('id' => $article->getEventId())) ?>" title="Lire <?php echo $article->getName() ?>">Voir les détails...</a>
     </td>
   </tr>
   <tr>
@@ -111,7 +114,9 @@
   </tr>
   <tr>
     <td style="text-align: justify; padding: 10px 30px;">
-      <?php echo nl2br($article->getText()) ?>
+      <?php echo nl2br($article->getSummary()) ?>
+      <br />
+      <a href="<?php echo cross_app_link_to('frontend', '@article_show', array('id' => $article->getArticleId())) ?>" title="Lire <?php echo $article->getName() ?>">Lire la suite...</a>
     </td>
   </tr>
   <tr>

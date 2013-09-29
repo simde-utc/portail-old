@@ -1,7 +1,9 @@
+<?php use_helper('Date'); ?>
+<?php use_helper('CrossLink'); ?>
 <table border="0" cellspacing="0" cellpadding="0" width="640">
 <tbody>
 <tr>
-  <td style="padding-left: 30px; height: 30px; color: #FFF; background: url('http://wwwassos.utc.fr/bde/weekmail/top_weekmail.jpg') no-repeat"
+  <td style="padding-left: 30px; height: 30px; color: #FFF; background: url('http://assos.utc.fr/bde/weekmail/top_weekmail.jpg') no-repeat"
     colspan="2" >
     Weekmail <?php echo $date; ?>
   </td>
@@ -51,13 +53,13 @@
     <p><a href="#evenements">&Eacute;V&Eacute;NEMENTS</a></p>
     <ul>
     <?php foreach(WeekmailArticleTable::getInstance()->getEventsForWeekmail($weekmail->getId())->execute() as $article) : ?>
-      <li><a href="#evenement<?php echo $article->getId() ?>"><?php echo $article->getName() ?></a></li>
+      <li><a href="#evenement<?php echo $article->getId() ?>"><?php echo $article->getAsso()->getName() ?> : <?php echo $article->getName() ?></a></li>
     <?php endforeach ?>
     </ul>
     <p><a href="#articles">ARTICLES</a></p>
     <ul>
     <?php foreach(WeekmailArticleTable::getInstance()->getArticlesForWeekmail($weekmail->getId())->execute() as $article) : ?>
-      <li><a href="#evenement<?php echo $article->getId() ?>"><?php echo $article->getName() ?></a></li>
+      <li><a href="#evenement<?php echo $article->getId() ?>"><?php echo $article->getAsso()->getName() ?> : <?php echo $article->getName() ?></a></li>
     <?php endforeach ?>
     </ul>
   </td>
@@ -73,12 +75,18 @@
   <tr>
     <td bgcolor="<?php echo $article->getAsso()->getCouleur() ?>">
       <a name="evenement<?php echo $article->getId() ?>"></a>
-      &nbsp;<?php echo $article->getName() ?>
+      &nbsp;<?php echo $article->getAsso()->getName() ?> : <?php echo $article->getName() ?>
     </td>
   </tr>
   <tr>
     <td style="text-align: justify; padding: 10px 30px;">
+      <p>
+        <?php echo ucfirst(format_date($article->getEvent()->getStartDate(), 'EEEE d MMMM à H:mm', 'fr')) ?>
+        (<?php echo $article->getEvent()->getPlace() ?>)<br />
+      </p>
       <?php echo nl2br($article->getText()) ?>
+      <br />
+      <a href="<?php echo cross_app_link_to('frontend', '@event_show', array('id' => $article->getEventId())) ?>" title="Lire <?php echo $article->getName() ?>">Voir les détails...</a>
     </td>
   </tr>
   <tr>
@@ -101,12 +109,14 @@
   <tr>
     <td bgcolor="<?php echo $article->getAsso()->getCouleur() ?>">
       <a name="evenement<?php echo $article->getId() ?>"></a>
-      &nbsp;<?php echo $article->getName() ?>
+      &nbsp;<?php echo $article->getAsso()->getName() ?> : <?php echo $article->getName() ?>
     </td>
   </tr>
   <tr>
     <td style="text-align: justify; padding: 10px 30px;">
-      <?php echo nl2br($article->getText()) ?>
+      <?php echo nl2br($article->getSummary()) ?>
+      <br />
+      <a href="<?php echo cross_app_link_to('frontend', '@article_show', array('id' => $article->getArticleId())) ?>" title="Lire <?php echo $article->getName() ?>">Lire la suite...</a>
     </td>
   </tr>
   <tr>
@@ -131,7 +141,7 @@
 </tr>
 <tr height="30">
   <td colspan="2">
-    <img src="http://wwwassos.utc.fr/bde/weekmail/down_weekmail.jpg" alt="" width="640" />
+    <img src="http://assos.utc.fr/bde/weekmail/down_weekmail.jpg" alt="" width="640" />
   </td>
 </tr>
 </tbody>

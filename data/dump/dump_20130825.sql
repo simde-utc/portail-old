@@ -115,13 +115,13 @@ INSERT INTO `info_job_abonnement_disponibilite` (`id`, `disponibilite_id`, `user
 (1, 1, 4),
 (2, 2, 4);
 
-INSERT INTO `info_job_categorie` (`id`, `name`, `description`) VALUES
-(1, 'Soutien scolaire', 'Description soutien scolaire. Cours chez les particuliers, etc.'),
-(2, 'Aide à domicile', 'Service aux particuliers à domicile, etc.'),
-(3, 'Restauration', 'Description restauration'),
-(4, 'Manutention', 'Description manutention'),
-(5, 'Divers', 'Tout ce qui ne rentre pas les autres catégories'),
-(6, 'Standardiste', 'Description standardiste');
+INSERT INTO `info_job_categorie` (`id`, `name`) VALUES
+(1, 'Soutien scolaire'),
+(2, 'Aide à domicile'),
+(3, 'Restauration'),
+(4, 'Manutention'),
+(5, 'Divers'),
+(6, 'Standardiste');
 
 INSERT INTO `info_job_disponibilite` (`id`, `name`) VALUES
 (1, 'Semaine'),

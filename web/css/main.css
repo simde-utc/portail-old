@@ -869,7 +869,8 @@ a.btn-danger {
   vertical-align: middle;
 }
 
-#article .facebook:before, #event .facebook:before {
+#article .facebook:before, #event .facebook:before,
+.article .facebook:before, .event .facebook:before {
     content: url('/images/icons/facebook.png');
     margin-right: 0px;
     vertical-align: -20%;

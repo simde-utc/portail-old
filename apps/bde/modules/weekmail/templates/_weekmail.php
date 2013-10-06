@@ -8,9 +8,9 @@
     Weekmail <?php echo $date; ?>
   </td>
 </tr>
-<tr height="150">
+<tr height="148">
   <td colspan="2" bgcolor="#000">
-  <img src="//assos.utc.fr/images/weekmail/bandeau_horizontal.jpg" alt="" width="640" height="150" style="border: none;" />
+  <img src="//assos.utc.fr/images/weekmail/bandeau_horizontal.jpg" alt="" width="640" height="148" style="border: none;" />
   </td>
 </tr>
 <tr>

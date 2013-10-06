@@ -10,12 +10,12 @@
 </tr>
 <tr height="150">
   <td colspan="2" bgcolor="#000">
-    <img src="/images/weekmail/bandeau_horizontal.jpg" alt="" width="640" height="150" style="border: none;" />
+  <img src="//assos.utc.fr/images/weekmail/bandeau_horizontal.jpg" alt="" width="640" height="150" style="border: none;" />
   </td>
 </tr>
 <tr>
   <td rowspan="<?php echo $rows ?>" width="120" valign="top" bgcolor="#000" style="text-align: center;">
-      <img src="/images/weekmail/bandeau_vertical.png" alt="" width="120" style="border: none;"/>
+      <img src="//assos.utc.fr/images/weekmail/bandeau_vertical.png" alt="" width="120" style="border: none;"/>
     </p>
   </td>
   <td style="padding-left: 30px;" bgcolor="grey">

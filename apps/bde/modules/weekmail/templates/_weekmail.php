@@ -8,14 +8,14 @@
     Weekmail <?php echo $date; ?>
   </td>
 </tr>
-<tr height="150">
+<tr height="148">
   <td colspan="2" bgcolor="#000">
-    <?php /* <img src="" alt="" width="640" height="150" style="border: none;" /> */ ?>
+  <img src="//assos.utc.fr/images/weekmail/bandeau_horizontal.jpg" alt="" width="640" height="148" style="border: none;" />
   </td>
 </tr>
 <tr>
   <td rowspan="<?php echo $rows ?>" width="120" valign="top" bgcolor="#000" style="text-align: center;">
-      <?php /*<img src="" alt="" style="border: none;"/> */ ?>
+      <img src="//assos.utc.fr/images/weekmail/bandeau_vertical.png" alt="" width="120" style="border: none;"/>
     </p>
   </td>
   <td style="padding-left: 30px;" bgcolor="grey">
@@ -114,9 +114,9 @@
   </tr>
   <tr>
     <td style="text-align: justify; padding: 10px 30px;">
-      <?php echo nl2br($article->getSummary()) ?>
+      <?php echo nl2br($article->getText()) ?>
       <br />
-      <a href="<?php echo cross_app_link_to('frontend', '@article_show', array('id' => $article->getArticleId())) ?>" title="Lire <?php echo $article->getName() ?>">Lire la suite...</a>
+      <a href="<?php echo cross_app_link_to('frontend', '@article_show', array('id' => $article->getArticleId())) ?>" title="Lire <?php echo $article->getName() ?>">Voir sur le portail...</a>
     </td>
   </tr>
   <tr>

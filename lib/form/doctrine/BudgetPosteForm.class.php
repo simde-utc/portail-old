@@ -24,21 +24,11 @@ class BudgetPosteForm extends BaseBudgetPosteForm
     ));
     $this->widgetSchema['asso_id'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['budget_id'] = new sfWidgetFormInputHidden();
-    // $this->widgetSchema['prix_unitaire'] = new portailWidgetFromInputTextAbsolu();
-    $this->validatorSchema['prix_unitaire'] = new ValidatorNumberNotNull(array('not_null' => true));
+    $this->widgetSchema['prix_unitaire'] = new portailWidgetFormMontant();
+    $this->validatorSchema['prix_unitaire'] = new portailValidatorMontant();
     $this->validatorSchema['nombre'] = new sfValidatorNumber(array('min' => 1));
 
-    $this->widgetSchema['debit'] = new portailWidgetFormMontant();
-    $this->validatorSchema['debit'] = new sfValidatorBoolean();
-
+    $this->validatorSchema->setPostValidator(new sfValidatorSchemaFilter('prix_unitaire', new ValidatorNumberNotNull(array('not_null' => true))));
   }
 
-  public function processValues($values) {
-    $isDebit = $values['debit'];
-    if ($isDebit)
-      $values['prix_unitaire'] = - abs($values['prix_unitaire']);
-    else
-      $values['prix_unitaire'] = abs($values['prix_unitaire']);
-    return parent::processValues($values);
-  }
 }

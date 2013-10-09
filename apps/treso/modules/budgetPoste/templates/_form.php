@@ -47,13 +47,6 @@
         </td>
       </tr>
       <tr>
-        <th></th>
-        <td>
-            <?php echo $form['debit']->render() ?>
-            <?php echo $form['debit']->renderError() ?>
-        </td>
-      </tr>
-      <tr>
         <th><?php echo $form['commentaire']->renderLabel() ?></th>
         <td>
           <?php echo $form['commentaire']->renderError() ?>

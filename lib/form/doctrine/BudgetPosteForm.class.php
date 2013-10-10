@@ -13,7 +13,7 @@ class BudgetPosteForm extends BaseBudgetPosteForm
   public function configure()
   {
     unset($this['created_at'], $this['updated_at'], $this['deleted_at']);
-    $this->widgetSchema['budget_categorie_id'] = new sfWidgetFormDoctrineChoice(array(
+    $this->widgetSchema['budget_categorie_id'] = new sfWidgetFormDoctrineChoice(array('label' => 'Catégorie',
           'model' => $this->getRelatedModelName('BudgetCategorie'),
           'query' => BudgetCategorieTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),
           'add_empty' => false
@@ -29,6 +29,15 @@ class BudgetPosteForm extends BaseBudgetPosteForm
     $this->validatorSchema['nombre'] = new sfValidatorNumber(array('min' => 1));
 
     $this->validatorSchema->setPostValidator(new sfValidatorSchemaFilter('prix_unitaire', new ValidatorNumberNotNull(array('not_null' => true))));
+
+    $this->getWidgetSchema()->setPositions(array('id',
+                                                 'asso_id',
+                                                 'budget_id',
+                                                 'nom',
+                                                 'budget_categorie_id',
+                                                 'nombre',
+                                                 'prix_unitaire',
+                                                 'commentaire'));
   }
 
 }

@@ -43,6 +43,7 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
+                <li><a href="<?php echo url_for('profile_show') ?>">Mon Profil</a></li>
                 <li><a href="<?php echo url_for('sf_guard_signout') ?>">Se déconnecter</a></li>
               </ul>
             </li>
@@ -56,6 +57,8 @@
         <a href="<?php echo url_for('homepage') ?>">Accueil</a>
         <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Toutes les associations</a>
         <a href="<?php echo url_for('agenda_detail') ?>" class="barre">Calendrier</a>
+        <a href="<?php echo url_for('infojob_home') ?>" class="barre">InfoJob</a>
+        <a href="<?php echo url_for('services')?>" class="barre" id= "lienlisteservices"> Tous les services </a>
         <?php /*<a href="<?php echo url_for('annonce') ?>" class="barre">Annonces</a>*/ ?>
         <span class="horloge">
           <?php echo format_date(time(), "D", 'fr') ?>
@@ -76,7 +79,13 @@
         <?php else: ?>
           <?php include_partial('home/bienvenue') ?>
         <?php endif ?>
-      </div> 
+        <?php if($sf_user->isAuthenticated()): ?>
+          <?php include_component('abonnement', 'myFlux') ?>
+        <?php endif ?>
+        <?php if($sf_user->isAuthenticated()): ?>
+          <?php include_component('services', 'myServicesFavoris') ?>
+        <?php endif ?>
+      </div>
       <div id="content">
         <?php if($sf_user->hasFlash('error')): ?>
         <div class="alert alert-block alert-error">
@@ -104,7 +113,7 @@
         <?php endif ?>
         <?php echo $sf_content ?>
       </div>
-
+      <div style="clear: both;"></div>
     </div>
     <div id="footer">
       <div class="wrap">
@@ -113,7 +122,8 @@
           <h2>Services</h2>
           <a href="/gesmail">Gestion des mails assos</a><br/>
           <a href="/resa">Réservation de salles</a><br/>
-          <a href="/mail">Webmail assos</a><br /><br />
+          <a href="/mail">Webmail assos</a><br />
+          <a href="/treso.php">Outil trésorerie</a><br />
         </div>
         <div id="footer-right">
           <h2>Liens</h2>
@@ -125,5 +135,22 @@
         </div>
       </div>
     </div>
+<?php if(sfConfig::get('app_portail_piwik_is_enable', false)): ?>
+<!-- Piwik -->
+<script type="text/javascript"> 
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://<?php echo sfConfig::get('app_portail_piwik_address') ?>//";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', <?php echo sfConfig::get('app_portail_piwik_site_id') ?>]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="http://<?php echo sfConfig::get('app_portail_piwik_address') ?>/piwik.php?idsite=<?php echo sfConfig::get('app_portail_piwik_site_id') ?>" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+<?php endif ?>
   </body>
 </html>

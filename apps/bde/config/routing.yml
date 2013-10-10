@@ -1,3 +1,62 @@
+charte_locaux:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CharteLocaux
+    module:               charte_locaux
+    prefix_path:          /charte_locaux
+    column:               id
+    with_wildcard_routes: true
+
+infojob:
+  url: /infojob
+  param: { module: infojob, action: index }
+
+info_job_signalement:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                InfoJobSignalement
+    module:               infojob_signalement
+    prefix_path:          /infojob_signalement
+    column:               id
+    with_wildcard_routes: true
+
+
+info_job_offre:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                InfoJobOffre
+    module:               infojob_offre
+    prefix_path:          /infojob/offre
+    column:               id
+    with_wildcard_routes: true
+
+info_job_disponibilite:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                InfoJobDisponibilite
+    module:               infojob_disponibilite
+    prefix_path:          /infojob/disponibilite
+    column:               id
+    with_wildcard_routes: true
+
+info_job_categorie:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                InfoJobCategorie
+    module:               infojob_categorie
+    prefix_path:          /infojob/categorie
+    column:               id
+    with_wildcard_routes: true
+
+service:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Service
+    module:               service
+    prefix_path:          /service
+    column:               id
+    with_wildcard_routes: true
+
 weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }
@@ -38,11 +97,26 @@ weekmail_accept:
   class: sfDoctrineRoute
   param: { module: weekmail, action: accept }
   options: { model: Article, type: object }
+weekmail_refuse_event:
+  url: /weekmail/refuse_event/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: refuseEvent }
+  options: { model: Event, type: object }
+weekmail_accept_event:
+  url: /weekmail/accept_event/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: acceptEvent }
+  options: { model: Event, type: object }
 weekmail_delete_article:
   url:  /weekmail/delete_article/:id
   class: sfDoctrineRoute
   param: { module: weekmail, action: deleteArticle }
   options: { model: WeekmailArticle, type: object }
+weekmail_html:
+  url: /weekmail/html/:id
+  class: sfDoctrineRoute
+  param: { module: weekmail, action: html }
+  options: { model: Weekmail, type: object }
 
 charte_info:
   class: sfDoctrineRouteCollection

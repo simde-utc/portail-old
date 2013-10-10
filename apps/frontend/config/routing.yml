@@ -101,6 +101,18 @@ asso_leave:
   param: { module: asso, action: leave }
   options: { model: Asso, type: object }
 
+asso_follow:
+  url: /asso/:login/follow
+  class: sfDoctrineRoute
+  param: { module: asso, action: follow }
+  options: { model: Asso, type: object }
+
+asso_unfollow:
+  url: /asso/:login/unfollow
+  class: sfDoctrineRoute
+  param: { module: asso, action: unfollow }
+  options: { model: Asso, type: object }
+
 asso_update:
   url: /asso/:id/update
   param: { module: asso, action: update }
@@ -156,11 +168,105 @@ article_delete:
 article_create:
   url: /article/create
   param: { module: article, action: create }
+
 article_new:
   url: /article/:login/new
   class: sfDoctrineRoute
   options: { model: Asso, type: object }
   param: { module: article, action: new }
+
+#Uv
+uv_list:
+  url:   /uv
+  param: { module: uv, action: index }
+
+uv_update:
+  url:  /uv/update/:id
+  param: { module: uv, action: update }
+
+uv_delete:
+  url:  /uv/delete/:id
+  param: { module: uv, action: delete }
+
+uv_create:
+  url: /uv/create
+  param: { module: uv, action: create }
+
+uv_new:
+  url: /uv/new
+  param: { module: uv, action: new }
+
+uv_edit:
+  url:  /uv/edit/:id
+  class: sfDoctrineRoute
+  param: { module: uv, action: edit }
+  options: { model: Uv, type: object }
+
+#Sport
+sport_list:
+  url:   /sport
+  param: { module: sport, action: index }
+
+sport_update:
+  url:  /sport/update/:id
+  param: { module: sport, action: update }
+
+sport_delete:
+  url:  /sport/delete/:id
+  param: { module: sport, action: delete }
+
+sport_create:
+  url: /sport/create
+  param: { module: sport, action: create }
+
+sport_new:
+  url: /sport/new
+  param: { module: sport, action: new }
+
+sport_edit:
+  url:  /sport/edit/:id
+  class: sfDoctrineRoute
+  param: { module: sport, action: edit }
+  options: { model: Sport, type: object }
+
+#Profile
+profile_show:
+  url:   /profile
+  param: { module: profile, action: show }  
+  
+profile_identite_edit:
+  url:  /profile/identite/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editIdentite }
+
+profile_identite_update:
+  url:  /profile/identite/update/:id
+  param: { module: profile, action: updateIdentite }
+
+profile_infoPerso_edit:
+  url:  /profile/infoPerso/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editInfoPerso }
+
+profile_infoPerso_update:
+  url:  /profile/infoPerso/update/:id
+  param: { module: profile, action: updateInfoPerso }
+
+profile_infoSupp_edit:
+  url:  /profile/infoSupp/edit/:id
+  class: sfDoctrineRoute
+  options: { model: Profile, type: object }
+  param: { module: profile, action: editInfoSupp }
+
+profile_infoSupp_update:
+  url:  /profile/infoSupp/update/:id
+  param: { module: profile, action: updateInfoSupp }
+
+profile_infoSupp_add:
+  url: /profile/add
+  param: { module: sport, action: add }
 
 #Events
 events_list:
@@ -186,6 +292,22 @@ event_edit:
   class: sfDoctrineRoute
   param: { module: event, action: edit }
   options: { model: Event, type: object }
+
+event_update:
+  url:  /event/update/:id
+  param: { module: event, action: update }
+
+event_delete:
+  url:  /event/delete/:id
+  param: { module: event, action: delete }
+event_create:
+  url: /event/create
+  param: { module: event, action: create }
+event_new:
+  url: /event/:login/new
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: event, action: new }
 
 event_update:
   url:  /event/update/:id
@@ -315,6 +437,65 @@ emprunt_rendre:
 #annonce_new:
 #  url: /annonce/new
 #  param: { module: annonce, action: new }
+  
+#InfoJob
+infojob_home:
+    url: /infojob
+    param: { module: infojob, action: offres }
+
+infojob_offre_home:
+    url: /infojob/offres
+    param: { module: infojob, action: offres }
+    
+infojob_monprofil:
+    url: /infojob/monprofil
+    param: { module: infojob, action: monprofil }
+    
+infojob_offre_show:
+  url:   /infojob/show/:id
+  param: { module: infojob, action: show }
+
+infojob_offre_new:
+  url:  /infojob/new
+  param: { module: infojob, action: new }
+
+infojob_offre_create:
+  url:  /infojob/create
+  param: { module: infojob, action: create }
+
+infojob_offre_edit:
+  url:  /infojob/edit/:key
+  param: { module: infojob, action: edit }
+
+infojob_offre_update:
+  url:  /infojob/update/:key
+  param: { module: infojob, action: update }
+
+infojob_offre_delete:
+  url:  /infojob/delete/:key
+  param: { module: infojob, action: delete }
+
+infojob_offre_activate:
+  url: /infojob/activate/:key
+  param: { module: infojob, action: activate }
+
+infojob_offre_myoffer:
+  url: /infojob/myoffer/:id
+  param: { module: infojob, action: myoffer }
+
+infojob_offre_myofferdo:
+  url: /infojob/myoffer
+  param: { module: infojob, action: myofferdo }
+
+infojob_offre_signal:
+  url: /infojob/signal/:id
+  class: sfDoctrineRoute
+  param: { module: infojob, action: signal }
+  options: { model: InfoJobOffre, type: object }
+
+infojob_offre_signaldo:
+  url: /infojob/signaldo
+  param: { module: infojob, action: signaldo }
 
 sf_guard_signin:
   url:   /login
@@ -337,6 +518,26 @@ register_activation:
 register_resend:
   url: /inscription/activation
   param: { module: sfGuardRegister, action: resend }
+
+abonnement_list:
+  url: /abonnement/:show
+  param: { module: abonnement, action: show}
+
+services:
+  url: /services
+  param: {module: services, action: index}
+
+services_follow:
+  url: /services/:nom/follow
+  class: sfDoctrineRoute
+  param: { module: services, action: follow }
+  options: { model: Service, type: object }
+
+services_unfollow:
+  url: /services/:nom/unfollow
+  class: sfDoctrineRoute
+  param: { module: services, action: unfollow }
+  options: { model: Service, type: object }
 
 gesmail_create:
   url: /asso/:login/gesmail/create
@@ -374,12 +575,46 @@ weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }
 
+#Locaux
+locaux_charte:
+  url: /asso/:login/locaux
+  class: sfDoctrineRoute
+  param: { module: locaux, action: charte }
+  options: { model: Asso, type: object } 
+
+locaux_create:
+  url: /locaux/create
+  param: { module: locaux, action: create }
+
+locaux_ctrl:
+  url: /locaux/:id
+  class: sfDoctrineRoute
+  param: { module: locaux, action: locauxCtrl }
+  options: { model: CharteLocaux, type: object }
+
+locaux_post:
+  url: /locaux/post
+  param: { module: locaux, action: locauxPost }
+
+locaux_accept:
+  url: /locaux/:id/accept
+  class: sfDoctrineRoute
+  param: { module: locaux, action: locauxAccept }
+  options: { model: CharteLocaux, type: object }
+
+locaux_refuse:
+  url: /locaux/:id/refuse
+  class: sfDoctrineRoute
+  param: { module: locaux, action: locauxRefuse }
+  options: { model: CharteLocaux, type: object }
+
 # generic rules
 # please, remove them by adding more specific rules
-
 #default_index:
 #  url:   /:module
 #  param: { action: index }
-
+#default_json:
+#  url:   /json/:module/:action/*
+#  param: { sf_format: json }
 #default:
 #  url:   /:module/:action/*

@@ -40,8 +40,8 @@ class TransactionForm extends BaseTransactionForm {
 
     unset($this['created_at'], $this['updated_at'], $this['deleted_at'], $this['note_de_frais_id']);
 
-    $this->widgetSchema['debit'] = new portailWidgetFormMontant();
-    $this->validatorSchema['debit'] = new sfValidatorBoolean();
+    $this->widgetSchema['montant'] = new portailWidgetFormMontant();
+    $this->validatorSchema['montant'] = new portailValidatorMontant();
 
     $this->getWidgetSchema()->setPositions(array(
         'id',
@@ -50,7 +50,6 @@ class TransactionForm extends BaseTransactionForm {
         'budget_poste_id',
         'libelle',
         'montant',
-        'debit',
         'commentaire',
         'date_transaction',
         'date_rapprochement',
@@ -77,12 +76,4 @@ class TransactionForm extends BaseTransactionForm {
         );
   }
 
-  public function processValues($values) {
-    $isDebit = $values['debit'];
-    if ($isDebit)
-      $values['montant'] = - abs($values['montant']);
-    else
-      $values['montant'] = abs($values['montant']);
-    return parent::processValues($values);
-  }
 }

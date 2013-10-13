@@ -4,6 +4,11 @@ function init_input_montant(id) {
     if (!isNaN(value))
         $(id+'_montant').val(Math.abs(value).toFixed(2));
 
+    $(id+'_montant').keyup(function() {
+        if ($(this).val().indexOf('-') == 0) // commence par un -
+            set_state('debit');
+    });
+
     var set_state = function(state) {
         var hidden = $(id+'_hidden_state');
         if (state == hidden.val()) // si l'état n'est pas modifié on ne fait rien

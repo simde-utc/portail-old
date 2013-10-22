@@ -84,6 +84,13 @@ class AssoMemberTable extends Doctrine_Table
     return ($r && $r->getRoleId() == 1);
   }
 
+  public function isPresident($asso, $user)
+  {
+    $q = $this->getCurrentAssoMember($asso, $user);
+    $r = $q->fetchOne();
+    return ($r && $r->getRoleId() == 1);
+  }
+
   public function getDroits($user_id)
   {
     $q = $this->createQuery('q')

@@ -32,6 +32,7 @@ class TransactionForm extends BaseTransactionForm {
     $this->validatorSchema['budget_poste_id'] = new sfValidatorDoctrineChoice(array(
         'model' => $this->getRelatedModelName('BudgetPoste'),
         'query' => BudgetPosteTable::getInstance()->getAllForAsso($this->getObject()->getAsso()),
+        'required' => false,
     ));
         
     $this->widgetSchema['date_transaction'] = new portailWidgetFormDate();
@@ -39,8 +40,8 @@ class TransactionForm extends BaseTransactionForm {
 
     unset($this['created_at'], $this['updated_at'], $this['deleted_at'], $this['note_de_frais_id']);
 
-    $this->widgetSchema['debit'] = new portailWidgetFormMontant();
-    $this->validatorSchema['debit'] = new sfValidatorBoolean();
+    $this->widgetSchema['montant'] = new portailWidgetFormMontant();
+    $this->validatorSchema['montant'] = new portailValidatorMontant();
 
     $this->getWidgetSchema()->setPositions(array(
         'id',
@@ -49,7 +50,6 @@ class TransactionForm extends BaseTransactionForm {
         'budget_poste_id',
         'libelle',
         'montant',
-        'debit',
         'commentaire',
         'date_transaction',
         'date_rapprochement',
@@ -57,32 +57,23 @@ class TransactionForm extends BaseTransactionForm {
         'moyen_id',
         'moyen_commentaire'));
 
-<<<<<<< HEAD
-    $this->widgetSchema['moyen_commentaire'] = new sfWidgetFormInput();
-=======
     $this->widgetSchema['libelle'] = new sfWidgetFormInput(array('label'=>'Libellé'), array('placeholder'=>'Nom de la transaction'));
 
     $this->widgetSchema['moyen_commentaire'] = new sfWidgetFormInput(array(),
         array('placeholder' => 'n° de chèque ou nom de membre'));
->>>>>>> transactions
     $this->validatorSchema['moyen_commentaire']->setOption('required', false);
 
     $this->validatorSchema['date_rapprochement'] = new sfValidatorDate(array('required' => false));
 
+    // soit la date de rapprochement est nulle, soit elle est plus tard que la date de transaction
     $this->validatorSchema->setPostValidator(
-        new sfValidatorSchemaCompare('date_rapprochement', sfValidatorSchemaCompare::GREATER_THAN, 'date_transaction',
-            array(),
+        new sfValidatorOr(array(
+                new sfValidatorSchemaFilter('date_rapprochement', new portailValidatorNull(array('required'=>false))),
+                new sfValidatorSchemaCompare('date_rapprochement', sfValidatorSchemaCompare::GREATER_THAN, 'date_transaction')
+            ), array(),
             array('invalid' => 'La date de rapprochement doit être supérieure à la date de la transaction')
-  )
-);
+            )
+        );
   }
 
-  public function processValues($values) {
-    $isDebit = $values['debit'];
-    if ($isDebit)
-      $values['montant'] = - abs($values['montant']);
-    else
-      $values['montant'] = abs($values['montant']);
-    return parent::processValues($values);
-  }
 }

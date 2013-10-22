@@ -1,0 +1,2 @@
+  <?php echo $form['new'][$number]['sport_id']->renderError() ?>
+  <?php echo $form['new'][$number]['sport_id'] ?> <a class="btn btn-primary" href="#" onclick="deleteOcc(<?php echo $number ?>);return false;">-</a>

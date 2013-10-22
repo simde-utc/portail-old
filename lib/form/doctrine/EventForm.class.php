@@ -68,7 +68,9 @@ class EventForm extends BaseEventForm
     $this->widgetSchema->setLabel('place', 'Lieu');
     $this->widgetSchema->setLabel('is_public', 'Ouvert au public ?');
     $this->widgetSchema->setLabel('affiche', 'Illustration');
+    $this->widgetSchema->setLabel('is_weekmail', 'Paraître dans le Weekmail ?');
+    $this->widgetSchema['is_weekmail']->setAttribute('style', 'width: 15px;');
     
-    $this->useFields(array('asso_id', 'name', 'type_id', 'start_date', 'end_date', 'summary', 'description', 'place', 'is_public', 'affiche'));
+    $this->useFields(array('asso_id', 'name', 'type_id', 'start_date', 'end_date', 'summary', 'description', 'place', 'is_public', 'affiche', 'is_weekmail'));
   }
 }

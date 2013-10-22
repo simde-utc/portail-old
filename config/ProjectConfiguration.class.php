@@ -31,7 +31,7 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfXssSafePlugin');
     sfForm::disableCSRFProtection();
 
-    require_once sfConfig::get('sf_lib_dir').'/vendor/ginger-client/Ginger.class.php';
+    require_once sfConfig::get('sf_lib_dir').'/vendor/ginger-client/autoload.php';
 
     $this->enablePlugins('sfTCPDFPlugin');
   }

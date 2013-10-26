@@ -20,6 +20,7 @@ generator:
         actions: {}
         batch_actions: {}
         object_actions: {valider: ~, refuser:~, _delete:~}
+        sort: [created_at, desc]
       filter:
         display: [login, user_id, asso_id, semestre_id, porte_mde, bat_a, locaux_pic, mde_complete, bureau_polar, perm_polar, salles_musique, statut]
       form:    ~

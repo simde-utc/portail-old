@@ -26,6 +26,7 @@ generator:
         object_actions:
           _edit: ~
           archiver: ~
+        sort: [created_at, desc]
       filter:
         display: [titre, texte, lieu, email, created_at, archivage_date]
       form: ~

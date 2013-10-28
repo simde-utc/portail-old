@@ -66,6 +66,22 @@ class locauxActions extends sfActions
       $this->getUser()->setFlash('error', 'Cette charte a déjà été signée.');
       $this->redirect('homepage');
     }
+    /*controle que le nombre d'accès est de 1 ..... */
+    $nb_acces=0;
+    if ($this->charte->getPorteMde()==1) $nb_acces++;
+    if ($this->charte->getBatA()==1) $nb_acces++;
+    if ($this->charte->getMdeComplete()==1) $nb_acces++;
+    if ($this->charte->getLocauxPic()==1) $nb_acces++;
+    if ($this->charte->getBureauPolar()==1) $nb_acces++;
+    if ($this->charte->getPermPolar()==1) $nb_acces++;
+    if ($this->charte->getSallesMusique()==1) $nb_acces++;
+    if ($nb_acces!=1)
+    {
+      $this->getUser()->setFlash('error', 'Vous devez demander un seul accès.');
+      $asso=$this->charte->getAsso();
+      $this->charte->delete();
+      $this->redirect('locaux_charte', $asso);
+    }
   }
 
   public function executeLocauxPost(sfWebRequest $request)

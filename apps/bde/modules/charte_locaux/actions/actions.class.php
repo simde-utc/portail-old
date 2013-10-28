@@ -58,7 +58,7 @@ EOF
     $charte->setStatut(3);
 
     if ($charte->getPorteMde()) $acces='Vous avez désormais accès à la "Porte de la MDE"';
-    else if ($charte->getPorteMde()) $acces='Vous avez désormais accès au "Batiment A"';
+    else if ($charte->getBatA()) $acces='Vous avez désormais accès au "Batiment A"';
          else if ($charte->getLocauxPic()) $acces='Vous avez désormais accès au "locaux du Pic"';
           else if ($charte->getMdeComplete()) $acces='Vous avez désormais accès à la "Mde Complète"';
             else if ($charte->getBureauPolar()) $acces='Vous avez désormais accès au "Bureau du Polar"';

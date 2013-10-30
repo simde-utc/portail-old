@@ -59,11 +59,11 @@ EOF
 
     if ($charte->getPorteMde()) $acces='Vous avez désormais accès à la "Porte de la MDE"';
     else if ($charte->getBatA()) $acces='Vous avez désormais accès au "Batiment A"';
-         else if ($charte->getLocauxPic()) $acces='Vous avez désormais accès au "locaux du Pic"';
-          else if ($charte->getMdeComplete()) $acces='Vous avez désormais accès à la "Mde Complète"';
-            else if ($charte->getBureauPolar()) $acces='Vous avez désormais accès au "Bureau du Polar"';
-              else if ($charte->getPermPolar()) $acces='Vous avez désormais accès à la "Perm du Polar"';
-                else if ($charte->getSallesMusique()) $acces='Vous avez désormais accès aux "Salles de musique"';
+    else if ($charte->getLocauxPic()) $acces='Vous avez désormais accès au "locaux du Pic"';
+    else if ($charte->getMdeComplete()) $acces='Vous avez désormais accès à la "Mde Complète"';
+    else if ($charte->getBureauPolar()) $acces='Vous avez désormais accès au "Bureau du Polar"';
+    else if ($charte->getPermPolar()) $acces='Vous avez désormais accès à la "Perm du Polar"';
+    else if ($charte->getSallesMusique()) $acces='Vous avez désormais accès aux "Salles de musique"';
 
     $message = $this->getMailer()->compose(
     array('bde@assos.utc.fr' => 'BDE UTC'),

@@ -803,7 +803,7 @@ a.btn-danger {
     background: #CECCCC;
 }
 
-#assos_list, #services_list {
+#assos_list, #services_list, #carnetAvantages_list {
   list-style:none;
   line-height:200%;
   margin:20px auto;
@@ -811,7 +811,7 @@ a.btn-danger {
   padding: 0;
 }
 
-#assos_list li, #services_list li{
+#assos_list li, #services_list li, #carnetAvantages_list li{
   padding : 10px;
   width:790px;
   min-height : 120px;
@@ -820,17 +820,19 @@ a.btn-danger {
   background: #fff;
 }
 
-#services_list li {
+#services_list li, #carnetAvantages_list li {
     min-height: 85px;
     margin-bottom: 15px;
 }
 
-#assos_list h3 a, #services_list h3 a{
+#assos_list h3 a, #services_list h3 a, #carnetAvantages_list h3{
   font-size:1.3em;
 }
-#assos_list .desc, #services_list .desc{
+
+#assos_list .desc, #services_list .desc, #carnetAvantages_list .desc{
   margin-left : 100px;
 }
+
 #assos_list img.logo, #services_list img.logo{
   float:left;
   height:85px;

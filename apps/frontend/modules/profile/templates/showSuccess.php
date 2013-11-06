@@ -1,6 +1,5 @@
+<h1 class="partie">Mon profil</h1>
 <div class="part" id="profile">
-  <h1>Mon Profil</h1>
-
   <h2>
     <a class="btn pull-right editIdentite"
        data-url="<?php echo url_for('profile_identite_edit', array('id' => $profile->getId())) ?>">

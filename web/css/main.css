@@ -264,25 +264,26 @@ a.btn-danger {
                             width: 113px; height: 22px; margin-top: 5px; margin-left: 500px; padding-top: 10px;
                             text-align: center; font-size: 10px; text-transform: uppercase; }
 
+
 .eventbox {
-  padding: 1em;
-  text-align: center;
+  padding: 10px;
 }
 
-.eventbox h2, .eventbox p, .eventbox div {
-  text-align: left;
+.eventbox h4 {
+  text-transform: uppercase;
+  color: white;
+  font-size: 12px;
+  line-height: 1.2em;
 }
 
-.eventbox h2 {
-    text-transform: uppercase;
-    color: white;
-    font-size: 12px;
-    padding: 1em 0em;
-    line-height: 1.2em;
-}
 .eventbox a {
   color: white;
 }
+
+.eventbox p {
+  color: #000;
+}
+
 .part {
     margin-bottom: 40px;
 }

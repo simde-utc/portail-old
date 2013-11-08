@@ -61,4 +61,10 @@ $(document).ready(function(){
     $(this).attr("href", "mailto:" + a);
     $(this).css("visibility", "visible");
   });
+  
+  $("img.avatar").error(function() {
+    if($(this).attr("src") != "/images/default.jpg"){
+      $(this).attr("src", "/images/default.jpg");
+    }
+  });
 });

@@ -5,7 +5,7 @@
       <?php foreach ($membres as $membre) : ?>
         <li>
           <?php if ($sf_user->isAuthenticated()): ?>
-            <img src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $membre->getUser()->getUsername() ?>" alt="Photo non disponible" /><br />
+            <img class="avatar" src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $membre->getUser()->getUsername() ?>" alt="Photo non disponible" style="background: url(web/images/default.jpg);" /><br />
           <?php else: ?>
             <img src="/images/default.jpg" />
           <?php endif ?>

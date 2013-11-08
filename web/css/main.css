@@ -31,20 +31,58 @@ p {
 }
 
 .part {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
-.part h1, h1.partie {
-    line-height: 18px;
-    background: #505050;
-    font-weight: normal;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 12px;
-    color: white;
-    padding: 5px;
-    text-transform: uppercase;
+
+.part h1, .partie {
+  background: #505050;
+  font-weight: normal;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  line-height: 18px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.partie a {
+  color: white;
+}
+
+.part h1 .pull-right {
+	font-size: 12px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	text-transform: none;
+}
+
+.part h1 .pull-right a {
+	color: white;
+}
+
+.part .article h2 img {
+  margin-right: 1em;
+}
+
+.part .article h2 {
+  margin: 5px auto;
+  display: block;
+  width: auto;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+.part .article h2 span.sub {
+  float: right;
+  font-size: 10px;
+}
+
+.part .article h2 a {
+  color: white;
 }
 
 /* En-tête */
@@ -211,26 +249,6 @@ a.btn-danger {
   color: #000;
 }
 
-/* Box pour des événements (sur page accueil, asso...) */
-
-.eventbox {
-  padding: 10px;
-}
-
-.eventbox h4 {
-  text-transform: uppercase;
-  color: white;
-}
-
-.eventbox a {
-  color: white;
-}
-
-.eventbox p {
-  color: #000;
-}
-
-
 #profile h2{
     margin: 0 auto 7px;
     display: block;
@@ -327,41 +345,6 @@ a.btn-danger {
     cursor: url('/images/button/modifier.png'), auto;
 }
 
-.part h1 .titleaction {
-	float: right;
-	font-size: 12px;
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	text-transform: none;
-}
-.part h1 .titleaction a {
-	color: white;
-}
-
-.part .article h2 {
-    margin: 5px auto;
-    display: block;
-    width: auto;
-    font-size: 12px;
-    font-weight: bold;
-    color: white;
-    padding: 5px;
-    text-transform: uppercase;
-}
-
-.part .article h2 span.sub {
-  float: right;
-  font-size: 10px;
-}
-
-.part .article h2 a, .part .article h2 a:hover, .part .article h2 a:visited, .part .article h2 a:active {
-  color: white;
-}
-
-.part img.affiche {
-  float: right;
-  margin: 15px 0px 15px 15px;
-}
-
 #aide h2{
     margin: 0 auto 7px;
     display: block;
@@ -374,23 +357,27 @@ a.btn-danger {
     border-bottom:thin solid #000;
 }
 
-.part .more {
-    height: 16px;
-    text-align: right;
-    float: right;
-    background: #BEBCBC;
-    text-transform: uppercase;
-    font-size: 10px;
-    padding-top: 4px;
-    padding-right: 10px;
-    padding-left: 15px;
-    display: block;
-    color: #2A2A2A;
+/* Box pour des événements (sur page accueil, asso...) */
+
+.eventbox {
+  padding: 10px;
 }
 
-.part .more:hover{
-    background: #CECCCC;
+.eventbox h4 {
+  text-transform: uppercase;
+  color: white;
 }
+
+.eventbox a {
+  color: white;
+}
+
+.eventbox p {
+  color: #000;
+}
+
+
+/* Suite à ranger... */
 
 #assos_list, #services_list {
   list-style:none;

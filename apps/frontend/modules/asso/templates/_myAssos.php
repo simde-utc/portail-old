@@ -11,7 +11,7 @@
                   <?php echo showThumb($asso->getLogo(), 'assos', array('width'=>32, 'height'=>32, 'class'=>'media-object'), 'center') ?>
               </a>
               <div class="media-body">
-                  <h2 class="media-heading"><a href="<?php echo url_for('assos_show',$asso) ?>"><?php echo $asso->getName() ?></a></h2>
+                  <h5 class="media-heading"><a href="<?php echo url_for('assos_show',$asso) ?>"><?php echo $asso->getName() ?></a></h5>
               </div>
           </div>
         </div>

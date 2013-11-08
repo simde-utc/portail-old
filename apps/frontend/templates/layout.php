@@ -45,11 +45,11 @@
         <div id="menu">
           <div class="row">
             <div class="span12">
-              <a href="<?php echo url_for('homepage') ?>">Accueil</a>
-              <a href="<?php echo url_for('asso/index') ?>" class="barre" id="lienlisteassos">Associations</a>
-              <a href="<?php echo url_for('agenda_detail') ?>" class="barre">Calendrier</a>
-              <a href="<?php echo url_for('infojob_home') ?>" class="barre">InfoJob</a>              
-              <a href="<?php echo url_for('services')?>" class="barre" id= "lienlisteservices">Services</a>
+              <a href="<?php echo url_for('homepage') ?>" class="first">Accueil</a>
+              <a href="<?php echo url_for('asso/index') ?>" id="lienlisteassos">Associations</a>
+              <a href="<?php echo url_for('agenda_detail') ?>">Calendrier</a>
+              <a href="<?php echo url_for('infojob_home') ?>">InfoJob</a>              
+              <a href="<?php echo url_for('services')?>">Services</a>
             </div>
           </div>
         </div>
@@ -102,19 +102,18 @@
           
         </div>
         <div class="span2 offset1">
-          <h2>Services</h2>
+          <h4>Services assos</h4>
           <a href="/gesmail">Gestion des mails assos</a><br/>
-          <a href="/resa">Réservation de salles</a><br/>
           <a href="/mail">Webmail assos</a><br />
           <a href="/treso.php">Outil trésorerie</a><br />
-        </div>
-        <div class="span2">
-          <h2>Liens</h2>
-          <a href="http://ent.utc.fr">ENT</a><br/>
           <a href="/simde">SiMDE</a><br/>
           <a href="/wiki">Wiki des assos</a><br/>
+        </div>
+        <div class="span2">
+          <h4>Liens</h4>
+          <a href="http://ent.utc.fr">ENT</a><br/>
           <a href="http://www.utc.fr">UTC</a><br/>
-          <a href="https://github.com/simde-utc/portail">Dépôt GitHub</a>
+          <a href="https://github.com/simde-utc/portail">Le portail sur GitHub</a>
         </div>
       </div>
     </div>

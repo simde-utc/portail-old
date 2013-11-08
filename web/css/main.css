@@ -59,7 +59,7 @@ p {
 
 #footer h2 {
   font-size: 12px;
-  font-family: 'Arial Black', sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: #FFF;
   margin-bottom: 0px;
 }
@@ -73,7 +73,7 @@ h1.bulle {
   line-height: 18px;
   color: #FFF;
   text-transform: uppercase;
-  font-family: 'Arial Black', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 12px;
   background: url(/images/bg_col_title.png) no-repeat bottom left;
   font-weight: normal;
@@ -125,15 +125,14 @@ h1.bulle {
   background-image: -moz-linear-gradient(top center, #242424, #414141);
   background-image: -o-linear-gradient(top, #242424, #414141);
   padding: .5em 1em;
-  font-family: 'Arial Black', sans-serif;
-  font-size: 12px;
+  font-family: 'Raleway', sans-serif;
   text-transform: uppercase;
   color: #FFF;
 }
 #menu a {
   color: #FFF;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 #menu .barre {
   border-left: 1px #FFF solid;
@@ -147,7 +146,7 @@ h1.bulle {
   background-image: -moz-linear-gradient(top center, #242424, #414141);
   background-image: -o-linear-gradient(top, #242424, #414141);
   color: #FFF;
-  font-family: 'Arial Black', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 12px;
   text-transform: uppercase;
   display: none;
@@ -164,7 +163,7 @@ h1.bulle {
   background-image: -moz-linear-gradient(top center, #242424, #414141);
   background-image: -o-linear-gradient(top, #242424, #414141);
   color: #FFF;
-  font-family: 'Arial Black', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 12px;
   text-transform: uppercase;
   top: 50px;
@@ -294,7 +293,7 @@ a.btn-danger {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    font-family: 'Arial Black', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 12px;
     color: white;
     padding: 5px;

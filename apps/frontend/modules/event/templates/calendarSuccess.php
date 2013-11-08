@@ -1,8 +1,7 @@
 <?php use_stylesheet('fullcalendar.css') ?>
 
 <?php use_javascript('fullcalendar.min.js') ?>
-<h1 class="partie">Calendrier des événements</h1>
-<div id="loading" style="display:none">Chargement...</div>
+<h1 class="partie">Calendrier des événements <i id="loading" class="fa fa-refresh fa-spin fa-lg pull-right"></i></h1>
 <div id="calendar"></div>
 <script>
 $(document).ready(function() {  

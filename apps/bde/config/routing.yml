@@ -57,6 +57,15 @@ service:
     column:               id
     with_wildcard_routes: true
 
+partenaire:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Partenaire
+    module:               partenaire
+    prefix_path:          /partenaire
+    column:               id
+    with_wildcard_routes: true
+
 weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }

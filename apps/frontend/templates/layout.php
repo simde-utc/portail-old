@@ -50,6 +50,7 @@
               <a href="<?php echo url_for('agenda_detail') ?>" class="barre">Calendrier</a>
               <a href="<?php echo url_for('infojob_home') ?>" class="barre">InfoJob</a>              
               <a href="<?php echo url_for('services')?>" class="barre" id= "lienlisteservices">Services</a>
+              <a href="<?php echo url_for('partenaires')?>" class="barre">Partenaires</a>
             </div>
           </div>
         </div>

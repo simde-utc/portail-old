@@ -65,8 +65,8 @@
           <div class="span2" id="column-left">
             <?php if($sf_user->isAuthenticated()): ?>
               <?php include_component('asso', 'myAssos') ?>
-              <?php include_component('abonnement', 'myFlux') ?>
               <?php include_component('services', 'myServicesFavoris') ?>
+              <?php include_component('abonnement', 'myFlux') ?>
             <?php else: ?>
               <?php include_partial('home/bienvenue') ?>
             <?php endif ?>

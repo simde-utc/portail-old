@@ -11,7 +11,7 @@
                 <?php echo showThumb($service->getService()->getLogo(), 'assos', array('width'=>32, 'height'=>32, 'class'=>'media-object'), 'center') ?>
               </a>
               <div class="media-body">
-                <h2 class="media-heading"><a href="<?php echo $service->getService()->getUrl() ?>"><?php echo $service->getService()->getNom() ?></a></h2>
+                <h5 class="media-heading"><a href="<?php echo $service->getService()->getUrl() ?>"><?php echo $service->getService()->getNom() ?></a></h5>
               </div>
             </div>
           </div>

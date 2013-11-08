@@ -1,7 +1,7 @@
 <?php use_helper('Date') ?>
 <?php use_helper('Thumb') ?>
 <div class="part">
-  <h1>Les Partenaires du BDE UTC</h1>
+  <h1>Les Partenaires du BDE-UTC</h1>
   <div class="row-fluid">
     <?php foreach ($partenaires as $partenaire): ?>
       <div class="span6">
@@ -32,10 +32,10 @@
                 <?php echo $carnetAvantage->getDescription() ?>
               <p>
               <?php if($carnetAvantage->getAdresse()): ?>
-                <span class="adresse"><i class="icon-home"></i><?php echo $carnetAvantage->getAdresse() ?></span><br />
+                <i class="fa fa-home"></i> <?php echo $carnetAvantage->getAdresse() ?><br />
               <?php endif ?>
               <?php if($carnetAvantage->getTel()): ?>
-                <span class="phone"><?php echo $carnetAvantage->getTel() ?></span>
+                <i class="fa fa-phone"></i> <?php echo $carnetAvantage->getTel() ?>
               <?php endif ?>
             </div>
           </li>

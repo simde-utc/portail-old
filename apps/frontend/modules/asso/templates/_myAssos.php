@@ -1,17 +1,17 @@
 <?php use_helper('Thumb') ?>
 <div id="my_assos">
-  <h1 class="bulle">Mes associations</h1>
+  <h5 class="bulle">Mes assos</h4>
   <?php if($assos && $assos->count() > 0): ?>
       <ul class="thumbnails">
       <?php foreach($assos as $asso): ?>
-      <li class="span2">
+      <li class="span3">
         <div class="thumbnail">
           <div class="media">
               <a class="pull-left" href="<?php echo url_for('assos_show',$asso) ?>">
                   <?php echo showThumb($asso->getLogo(), 'assos', array('width'=>32, 'height'=>32, 'class'=>'media-object'), 'center') ?>
               </a>
               <div class="media-body">
-                  <h2 class="media-heading"><a href="<?php echo url_for('assos_show',$asso) ?>"><?php echo $asso->getName() ?></a></h2>
+                  <h5 class="media-heading"><a href="<?php echo url_for('assos_show',$asso) ?>"><?php echo $asso->getName() ?></a></h5>
               </div>
           </div>
         </div>

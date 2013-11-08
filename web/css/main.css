@@ -1,10 +1,12 @@
+/* Généralités */
+
 body {
   color: #2a2a2a;
-  padding-top: 40px;
-  font-size: 10pt;
 }
 
-.clear{ clear:both; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
 
 a:link, a:visited {
   color: #888888;
@@ -16,20 +18,81 @@ a:hover {
   text-decoration: underline;
 }
 
-fieldset {
-  border:0;
-}
-
 p {
-    text-align : justify;
     font-size: 10pt;
 }
 
+.bulle {
+  color: #FFF;
+  text-transform: uppercase;
+  background: url(/images/bg_col_title.png) no-repeat bottom left;
+  padding: 8px 8px 25px 8px;;
+}
+
+.part {
+  margin-bottom: 40px;
+}
+
+.part h1, .partie {
+  background: #505050;
+  font-weight: normal;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  line-height: 18px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.partie a {
+  color: white;
+}
+
+.part h1 .pull-right {
+	font-size: 12px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	text-transform: none;
+}
+
+.part h1 .pull-right a {
+	color: white;
+}
+
+.part .article h2 img {
+  margin-right: 1em;
+}
+
+.part .article h2 {
+  margin: 5px auto;
+  display: block;
+  width: auto;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+.part .article h2 span.sub {
+  float: right;
+  font-size: 10px;
+}
+
+.part .article h2 a {
+  color: white;
+}
+
+/* En-tête */
+
 .navbar .brand {
+  position: relative;
   max-height: 40px;
-  overflow: visible;
   padding: 0 0 0 2em;
 }
+
+/* Calendrier page d'accueil */
 
 #calendrier {
   padding: 0 1em;
@@ -37,16 +100,17 @@ p {
 }
 
 #calendrier .event h4 a {
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #ee4401;
+  text-transform: uppercase;
+  color: #ee4401;
 }
+
+/* Pied de page */
 
 #footer {
   margin-top: 80px;
   background: url(/images/bg_footer.png) repeat-x #393939;
   padding-top: 45px;
+  color: #FFF;
   text-transform: uppercase;
 }
 
@@ -57,120 +121,48 @@ p {
   margin-top: -120px;
 }
 
-#footer h2 {
-  font-size: 12px;
-  font-family: 'Arial Black', sans-serif;
-  color: #FFF;
-  margin-bottom: 0px;
-}
-
 #footer a {
   font-size: 10px;
   color: #FFF;
 }
 
-h1.bulle {
-  line-height: 18px;
+/* Sidebar */
+
+#my_assos h5 {
+  text-transform: uppercase;
+  line-height: 1em;
+  margin-top: .7em;
+}
+
+/* Menu principal */
+
+#menu, #bigmenu {
+  background: black;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));
+  background-image: -moz-linear-gradient(top center, #242424, #414141);
+  background-image: -o-linear-gradient(top, #242424, #414141);
   color: #FFF;
   text-transform: uppercase;
-  font-family: 'Arial Black', sans-serif;
-  font-size: 12px;
-  background: url(/images/bg_col_title.png) no-repeat;
-  height: 45px;
-  font-weight: normal;
-  text-indent: 10px;
-  padding-top: 8px;
-}
-
-#my_assos h2 {
-  font-weight: bold;
-  font-size: 12px;
-  text-transform: uppercase;
-  color: #2a2a2a;
-  line-height: 1em;
-  margin-top: .8em;
-}
-
-/*-------------------------------------------*/
-/*--------------EVENEMENTS-------------------*/
-/*-------------------------------------------*/
-
-.date{
-  border-bottom:solid 1px;
-  font-weight : bold;
-  font-size : 14px;
-  margin-bottom : 5px;
-  margin-top : 10px;
-  padding-top : 5px;
-  color : #7C0000;
-}
-
-.lieu{
-  margin : 5px;
-}
-
-.description{
-  margin : 5px;
-}
-
-#plus{
-  text-align : right;
-  font-weight : bold;
-  margin-right : 30px;
-  font-size : 16px;
 }
 
 #menu {
-  background: black;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));
-  background-image: -moz-linear-gradient(top center, #242424, #414141);
-  background-image: -o-linear-gradient(top, #242424, #414141);
+  font-family: 'Raleway', sans-serif;
   padding: .5em 1em;
-  font-family: 'Arial Black', sans-serif;
-  font-size: 12px;
-  text-transform: uppercase;
-  color: #FFF;
 }
+
 #menu a {
   color: #FFF;
-  padding-left: 2em;
-  padding-right: 2em;
-}
-#menu .barre {
+  padding-left: 1.2em;
+  padding-right: 1.2em;
   border-left: 1px #FFF solid;
+}
+#menu a.first {
+  padding-left: .3em;
+  border: 0;
 }
 
 #bigmenu {
-  color: white;
-  background: black;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));
-  background-image: -moz-linear-gradient(top center, #242424, #414141);
-  background-image: -o-linear-gradient(top, #242424, #414141);
-  color: #FFF;
-  font-family: 'Arial Black', sans-serif;
-  font-size: 12px;
-  text-transform: uppercase;
-  display: none;
-  z-index: 11000;
-  overflow: hidden;
-}
-
-#search-results {
-  position: absolute;
-  color: white;
-  background: black;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));
-  background-image: -moz-linear-gradient(top center, #242424, #414141);
-  background-image: -o-linear-gradient(top, #242424, #414141);
-  color: #FFF;
-  font-family: 'Arial Black', sans-serif;
-  font-size: 12px;
-  text-transform: uppercase;
-  top: 50px;
-  left: 900px;
   display: none;
   z-index: 11000;
   overflow: hidden;
@@ -185,20 +177,18 @@ h1.bulle {
   padding: 0;
 }
 
-#bigmenu ul li a {
-  font-family: Arial, sans-serif;
-  font-size: 10pt;
-}
-
 #bigmenu .bm_pole {
   border-left: 1px solid white;
   padding: 5px 10px;
   margin-bottom: -2000px;
   padding-bottom: 2000px;
 }
+
 #bigmenu .bm_pole:first-child {
   border: none;
 }
+
+/* Page asso */
 
 #asso-menu {
   background: #009cdd;
@@ -218,6 +208,8 @@ h1.bulle {
   border: none;
 }
 
+/* Formulaires d'édition (articles, event...) */
+
 .editform label:first-child {
 	text-align: right;
 	margin-right: 6px;
@@ -227,14 +219,10 @@ h1.bulle {
 	vertical-align: top;
 }
 .editform input, .editform textarea {
-	width: 580px;
+	width: 100%;
 }
 
-.editform input.btn {
-	width: auto;
-}
-
-.well select.nosize {
+.editform input.btn, .editform select.nosize {
 	width: auto;
 }
 
@@ -242,7 +230,8 @@ a.btn-danger {
   color: white;
 }
 
-/*      PROFILE     */
+/* Page profil */
+
 #profile {
     line-height: 20px;  
 }
@@ -257,49 +246,6 @@ a.btn-danger {
 
 #topbar a.btn {
   color: #000;
-}
-
-.part a.link { display: block; background: url('/images/button/more.png') no-repeat; 
-                            width: 113px; height: 22px; margin-top: 5px; margin-left: 50px; padding-top: 10px;
-                            text-align: center; font-size: 10px; text-transform: uppercase; }
-.part a.alink { display: block; background: url('/images/button/more.png') no-repeat; 
-                            width: 113px; height: 22px; margin-top: 5px; margin-left: 500px; padding-top: 10px;
-                            text-align: center; font-size: 10px; text-transform: uppercase; }
-
-.eventbox {
-  padding: 1em;
-  text-align: center;
-}
-
-.eventbox h2, .eventbox p, .eventbox div {
-  text-align: left;
-}
-
-.eventbox h2 {
-    text-transform: uppercase;
-    color: white;
-    font-size: 12px;
-    padding: 1em 0em;
-    line-height: 1.2em;
-}
-.eventbox a {
-  color: white;
-}
-.part {
-    margin-bottom: 40px;
-}
-.part h1, h1.partie {
-    line-height: 18px;
-    background: #505050;
-    font-weight: normal;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    font-family: 'Arial Black', sans-serif;
-    font-size: 12px;
-    color: white;
-    padding: 5px;
-    text-transform: uppercase;
 }
 
 #profile h2{
@@ -398,41 +344,6 @@ a.btn-danger {
     cursor: url('/images/button/modifier.png'), auto;
 }
 
-.part h1 .titleaction {
-	float: right;
-	font-size: 12px;
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	text-transform: none;
-}
-.part h1 .titleaction a {
-	color: white;
-}
-
-.part .article h2 {
-    margin: 5px auto;
-    display: block;
-    width: auto;
-    font-size: 12px;
-    font-weight: bold;
-    color: white;
-    padding: 5px;
-    text-transform: uppercase;
-}
-
-.part .article h2 span.sub {
-  float: right;
-  font-size: 10px;
-}
-
-.part .article h2 a, .part .article h2 a:hover, .part .article h2 a:visited, .part .article h2 a:active {
-  color: white;
-}
-
-.part img.affiche {
-  float: right;
-  margin: 15px 0px 15px 15px;
-}
-
 #aide h2{
     margin: 0 auto 7px;
     display: block;
@@ -445,25 +356,39 @@ a.btn-danger {
     border-bottom:thin solid #000;
 }
 
-.part .more {
-    height: 16px;
-    text-align: right;
-    float: right;
-    background: #BEBCBC;
-    text-transform: uppercase;
-    font-size: 10px;
-    padding-top: 4px;
-    padding-right: 10px;
-    padding-left: 15px;
-    display: block;
-    color: #2A2A2A;
+/* Box pour des événements (sur page accueil, asso...) */
+
+.eventbox {
+  padding: 10px;
 }
 
-.part .more:hover{
-    background: #CECCCC;
+.eventbox h4 {
+  text-transform: uppercase;
+  color: white;
 }
 
-#assos_list, #services_list{
+.eventbox a {
+  color: white;
+}
+
+.eventbox p {
+  color: #000;
+}
+
+/* Trombinoscope assos */
+
+#trombi ul li {
+  text-align: center;
+}
+
+#trombi ul li img {
+  height: 120px;
+}
+
+
+/* Suite à ranger... */
+
+#assos_list, #services_list {
   list-style:none;
   line-height:200%;
   margin:20px auto;
@@ -622,22 +547,6 @@ a.btn-danger {
   max-height : 80px;
 }
 
-#bureau img, #trombi img { height: 120px; }
-
-ul.membres li {
-  float: left;
-  width: 120px;
-  height: 155px;
-  bacground: #ccc;
-  list-style-type: none;
-  padding: 10px;
-  margin: 5px;
-  text-align: center;
-}
-
-ul.membres li img {
-  height: 120px;
-}
 
 .form-filters label { float: left; width: 130px; }
 .form-filters input, .form-filters select {  }
@@ -668,4 +577,24 @@ ul.membres li img {
 
 #infojob-collapse-link {
   cursor: pointer;
+}
+
+
+#search-results {
+  position: absolute;
+  color: white;
+  background: black;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));
+  background-image: -moz-linear-gradient(top center, #242424, #414141);
+  background-image: -o-linear-gradient(top, #242424, #414141);
+  color: #FFF;
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  top: 50px;
+  left: 900px;
+  display: none;
+  z-index: 11000;
+  overflow: hidden;
 }

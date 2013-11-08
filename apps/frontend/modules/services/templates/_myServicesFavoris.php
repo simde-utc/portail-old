@@ -1,6 +1,6 @@
 <?php use_helper('Thumb') ?>
 <div id="my_assos">
-  <h1 class="bulle">Services Favoris</h1>
+  <h5 class="bulle">Services Favoris</h4>
   <?php if (count($services) > 0): ?>
     <ul class="thumbnails">
       <?php foreach ($services as $service): ?>

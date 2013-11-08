@@ -23,8 +23,7 @@ p {
     font-size: 10pt;
 }
 
-h1.bulle {
-  line-height: 18px;
+.bulle {
   color: #FFF;
   text-transform: uppercase;
   background: url(/images/bg_col_title.png) no-repeat bottom left;

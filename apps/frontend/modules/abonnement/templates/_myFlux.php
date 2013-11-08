@@ -1,5 +1,5 @@
 <div id="my_flux">
-  <h1 class="bulle">Mon Flux</h1>
+  <h5 class="bulle">Mon Flux</h5>
   <?php if($abonnements && $abonnements->count() > 0): ?>
     <?php foreach ($abonnements as $abonnement):?>
       <?php if($abonnement['article'] == 'event'): ?>

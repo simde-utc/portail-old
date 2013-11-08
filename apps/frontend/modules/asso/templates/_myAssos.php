@@ -1,6 +1,6 @@
 <?php use_helper('Thumb') ?>
 <div id="my_assos">
-  <h1 class="bulle">Mes assos</h1>
+  <h5 class="bulle">Mes assos</h4>
   <?php if($assos && $assos->count() > 0): ?>
       <ul class="thumbnails">
       <?php foreach($assos as $asso): ?>

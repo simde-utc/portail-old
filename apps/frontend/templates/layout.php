@@ -62,7 +62,7 @@
           <?php include_component('asso', 'menu') ?>
         <?php endif ?>    
         <div class="row">
-          <div class="span2" id="column-left">
+          <div class="span3" id="column-left">
             <?php if($sf_user->isAuthenticated()): ?>
               <?php include_component('asso', 'myAssos') ?>
               <?php include_component('services', 'myServicesFavoris') ?>
@@ -71,7 +71,7 @@
               <?php include_partial('home/bienvenue') ?>
             <?php endif ?>
           </div>
-          <div class="span10">
+          <div class="span9">
             <?php if($sf_user->hasFlash('error')): ?>
             <div class="alert alert-block alert-error">
               <?php echo $sf_user->getFlash('error'); ?>

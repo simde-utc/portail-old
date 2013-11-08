@@ -4,7 +4,7 @@
   <?php if($assos && $assos->count() > 0): ?>
       <ul class="thumbnails">
       <?php foreach($assos as $asso): ?>
-      <li class="span2">
+      <li class="span3">
         <div class="thumbnail">
           <div class="media">
               <a class="pull-left" href="<?php echo url_for('assos_show',$asso) ?>">

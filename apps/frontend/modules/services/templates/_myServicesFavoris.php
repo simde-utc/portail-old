@@ -4,7 +4,7 @@
   <?php if (count($services) > 0): ?>
     <ul class="thumbnails">
       <?php foreach ($services as $service): ?>
-        <li class="span2">
+        <li class="span3">
           <div class="thumbnail">
             <div class="media">
               <a class="pull-left" href="<?php echo $service->getService()->getUrl() ?>">

@@ -107,18 +107,15 @@ p {
 /* Pied de page */
 
 #footer {
-  margin-top: 80px;
+  margin: 80px -20px 0px -20px;
+  padding: 45px 20px 20px 20px;
   background: url(/images/bg_footer.png) repeat-x #393939;
-  padding-top: 45px;
   color: #FFF;
   text-transform: uppercase;
 }
 
-#footer #splash {
-  width: 366px;
-  height: 368px;
-  background: url(/images/splash_footer.png) no-repeat;
-  margin-top: -120px;
+#footer #splash img {
+  margin-top: -32.608695652174%;
 }
 
 #footer a {

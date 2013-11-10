@@ -22,7 +22,7 @@
             </span>
           </h2>
           <?php if($article->getImage()): ?>
-            <?php echo showThumb($article->getImage(), 'events', array('width'=>250, 'height'=>150, 'class' => 'affiche'), 'scale') ?><br />
+            <?php echo showThumb($article->getImage(), 'events', array('width'=>250, 'height'=>150, 'class' => 'pull-right img-polaroid'), 'scale') ?><br />
           <?php endif; ?>
           <p>
             <?php echo nl2br($article->getText(ESC_XSSSAFE)) ?>
@@ -40,7 +40,7 @@
             </span>
           </h2>
           <?php if($article->getImage()): ?>
-            <?php echo showThumb($article->getImage(), 'articles', array('width'=>250, 'height'=>150, 'class' => 'affiche'), 'scale') ?><br />
+            <?php echo showThumb($article->getImage(), 'articles', array('width'=>250, 'height'=>150, 'class' => 'pull-right img-polaroid'), 'scale') ?><br />
           <?php endif; ?>
           <p>
             <?php echo nl2br($article->getText(ESC_XSSSAFE)) ?>

@@ -392,6 +392,7 @@ a.btn-danger {
   height: 120px;
 }
 
+
 /* Suite à ranger... */
 
 #assos_list, #services_list {
@@ -410,7 +411,7 @@ a.btn-danger {
   background: #fff;
 }
 
-#services_list li {
+#services_list li{
     min-height: 85px;
     margin-bottom: 15px;
 }
@@ -418,9 +419,11 @@ a.btn-danger {
 #assos_list h3 a, #services_list h3 a{
   font-size:1.3em;
 }
+
 #assos_list .desc, #services_list .desc{
   margin-left : 100px;
 }
+
 #assos_list img.logo, #services_list img.logo{
   float:left;
   height:85px;
@@ -447,33 +450,33 @@ a.btn-danger {
     color: #000000;
 }
 
-#topbar .email:before , #assos_list .email:before {
-  content: url('/images/icons/mail.png');
+.email:before{
+  content: url(/images/icons/mail.png);
   margin-right: 5px;
   vertical-align: middle;
 }
 
-#topbar .facebook:before , #assos_list .facebook:before {
-  content: url('/images/icons/facebook.png');
+.facebook:before {
+  content: url(/images/icons/facebook.png);
   margin-right: 5px;
   vertical-align: middle;
 }
 
 #article .facebook:before, #event .facebook:before,
 .article .facebook:before, .event .facebook:before {
-    content: url('/images/icons/facebook.png');
+    content: url(/images/icons/facebook.png);
     margin-right: 0px;
     vertical-align: -20%;
 }
 
-#topbar .phone:before , #assos_list .phone:before {
-  content: url('/images/icons/phone.png');
+.phone:before {
+  content: url(/images/icons/phone.png);
   margin-right: 5px;
   vertical-align: middle;
 }
 
-#topbar .salle:before , #assos_list .salle:before {
-  content: url('/images/icons/door_open.png');
+.salle:before {
+  content: url(/images/icons/door_open.png);
   margin-right: 5px;
   vertical-align: middle;
 }

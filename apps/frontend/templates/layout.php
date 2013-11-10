@@ -50,6 +50,7 @@
               <a href="<?php echo url_for('agenda_detail') ?>">Calendrier</a>
               <a href="<?php echo url_for('infojob_home') ?>">InfoJob</a>              
               <a href="<?php echo url_for('services')?>">Services</a>
+              <a href="<?php echo url_for('partenaires')?>">Partenaires</a>
             </div>
           </div>
         </div>

@@ -1,24 +1,24 @@
 generator:
   class: sfDoctrineGenerator
   param:
-    model_class:           Service
+    model_class:           Partenaire
     theme:                 admin
     non_verbose_templates: true
     with_show:             false
     singular:              ~
     plural:                ~
-    route_prefix:          service
+    route_prefix:          partenaire
     with_doctrine_route:   true
     actions_base_class:    sfActions
 
     config:
       actions: ~
       fields:  ~
-      list:    
-        title: "Les Services"
-        display: [id, nom, url, Type]
-      filter:
-        display: [nom, url, type_id]
+      list:
+        title: "Les partenaires"
+        display: [nom, url, description]
+      filter:  
+        display: [nom] 
       form:    ~
       edit:    ~
       new:     ~

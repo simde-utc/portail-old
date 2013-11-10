@@ -331,10 +331,19 @@ Partenaire:
   connection: doctrine
   actAs: { Timestampable: ~ }
   columns:
-    nom: { type: string(100) }
+    nom: { type: string(100), notnull: true }
     logo: { type: string(100) }
     url: { type: string(255) }
     description: { type: string }
+    
+CarnetAvantages:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string(100), notnull: true }
+    adresse: { type: string(100) }
+    tel: { type: string(15) }
+    description: { type: string, notnull: true }
 
 VoteListe:
   connection: doctrine

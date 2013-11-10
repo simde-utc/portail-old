@@ -66,6 +66,15 @@ partenaire:
     column:               id
     with_wildcard_routes: true
 
+carnetAvantage:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CarnetAvantages
+    module:               carnetAvantage
+    prefix_path:          /carnetAvantage
+    column:               id
+    with_wildcard_routes: true
+
 weekmail:
   url: /weekmail
   param: { module: weekmail, action: index }

@@ -97,25 +97,25 @@
           </div>
         </div>
     </div>
-    <div id="footer">
-      <div class="row-fluid">
-        <div class="span4 offset2" id="splash">
-          
+    <div id="footer" class="row">
+      <div class="span4 offset2" id="splash">
+        <div>
+          <img src="/images/splash_footer.png">
         </div>
-        <div class="span2 offset1">
-          <h4>Services assos</h4>
-          <a href="/gesmail">Gestion des mails assos</a><br/>
-          <a href="/mail">Webmail assos</a><br />
-          <a href="/treso.php">Outil trésorerie</a><br />
-          <a href="/simde">SiMDE</a><br/>
-          <a href="/wiki">Wiki des assos</a><br/>
-        </div>
-        <div class="span2">
-          <h4>Liens</h4>
-          <a href="http://ent.utc.fr">ENT</a><br/>
-          <a href="http://www.utc.fr">UTC</a><br/>
-          <a href="https://github.com/simde-utc/portail">Le portail sur GitHub</a>
-        </div>
+      </div>
+      <div class="span2 offset1">
+        <h4>Services assos</h4>
+        <a href="/gesmail">Gestion des mails assos</a><br/>
+        <a href="/mail">Webmail assos</a><br />
+        <a href="/treso.php">Outil trésorerie</a><br />
+        <a href="/simde">SiMDE</a><br/>
+        <a href="/wiki">Wiki des assos</a><br/>
+      </div>
+      <div class="span2">
+        <h4>Liens</h4>
+        <a href="http://ent.utc.fr">ENT</a><br/>
+        <a href="http://www.utc.fr">UTC</a><br/>
+        <a href="https://github.com/simde-utc/portail">Le portail sur GitHub</a>
       </div>
     </div>
 <?php if(sfConfig::get('app_portail_piwik_is_enable', false)): ?>

@@ -16,7 +16,9 @@ generator:
       fields:  ~
       list:    
         title: "Les Services"
-      filter:  ~
+        display: [id, nom, url, Type]
+      filter:
+        display: [nom, url, type_id]
       form:    ~
       edit:    ~
       new:     ~

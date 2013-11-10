@@ -15,8 +15,10 @@ generator:
       actions: ~
       fields:  ~
       list:
-        title: "Les Partenaires"
-      filter:  ~
+        title: "Les partenaires"
+        display: [nom, url, description]
+      filter:  
+        display: [nom] 
       form:    ~
       edit:    ~
       new:     ~

@@ -92,6 +92,7 @@
                             <li><?php echo link_to('InfoJob', 'infojob/index') ?></li>
                             <li><?php echo link_to('Services', 'service/index') ?></li>
                             <li><?php echo link_to('Partenaires', 'partenaire/index') ?></li>
+                            <li><?php echo link_to('Carnet Avantage', 'carnetAvantage/index') ?></li>
                         </ul>
                     </div><!--/.well -->
                 </div><!--/span-->

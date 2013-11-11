@@ -67,6 +67,7 @@
               <?php include_component('asso', 'myAssos') ?>
               <?php include_component('services', 'myServicesFavoris') ?>
               <?php include_component('abonnement', 'myFlux') ?>
+              <?php include_component('asso', 'myPreviousAssos') ?>
             <?php else: ?>
               <?php include_partial('home/bienvenue') ?>
             <?php endif ?>

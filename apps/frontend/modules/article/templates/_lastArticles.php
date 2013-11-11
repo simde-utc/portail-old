@@ -13,6 +13,7 @@
             
             <a href="<?php echo url_for('article/show?id='.$article->getId()) ?>" title="Lire <?php echo $article->getName() ?>"><?php echo $article->getName() ?></a>
             <span class="sub">
+              <a href="<?php echo url_for('assos_show', $article->getAsso()) ?>" title="<?php echo $article->getAsso()->getName() ?>"><?php echo $article->getAsso()->getName() ?></a>,
               <?php echo format_date($article->getCreatedAt(), 'P', 'fr'); ?>
               <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($article->getAsso()->getLogin(), 0x04)): ?>
                 – <i class="icon-edit icon-white"></i> <a href="<?php echo url_for('article/edit?id=' . $article->getId()) ?>">Éditer</a>

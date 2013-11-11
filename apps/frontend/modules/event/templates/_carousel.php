@@ -10,7 +10,7 @@
                     <li data-target="#calendrier" data-slide-to="0" class="active"></li>
                     <?php for($i=1;$i<=count($events)/3;$i++): ?>
                         <li data-target="#calendrier" data-slide-to="<?php echo $i ?>"></li>
-                    <? endfor ?>
+                    <?php endfor ?>
                 </ol>
             </h1>
         </div>

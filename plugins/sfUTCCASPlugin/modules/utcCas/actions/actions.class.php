@@ -17,7 +17,7 @@ class utcCasActions extends sfActions
     public function executeLogin(sfWebRequest $request)
     {
         $this->getUser()->login();
-        $this->redirect($this->getUser()->getReferer($request->getReferer()) ? $this->getUser()->getReferer($request->getReferer()) : 'homepage');
+        $this->redirect('homepage');
     }
 
     /**

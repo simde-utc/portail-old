@@ -41,4 +41,9 @@
       Partager sur Facebook
     </a>
   </p>
+  
+  <form action="<?php echo url_for('event/participate?id='.$event->getId()) ?>" method="post" >
+                  <?php echo $rsvpForm ?>
+          <input class="btn btn-primary" type="submit" value="Participer" />
+</form>
 </div>

@@ -124,6 +124,32 @@ class eventActions extends sfActions
     ));
     $response->addMeta('og:url', $this->generateUrl('event_show',$this->event,true));
     $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
+    
+    
+    $this->rsvpForm = new EventMemberForm();
+ //   $this->processRsvpForm($request, $this->rsvpForm);
+  }
+  
+  protected function processRsvpForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if($form->isValid())
+    {
+      $form->getObject()->setUser($this->getUser()->getGuardUser());
+      $eventMember = $form->save();
+
+     $this->redirect('event/show?id='.$eventMember->getEventId());
+    }
+  }
+  
+  public function executeParticipate(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST));
+    $this->forward404Unless($event = Doctrine_Core::getTable('event')->find(array($request->getParameter('id'))), sprintf('Object event does not exist (%s).', $request->getParameter('id')));
+    $this->rsvpForm = new EventMemberForm();
+    $this->processRsvpForm($request, $this->rsvpForm);
+    $this->event = $event;
+    $this->setTemplate('show');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

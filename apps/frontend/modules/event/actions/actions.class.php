@@ -112,7 +112,7 @@ class eventActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->event = $this->getRoute()->getObject();
-
+    
     $response = $this->getResponse();
     $response->addMeta('og:title', $this->event->getName());
     $response->addMeta('og:type', 'Event');
@@ -124,37 +124,47 @@ class eventActions extends sfActions
     ));
     $response->addMeta('og:url', $this->generateUrl('event_show',$this->event,true));
     $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
-    
-    
-    $this->rsvpForm = new EventMemberForm();
- //   $this->processRsvpForm($request, $this->rsvpForm);
-  }
-  
-  protected function processRsvpForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if($form->isValid())
-    {
-      $form->getObject()->setUser($this->getUser()->getGuardUser());
-      $eventMember = $form->save();
 
-     $this->redirect('event/show?id='.$eventMember->getEventId());
+    if($this->getUser()->isAuthenticated()){
+      $r = EventMemberTable::getInstance()->getEventMember($this->event->getId(), $this->getUser()->getGuardUser()->getId())->execute();
+      $this->jeparticipe = false;
+      if($r->count() > 0){
+        $this->jeparticipe = true;
+      }
     }
   }
   
-  public function executeParticipate(sfWebRequest $request)
+  public function executeRegister(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
     $this->forward404Unless($event = Doctrine_Core::getTable('event')->find(array($request->getParameter('id'))), sprintf('Object event does not exist (%s).', $request->getParameter('id')));
-         if(!$this->getUser()->isAuthenticated())
+    
+    if(!$this->getUser()->isAuthenticated()){
+      $this->getUser()->setFlash('error', 'Vous devez vous connecter afin d\'effectuer cette action.');
+      $this->redirect('event/show?id='.$event->getId());
+    }
+    
+    $em = new EventMember();
+    $em->setUser($this->getUser()->getGuardUser());
+    $em->setEvent($event);
+    $em->save();
+
+    $this->redirect('event/show?id='.$em->getEventId());
+  }
+
+public function executeUnregister(sfWebRequest $request)
+  {
+    $this->forward404Unless($request->isMethod(sfRequest::POST));
+    $this->forward404Unless($event = Doctrine_Core::getTable('event')->find(array($request->getParameter('id'))), sprintf('Object event does not exist (%s).', $request->getParameter('id')));
+    if(!$this->getUser()->isAuthenticated())
     {
       $this->getUser()->setFlash('error', 'Vous devez vous connecter afin d\'effectuer cette action.');
       $this->redirect('event/show?id='.$event->getId());
     }
-    $this->rsvpForm = new EventMemberForm();
-    $this->processRsvpForm($request, $this->rsvpForm);
-    $this->event = $event;
-    $this->setTemplate('show');
+    $em = EventMemberTable::getInstance()->getEventMember($event->getId(), $this->getUser()->getGuardUser()->getId())->execute();
+    $em->delete();
+
+    $this->redirect('event/show?id='.$event->getId());
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

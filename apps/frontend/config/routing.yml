@@ -317,10 +317,13 @@ event_delete:
   url:  /event/delete/:id
   param: { module: event, action: delete }
 
-event_participate:
-  url: /event/participate/:id
-  param: { module: event, action: participate }
-  
+event_register:
+  url: /event/register/:id
+  param: { module: event, action: register }
+
+event_unregister:
+  url: /event/unregister/:id
+  param: { module: event, action: unregister }
 
 event_create:
   url: /event/create

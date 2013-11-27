@@ -34,6 +34,14 @@
   </p>
   <p><?php echo nl2br($event->getSummary()) ?></p>
   <p><?php echo nl2br($event->getDescription(ESC_XSSSAFE)) ?></p>
+  <?php if($sf_user->isAuthenticated()): ?> 
+  <p>
+    <form action="<?php echo url_for('event/participate?id='.$event->getId()) ?>" method="post" >
+      <?php echo $rsvpForm ?>
+      <input class="btn btn-primary" type="submit" value="Participer" />
+    </form>
+  </p>
+  <?php endif ?>
   <p>
     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php
     echo urlencode(url_for('event_show', $event, true))
@@ -41,9 +49,4 @@
       Partager sur Facebook
     </a>
   </p>
-  
-  <form action="<?php echo url_for('event/participate?id='.$event->getId()) ?>" method="post" >
-                  <?php echo $rsvpForm ?>
-          <input class="btn btn-primary" type="submit" value="Participer" />
-</form>
 </div>

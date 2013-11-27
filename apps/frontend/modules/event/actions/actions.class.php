@@ -146,6 +146,11 @@ class eventActions extends sfActions
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
     $this->forward404Unless($event = Doctrine_Core::getTable('event')->find(array($request->getParameter('id'))), sprintf('Object event does not exist (%s).', $request->getParameter('id')));
+         if(!$this->getUser()->isAuthenticated())
+    {
+      $this->getUser()->setFlash('error', 'Vous devez vous connecter afin d\'effectuer cette action.');
+      $this->redirect('event/show?id='.$event->getId());
+    }
     $this->rsvpForm = new EventMemberForm();
     $this->processRsvpForm($request, $this->rsvpForm);
     $this->event = $event;

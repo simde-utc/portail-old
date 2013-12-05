@@ -137,7 +137,7 @@ class eventActions extends sfActions
   public function executeRegister(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
-    $this->forward404Unless($event = Doctrine_Core::getTable('event')->find(array($request->getParameter('id'))), sprintf('Object event does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($event = EventTable::getInstance()->find(array($request->getParameter('id'))), sprintf('Object event does not exist (%s).', $request->getParameter('id')));
     
     if(!$this->getUser()->isAuthenticated()){
       $this->getUser()->setFlash('error', 'Vous devez vous connecter afin d\'effectuer cette action.');

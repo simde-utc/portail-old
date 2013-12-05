@@ -159,6 +159,16 @@ Event:
     Asso: { local: asso_id, foreign: id }
     Type: { local: type_id, foreign: id, class: EventType }
     
+EventMember:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    event_id: { type: integer, notnull: true }
+    user_id:  { type: integer, notnull: true }
+  relations:
+    Event: { local: event_id, foreign: id }
+    User: { local: user_id, foreign: id, class: sfGuardUser }
+    
 EventType:
   connection: doctrine
   columns:

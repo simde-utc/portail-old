@@ -316,6 +316,15 @@ event_update:
 event_delete:
   url:  /event/delete/:id
   param: { module: event, action: delete }
+
+event_register:
+  url: /event/register/:id
+  param: { module: event, action: register }
+
+event_unregister:
+  url: /event/unregister/:id
+  param: { module: event, action: unregister }
+
 event_create:
   url: /event/create
   param: { module: event, action: create }
@@ -324,6 +333,7 @@ event_new:
   class: sfDoctrineRoute
   options: { model: Asso, type: object }
   param: { module: event, action: new }
+
 
 agenda_detail:
   url:   /event/calendar

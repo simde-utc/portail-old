@@ -34,6 +34,23 @@
   </p>
   <p><?php echo nl2br($event->getSummary()) ?></p>
   <p><?php echo nl2br($event->getDescription(ESC_XSSSAFE)) ?></p>
+  <?php if($sf_user->isAuthenticated()): ?> 
+    <?php if (!$jeparticipe): ?> 
+      <p>
+        <form action="<?php echo url_for('event/register?id='.$event->getId()) ?>" method="post" >
+          <input class="btn btn-primary" type="submit" value="Participer" />
+        </form>
+      </p>
+    <?php else: ?>
+      <p>
+        <form action="<?php echo url_for('event/unregister?id='.$event->getId()) ?>" method="post" >
+          <input class="btn btn-danger" type="submit" value="Je ne participe plus" />
+        </form>
+      </p>
+    <?php endif; ?>
+  <?php else: ?>
+    <p>Connectez-vous pour participer à l'évènement. </p>
+  <?php endif; ?>
   <p>
     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php
     echo urlencode(url_for('event_show', $event, true))

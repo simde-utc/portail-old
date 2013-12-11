@@ -56,6 +56,7 @@ class sfGuardUser extends PluginsfGuardUser
    *  0x040 - gestion du materiel
    *  0x080 - gestion des mails
    *  0x100 - gestion de la trésorerie
+   *  0x200 - gestion des photos
    * @return type
    */
   public function hasAccess($asso,$droit)

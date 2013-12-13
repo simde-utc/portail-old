@@ -45,6 +45,11 @@ $(document).ready(function(){
     
   $('.dropdown-toggle').dropdown();
   
+  $('.datepicker').datetimepicker({
+    dateFormat: "dd/mm/yy",
+    timeFormat: "HH:mm"
+  });
+  
   $(".ejs").each(function(){
     var a = $(this).html() + "@assos.utc." + "fr";
     $(this).html(a);

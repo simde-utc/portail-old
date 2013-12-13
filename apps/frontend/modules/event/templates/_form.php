@@ -1,3 +1,5 @@
+<?php use_javascript('jquery-ui-1.8.12.custom.min'); ?>
+<?php use_javascript('jquery-ui-timepicker-addon'); ?>
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 

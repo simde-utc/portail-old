@@ -28,6 +28,12 @@ class sfWidgetDatePicker extends sfWidgetFormInputText
     );
   }
   
+  public function getStylesheets() {
+    return array(
+      'jquery-ui-1.8.12.custom'
+    );
+  }
+
   public function getJavaScripts() {
     return array(
       'jquery-ui-1.8.12.custom.min',

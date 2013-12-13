@@ -13,7 +13,7 @@ default:
     #language:     en
     #robots:       noindex, nofollow
 
-  stylesheets:    ["//fonts.googleapis.com/css?family=Raleway:900", jquery-ui-1.8.12.custom.css, bootstrap.min.css, main.css?2, bootstrap-responsive.min.css, font-awesome.min.css]
+  stylesheets:    ["//fonts.googleapis.com/css?family=Raleway:900", bootstrap.min.css, main.css?2, bootstrap-responsive.min.css, font-awesome.min.css]
 
   javascripts:    [jquery-1.7.2.min.js, bootstrap.min.js?2, main.js?2]
 

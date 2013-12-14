@@ -30,14 +30,14 @@ class sfWidgetDatePicker extends sfWidgetFormInputText
   
   public function getStylesheets() {
     return array(
-      'jquery-ui-1.8.12.custom'
+      'jquery-ui-1.8.12.custom.css' => 'screen'
     );
   }
 
   public function getJavaScripts() {
     return array(
-      'jquery-ui-1.8.12.custom.min',
-      'jquery-ui-timepicker-addon'
+      'jquery-ui-1.8.12.custom.min.js',
+      'jquery-ui-timepicker-addon.js'
     );
   }
 

@@ -192,9 +192,10 @@ Photo:
     title: {type: string(200)}
     author: {type: integer, notnull: true}
     is_public: {type: integer, notnull:true}
-    image: { type: string }
+    image: { type: string, notnull: true}
   relations:
     GaleriePhoto: {local: galeriePhoto_id, foreign: id}
+    User: { local: author, foreign: id, class: sfGuardUser }
 
 Article:
   connection: doctrine

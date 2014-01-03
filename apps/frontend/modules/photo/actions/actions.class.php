@@ -19,8 +19,22 @@ class photoActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->photo);
+    $this->photo = $this->getRoute()->getObject();
+    $response = $this->getResponse();
+    $response->addMeta('og:title', GaleriePhotoTable::getInstance()->find($this->photo->getGaleriephotoId())->getTitle());
+    $response->addMeta('og:type', 'Galerie');
+    sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
+    $response->addMeta('og:photo', doThumb($this->photo->getImage(), 'galeries', array(
+        'width' => 150,
+        'height' => 150),
+      'scale'
+    ));
+    $response->addMeta('og:url', $this->generateUrl('photo_show',$this->photo,true));
+    $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
+
+
+    // $this->photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id')));
+    // $this->forward404Unless($this->photo);
   }
 
   public function executeNew(sfWebRequest $request)

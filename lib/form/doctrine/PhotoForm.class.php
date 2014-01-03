@@ -12,13 +12,22 @@ class PhotoForm extends BasePhotoForm
 {
   public function configure()
   {
+  	sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
+
   	$this->setWidgets(array(
       'id'              => new sfWidgetFormInputHidden(),
       'galeriePhoto_id' => new sfWidgetFormInputHidden(),
       'title'           => new sfWidgetFormInputText(),
       'author'          => new sfWidgetFormInputText(),
       'is_public'       => new sfWidgetFormInputText(),
-      'image'           => new sfWidgetFormTextarea(),
+    ));
+
+    $this->widgetSchema['image'] = new sfWidgetFormInputFileEditable(array(
+        'file_src' => doThumb($this->getObject()->getImage(), 'galeries', array('width'=>150, 'height'=>150), 'scale'),
+        'is_image' => true,
+        'edit_mode' => (!$this->isNew() && $this->getObject()->getImage()),
+        'with_delete' => true,
+        'delete_label' => "Supprimer cette photo"
     ));
 
     $this->setValidators(array(
@@ -27,8 +36,16 @@ class PhotoForm extends BasePhotoForm
       'title'           => new sfValidatorString(array('max_length' => 200, 'required' => false)),
       'author'          => new sfValidatorInteger(),
       'is_public'       => new sfValidatorInteger(),
-      'image'           => new sfValidatorString(),
     ));
+
+    $this->validatorSchema['image'] = new sfValidatorFileImage(array(
+    	'required' => false,
+    	'path' => sfConfig::get('sf_upload_dir').'/galeries/source',
+        'mime_types' => 'web_images',
+        'max_width' => 1000,
+        'max_height' => 1000
+    ));
+
 
     $this->widgetSchema->setLabel('title', 'Titre');
     $this->widgetSchema->setLabel('author', 'Photographe');

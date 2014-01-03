@@ -5,25 +5,29 @@
       <td><?php echo $photo->getGaleriephotoId() ?></td>
     </tr>
     <tr>
-      <th>Title:</th>
+      <th>Titre:</th>
       <td><?php echo $photo->getTitle() ?></td>
     </tr>
     <tr>
-      <th>Author:</th>
+      <th>Photographe:</th>
       <td><?php echo $photo->getAuthor() ?></td>
     </tr>
     <tr>
-      <th>Is public:</th>
+      <th>Visible:</th>
       <td><?php echo $photo->getIsPublic() ?></td>
     </tr>
     <tr>
-      <th>Image:</th>
-      <td><?php echo $photo->getImage() ?></td>
+      <th>Photo:</th>
+      <td><?php echo showThumb($photo->getImage(), 'galeries', array(
+      'width' => 350,
+      'height' => 250,
+      'class' => 'pull-right img-polaroid'
+    ), 'scale') ?><br/></td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-<a href="<?php echo url_for('photo/edit?id='.$photo->getId()) ?>">Edit</a>
+<a href="<?php echo url_for('photo/edit?id='.$photo->getId()) ?>">Editer</a>
 

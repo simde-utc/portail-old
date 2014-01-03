@@ -192,11 +192,11 @@ galerie_photo_edit:
   param: { module: galerie, action: edit }
   options: { model: GaleriePhoto, type: object }
 
-galerie_photos_update:
+galerie_photo_update:
   url:  /galerie/update/:id
   param: { module: galerie, action: update }
 
-galerie_photos_delete:
+galerie_photo_delete:
   url:  /galerie/delete/:id
   param: { module: galerie, action: delete }
 
@@ -205,11 +205,10 @@ galerie_photo_create:
   param: { module: galerie, action: create }
 
 galerie_photo_new:
-  url: /galerie/new
+  url: /galerie/new/:id
   class: sfDoctrineRoute
   options: { model: Event, type: object }
   param: { module: galerie, action: new }
-
 
 #Uv
 uv_list:

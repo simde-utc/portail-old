@@ -15,7 +15,7 @@ class GaleriePhotoForm extends BaseGaleriePhotoForm
   	sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
   	$this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'event_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Event'), 'add_empty' => false)),
+      'event_id'    => new sfWidgetFormInputHidden(),
       'title'       => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea()
     ));
@@ -34,19 +34,18 @@ class GaleriePhotoForm extends BaseGaleriePhotoForm
       'description' => new sfValidatorString()
     ));
 
+
     $this->widgetSchema->setLabel('event_id', 'Evènement');
     $this->widgetSchema->setLabel('title', 'Titre');
 
     $this->widgetSchema->setNameFormat('galerie[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    $this->useFields(array('event_id', 'title', 'description'));
 
 
   }
 
-  public function processValues($values){
-    
-  }
   
 }
 

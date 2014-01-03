@@ -19,7 +19,16 @@ class galerieActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
+
+    $this->redirectUnless($event = $this->getRoute()->getObject(), 'event_list');
+    if (!$this->getUser()->isAuthenticated()
+      || !$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)
+    ) {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('event/show?id=' . $event->getId());
+    }
     $this->form = new GaleriePhotoForm();
+    $this->form->setDefault('event_id', $this->getRoute()->getObject()->getId());
   }
 
   public function executeShow(sfWebRequest $request)

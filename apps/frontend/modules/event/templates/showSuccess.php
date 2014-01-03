@@ -53,7 +53,7 @@
   <?php endif; ?>
   <?php if($sf_user->isAuthenticated()
     && $sf_user->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)): ?>
-    <a class="btn btn-primary" href="<?php echo url_for('galerie_photos_new')?>">
+    <a class="btn btn-primary" href="<?php echo url_for('galerie_photo_new', $event) ?>">
       Ajouter une galerie photos
     </a>
   <?php endif; ?>

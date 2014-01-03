@@ -175,6 +175,42 @@ article_new:
   options: { model: Asso, type: object }
   param: { module: article, action: new }
 
+#GaleriePhoto
+galerie_photo_list:
+  url:   /galerie
+  param: {module: galerie, action: index}
+
+galerie_photo_show:
+  url:   /galerie/show/:id
+  class: sfDoctrineRoute
+  param: { module: galerie, action: show }
+  options: { model: GaleriePhoto, type: object }
+
+galerie_photo_edit:
+  url:  /galerie/edit/:id
+  class: sfDoctrineRoute
+  param: { module: galerie, action: edit }
+  options: { model: GaleriePhoto, type: object }
+
+galerie_photos_update:
+  url:  /galerie/update/:id
+  param: { module: galerie, action: update }
+
+galerie_photos_delete:
+  url:  /galerie/delete/:id
+  param: { module: galerie, action: delete }
+
+galerie_photo_create:
+  url: /galerie/create
+  param: { module: galerie, action: create }
+
+galerie_photo_new:
+  url: /galerie/new
+  class: sfDoctrineRoute
+  options: { model: Event, type: object }
+  param: { module: galerie, action: new }
+
+
 #Uv
 uv_list:
   url:   /uv

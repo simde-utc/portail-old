@@ -210,6 +210,37 @@ galerie_photo_new:
   options: { model: Event, type: object }
   param: { module: galerie, action: new }
 
+#Photo
+photo_show:
+  url: /photo/show/:id
+  class: sfDoctrineRoute
+  param: { module: photo, action: show }
+  options: { model: Photo, type: object }
+
+photo_edit:
+  url:  /photo/edit/:id
+  class: sfDoctrineRoute
+  param: { module: photo, action: edit }
+  options: { model: Photo, type: object }
+
+photo_update:
+  url:  /photo/update/:id
+  param: { module: photo, action: update }
+
+photo_delete:
+  url:  /photo/delete/:id
+  param: { module: photo, action: delete }
+
+photo_create:
+  url: /photo/create
+  param: { module: photo, action: create }
+
+photo_new:
+  url: /photo/new/:id
+  class: sfDoctrineRoute
+  options: { model: GaleriePhoto, type: object }
+  param: { module: photo, action: new }
+
 #Uv
 uv_list:
   url:   /uv

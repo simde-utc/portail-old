@@ -25,7 +25,15 @@ class photoActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
+    $this->redirectUnless($galerie_photo = $this->getRoute()->getObject(), 'galerie_photo_list');
+    if (!$this->getUser()->isAuthenticated()
+      || !$this->getUser()->getGuardUser()->hasAccess(EventTable::getInstance()->find($galerie_photo->getEventId())->getAsso()->getLogin(), 0x200)
+    ) {
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('event/show?id=' . $galerie_photo->getEventId());
+    }
     $this->form = new PhotoForm();
+    $this->form->setDefault('galeriePhoto_id', $this->getRoute()->getObject()->getId());
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -73,7 +81,7 @@ class photoActions extends sfActions
     {
       $photo = $form->save();
 
-      $this->redirect('photo/edit?id='.$photo->getId());
+      $this->redirect('photo/show?id='.$photo->getId());
     }
   }
 }

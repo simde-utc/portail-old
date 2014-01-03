@@ -1,4 +1,4 @@
-<h1>Photos List</h1>
+<h1>Liste des photos</h1>
 
 <table>
   <thead>
@@ -29,4 +29,3 @@
   </tbody>
 </table>
 
-  <a href="<?php echo url_for('photo/new') ?>">New</a>

@@ -19,4 +19,7 @@
 
 <a href="<?php echo url_for('galerie/edit?id='.$galerie_photo->getId()) ?>">Editer</a>
 &nbsp;
-<a href="<?php echo url_for('galerie/index') ?>">Liste</a>
+<?php if($sf_user->isAuthenticated()
+   && $sf_user->getGuardUser()->hasAccess(EventTable::getInstance()->find($galerie_photo->getEventId())->getAsso()->getLogin(), 0x200)): ?>
+  <a href="<?php echo url_for('photo_new', $galerie_photo) ?>">Ajouter des photos</a>
+<?php endif ?>

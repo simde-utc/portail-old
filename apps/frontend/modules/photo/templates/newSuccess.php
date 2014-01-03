@@ -1,3 +1,3 @@
-<h1>New Photo</h1>
+<h1>Nouvelle photo</h1>
 
 <?php include_partial('form', array('form' => $form)) ?>

@@ -173,7 +173,29 @@ EventType:
   connection: doctrine
   columns:
     name: { type: string(50) }
-    
+
+GaleriePhoto:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    event_id: {type: integer, notnull: true }
+    title: {type: string(200), notnull: true }
+    description: {type: string, notnull: true}
+  relations:
+    Event: {local: event_id, foreign: id }
+
+Photo:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    galeriePhoto_id: {type: integer, notnull: true}
+    title: {type: string(200)}
+    author: {type: integer, notnull: true}
+    is_public: {type: integer, notnull:true}
+    image: { type: string }
+  relations:
+    GaleriePhoto: {local: galeriePhoto_id, foreign: id}
+
 Article:
   connection: doctrine
   actAs: { Timestampable: ~ }

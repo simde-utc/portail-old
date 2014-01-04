@@ -45,6 +45,7 @@ $(document).ready(function(){
     
   $('.dropdown-toggle').dropdown();
   
+  if ($.ui)
   $('.datepicker').datetimepicker({
     dateFormat: "dd/mm/yy",
     timeFormat: "HH:mm"

@@ -1,5 +1,6 @@
 <?php use_helper('Date') ?>
 <?php use_helper('Thumb') ?>
+<?php use_helper('Events') ?>
 
 <div id="calendrier" data-interval="false" class="slide">
     <div class="row-fluid">
@@ -35,8 +36,8 @@
                                 <h4 class="media-heading"><a href="<?php echo url_for('event/show?id='.$event->getId()) ?>"><?php echo $event->getName() ?></a></h4>
                                 <p><?php echo $event->getSummary() ?></p>
                                 <p>
-                                    Par <a href="<?php echo url_for('asso/show?login='.$event->getAsso()->getLogin()) ?>" title="<?php echo $event->getAsso()->getName() ?>"><?php echo $event->getAsso()->getName() ?></a><br />
-                                    <?php echo format_date($event->getStartDate(),"D",'fr') ?>, <?php echo format_date($event->getStartDate(),"t",'fr') ?>
+                                <?php echo event_from_asso_list($event) ;?><br />
+                                <?php echo format_date($event->getStartDate(),"D",'fr') ?>, <?php echo format_date($event->getStartDate(),"t",'fr') ?>
                                 </p>
                             </div>
                         </div>

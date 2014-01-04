@@ -10,6 +10,14 @@
  */
 class EventForm extends BaseEventForm
 {
+  public function getJavascripts(){
+    return array('select2.js', 'select2_locale_fr.js');
+  }
+
+  public function getStylesheets(){
+    return array('select2/select2.css'=>'screen');
+  }
+
   public function configure()
   { 
     sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
@@ -40,7 +48,8 @@ class EventForm extends BaseEventForm
     ));
     
     $this->widgetSchema->setLabel('guest_asso_list', 'Associations Partenaires');
-    $this->widgetSchema['guest_asso_list']->setAttributes(array('style' => 'width:100%;'));
+    $this->widgetSchema['guest_asso_list']->setAttributes(
+      array('style' => 'width:100%;', 'class' => 'select2'));
 
     $this->validatorSchema['affiche_delete'] = new sfValidatorBoolean();
 

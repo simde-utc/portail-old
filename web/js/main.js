@@ -63,4 +63,7 @@ $(document).ready(function(){
       $(this).attr("src", "/images/default.jpg");
     }
   });
+
+  if(window.Select2)
+    $(".select2").select2({width: 'resolve'});
 });

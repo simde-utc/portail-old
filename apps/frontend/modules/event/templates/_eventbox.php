@@ -1,3 +1,5 @@
+<?php use_helper('Events') ?>
+
 <?php if($events->count() > 0): ?>
   <div class="row-fluid">
     <ul class="thumbnails events">
@@ -9,7 +11,7 @@
             </a>
             <h4><a href="<?php echo url_for('event_show', $event) ?>"><?php echo $event->getName() ?></a></h4>
             <p>
-              Par <a href="<?php echo url_for('assos_show',$event->getAsso())?>" title="Voir la page de <?php echo $event->getAsso()->getName() ?>"><?php echo $event->getAsso()->getName() ?></a><br />
+              <?php echo event_from_asso_list($event) ;?>
               Le <?php echo format_date($event->getStartDate(), 'd MMMM à HH:mm', 'fr'); ?>
             </p>
             <p>

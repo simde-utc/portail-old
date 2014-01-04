@@ -1,5 +1,7 @@
 <?php use_helper('Date') ?>
 <?php use_helper('Thumb') ?>
+<?php use_helper('Events') ?>
+
 
 <div class="part" id="event">
   <h1>
@@ -25,16 +27,7 @@
     <?php echo format_date($event->getEndDate(), 'f', 'fr') ?></p>
 
   <p>
-    Créé par <?php $event->getAsso()->linkTo() ?>
-    <?php 
-    $guest_assos=$event->getGuestAsso();
-    if (count($guest_assos)) : ?>
-      en partenariat avec 
-      <?php foreach ($guest_assos as $guest_asso) : 
-          $guest_asso->linkTo();
-        if (next($guest_assos)==true) echo ", "; ?>
-      <?php endforeach; ?>
-    <?php endif; ?>
+    <?php echo event_from_asso_list($event) ;?>
     <br/>
     Type : <?php echo $event->getType()->getName(); ?><br />
     Lieu : <?php echo $event->getPlace(); ?>

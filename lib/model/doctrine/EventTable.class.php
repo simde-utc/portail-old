@@ -34,7 +34,9 @@ class EventTable extends Doctrine_Table
 
         if (!is_null($asso))
         {
-            $q = $q->where("a.asso_id = ?", $asso->getPrimaryKey());
+            $q = $q->where("a.asso_id = ?", $asso->getPrimaryKey())
+                ->leftJoin('a.GuestAsso guest')
+                ->orWhere("guest.id = ?", $asso->getPrimaryKey());
             if ($asso->getLogin() == 'picasso')
                 $q = $q->orWhere('a.type_id = ?', 2);
         }
@@ -54,7 +56,10 @@ class EventTable extends Doctrine_Table
         $q = $q->where("a.end_date > NOW()");
         if (!is_null($asso))
         {
-            $q = $q->andWhere("a.asso_id = ?", $asso->getPrimaryKey());
+            $q = $q->andWhere("a.asso_id = ?", $asso->getPrimaryKey())
+                ->leftJoin('a.GuestAsso guest')
+                ->orWhere("guest.id = ?", $asso->getPrimaryKey());
+
             if ($asso->getLogin() == 'picasso') {
                 $q = $q->orWhere('a.type_id = ?', 2);
             }
@@ -79,9 +84,11 @@ class EventTable extends Doctrine_Table
         $q = $this->createQuery('ev')
             ->select('as.name, ev.*')
             ->where('ev.asso_id = as.id')
+            ->orWhere("guest.id = as.id")
             ->andWhere('ab.user_id = ?', $user_id)
             ->leftJoin('ev.Asso as')
             ->leftJoin('as.Abonnement ab')
+            ->leftJoin('ev.GuestAsso guest')
             ->orderBy('ev.updated_at desc')
             ->limit(3);
         return $q;

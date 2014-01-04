@@ -7,13 +7,12 @@ function linkTo($asso){
 
 function event_from_asso_list($event){
 	$event_host= 'Créé par ' . linkTo($event->getAsso());
+	
     $guest_assos=$event->getGuestAsso();
-    if ($guest_assos){
-    	$event_host .= ' avec ';
-    	$partners = array(); 
-    	foreach ($guest_assos as $guest_asso)
-    		array_push($partners,linkTo($guest_asso)); 
-    	$event_host .= implode(', ', $partners);
-    }
+	$partners = array(); 
+	foreach ($guest_assos as $guest_asso)
+		array_push($partners,linkTo($guest_asso)); 
+    if($partners)
+	    $event_host .= ' avec ' .implode(', ', $partners);
     return($event_host);
 }

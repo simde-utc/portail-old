@@ -104,16 +104,6 @@ class Asso extends BaseAsso {
     return $this->getName();
   }
 
-  public function linkTo()
-  {
-    ?>
-    <a href="<?php echo url_for('assos_show',$this)?>"
-             title="Voir la page de <?php echo $this->getName() ?>">
-            <?php echo $this->getName() ?>
-          </a>
-    <?php
-  }
-
   public function addMember(sfGuardUser $user)
   {
     $assoMember = new AssoMember();

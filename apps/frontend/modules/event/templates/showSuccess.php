@@ -25,10 +25,17 @@
     <?php echo format_date($event->getEndDate(), 'f', 'fr') ?></p>
 
   <p>
-    Créé par <a href="<?php echo url_for('assos_show',$event->getAsso())?>"
-                title="Voir la page de <?php echo $event->getAsso()->getName() ?>">
-      <?php echo $event->getAsso()->getName() ?>
-    </a><br />
+    Créé par <?php $event->getAsso()->linkTo() ?>
+    <?php 
+    $guest_assos=$event->getGuestAsso();
+    if (count($guest_assos)) : ?>
+      en partenariat avec 
+      <?php foreach ($guest_assos as $guest_asso) : 
+          $guest_asso->linkTo();
+        if (next($guest_assos)==true) echo ", "; ?>
+      <?php endforeach; ?>
+    <?php endif; ?>
+    <br/>
     Type : <?php echo $event->getType()->getName(); ?><br />
     Lieu : <?php echo $event->getPlace(); ?>
   </p>

@@ -23,7 +23,8 @@ class EventForm extends BaseEventForm
     $this->validatorSchema['end_date'] = new sfValidatorDatePicker(array());
     
     $this->widgetSchema['affiche'] = new sfWidgetFormInputFileEditable(array(
-      'file_src' => doThumb($this->getObject()->getAffiche(), 'events', array('width'=>150, 'height'=>150), 'scale'),
+      'file_src' => doThumb($this->getObject()->getAffiche(), 'events',
+        array('width'=>150, 'height'=>150), 'scale'),
       'is_image' => true,
       'edit_mode' => (!$this->isNew() && $this->getObject()->getAffiche()),
       'with_delete' => true,
@@ -38,6 +39,9 @@ class EventForm extends BaseEventForm
         'max_height' => 1000
     ));
     
+    $this->widgetSchema->setLabel('guest_asso_list', 'Associations Partenaires');
+    $this->widgetSchema['guest_asso_list']->setAttributes(array('style' => 'width:100%;'));
+
     $this->validatorSchema['affiche_delete'] = new sfValidatorBoolean();
 
     $this->widgetSchema->setLabel('name', 'Nom');
@@ -52,6 +56,8 @@ class EventForm extends BaseEventForm
     $this->widgetSchema->setLabel('is_weekmail', 'Paraître dans le Weekmail ?');
     $this->widgetSchema['is_weekmail']->setAttribute('style', 'width: 15px;');
     
-    $this->useFields(array('asso_id', 'name', 'type_id', 'start_date', 'end_date', 'summary', 'description', 'place', 'is_public', 'affiche', 'is_weekmail'));
+    $this->useFields(array('asso_id', 'name', 'type_id', 'start_date', 'end_date',
+      'summary', 'description', 'place', 'is_public', 'affiche', 'is_weekmail',
+      'guest_asso_list'));
   }
 }

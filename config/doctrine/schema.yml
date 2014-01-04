@@ -22,6 +22,7 @@ Asso:
   relations:
     Pole: { local: pole_id, foreign: id }
     Type: { local: type_id, foreign: id, class: TypeAsso }
+    GestOfEvent: { class:Event, local:asso_id, foreign:event_id, refClass:EventGestAsso }
 
 Pole:
   connection: doctrine
@@ -158,6 +159,7 @@ Event:
   relations:
     Asso: { local: asso_id, foreign: id }
     Type: { local: type_id, foreign: id, class: EventType }
+    GuestAsso: { class:Asso, local:event_id, foreign:asso_id, refClass:EventGestAsso }
 
 EventMember:
   connection: doctrine
@@ -173,6 +175,12 @@ EventType:
   connection: doctrine
   columns:
     name: { type: string(50) }
+
+EventGestAsso:
+  connection: doctrine
+  columns:
+    event_id: { type: integer, primary:true }
+    asso_id: { type: integer, primary:true }
 
 Article:
   connection: doctrine

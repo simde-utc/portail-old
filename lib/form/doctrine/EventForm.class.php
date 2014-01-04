@@ -11,11 +11,12 @@
 class EventForm extends BaseEventForm
 {
   public function getJavascripts(){
-    return array('select2.js', 'select2_locale_fr.js');
+    return array('select2.js', 'select2_locale_fr.js', 'jquery-ui-1.8.12.custom.min.js',
+      'jquery-ui-timepicker-addon.js');
   }
 
   public function getStylesheets(){
-    return array('select2/select2.css'=>'screen');
+    return array('select2/select2.css'=>'screen', 'jquery-ui-1.8.12.custom.css' => 'screen');
   }
 
   public function configure()

@@ -182,6 +182,29 @@ EventGuestAsso:
     event_id: { type: integer, primary:true }
     asso_id: { type: integer, primary:true }
 
+GaleriePhoto:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    event_id: {type: integer, notnull: true }
+    title: {type: string(200), notnull: true }
+    description: {type: string, notnull: true}
+  relations:
+    Event: {local: event_id, foreign: id }
+
+Photo:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    galeriePhoto_id: {type: integer, notnull: true}
+    title: {type: string(200)}
+    author: {type: integer, notnull: true}
+    is_public: {type: integer, notnull:true}
+    image: { type: string, notnull: true}
+  relations:
+    GaleriePhoto: {local: galeriePhoto_id, foreign: id}
+    User: { local: author, foreign: id, class: sfGuardUser }
+
 Article:
   connection: doctrine
   actAs: { Timestampable: ~ }

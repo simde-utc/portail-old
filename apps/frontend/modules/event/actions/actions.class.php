@@ -132,6 +132,8 @@ class eventActions extends sfActions
         $this->jeparticipe = true;
       }
     }
+
+    $this->galerie_photos = GaleriePhotoTable::getInstance()->getEventGaleries($this->event)->execute();
   }
   
   public function executeRegister(sfWebRequest $request)

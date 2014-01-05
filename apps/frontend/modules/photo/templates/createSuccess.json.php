@@ -9,6 +9,5 @@ else {
 	  "error" => $sf_data->get('error', ESC_RAW)
   );
 }
-
 echo json_encode($result);
 ?>

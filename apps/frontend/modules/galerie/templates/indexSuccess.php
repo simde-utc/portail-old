@@ -12,7 +12,7 @@
     <?php foreach ($galerie_photos as $galerie_photo): ?>
     <tr>
        <td><a href="<?php echo url_for('galerie/show?id='.$galerie_photo->getId()) ?>"><?php echo $galerie_photo->getTitle() ?></a></td>
-      <td><?php echo EventTable::getInstance()->find($galerie_photo->getEventId()) ?></td>     
+      <td><?php echo $galerie_photo->getEvent()->getName() ?></td>     
       <td><?php echo $galerie_photo->getDescription() ?></td>
     </tr>
     <?php endforeach; ?>

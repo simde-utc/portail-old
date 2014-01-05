@@ -177,6 +177,12 @@ EventType:
     name: { type: string(50) }
 
 
+EventGuestAsso:
+  connection: doctrine
+  columns:
+    event_id: { type: integer, primary:true }
+    asso_id: { type: integer, primary:true }
+
 GaleriePhoto:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -199,12 +205,6 @@ Photo:
   relations:
     GaleriePhoto: {local: galeriePhoto_id, foreign: id}
     User: { local: author, foreign: id, class: sfGuardUser }
-
-EventGuestAsso:
-  connection: doctrine
-  columns:
-    event_id: { type: integer, primary:true }
-    asso_id: { type: integer, primary:true }
 
 
 Article:

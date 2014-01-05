@@ -21,7 +21,7 @@ class PhotoTable extends Doctrine_Table
     	$q = $this->createQuery('g')
     		->select('g.*')
     		->where("g.galeriePhoto_id = ?", $galerie_id)
-    		->orderBy('g.updated_at DESC');
+    		->orderBy('g.id ASC');
 
 		return $q;
     }
@@ -31,8 +31,14 @@ class PhotoTable extends Doctrine_Table
     		->select('g.*')
     		->where("g.galeriePhoto_id = ?", $galerie_id)
     		->andWhere("g.is_public = ?", 1)
-    		->orderBy('g.updated_at DESC');
+    		->orderBy('g.id ASC');
 
 		return $q;
+    }
+    public function deletePhotosFromGallery($galerie_id){
+        $q = $this->createQuery('g')
+          ->delete()
+          ->where("g.galeriePhoto_id = ?", $galerie_id)
+          ->execute();        
     }
 }

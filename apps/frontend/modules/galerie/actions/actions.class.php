@@ -55,7 +55,7 @@ class galerieActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($galerie_photo = Doctrine_Core::getTable('GaleriePhoto')->find(array($request->getParameter('id'))), sprintf('Object galerie_photo does not exist (%s).', $request->getParameter('id')));
-    $event = $galerie_photo->getEvent($galerie_photo->getEventId());
+    $event = $galerie_photo->getEvent();
     if (!$this->getUser()->isAuthenticated()
       || !$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)
     ) {
@@ -80,7 +80,7 @@ class galerieActions extends sfActions
   {
     $request->checkCSRFProtection();
     $this->forward404Unless($galerie_photo = Doctrine_Core::getTable('GaleriePhoto')->find(array($request->getParameter('id'))), sprintf('Object galerie_photo does not exist (%s).', $request->getParameter('id')));
-    $event = $galerie_photo->getEvent($galerie_photo->getEventId());
+    $event = $galerie_photo->getEvent();
     if (!$this->getUser()->isAuthenticated()
       || !$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)
     ) {
@@ -88,6 +88,11 @@ class galerieActions extends sfActions
       $this->redirect('event/show?id=' . $event->getId());
     }
     $this->forward404Unless($galerie_photo = Doctrine_Core::getTable('GaleriePhoto')->find(array($request->getParameter('id'))), sprintf('Object galerie_photo does not exist (%s).', $request->getParameter('id')));
+    $photos = PhotoTable::getInstance()->getPhotosList($galerie_photo->getId())->execute();
+    foreach ($photos as $photo) {
+      $photo->delete();
+    }
+
     $galerie_photo->delete();
 
     $this->redirect('galerie/index');

@@ -31,17 +31,13 @@ class photoActions extends sfActions
     ));
     $response->addMeta('og:url', $this->generateUrl('photo_show',$this->photo,true));
     $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
-
-
-    // $this->photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id')));
-    // $this->forward404Unless($this->photo);
   }
 
   public function executeNew(sfWebRequest $request)
   {
     $this->redirectUnless($galerie_photo = $this->getRoute()->getObject(), 'galerie_photo_list');
     if (!$this->getUser()->isAuthenticated()
-      || !$this->getUser()->getGuardUser()->hasAccess(EventTable::getInstance()->find($galerie_photo->getEventId())->getAsso()->getLogin(), 0x200)
+      || !$this->getUser()->getGuardUser()->hasAccess($galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)
     ) {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('event/show?id=' . $galerie_photo->getEventId());
@@ -90,7 +86,7 @@ class photoActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->forward404Unless($photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
-    $galerie_photo_id = $photo->getGaleriephotoId();
+    $galerie_photo_id = $photo->getGaleriePhotoId();
     $photo->delete();
 
     $this->redirect('galerie/show?id=', $galerie_photo_id);

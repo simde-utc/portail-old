@@ -16,13 +16,4 @@ class GaleriePhotoTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('GaleriePhoto');
     }
-
-    public function getEvent($event_id){
-    	$q = $this->createQuery('g')
-    		->select('g.*, e.*')
-    		->leftJoin('g.Event e')
-    		->where('e.id = ?', $event_id);
-
-    	return $q;
-    }
 }

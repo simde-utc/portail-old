@@ -3,7 +3,7 @@
   <tbody>
     <tr>
       <th>Evènement:</th>
-      <td><?php echo $galerie_photo->getEvent($galerie_photo->getEventId())?></td>
+      <td><?php echo $galerie_photo->getEvent()?></td>
     </tr>
     <tr>
       <th>Titre:</th>
@@ -17,7 +17,7 @@
 </table>
 
 <?php if($sf_user->isAuthenticated()
-   && $sf_user->getGuardUser()->hasAccess($galerie_photo->getEvent($galerie_photo->getEventId())->getAsso()->getLogin(), 0x200)): ?>
+   && $sf_user->getGuardUser()->hasAccess($galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)): ?>
 <a class="btn btn-primary" href="<?php echo url_for('galerie/edit?id='.$galerie_photo->getId()) ?>">Editer la galerie</a>
 &nbsp;
   <a class="btn btn-primary" href="<?php echo url_for('photo_new', $galerie_photo) ?>">Ajouter des photos</a>

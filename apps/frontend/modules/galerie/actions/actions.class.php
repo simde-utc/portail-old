@@ -34,6 +34,8 @@ class galerieActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->galerie_photo = Doctrine_Core::getTable('GaleriePhoto')->find(array($request->getParameter('id')));
+    $this->photos = PhotoTable::getInstance()->getPhotosList($this->galerie_photo->getId())->execute();
+    $this->photos_public = PhotoTable::getInstance()->getPhotosPublicList($this->galerie_photo->getId())->execute();
     $this->forward404Unless($this->galerie_photo);
   }
 

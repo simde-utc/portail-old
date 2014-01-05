@@ -48,9 +48,13 @@ class EventForm extends BaseEventForm
         'max_height' => 1000
     ));
     
+    $this->widgetSchema['guest_asso_list']->setOption('method', getName);
+    
     $this->widgetSchema->setLabel('guest_asso_list', 'Associations Partenaires');
     $this->widgetSchema['guest_asso_list']->setAttributes(
       array('style' => 'width:100%;', 'class' => 'select2'));
+
+
 
     $this->validatorSchema['affiche_delete'] = new sfValidatorBoolean();
 

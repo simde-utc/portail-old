@@ -31,7 +31,7 @@ class PhotoTable extends Doctrine_Table
     		->select('g.*')
     		->where("g.galeriePhoto_id = ?", $galerie_id)
     		->andWhere("g.is_public = ?", 1)
-    		->orderBy('g.updated_at DESC');
+    		->orderBy('g.id ASC');
 
 		return $q;
     }

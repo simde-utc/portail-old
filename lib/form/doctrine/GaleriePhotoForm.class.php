@@ -19,13 +19,6 @@ class GaleriePhotoForm extends BaseGaleriePhotoForm
       'title'       => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea()
     ));
-    // $this->widgetSchema['image'] = new sfWidgetFormInputFileEditable(array(
-    //             'file_src' => doThumb($this->getObject()->getImage(), 'articles', array('width'=>150, 'height'=>150), 'scale'),
-    //             'is_image' => true,
-    //             'edit_mode' => (!$this->isNew() && $this->getObject()->getImage()),
-    //             'with_delete' => true,
-    //             'delete_label' => "Supprimer cette illustration"
-    //         ));
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),

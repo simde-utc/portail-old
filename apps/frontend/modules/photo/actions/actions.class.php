@@ -34,8 +34,8 @@ class photoActions extends sfActions
         $this->photo->getIsPublic()==1){
 
       $response->addMeta('og:photo', doThumb($this->photo->getImage(), 'galeries', array(
-          'width' => 1000,
-          'height' => 1000),
+          'width' => 2048,
+          'height' => 2048),
         'scale'
       ));
 

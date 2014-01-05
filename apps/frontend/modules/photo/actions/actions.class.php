@@ -47,7 +47,7 @@ class photoActions extends sfActions
       $this->redirect('event/show?id=' . $galerie_photo->getEventId());
     }
     $this->form = new PhotoForm();
-    $this->form->setDefault('galeriePhoto_id', $this->getRoute()->getObject()->getId());
+    $this->form->setDefaults(array('galeriePhoto_id' => $this->getRoute()->getObject()->getId(), 'title'=> NULL, 'author' => $this->getUser()->getGuardUser()->getId(),'is_public' => '0'));
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -57,8 +57,15 @@ class photoActions extends sfActions
     $this->form = new PhotoForm();
 
     $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
+    if($request->getParameter('sf_format') == 'json') {
+      if(!$this->form->isValid()) {
+        $errors = $this->form->getErrors();
+        $this->error = $errors["image"];
+      }
+    }
+    else {
+      $this->setTemplate('new');
+    }
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -83,9 +90,10 @@ class photoActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->forward404Unless($photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
+    $galerie_photo_id = $photo->getGaleriephotoId();
     $photo->delete();
 
-    $this->redirect('photo/index');
+    $this->redirect('galerie/show?id=', $galerie_photo_id);
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -95,7 +103,9 @@ class photoActions extends sfActions
     {
       $photo = $form->save();
 
-      $this->redirect('photo/show?id='.$photo->getId());
+      if($request->getParameter('sf_format') != 'json') {
+        $this->redirect('photo/show?id='.$photo->getId());
+      }
     }
   }
 }

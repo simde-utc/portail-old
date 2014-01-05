@@ -21,7 +21,7 @@ class PhotoTable extends Doctrine_Table
     	$q = $this->createQuery('g')
     		->select('g.*')
     		->where("g.galeriePhoto_id = ?", $galerie_id)
-    		->orderBy('g.updated_at DESC');
+    		->orderBy('g.id ASC');
 
 		return $q;
     }

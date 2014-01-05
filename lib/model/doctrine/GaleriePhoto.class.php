@@ -12,4 +12,8 @@
  */
 class GaleriePhoto extends BaseGaleriePhoto
 {
+	public function delete(){
+		PhotoTable::getInstance()->deletePhotosFromGallery($this->getId());
+		parent::delete();
+	}
 }

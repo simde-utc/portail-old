@@ -35,4 +35,10 @@ class PhotoTable extends Doctrine_Table
 
 		return $q;
     }
+    public function deletePhotosFromGallery($galerie_id){
+        $q = $this->createQuery('g')
+          ->delete()
+          ->where("g.galeriePhoto_id = ?", $galerie_id)
+          ->execute();        
+    }
 }

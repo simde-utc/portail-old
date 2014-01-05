@@ -88,11 +88,6 @@ class galerieActions extends sfActions
       $this->redirect('event/show?id=' . $event->getId());
     }
     $this->forward404Unless($galerie_photo = Doctrine_Core::getTable('GaleriePhoto')->find(array($request->getParameter('id'))), sprintf('Object galerie_photo does not exist (%s).', $request->getParameter('id')));
-    $photos = PhotoTable::getInstance()->getPhotosList($galerie_photo->getId())->execute();
-    foreach ($photos as $photo) {
-      $photo->delete();
-    }
-
     $galerie_photo->delete();
 
     $this->redirect('galerie/index');

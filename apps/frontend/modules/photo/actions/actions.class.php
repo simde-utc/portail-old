@@ -24,13 +24,33 @@ class photoActions extends sfActions
     $response->addMeta('og:title', GaleriePhotoTable::getInstance()->find($this->photo->getGaleriephotoId())->getTitle());
     $response->addMeta('og:type', 'Galerie');
     sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
-    $response->addMeta('og:photo', doThumb($this->photo->getImage(), 'galeries', array(
-        'width' => 150,
-        'height' => 150),
-      'scale'
-    ));
-    $response->addMeta('og:url', $this->generateUrl('photo_show',$this->photo,true));
-    $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
+    
+    // Get the file hash, crop it, use it as a pass to see the photo without being logged in.
+    $this->passCode = $this->photo->getPass();
+    $this->providedPass = $request->extractParameters(array('pass'=>'pass'))['pass'];
+    
+    if ($this->getUser()->isAuthenticated() ||
+        $this->providedPass == $this->passCode ||
+        $this->photo->getIsPublic()==1){
+
+      $response->addMeta('og:photo', doThumb($this->photo->getImage(), 'galeries', array(
+          'width' => 1000,
+          'height' => 1000),
+        'scale'
+      ));
+
+      $response->addMeta('og:url',  $this->generateUrl('photo_show',$this->photo,true));
+      $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
+      $this->author = $this->photo->getUser();
+      $this->galerie = $this->photo->getGaleriePhoto()->getTitle();
+      if ($this->getUser()->isAuthenticated()  || $this->photo->getIsPublic()==1){
+        $this->nextPict=PhotoTable::getInstance()->getNextPhoto($this->photo)->execute();
+        $this->prevPict=PhotoTable::getInstance()->getPreviousPhoto($this->photo)->execute();
+      }
+    }else{
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit de voir cette photo. Veuillez vous connecter.');
+      $this->redirect('event/show?id=' . $this->photo->getGaleriePhoto()->getEventId());
+    }
   }
 
   public function executeNew(sfWebRequest $request)

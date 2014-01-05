@@ -24,19 +24,8 @@
 <?php endif ?>
 
 <hr />
-<div class="row-fluid">
-  <ul class="thumbnails thumbfix">
-    <?php foreach ($photos as $photo) : ?>
-      <li class="span3">
-        <a class="thumbnail"  href="<?php echo url_for('photo/show?id='.$photo->getId()) ?>">
-          <?php echo showThumb($photo->getImage(), 'galeries', array(
-          'width' => 250,
-          'height' => 250), 
-          'center') ?> 
-        </a>
-      </li>     
-    <?php  endforeach; ?> 
-  </ul>
-</div>
+
+<?php include_partial('galerie/photoList', array('photos' => $photos)) ?>
+  
 
 

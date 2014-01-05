@@ -34,18 +34,11 @@
   </p>
   <p><?php echo nl2br($event->getSummary()) ?></p>
   <p><?php echo nl2br($event->getDescription(ESC_XSSSAFE)) ?></p>
-  
-  <?php if (count($galerie_photos)>0 ): ?> 
-    <ul>
-    Galeries : 
-      <?php foreach ($galerie_photos as $galerie_photo): ?>
-      <li>
-         <a href="<?php echo url_for('galerie/show?id='.$galerie_photo->getId()) ?>"><?php echo $galerie_photo->getTitle() ?></a>
-        <?php echo $galerie_photo->getDescription() ?>
-      </li>
-      <?php endforeach; ?>
-    </ul>
-  <?php endif; ?>
+
+    <?php 
+    foreach ($galeries as $galery)
+      include_component('galerie', 'preview',  array('galery' =>  $galery, 'sf_user' =>$sf_user));
+    ?>
 
   <?php if($sf_user->isAuthenticated()): ?> 
     <?php if (!$jeparticipe): ?> 

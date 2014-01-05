@@ -16,10 +16,10 @@ class GaleriePhotoTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('GaleriePhoto');
     }
-    public function getEventGaleries($event){
-        $q = $this->createQuery('gal')
-            ->select('gal.*')
-            ->where('gal.event_id = ?', $event->getPrimaryKey());
-        return $q;
-    }
+    
+    
+    
+    
+    
+
 }

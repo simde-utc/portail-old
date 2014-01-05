@@ -160,6 +160,7 @@ Event:
     Asso: { local: asso_id, foreign: id }
     Type: { local: type_id, foreign: id, class: EventType }
     GuestAsso: { class:Asso, local:event_id, foreign:asso_id, refClass:EventGuestAsso }
+    GaleriePhoto: { type: many, class:GaleriePhoto, local:id, foreign:event_id, refClass:GaleriePhoto }
 
 EventMember:
   connection: doctrine
@@ -192,6 +193,7 @@ GaleriePhoto:
     description: {type: string, notnull: true}
   relations:
     Event: {local: event_id, foreign: id }
+    Photos: {type: many, class:Photo, local:id, foreign:galeriePhoto_id, refClass:Photo }
 
 Photo:
   connection: doctrine

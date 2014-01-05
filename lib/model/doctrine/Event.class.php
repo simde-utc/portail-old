@@ -21,4 +21,10 @@ class Event extends BaseEvent {
     return "/uploads/events/" . $this->getAffiche();
   }
 
+  public function getGaleries(){
+        $q = GaleriePhotoTable::getInstance()->createQuery('gal')->select('gal.*')
+            ->where('gal.event_id = ?', $this->getId());
+        return $q;
+    }
+
 }

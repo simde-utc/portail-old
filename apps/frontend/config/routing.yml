@@ -235,6 +235,12 @@ photo_create:
   url: /photo/create
   param: { module: photo, action: create }
 
+photo_create_format:
+  url: /photo/create.:sf_format
+  param: { module: photo, action: create }
+  requirements:
+    sf_format: (?:html|json)
+
 photo_new:
   url: /photo/new/:id
   class: sfDoctrineRoute

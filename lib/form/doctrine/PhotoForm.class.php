@@ -14,12 +14,15 @@ class PhotoForm extends BasePhotoForm
   {
   	sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
 
+    $this->disableLocalCSRFProtection();
+
+
   	$this->setWidgets(array(
       'id'              => new sfWidgetFormInputHidden(),
       'galeriePhoto_id' => new sfWidgetFormInputHidden(),
-      'title'           => new sfWidgetFormInputText(),
-      'author'          => new sfWidgetFormInputText(),
-      'is_public'       => new sfWidgetFormInputText(),
+      'title'           => new sfWidgetFormInputHidden(),
+      'author'          => new sfWidgetFormInputHidden(),
+      'is_public'       => new sfWidgetFormInputHidden(),
     ));
 
     $this->widgetSchema['image'] = new sfWidgetFormInputFileEditable(array(
@@ -54,5 +57,51 @@ class PhotoForm extends BasePhotoForm
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
     $this->useFields(array('galeriePhoto_id', 'title', 'author', 'is_public', 'image'));
+  }
+
+  public function getJavaScripts() {
+    return array(
+      'jquery.fineuploader-4.1.1.min.js'
+    );
+  }
+
+  public function getStylesheets() {
+    return array(
+      'fineuploader-4.1.1.min.css' => 'screen'
+    );
+  }
+
+  public function getErrors()
+  {
+   $errors = array();
+
+   // individual widget errors
+   foreach ($this as $form_field)
+   {   
+     if ($form_field->hasError())
+     {   
+       $error_obj = $form_field->getError();
+       if ($error_obj instanceof sfValidatorErrorSchema)
+       {   
+         foreach ($error_obj->getErrors() as $error)
+         {   
+           // if a field has more than 1 error, it'll be over-written
+           $errors[$form_field->getName()] = $error->getMessage();
+         }   
+       }   
+       else
+       {   
+         $errors[$form_field->getName()] = $error_obj->getMessage();
+       }   
+     }   
+   }   
+
+   // global errors
+   foreach ($this->getGlobalErrors() as $validator_error)
+   {   
+     $errors[] = $validator_error->getMessage();
+   }   
+
+   return $errors;
   }
 }

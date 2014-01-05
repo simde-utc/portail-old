@@ -36,7 +36,8 @@
                                 <h4 class="media-heading"><a href="<?php echo url_for('event/show?id='.$event->getId()) ?>"><?php echo $event->getName() ?></a></h4>
                                 <p><?php echo $event->getSummary() ?></p>
                                 <p>
-                                <?php echo event_from_asso_list($event) ;?><br />
+                                
+                                Par <?php echo linkTo($event->getAsso()) ;?><br />
                                 <?php echo format_date($event->getStartDate(),"D",'fr') ?>, <?php echo format_date($event->getStartDate(),"t",'fr') ?>
                                 </p>
                             </div>

@@ -101,7 +101,7 @@ class Asso extends BaseAsso {
 
   public function __toString()
   {
-    return $this->getName();
+    return $this->getLogin();
   }
 
   public function addMember(sfGuardUser $user)

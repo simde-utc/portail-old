@@ -11,7 +11,7 @@
             </a>
             <h4><a href="<?php echo url_for('event_show', $event) ?>"><?php echo $event->getName() ?></a></h4>
             <p>
-              <?php echo event_from_asso_list($event) ;?>
+              Par <?php echo linkTo($event->getAsso()) ;?><br/>
               Le <?php echo format_date($event->getStartDate(), 'd MMMM à HH:mm', 'fr'); ?>
             </p>
             <p>

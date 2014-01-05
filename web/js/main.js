@@ -45,10 +45,12 @@ $(document).ready(function(){
     
   $('.dropdown-toggle').dropdown();
   
-  $('.datepicker').datetimepicker({
-    dateFormat: "dd/mm/yy",
-    timeFormat: "HH:mm"
-  });
+  if ($.fn.datetimepicker) {
+    $('.datepicker').datetimepicker({
+      dateFormat: "dd/mm/yy",
+      timeFormat: "HH:mm"
+    });
+  }
   
   $(".ejs").each(function(){
     var a = $(this).html() + "@assos.utc." + "fr";
@@ -62,4 +64,7 @@ $(document).ready(function(){
       $(this).attr("src", "/images/default.jpg");
     }
   });
+
+  if(window.Select2)
+    $(".select2").select2({width: 'resolve'});
 });

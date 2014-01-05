@@ -22,6 +22,7 @@ Asso:
   relations:
     Pole: { local: pole_id, foreign: id }
     Type: { local: type_id, foreign: id, class: TypeAsso }
+    GuestOfEvent: { class:Event, local:asso_id, foreign:event_id, refClass:EventGuestAsso }
 
 Pole:
   connection: doctrine
@@ -30,12 +31,12 @@ Pole:
     couleur: { type: string(7) }
   relations:
     Infos: { local: asso_id, foreign: id, class: Asso, foreignAlias: PoleInfos, foreignType: one }
-    
+
 TypeAsso:
   connection: doctrine
   columns:
     name: { type: string(50) }
-    
+
 AssoMember:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -49,7 +50,7 @@ AssoMember:
     Role: { local: role_id, foreign: id }
     User: { local: user_id, foreign: id, class: sfGuardUser }
     Semestre: { local: semestre_id, foreign: id }
-    
+
 Role:
   connection: doctrine
   columns:
@@ -57,7 +58,7 @@ Role:
     sort: { type: integer(4) }
     bureau: { type: boolean, default: false, notnull: true }
     droits: { type: integer, default: 0, notnull: true }
- 
+
 Profile:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -158,7 +159,8 @@ Event:
   relations:
     Asso: { local: asso_id, foreign: id }
     Type: { local: type_id, foreign: id, class: EventType }
-    
+    GuestAsso: { class:Asso, local:event_id, foreign:asso_id, refClass:EventGuestAsso }
+
 EventMember:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -168,11 +170,12 @@ EventMember:
   relations:
     Event: { local: event_id, foreign: id }
     User: { local: user_id, foreign: id, class: sfGuardUser }
-    
+
 EventType:
   connection: doctrine
   columns:
     name: { type: string(50) }
+
 
 GaleriePhoto:
   connection: doctrine
@@ -197,6 +200,13 @@ Photo:
     GaleriePhoto: {local: galeriePhoto_id, foreign: id}
     User: { local: author, foreign: id, class: sfGuardUser }
 
+EventGuestAsso:
+  connection: doctrine
+  columns:
+    event_id: { type: integer, primary:true }
+    asso_id: { type: integer, primary:true }
+
+
 Article:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -214,12 +224,12 @@ Semestre:
   connection: doctrine
   columns:
     name: { type: string(3) }
-    
+
 Branche:
   connection: doctrine
   columns:
     name: { type: string(3) }
-    
+
 Filiere:
   connection: doctrine
   columns:
@@ -368,7 +378,7 @@ Partenaire:
     logo: { type: string(100) }
     url: { type: string(255) }
     description: { type: string }
-    
+
 CarnetAvantages:
   connection: doctrine
   actAs: { Timestampable: ~ }
@@ -494,7 +504,6 @@ DocumentType:
     slug : { type: string(255), notnull: true }
     detail : { type: string, notnull: true }
 
-
 # DocumentTemplate:
 #   connection: doctrine
 #   columns:
@@ -608,12 +617,12 @@ CharteLocaux:
     Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
     Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
     Responsable: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
-    
+
 InfoJobCategorie:
   connection: doctrine
   columns:
     name: { type: string(100), notnull: true }
-    
+
 InfoJobDisponibilite:
   connection: doctrine
   columns:
@@ -654,8 +663,7 @@ InfoJobOffreDisponibilite:
   relations:
     Offre: { onUpdate: CASCADE, local: offre_id, foreign: id, class: InfoJobOffre, foreignAlias: OffreDisponibilites }
     Disponibilite: { onUpdate: CASCADE, local: disponibilite_id, foreign: id, class: InfoJobDispobilite, foreignAlias: OffreDisponibilites }
-  
-    
+
 InfoJobSignalement:
   actAs: { Timestampable: ~ }
   connection: doctrine
@@ -667,12 +675,12 @@ InfoJobSignalement:
   relations:
     Offre: { onUpdate: CASCADE, local: offre_id, foreign: id, class: InfoJobOffre }
     Type: { onUpdate: CASCADE, local: type_id, foreign: id, class: InfoJobSignalementType }
-    
+
 InfoJobSignalementType:
   connection: doctrine
   columns:
     name: { type: string(100), notnull: true }
-   
+
 InfoJobAbonnementCategorie:
   connection: doctrine
   columns:
@@ -681,8 +689,7 @@ InfoJobAbonnementCategorie:
   relations:
     Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: InfoJobCategorie }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
-      
-       
+
 InfoJobAbonnementDisponibilite:
   connection: doctrine
   columns:

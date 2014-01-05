@@ -1,5 +1,7 @@
 <?php use_helper('Date') ?>
 <?php use_helper('Thumb') ?>
+<?php use_helper('Events') ?>
+
 
 <div class="part" id="event">
   <h1>
@@ -25,10 +27,8 @@
     <?php echo format_date($event->getEndDate(), 'f', 'fr') ?></p>
 
   <p>
-    Créé par <a href="<?php echo url_for('assos_show',$event->getAsso())?>"
-                title="Voir la page de <?php echo $event->getAsso()->getName() ?>">
-      <?php echo $event->getAsso()->getName() ?>
-    </a><br />
+    <?php echo event_from_asso_list($event) ;?>
+    <br/>
     Type : <?php echo $event->getType()->getName(); ?><br />
     Lieu : <?php echo $event->getPlace(); ?>
   </p>

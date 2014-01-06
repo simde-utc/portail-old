@@ -4,26 +4,24 @@
 <?php if (!$form->getObject()->isNew()): ?>
   <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
-  <table>
-    <tfoot>
-      <tr>
-        <td colspan="2">
-          <br>
-          <input class="btn btn-primary" type="submit" value="Enregistrer" />
-          <?php if (!$form->getObject()->isNew()): ?>
-            <?php echo link_to('Supprimer', 'photo/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Es-ce votre dernier choix?', 'class' => 'btn btn-danger')) ?>
-          <?php endif; ?>
-        </td>        
-      </tr>
-    </tfoot>
-    <tbody>
-      <div>
-        Titre:
-        <?php echo $form['title'] ?>
-      </div>
-      <div> 
-        Est publique 
-        <?php echo $form['is_public'] ?>
-    </tbody>
-  </table>
+<div>
+  <?php echo $form->renderGlobalErrors() ?>
+  <div>
+    <?php echo $form['title']->renderError() ?>
+    <label>
+      Titre:
+      <?php echo $form['title'] ?>
+    </label>
+    <?php echo $form['is_public']->renderError() ?>
+    <label class="checkbox" id="PrependedInput"> 
+      Visible des étudiants non UTCéens 
+      <?php echo $form['is_public'] ?>
+    </label>
+  </div>
+  <div>
+    <input class="btn btn-primary" type="submit" value="Enregistrer" />
+    <?php if (!$form->getObject()->isNew()): ?>
+      <?php echo link_to('Supprimer', 'photo/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Est-ce votre dernier choix?', 'class' => 'btn btn-danger')) ?>
+    <?php endif; ?>
+  </div>
 </form>

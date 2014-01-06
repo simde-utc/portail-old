@@ -104,9 +104,8 @@ class galerieActions extends sfActions
        && $this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)
       ) {
         $galerie_photo = $form->save();
+        $this->redirect('galerie/show?id='.$galerie_photo->getId());
       }
-
-      $this->redirect('galerie/edit?id='.$galerie_photo->getId());
     }
   }
 }

@@ -98,7 +98,7 @@ class photoActions extends sfActions
 
     $this->processEditForm($request, $this->form);
 
-    $this->redirect('photo/show?id='.$this->photo->getId());
+    $this->setTemplate('edit');
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -106,10 +106,9 @@ class photoActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->forward404Unless($photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
-    $galerie_photo_id = $photo->getGaleriePhotoId();
+    $galerie_photo_id = $photo->getGaleriephotoId();
     $photo->delete();
-
-    $this->redirect('galerie/show?id=', $galerie_photo_id);
+    $this->redirect('galerie/show?id='.$galerie_photo_id);
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -129,6 +128,7 @@ class photoActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid()) {
       $photo = $form->save();
+      $this->redirect('photo/show?id='.$photo->getId());
     }
   }
 }

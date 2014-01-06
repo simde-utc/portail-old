@@ -21,7 +21,7 @@ class PhotoTable extends Doctrine_Table
     	$q = $this->createQuery('g')
     		->select('g.*')
     		->where("g.galeriePhoto_id = ?", $galerie_id)
-    		->orderBy('g.id DESC');
+    		->orderBy('g.id ASC');
 
 		return $q;
     }
@@ -31,7 +31,7 @@ class PhotoTable extends Doctrine_Table
     		->select('g.*')
     		->where("g.galeriePhoto_id = ?", $galerie_id)
     		->andWhere("g.is_public = ?", 1)
-    		->orderBy('g.id DESC');
+    		->orderBy('g.id ASC');
 
         return $q;
     }
@@ -46,7 +46,7 @@ class PhotoTable extends Doctrine_Table
     public function getNextPhoto($photo){
         $q= $this->createQuery('p')->select('p.*')
         ->where("p.galeriePhoto_id = ?", $photo->getGaleriePhoto()->getId())
-        ->andWhere("p.id < ?" , $photo->getId())
+        ->andWhere("p.id > ?" , $photo->getId())
         ->orderBy('p.id DESC')
         ->limit(1);
         return $q;
@@ -55,7 +55,7 @@ class PhotoTable extends Doctrine_Table
     public function getPreviousPhoto($photo){
         $q= $this->createQuery('p')->select('p.*')
         ->where("p.galeriePhoto_id = ?", $photo->getGaleriePhoto()->getId())
-        ->andWhere("p.id > ?" , $photo->getId())
+        ->andWhere("p.id < ?" , $photo->getId())
         ->orderBy('p.id ASC')
         ->limit(1);
         return $q;

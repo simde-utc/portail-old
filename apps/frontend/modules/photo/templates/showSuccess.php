@@ -73,8 +73,8 @@
     </div>
 
     <!-- Edit button -->
-    <div class="photo-edit-button btn btn-primary">
-    <a href="<?php echo url_for('photo/edit?id='.$photo->getId()) ?>">Editer</a>
+    <div>
+      <a class="photo-edit-button btn btn-primary" href="<?php echo url_for('photo/edit?id='.$photo->getId()) ?>">Editer</a>
     </div>
 
     <!-- Like button -->

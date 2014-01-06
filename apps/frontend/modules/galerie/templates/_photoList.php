@@ -7,5 +7,5 @@
   </ul>
 </div>
 
-<?php use_javascript('jquery.lazyload.min'); ?>
+<?php use_javascript('jquery.lazyload.min.js'); ?>
 <?php use_javascript('galery_photo_list'); ?>

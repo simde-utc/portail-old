@@ -1,4 +1,3 @@
-<a class="changesize btn btn-primary" href="#"></a>
 <div class="row-fluid">
   <ul class="thumbnails thumbfix">
 		<?php foreach ($photos as $photo)

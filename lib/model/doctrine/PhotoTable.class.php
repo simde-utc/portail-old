@@ -47,7 +47,7 @@ class PhotoTable extends Doctrine_Table
         $q= $this->createQuery('p')->select('p.*')
         ->where("p.galeriePhoto_id = ?", $photo->getGaleriePhoto()->getId())
         ->andWhere("p.id > ?" , $photo->getId())
-        ->orderBy('p.id DESC')
+        ->orderBy('p.id ASC')
         ->limit(1);
         return $q;
     }
@@ -56,7 +56,7 @@ class PhotoTable extends Doctrine_Table
         $q= $this->createQuery('p')->select('p.*')
         ->where("p.galeriePhoto_id = ?", $photo->getGaleriePhoto()->getId())
         ->andWhere("p.id < ?" , $photo->getId())
-        ->orderBy('p.id ASC')
+        ->orderBy('p.id DESC')
         ->limit(1);
         return $q;
     }

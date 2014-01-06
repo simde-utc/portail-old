@@ -27,7 +27,11 @@ class photoActions extends sfActions
     
     // Get the file hash, crop it, use it as a pass to see the photo without being logged in.
     $this->passCode = $this->photo->getPass();
-    $this->providedPass = $request->extractParameters(array('pass'=>'pass'))['pass'];
+    $this->requestParams=$request->extractParameters(array('pass'=>'pass'));
+    if(array_key_exists('pass',$this->requestParams))
+      $this->providedPass = $this->requestParams['pass'];
+    else
+      $this->providedPass="";
     
     if ($this->getUser()->isAuthenticated() ||
         $this->providedPass == $this->passCode ||

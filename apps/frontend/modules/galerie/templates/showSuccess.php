@@ -25,7 +25,40 @@
 
 <hr />
 
-<?php include_partial('galerie/photoList', array('photos' => $photos)) ?>
-  
+<div class="row-fluid">
+  <ul class="thumbnails thumbfix">
+    <?php foreach ($photos as $photo): ?>
+        <li class="span3 thumb-container">
+          <a class="thumbnail" data-gallery href=" <?php
+                echo doThumb($photo->getImage(), 'galeries', array(
+                'width' => 1600,
+                'height' => 900
+                ,'onclick' => '$(".nextpict")[0].click();'
+              ), 'scale') 
+              ?>">
+            <?php echo showThumb($photo->getImage(), 'galeries', array(
+            'width' => 250,
+            'height' => 250,
+            'class' => 'galery-thumbnail'
+            ), 
+            'center') ?> 
+          </a>
+        </li>   
+    <?php endforeach;?>
+  </ul>
+</div>
 
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
 
+<?php use_javascript('blueimp/jquery.blueimp-gallery.min.js'); ?>
+<?php use_stylesheet('blueimp/blueimp-gallery.min.css');?>
+
+<?php use_javascript('galery_photo_list'); ?>

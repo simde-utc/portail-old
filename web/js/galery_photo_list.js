@@ -1,3 +1,3 @@
   $(function(){
-  	$('.galery-thumbnail').lazyload();
+  	
   })

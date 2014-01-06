@@ -1,3 +1,4 @@
+<a class="changesize btn btn-primary" href="#"></a>
 <div class="row-fluid">
   <ul class="thumbnails thumbfix">
 		<?php foreach ($photos as $photo)
@@ -5,3 +6,6 @@
 		?>
   </ul>
 </div>
+
+<?php use_javascript('jquery.lazyload.min'); ?>
+<?php use_javascript('galery_photo_list'); ?>

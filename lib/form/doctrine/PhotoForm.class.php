@@ -45,8 +45,8 @@ class PhotoForm extends BasePhotoForm
     	'required' => false,
     	'path' => sfConfig::get('sf_upload_dir').'/galeries/source',
         'mime_types' => 'web_images',
-        'max_width' => 1000,
-        'max_height' => 1000
+        'max_width' => 2500,
+        'max_height' => 2500
     ));
 
 

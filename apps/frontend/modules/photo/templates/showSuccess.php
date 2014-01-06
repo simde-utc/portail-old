@@ -1,3 +1,4 @@
+<!-- FOr the facebook like button on the sidebar-->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -7,19 +8,32 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+<!-- Custom js and css for fullscreen photo view-->
+<?php use_javascript('fullscreen-photo-viewer');?>
+<?php use_stylesheet('fullscreen-photo-viewer');?>
 
+<!-- The main div, maximized when you go fullscreen-->
 <div class="photo_viewer" style="background-color:white; z-index:1000;">
-<div class="span6 main-image">
-<?php echo showThumb($photo->getImage(), 'galeries', array(
-      'width' => 1000,
-      'height' => 1000,
-      'onclick' => '$(".nextpict")[0].click();'
-    ), 'scale') ?>
-</div>
+  
+  <!-- The actual image-->
+  <div class="span6 main-image">
+  <?php echo showThumb($photo->getImage(), 'galeries', array(
+        'width' => 1000,
+        'height' => 1000,
+        'onclick' => '$(".nextpict")[0].click();'
+      ), 'scale') ?>
+  </div>
+
+  <!-- Sidebar for the photos info-->
   <div class="photo_meta_infos span2">
+
+    <!-- Galery title and link-->
     <div class="photo-meta-galerie">
+      <a href="<?php echo url_for('galerie/show?id='.$photo->getGaleriePhoto()->getId()) ?>">
       <h2><?php echo $galerie ?></h2>
     </div>
+
+    <!-- Photo author-->
     <div class="photo-meta-author">
       Par <?php echo $author; ?>
     </div>
@@ -29,10 +43,9 @@
       <?php echo $photo->getTitle() ?>
     </div>
 
-    <!-- Previous and Next Photo button-->
-    <div class="photo-prev-next-pict">
-          
-      <?php foreach ($nextPict as $Button): ?>
+    <!-- Previous and Next Photo button (not always displayed) -->
+    <?php foreach ($nextPict as $Button): ?>
+       <div class="photo-next">
         Suivant :
         <a class="photo-samegalery nextpict"  href="<?php echo url_for('photo/show?id='.$Button->getId()) ?>">
           <?php echo showThumb($Button->getImage(), 'galeries', array(
@@ -40,10 +53,10 @@
           'height' => 80), 
           'center') ?> 
         </a>
-      <?php endforeach; ?>
-
-      
+    </div>
+    <?php endforeach; ?>
        <?php foreach ($prevPict as $Button): ?>
+        <div class="photo-next">
         Precedent :
         <a class="photo-samegalery prevpict" href="<?php echo url_for('photo/show?id='.$Button->getId())  ?>">
           <?php echo showThumb($Button->getImage(), 'galeries', array(
@@ -51,83 +64,24 @@
           'height' => 80), 
           'center') ?> 
         </a>
-      <?php endforeach; ?>
+    </div>
+    <?php endforeach; ?>
 
-    </div>
+    <!-- Fullscreen switch button-->
     <div>
-    <a class="photo-fullscreen-button" href="#fullscreen" onclick="switchFullScreen();">Plein Ecran</a>
+      <a class="photo-fullscreen-button btn btn-primary" href="#fullscreen" onclick="switchFullScreen();">Plein Ecran</a>
     </div>
-    <div class="photo-edit-button">
+
+    <!-- Edit button -->
+    <div class="photo-edit-button btn btn-primary">
     <a href="<?php echo url_for('photo/edit?id='.$photo->getId()) ?>">Editer</a>
     </div>
+
+    <!-- Like button -->
     <div class="photo-like-button">
       <div class="fb-like" data-href="http://assos.utc.fr/photo/show/<?php
       echo $photo->getId() . "?pass=" . $passCode;
        ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
     </div>
   </div>
-
-
 </div>
-
-<style>
-.photo_viewer {text-align:center;}
-.photo_meta_infos>div {margin:40px;}
-</style>
-
-<script type="text/javascript">
-$(document).keydown(function(e){
-    if (e.keyCode == 37) // prev
-      $(".prevpict")[0].click();
-    if (e.keyCode == 39) // next
-      $(".nextpict")[0].click();
-    })
-
-function fullscreenSizing(){
-  $(".photo_viewer").css("position","fixed");
-    $(".photo_viewer").css("top","0px");
-    $(".photo_viewer").css("left","0px");
-    $(".photo_viewer").css("width", $(window).width());
-    $(".photo_viewer").css("height", $(window).height());
-
-    var ratio = $(".main-image img").height()/($(".photo_viewer").height()-10);
-    if(ratio>1){
-      $(".main-image img").height($(".main-image img").height()/ratio);
-      $(".main-image img").width($(".main-image img").width()/ratio);
-    }
-}
-
-function switchFullScreen(){
-    $(".photo_viewer .span2").removeClass('span2').addClass('span2'); 
-    $(".photo_viewer .span6").removeClass('span6').addClass('span10');
-
-  $(document).keyup(function(e){
-    if (e.keyCode == 27) // prev
-      $(".photo-fullscreen-button")[0].click();
-  })
-    
-    $.each(
-      $(".photo-samegalery"),
-      function(osef, link){
-        $(link).attr("href", $(link).attr('href') + "#fullscreen");
-      })
-    setTimeout(function () {
-      $(".photo-fullscreen-button").attr("href", location.href.replace(location.hash,""));
-      $(window).on('hashchange', function() {
-          window.location=location.href.replace(location.hash,"");
-      })
-
-      }
-    , 100);
-    $(window).resize(fullscreenSizing)
-    fullscreenSizing();
-    setTimeout(fullscreenSizing, 10)
-
-  }
-
-  $(function(){
-    if(window.location.hash)
-      switchFullScreen();
-  })
-
-</script>

@@ -1,6 +1,9 @@
+<hr/>
+<a href="<?php echo url_for('galerie/show?id='.$galery->getId()) ?>">
 <h2> <?php echo $galery->getTitle(); ?>
 ( <?php  echo $photoCount ?> photo<?php if ($photoCount > 1) echo "s"; ?>)
 </h2>
+</a>
 
 <div class="row-fluid">
   <ul class="thumbnails thumbfix">

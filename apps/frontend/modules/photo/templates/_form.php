@@ -25,6 +25,10 @@
 <div id="fine-uploader">
 </div>
 
+<div>
+  <a class="return-gallery-button btn btn-primary" href="<?php echo url_for('galerie/show?id='.$form['galeriePhoto_id']->getValue()) ?>">Retour vers la galerie</a>
+</div>
+
 <script type="text/javascript">
 $(document).ready(function(){
   $("#fine-uploader").fineUploader({

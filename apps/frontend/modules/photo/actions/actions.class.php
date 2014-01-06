@@ -55,15 +55,15 @@ class photoActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->redirectUnless($galerie_photo = $this->getRoute()->getObject(), 'galerie_photo_list');
+    $this->redirectUnless($this->galerie_photo = $this->getRoute()->getObject(), 'galerie_photo_list');
     if (!$this->getUser()->isAuthenticated()
-      || !$this->getUser()->getGuardUser()->hasAccess($galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)
+      || !$this->getUser()->getGuardUser()->hasAccess($this->galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)
     ) {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('event/show?id=' . $galerie_photo->getEventId());
+      $this->redirect('event/show?id=' . $this->galerie_photo->getEventId());
     }
     $this->form = new PhotoForm();
-    $this->form->setDefaults(array('galeriePhoto_id' => $this->getRoute()->getObject()->getId(), 'title'=> '', 'author' => $this->getUser()->getGuardUser()->getId(),'is_public' => '0'));
+    $this->form->setDefaults(array('galeriePhoto_id' => $this->galerie_photo->getId(), 'title'=> '', 'author' => $this->getUser()->getGuardUser()->getId(),'is_public' => '0'));
   }
 
   public function executeCreate(sfWebRequest $request)

@@ -90,7 +90,7 @@ class galerieActions extends sfActions
     $this->forward404Unless($galerie_photo = Doctrine_Core::getTable('GaleriePhoto')->find(array($request->getParameter('id'))), sprintf('Object galerie_photo does not exist (%s).', $request->getParameter('id')));
     $galerie_photo->delete();
 
-    $this->redirect('galerie/index');
+    $this->redirect('event/show?id=' . $event->getId());
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

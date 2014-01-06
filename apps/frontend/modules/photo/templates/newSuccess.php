@@ -1,4 +1,4 @@
-<h1>Ajout de photos</h1>
+<h1>Ajouter des photos</h1>
 
 
 <?php include_partial('form', array('form' => $form)) ?>

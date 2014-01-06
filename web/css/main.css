@@ -624,3 +624,12 @@ ul.thumbfix li.span3:nth-child(4n + 5) { margin-left : 0px; }
 .btn.btn-primary{
   color:#FFF;
 }
+
+.ajout-photo-button{
+  margin-left: 75px;
+  margin-bottom: 10px;
+}
+
+.form-save-button{
+  margin-left: 75px;
+}

@@ -18,9 +18,9 @@
 
 <?php if($sf_user->isAuthenticated()
    && $sf_user->getGuardUser()->hasAccess($galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)): ?>
-<a class="btn btn-primary" href="<?php echo url_for('galerie/edit?id='.$galerie_photo->getId()) ?>">Editer la galerie</a>
+  <a class="btn btn-primary" href="<?php echo url_for('galerie/edit?id='.$galerie_photo->getId()) ?>">Editer la galerie</a>
 &nbsp;
-  <a class="btn btn-primary" href="<?php echo url_for('photo_new', $galerie_photo) ?>">Ajouter des photos</a>
+  <a class="btn btn-primary" href="<?php echo url_for('photo/new?id='.$galerie_photo->getId()) ?>">Ajouter des photos</a>
 <?php endif ?>
 
 <hr />

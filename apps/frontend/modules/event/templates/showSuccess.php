@@ -58,30 +58,33 @@
     </a>
   </p>
 </div>
-<div class="part" id="galerie">
-  <h1>
-    <?php if($galeries): ?>
-      <?php echo $event->getName() ?> - Galerie Photo
-    <?php endif ?>
-    <?php if($sf_user->isAuthenticated()
-      && $sf_user->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)): ?>
-      <span class="pull-right">
-        <i class="icon-share icon-white"></i>
-        <a href="<?php echo url_for('galerie_photo_new', $event) ?>">Ajouter</a>
-      </span>
-    <?php endif ?>
-  </h1>
-
-    <?php 
-    foreach ($galeries as $galery)
+<?php if($galeries->count() > 0): ?>
+  <div class="part" id="galerie">
+    <h1>Galerie Photo
+      <?php if($sf_user->isAuthenticated()
+       && $sf_user->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)): ?>
+        <span class="pull-right">
+          <i class="icon-plus icon-white"></i>
+          <a href="<?php echo url_for('galerie_photo_new', $event) ?>">Ajouter une galerie photo</a>
+        </span>
+      <?php endif ?>
+    </h1>
+    <?php foreach ($galeries as $galery)
       include_component('galerie', 'preview',  array('galery' =>  $galery, 'sf_user' =>$sf_user));
     ?>
-
-
-  <?php if($sf_user->isAuthenticated()
+  </div>
+<!-- Pas de galeries -->
+<?php elseif ($sf_user->isAuthenticated()
     && $sf_user->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)): ?>
-    <a class="btn btn-primary" href="<?php echo url_for('galerie_photo_new', $event) ?>">
-      Ajouter une galerie photos
-    </a>
-  <?php endif; ?>
-</div>
+  <div class="part" id="galerie">
+    <h1>Galerie Photo
+      <span class="pull-right">
+        <i class="icon-plus icon-white"></i>
+        <a href="<?php echo url_for('galerie_photo_new', $event) ?>">Ajouter une galerie photo</a>
+      </span>
+  	</h1>
+  </div>
+  <p href="<?php echo url_for('galerie_photo_new', $event) ?>"> Vous n'avez pas encore ajouté d'albums photos à votre évènement. Vous pouvez le faire en cliquant sur ce texte.</p>
+<?php endif; ?>
+
+

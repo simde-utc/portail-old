@@ -202,7 +202,7 @@ Photo:
     galeriePhoto_id: {type: integer, notnull: true}
     title: {type: string(200)}
     author: {type: integer, notnull: true}
-    is_public: {type: integer, notnull:true}
+    is_public: {type: boolean, notnull:true}
     image: { type: string, notnull: true}
   relations:
     GaleriePhoto: {local: galeriePhoto_id, foreign: id}

@@ -38,7 +38,7 @@ class PhotoForm extends BasePhotoForm
       'galeriePhoto_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('GaleriePhoto'))),
       'title'           => new sfValidatorString(array('max_length' => 200, 'required' => false)),
       'author'          => new sfValidatorInteger(),
-      'is_public'       => new sfValidatorInteger(),
+      'is_public'       => new sfValidatorBoolean(),
     ));
 
     $this->validatorSchema['image'] = new sfValidatorFileImage(array(

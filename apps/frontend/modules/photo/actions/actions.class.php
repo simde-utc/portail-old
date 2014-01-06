@@ -63,7 +63,7 @@ class photoActions extends sfActions
       $this->redirect('event/show?id=' . $galerie_photo->getEventId());
     }
     $this->form = new PhotoForm();
-    $this->form->setDefaults(array('galeriePhoto_id' => $this->getRoute()->getObject()->getId(), 'title'=> NULL, 'author' => $this->getUser()->getGuardUser()->getId(),'is_public' => '0'));
+    $this->form->setDefaults(array('galeriePhoto_id' => $this->getRoute()->getObject()->getId(), 'title'=> '', 'author' => $this->getUser()->getGuardUser()->getId(),'is_public' => '0'));
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -86,19 +86,19 @@ class photoActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
-    $this->form = new PhotoForm($photo);
+    $this->forward404Unless($this->photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
+    $this->form = new PhotoEditForm($this->photo);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
-    $this->form = new PhotoForm($photo);
+    $this->forward404Unless($this->photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
+    $this->form = new PhotoEditForm($this->photo);
 
-    $this->processForm($request, $this->form);
+    $this->processEditForm($request, $this->form);
 
-    $this->setTemplate('edit');
+    $this->redirect('photo/show?id='.$this->photo->getId());
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -115,13 +115,20 @@ class photoActions extends sfActions
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
+    if ($form->isValid()) {
       $photo = $form->save();
 
       if($request->getParameter('sf_format') != 'json') {
         $this->redirect('photo/show?id='.$photo->getId());
       }
+    }
+  }
+
+  protected function processEditForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid()) {
+      $photo = $form->save();
     }
   }
 }

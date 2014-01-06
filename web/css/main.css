@@ -637,13 +637,3 @@ ul.thumbfix li.span3:nth-child(4n + 5) { margin-left : 0px; }
 .return-gallery-button{
   margin-top: 10px;
 }
-
-.gallery.title {
-  font-family: 'Raleway', sans-serif;
-  color: #505050;
-}
-.gallery.link {
-  font-family: 'Raleway', sans-serif;
-  color: #C0C0C0;
-}
-

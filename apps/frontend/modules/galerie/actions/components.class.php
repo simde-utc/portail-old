@@ -15,8 +15,6 @@ class galerieComponents extends sfComponents
 	    	->limit(4)
 	    	->execute();
 	 }
-    $this->photoCount=PhotoTable::getInstance()
-    	->getPhotosList($this->galery->getId())
-    	->execute()->count();
+    $this->photoCount = $this->photos->count();
   }
 }

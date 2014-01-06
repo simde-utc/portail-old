@@ -18,21 +18,30 @@
 	position: absolute;
 	right: 0;
 	top: 0;
-	max-width: 30%;
+	width: 400px;
 	background: white;
 	height: 100%;
 	opacity: 0;
+	overflow-y: scroll;
+	overflow-x:hidden;
 }
-
+.photo_meta_infos div{
+	margin-top: 20px;
+	width: 100%;
+}
 .photo_meta_infos:hover{
 	opacity: 1;
 }
-.photo_meta_infos>div{margin:40px;}
 
 body{ overflow: hidden;}
 
-.nextpict img{ padding-right: 5px;}
-.nextpict:hover img{ padding-right: 0; padding-left: 5px;}
-.prevpict img{ padding-left: 5px;}
-.prevpict:hover img{ padding-left: 0; padding-right: 5px;}
+.photo_meta_infos>div>a{
+	display: block;
+	padding:20px;
+}
+
+.photo_meta_infos div .nextpict img{ padding-right: 5px;}
+.photo_meta_infos div:hover .nextpict img{ padding-right: 0; padding-left: 5px;}
+.photo_meta_infos div .prevpict img{ padding-left: 5px;}
+.photo_meta_infos div:hover .prevpict img{ padding-left: 0; padding-right: 5px;}
 

@@ -47,8 +47,9 @@
     <!-- Previous and Next Photo button (not always displayed) -->
     <?php foreach ($nextPict as $Button): ?>
        <div class="photo-next">
-        Suivant :
+        
         <a class="photo-samegalery nextpict"  href="<?php echo url_for('photo/show?id='.$Button->getId()) ?>">
+          Suivant :
           <?php echo showThumb($Button->getImage(), 'galeries', array(
           'width' => 80,
           'height' => 80), 
@@ -58,8 +59,9 @@
     <?php endforeach; ?>
        <?php foreach ($prevPict as $Button): ?>
         <div class="photo-next">
-        Precedent :
+        
         <a class="photo-samegalery prevpict" href="<?php echo url_for('photo/show?id='.$Button->getId())  ?>">
+          Precedent :
           <?php echo showThumb($Button->getImage(), 'galeries', array(
           'width' => 80,
           'height' => 80), 
@@ -70,13 +72,16 @@
 
     <!-- Edit button -->
     <div>
-      <a class="photo-edit-button btn btn-primary" href="<?php echo url_for('photo/edit?id='.$photo->getId()) ?>">Editer</a>
+      <a class="photo-edit-button " href="<?php echo url_for('photo/edit?id='.$photo->getId()) ?>">Editer</a>
     </div>
     <!-- Like button -->
-    <div class="photo-like-button">
+    <div class="photo-like-button" style="width:100%;">
       <div class="fb-like" data-href="http://assos.utc.fr/photo/show/<?php
       echo $photo->getId() . "?pass=" . $passCode;
        ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+    </div>
+    <div >
+    <div class="fb-comments" data-width="300px" data-href="http://example.com/comments" data-numposts="5" data-colorscheme="light"></div>
     </div>
   </div>
 </div>

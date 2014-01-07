@@ -1,0 +1,28 @@
+.blueimp-gallery > .social-sidebar{
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: none;
+	color: white;
+	width: 30%;
+	background-color: black;
+	height: 100%;
+}
+.blueimp-gallery-controls > .social-sidebar {
+  display: block;
+}
+.blueimp-gallery-controls > .indicator{
+	display: none;
+}
+.blueimp-gallery-controls > a.play-pause{
+	display: none;
+}
+.blueimp-gallery-controls>.slides>.slide>img.slide-content{
+  max-width: 70%;
+  padding-right: 30%;
+}
+.blueimp-gallery-controls>a.next {
+	right: 30%;
+	margin-right: 15px;
+}
+.fb-comments, .fb-comments iframe[style] {width: 100% !important;}

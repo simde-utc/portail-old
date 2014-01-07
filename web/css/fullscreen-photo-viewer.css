@@ -1,6 +1,6 @@
 .photo_viewer {
 	text-align:center;
-	background-color:white;
+	background-color:black;
 	z-index:1000;
 	position: fixed;
 	top: 0;
@@ -19,29 +19,47 @@
 	right: 0;
 	top: 0;
 	width: 400px;
-	background: white;
+	background: #222;
+	color: white;
 	height: 100%;
 	opacity: 0;
 	overflow-y: scroll;
 	overflow-x:hidden;
+	padding-left: 5px;
+	border-left: 1px solid white;
 }
-.photo_meta_infos div{
-	margin-top: 20px;
+.photo_meta_infos > div{
 	width: 100%;
+	margin-top: 5px;
 }
 .photo_meta_infos:hover{
 	opacity: 1;
 }
 
-body{ overflow: hidden;}
+body{
+	overflow: hidden;
+}
 
 .photo_meta_infos>div>a{
 	display: block;
-	padding:20px;
 }
 
+.photo_meta_infos div.photo-next{
+	clear: both;
+}
+.photo_meta_infos div.photo-next .nextpict, .photo_meta_infos div .prevpict{
+	display: inline;
+	width: auto;
+}
+.photo_meta_infos div.photo-like-button {
+	clear: both;
+}
+
+.photo_meta_infos div .nextpict {float: left;}
+.photo_meta_infos div .prevpict {float: right;}
+
 .photo_meta_infos div .nextpict img{ padding-right: 5px;}
-.photo_meta_infos div:hover .nextpict img{ padding-right: 0; padding-left: 5px;}
+.photo_meta_infos div .nextpict:hover img{ padding-right: 0; padding-left: 5px;}
 .photo_meta_infos div .prevpict img{ padding-left: 5px;}
-.photo_meta_infos div:hover .prevpict img{ padding-left: 0; padding-right: 5px;}
+.photo_meta_infos div .prevpict:hover img{ padding-left: 0; padding-right: 5px;}
 

@@ -5,8 +5,7 @@
 		include_partial('photo/photoThumbnail', array('photo' => $photo));      
 	?>  
   </ul>
-  <?php if ($photoCount > 1): ?>
-    <a href="<?php echo url_for('galerie/show?id='.$galery->getId()) ?>"> <h4 class="gallery link">Voir l'album et ses <?php  echo $photoCount ?> photos</h4></a>
-  <?php endif; ?>
+  <a href="<?php echo url_for('galerie/show?id='.$galery->getId()) ?>"> <h4 class="gallery link">Voir l'album photo </h4></a>
+  
 </div>
 <hr/>

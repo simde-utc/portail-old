@@ -10,7 +10,14 @@
 }
 .blueimp-gallery-controls > .social-sidebar {
   display: block;
+  overflow-x:hidden;
+  overflow-y:scroll; 
 }
+
+.blueimp-gallery-controls > .social-sidebar > .sidebar-element{
+	margin-top: 20px;
+}
+
 .blueimp-gallery-controls > .indicator{
 	display: none;
 }
@@ -25,4 +32,6 @@
 	right: 30%;
 	margin-right: 15px;
 }
-.fb-comments, .fb-comments iframe[style] {width: 100% !important;}
+.fb-comments, .fb-comments iframe[style], .fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe{
+	width: 100% !important;
+}

@@ -16,7 +16,8 @@ function slideTo(index){
         	$(node).append(
         		'<div class="sidebar-element"><div class="fb-like"'+
         		'data-colorscheme="dark" data-href="'+
-				this.list[index].getAttribute('data-permalink') +
+				'http://google.fr' +
+				//this.list[index].getAttribute('data-permalink') +
         		'" data-width="300" data-layout="standard"'+
         		'data-action="like" data-show-faces="true"'+
         		'data-share="true"></div></div>');
@@ -24,9 +25,14 @@ function slideTo(index){
         		'<div class="sidebar-element">'+
         		'<div class="fb-comments" data-width="500px"'+
         		'data-href="'+
-        		this.list[index].getAttribute('data-permalink') +
+        		'http://google.fr' +
+        		//this.list[index].getAttribute('data-permalink') +
         		'" data-numposts="5"'+
         		'data-colorscheme="dark"></div></div>');
+        	if(this.list[index].getAttribute('data-edit-link'))
+        		$(node).append('<div style="text-align:center;"><a class="btn btn-primary" href="'+
+        			this.list[index].getAttribute('data-edit-link') +
+        			'"> Editer la photo </a></div>')
         	FB.XFBML.parse();
         }
 

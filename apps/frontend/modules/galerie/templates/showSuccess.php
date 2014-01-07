@@ -49,6 +49,10 @@
           title="<?php echo $photo->getTitle() ?>"
           data-photo-id="<?php echo $photo->getId() ?>"
           data-pass="<?php echo $photo->getPass() ?>"
+          <?php if($sf_user->isAuthenticated()
+             && $sf_user->getGuardUser()->hasAccess(
+              $galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)) 
+             echo 'data-edit-link="'.url_for('photo/edit?id='.$photo->getId()).'"' ?>
           data-permalink="<?php
           echo url_for('galerie/show?id='.$photo->getGaleriePhoto()->getId().
               '&photo='.$photo->getId().

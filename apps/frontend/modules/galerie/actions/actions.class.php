@@ -55,7 +55,6 @@ class galerieActions extends sfActions
     else{
       $this->photos = PhotoTable::getInstance()->getPhotosPublicList($this->galerie_photo->getId(), $this->hotLinkedPass)->execute();
     }
-
     /* TODO : Fb integration
     $response->addMeta('og:title', GaleriePhotoTable::getInstance()->find($this->photo->getGaleriephotoId())->getTitle());
     $response->addMeta('og:type', 'Galerie');

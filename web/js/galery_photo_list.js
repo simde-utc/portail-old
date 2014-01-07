@@ -7,6 +7,9 @@ function slideTo(index){
 		onslide: function (index, slide) {
             node = this.container.find('.social-sidebar');
             node.empty();
+            
+            $(node).append($(".gallery-info").clone());
+
         	$(node).append('<div class="sidebar-element"><h3>' +
         		this.list[index].getAttribute('title')
         		+'</h3></div>');

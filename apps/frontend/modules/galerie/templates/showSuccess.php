@@ -1,11 +1,12 @@
 <?php use_helper('Thumb') ?>
+<?php use_helper('Events') ?>
 <?php use_javascript('galery_photo_list.js'); ?>
 <?php use_javascript('blueimp/jquery.blueimp-gallery.min.js'); ?>
 <?php use_javascript('blueimp/blueimp-gallery-fullscreen.js'); ?>
 <?php use_stylesheet('blueimp/blueimp-gallery.min.css');?>
 <?php use_stylesheet('galerie_photo_list.css');?>
 
-<!-- FOr the facebook like button on the sidebar-->
+<!-- For the facebook like button on the sidebar-->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -15,25 +16,20 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<table>
-  <tbody>
-    <tr>
-      <th>Evènement:</th>
-      <td><?php echo $galerie_photo->getEvent() ?></td>
-    </tr><tr>
-      <th>Association:</th>
-      <td><?php echo $galerie_photo->getEvent()->getAsso()->getName() ?></td>
-    </tr>
-    <tr>
-      <th>Titre:</th>
-      <td><?php echo $galerie_photo->getTitle() ?></td>
-    </tr>
-    <tr>
-      <th>Description:</th>
-      <td><?php echo $galerie_photo->getDescription() ?></td>
-    </tr>
-  </tbody>
-</table>
+<!-- Displayed on the page and in the gallery sidebar-->
+<div class="gallery-info">
+  <h3>
+  <?php echo $galerie_photo->getTitle() ?>
+  </h3>
+  <p>
+  Evenement : <a href="<?php echo url_for('event_show', $galerie_photo->getEvent()) ?>">  
+  <?php echo $galerie_photo->getEvent() ?>
+  </a>
+  
+  </p>
+  <p><?php echo event_from_asso_list($galerie_photo->getEvent())?></p>
+  <p><?php echo $galerie_photo->getDescription() ?></p>
+</div>
 
 <?php if($sf_user->isAuthenticated()
    && $sf_user->getGuardUser()->hasAccess($galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)): ?>
@@ -90,6 +86,7 @@
     <ol class="indicator"></ol>
 </div>
 
+<!-- Jump to pict if necessary (behavior when linking to a pict in gallery)-->
 <?php if($hotLinkedPhoto):?>
   <script>
   $(function(){
@@ -102,4 +99,4 @@
   </script>
 <?php endif; ?>
 
-<div class="fb-comments" data-width="500px" data-href="http://simde.dev" data-numposts="5" data-colorscheme="dark"></div>
+<div class="fb-comments" data-width="500px" data-href="<?php echo url_for('galerie_photo_show', $galerie_photo) ?>" data-numposts="5" data-colorscheme="light"></div>

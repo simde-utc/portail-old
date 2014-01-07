@@ -26,11 +26,12 @@ class PhotoTable extends Doctrine_Table
 		return $q;
     }
 
-    public function getPhotosPublicList ($galerie_id){
+    public function getPhotosPublicList ($galerie_id, $pass=""){
     	$q = $this->createQuery('g')
     		->select('g.*')
     		->where("g.galeriePhoto_id = ?", $galerie_id)
-    		->andWhere("g.is_public = ?", 1)
+    		->andWhere("g.is_public = 1")
+            ->orWhere("SUBSTRING(g.image, 1, 8) = ?", $pass)
     		->orderBy('g.id ASC');
 
         return $q;

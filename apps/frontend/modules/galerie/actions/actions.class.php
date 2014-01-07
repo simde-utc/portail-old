@@ -33,12 +33,42 @@ class galerieActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->galerie_photo = Doctrine_Core::getTable('GaleriePhoto')->find(array($request->getParameter('id')));
+    
+    // Hotlinking on a photo of the gallery
+    $this->requestParams=$request->extractParameters(array('photo'=>'photo', 'pass'=>'pass'));
+    if(array_key_exists('photo',$this->requestParams))
+      $this->hotLinkedPhoto = intval($this->requestParams['photo']);
+    else
+      $this->hotLinkedPhoto= null;
+
+    if(array_key_exists('pass',$this->requestParams))
+      $this->hotLinkedPass = preg_replace(
+        "/[^A-Za-z0-9 ]/", '', $this->requestParams['pass']);
+    else
+      $this->hotLinkedPass= '';
+
+
+    // User auth changes photos we grab
     if ($this->getUser()->isAuthenticated()) {
       $this->photos = PhotoTable::getInstance()->getPhotosList($this->galerie_photo->getId())->execute();
     }
     else{
-      $this->photos = PhotoTable::getInstance()->getPhotosPublicList($this->galerie_photo->getId())->execute();
+      $this->photos = PhotoTable::getInstance()->getPhotosPublicList($this->galerie_photo->getId(), $this->hotLinkedPass)->execute();
     }
+
+    /* TODO : Fb integration
+    $response->addMeta('og:title', GaleriePhotoTable::getInstance()->find($this->photo->getGaleriephotoId())->getTitle());
+    $response->addMeta('og:type', 'Galerie');
+    $response->addMeta('og:photo', doThumb($this->photo->getImage(), 'galeries', array(
+          'width' => 2048,
+          'height' => 2048),
+        'scale'
+      ));
+
+      $response->addMeta('og:url',  $this->generateUrl('photo_show',$this->photo,true));
+      $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
+      
+    */
     $this->forward404Unless($this->galerie_photo);
   }
 

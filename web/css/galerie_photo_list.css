@@ -7,6 +7,7 @@
 	width: 30%;
 	background-color: black;
 	height: 100%;
+	padding-left: 5px;
 }
 .blueimp-gallery-controls > .social-sidebar {
   display: block;
@@ -18,12 +19,12 @@
 	margin-top: 20px;
 }
 
-.blueimp-gallery-controls > .indicator{
+.blueimp-gallery-controls > .indicator,
+.blueimp-gallery-controls > .title,
+.blueimp-gallery-controls > .play-pause{
 	display: none;
 }
-.blueimp-gallery-controls > a.play-pause{
-	display: none;
-}
+
 .blueimp-gallery-controls>.slides>.slide>img.slide-content{
   max-width: 70%;
   padding-right: 30%;

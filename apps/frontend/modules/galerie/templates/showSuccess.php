@@ -1,4 +1,9 @@
 <?php use_helper('Thumb') ?>
+<?php use_javascript('galery_photo_list.js'); ?>
+<?php use_javascript('blueimp/jquery.blueimp-gallery.min.js'); ?>
+<?php use_javascript('blueimp/blueimp-gallery-fullscreen.js'); ?>
+<?php use_stylesheet('blueimp/blueimp-gallery.min.css');?>
+<?php use_stylesheet('galerie_photo_list.css');?>
 
 <!-- FOr the facebook like button on the sidebar-->
 <div id="fb-root"></div>
@@ -14,7 +19,10 @@
   <tbody>
     <tr>
       <th>Evènement:</th>
-      <td><?php echo $galerie_photo->getEvent()?></td>
+      <td><?php echo $galerie_photo->getEvent() ?></td>
+    </tr><tr>
+      <th>Association:</th>
+      <td><?php echo $galerie_photo->getEvent()->getAsso()->getName() ?></td>
     </tr>
     <tr>
       <th>Titre:</th>
@@ -33,9 +41,7 @@
 &nbsp;
   <a class="btn btn-primary" href="<?php echo url_for('photo/new?id='.$galerie_photo->getId()) ?>">Ajouter des photos</a>
 <?php endif ?>
-
 <hr />
-
 
 <div class="row-fluid galery-photo-list">
   <ul class="thumbnails thumbfix">
@@ -44,8 +50,15 @@
           <a
           class="thumbnail"
           onclick="slideTo(<?php echo $index ?>); return false;"
-          title="<?php echo $photo->getTitle(); ?>"
-          data-pass="<?php echo $photo->getPass(); ?>"
+          title="<?php echo $photo->getTitle() ?>"
+          data-photo-id="<?php echo $photo->getId() ?>"
+          data-pass="<?php echo $photo->getPass() ?>"
+          data-permalink="<?php
+          echo url_for('galerie/show?id='.$photo->getGaleriePhoto()->getId().
+              '&photo='.$photo->getId().
+              '&pass='.$photo->getPass()
+              ,true); ?>"
+          data-author="<?php echo $photo->getUser() ?>"
           href="<?php
                 echo doThumb($photo->getImage(), 'galeries', array(
                 'width' => 1600,
@@ -77,9 +90,16 @@
     <ol class="indicator"></ol>
 </div>
 
+<?php if($hotLinkedPhoto):?>
+  <script>
+  $(function(){
+    setTimeout(
+      function(){
+        $('a[data-photo-id="<?php echo $hotLinkedPhoto ;?>"]').click();
+      }
+      ,1000)
+  });
+  </script>
+<?php endif; ?>
 
-<?php use_javascript('galery_photo_list.js'); ?>
-<?php use_javascript('blueimp/jquery.blueimp-gallery.min.js'); ?>
-<?php use_javascript('blueimp/blueimp-gallery-fullscreen.js'); ?>
-<?php use_stylesheet('blueimp/blueimp-gallery.min.css');?>
-<?php use_stylesheet('galerie_photo_list.css');?>
+<div class="fb-comments" data-width="500px" data-href="http://simde.dev" data-numposts="5" data-colorscheme="dark"></div>

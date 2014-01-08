@@ -29,7 +29,7 @@
   max-width: 70%;
   padding-right: 30%;
 }
-.blueimp-gallery-controls>a.next {
+.blueimp-gallery-controls>a.next, .blueimp-gallery-controls>a.close {
 	right: 30%;
 	margin-right: 15px;
 }

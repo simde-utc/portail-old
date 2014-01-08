@@ -103,4 +103,7 @@
   </script>
 <?php endif; ?>
 
-<div class="fb-comments" data-width="500px" data-href="<?php echo url_for('galerie_photo_show', $galerie_photo) ?>" data-numposts="5" data-colorscheme="light"></div>
+<div class="fb-comments" data-width="500px" data-href="<?php
+echo "http://google.com";
+// echo url_for('galerie_photo_show', $galerie_photo);
+ ?>" data-numposts="5" data-colorscheme="light"></div>

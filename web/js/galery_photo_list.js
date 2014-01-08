@@ -1,9 +1,15 @@
-
 function slideTo(index){
 	var test=blueimp.Gallery(
 		$('.galery-photo-list .thumbnail'),
 		{
 		titleProperty: 'title',
+        onclosed: function (){
+            var location=window.location.href;
+            var photo_in_location=location.indexOf('/photo');
+            if(photo_in_location>0)
+            history.pushState(
+                {}, '', location.substring(0, photo_in_location));
+        },
 		onslide: function (index, slide) {
             node = this.container.find('.social-sidebar');
             node.empty();
@@ -34,6 +40,8 @@ function slideTo(index){
         			this.list[index].getAttribute('data-edit-link') +
         			'"> Editer la photo </a></div>')
         	FB.XFBML.parse();
+            history.pushState({}, '', this.list[index].getAttribute('data-permalink'));
+
         }
 
 		});

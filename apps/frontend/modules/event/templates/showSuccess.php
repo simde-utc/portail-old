@@ -33,24 +33,24 @@
   </p>
 
   <p><?php echo nl2br($event->getSummary()) ?></p>
-  <p>
-    <strong>Participants : </strong> 
-    <?php if($participants->count() == 0): ?>
-      Pas de participants encore inscrits.
-    <?php else : ?>
-    <?php $i = 0; while($i < $participants->count() ) { ?>
-      <?php if( $i < $participants->count() - 1) : ?>
-        <?php echo $participants[$i++]->getUser()->getName().', ' ; ?>
-      <?php elseif($i == 4): ?>
-        <?php echo $participants[$i++]->getUser()->getName().', ...' ; ?>
-      <?php else: ?>
-        <?php echo $participants[$i++]->getUser()->getName() ; ?>
-     <?php endif; ?> 
-    <?php } ?>
-      
-    <?php endif; ?>
-  </p> 
   <?php if($sf_user->isAuthenticated()): ?> 
+    <p>
+      <strong>Participants : </strong> 
+      <?php if($participants->count() == 0): ?>
+        Pas de participants encore inscrits.
+      <?php else : ?>
+      <?php $i = 0; while($i < $participants->count() ) { ?>
+        <?php if( $i < $participants->count() - 1) : ?>
+          <a  href="<?php echo url_for('profile/show?username=' . $participants[$i]->getUser()->getUsername()) ?>"><?php echo $participants[$i++]->getUser()->getName() ; ?> </a>,  
+        <?php elseif($i == 4): ?>
+          <a  href="<?php echo url_for('profile/show?username=' . $participants[$i]->getUser()->getUsername()) ?>"><?php echo $participants[$i++]->getUser()->getName().', ...' ; ?> </a>
+        <?php else: ?>
+          <a  href="<?php echo url_for('profile/show?username=' . $participants[$i]->getUser()->getUsername()) ?>"><?php echo $participants[$i++]->getUser()->getName() ; ?> </a>
+       <?php endif; ?> 
+      <?php } ?>
+        
+      <?php endif; ?>
+    </p> 
     <?php if(!$jeparticipe): ?> 
       <p>
         <form action="<?php echo url_for('event/register?id='.$event->getId()) ?>" method="post" >
@@ -65,7 +65,7 @@
       </p>
     <?php endif; ?>
   <?php else: ?>
-    <p>Connectez-vous pour participer à l'évènement. </p>
+    <p>Connectez-vous pour participer à l'évènement et voir les autres participants. </p>
   <?php endif; ?>
   <p><?php echo nl2br($event->getDescription(ESC_XSSSAFE)) ?></p>
   <p>

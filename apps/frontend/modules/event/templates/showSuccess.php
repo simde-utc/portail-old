@@ -31,10 +31,27 @@
     Type : <?php echo $event->getType()->getName(); ?><br />
     Lieu : <?php echo $event->getPlace(); ?>
   </p>
+
   <p><?php echo nl2br($event->getSummary()) ?></p>
-  <p><?php echo nl2br($event->getDescription(ESC_XSSSAFE)) ?></p>
+  <p>
+    <strong>Participants : </strong> 
+    <?php if($participants->count() == 0): ?>
+      Pas de participants encore inscrits.
+    <?php else : ?>
+    <?php $i = 0; while($i < $participants->count() ) { ?>
+      <?php if( $i < $participants->count() - 1) : ?>
+        <?php echo $participants[$i++]->getUser()->getName().', ' ; ?>
+      <?php elseif($i == 4): ?>
+        <?php echo $participants[$i++]->getUser()->getName().', ...' ; ?>
+      <?php else: ?>
+        <?php echo $participants[$i++]->getUser()->getName() ; ?>
+     <?php endif; ?> 
+    <?php } ?>
+      
+    <?php endif; ?>
+  </p> 
   <?php if($sf_user->isAuthenticated()): ?> 
-    <?php if (!$jeparticipe): ?> 
+    <?php if(!$jeparticipe): ?> 
       <p>
         <form action="<?php echo url_for('event/register?id='.$event->getId()) ?>" method="post" >
           <input class="btn btn-primary" type="submit" value="Participer" />
@@ -50,6 +67,7 @@
   <?php else: ?>
     <p>Connectez-vous pour participer à l'évènement. </p>
   <?php endif; ?>
+  <p><?php echo nl2br($event->getDescription(ESC_XSSSAFE)) ?></p>
   <p>
     <a href="https://www.facebook.com/sharer/sharer.php?u=<?php
     echo urlencode(url_for('event_show', $event, true))

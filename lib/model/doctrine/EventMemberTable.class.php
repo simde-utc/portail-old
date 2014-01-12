@@ -24,4 +24,15 @@ class EventMemberTable extends Doctrine_Table
             ->andWhere('q.user_id = ?', $user);
 		return $q;
   	}
+
+    public function getLastParticipants($event, $number = 5){
+        $q = $this->createQuery('ev')
+            ->select ('ev.id, u.*')
+            ->leftJoin('ev.User u')
+            ->where('ev.user_id = u.id')
+            ->andWhere('ev.event_id = ?', $event->getId())
+            ->orderBy('ev.created_at DESC')
+            ->limit($number);
+        return $q;
+    }
 }

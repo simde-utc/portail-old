@@ -24,8 +24,10 @@ class profileActions extends sfActions
   {
     if (!$this->getUser()->isAuthenticated())
       $this->redirect("homepage");
-
-    $this->profile = $this->getUser()->getFullProfile();
+    $this->user = $this->getRoute()->getObject();
+    
+    $this->profile = ProfileTable::getInstance()->getProfileForUser($this->user->getId())->fetchOne();
+    //$this->profile = $this->user->getFullProfile();
     $this->semestres = UserSemestreTable::getInstance()->getAllByProfile($this->profile)->execute();
 
   }
@@ -110,6 +112,7 @@ class profileActions extends sfActions
     $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
     if ($this->form->isValid()) {
       $this->form->save();
+      //'profile/show?username='.$sf_user->getGuardUser()->getUsername()
       $this->redirect('profile_show');
     }
     $this->setTemplate('error');

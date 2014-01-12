@@ -124,6 +124,7 @@ class eventActions extends sfActions
     ));
     $response->addMeta('og:url', $this->generateUrl('event_show',$this->event,true));
     $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
+    $this->participants = EventMemberTable::getInstance()->getLastParticipants($this->event)->execute();
 
     if($this->getUser()->isAuthenticated()){
       $r = EventMemberTable::getInstance()->getEventMember($this->event->getId(), $this->getUser()->getGuardUser()->getId())->execute();

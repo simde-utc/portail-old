@@ -22,9 +22,9 @@
            style="background-image: url('/images/tampon_ext.png'); background-repeat:no-repeat; background-position: right -10px;"/>
     <?php endif; ?>
 
-    <b>Nom</b> : <?php echo $sf_user->getGuardUser()->getLastName() ?><br>
-    <b>Login</b> : <?php echo $sf_user->getGuardUser()->getUsername() ?><br><br>
-    <b>Prénom</b> : <?php echo $sf_user->getGuardUser()->getFirstName() ?><br><br>
+    <b>Nom</b> : <?php echo $user->getLastName() ?><br>
+    <b>Prénom</b> : <?php echo $user->getFirstName() ?><br><br>
+    <b>Login</b> : <?php echo $user->getUsername() ?><br><br>
 
     <div id="identite">
       <?php $birthday = explode("-", $profile->getBirthday());
@@ -166,8 +166,8 @@
 </div>
 */ ?>
 <h2>Parcours Asso</h2>
-<?php if (count($sf_user->getGuardUser()->getAssoMember()) > 0): ?>
-  <?php foreach ($sf_user->getGuardUser()->getAssoMember() as $assoMember) : ?>
+<?php if (count($user->getAssoMember()) > 0): ?>
+  <?php foreach ($user->getAssoMember() as $assoMember) : ?>
     <div class='row'>
       <div class='span1'>
         <b><?php echo $assoMember->getSemestre()->getName() ?></b> :

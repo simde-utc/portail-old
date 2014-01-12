@@ -297,9 +297,12 @@ sport_edit:
 
 #Profile
 profile_show:
-  url:   /profile
-  param: { module: profile, action: show }  
-  
+  url:   /profile/:username
+  class: sfDoctrineRoute
+  options: {model: sfGuardUser, type: object}
+  param: { module: profile, action: show }
+
+
 profile_identite_edit:
   url:  /profile/identite/edit/:id
   class: sfDoctrineRoute

@@ -79,6 +79,16 @@ class ArticleTable extends Doctrine_Table {
                 FROM event e, asso_member am, asso asso
                 WHERE (e.asso_id = am.asso_id AND am.user_id = ' . (int)$user_id . ' AND e.asso_id = asso.id AND am.semestre_id = '.sfConfig::get('app_portail_current_semestre').')
                 LIMIT 5)
+                UNION
+                (SELECT g.id, g.title, g.description, g.created_at, g.event_id, asso.name AS assoName, \'galerie\' 
+                FROM event e, abonnement ab, asso asso, galerie_photo g
+                WHERE (e.asso_id = ab.asso_id AND ab.user_id = ' . (int)$user_id . ' AND e.asso_id = asso.id AND g.event_id = e.id)
+                LIMIT 5)
+                UNION
+                (SELECT g.id, g.title, g.description, g.created_at, g.event_id, asso.name AS assoName, \'galerie\' 
+                FROM event e, asso_member am, asso asso, galerie_photo g
+                WHERE (e.asso_id = am.asso_id AND am.user_id = ' . (int)$user_id . ' AND e.asso_id = asso.id AND g.event_id = e.id AND am.semestre_id = '.sfConfig::get('app_portail_current_semestre').')
+                LIMIT 5)
                 ORDER BY created_at DESC')
             ->fetchAll(PDO::FETCH_ASSOC);
         return $res;

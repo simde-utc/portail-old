@@ -51,7 +51,7 @@ class profileActions extends sfActions
     $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
     if ($this->form->isValid()) {
       $this->form->save();
-      $this->redirect('profile_show');
+      $this->redirect('profile/show?username='.$this->getUser()->getUsername());
     }
     $this->setTemplate('error');
     // $this->redirect('profile_show');
@@ -76,7 +76,7 @@ class profileActions extends sfActions
     $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
     if ($this->form->isValid()) {
       $this->form->save();
-      $this->redirect('profile_show');
+      $this->redirect('profile/show?username='.$this->getUser()->getUsername());
     }
     $this->setTemplate('error');
   }
@@ -113,7 +113,7 @@ class profileActions extends sfActions
     if ($this->form->isValid()) {
       $this->form->save();
       //'profile/show?username='.$sf_user->getGuardUser()->getUsername()
-      $this->redirect('profile_show');
+      $this->redirect('profile/show?username='.$this->getUser()->getUsername());
     }
     $this->setTemplate('error');
     // $this->redirect('profile_show');

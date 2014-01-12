@@ -6,20 +6,20 @@
         <p class="events_abonnements thumbnail">
           <b><a href="<?php echo url_for('event/show?id='.$abonnement['id']) ?>"><?php echo $abonnement['assoName'].' : '.$abonnement['name'] ?></a></b>
           <?php echo $abonnement['summary'] ?></br>
-          Evènement
+          <span class="label label-important">Evènement</span>
         </p>
       <?php elseif($abonnement['article'] == 'article'): ?>
         <p class="articles_abonnements thumbnail">
           <b><a href="<?php echo url_for('article/show?id='.$abonnement['id']) ?>"><?php echo $abonnement['assoName'].' : '.$abonnement['name'] ?></a></b>
           <?php echo $abonnement['summary'] ?></br>
-          Article
+          <span class="label label-success">Article</span>
           <div class="barre"></div>
         </p>
       <?php elseif($abonnement['article'] == 'galerie'): ?>
         <p class="galeries_abonnements thumbnail">
           <b><a href="<?php echo url_for('galerie/show?id='.$abonnement['id']) ?>"><?php echo $abonnement['assoName'].' : '.$abonnement['name'] ?></a></b>
           <?php echo $abonnement['summary'] ?></br>
-          Galerie Photo
+          <span class="label label-info">Galerie Photo</span>
           <div class="barre"></div>
         </p>
       <?php endif; ?>

@@ -63,33 +63,34 @@ class ArticleTable extends Doctrine_Table {
             ->query('(SELECT a.id, a.name, a.summary, a.created_at, a.asso_id, asso.name AS assoName, \'article\'
                 FROM article a, abonnement ab, asso asso
                 WHERE (a.asso_id = ab.asso_id AND ab.user_id = ' . (int)$user_id . ' AND a.asso_id = asso.id)
-                limit 5)
+                )
                 UNION
                 (SELECT a.id, a.name, a.summary, a.created_at, a.asso_id, asso.name AS assoName, \'article\'
                 FROM article a, asso_member am, asso asso
                 WHERE (a.asso_id = am.asso_id AND am.user_id = ' . (int)$user_id . ' AND a.asso_id = asso.id AND am.semestre_id = '.sfConfig::get('app_portail_current_semestre').')
-                limit 5)
+                )
                 UNION
                 (SELECT e.id, e.name, e.summary, e.created_at, e.asso_id, asso.name AS assoName, \'event\'
                 FROM event e, abonnement ab, asso asso
                 WHERE (e.asso_id = ab.asso_id AND ab.user_id = ' . (int)$user_id . ' AND e.asso_id = asso.id)
-                LIMIT 5)
+                )
                 UNION
                 (SELECT e.id, e.name, e.summary, e.created_at, e.asso_id, asso.name AS assoName, \'event\'
                 FROM event e, asso_member am, asso asso
                 WHERE (e.asso_id = am.asso_id AND am.user_id = ' . (int)$user_id . ' AND e.asso_id = asso.id AND am.semestre_id = '.sfConfig::get('app_portail_current_semestre').')
-                LIMIT 5)
+                )
                 UNION
                 (SELECT g.id, g.title, g.description, g.created_at, g.event_id, asso.name AS assoName, \'galerie\' 
                 FROM event e, abonnement ab, asso asso, galerie_photo g
                 WHERE (e.asso_id = ab.asso_id AND ab.user_id = ' . (int)$user_id . ' AND e.asso_id = asso.id AND g.event_id = e.id)
-                LIMIT 5)
+                )
                 UNION
                 (SELECT g.id, g.title, g.description, g.created_at, g.event_id, asso.name AS assoName, \'galerie\' 
                 FROM event e, asso_member am, asso asso, galerie_photo g
                 WHERE (e.asso_id = am.asso_id AND am.user_id = ' . (int)$user_id . ' AND e.asso_id = asso.id AND g.event_id = e.id AND am.semestre_id = '.sfConfig::get('app_portail_current_semestre').')
-                LIMIT 5)
-                ORDER BY created_at DESC')
+                )
+                ORDER BY created_at DESC
+                LIMIT 5')
             ->fetchAll(PDO::FETCH_ASSOC);
         return $res;
     }

@@ -52,7 +52,7 @@
             <h3 id="myModalLabel">Les participants à l'évènement</h3>
           </div>
           <div class="modal-body">
-            <ul>
+            <ul class="nav nav-list">
               <?php foreach ($participants as $participant): ?>
                 <li><a href="<?php echo url_for('profile/show?username=' . $participant->getUser()->getUsername()) ?>"><?php echo $participant->getUser()->getName() ; ?></a></li>
               <?php endforeach ; ?>

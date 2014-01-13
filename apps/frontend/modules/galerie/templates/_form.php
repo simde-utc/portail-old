@@ -10,11 +10,10 @@
       <tr>
         <td colspan="2">
           <?php echo $form->renderHiddenFields(false) ?>
-          &nbsp;<a href="<?php echo url_for('galerie/index') ?>">Back to list</a>
+          <input class="form-save-button btn btn-primary" type="submit" value="Enregistrer" />
           <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'galerie/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
+            &nbsp;<?php echo link_to('Supprimer', 'galerie/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Est-ce votre dernier choix?', 'class' => 'btn btn-danger')) ?>
           <?php endif; ?>
-          <input type="submit" value="Save" />
         </td>
       </tr>
     </tfoot>
@@ -34,6 +33,13 @@
           <?php echo $form['description'] ?>
         </td>
       </tr>
+      <?php if (!$form->getObject()->isNew()): ?>
+        <tr>
+          <td colspan="2">
+            <a class="ajout-photo-button btn btn-primary" href="<?php echo url_for('photo/new?id='. $form->getObject()->getId()) ?>">Ajouter des photos</a>
+          </td>
+        </tr>
+      <?php endif ?>
     </tbody>
   </table>
 </form>

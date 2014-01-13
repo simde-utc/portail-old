@@ -16,4 +16,10 @@ class GaleriePhotoTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('GaleriePhoto');
     }
+    
+    
+    
+    
+    
+
 }

@@ -17,33 +17,17 @@ class photoActions extends sfActions
       ->execute();
   }
 
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->photo = $this->getRoute()->getObject();
-    $response = $this->getResponse();
-    $response->addMeta('og:title', GaleriePhotoTable::getInstance()->find($this->photo->getGaleriephotoId())->getTitle());
-    $response->addMeta('og:type', 'Galerie');
-    sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
-    $response->addMeta('og:photo', doThumb($this->photo->getImage(), 'galeries', array(
-        'width' => 150,
-        'height' => 150),
-      'scale'
-    ));
-    $response->addMeta('og:url', $this->generateUrl('photo_show',$this->photo,true));
-    $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
-  }
-
   public function executeNew(sfWebRequest $request)
   {
-    $this->redirectUnless($galerie_photo = $this->getRoute()->getObject(), 'galerie_photo_list');
+    $this->redirectUnless($this->galerie_photo = $this->getRoute()->getObject(), 'galerie_photo_list');
     if (!$this->getUser()->isAuthenticated()
-      || !$this->getUser()->getGuardUser()->hasAccess($galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)
+      || !$this->getUser()->getGuardUser()->hasAccess($this->galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)
     ) {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
-      $this->redirect('event/show?id=' . $galerie_photo->getEventId());
+      $this->redirect('event/show?id=' . $this->galerie_photo->getEventId());
     }
     $this->form = new PhotoForm();
-    $this->form->setDefaults(array('galeriePhoto_id' => $this->getRoute()->getObject()->getId(), 'title'=> NULL, 'author' => $this->getUser()->getGuardUser()->getId(),'is_public' => '0'));
+    $this->form->setDefaults(array('galeriePhoto_id' => $this->galerie_photo->getId(), 'title'=> '', 'author' => $this->getUser()->getGuardUser()->getId(),'is_public' => '0'));
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -66,17 +50,17 @@ class photoActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
-    $this->form = new PhotoForm($photo);
+    $this->forward404Unless($this->photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
+    $this->form = new PhotoEditForm($this->photo);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
-    $this->form = new PhotoForm($photo);
+    $this->forward404Unless($this->photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
+    $this->form = new PhotoEditForm($this->photo);
 
-    $this->processForm($request, $this->form);
+    $this->processEditForm($request, $this->form);
 
     $this->setTemplate('edit');
   }
@@ -86,22 +70,30 @@ class photoActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->forward404Unless($photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
-    $galerie_photo_id = $photo->getGaleriePhotoId();
+    $galerie_photo_id = $photo->getGaleriephotoId();
     $photo->delete();
-
-    $this->redirect('galerie/show?id=', $galerie_photo_id);
+    $this->redirect('galerie/show?id='.$galerie_photo_id);
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
+    if ($form->isValid()) {
       $photo = $form->save();
-
+      $this->photo=$photo;
       if($request->getParameter('sf_format') != 'json') {
-        $this->redirect('photo/show?id='.$photo->getId());
+        $this->redirect('galerie/show?id='.$photo->getGaleriephotoId().'&photo='.$photo->getId());
+
       }
+    }
+  }
+
+  protected function processEditForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid()) {
+      $photo = $form->save();
+      $this->redirect('galerie/show?id='.$photo->getGaleriephotoId().'&photo='.$photo->getId());
     }
   }
 }

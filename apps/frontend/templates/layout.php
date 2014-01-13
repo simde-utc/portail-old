@@ -26,7 +26,7 @@
                                 <b class="caret"></b>
                             </a>              
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo url_for('profile_show') ?>">Mon Profil</a></li>
+                                <li><a href="<?php echo url_for('profile/show?username=' . $sf_user->getGuardUser()->getUsername()) ?>">Mon Profil</a></li>
                                 <li><a href="<?php echo url_for('sf_guard_signout') ?>">Se déconnecter</a></li>
                             </ul>
                         </li>

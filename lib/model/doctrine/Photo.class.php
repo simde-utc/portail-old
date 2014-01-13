@@ -12,4 +12,9 @@
  */
 class Photo extends BasePhoto
 {
+	public function getPass(){
+		return substr($this->getImage(), 0, 8);	
+	}
+ 
+	
 }

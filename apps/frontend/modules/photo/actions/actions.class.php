@@ -80,7 +80,6 @@ class photoActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid()) {
       $photo = $form->save();
-      $this->photo=$photo;
       if($request->getParameter('sf_format') != 'json') {
         $this->redirect('galerie/show?id='.$photo->getGaleriephotoId().'&photo='.$photo->getId());
 

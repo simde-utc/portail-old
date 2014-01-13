@@ -50,9 +50,11 @@ class galerieActions extends sfActions
 
     // User auth changes photos we grab
     if ($this->getUser()->isAuthenticated()) {
+      $this->hasRightAndIsConnected = $this->getUser()->getGuardUser()->hasAccess($this->galerie_photo->getEvent()->getAsso()->getLogin(), 0x200);
       $this->photos = PhotoTable::getInstance()->getPhotosList($this->galerie_photo->getId())->execute();
     }
     else{
+      $this->hasRightAndIsConnected = false;
       $this->photos = PhotoTable::getInstance()->getPhotosPublicList($this->galerie_photo->getId(), $this->hotLinkedPass)->execute();
     }
     /* TODO : Fb integration

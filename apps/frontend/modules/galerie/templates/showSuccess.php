@@ -22,7 +22,7 @@
   <?php echo $galerie_photo->getTitle() ?>
   </h3>
   <p>
-  Evenement : <a href="<?php echo url_for('event_show', $galerie_photo->getEvent()) ?>">  
+  Événement : <a href="<?php echo url_for('event_show', $galerie_photo->getEvent()) ?>">  
   <?php echo $galerie_photo->getEvent() ?>
   </a>
   
@@ -31,8 +31,7 @@
   <p><?php echo $galerie_photo->getDescription() ?></p>
 </div>
 
-<?php if($sf_user->isAuthenticated()
-   && $sf_user->getGuardUser()->hasAccess($galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)): ?>
+<?php if($hasRightAndIsConnected): ?>
   <a class="btn btn-primary" href="<?php echo url_for('galerie/edit?id='.$galerie_photo->getId()) ?>">Editer la galerie</a>
 &nbsp;
   <a class="btn btn-primary" href="<?php echo url_for('photo/new?id='.$galerie_photo->getId()) ?>">Ajouter des photos</a>
@@ -49,9 +48,7 @@
           title="<?php echo $photo->getTitle() ?>"
           data-photo-id="<?php echo $photo->getId() ?>"
           data-pass="<?php echo $photo->getPass() ?>"
-          <?php if($sf_user->isAuthenticated()
-             && $sf_user->getGuardUser()->hasAccess(
-              $galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)) 
+          <?php if($hasRightAndIsConnected) 
              echo 'data-edit-link="'.url_for('photo/edit?id='.$photo->getId()).'"' ?>
           data-permalink="<?php
           echo url_for('galerie/show?id='.$photo->getGaleriePhoto()->getId().

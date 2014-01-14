@@ -9,7 +9,7 @@
   <div>
     <?php echo $form['title']->renderError() ?>
     <label>
-      Titre:
+      Titre
       <?php echo $form['title'] ?>
     </label>
     <?php echo $form['is_public']->renderError() ?>
@@ -19,6 +19,7 @@
     </label>
   </div>
   <div>
+    </br>
     <input class="btn btn-primary" type="submit" value="Enregistrer" />
     <?php if (!$form->getObject()->isNew()): ?>
       <?php echo link_to('Supprimer', 'photo/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Est-ce votre dernier choix?', 'class' => 'btn btn-danger')) ?>

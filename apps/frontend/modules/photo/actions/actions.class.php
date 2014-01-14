@@ -27,7 +27,7 @@ class photoActions extends sfActions
       $this->redirect('event/show?id=' . $this->galerie_photo->getEventId());
     }
     $this->form = new PhotoForm();
-    $this->form->setDefaults(array('galeriePhoto_id' => $this->galerie_photo->getId(), 'title'=> '', 'author' => $this->getUser()->getGuardUser()->getId(),'is_public' => '0'));
+    $this->form->setDefaults(array('galeriePhoto_id' => $this->galerie_photo->getId(), 'title'=> '', 'author' => $this->getUser()->getGuardUser()->getId()));
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -79,9 +79,9 @@ class photoActions extends sfActions
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid()) {
-      $photo = $form->save();
+      $this->photo = $form->save();
       if($request->getParameter('sf_format') != 'json') {
-        $this->redirect('galerie/show?id='.$photo->getGaleriephotoId().'&photo='.$photo->getId());
+        $this->redirect('galerie/show?id='.$this->photo->getGaleriephotoId().'&photo='.$this->photo->getId());
 
       }
     }

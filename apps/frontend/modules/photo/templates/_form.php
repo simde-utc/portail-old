@@ -17,7 +17,8 @@
       </tr>
     </tfoot>
     <tbody>
-      <?php echo $form ?>
+      <?php echo $form['galeriePhoto_id'] ?>
+      <?php echo $form['author'] ?>
     </tbody>
   </table>
 </form>
@@ -41,7 +42,7 @@ $(document).ready(function(){
         params: {
           'photo[galeriePhoto_id]': $("#photo_galeriePhoto_id").val(),
           'photo[author]': $("#photo_author").val(),
-          'photo[is_public]': $("#photo_is_public").val()
+          'photo[is_public]': $("#photo_is_public").attr("checked") ? 1 : 0
         },
         inputName: 'photo[image]'
     },
@@ -50,6 +51,14 @@ $(document).ready(function(){
     }
   });
   $("#vraiForm").hide();
+
+  $("#photo_is_public").change(function(){
+    $("#fine-uploader").fineUploader('setParams', {
+      'photo[galeriePhoto_id]': $("#photo_galeriePhoto_id").val(),
+      'photo[author]': $("#photo_author").val(),
+      'photo[is_public]': $(this).attr("checked") ? 1 : 0
+    });
+  });
 });
 </script>
 

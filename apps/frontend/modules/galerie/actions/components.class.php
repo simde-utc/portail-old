@@ -1,5 +1,5 @@
 <?php
- 
+
 class galerieComponents extends sfComponents
 {
   public function executePreview()

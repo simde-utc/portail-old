@@ -48,8 +48,8 @@
           data-author="<?php echo $photo->getUser() ?>"
           href="<?php
                 echo doThumb($photo->getImage(), 'galeries', array(
-                'width' => 1600,
-                'height' => 900
+                'width' => sfConfig::get('app_portail_photos_big_res_x'),
+                'height' => sfConfig::get('app_portail_photos_big_res_y')
               ), 'scale'); 
           ?>">
             <?php include_partial('photo/photoThumbnail', array('photo' => $photo)); ?>
@@ -58,6 +58,8 @@
     <?php endforeach;?>
   </ul>
 </div>
+
+<h1><?php echo sfConfig::get('app_portail_photos_thumb_res_x'); ?> </h1>
 
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls blueimp-gallery-fullscreen">
     <div class="slides"></div>
@@ -69,7 +71,6 @@
 
 
 <?php if($hotLinkedPhoto):?>
-  <!-- Jump to pict if necessary (behavior when linking to a pict in gallery)-->
   <script>
   $(function(){
     setTimeout(

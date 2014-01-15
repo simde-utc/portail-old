@@ -4,8 +4,8 @@ echo showThumb(
   $photo->getImage(),
   'galeries',
   array(
-    'width' => 250,
-    'height' => 250,
+    'width' => sfConfig::get('app_portail_photos_thumb_res_x'),
+    'height' => sfConfig::get('app_portail_photos_thumb_res_y'),
     'class' => 'galery-thumbnail',
     'alt' => $photo->getTitle(),
     'title' => $photo->getTitle()), 

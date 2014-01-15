@@ -22,7 +22,7 @@ class PhotoForm extends BasePhotoForm
       'galeriePhoto_id' => new sfWidgetFormInputHidden(),
       'title'           => new sfWidgetFormInputHidden(),
       'author'          => new sfWidgetFormInputHidden(),
-      'is_public'       => new sfWidgetFormInputHidden(),
+      'is_public'       => new sfWidgetFormInputCheckbox(array('default' => false)),
     ));
 
     $this->widgetSchema['image'] = new sfWidgetFormInputFileEditable(array(

@@ -1,9 +1,8 @@
 <?php use_helper('Thumb') ?>
 <?php use_helper('Events') ?>
+<?php use_javascript('jquery.blueimp-gallery.min.js'); ?>
+<?php use_stylesheet('blueimp-gallery.min.css');?>
 <?php use_javascript('galery_photo_list.js'); ?>
-<?php use_javascript('blueimp/jquery.blueimp-gallery.min.js'); ?>
-<?php use_javascript('blueimp/blueimp-gallery-fullscreen.js'); ?>
-<?php use_stylesheet('blueimp/blueimp-gallery.min.css');?>
 <?php use_stylesheet('galerie_photo_list.css');?>
 
 <!-- For the facebook like button on the sidebar-->
@@ -62,13 +61,10 @@
 
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls blueimp-gallery-fullscreen">
     <div class="slides"></div>
-    <h3 class="title"></h3>
     <div class="social-sidebar"></div>
     <a class="prev">‹</a>
     <a class="next">›</a>
     <a class="close">×</a>
-    <a class="play-pause"></a>
-    <ol class="indicator"></ol>
 </div>
 
 

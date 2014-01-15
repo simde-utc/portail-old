@@ -19,12 +19,6 @@
 	margin-top: 20px;
 }
 
-.blueimp-gallery-controls > .indicator,
-.blueimp-gallery-controls > .title,
-.blueimp-gallery-controls > .play-pause{
-	display: none;
-}
-
 .blueimp-gallery-controls>.slides>.slide>img.slide-content{
   max-width: 70%;
   padding-right: 30%;

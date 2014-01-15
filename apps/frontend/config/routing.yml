@@ -180,8 +180,14 @@ galerie_photo_list:
   url:   /galerie
   param: {module: galerie, action: index}
 
+galerie_photo_show_fullscreen:
+  url:   /galerie/show/:id/photo/:photo/pass/:pass
+  class: sfDoctrineRoute
+  param: { module: galerie, action: show }
+  options: { model: GaleriePhoto, type: object }
+  
 galerie_photo_show:
-  url:   /galerie/show/:id/*
+  url:   /galerie/show/:id/
   class: sfDoctrineRoute
   param: { module: galerie, action: show }
   options: { model: GaleriePhoto, type: object }

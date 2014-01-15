@@ -22,8 +22,7 @@ function slideTo(index){
         	$(node).append(
         		'<div class="sidebar-element"><div class="fb-like"'+
         		'data-colorscheme="dark" data-href="'+
-				'http://google.fr' +
-				//this.list[index].getAttribute('data-permalink') +
+				this.list[index].getAttribute('data-permalink') +
         		'" data-width="300" data-layout="standard"'+
         		'data-action="like" data-show-faces="true"'+
         		'data-share="true"></div></div>');
@@ -31,8 +30,7 @@ function slideTo(index){
         		'<div class="sidebar-element">'+
         		'<div class="fb-comments" data-width="500px"'+
         		'data-href="'+
-        		'http://google.fr' +
-        		//this.list[index].getAttribute('data-permalink') +
+        		this.list[index].getAttribute('data-permalink') +
         		'" data-numposts="5"'+
         		'data-colorscheme="dark"></div></div>');
         	if(this.list[index].getAttribute('data-edit-link'))

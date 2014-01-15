@@ -20,9 +20,7 @@ class photoActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     $this->redirectUnless($this->galerie_photo = $this->getRoute()->getObject(), 'galerie_photo_list');
-    if (!$this->getUser()->isAuthenticated()
-      || !$this->getUser()->getGuardUser()->hasAccess($this->galerie_photo->getEvent()->getAsso()->getLogin(), 0x200)
-    ) {
+    if (!$this->galerie_photo->userIsPhotographer($this->getUser())){
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('event/show?id=' . $this->galerie_photo->getEventId());
     }
@@ -68,10 +66,13 @@ class photoActions extends sfActions
   public function executeDelete(sfWebRequest $request)
   {
     $request->checkCSRFProtection();
-
     $this->forward404Unless($photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
     $galerie_photo_id = $photo->getGaleriephotoId();
-    $photo->delete();
+    if($photo->userIsPhotographer($this->getUser())){
+      $photo->delete();
+    }else{
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+    }
     $this->redirect('galerie/show?id='.$galerie_photo_id);
   }
 

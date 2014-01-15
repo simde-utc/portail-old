@@ -98,10 +98,10 @@
     </div>
   </div>
 </div>
-<?php if($galeries->count() > 0 || $hasRightAndIsConnected): ?>
+<?php if($galeries->count() > 0 || $isPhotographer): ?>
   <div class="part" id="galerie">
     <h1>Galerie Photo
-      <?php if($hasRightAndIsConnected): ?>
+      <?php if($isPhotographer): ?>
         <span class="pull-right">
           <i class="icon-plus icon-white"></i>
           <a href="<?php echo url_for('galerie_photo_new', $event) ?>">Ajouter une galerie photo</a>

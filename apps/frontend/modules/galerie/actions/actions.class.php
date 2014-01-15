@@ -20,9 +20,7 @@ class galerieActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
     $this->redirectUnless($event = $this->getRoute()->getObject(), 'event_list');
-    if (!$this->getUser()->isAuthenticated()
-      || !$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)
-    ) {
+    if (!$event->userIsPhotographer($this->getUser())){
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('event/show?id=' . $event->getId());
     }
@@ -32,31 +30,21 @@ class galerieActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->galerie_photo = Doctrine_Core::getTable('GaleriePhoto')->find(array($request->getParameter('id')));
+    $this->galerie_photo = Doctrine_Core::getTable('GaleriePhoto')
+                          ->find(array($request->getParameter('id')));
     
     // Hotlinking on a photo of the gallery
-    $this->requestParams=$request->extractParameters(array('photo'=>'photo', 'pass'=>'pass'));
-    if(array_key_exists('photo',$this->requestParams))
-      $this->hotLinkedPhoto = intval($this->requestParams['photo']);
-    else
-      $this->hotLinkedPhoto= null;
+    $this->hotLinkedPhoto = intval($request->getParameter('photo'));
+    $this->hotLinkedPass = preg_replace(
+        "/[^A-Za-z0-9 ]/", '', $request->getParameter('pass'));
 
-    if(array_key_exists('pass',$this->requestParams))
-      $this->hotLinkedPass = preg_replace(
-        "/[^A-Za-z0-9 ]/", '', $this->requestParams['pass']);
-    else
-      $this->hotLinkedPass= '';
-
+    $this->isStudent = $this->getUser()->isAuthenticated();
+    $this->isPhotographer = $this->galerie_photo->userIsPhotographer($this->getUser());
 
     // User auth changes photos we grab
-    if ($this->getUser()->isAuthenticated()) {
-      $this->hasRightAndIsConnected = $this->getUser()->getGuardUser()->hasAccess($this->galerie_photo->getEvent()->getAsso()->getLogin(), 0x200);
-      $this->photos = PhotoTable::getInstance()->getPhotosList($this->galerie_photo->getId())->execute();
-    }
-    else{
-      $this->hasRightAndIsConnected = false;
-      $this->photos = PhotoTable::getInstance()->getPhotosPublicList($this->galerie_photo->getId(), $this->hotLinkedPass)->execute();
-    }
+      $this->photos = PhotoTable::getInstance()
+        ->getPhotos($this->galerie_photo->getId(), $this->isStudent, $this->hotLinkedPass)->execute();
+  
     /* TODO : Fb integration
     $response->addMeta('og:title', GaleriePhotoTable::getInstance()->find($this->photo->getGaleriephotoId())->getTitle());
     $response->addMeta('og:type', 'Galerie');
@@ -87,9 +75,8 @@ class galerieActions extends sfActions
   {
     $this->forward404Unless($galerie_photo = Doctrine_Core::getTable('GaleriePhoto')->find(array($request->getParameter('id'))), sprintf('Object galerie_photo does not exist (%s).', $request->getParameter('id')));
     $event = $galerie_photo->getEvent();
-    if (!$this->getUser()->isAuthenticated()
-      || !$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)
-    ) {
+    if (!$event->userIsPhotographer($this->getUser()))
+    {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('event/show?id=' . $event->getId());
     }
@@ -112,9 +99,7 @@ class galerieActions extends sfActions
     $request->checkCSRFProtection();
     $this->forward404Unless($galerie_photo = Doctrine_Core::getTable('GaleriePhoto')->find(array($request->getParameter('id'))), sprintf('Object galerie_photo does not exist (%s).', $request->getParameter('id')));
     $event = $galerie_photo->getEvent();
-    if (!$this->getUser()->isAuthenticated()
-      || !$this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)
-    ) {
+    if (!$event->userIsPhotographer($this->getUser())) {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
       $this->redirect('event/show?id=' . $event->getId());
     }
@@ -131,9 +116,7 @@ class galerieActions extends sfActions
     {
       $form_vals = $this->form->getValues();
       $event = EventTable::getInstance()->find($form_vals["event_id"]);
-      if ($this->getUser()->isAuthenticated()
-       && $this->getUser()->getGuardUser()->hasAccess($event->getAsso()->getLogin(), 0x200)
-      ) {
+      if ($event->userIsPhotographer($this->getUser())) {
         $galerie_photo = $form->save();
         $this->redirect('galerie/show?id='.$galerie_photo->getId());
       }

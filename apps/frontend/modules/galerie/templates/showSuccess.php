@@ -16,39 +16,30 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<!-- Displayed on the page and in the gallery sidebar-->
-<div class="gallery-info">
-  <h3>
-  <?php echo $galerie_photo->getTitle() ?>
-  </h3>
-  <p>
-  Événement : <a href="<?php echo url_for('event_show', $galerie_photo->getEvent()) ?>">  
-  <?php echo $galerie_photo->getEvent() ?>
-  </a>
-  
-  </p>
-  <p><?php echo event_from_asso_list($galerie_photo->getEvent())?></p>
-  <p><?php echo $galerie_photo->getDescription() ?></p>
-</div>
 
-<?php if($hasRightAndIsConnected): ?>
-  <a class="btn btn-primary" href="<?php echo url_for('galerie/edit?id='.$galerie_photo->getId()) ?>">Editer la galerie</a>
-&nbsp;
-  <a class="btn btn-primary" href="<?php echo url_for('photo/new?id='.$galerie_photo->getId()) ?>">Ajouter des photos</a>
+<?php include_partial('galerie/header', array('galerie_photo' => $galerie_photo, 'fulldesc'=>True)) ?>
+
+<?php if($isPhotographer): ?>
+  <a class="btn btn-primary" href="<?php
+    echo url_for('galerie/edit?id='.$galerie_photo->getId())
+    ?>">Editer la galerie</a>
+  &nbsp;
+  <a class="btn btn-primary" href="<?php
+    echo url_for('photo/new?id='.$galerie_photo->getId())
+    ?>">Ajouter des photos</a>
 <?php endif ?>
 <hr />
-
 <div class="row-fluid galery-photo-list">
   <ul class="thumbnails thumbfix">
     <?php foreach ($photos as $index=>$photo): ?>
         <li class="span3 thumb-container">
           <a
           class="thumbnail"
-          onclick="slideTo(<?php echo $index ?>); return false;"
+          data-photo-number="<?php echo $index ?>"
           title="<?php echo $photo->getTitle() ?>"
           data-photo-id="<?php echo $photo->getId() ?>"
           data-pass="<?php echo $photo->getPass() ?>"
-          <?php if($hasRightAndIsConnected) 
+          <?php if($isPhotographer) 
              echo 'data-edit-link="'.url_for('photo/edit?id='.$photo->getId()).'"' ?>
           data-permalink="<?php
           echo url_for('galerie/show?id='.$photo->getGaleriePhoto()->getId().
@@ -62,14 +53,7 @@
                 'height' => 900
               ), 'scale'); 
           ?>">
-            <?php echo showThumb($photo->getImage(), 'galeries', array(
-            'width' => 250,
-            'height' => 250,
-            'class' => 'galery-thumbnail',
-            'alt' => $photo->getTitle(),
-            'title' => $photo->getTitle()
-            ), 
-            'center') ?> 
+            <?php include_partial('photo/photoThumbnail', array('photo' => $photo)); ?>
           </a>
         </li>   
     <?php endforeach;?>
@@ -87,8 +71,9 @@
     <ol class="indicator"></ol>
 </div>
 
-<!-- Jump to pict if necessary (behavior when linking to a pict in gallery)-->
+
 <?php if($hotLinkedPhoto):?>
+  <!-- Jump to pict if necessary (behavior when linking to a pict in gallery)-->
   <script>
   $(function(){
     setTimeout(

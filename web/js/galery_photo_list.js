@@ -8,7 +8,7 @@ function slideTo(index){
             var photo_in_location=location.indexOf('/photo');
             if(photo_in_location>0)
             history.pushState(
-                {}, '', location.substring(0, photo_in_location));
+                {}, '', location.substring(0, photo_in_location+1));
         },
 		onslide: function (index, slide) {
             node = this.container.find('.social-sidebar');
@@ -47,3 +47,10 @@ function slideTo(index){
 		});
 	test.slide(index,0);
 }
+
+$(function(){
+    $('a.thumbnail').click(function (){
+      slideTo($(this).data('photo-number'));
+      return false;
+    });
+})

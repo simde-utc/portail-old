@@ -15,6 +15,8 @@ class Photo extends BasePhoto
 	public function getPass(){
 		return substr($this->getImage(), 0, 8);	
 	}
- 
+ 	public function userIsPhotographer($user){
+    	return $this->getGaleriePhoto()->userIsPhotographer($user);
+  	}
 	
 }

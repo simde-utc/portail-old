@@ -126,10 +126,9 @@ class eventActions extends sfActions
     $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
 
     $this->participants = EventMemberTable::getInstance()->getParticipants($this->event)->execute();
-    $this->hasRightAndIsConnected = false;
+    $this->isPhotographer = $this->event->userIsPhotographer($this->getUser());
 
     if($this->getUser()->isAuthenticated()){
-      $this->hasRightAndIsConnected = $this->getUser()->getGuardUser()->hasAccess($this->event->getAsso()->getLogin(), 0x200);
       $r = EventMemberTable::getInstance()->getEventMember($this->event->getId(), $this->getUser()->getGuardUser()->getId())->execute();
       $this->jeparticipe = false;
       if($r->count() > 0){

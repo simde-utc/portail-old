@@ -16,4 +16,8 @@ class GaleriePhoto extends BaseGaleriePhoto
 		PhotoTable::getInstance()->deletePhotosFromGallery($this->getId());
 		parent::delete($conn);
 	}
+
+	public function userIsPhotographer($user){
+    	return $this->getEvent()->userIsPhotographer($user);
+  	}
 }

@@ -17,22 +17,16 @@ class PhotoTable extends Doctrine_Table
         return Doctrine_Core::getTable('Photo');
     }
 
-    public function getPhotosList ($galerie_id){
-    	$q = $this->createQuery('g')
-    		->select('g.*')
-    		->where("g.galeriePhoto_id = ?", $galerie_id)
-    		->orderBy('g.id ASC');
+    public function getPhotos($galerie_id, $can_access_private_photos=false, $pass=""){
+        $q = $this->createQuery('g')
+            ->select('g.*')
+            ->where("g.galeriePhoto_id = ?", $galerie_id)
+            ->orderBy('g.id ASC');
 
-		return $q;
-    }
-
-    public function getPhotosPublicList ($galerie_id, $pass=""){
-    	$q = $this->createQuery('g')
-    		->select('g.*')
-    		->where("g.galeriePhoto_id = ?", $galerie_id)
-    		->andWhere("g.is_public = 1")
-            ->orWhere("SUBSTRING(g.image, 1, 8) = ?", $pass)
-    		->orderBy('g.id ASC');
+        if(!$can_access_private_photos){
+            $q = $q ->andWhere("g.is_public = 1")
+            ->orWhere("SUBSTRING(g.image, 1, 8) = ?", $pass);
+        }
 
         return $q;
     }
@@ -43,23 +37,4 @@ class PhotoTable extends Doctrine_Table
           ->where("g.galeriePhoto_id = ?", $galerie_id)
           ->execute();        
     }
- 
-    public function getNextPhoto($photo){
-        $q= $this->createQuery('p')->select('p.*')
-        ->where("p.galeriePhoto_id = ?", $photo->getGaleriePhoto()->getId())
-        ->andWhere("p.id > ?" , $photo->getId())
-        ->orderBy('p.id ASC')
-        ->limit(1);
-        return $q;
-    }
-
-    public function getPreviousPhoto($photo){
-        $q= $this->createQuery('p')->select('p.*')
-        ->where("p.galeriePhoto_id = ?", $photo->getGaleriePhoto()->getId())
-        ->andWhere("p.id < ?" , $photo->getId())
-        ->orderBy('p.id DESC')
-        ->limit(1);
-        return $q;
-    }
-
 }

@@ -27,6 +27,18 @@
     echo url_for('photo/new?id='.$galerie_photo->getId())
     ?>">Ajouter des photos</a>
 <?php endif ?>
+
+<?php if( $galerie_photo->countPhotosVisible($isStudent) <
+          $galerie_photo->countPhotosVisible(True) ): ?>
+  
+    <a href="<?php echo url_for('cas') ?>">
+    <div class="alert alert-info">
+       Connectez vous
+      pour voir les <?php echo $galerie_photo->countPhotosVisible(True) ?> photos.
+    </div>    </a>
+  
+<?php endif ?>
+
 <hr />
 <div class="row-fluid galery-photo-list">
   <ul class="thumbnails thumbfix">

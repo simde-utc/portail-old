@@ -34,9 +34,17 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function(){
+$(function(){
   $("#fine-uploader").fineUploader({
     debug: true,
+    thumbnails:{
+      placeholders:{
+        waitingPath : "<?php echo public_path('img/upload_grey_square.jpg') ?>"
+      }
+    },
+    dragAndDrop:{
+      extraDropzones:[document.body]
+    },
     request: {
         endpoint: "<?php echo url_for("photo_create_format",array('sf_format'=>'json')) ?>",
         params: {
@@ -67,9 +75,7 @@ $(document).ready(function(){
         <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
             <span>Déposer les fichiers pour les importer</span>
         </div>
-        <div class="qq-upload-button-selector qq-upload-button">
-            <i class="fa fa-arrow-circle-up fa-white fa-1g"></i> Importer
-        </div>
+       
         </br>
         <span class="qq-drop-processing-selector qq-drop-processing">
             <span>En cours de traitement des fichiers déposés</span>
@@ -77,13 +83,20 @@ $(document).ready(function(){
         </span>
         <div class="qq-upload-drop-area-selector well" style="min-height:100px;" >
           <h3 class="text-center">Déposer les fichiers ici pour les importer</h3>
-          <p class="text-center">ou utiliser le bouton ci-dessus</p>
+          <p class="text-center">
+          ou selectionnez les sur votre ordinateur avec le bouton  
+          <i class="fa fa-arrow-circle-up fa-white fa-1g qq-upload-button-selector qq-upload-button" style="float: none; display:inline; padding:5px;">Importer</i>           
+          </p>
+              
+           
+          
           <ul class="qq-upload-list-selector qq-upload-list">
             <li>
               <div class="qq-progress-bar-container-selector">
                   <div class="qq-progress-bar-selector qq-progress-bar"></div>
               </div>
               <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+              <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale />
               <span class="qq-edit-filename-icon-selector qq-edit-filename-icon"></span>
               <span class="qq-upload-file-selector qq-upload-file"></span>
               <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">

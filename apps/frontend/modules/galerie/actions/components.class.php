@@ -11,6 +11,7 @@ class galerieComponents extends sfComponents
         	)
 		->limit(4)
     	->execute();
-    
+
+    $this->isStudent=$this->sf_user->isAuthenticated();
   }
 }

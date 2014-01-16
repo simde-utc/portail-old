@@ -23,12 +23,13 @@
   </table>
 </form>
 
-<div id="fine-uploader"></div>
+
 <?php echo $form['is_public']->renderError() ?>
 <label class="checkbox"> 
-  Visible des étudiants non UTCéens 
+  Photos publiques (visibles sans connexion)
   <?php echo $form['is_public'] ?>
 </label>
+<div id="fine-uploader"></div>
 <div>
   <a class="btn btn-primary" href="<?php echo url_for('galerie/show?id='.$form['galeriePhoto_id']->getValue()) ?>">Retour vers la galerie</a>
 </div>
@@ -42,9 +43,9 @@ $(function(){
         waitingPath : "<?php echo public_path('img/upload_grey_square.jpg') ?>"
       }
     },
-    dragAndDrop:{
+    /*dragAndDrop:{
       extraDropzones:[document.body]
-    },
+    },*/
     request: {
         endpoint: "<?php echo url_for("photo_create_format",array('sf_format'=>'json')) ?>",
         params: {
@@ -82,24 +83,23 @@ $(function(){
             <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
         </span>
         <div class="qq-upload-drop-area-selector well" style="min-height:100px;" >
-          <h3 class="text-center">Déposer les fichiers ici pour les importer</h3>
+          <h3 class="text-center">Déposez les photos ici pour les ajouter à la galerie</h3>
           <p class="text-center">
-          ou selectionnez les sur votre ordinateur avec le bouton  
-          <i class="fa fa-arrow-circle-up fa-white fa-1g qq-upload-button-selector qq-upload-button" style="float: none; display:inline; padding:5px;">Importer</i>           
+          <i class="fa fa-arrow-circle-up fa-white fa-1g qq-upload-button-selector btn">
+          Ou bien sélectionnez les fichiers sur votre disque dur
+          </i>           
           </p>
               
            
           
           <ul class="qq-upload-list-selector qq-upload-list">
-            <li>
+            <li class="well">
               <div class="qq-progress-bar-container-selector">
                   <div class="qq-progress-bar-selector qq-progress-bar"></div>
               </div>
               <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
               <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale />
-              <span class="qq-edit-filename-icon-selector qq-edit-filename-icon"></span>
               <span class="qq-upload-file-selector qq-upload-file"></span>
-              <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
               <span class="qq-upload-size-selector qq-upload-size"></span>
               <a class="qq-upload-cancel-selector qq-upload-cancel" href="#">Annuler</a>
               <a class="qq-upload-retry-selector qq-upload-retry" href="#">Réessayer</a>

@@ -37,3 +37,5 @@ all:
     piwik_address: ~
     # ID du site sur piwik
     piwik_site_id: 0
+    # Nombre d'annonces par page pour InfoJob
+    offres_par_page: 5

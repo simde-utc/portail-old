@@ -14,8 +14,11 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
-      filter:  ~
+      list:    
+        title: "Les Services"
+        display: [id, nom, url, Type]
+      filter:
+        display: [nom, url, type_id]
       form:    ~
       edit:    ~
       new:     ~

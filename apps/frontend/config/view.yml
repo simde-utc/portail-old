@@ -7,14 +7,15 @@ default:
 
   metas:
     title:        BDE-UTC : Portail des associations
+    viewport:     "width=device-width, initial-scale=1.0"
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en
     #robots:       noindex, nofollow
 
-  stylesheets:    [jquery-ui-1.8.12.custom.css, bootstrap.min.css, main.css, carousel.css]
+  stylesheets:    ["//fonts.googleapis.com/css?family=Raleway:900", bootstrap.min.css, main.css?2, bootstrap-responsive.min.css, font-awesome.min.css]
 
-  javascripts:    [jquery-1.7.2.min.js, jquery-ui-1.8.12.custom.min.js, bootstrap.min.js, search.js, jquery.contentcarousel.js, main.js]
+  javascripts:    [jquery-1.7.2.min.js, bootstrap.min.js?2, main.js?2]
 
   has_layout:     true
   layout:         layout

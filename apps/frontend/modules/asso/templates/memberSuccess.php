@@ -26,17 +26,23 @@
           <td>Gestion des membres</td>
           <td>Gestion des articles</td>
           <td>Gestion des événements</td>
+          <td>Gestion des droits</td>
+          <td>Gestion de la trésorerie</td>
+          <td>Gestion des photos</td>
         </tr>
       </thead>
       <tbody>
         <?php foreach($roles as $role): ?>
         <tr>
           <td style="font-weight: bold;"><?php echo $role->getName() ?></td>
-          <td><?php echo ( $role->getBureau() ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>') ?></td>
-          <td><?php echo ($role->getDroits() & 0x01) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
-          <td><?php echo ($role->getDroits() & 0x02) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
-          <td><?php echo ($role->getDroits() & 0x04) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
-          <td><?php echo ($role->getDroits() & 0x08) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
+          <td><?php echo ($role->getBureau() ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>') ?></td>
+          <td><?php echo ($role->getDroits() &  0x01) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
+          <td><?php echo ($role->getDroits() &  0x02) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
+          <td><?php echo ($role->getDroits() &  0x04) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
+          <td><?php echo ($role->getDroits() &  0x08) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
+          <td><?php echo ($role->getDroits() &  0x10) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
+          <td><?php echo ($role->getDroits() & 0x100) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
+          <td><?php echo ($role->getDroits() & 0x200) ? '<i class="icon-ok"></i>' : '<i class="icon-remove"></i>' ?></td>
         </tr>
         <?php endforeach; ?>
       </tbody>

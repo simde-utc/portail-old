@@ -16,4 +16,10 @@ class PartenaireTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Partenaire');
     }
+    
+    public function getPartenairesList() {
+        $q = $this->createQuery('a')
+            ->select('a.*');
+        return $q;
+    }
 }

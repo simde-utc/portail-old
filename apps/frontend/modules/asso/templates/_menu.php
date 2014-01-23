@@ -1,8 +1,8 @@
 <?php if($asso): ?>
-<div class="wrap">
-  <div id="asso-menu" style="background:<?php echo $couleur ?>">
+<div class="row">
+  <div id="asso-menu" class="span12" style="background:<?php echo $couleur ?>">
     <a href="<?php echo url_for('assos_show', $asso) ?>"><i class="icon-home icon-white"></i> <?php echo $asso->getName() ?></a>
-    <span class="arrow-e"></span>
+    <i class="icon-play icon-white"></i>
     <a href="<?php echo url_for('asso_articles', $asso) ?>">Articles</a>
     <a href="<?php echo url_for('asso_events', $asso) ?>">Événements</a>
     <a href="<?php echo url_for('asso_trombi', $asso) ?>">Trombinoscope</a>

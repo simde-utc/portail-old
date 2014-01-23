@@ -1,3 +1,4 @@
+<h1 class="partie">InfoJob</h1>
 <div class="well">
   <div class="row-fluid" style="text-align:center;">
     <div class="span6">

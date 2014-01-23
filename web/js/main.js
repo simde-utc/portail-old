@@ -45,15 +45,12 @@ $(document).ready(function(){
     
   $('.dropdown-toggle').dropdown();
   
-  setInterval(function(){
-    var d = new Date();
-    var mois = new Array('janvier', 'fevrier', 'mars', 'avril', 'mai','juin','juillet','aout','septembre','octobre','novembre','decembre');
-    var heure = d.getHours();
-    var min = d.getMinutes();
-    if (heure<10) heure = '0'+heure;
-    if (min<10)	min = '0'+min;
-    $(".horloge").html( d.getDate() + ' ' + mois[d.getMonth()] + ' ' +d.getFullYear() + ' <span class="barre">' + heure + ':' + min +'</span>');
-  }, 1000);
+  if ($.fn.datetimepicker) {
+    $('.datepicker').datetimepicker({
+      dateFormat: "dd/mm/yy",
+      timeFormat: "HH:mm"
+    });
+  }
   
   $(".ejs").each(function(){
     var a = $(this).html() + "@assos.utc." + "fr";
@@ -61,4 +58,13 @@ $(document).ready(function(){
     $(this).attr("href", "mailto:" + a);
     $(this).css("visibility", "visible");
   });
+  
+  $("img.avatar").error(function() {
+    if($(this).attr("src") != "/images/default.jpg"){
+      $(this).attr("src", "/images/default.jpg");
+    }
+  });
+
+  if(window.Select2)
+    $(".select2").select2({width: 'resolve'});
 });

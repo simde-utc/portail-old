@@ -16,7 +16,16 @@ class Photo extends BasePhoto
 		return substr($this->getImage(), 0, 8);	
 	}
  	public function userIsPhotographer($user){
-    	return $this->getGaleriePhoto()->userIsPhotographer($user);
+      
+      return $user->isAuthenticated() && (
+        $user->getGuardUser()->getId()==$this->getAuthor() ||
+        $this->getGaleriePhoto()->userIsPhotographer($user));
+  
   	}
+
+	public function getExifs(){
+		return exif_read_data(sfConfig::get('sf_root_dir')."/web/uploads/galeries/source/".
+            $this->getImage());
+	}
 	
 }

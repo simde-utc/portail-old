@@ -13,8 +13,7 @@ class galerieActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->galerie_photos = Doctrine_Core::getTable('GaleriePhoto')
-      ->createQuery('a')
-      ->execute();
+      ->getAllGaleries()->execute();
   }
 
   public function executeNew(sfWebRequest $request)

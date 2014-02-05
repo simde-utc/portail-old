@@ -1,20 +1,6 @@
 <h1>Liste des galeries photos</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Titre</th>
-      <th>Evènement</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($galerie_photos as $galerie_photo): ?>
-    <tr>
-       <td><a href="<?php echo url_for('galerie/show?id='.$galerie_photo->getId()) ?>"><?php echo $galerie_photo->getTitle() ?></a></td>
-      <td><?php echo $galerie_photo->getEvent()->getName() ?></td>     
-      <td><?php echo $galerie_photo->getDescription() ?></td>
-    </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
+<?php foreach ($galerie_photos as $galerie_photo)
+  include_component('galerie', 'preview',  array('galery' =>  $galerie_photo));
+
+?>

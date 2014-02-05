@@ -19,6 +19,22 @@ function slideTo(index){
         	$(node).append('<div class="sidebar-element"><h3>' +
         		this.list[index].getAttribute('title')
         		+'</h3></div>');
+            if(this.list[index].getAttribute('data-shot-date'))
+                $(node).append('<div class="sidebar-element" title="Date de prise de vue">' +
+                    '<i class="fa-camera fa fa-white fa-1g"> ' +
+                    this.list[index].getAttribute('data-shot-date')
+                    +'</i></div>');
+            $(node).append('<div class="sidebar-element" title="Auteur de la photo"> ' +
+                '<i class="fa-user fa fa-white fa-1g "> ' +
+                this.list[index].getAttribute('data-author') +
+                '</i></div>');
+
+            $(node).append('<div class="sidebar-element" style="text-align:center;"> ' +
+                '<a class="btn btn-primary fa-download fa fa-white fa-1g "' +
+                    'href="'+ this.list[index].getAttribute('data-original-file') + '" download>' +
+                'Télécharger en HD'+
+                '</a></div>');
+
         	$(node).append(
         		'<div class="sidebar-element"><div class="fb-like"'+
         		'data-colorscheme="dark" data-href="'+
@@ -33,10 +49,13 @@ function slideTo(index){
         		this.list[index].getAttribute('data-permalink') +
         		'" data-numposts="5"'+
         		'data-colorscheme="dark"></div></div>');
+
         	if(this.list[index].getAttribute('data-edit-link'))
         		$(node).append('<div style="text-align:center;"><a class="btn btn-primary" href="'+
         			this.list[index].getAttribute('data-edit-link') +
         			'"> Editer la photo </a></div>')
+
+
         	FB.XFBML.parse();
             history.pushState({}, '', this.list[index].getAttribute('data-permalink'));
 

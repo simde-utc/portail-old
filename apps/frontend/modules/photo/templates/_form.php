@@ -31,7 +31,10 @@
 </label>
 <div id="fine-uploader"></div>
 <div>
-  <a class="btn btn-primary" href="<?php echo url_for('galerie/show?id='.$form['galeriePhoto_id']->getValue()) ?>">Retour vers la galerie</a>
+  <a class="btn btn-primary fa-chevron-circle-left fa fa-white fa-1g"
+      href="<?php echo url_for('galerie/show?id='.$form['galeriePhoto_id']->getValue()) ?>">
+  Retour vers la galerie
+  </a>
 </div>
 
 <script type="text/javascript">
@@ -85,9 +88,11 @@ $(function(){
         <div class="qq-upload-drop-area-selector well" style="min-height:100px;" >
           <h3 class="text-center">Déposez les photos ici pour les ajouter à la galerie</h3>
           <p class="text-center">
-          <i class="fa fa-arrow-circle-up fa-white fa-1g qq-upload-button-selector btn">
-          Ou bien sélectionnez les fichiers sur votre disque dur
-          </i>           
+          Ou bien 
+          <i class="fa fa-folder-open-o fa-white fa-1g qq-upload-button-selector btn">
+          sélectionnez
+          </i>
+          les fichiers a envoyer sur votre disque dur.           
           </p>
               
            

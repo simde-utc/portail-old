@@ -17,7 +17,12 @@ class GaleriePhotoTable extends Doctrine_Table
         return Doctrine_Core::getTable('GaleriePhoto');
     }
     
-    
+    public function getAllGaleries(){
+        $q = $this->createQuery('gal')
+        	->select('gal.*')
+        	->addOrderBy('gal.created_at DESC');
+        return $q;
+    }
     
     
     

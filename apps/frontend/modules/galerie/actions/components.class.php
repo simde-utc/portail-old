@@ -4,14 +4,13 @@ class galerieComponents extends sfComponents
 {
   public function executePreview()
   {
+    $this->isStudent=$this->getUser()->isAuthenticated();
   	$this->photos = PhotoTable::getInstance()
-        ->getPhotos(
+      ->getPhotos(
         	$this->galery->getId(),
-        	$this->sf_user->isAuthenticated()
+        	$this->isStudent
         	)
-		->limit(4)
+		  ->limit(4)
     	->execute();
-
-    $this->isStudent=$this->sf_user->isAuthenticated();
   }
 }

@@ -49,14 +49,17 @@
           data-photo-number="<?php echo $index ?>"
           title="<?php echo $photo->getTitle() ?>"
           data-photo-id="<?php echo $photo->getId() ?>"
+          data-original-file="<?php echo '/uploads/galeries/source/' . $photo->getImage() ?>"
           data-pass="<?php echo $photo->getPass() ?>"
-          <?php if($isPhotographer) 
+          <?php if($isPhotographer)
              echo 'data-edit-link="'.url_for('photo/edit?id='.$photo->getId()).'"' ?>
           data-permalink="<?php
           echo url_for('galerie/show?id='.$photo->getGaleriePhoto()->getId().
               '&photo='.$photo->getId().
               '&pass='.$photo->getPass()
               ,true); ?>"
+          data-shot-date="<?php
+            echo $photo->getExifs()['DateTimeOriginal']; ?>"
           data-author="<?php echo $photo->getUser() ?>"
           href="<?php
                 echo doThumb($photo->getImage(), 'galeries', array(

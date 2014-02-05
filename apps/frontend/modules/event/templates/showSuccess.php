@@ -110,7 +110,7 @@
     </h1>
     <?php if($galeries->count() > 0): ?> 
       <?php foreach ($galeries as $galery)
-        include_component('galerie', 'preview',  array('galery' =>  $galery, 'sf_user' =>$sf_user));
+        include_component('galerie', 'preview',  array('galery' =>  $galery));
       ?>
     <?php else: ?> 
       <a href="<?php echo url_for('galerie_photo_new', $event) ?>"> Vous n'avez pas encore ajouté d'albums photos à votre évènement. Vous pouvez le faire en cliquant sur ce texte.</a>

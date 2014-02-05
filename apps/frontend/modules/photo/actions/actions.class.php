@@ -49,7 +49,12 @@ class photoActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->forward404Unless($this->photo = Doctrine_Core::getTable('Photo')->find(array($request->getParameter('id'))), sprintf('Object photo does not exist (%s).', $request->getParameter('id')));
-    $this->form = new PhotoEditForm($this->photo);
+    if($this->photo->userIsPhotographer($this->getUser())){
+      $this->form = new PhotoEditForm($this->photo);
+    }else{
+      $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');
+      $this->redirect('galerie/show?id='.$this->photo->getGaleriephotoId());
+    }
   }
 
   public function executeUpdate(sfWebRequest $request)

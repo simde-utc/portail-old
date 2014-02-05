@@ -185,7 +185,13 @@ galerie_photo_show_fullscreen:
   class: sfDoctrineRoute
   param: { module: galerie, action: show }
   options: { model: GaleriePhoto, type: object }
-  
+
+galerie_photo_show_fullscreen_nopass:
+  url:   /galerie/show/:id/photo/:photo
+  class: sfDoctrineRoute
+  param: { module: galerie, action: show }
+  options: { model: GaleriePhoto, type: object }
+
 galerie_photo_show:
   url:   /galerie/show/:id/
   class: sfDoctrineRoute

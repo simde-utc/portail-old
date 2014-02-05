@@ -51,7 +51,7 @@
           data-photo-id="<?php echo $photo->getId() ?>"
           data-original-file="<?php echo '/uploads/galeries/source/' . $photo->getImage() ?>"
           data-pass="<?php echo $photo->getPass() ?>"
-          <?php if($isPhotographer)
+          <?php if($photo->userIsPhotographer($user))
              echo 'data-edit-link="'.url_for('photo/edit?id='.$photo->getId()).'"' ?>
           data-permalink="<?php
           echo url_for('galerie/show?id='.$photo->getGaleriePhoto()->getId().

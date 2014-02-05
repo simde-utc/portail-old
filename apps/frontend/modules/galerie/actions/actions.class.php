@@ -39,7 +39,7 @@ class galerieActions extends sfActions
 
     $this->isStudent = $this->getUser()->isAuthenticated();
     $this->isPhotographer = $this->galerie_photo->userIsPhotographer($this->getUser());
-
+    $this->user=$this->getUser();
     // User auth changes photos we grab
       $this->photos = PhotoTable::getInstance()
         ->getPhotos($this->galerie_photo->getId(), $this->isStudent, $this->hotLinkedPass)->execute();

@@ -20,7 +20,8 @@ class DocumentTable extends Doctrine_Table
     public function getAllForAsso($asso)
     {
         $q = DocumentTable::getInstance()->createQuery('q')
-            ->where('q.asso_id = ?', $asso->getPrimaryKey());
+            ->where('q.asso_id = ?', $asso->getPrimaryKey())
+            ->orderBy('q.created_at DESC');
         return $q;
     }
 

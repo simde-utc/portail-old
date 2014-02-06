@@ -38,11 +38,11 @@ body {
     text-align: right;
 }
 
-.table-transaction tr .reduce {
+tr .reduce {
     white-space: nowrap;
 }
 
-.table-transaction tr .expand {
+tr .expand {
     width: 80%;
 }
 

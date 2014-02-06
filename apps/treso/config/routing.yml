@@ -251,6 +251,22 @@ ndf_create:
   param: { module: noteDeFrais, action: create }
 
 # Documents
+documents:
+  url: /documents/asso/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: document, action: index }
+
+document_new:
+  url: /documents/:login/new
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: document, action: new }
+
+document_add:
+  url: /documents/add
+  param: { module: document, action: add }
+
 document_show:
   url: /documents/show/:id
   class: sfDoctrineRoute

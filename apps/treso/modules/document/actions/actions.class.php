@@ -25,7 +25,10 @@ class documentActions extends tresoActions
 
     $path = $document->getPath();
     if(file_exists($path)) {
-      header('Content-type: application/pdf');
+      $infos = new finfo(FILEINFO_MIME_TYPE);
+      $mime = $infos->file($path);
+
+      header('Content-type: '.$mime);
       readfile($path);
       return sfView::NONE;
     } else {

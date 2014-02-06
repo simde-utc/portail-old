@@ -15,8 +15,12 @@ class Document extends BaseDocument
         return $this->getNom();
     }
 
+    public static function getPathForAsso($asso) {
+        return sfConfig::get('app_portail_dossier_assos') . '/' . $asso->getLogin() . '/documents/';
+    }
+
     public function getPath() {
-        return sfConfig::get('app_portail_dossier_assos') . '/' . $this->getAsso()->getLogin() . '/documents/' . $this->getDocumentType()->getSlug() . '/' . $this->getFichier();
+        return $this::getPathForAsso($this->getAsso()) . $this->getDocumentType()->getSlug() . '/' . $this->getFichier();
     }
 
     public function deleteAndUnlink() {

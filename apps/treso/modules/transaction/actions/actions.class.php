@@ -65,23 +65,11 @@ class transactionActions extends tresoActions {
     $form = new DocumentForm();
     $files = $request->getFiles($form->getName());
     $form->bind($request->getParameter($form->getName()), $files);
+    $form->setFilePath(Document::getPathForAsso($asso));
 
-    $infos = new finfo(FILEINFO_MIME_TYPE);
-
-    if ($form->isValid() and $infos->file($files['fichier']['tmp_name']) == 'application/pdf') {
-      $fichier = $this->transaction->getPrimaryKey() . '-' . date('Y-m-d-H-i-s') . '-' . Doctrine_Inflector::urlize($files['fichier']['name']);
-      if (substr($fichier, -4) == '-pdf')
-        $fichier = substr($fichier, 0, -4);
-      $fichier .= '.pdf';
-      $form->setValue('fichier', $fichier);
+    if ( $form->isValid() ) {
       $form->setValue('auteur', $this->getUser()->getGuardUser()->getPrimaryKey());
       $doc = $form->save();
-
-      $path = $doc->getPath();
-      $dir = substr($path, 0, -strlen($fichier));
-      if(!is_dir($dir))
-        mkdir($dir);
-      move_uploaded_file($files['fichier']['tmp_name'], $path);
 
       $this->redirect('transaction_show', $this->transaction);
     } else {
@@ -115,7 +103,6 @@ class transactionActions extends tresoActions {
     if (isset($this->poste_id)) {
       $this->form->setDefault('budget_poste_id', $this->poste_id);
     }
-    $this->getResponse()->setSlot('current_asso', $this->asso);
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 

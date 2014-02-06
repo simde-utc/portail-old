@@ -32,14 +32,6 @@
           <?php echo $form['fichier'] ?>
         </td>
       </tr>
-      <!--
-      <tr>
-        <th><?php echo $form['reference']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['reference']->renderError() ?>
-          <?php echo $form['reference'] ?>
-        </td>
-      </tr>-->
     </tbody>
   </table>
 </form>

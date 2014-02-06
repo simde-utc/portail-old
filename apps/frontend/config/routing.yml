@@ -175,6 +175,78 @@ article_new:
   options: { model: Asso, type: object }
   param: { module: article, action: new }
 
+#GaleriePhoto
+galerie_photo_list:
+  url:   /galerie
+  param: {module: galerie, action: index}
+
+galerie_photo_show:
+  url:   /galerie/show/:id
+  class: sfDoctrineRoute
+  param: { module: galerie, action: show }
+  options: { model: GaleriePhoto, type: object }
+
+galerie_photo_edit:
+  url:  /galerie/edit/:id
+  class: sfDoctrineRoute
+  param: { module: galerie, action: edit }
+  options: { model: GaleriePhoto, type: object }
+
+galerie_photo_update:
+  url:  /galerie/update/:id
+  param: { module: galerie, action: update }
+
+galerie_photo_delete:
+  url:  /galerie/delete/:id
+  param: { module: galerie, action: delete }
+
+galerie_photo_create:
+  url: /galerie/create
+  param: { module: galerie, action: create }
+
+galerie_photo_new:
+  url: /galerie/new/:id
+  class: sfDoctrineRoute
+  options: { model: Event, type: object }
+  param: { module: galerie, action: new }
+
+#Photo
+photo_show:
+  url: /photo/show/:id
+  class: sfDoctrineRoute
+  param: { module: photo, action: show }
+  options: { model: Photo, type: object }
+
+photo_edit:
+  url:  /photo/edit/:id
+  class: sfDoctrineRoute
+  param: { module: photo, action: edit }
+  options: { model: Photo, type: object }
+
+photo_update:
+  url:  /photo/update/:id
+  param: { module: photo, action: update }
+
+photo_delete:
+  url:  /photo/delete/:id
+  param: { module: photo, action: delete }
+
+photo_create:
+  url: /photo/create
+  param: { module: photo, action: create }
+
+photo_create_format:
+  url: /photo/create.:sf_format
+  param: { module: photo, action: create }
+  requirements:
+    sf_format: (?:html|json)
+
+photo_new:
+  url: /photo/new/:id
+  class: sfDoctrineRoute
+  options: { model: GaleriePhoto, type: object }
+  param: { module: photo, action: new }
+
 #Uv
 uv_list:
   url:   /uv
@@ -316,6 +388,15 @@ event_update:
 event_delete:
   url:  /event/delete/:id
   param: { module: event, action: delete }
+
+event_register:
+  url: /event/register/:id
+  param: { module: event, action: register }
+
+event_unregister:
+  url: /event/unregister/:id
+  param: { module: event, action: unregister }
+
 event_create:
   url: /event/create
   param: { module: event, action: create }
@@ -324,6 +405,7 @@ event_new:
   class: sfDoctrineRoute
   options: { model: Asso, type: object }
   param: { module: event, action: new }
+
 
 agenda_detail:
   url:   /event/calendar
@@ -538,6 +620,10 @@ services_unfollow:
   class: sfDoctrineRoute
   param: { module: services, action: unfollow }
   options: { model: Service, type: object }
+
+partenaires:
+  url: /partenaires
+  param: {module: partenaires, action: index}
 
 gesmail_create:
   url: /asso/:login/gesmail/create

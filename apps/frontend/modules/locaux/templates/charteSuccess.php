@@ -33,39 +33,49 @@ et doit par conséquent éviter tout incident qui pourrait entraîner la fermetu
       <?php echo $form->renderHiddenFields(false) ?>
       <p>Pour quels lieux désirez-vous l'accès étendu?</p>
       <table>
-	<tr>
-          <td><font size="1" color="grey">L'accès porte de la MDE est pour avoir accès à la MDE jusqu'à 22h pour les réunions.</font></td>
+        <tr>
+          <td><font size="1" color="red">La carte étudiante ne supporte pas le cumul des accès étendu, un seul type d'accès peut être choisi. Les requêtes abusives seront refusées.</td>
         </tr>
+         
         <tr>
           <td><?php echo $form['porte_mde']->renderlabel('Porte de la MDE ') ?></td>
           <td><?php echo $form['porte_mde'] ?></td>
         </tr>
-	<tr>
-          <td><font size="1" color="grey">Donne aussi l'accès "Porte de la MDE" - Pour des réunions le soir au batiment A.</font></td>
+        <tr>
+          <td><font size="1" color="grey">L'accès porte de la MDE est pour avoir accès à la MDE jusqu'à 22h pour les réunions.</font></td>
         </tr>
+         
         <tr>
           <td><?php echo $form['bat_a']->renderlabel('Batiment A ') ?></td>
           <td><?php echo $form['bat_a'] ?></td>
         </tr>
         <tr>
-          <td><font size="1" color="grey">L'accès MDE complète est réservé au Président du BDE et au responsable locaux du BDE sauf dérogation exceptionnelle.</font></td>
+          <td><font size="1" color="grey">Donne aussi l'accès "Porte de la MDE" - Pour des réunions le soir au batiment A.</font></td>
         </tr>
+         
         <tr>
           <td><?php echo $form['mde_complete']->renderlabel('MDE complète ') ?></td>
           <td><?php echo $form['mde_complete'] ?></td>
         </tr>
         <tr>
+          <td><font size="1" color="grey">L'accès MDE complète est réservé au Président du BDE et au responsable locaux du BDE sauf dérogation exceptionnelle.</font></td>
+        </tr>
+        
+        <tr>
           <td><?php echo $form['locaux_pic']->renderlabel('Locaux du Pic ') ?></td>
           <td><?php echo $form['locaux_pic'] ?></td>
         </tr>
+        
         <tr>
           <td><?php echo $form['bureau_polar']->renderlabel('Bureau du Polar ') ?></td>
           <td><?php echo $form['bureau_polar'] ?></td>
         </tr>
+         
         <tr>
           <td><?php echo $form['perm_polar']->renderlabel('Permanence du Polar') ?></td>
           <td><?php echo $form['perm_polar'] ?></td>
         </tr>
+         
         <tr>
           <td><?php echo $form['salles_musique']->renderlabel('Salles de musique ') ?></td>
           <td><?php echo $form['salles_musique'] ?></td>

@@ -4,7 +4,7 @@
   <h1>
     Derniers articles
     <?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x04)): ?>
-      <span class="titleaction"><i class="icon-plus icon-white"></i> <a href="<?php echo url_for('article_new', $asso) ?>">Ajouter un article</a></span>
+      <span class="pull-right"><i class="icon-plus icon-white"></i> <a href="<?php echo url_for('article_new', $asso) ?>">Ajouter un article</a></span>
     <?php endif ?>
   </h1>
   <div id="articles">
@@ -21,7 +21,7 @@
               </span>
             </h2>
             <?php if($article->getImage()): ?>
-              <?php echo showThumb($article->getImage(), 'articles', array('width'=>250, 'height'=>150, 'class' => 'affiche'), 'scale') ?><br />
+              <?php echo showThumb($article->getImage(), 'articles', array('width'=>250, 'height'=>150, 'class' => 'pull-right img-polaroid'), 'scale') ?><br />
             <?php endif; ?>
             <p>
                 <?php echo nl2br($article->getText(ESC_XSSSAFE)) ?>

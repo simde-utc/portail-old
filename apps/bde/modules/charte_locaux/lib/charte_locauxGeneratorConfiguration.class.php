@@ -10,4 +10,8 @@
  */
 class charte_locauxGeneratorConfiguration extends BaseCharte_locauxGeneratorConfiguration
 {
+  public function getFilterDefaults()
+  {  
+    return array('statut' => 2); 
+  }
 }

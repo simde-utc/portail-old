@@ -1,0 +1,24 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           CarnetAvantages
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          carnetAvantage
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: "Carnet Avantage"
+        display: [id, nom, adresse, tel, description]
+      filter:
+        display: [nom] 
+      form:    ~
+      edit:    ~
+      new:     ~

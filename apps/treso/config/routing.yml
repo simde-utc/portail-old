@@ -268,10 +268,12 @@ document_add:
   param: { module: document, action: add }
 
 document_show:
-  url: /documents/show/:id
+  url: /documents/show/:asso/:type_slug/:fichier
   class: sfDoctrineRoute
   options: { model: Document, type: object }
   param: { module: document, action: show }
+  requirements:
+    fichier: .+
 
 document_delete_from_transaction:
   url: /documents/delete_from_transaction/:id

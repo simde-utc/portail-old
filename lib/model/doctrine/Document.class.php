@@ -37,4 +37,8 @@ class Document extends BaseDocument
     public function setTypeFromSlug($slug) {
         $this->setDocumentType(DocumentTypeTable::getInstance()->findOneBySlug($slug));
     }
+
+    public function getTypeSlug() {
+        return $this->DocumentType->getSlug();
+    }
 }

@@ -53,8 +53,14 @@ class DocumentForm extends BaseDocumentForm
 
     $type_id = $this->getValue('type_id');
     $type = DocumentTypeTable::getInstance()->find($type_id);
+
     // on déplace le fichier
-    move_uploaded_file($value['tmp_name'], $this->path . $type->getSlug() . '/' . $fichier);
+    $dir = $this->path . $type->getSlug() . '/';
+    if(!is_dir($dir)) {
+      mkdir($dir);
+    }
+
+    move_uploaded_file($value['tmp_name'], $dir . $fichier);
 
     return $fichier;
   }

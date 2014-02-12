@@ -18,7 +18,6 @@ foreach ($documents as $document) {
       'id' => $document->getPrimaryKey(),
       'nom' => $document->getNom(),
       'date_ajout' => $document->getDateTimeObject('created_at')->getTimestamp(), // simplifie les comparaisons
-      'date_ajout_affichable' => format_date($document->getCreatedAt(), 'D', 'fr'),
       'type' => $document->DocumentType->getNom(),
       'url' => url_for('document_show', $document),
       'transaction' => $transaction,
@@ -33,10 +32,7 @@ function documentCtrl($scope) {
       if ($scope.selectedRange == undefined)
         return false;
       return $scope.selectedRange.year != undefined;
-    }
-    $scope.$on('close', function(event) {
-      $scope.opened = false;
-    });
+    };
 }
 </script>
 
@@ -109,15 +105,15 @@ function documentCtrl($scope) {
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
-      <th><div class="btn-group">
-            <button class="btn dropdown-toggle" ng-click="opened = !opened">
+      <th><portail-dropdown>
+            <button class="btn dropdown-toggle" portail-dropdown-trigger>
               <span ng-if="!rangeSelected()">Date</span>
               <span ng-if="rangeSelected()">{{ selectedRange.month }} {{ selectedRange.year }}</span>
               <i class="caret"></i></button>
-            <div class="dropdown-menu" visible="opened" style="width: 300px;">
+            <portail-dropdown-content style="width: 300px">
               <portail-date-range header="Filtrer par date" selection="selectedRange" start="date.start" end="date.end"></portail-date-range>
-            </div>
-          </div>
+            </portail-dropdown-content>
+          </portail-dropdown>
       </th>
       <th>Nom <div class="pull-right"><input ng-model="search.nom" type="text" placeholder="Recherche"/></div></th>
       <th>Type</th>

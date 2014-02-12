@@ -121,6 +121,7 @@ documentApp.directive('portailDateRange', function($locale) {
       selected: '=selection',
       header: '@'
     },
+    require: '?^portailDropdown',
     controller: function($scope) {
         $scope.genYears = function(max) {
             $scope.years = [];
@@ -176,10 +177,10 @@ documentApp.directive('portailDateRange', function($locale) {
             $scope.selected.year = undefined;
             $scope.selected.month = undefined;
             $scope.computeLimits();
-            $scope.$emit('close');
+            $scope.close();
         };
         $scope.ok = function() {
-            $scope.$emit('close');
+            $scope.close();
         }
         $scope.computeLimits = function() {
             // calcule start et end à partir de selected
@@ -202,24 +203,95 @@ documentApp.directive('portailDateRange', function($locale) {
                 $scope.end = undefined;
             }
         }
+    },
+    link: function(scope, element, attrs, ctrl) {
+        scope.close = function() {
+            if (ctrl != null && ctrl.close != undefined)
+                setTimeout(ctrl.close, 0);
+        };
     }
   }
 });
 
-documentApp.directive('visible', function() {
-    return {
-        restrict: 'A',
-        scope: {
-            'visible': '='
-        },
-        link: function(scope, element, attrs) {
-            scope.$watch('visible', function(newv, oldv) {
-                if (newv) {
-                    element.css('display', 'block');
-                } else {
-                    element.css('display', 'none');
-                }
-            });
+documentApp.directive('portailDropdown', function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    transclude: true,
+    template: '<div class="btn-group" ng-class="{open: opened}" ng-transclude></div>',
+    scope: {},
+    controller: function ($scope, $element) {
+        $scope.opened = false;
+
+        // handler pour détecter les clics hors du dropdown et le fermer
+        var clickHandler = function() {
+            $scope.opened = false;
+            $scope.update();
+        };
+        $scope.$watch('opened', function(value) {
+            if ($scope.opened) {
+                // si on ajoute l'handler immédiatement il sera déclenché
+                // à cause du clic sur le trigger
+                // donc on attend la fin de la boucle d'évènements
+                setTimeout(function() {
+                    angular.element("html").bind('click', clickHandler);
+                }, 0);
+            } else {
+                angular.element("html").unbind('click', clickHandler);
+            }
+        })
+        this.toggle = function () {
+            $scope.opened = !$scope.opened;
+            $scope.update();
+        }
+        this.setContent = function (contentScope) {
+            $scope.content = contentScope;
+        }
+        $scope.update = function () {
+            $scope.content.update($scope.opened);
+            $scope.$apply();
+        }
+        this.close = function () {
+            $scope.opened = false;
+            $scope.update();
         }
     }
+  }
+});
+
+documentApp.directive('portailDropdownContent', function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    transclude: true,
+    require: '^portailDropdown',
+    template: '<div class="dropdown-menu" ng-transclude></div>',
+    scope: true,
+    link: function (scope, element, attrs, dropCtrl) {
+        dropCtrl.setContent(scope);
+        element.on('click', function(event) {
+            event.stopPropagation();
+        });
+        scope.update = function(value) {
+            if (value)
+                element.css('display', 'block');
+            else
+                element.css('display', 'none');
+        }
+    }
+  }
+});
+
+documentApp.directive('portailDropdownTrigger', function() {
+  return {
+    restrict: 'A',
+    scope: {},
+    require: '^portailDropdown',
+    link: function (scope, element, attrs, dropCtrl) {
+        console.log(scope.$parent);
+        element.bind('click', function() {
+            dropCtrl.toggle();
+        });
+    }
+  }
 });

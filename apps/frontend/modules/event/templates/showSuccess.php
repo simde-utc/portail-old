@@ -16,28 +16,38 @@
   </h1>
   <div class="thumbnails">
     <div class="span6">
-      <p>Du <?php echo format_date($event->getStartDate(), 'f', 'fr') ?> au
-        <?php echo format_date($event->getEndDate(), 'f', 'fr') ?></p>
       <p>
+        <?php if(format_date($event->getStartDate(), 'D', 'fr') == format_date($event->getEndDate(), 'D', 'fr')) :?>
+          <i class="fa fa-calendar fa-2x"></i> Le <?php echo format_date($event->getStartDate(), 'D', 'fr') ?>
+        <?php else : ?>
+          <i class="fa fa-calendar fa-2x"></i> Du <?php echo format_date($event->getStartDate(), 'D', 'fr') ?> au
+          <?php echo forDat_date($event->getEndDate(), 'D', 'fr') ?>
+        <?php endif; ?>
+        </br>
+        <i class="fa fa-clock-o fa-2x"></i> De <?php echo format_date($event->getStartDate(), 't', 'fr') ?> à
+          <?php echo format_date($event->getEndDate(), 't', 'fr') ?>
+      </p>
+      <p>
+        <i class="fa fa-home fa-2x"></i>
         <?php echo event_from_asso_list($event) ;?>
         <br/>
-        Type : <?php echo $event->getType()->getName(); ?><br />
-        Lieu : <?php echo $event->getPlace(); ?>
+        <i class="fa fa-tag fa-2x"></i> <?php echo $event->getType()->getName(); ?><br />
+        <i class="fa fa-map-marker fa-2x"></i> <?php echo $event->getPlace(); ?>
       </p>
       <p><?php echo nl2br($event->getSummary()) ?></p>
       <?php if($sf_user->isAuthenticated()): ?> 
         <p>
-          <strong>Participants : </strong> 
+          <i class="fa fa-users fa-2x"></i> 
           <?php if($participants->count() == 0): ?>
             Pas de participants encore inscrits.
           <?php else : ?>
             <?php $i = 0; while($i < $participants->count() && $i < 5 ) { ?>
-              <?php if( $i < 4) : ?>
+              <?php if( $i < 4 && $i < ($participants->count() - 1)) : ?>
                 <a href="<?php echo url_for('profile/show?username=' . $participants[$i]->getUser()->getUsername()) ?>"><?php echo $participants[$i++]->getUser()->getName() ; ?></a>,  
-              <?php elseif($i == 4): ?>
+              <?php elseif($i == 4 || $i == ($participants->count() - 1)): ?>
                 <a href="<?php echo url_for('profile/show?username=' . $participants[$i]->getUser()->getUsername()) ?>"><?php echo $participants[$i++]->getUser()->getName() ; ?></a>
                 <?php if($participants->count() > 5) : ?>
-                  <a href="#participants-modal" data-toggle="modal">...</a>
+                  <a href="#participants-modal" data-toggle="modal">... (<?php echo $participants->count(); ?> participants)</a>
                 <?php endif; ?>
               <?php else: ?>
                 <a href="<?php echo url_for('profile/show?username=' . $participants[$i]->getUser()->getUsername()) ?>"><?php echo $participants[$i++]->getUser()->getName() ; ?></a>
@@ -49,7 +59,7 @@
         <div id="participants-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Les participants à l'évènement</h3>
+            <h3 id="myModalLabel">Les <?php echo $participants->count(); ?> participants à l'évènement</h3>
           </div>
           <div class="modal-body">
             <ul class="nav nav-list">

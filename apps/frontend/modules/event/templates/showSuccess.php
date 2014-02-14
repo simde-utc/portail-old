@@ -52,18 +52,16 @@
             <div class="span11">Pas de participants encore inscrits.</div>
           <?php else : ?>
             <div class="span11">
-              <?php $i = 0; while($i < $participants->count() && $i < 5 ) { ?>
+              <?php $i = 0; while($i < $participants->count() && $i < 5 ) : ?>
                 <?php if( $i < 4 && $i < ($participants->count() - 1)) : ?>
                   <a href="<?php echo url_for('profile/show?username=' . $participants[$i]->getUser()->getUsername()) ?>"><?php echo $participants[$i++]->getUser()->getName() ; ?></a>,  
-                <?php elseif($i == 4 || $i == ($participants->count() - 1)): ?>
+                <?php else : ?>
                   <a href="<?php echo url_for('profile/show?username=' . $participants[$i]->getUser()->getUsername()) ?>"><?php echo $participants[$i++]->getUser()->getName() ; ?></a>
                   <?php if($participants->count() > 5) : ?>
                     <a href="#participants-modal" data-toggle="modal">... (<?php echo $participants->count(); ?> participants)</a>
                   <?php endif; ?>
-                <?php else: ?>
-                  <a href="<?php echo url_for('profile/show?username=' . $participants[$i]->getUser()->getUsername()) ?>"><?php echo $participants[$i++]->getUser()->getName() ; ?></a>
                 <?php endif; ?> 
-              <?php } ?>
+              <?php endwhile ?>
             </div>
           <?php endif; ?>
         </p> 
@@ -100,7 +98,7 @@
       <?php else: ?>
         <p><em>Connectez-vous pour participer à l'évènement et voir les autres participants.</em></p>
       <?php endif; ?>
-      <p class="well"><?php echo nl2br($event->getDescription(ESC_XSSSAFE)) ?></p>
+      <p class="well"><?php echo $event->getDescription(); ?></p>
       <p>
         <a href="https://www.facebook.com/sharer/sharer.php?u=<?php
         echo urlencode(url_for('event_show', $event, true))
@@ -131,9 +129,9 @@
       <?php endif ?>
     </h1>
     <?php if($galeries->count() > 0): ?> 
-      <?php foreach ($galeries as $galery)
-        include_component('galerie', 'preview',  array('galery' =>  $galery));
-      ?>
+      <?php foreach ($galeries as $galery) : ?>
+        <?php include_component('galerie', 'preview',  array('galery' =>  $galery)); ?>
+      <?php endforeach ?>
     <?php else: ?> 
       <a href="<?php echo url_for('galerie_photo_new', $event) ?>"> Vous n'avez pas encore ajouté d'albums photos à votre évènement. Vous pouvez le faire en cliquant sur ce texte.</a>
     <?php endif; ?>

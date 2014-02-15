@@ -22,7 +22,7 @@ class PhotoForm extends BasePhotoForm
       'galeriePhoto_id' => new sfWidgetFormInputHidden(),
       'title'           => new sfWidgetFormInputHidden(),
       'author'          => new sfWidgetFormInputHidden(),
-      'is_public'       => new sfWidgetFormInputHidden(),
+      'is_public'       => new sfWidgetFormInputCheckbox(array('default' => false)),
     ));
 
     $this->widgetSchema['image'] = new sfWidgetFormInputFileEditable(array(
@@ -38,15 +38,15 @@ class PhotoForm extends BasePhotoForm
       'galeriePhoto_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('GaleriePhoto'))),
       'title'           => new sfValidatorString(array('max_length' => 200, 'required' => false)),
       'author'          => new sfValidatorInteger(),
-      'is_public'       => new sfValidatorInteger(),
+      'is_public'       => new sfValidatorBoolean(),
     ));
 
     $this->validatorSchema['image'] = new sfValidatorFileImage(array(
     	'required' => false,
     	'path' => sfConfig::get('sf_upload_dir').'/galeries/source',
         'mime_types' => 'web_images',
-        'max_width' => 1000,
-        'max_height' => 1000
+        'max_width' => 2048,
+        'max_height' => 2048
     ));
 
 

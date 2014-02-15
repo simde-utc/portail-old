@@ -1,0 +1,32 @@
+.blueimp-gallery > .social-sidebar{
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: none;
+	color: white;
+	width: 30%;
+	background-color: black;
+	height: 100%;
+	padding-left: 5px;
+}
+.blueimp-gallery-controls > .social-sidebar {
+  display: block;
+  overflow-x:hidden;
+  overflow-y:scroll; 
+}
+
+.blueimp-gallery-controls > .social-sidebar > .sidebar-element{
+	margin-top: 20px;
+}
+
+.blueimp-gallery-controls>.slides>.slide>img.slide-content{
+  max-width: 70%;
+  padding-right: 30%;
+}
+.blueimp-gallery-controls>a.next, .blueimp-gallery-controls>a.close {
+	right: 30%;
+	margin-right: 15px;
+}
+.fb-comments, .fb-comments iframe[style], .fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe{
+	width: 100% !important;
+}

@@ -22,7 +22,7 @@
           <div class="span11">Le <?php echo format_date($event->getStartDate(), 'D', 'fr') ?></div>
         <?php else : ?>
           <i class="fa fa-calendar fa-2x span1"></i>
-          <div class="span11">Du <?php echo format_date($event->getStartDate(), 'D', 'fr') ?> au <?php echo forDat_date($event->getEndDate(), 'D', 'fr') ?></div>
+          <div class="span11">Du <?php echo format_date($event->getStartDate(), 'D', 'fr') ?> au <?php echo format_date($event->getEndDate(), 'D', 'fr') ?></div>
         <?php endif; ?>
       </div>
       <div class="row-fluid">

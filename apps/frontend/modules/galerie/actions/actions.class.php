@@ -44,19 +44,14 @@ class galerieActions extends sfActions
       $this->photos = PhotoTable::getInstance()
         ->getPhotos($this->galerie_photo->getId(), $this->isStudent, $this->hotLinkedPass)->execute();
   
-    /* TODO : Fb integration
-    $response->addMeta('og:title', GaleriePhotoTable::getInstance()->find($this->photo->getGaleriephotoId())->getTitle());
-    $response->addMeta('og:type', 'Galerie');
-    $response->addMeta('og:photo', doThumb($this->photo->getImage(), 'galeries', array(
-          'width' => 2048,
-          'height' => 2048),
-        'scale'
-      ));
-
-      $response->addMeta('og:url',  $this->generateUrl('photo_show',$this->photo,true));
-      $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
-      
-    */
+    $response=$this->getResponse();
+    $this->getContext()->getConfiguration()->loadHelpers('Thumb');
+    $response->addMeta('og:title', $this->galerie_photo->getTitle());
+    $response->addMeta('og:type', 'Galery');
+    $response->addMeta('og:url', $this->generateUrl(
+        'galerie_photo_show',$this->galerie_photo));
+    $response->addMeta('og:site_name', 'BDE-UTC : Portail des associations');
+    
     $this->forward404Unless($this->galerie_photo);
   }
 

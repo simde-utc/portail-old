@@ -8,7 +8,7 @@ function slideTo(index){
             var photo_in_location=location.indexOf('/photo');
             if(photo_in_location>0)
             history.pushState(
-                {}, '', location.substring(0, photo_in_location+1));
+                {}, '', location.substring(0, photo_in_location));
         },
 		onslide: function (index, slide) {
             node = this.container.find('.social-sidebar');

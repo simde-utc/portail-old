@@ -46,9 +46,6 @@ $(function(){
         waitingPath : "<?php echo public_path('img/upload_grey_square.jpg') ?>"
       }
     },
-    /*dragAndDrop:{
-      extraDropzones:[document.body]
-    },*/
     request: {
         endpoint: "<?php echo url_for("photo_create_format",array('sf_format'=>'json')) ?>",
         params: {
@@ -94,8 +91,6 @@ $(function(){
           </i>
           les fichiers a envoyer sur votre disque dur.           
           </p>
-              
-           
           
           <ul class="qq-upload-list-selector qq-upload-list">
             <li class="well">

@@ -378,6 +378,7 @@ Partenaire:
     logo: { type: string(100) }
     url: { type: string(255) }
     description: { type: string }
+    position: { type: integer }
 
 CarnetAvantages:
   connection: doctrine

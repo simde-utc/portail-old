@@ -19,7 +19,8 @@ class PartenaireTable extends Doctrine_Table
     
     public function getPartenairesList() {
         $q = $this->createQuery('a')
-            ->select('a.*');
+            ->select('a.*')
+            ->orderBy('a.position ASC');
         return $q;
     }
 }

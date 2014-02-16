@@ -19,39 +19,39 @@
       <div class="row-fluid">
         <?php if(format_date($event->getStartDate(), 'D', 'fr') == format_date($event->getEndDate(), 'D', 'fr')) :?>
           <i class="fa fa-calendar fa-2x span1"></i> 
-          <div class="span11">Le <?php echo format_date($event->getStartDate(), 'D', 'fr') ?></div>
+          <p class="span11">Le <?php echo format_date($event->getStartDate(), 'D', 'fr') ?></p>
         <?php else : ?>
           <i class="fa fa-calendar fa-2x span1"></i>
-          <div class="span11">Du <?php echo format_date($event->getStartDate(), 'D', 'fr') ?> au <?php echo format_date($event->getEndDate(), 'D', 'fr') ?></div>
+          <p class="span11">Du <?php echo format_date($event->getStartDate(), 'D', 'fr') ?> au <?php echo format_date($event->getEndDate(), 'D', 'fr') ?></p>
         <?php endif; ?>
       </div>
       <div class="row-fluid">
         <i class="fa fa-clock-o fa-2x span1"></i>
-        <div class="span11">De <?php echo format_date($event->getStartDate(), 't', 'fr') ?> à <?php echo format_date($event->getEndDate(), 't', 'fr') ?></div>
+        <p class="span11">De <?php echo format_date($event->getStartDate(), 't', 'fr') ?> à <?php echo format_date($event->getEndDate(), 't', 'fr') ?></p>
       </div>
       <div class="row-fluid">
         <i class="fa fa-home fa-2x span1"></i>
-        <div class="span11"><?php echo event_from_asso_list($event) ;?></div>
+        <p class="span11"><?php echo event_from_asso_list($event) ;?></p>
       </div>
       <div class="row-fluid">
         <i class="fa fa-tag fa-2x span1"></i>
-        <div class="span11"><?php echo $event->getType()->getName(); ?></div>
+        <p class="span11"><?php echo $event->getType()->getName(); ?></p>
       </div>
       <div class="row-fluid">
         <i class="fa fa-map-marker fa-2x span1"></i>
-        <div class="span11"><?php echo $event->getPlace(); ?></div>
+        <p class="span11"><?php echo $event->getPlace(); ?></p>
       </div>
       <div class="row-fluid">
         <i class="fa fa-info-circle fa-2x span1"></i>
-        <div class="span11"><em><?php echo nl2br($event->getSummary()) ?></em></div>
+        <p class="span11"><em><?php echo nl2br($event->getSummary()) ?></em></p>
       </div>
       <?php if($sf_user->isAuthenticated()): ?> 
         <div class="row-fluid">
           <i class="fa fa-users fa-2x span1"></i> 
           <?php if($participants->count() == 0): ?>
-            <div class="span11">Pas de participants encore inscrits.</div>
+            <p class="span11">Pas de participants encore inscrits.</p>
           <?php else : ?>
-            <div class="span11">
+            <p class="span11">
               <?php $i = 0; while($i < $participants->count() && $i < 5 ) : ?>
                 <?php if( $i < 4 && $i < ($participants->count() - 1)) : ?>
                   <a href="<?php echo url_for('profile/show?username=' . $participants[$i]->getUser()->getUsername()) ?>"><?php echo $participants[$i++]->getUser()->getName() ; ?></a>,  
@@ -62,9 +62,9 @@
                   <?php endif; ?>
                 <?php endif; ?> 
               <?php endwhile ?>
-            </div>
+            </p>
           <?php endif; ?>
-        </p> 
+        </div> 
         <!-- Modal -->
         <div id="participants-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-header">
@@ -98,14 +98,6 @@
       <?php else: ?>
         <p><em>Connectez-vous pour participer à l'évènement et voir les autres participants.</em></p>
       <?php endif; ?>
-      <p class="well"><?php echo $event->getDescription(); ?></p>
-      <p>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php
-        echo urlencode(url_for('event_show', $event, true))
-        ?>&t=<?php echo urlencode($event->getName()) ?>" target="_blank" class="facebook">
-          Partager sur Facebook
-        </a>
-      </p>
     </div>
     <div class="span3 pull-right">
       <?php if($event->getAffiche()): ?>
@@ -115,6 +107,16 @@
           'class'=>'pull-right img-polaroid'
         ), 'scale') ?><br />
       <?php endif; ?>
+    </div>
+    <div class="span9">
+      <p class="well"><?php echo $event->getDescription(); ?></p>
+      <p>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php
+        echo urlencode(url_for('event_show', $event, true))
+        ?>&t=<?php echo urlencode($event->getName()) ?>" target="_blank" class="facebook">
+          Partager sur Facebook
+        </a>
+      </p>
     </div>
   </div>
 </div>

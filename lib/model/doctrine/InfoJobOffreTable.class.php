@@ -17,13 +17,15 @@ class InfoJobOffreTable extends Doctrine_Table
     return Doctrine_Core::getTable('InfoJobOffre');
   }
 
-  public function getLastOffreList($number = 5) {
-    return $this->addStandardFilters(
+  public function getLastOffreList($limit = NULL) {
+    $query = $this->addStandardFilters(
             Doctrine_Core::getTable('InfoJobOffre')
            ->createQuery('a')
-           ->limit($number)
            ->orderBy('a.created_at DESC')
     );
+    if($limit)
+      $query->limit($limit);
+    return $query;
   }
 
   public function getOffreByEmailKey($emailKey) {

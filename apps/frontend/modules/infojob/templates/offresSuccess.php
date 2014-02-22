@@ -30,7 +30,7 @@
     </div>
   </div>
   
-  <h1 id="infojob-annonces"><?php if($isGet): ?>Dernières offres postées. Pour voir plus d'offres, <a id="link-show-filters" href="#infojob-filtrer">faites une recherche</a><?php else: ?>Offres<?php endif; ?></h1>
+  <h1 id="infojob-annonces"><?php if($isGet): ?>Dernières offres postées. Vous pouvez trier les offres <a id="link-show-filters" href="#infojob-filtrer">en faisant une recherche</a><?php else: ?>Offres<?php endif; ?></h1>
   <?php if(!count($annonces)): ?>
     <p>Aucun résultat</p>
   <?php endif; ?>
@@ -73,6 +73,23 @@
     <a href="<?php echo url_for('infojob/show?id=' . $annonce->getId()) ?>" class="btn btn-info" style="color: #FFFFFF;">Voir la fiche</a>
   </div>
   <?php endforeach; ?>
+  <?php if ($pager->haveToPaginate()): ?>
+  <div class="pagination" style="text-align: center;">
+    <a href="<?php echo url_for('infojob/offres', $annonces) ?>?page=<?php echo $pager->getFirstPage() ?>">Premier</a>
+    <a href="<?php echo url_for('infojob/offres', $annonces) ?>?page=<?php echo $pager->getPreviousPage() ?>">Précédent</a>
+ 
+    <?php foreach ($pager->getLinks() as $page): ?>
+      <?php if ($page == $pager->getPage()): ?>
+        <?php echo $page ?>
+      <?php else: ?>
+        <a href="<?php echo url_for('infojob/offres', $annonces) ?>?page=<?php echo $page ?>"><?php echo $page ?></a>
+      <?php endif; ?>
+    <?php endforeach; ?>
+ 
+    <a href="<?php echo url_for('infojob/offres', $annonces) ?>?page=<?php echo $pager->getNextPage() ?>">Suivant</a>
+    <a href="<?php echo url_for('infojob/offres', $annonces) ?>?page=<?php echo $pager->getLastPage() ?>">Dernier</a>
+  </div>
+  <?php endif; ?>
 </div>
 
 <script>

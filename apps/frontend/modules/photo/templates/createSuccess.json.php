@@ -1,5 +1,17 @@
 <?php
 if(!isset($error)) {
+	// Generate thumb (helpfull for big uploads)
+	doThumb($photo->getImage(), 'galeries', array(
+	    'width' => sfConfig::get('app_portail_photos_big_res_x'),
+	    'height' => sfConfig::get('app_portail_photos_big_res_y'),
+	), 'scale');
+
+	doThumb($photo->getImage(), 'galeries', array(
+	    'width' => sfConfig::get('app_portail_photos_thumb_res_x'),
+	    'height' => sfConfig::get('app_portail_photos_thumb_res_y'),
+	    ), 
+	'center') ;
+
 	$result = array(
 		"success" => true
 	);

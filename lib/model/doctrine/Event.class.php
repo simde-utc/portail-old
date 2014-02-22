@@ -21,4 +21,26 @@ class Event extends BaseEvent {
     return "/uploads/events/" . $this->getAffiche();
   }
 
+  public function getGaleries(){
+        $q = GaleriePhotoTable::getInstance()->createQuery('gal')->select('gal.*')
+            ->where('gal.event_id = ?', $this->getId());
+        return $q;
+    }
+
+  public function userIsPhotographer($user){
+    // A user is photographer at an event if he is photographer for the main asso
+    // of the event or for one of the guest assos.
+    if ($user->isAuthenticated()){
+      if($user->getGuardUser()->hasAccess($this->getAsso()->getLogin(), 0x200))
+          return true;
+      foreach ($this->getGuestAsso() as $guest_asso) {
+          if($user->getGuardUser()->hasAccess($guest_asso->getLogin(), 0x200))
+          return true;
+      }
+      
+    }
+    return false;
+  }
+
 }
+

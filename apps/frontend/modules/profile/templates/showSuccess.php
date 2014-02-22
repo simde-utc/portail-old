@@ -1,11 +1,13 @@
 <h1 class="partie">Mon profil</h1>
 <div class="part" id="profile">
   <h2>
-    <a class="btn pull-right editIdentite"
-       data-url="<?php echo url_for('profile_identite_edit', array('id' => $profile->getId())) ?>">
-      <i class="icon-pencil"></i>
-    </a>
     Identité
+    <?php if($sf_user->getGuardUser()->getId() == $user->getId()) : ?>
+      <a class="btn pull-right editIdentite"
+         data-url="<?php echo url_for('profile_identite_edit', array('id' => $profile->getId())) ?>">
+        <i class="icon-pencil"></i>
+      </a>
+    <?php endif ?>
   </h2>
   <img id="trombi" style="float: left;"
        src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $sf_user->getGuardUser()->getUsername() ?>">
@@ -22,9 +24,9 @@
            style="background-image: url('/images/tampon_ext.png'); background-repeat:no-repeat; background-position: right -10px;"/>
     <?php endif; ?>
 
-    <b>Nom</b> : <?php echo $sf_user->getGuardUser()->getLastName() ?><br>
-    <b>Login</b> : <?php echo $sf_user->getGuardUser()->getUsername() ?><br><br>
-    <b>Prénom</b> : <?php echo $sf_user->getGuardUser()->getFirstName() ?><br><br>
+    <b>Nom</b> : <?php echo $user->getLastName() ?><br>
+    <b>Prénom</b> : <?php echo $user->getFirstName() ?><br><br>
+    <b>Login</b> : <?php echo $user->getUsername() ?><br><br>
 
     <div id="identite">
       <?php $birthday = explode("-", $profile->getBirthday());
@@ -54,11 +56,13 @@
   </div>
 </div>
 <h2>
-  <a class="btn pull-right editInfoPerso"
-     data-url="<?php echo url_for('profile_infoPerso_edit', array('id' => $profile->getId())) ?>">
-    <i class="icon-pencil"></i>
-  </a>
   Informations personnelles
+  <?php if($sf_user->getGuardUser()->getId() == $user->getId()) : ?>
+    <a class="btn pull-right editInfoPerso"
+     data-url="<?php echo url_for('profile_infoPerso_edit', array('id' => $profile->getId())) ?>">
+      <i class="icon-pencil"></i>
+    </a>
+  <?php endif; ?>
 </h2>
 <div id="infoPerso">
   <?php
@@ -104,11 +108,13 @@
 <div id="infoPerso-form">
 </div>
 <h2>
-  <a class="btn pull-right editInfoSupp"
-     data-url="<?php echo url_for('profile_infoSupp_edit', array('id' => $profile->getId())) ?>">
-    <i class="icon-pencil"></i>
-  </a>
   Informations supplémentaires
+  <?php if($sf_user->getGuardUser()->getId() == $user->getId()) : ?>
+    <a class="btn pull-right editInfoSupp"
+       data-url="<?php echo url_for('profile_infoSupp_edit', array('id' => $profile->getId())) ?>">
+      <i class="icon-pencil"></i>
+    </a>
+  <?php endif ; ?>
 </h2>
 <div id="infoSupp">
   <?php
@@ -166,8 +172,8 @@
 </div>
 */ ?>
 <h2>Parcours Asso</h2>
-<?php if (count($sf_user->getGuardUser()->getAssoMember()) > 0): ?>
-  <?php foreach ($sf_user->getGuardUser()->getAssoMember() as $assoMember) : ?>
+<?php if (count($user->getAssoMember()) > 0): ?>
+  <?php foreach ($user->getAssoMember() as $assoMember) : ?>
     <div class='row'>
       <div class='span1'>
         <b><?php echo $assoMember->getSemestre()->getName() ?></b> :

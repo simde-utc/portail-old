@@ -19,6 +19,7 @@ all:
     mime_type:
       auto_detect: true
       library: gd_mime_type
+
   # Les valeurs ci-dessous sont a personnaliser
   portail:
     # Semestre actuel
@@ -39,3 +40,8 @@ all:
     piwik_site_id: 0
     # Nombre d'annonces par page pour InfoJob
     offres_par_page: 5
+    # Resolution des miniatures photos et des photos plein ecran
+    photos_thumb_res_x: 250
+    photos_thumb_res_y: 250
+    photos_big_res_x: 1600
+    photos_big_res_y: 900

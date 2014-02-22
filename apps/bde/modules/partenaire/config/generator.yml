@@ -16,9 +16,9 @@ generator:
       fields:  ~
       list:
         title: "Les partenaires"
-        display: [nom, url, description]
+        display: [nom, position, url, description]
       filter:  
-        display: [nom] 
+        display: [position] 
       form:    ~
       edit:    ~
       new:     ~

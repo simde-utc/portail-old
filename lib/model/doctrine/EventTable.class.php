@@ -101,4 +101,6 @@ class EventTable extends Doctrine_Table
             ->where('e.is_weekmail = ?', true);
         return $q;
     }
+
+    
 }

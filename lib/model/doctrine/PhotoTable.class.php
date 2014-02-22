@@ -17,24 +17,20 @@ class PhotoTable extends Doctrine_Table
         return Doctrine_Core::getTable('Photo');
     }
 
-    public function getPhotosList ($galerie_id){
-    	$q = $this->createQuery('g')
-    		->select('g.*')
-    		->where("g.galeriePhoto_id = ?", $galerie_id)
-    		->orderBy('g.id ASC');
+    public function getPhotos($galerie_id, $can_access_private_photos=false, $pass=""){
+        $q = $this->createQuery('g')
+            ->select('g.*')
+            ->where("g.galeriePhoto_id = ?", $galerie_id)
+            ->orderBy('g.id ASC');
 
-		return $q;
+        if(!$can_access_private_photos){
+            $q = $q ->andWhere("g.is_public = 1")
+            ->orWhere("SUBSTRING(g.image, 1, 8) = ?", $pass);
+        }
+
+        return $q;
     }
 
-    public function getPhotosPublicList ($galerie_id){
-    	$q = $this->createQuery('g')
-    		->select('g.*')
-    		->where("g.galeriePhoto_id = ?", $galerie_id)
-    		->andWhere("g.is_public = ?", 1)
-    		->orderBy('g.id ASC');
-
-		return $q;
-    }
     public function deletePhotosFromGallery($galerie_id){
         $q = $this->createQuery('g')
           ->delete()

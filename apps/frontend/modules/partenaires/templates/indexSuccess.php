@@ -23,7 +23,12 @@
         <?php foreach ($carnetAvantages as $carnetAvantage): ?>
           <li class="span4">
             <div class="thumbnail list">
-              <h3><?php echo $carnetAvantage->getNom() ?></h3>
+              <div class="media">
+                <a class="pull-left" href="#">
+                  <?php echo showThumb($carnetAvantage->getLogo(), 'carnetavantages', array('width' => 32, 'height' => 32, 'class' => 'media-object'), 'center') ?>
+                </a>
+                <h3 class="media-heading"><?php echo $carnetAvantage->getNom() ?></h3>
+             </div>
               <p><?php echo $carnetAvantage->getDescription() ?></p>
               <?php if($carnetAvantage->getAdresse()): ?>
                 <i class="fa fa-home"></i> <?php echo $carnetAvantage->getAdresse() ?><br />

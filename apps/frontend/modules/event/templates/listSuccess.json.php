@@ -1,4 +1,7 @@
 <?php
+use_helper('Events');
+use_helper('Date');
+
 $result = array();
 foreach ($events as $event){
   $result[] = array(
@@ -12,7 +15,7 @@ foreach ($events as $event){
     "summary" => truncate_text($event->getDescription(), 256),
     "type" => ($event->getType()->getName()),
     "formated_date" => format_date($event->getStartDate(), 'f', 'fr') . " - " . format_date($event->getEndDate(), 'f', 'fr'),
-    "asso" => event_from_asso_list($event)
+    "asso" => getAssoNameForEvent($event)
   );  
 }
 echo json_encode($result);

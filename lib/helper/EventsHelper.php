@@ -5,7 +5,7 @@ function linkTo($asso){
     	.$asso->getName() . '</a>');
 }
 
-function event_from_asso_list($event){
+function getAssoNameForEvent($event){
 	$event_host= 'Créé par ' . linkTo($event->getAsso());
 	
     $guest_assos=$event->getGuestAsso();

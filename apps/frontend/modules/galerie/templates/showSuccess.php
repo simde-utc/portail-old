@@ -36,7 +36,13 @@
     <?php foreach ($photos as $index=>$photo): ?>
       <li class="span3 thumb-container">
       <?php
-          echo exif_read_data('/web/uploads/galeries/source/'.$photo->getImage()); ?>
+          $Image_Extension=pathinfo($photo->getImage(),PATHINFO_EXTENSION);
+          $Exif_Support_Extension=array("jpeg","tiff","jpg");
+          if (in_array($Image_Extension,$Exif_Support_Extension)) 
+          {
+            //it will get an array including exif information of the photo, we don't print it for now.
+            $exif_array=exif_read_data(sfConfig::get('sf_root_dir').'/web/uploads/galeries/source/'.$photo->getImage());
+          };?>
         <a
         class="thumbnail"
         data-photo-number="<?php echo $index ?>"

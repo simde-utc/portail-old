@@ -388,6 +388,7 @@ CarnetAvantages:
     adresse: { type: string(100) }
     tel: { type: string(15) }
     description: { type: string, notnull: true }
+    logo: { type: string(100) }
 
 VoteListe:
   connection: doctrine

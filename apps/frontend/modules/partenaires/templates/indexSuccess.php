@@ -22,11 +22,14 @@
       <ul class="thumbnails">
         <?php foreach ($carnetAvantages as $carnetAvantage): ?>
           <li class="span4">
-            <div class="thumbnail">
-              <h3><?php echo $carnetAvantage->getNom() ?></h3>
-              <p>
-                <?php echo $carnetAvantage->getDescription() ?>
-              <p>
+            <div class="thumbnail list">
+              <div class="media">
+                <a class="pull-left" href="#">
+                  <?php echo showThumb($carnetAvantage->getLogo(), 'carnetavantages', array('width' => 32, 'height' => 32, 'class' => 'media-object'), 'center') ?>
+                </a>
+                <h3 class="media-heading"><?php echo $carnetAvantage->getNom() ?></h3>
+             </div>
+              <p><?php echo $carnetAvantage->getDescription() ?></p>
               <?php if($carnetAvantage->getAdresse()): ?>
                 <i class="fa fa-home"></i> <?php echo $carnetAvantage->getAdresse() ?><br />
               <?php endif ?>
@@ -39,3 +42,19 @@
     </ul>
   </div>
 </div>
+<script type="text/javascript">
+function equalHeight(group) {    
+    tallest = 0;    
+    group.each(function() {       
+        thisHeight = $(this).height();       
+        if(thisHeight > tallest) {          
+            tallest = thisHeight;       
+        }    
+    });    
+    group.each(function() { $(this).height(tallest); });
+} 
+
+$(document).ready(function() {   
+    equalHeight($(".thumbnail.list")); 
+});
+</script>

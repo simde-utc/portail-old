@@ -703,6 +703,10 @@ locaux_refuse:
   param: { module: locaux, action: locauxRefuse }
   options: { model: CharteLocaux, type: object }
 
+reservation:
+  url: /reservation
+  param: { module: reservation, action: index }
+
 # generic rules
 # please, remove them by adding more specific rules
 #default_index:

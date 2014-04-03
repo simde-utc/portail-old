@@ -699,4 +699,32 @@ InfoJobAbonnementDisponibilite:
   relations:
     Categorie: { onUpdate: CASCADE, local: disponibilite_id, foreign: id, class: InfoJobDispobilite }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+    
+Salle:
+  connection: doctrine
+  tableName: salle
+  columns:
+    id: { type : integer, primary: true }
+    name: { type: string(255), notnull: true }
+    capacite: { type : integer, notnull: true }
+    couleur: { type : string(7), notnull: true }
+      
+Reservation:
+  connection: doctrine
+  tableName: reservation
+  columns:
+    id: { type : integer, primary: true, autoincrement: true }
+    id_user_valid: { type : integer, notnull: false }
+    id_user_reserve: { type : integer, notnull: true }
+    id_asso: { type : integer, notnull: false }
+    id_salle: { type : integer, notnull : true }
+    date: { type: date, notnull: true }
+    heuredebut: { type: time, notnull: true }
+    heurefin: { type: time, notnull: true }
+    estvalide: { type: integer(1), notnull: true }
+  relations:
+    SfGuardUser: { onUpdate: CASCADE, local: id_user_valid, foreign: id, class: SfGuardUser }
+    SfGuardUser_2: { onUpdate: CASCADE, local: id_user_reserve, foreign: id, class: SfGuardUser }
+    Asso: { local: id_asso, foreign: id, onUpdate: CASCADE }
+    Salle: { local: id_salle, foreign: id, onUpdate: CASCADE }
 

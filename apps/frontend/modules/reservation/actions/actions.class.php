@@ -17,7 +17,7 @@ class reservationActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-
+    $this->redirect('home/index');
   }
   
 }

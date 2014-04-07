@@ -46,8 +46,8 @@
           <div class="row">
             <div class="span12">
               <a href="<?php echo url_for('homepage') ?>" class="first">Accueil</a>
-              <a href="<?php echo url_for('asso/index') ?>" id="lienlisteassos">Associations</a>
-              <a href="<?php echo url_for('agenda_detail') ?>">Calendrier</a>
+              <a href="<?php echo url_for('asso/index') ?>" class="lienlisteassos">Associations</a>
+              <a href="<?php echo url_for('agenda_detail') ?>" class="lienlistereservation" > Calendrier</a> <!-- à changer url-for-->
               <a href="<?php echo url_for('infojob_home') ?>">InfoJob</a>              
               <a href="<?php echo url_for('services')?>">Services</a>
               <a href="<?php echo url_for('partenaires')?>">Partenaires</a>
@@ -55,7 +55,11 @@
           </div>
         </div>
         
+
         <?php include_component('asso', 'bigMenu') ?>
+        <?php include_component('reservation', 'calendarMenu') ?>
+
+
         
         <?php if($sf_request->getParameter('module') == 'home'): ?>
           <?php include_component('event', 'carousel') ?>

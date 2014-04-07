@@ -148,7 +148,7 @@ p {
 
 /* Menu principal */
 
-#menu, #bigmenu {
+#menu, #bigmenu, #calendarmenu {
   background: black;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
   background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));
@@ -195,6 +195,38 @@ p {
   padding-bottom: 2000px;
 }
 
+#calendarmenu {
+  display: none;
+  z-index: 11000;
+  overflow: hidden;
+  width: 350px;
+  margin-left:230px;
+
+
+}
+
+#calendarmenu a {
+  color: white;
+  
+}
+
+#calendarmenu ul {
+  list-style-type: none;
+  padding: 0;
+
+}
+
+#calendarmenu .bm_pole {
+  margin-bottom: -2010px;
+  padding-bottom: 2000px;
+  width: 300px;
+  margin-left:-10px;
+/* border-width:1px;
+ border-style:dotted;
+ border-color:red;*/
+
+  
+}
 /* Page asso */
 
 #asso-menu {

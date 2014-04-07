@@ -1,13 +1,27 @@
 $(document).ready(function(){
-  $("#lienlisteassos").click(function(e){
+  $(".lienlisteassos").click(function(e){
     e.preventDefault();
     $("#bigmenu").toggle();
   });
   
   $("body").click(function(e){
-    if(!$(e.target).is("#bigmenu") && $(e.target).parents("#bigmenu").length == 0 && !$(e.target).is("#lienlisteassos"))
+    if(!$(e.target).is("#bigmenu") && $(e.target).parents("#bigmenu").length == 0 && !$(e.target).is(".lienlisteassos"))
       $("#bigmenu:visible").hide();
   });
+  
+  // Ajout onglet calendrier
+  
+  $(".lienlistereservation").click(function(e){
+    e.preventDefault();
+    $("#calendarmenu").toggle();
+  });
+  
+  $("body").click(function(e){
+    if(!$(e.target).is("#calendarmenu") && $(e.target).parents("#calendarmenu").length == 0 && !$(e.target).is(".lienlistereservation"))
+      $("#calendarmenu:visible").hide();
+  });
+  
+  // fin onglet calendar
 
   $("#all_but").click(function(e){
     e.preventDefault();

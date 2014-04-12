@@ -1,0 +1,654 @@
+/* Généralités */
+
+body {
+  color: #2a2a2a;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+a:link, a:visited {
+  color: #888888;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #888888;
+  text-decoration: underline;
+}
+
+p {
+    font-size: 10pt;
+}
+
+.bulle {
+  color: #FFF;
+  text-transform: uppercase;
+  background: url(/images/bg_col_title.png) no-repeat bottom left;
+  padding: 8px 8px 25px 8px;;
+}
+
+.part {
+  margin-bottom: 40px;
+}
+
+.part h1, .partie {
+  background: #505050;
+  font-weight: normal;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  line-height: 18px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.partie a {
+  color: white;
+}
+
+.part h1 .pull-right {
+	font-size: 12px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	text-transform: none;
+}
+
+.part h1 .pull-right a {
+	color: white;
+}
+
+.part .article h2 img {
+  margin-right: 1em;
+}
+
+.part .article h2 {
+  margin: 5px auto;
+  display: block;
+  width: auto;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+.part .article h2 span.sub {
+  float: right;
+  font-size: 10px;
+}
+
+.part .article h2 a {
+  color: white;
+}
+
+/* En-tête */
+
+.navbar .brand {
+  position: relative;
+  max-height: 40px;
+  padding: 0 0 0 2em;
+}
+
+/* Calendrier page d'accueil */
+
+#calendrier {
+  padding: 0 1em;
+  box-shadow: 0px 10px 15px #ddd;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+#calendrier .event h4 a {
+  text-transform: uppercase;
+  color: #ee4401;
+}
+
+.carousel-indicators {
+  position: static;
+  top: auto;
+  right: auto;
+  z-index: auto;
+  margin-top: .4em;
+}
+
+.carousel-control {
+  top: auto;
+  bottom: 5%;
+}
+
+/* Pied de page */
+
+#footer {
+  margin: 80px -20px 0px -20px;
+  padding: 45px 20px 20px 20px;
+  background: url(/images/bg_footer.png) repeat-x #393939;
+  color: #FFF;
+  text-transform: uppercase;
+}
+
+#footer #splash img {
+  margin-top: -32.608695652174%;
+}
+
+#footer a {
+  font-size: 10px;
+  color: #FFF;
+}
+
+/* Sidebar */
+
+#my_assos h5 {
+  text-transform: uppercase;
+  line-height: 1em;
+  margin-top: .7em;
+}
+
+/* Menu principal */
+
+#menu, #bigmenu, #calendarmenu {
+  background: black;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));
+  background-image: -moz-linear-gradient(top center, #242424, #414141);
+  background-image: -o-linear-gradient(top, #242424, #414141);
+  color: #FFF;
+  text-transform: uppercase;
+}
+
+#menu {
+  font-family: 'Raleway', sans-serif;
+  padding: .5em 1em;
+}
+
+#menu a {
+  color: #FFF;
+  padding-left: 1.2em;
+  padding-right: 1.2em;
+  border-left: 1px #FFF solid;
+}
+#menu a.first {
+  padding-left: .3em;
+  border: 0;
+}
+
+#bigmenu {
+  display: none;
+  z-index: 11000;
+  overflow: hidden;
+}
+
+#bigmenu a {
+  color: white;
+}
+
+#bigmenu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#bigmenu .bm_pole {
+  padding: 5px 10px;
+  margin-bottom: -2000px;
+  padding-bottom: 2000px;
+	 border-width:1px;
+ border-style:dotted;
+ border-color:red;
+}
+
+#calendarmenu {
+  padding-top: 10px;
+  font-weight : bold;
+  display: none;
+  z-index: 11000;
+  overflow: hidden;
+  padding-left: 0;
+}
+
+#calendarmenu a {
+  color: white;
+}
+
+#calendarmenu ul {
+  list-style-type: none;
+  padding-left: 6%;
+}
+
+#calendarmenu ul li{
+  display: inline-block;
+  list-style-type: none;
+  padding-right: 5%;
+}
+  
+}
+/* Page asso */
+
+#asso-menu {
+  background: #009cdd;
+  padding: .3em 0;
+  margin-top: .5em;
+}
+
+#asso-menu a {
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: .5em 1em;
+  border-right: 1px solid white;
+  color: white;
+  font-weight: bold;
+}
+#asso-menu a:last-child, #asso-menu a:first-child {
+  border: none;
+}
+
+/* Formulaires d'édition (articles, event...) */
+
+.editform label:first-child {
+	text-align: right;
+	margin-right: 6px;
+	padding: 4px;
+}
+.editform th {
+	vertical-align: top;
+}
+.editform input, .editform textarea {
+	width: 100%;
+}
+
+.editform input.btn, .editform select.nosize {
+	width: auto;
+}
+
+a.btn-danger {
+  color: white;
+}
+
+/* Page profil */
+
+#profile {
+    line-height: 20px;  
+}
+
+#profile h1{
+    margin: 0 auto;
+}
+
+#profile h2 .btn.pull-right {
+    margin-top: 7px;
+}
+
+#topbar a.btn {
+  color: #000;
+}
+
+#profile h2{
+    margin: 0 auto 7px;
+    display: block;
+    font-weight: normal;
+    width: auto;
+    font-family: impact;
+    font-size: 21px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom:thin solid #000;
+}
+
+#profile h2 a{
+    text-decoration: none;
+    color: #666666;
+}
+
+#profile #trombi{
+    height : 120px;
+    margin-right:20px;
+}
+
+#profile .row{
+    margin-bottom: 10px;
+}
+
+#profile label{
+    display: inline;
+}
+
+#profile select{
+    width: auto;
+}
+
+#profile #infoPerso .span2{
+    width: 100px;
+}
+
+#profile input[type="submit"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#identite .radio_list{
+    list-style: none;
+}
+
+#identite .radio_list label{
+    width: 60px;
+    display: inline;
+}
+
+#identite #profile_branche_id {
+    margin-right: 150px;
+}
+
+#identite #profile_filiere_id {
+    margin-right: 150px;
+}
+
+#identite #profile_semestre {
+    margin-right: 150px;
+}
+
+#infoPerso h3 {
+    margin-left: 140px;
+    margin-top: 10px;
+}
+
+#infoPerso th {
+    padding-right: 11px;
+}
+
+#infoPerso label[for="profile_mobile"]{
+    padding-right: 27px;
+}
+
+#infoSupp label {
+    padding-right: 10px;
+}
+
+#infoSupp #profile_devise {
+    /*margin-right: 300px;*/
+    margin-bottom:  10px;
+}
+
+#sports select {
+    display: block;
+    margin-top: 10px;
+}
+
+.modifier {
+    cursor: url('/images/button/modifier.png'), auto;
+}
+
+#aide h2{
+    margin: 0 auto 7px;
+    display: block;
+    font-weight: normal;
+    width: auto;
+    font-family: impact;
+    font-size: 21px;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom:thin solid #000;
+}
+
+/* Box pour des événements (sur page accueil, asso...) */
+
+.eventbox {
+  padding: 10px;
+}
+
+.eventbox h4 {
+  text-transform: uppercase;
+  color: white;
+}
+
+.eventbox a {
+  color: white;
+}
+
+.eventbox p {
+  color: #000;
+}
+
+/* Trombinoscope assos */
+
+#trombi ul li {
+  text-align: center;
+}
+
+#trombi ul li img {
+  height: 120px;
+}
+
+
+/* Suite à ranger... */
+
+#assos_list, #services_list {
+  list-style:none;
+  line-height:200%;
+  margin:20px auto;
+  position:relative;
+  padding: 0;
+}
+
+#assos_list li, #services_list li{
+  padding : 10px;
+  min-height : 120px;
+  border: 1px solid #efefef;
+  margin: 0 15px 15px 0;
+  background: #fff;
+}
+
+#services_list li{
+    min-height: 85px;
+    margin-bottom: 15px;
+}
+
+#assos_list h3 a, #services_list h3 a{
+  font-size:1.3em;
+}
+
+#assos_list .desc, #services_list .desc{
+  margin-left : 100px;
+}
+
+#assos_list img.logo, #services_list img.logo{
+  float:left;
+  height:85px;
+  width:85px;
+  margin-right: 10px;
+  background-color : #FFF;
+  border: 0;
+}
+#assos_list .website, #services_list .website{
+  font-weight:bold;
+}
+#topbar .website:before , #assos_list .website:before , #services_list .website:before {
+  content: url('/images/icons/home.png');
+  margin-right: 5px;
+  vertical-align: middle;
+}
+#assos_list .website:hover #services_list .website:hover{
+  text-decoration:none;
+  color:#fff;
+  background-color:#75c34b;
+}
+
+#services_list .btn {
+    color: #000000;
+}
+
+.email:before{
+  content: url(/images/icons/mail.png);
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.facebook:before {
+  content: url(/images/icons/facebook.png);
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+#article .facebook:before, #event .facebook:before,
+.article .facebook:before, .event .facebook:before {
+    content: url(/images/icons/facebook.png);
+    margin-right: 0px;
+    vertical-align: -20%;
+}
+
+.phone:before {
+  content: url(/images/icons/phone.png);
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.salle:before {
+  content: url(/images/icons/door_open.png);
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+#asso{
+  padding : 10px;
+  width:598px;
+  min-height : 500px;
+  border: 1px solid #efefef;
+  margin: 0 30px 0 0;
+  background: #fff;
+}
+
+#asso#article-list{
+  list-style:none;
+}
+
+#asso img.logo{
+  margin : 20px;
+}
+
+#asso ul#onglets{
+  height: 32px;
+}
+
+#asso .desc{
+  margin : 5px;
+}
+
+#topbar{
+  padding: 10px;
+}
+
+#topbar .logo_asso{
+  text-align: center;
+  margin: 10px;
+}
+
+#topbar .desc {
+  margin: 10px auto;
+}
+
+#poles_list{
+  margin: auto;
+}
+
+#poles_list ul{
+  list-style:none;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#poles_list ul li{
+  text-align: center;
+  width : 100px;
+  margin: 10px;
+  vertical-align: top;
+  display: inline-block;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding : 5px;
+}
+
+#poles_list ul li:hover{
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.1) inset;
+}
+
+#poles_list ul li img{
+  max-width : 80px;
+  max-height : 80px;
+}
+
+
+.form-filters label { float: left; width: 130px; }
+.form-filters input, .form-filters select {  }
+
+#annonce_offre_1 + label,#annonce_offre_1, #annonce_offre_0 + label, #annonce_offre_0 { display: inline-block; margin: 0 5px; }
+
+.ejs {
+  visibility: hidden;
+}
+
+.alert-block {
+  margin-top: 18px;
+}
+
+.infojob-form tbody input, .infojob-form tbody textarea, .infojob-form tbody .uneditable-input {
+	width: 350px;
+}
+
+.infojob-form label {
+  width: 150px;
+  margin-right: 20px;
+  text-align: left;
+}
+
+.infojob-form select {
+	width: 350px;
+}
+
+#infojob-collapse-link {
+  cursor: pointer;
+}
+
+
+#search-results {
+  position: absolute;
+  color: white;
+  background: black;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));
+  background-image: -moz-linear-gradient(top center, #242424, #414141);
+  background-image: -o-linear-gradient(top, #242424, #414141);
+  color: #FFF;
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  top: 50px;
+  left: 900px;
+  display: none;
+  z-index: 11000;
+  overflow: hidden;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }
+
+/* fix margin problem thumbnail bootstrap*/
+ul.thumbfix li.span3:nth-child(4n + 5) { margin-left : 0px; }
+
+.btn.btn-primary{
+  color:#FFF;
+}

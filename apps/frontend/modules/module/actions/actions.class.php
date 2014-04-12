@@ -1,14 +1,14 @@
 <?php
 
 /**
- * reservation actions.
+ * module actions.
  *
  * @package    simde
- * @subpackage reservation
+ * @subpackage module
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class reservationActions extends sfActions
+class moduleActions extends sfActions
 {
  /**
   * Executes index action
@@ -17,8 +17,6 @@ class reservationActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    //$this->redirect('home/index');
-    // Chercher les reservations dans la bdd
+    $this->forward('default', 'module');
   }
-  
 }

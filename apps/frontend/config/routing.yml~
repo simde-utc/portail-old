@@ -707,6 +707,7 @@ reservation_salle:
   url: /reservation/:id
   param: { module: reservation, action: index }
 
+
 reservation:
   url: /reservation
   param: { module: reservation, action: index }

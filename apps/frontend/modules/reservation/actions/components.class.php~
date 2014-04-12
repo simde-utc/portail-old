@@ -17,7 +17,13 @@ class reservationComponents extends sfComponents
   
   public function executeListeSalle()
   {
-    $salles = SalleTable::getInstance()->getAllSalles();
+    $salles = SalleTable::getInstance()->getAssosAndNotPolesList();
+
+    foreach($assos as $asso)
+    {
+      $poles[$asso->getPoleId()][] = $asso;
+    }
+    $this->poles = $poles;
   }
   
 }

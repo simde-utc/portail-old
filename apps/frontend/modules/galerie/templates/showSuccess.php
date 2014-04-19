@@ -35,8 +35,6 @@
   <ul class="thumbnails thumbfix">
     <?php foreach ($photos as $index=>$photo): ?>
       <li class="span3 thumb-container">
-      <?php
-          echo exif_read_data('/web/uploads/galeries/source/'.$photo->getImage()); ?>
         <a
         class="thumbnail"
         data-photo-number="<?php echo $index ?>"

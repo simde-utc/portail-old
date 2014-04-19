@@ -83,8 +83,7 @@ class eventActions extends sfActions
       $this->redirect('asso/show?login='.$event->getAsso()->getLogin());
     }
     $event->delete();
-
-    $this->redirect('event/index');
+    $this->forward('event','index');
   }
 
   /**

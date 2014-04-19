@@ -10,7 +10,7 @@
     <?php endif ?>
   </h2>
   <img id="trombi" style="float: left;"
-       src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $sf_user->getGuardUser()->getUsername() ?>">
+       src="https://demeter.utc.fr/pls/portal30/portal30.get_photo_utilisateur?username=<?php echo $user->getUsername() ?>">
 
   <div class="row">
     <?php if ($profile->getDomain() == "etu"): ?>

@@ -17,9 +17,20 @@ class SalleTable extends Doctrine_Table
         return Doctrine_Core::getTable('Salle');
     }
     
-    public static function getAllSalles()
+    public function getAllSalles()
     {
-      	//return $this->findAll();
-      	return $this->createQuery();
+     		return $this->createQuery();
+    }
+    
+    public function getSalleByPole()
+    {
+    		$q = $this->createQuery('q')
+    					->leftJoin('q.Pole p')
+    					->leftJoin('p.Asso a')
+    					->orderBy('p.id_asso');
+    					
+    		//$a = $q->execute();
+    		
+    		return $q;
     }
 }

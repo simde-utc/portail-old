@@ -19,12 +19,6 @@ class SalleTable extends Doctrine_Table
     
     public static function getAllSalles()
     {
-    	$q = $this->createQuery('a')->select('*');
-    	/*
-            ->leftJoin('a.Asso as')
-            ->leftJoin('as.Pole p')
-            ->addOrderBy('a.created_at DESC');
-      */
-      return $q;
+      	return $this->createQuery();
     }
 }

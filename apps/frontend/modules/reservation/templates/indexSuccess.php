@@ -2,19 +2,30 @@
 
 <?php use_javascript('fullcalendar.min.js') ?>
 
+<?php use_javascript('reservation.js') ?>
+
 <h1 class="partie">Calendrier des reservations de salles <i id="loading" class="fa fa-refresh fa-spin fa-lg pull-right"></i></h1>
+
+<?php include_component('reservation','listeSalles', array('idSalle' => $idSalle)) ?>
+
 <div id="calendar"></div>
 <script>
-$(document).ready(function() {  
+$(document).ready(function() {
   $("#calendar").fullCalendar({
+    
+  	 dayClick: function(e)
+  	 {
+  	 	alert("A day has been clicked" + e);
+  	 },
+  	 
     header: {
       left: 'prev,next today',
       center: 'title',
-      right: 'agendaDay,agendaWeek,month'
+      right: 'agendaDay,agendaWeek'
     },
     editable: false,
     allDayDefault: false,
-    events: "<?php echo url_for("events_list",array('sf_format'=>'json')) ?>",
+    //events: "<?php echo url_for("events_list",array('sf_format'=>'json')) ?>",
     loading: function(bool) {
       if (bool) $('#loading').show();
       else $('#loading').hide();
@@ -50,8 +61,9 @@ $(document).ready(function() {
     },
     allDayText: 'Jour entier',
     defaultView: 'agendaWeek',
-    firstHour: 8,
-    height: 600,
+    height: 1000,
+    weekends: false,
+    minTime: 8,
   });
 });
 </script>

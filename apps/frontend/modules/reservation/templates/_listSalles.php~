@@ -1,0 +1,12 @@
+aaa
+<div id="listSalle">
+	<?php if ($salles): ?>
+		<ul>
+			<?php foreach ($salles as $salle): ?>
+				
+					<p><?php echo $salle ?></p>
+				
+			<?php endforeach ?>
+		</ul>
+	<?php endif ?>
+</div>

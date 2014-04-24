@@ -163,7 +163,7 @@ INSERT INTO salle VALUES (6, 'salle6', 15, '#1F3F56', 2);
 INSERT INTO salle VALUES (7, 'salle7', 20, '#12345F', 3);
 INSERT INTO salle VALUES (8, 'salle8', 25, '#1A34E6', 4);
 
-INSERT INTO reservation VALUES (1, NULL, 1, NULL, 1, curdate(), curtime(), addtime(curtime(), 1000), true);
-INSERT INTO reservation VALUES (2, NULL, 2, NULL, 2, curdate(), curtime(), addtime(curtime(), 1000), true);
-INSERT INTO reservation VALUES (3, NULL, 3, NULL, 3, curdate(), curtime(), addtime(curtime(), 1000), true);
-INSERT INTO reservation VALUES (4, NULL, 1, NULL, 4, curdate(), curtime(), addtime(curtime(), 1000), true);
+INSERT INTO Reservation VALUES (1, NULL, 1, NULL, 1, curdate(), curtime(), addtime(curtime(), 1000), true);
+INSERT INTO Reservation VALUES (2, NULL, 2, NULL, 2, curdate(), curtime(), addtime(curtime(), 1000), true);
+INSERT INTO Reservation VALUES (3, NULL, 3, NULL, 3, curdate(), curtime(), addtime(curtime(), 1000), true);
+INSERT INTO Reservation VALUES (4, NULL, 1, NULL, 4, curdate(), curtime(), addtime(curtime(), 1000), true);

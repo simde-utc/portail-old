@@ -1,3954 +1,733 @@
-Abonnement:
-  connection: doctrine
-  tableName: abonnement
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    type_publication:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-Activation:
-  connection: doctrine
-  tableName: activation
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    activation_key:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    SfGuardUser:
-      local: user_id
-      foreign: id
-      type: one
-Annonce:
-  connection: doctrine
-  tableName: annonce
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    categorie_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    titre:
-      type: string(250)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    texte:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    offre:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '1'
-      notnull: true
-      autoincrement: false
-    lieu:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    prix:
-      type: float(18)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0.00'
-      notnull: true
-      autoincrement: false
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    email:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    password:
-      type: string(32)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    AnnoncesCategorie:
-      local: categorie_id
-      foreign: id
-      type: one
-    SfGuardUser:
-      local: user_id
-      foreign: id
-      type: one
-AnnoncesCategorie:
-  connection: doctrine
-  tableName: annonces_categorie
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Annonce:
-      local: id
-      foreign: categorie_id
-      type: many
-Article:
-  connection: doctrine
-  tableName: article
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    name:
-      type: string(200)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    text:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    is_weekmail:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: false
-      autoincrement: false
-    image:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    summary:
-      type: string(150)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
+options:
+  collate: utf8_unicode_ci
+  charset: utf8
+
 Asso:
   connection: doctrine
-  tableName: asso
+  actAs: { Timestampable: ~ }
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(50)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    login:
-      type: string(32)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    pole_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    type_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    summary:
-      type: string(150)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    description:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    logo:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    active:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '1'
-      notnull: true
-      autoincrement: false
-    passation:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    salle:
-      type: string(6)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    phone:
-      type: string(15)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    facebook:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    joignable:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '1'
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
+    name: { type: string(50), notnull: true }
+    login: { type: string(32), notnull: true }
+    pole_id: { type: integer }
+    type_id: { type: integer }
+    summary: { type: string(150) }
+    description: { type: string }
+    logo: { type: string(100) }
+    active: { type: boolean, notnull: true, default: true }
+    passation: { type: boolean, notnull: true, default: false }
+    salle: { type: string(6) }
+    phone: { type: string(15) }
+    facebook: { type: string(100) }
+    joignable: { type: boolean, notnull: true, default: true }
   relations:
-    Pole:
-      local: id
-      foreign: asso_id
-      type: many
-    TypeAsso:
-      local: type_id
-      foreign: id
-      type: one
-    Article:
-      local: id
-      foreign: asso_id
-      type: many
-    AssoMember:
-      local: id
-      foreign: asso_id
-      type: many
-    AvanceTreso:
-      local: id
-      foreign: asso_id
-      type: many
-    AvanceTreso_2:
-      class: AvanceTreso
-      local: id
-      foreign: emetteur_id
-      type: many
-    Budget:
-      local: id
-      foreign: asso_id
-      type: many
-    BudgetCategorie:
-      local: id
-      foreign: asso_id
-      type: many
-    BudgetPoste:
-      local: id
-      foreign: asso_id
-      type: many
-    CharteInfo:
-      local: id
-      foreign: asso_id
-      type: many
-    CompteBanquaire:
-      local: id
-      foreign: asso_id
-      type: many
-    Document:
-      local: id
-      foreign: asso_id
-      type: many
-    Emprunt:
-      local: id
-      foreign: asso_id
-      type: many
-    Event:
-      local: id
-      foreign: asso_id
-      type: many
-    EventGuestAsso:
-      local: id
-      foreign: asso_id
-      type: many
-    Materiel:
-      local: id
-      foreign: asso_id
-      type: many
-    NoteDeFrais:
-      local: id
-      foreign: asso_id
-      type: many
-    Subvention:
-      local: id
-      foreign: asso_id
-      type: many
-    Transaction:
-      local: id
-      foreign: asso_id
-      type: many
-AssoMember:
-  connection: doctrine
-  tableName: asso_member
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    role_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    semestre_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    Role:
-      local: role_id
-      foreign: id
-      type: one
-    Semestre:
-      local: semestre_id
-      foreign: id
-      type: one
-    SfGuardUser:
-      local: user_id
-      foreign: id
-      type: one
-AvanceTreso:
-  connection: doctrine
-  tableName: avance_treso
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    emetteur_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    commentaire:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    transaction_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    transaction_emetteur_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    Asso_2:
-      class: Asso
-      local: emetteur_id
-      foreign: id
-      type: one
-    Transaction:
-      local: transaction_emetteur_id
-      foreign: id
-      type: one
-    Transaction_4:
-      class: Transaction
-      local: transaction_id
-      foreign: id
-      type: one
-Branche:
-  connection: doctrine
-  tableName: branche
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(3)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Profile:
-      local: id
-      foreign: branche_id
-      type: many
-Budget:
-  connection: doctrine
-  tableName: budget
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    nom:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    semestre_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    deleted_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    Semestre:
-      local: semestre_id
-      foreign: id
-      type: one
-    BudgetPoste:
-      local: id
-      foreign: budget_id
-      type: many
-BudgetCategorie:
-  connection: doctrine
-  tableName: budget_categorie
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    nom:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    commentaire:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    deleted_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    BudgetPoste:
-      local: id
-      foreign: budget_categorie_id
-      type: many
-BudgetPoste:
-  connection: doctrine
-  tableName: budget_poste
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    nom:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    budget_categorie_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    nombre:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '1'
-      notnull: true
-      autoincrement: false
-    prix_unitaire:
-      type: 'decimal(8, 2)'
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0.00'
-      notnull: true
-      autoincrement: false
-    commentaire:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    budget_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    deleted_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    BudgetCategorie:
-      local: budget_categorie_id
-      foreign: id
-      type: one
-    Budget:
-      local: budget_id
-      foreign: id
-      type: one
-    Transaction:
-      local: id
-      foreign: budget_poste_id
-      type: many
-CarnetAvantages:
-  connection: doctrine
-  tableName: carnet_avantages
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    nom:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    adresse:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    tel:
-      type: string(15)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    description:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-CharteInfo:
-  connection: doctrine
-  tableName: charte_info
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    date:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    semestre_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    responsable_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    confirmation:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    ip:
-      type: string(15)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    login:
-      type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    asso_name:
-      type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    SfGuardUser:
-      local: responsable_id
-      foreign: id
-      type: one
-    Semestre:
-      local: semestre_id
-      foreign: id
-      type: one
-CharteLocaux:
-  connection: doctrine
-  tableName: charte_locaux
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    date:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    ip:
-      type: string(15)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    semestre_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    login:
-      type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    porte_mde:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    bat_a:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    locaux_pic:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    mde_complete:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    bureau_polar:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    perm_polar:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    salles_musique:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    statut:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    motif:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-CompteBanquaire:
-  connection: doctrine
-  tableName: compte_banquaire
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    nom:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    banque:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    num_compte:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    deleted_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    Transaction:
-      local: id
-      foreign: compte_id
-      type: many
-Departement:
-  connection: doctrine
-  tableName: departement
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    num:
-      type: integer(2)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    name:
-      type: string(50)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-Document:
-  connection: doctrine
-  tableName: document
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    transaction_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    nom:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    fichier:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    auteur:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    reference:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    type_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    SfGuardUser:
-      local: auteur
-      foreign: id
-      type: one
-    Transaction:
-      local: transaction_id
-      foreign: id
-      type: one
-    DocumentType:
-      local: type_id
-      foreign: id
-      type: one
-DocumentType:
-  connection: doctrine
-  tableName: document_type
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    nom:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    slug:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    detail:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Document:
-      local: id
-      foreign: type_id
-      type: many
-Emprunt:
-  connection: doctrine
-  tableName: emprunt
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    materiel_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    nombre:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    recu:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    rendu:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    Materiel:
-      local: materiel_id
-      foreign: id
-      type: one
-    SfGuardUser:
-      local: user_id
-      foreign: id
-      type: one
-Etat:
-  connection: doctrine
-  tableName: etat
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    nom:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    disponible:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Stock:
-      local: id
-      foreign: etat_id
-      type: many
-Event:
-  connection: doctrine
-  tableName: event
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    type_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    name:
-      type: string(50)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    description:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    start_date:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    end_date:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    is_public:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '1'
-      notnull: false
-      autoincrement: false
-    is_weekmail:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: false
-      autoincrement: false
-    place:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    affiche:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    summary:
-      type: string(150)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    EventType:
-      local: type_id
-      foreign: id
-      type: one
-    EventGuestAsso:
-      local: id
-      foreign: event_id
-      type: many
-    EventMember:
-      local: id
-      foreign: event_id
-      type: many
-    GaleriePhoto:
-      local: id
-      foreign: event_id
-      type: many
-    WeekmailArticle:
-      local: id
-      foreign: event_id
-      type: many
-EventGuestAsso:
-  connection: doctrine
-  tableName: event_guest_asso
-  columns:
-    event_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    Event:
-      local: event_id
-      foreign: id
-      type: one
-EventMember:
-  connection: doctrine
-  tableName: event_member
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    event_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Event:
-      local: event_id
-      foreign: id
-      type: one
-    SfGuardUser:
-      local: user_id
-      foreign: id
-      type: one
-EventType:
-  connection: doctrine
-  tableName: event_type
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(50)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Event:
-      local: id
-      foreign: type_id
-      type: many
-Filiere:
-  connection: doctrine
-  tableName: filiere
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(10)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Profile:
-      local: id
-      foreign: filiere_id
-      type: many
-GaleriePhoto:
-  connection: doctrine
-  tableName: galerie_photo
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    event_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    title:
-      type: string(200)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    description:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Event:
-      local: event_id
-      foreign: id
-      type: one
-    Photo:
-      local: id
-      foreign: galeriephoto_id
-      type: many
-InfoJobAbonnementCategorie:
-  connection: doctrine
-  tableName: info_job_abonnement_categorie
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    categorie_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-InfoJobAbonnementDisponibilite:
-  connection: doctrine
-  tableName: info_job_abonnement_disponibilite
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    disponibilite_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-InfoJobCategorie:
-  connection: doctrine
-  tableName: info_job_categorie
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-InfoJobDisponibilite:
-  connection: doctrine
-  tableName: info_job_disponibilite
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-InfoJobOffre:
-  connection: doctrine
-  tableName: info_job_offre
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    categorie_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    titre:
-      type: string(250)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    texte:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    lieu:
-      type: string(250)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    remuneration:
-      type: string(250)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    email:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    telephone:
-      type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    validation_date:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    expiration_date:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    archivage_date:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    emailkey:
-      type: string(32)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    validationkey:
-      type: string(32)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-InfoJobOffreDisponibilite:
-  connection: doctrine
-  tableName: info_job_offre_disponibilite
-  columns:
-    offre_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    disponibilite_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-InfoJobSignalement:
-  connection: doctrine
-  tableName: info_job_signalement
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    offre_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    type_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    commentaire:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    archivage_date:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-InfoJobSignalementType:
-  connection: doctrine
-  tableName: info_job_signalement_type
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-Materiel:
-  connection: doctrine
-  tableName: materiel
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    nom:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    description:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    Emprunt:
-      local: id
-      foreign: materiel_id
-      type: many
-    Stock:
-      local: id
-      foreign: materiel_id
-      type: many
-MembreService:
-  connection: doctrine
-  tableName: membre_service
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    membre:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    service:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-MigrationVersion:
-  connection: doctrine
-  tableName: migration_version
-  columns:
-    id:
-      type: integer(8)
-      autoincrement: true
-      primary: true
-    version:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-NoteDeFrais:
-  connection: doctrine
-  tableName: note_de_frais
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    nom:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    transaction_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    deleted_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    Transaction:
-      local: id
-      foreign: note_de_frais_id
-      type: many
-Partenaire:
-  connection: doctrine
-  tableName: partenaire
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    nom:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    logo:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    url:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    description:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    position:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-Photo:
-  connection: doctrine
-  tableName: photo
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    galeriephoto_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    title:
-      type: string(200)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    author:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    is_public:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    image:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    SfGuardUser:
-      local: author
-      foreign: id
-      type: one
-    GaleriePhoto:
-      local: galeriephoto_id
-      foreign: id
-      type: one
-Place:
-  connection: doctrine
-  tableName: place
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    street:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    zipcode:
-      type: string(10)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    city:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    country:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    phone:
-      type: string(15)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Profile:
-      local: id
-      foreign: family_place
-      type: many
-    Profile_4:
-      class: Profile
-      local: id
-      foreign: home_place
-      type: many
+    Pole: { local: pole_id, foreign: id }
+    Type: { local: type_id, foreign: id, class: TypeAsso }
+    GuestOfEvent: { class:Event, local:asso_id, foreign:event_id, refClass:EventGuestAsso }
+
 Pole:
   connection: doctrine
-  tableName: pole
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    couleur:
-      type: string(7)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+    asso_id: { type: integer }
+    couleur: { type: string(7) }
   relations:
-    Asso:
-      local: id
-      foreign: pole_id
-      type: many
-Profile:
-  connection: doctrine
-  tableName: profile
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    domain:
-      type: string(15)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    nickname:
-      type: string(50)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    birthday:
-      type: date(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    sexe:
-      type: string(1)
-      fixed: true
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    mobile:
-      type: string(15)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    home_place:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    family_place:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    branche_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    filiere_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    semestre:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    other_email:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    photo:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    weekmail:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    autorisation_photo:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    devise:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Branche:
-      local: branche_id
-      foreign: id
-      type: one
-    Place:
-      local: family_place
-      foreign: id
-      type: one
-    Filiere:
-      local: filiere_id
-      foreign: id
-      type: one
-    Place_4:
-      class: Place
-      local: home_place
-      foreign: id
-      type: one
-    SfGuardUser:
-      local: user_id
-      foreign: id
-      type: one
-Role:
-  connection: doctrine
-  tableName: role
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(50)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    sort:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    bureau:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    droits:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-  relations:
-    AssoMember:
-      local: id
-      foreign: role_id
-      type: many
-Semestre:
-  connection: doctrine
-  tableName: semestre
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(3)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    AssoMember:
-      local: id
-      foreign: semestre_id
-      type: many
-    Budget:
-      local: id
-      foreign: semestre_id
-      type: many
-    CharteInfo:
-      local: id
-      foreign: semestre_id
-      type: many
-    Vote:
-      local: id
-      foreign: semestre_id
-      type: many
-    VoteListe:
-      local: id
-      foreign: semestre_id
-      type: many
-Service:
-  connection: doctrine
-  tableName: service
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    nom:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    resume:
-      type: string(150)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    logo:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    url:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    type_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-ServiceType:
-  connection: doctrine
-  tableName: service_type
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(50)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-SfGuardForgotPassword:
-  connection: doctrine
-  tableName: sf_guard_forgot_password
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    unique_key:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    expires_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    SfGuardUser:
-      local: user_id
-      foreign: id
-      type: one
-SfGuardGroup:
-  connection: doctrine
-  tableName: sf_guard_group
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    description:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    SfGuardGroupPermission:
-      local: id
-      foreign: group_id
-      type: many
-    SfGuardUserGroup:
-      local: id
-      foreign: group_id
-      type: many
-SfGuardGroupPermission:
-  connection: doctrine
-  tableName: sf_guard_group_permission
-  columns:
-    group_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    permission_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    SfGuardGroup:
-      local: group_id
-      foreign: id
-      type: one
-    SfGuardPermission:
-      local: permission_id
-      foreign: id
-      type: one
-SfGuardPermission:
-  connection: doctrine
-  tableName: sf_guard_permission
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    description:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    SfGuardGroupPermission:
-      local: id
-      foreign: permission_id
-      type: many
-    SfGuardUserPermission:
-      local: id
-      foreign: permission_id
-      type: many
-SfGuardRememberKey:
-  connection: doctrine
-  tableName: sf_guard_remember_key
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    remember_key:
-      type: string(32)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    ip_address:
-      type: string(50)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    SfGuardUser:
-      local: user_id
-      foreign: id
-      type: one
-SfGuardUser:
-  connection: doctrine
-  tableName: sf_guard_user
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    first_name:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    last_name:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    email_address:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    username:
-      type: string(128)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    algorithm:
-      type: string(128)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: sha1
-      notnull: true
-      autoincrement: false
-    salt:
-      type: string(128)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    password:
-      type: string(128)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    is_active:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '1'
-      notnull: false
-      autoincrement: false
-    is_super_admin:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: false
-      autoincrement: false
-    last_login:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Activation:
-      local: id
-      foreign: user_id
-      type: many
-    Annonce:
-      local: id
-      foreign: user_id
-      type: many
-    AssoMember:
-      local: id
-      foreign: user_id
-      type: many
-    CharteInfo:
-      local: id
-      foreign: responsable_id
-      type: many
-    Document:
-      local: id
-      foreign: auteur
-      type: many
-    Emprunt:
-      local: id
-      foreign: user_id
-      type: many
-    EventMember:
-      local: id
-      foreign: user_id
-      type: many
-    Photo:
-      local: id
-      foreign: author
-      type: many
-    Profile:
-      local: id
-      foreign: user_id
-      type: many
-    SfGuardForgotPassword:
-      local: id
-      foreign: user_id
-      type: many
-    SfGuardRememberKey:
-      local: id
-      foreign: user_id
-      type: many
-    SfGuardUserGroup:
-      local: id
-      foreign: user_id
-      type: many
-    SfGuardUserPermission:
-      local: id
-      foreign: user_id
-      type: many
-    Vote:
-      local: id
-      foreign: user_id
-      type: many
-SfGuardUserGroup:
-  connection: doctrine
-  tableName: sf_guard_user_group
-  columns:
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    group_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    SfGuardGroup:
-      local: group_id
-      foreign: id
-      type: one
-    SfGuardUser:
-      local: user_id
-      foreign: id
-      type: one
-SfGuardUserPermission:
-  connection: doctrine
-  tableName: sf_guard_user_permission
-  columns:
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    permission_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    SfGuardPermission:
-      local: permission_id
-      foreign: id
-      type: one
-    SfGuardUser:
-      local: user_id
-      foreign: id
-      type: one
-Sport:
-  connection: doctrine
-  tableName: sport
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(30)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-Stock:
-  connection: doctrine
-  tableName: stock
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    materiel_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    etat_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '1'
-      notnull: true
-      autoincrement: false
-    nombre:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-  relations:
-    Etat:
-      local: etat_id
-      foreign: id
-      type: one
-    Materiel:
-      local: materiel_id
-      foreign: id
-      type: one
-Subvention:
-  connection: doctrine
-  tableName: subvention
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    nom:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    montant:
-      type: 'decimal(8, 2)'
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    commentaire:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    deleted_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-Transaction:
-  connection: doctrine
-  tableName: transaction
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    compte_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    libelle:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    montant:
-      type: 'decimal(8, 2)'
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0.00'
-      notnull: true
-      autoincrement: false
-    commentaire:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    date_transaction:
-      type: date(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    date_rapprochement:
-      type: date(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    budget_poste_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    moyen_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    moyen_commentaire:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    note_de_frais_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    deleted_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Asso:
-      local: asso_id
-      foreign: id
-      type: one
-    BudgetPoste:
-      local: budget_poste_id
-      foreign: id
-      type: one
-    CompteBanquaire:
-      local: compte_id
-      foreign: id
-      type: one
-    TransactionMoyen:
-      local: moyen_id
-      foreign: id
-      type: one
-    NoteDeFrais:
-      local: id
-      foreign: transaction_id
-      type: many
-    AvanceTreso:
-      local: id
-      foreign: transaction_emetteur_id
-      type: many
-    AvanceTreso_4:
-      class: AvanceTreso
-      local: id
-      foreign: transaction_id
-      type: many
-    Document:
-      local: id
-      foreign: transaction_id
-      type: many
-TransactionMoyen:
-  connection: doctrine
-  tableName: transaction_moyen
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    nom:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    detail:
-      type: string(255)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-  relations:
-    Transaction:
-      local: id
-      foreign: moyen_id
-      type: many
+    Infos: { local: asso_id, foreign: id, class: Asso, foreignAlias: PoleInfos, foreignType: one }
+
 TypeAsso:
   connection: doctrine
-  tableName: type_asso
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    name:
-      type: string(50)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+    name: { type: string(50) }
+
+AssoMember:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    user_id: { type: integer, notnull: true }
+    asso_id: { type: integer, notnull: true }
+    role_id: { type: integer, notnull: true }
+    semestre_id: { type: integer, notnull: true }
   relations:
-    Asso:
-      local: id
-      foreign: type_id
-      type: many
+    Asso: { local: asso_id, foreign: id }
+    Role: { local: role_id, foreign: id }
+    User: { local: user_id, foreign: id, class: sfGuardUser }
+    Semestre: { local: semestre_id, foreign: id }
+
+Role:
+  connection: doctrine
+  columns:
+    name: { type: string(50) }
+    sort: { type: integer(4) }
+    bureau: { type: boolean, default: false, notnull: true }
+    droits: { type: integer, default: 0, notnull: true }
+
+Profile:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    user_id: { type: integer }
+    domain: { type: string(15) }
+    nickname: { type: string(50) }
+    birthday: { type: date }
+    sexe: { type: char(1) }
+    mobile: { type: string(15) }
+    home_place: { type: integer }
+    family_place: { type: integer }
+    branche_id: { type: integer }
+    filiere_id: { type: integer }
+    semestre: { type: integer }
+    other_email: { type: string }
+    photo: { type: string }
+    weekmail: { type: boolean }
+    autorisation_photo: { type: boolean }
+    devise: { type: string(255) }
+
+  relations:
+    User: { local: user_id, foreign: id, class: sfGuardUser, foreignType: one }
+    HomePlace: { local: home_place, foreign: id, class: Place }
+    FamilyPlace: { local: family_place, foreign: id, class: Place }
+    Branche: { local: branche_id, foreign: id }
+    Filiere: { local: filiere_id, foreign: id }
+    UserSemestre: { local: semestre, foreign: id }
+
 UserSemestre:
   connection: doctrine
-  tableName: user_semestre
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    branche_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    num:
-      type: string(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    abroad:
-      type: string(30)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    semestre_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-UserSport:
-  connection: doctrine
-  tableName: user_sport
-  columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    sport_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+    user_id: { type: integer }
+    branche_id: { type: integer }
+    num: { type: string(4) }
+    abroad: { type: string(30) }
+    semestre_id: {type: integer }
+  relations:
+    Profile: { local: user_id, foreign: id }
+    Branche: { local: branche_id, foreign: id }
+    Semestre: { local: semestre_id, foreign: id }
+
 UserUv:
   connection: doctrine
-  tableName: user_uv
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    uv_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    user_semestre_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    note:
-      type: string(2)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+    uv_id: { type: integer }
+    user_semestre_id: { type: integer }
+    note: { type: string(2) }
+  relations:
+    Uv: { local: uv_id, foreign: id }
+    UserSemestre: { local: user_semestre_id, foreign: id }
+
+UserSport:
+  connection: doctrine
+  columns:
+    user_id: { type: integer }
+    sport_id: { type: integer }
+  relations:
+    Profile: { local: user_id, foreign: id }
+    Sport: { local: sport_id, foreign: id }
+
+Sport:
+  connection: doctrine
+  columns:
+    name: { type: string(30), notnull: true }
+
 Uv:
   connection: doctrine
-  tableName: uv
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    code:
-      type: string(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    name:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-Vote:
+    code: { type: string(4), unique:true}
+    name: { type: string(100) }
+
+Place:
   connection: doctrine
-  tableName: vote
+  actAs: { Timestampable: ~ }
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    ip:
-      type: string(15)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    semestre_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    user_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    login:
-      type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
+    street: { type: string }
+    zipcode: { type: string(10) }
+    city: { type: string(100) }
+    country: { type: string(100) }
+    phone: { type: string(15) }
+
+Event:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    asso_id : { type: integer, notnull: true }
+    type_id: { type: integer, notnull: true }
+    name: { type: string(50), notnull: true }
+    description: { type: string, notnull: true }
+    start_date: { type: timestamp, notnull: true }
+    end_date: { type: timestamp, notnull: true }
+    is_public: { type: boolean, default: true }
+    is_weekmail: { type: boolean, default: false }
+    place: { type: string }
+    affiche: { type: string }
+    summary: { type: string(150) }
   relations:
-    Semestre:
-      local: semestre_id
-      foreign: id
-      type: one
-    SfGuardUser:
-      local: user_id
-      foreign: id
-      type: one
+    Asso: { local: asso_id, foreign: id }
+    Type: { local: type_id, foreign: id, class: EventType }
+    GuestAsso: { class:Asso, local:event_id, foreign:asso_id, refClass:EventGuestAsso }
+
+EventMember:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    event_id: { type: integer, notnull: true }
+    user_id:  { type: integer, notnull: true }
+  relations:
+    Event: { local: event_id, foreign: id }
+    User: { local: user_id, foreign: id, class: sfGuardUser }
+
+EventType:
+  connection: doctrine
+  columns:
+    name: { type: string(50) }
+
+
+EventGuestAsso:
+  connection: doctrine
+  columns:
+    event_id: { type: integer, primary:true }
+    asso_id: { type: integer, primary:true }
+
+GaleriePhoto:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    event_id: {type: integer, notnull: true }
+    title: {type: string(200), notnull: true }
+    description: {type: string, notnull: true}
+  relations:
+    Event: {local: event_id, foreign: id }
+
+Photo:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    galeriePhoto_id: {type: integer, notnull: true}
+    title: {type: string(200)}
+    author: {type: integer, notnull: true}
+    is_public: {type: boolean, notnull:true}
+    image: { type: string, notnull: true}
+  relations:
+    GaleriePhoto: {local: galeriePhoto_id, foreign: id}
+    User: { local: author, foreign: id, class: sfGuardUser }
+
+
+Article:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    name : { type: string(200), notnull: true }
+    text : { type: string, notnull: true }
+    is_weekmail: { type: boolean, default: false }
+    image: { type: string }
+    summary: { type: string(150) }
+  relations:
+    Asso: { local: asso_id, foreign: id }
+
+Semestre:
+  connection: doctrine
+  columns:
+    name: { type: string(3) }
+
+Branche:
+  connection: doctrine
+  columns:
+    name: { type: string(3) }
+
+Filiere:
+  connection: doctrine
+  columns:
+    name: { type: string(10) }
+
+Activation:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    user_id: { type: integer }
+    activation_key: { type: string }
+  relations:
+    sfGuardUser: { onUpdate: CASCADE, local: user_id, foreign: id, foreignAlias: Activations}
+
+Abonnement:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    user_id: { type: integer, notnull: true }
+    asso_id: { type: integer }
+    type_publication: { type: integer, notnull: true }
+  relations:
+    Asso: { local: asso_id, foreign: id }
+    User: { local: user_id, foreign: id, class: sfGuardUser }
+
+Service:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string(100), notnull: true }
+    resume: { type: string(150), notnull: true }
+    logo: { type: string(255) }
+    url: { type: string(255), notnull: true }
+    type_id: { type: integer, notnull: true }
+  relations:
+    Type: { local: type_id, foreign: id, class: ServiceType }
+
+MembreService:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    membre: { type: integer, notnull: true }
+    service: { type: integer, notnull: true }
+  relations:
+    User: { local: membre, foreign: id, class: sfGuardUser }
+    Service: { local: service, foreign: id }
+
+ServiceType:
+  connection: doctrine
+  columns:
+    name: { type: string(50) }
+
+CharteInfo:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    date: { type: timestamp, notnull: true }
+    ip: { type: string(15), notnull: true }
+    semestre_id: { type: integer, notnull: true }
+    asso_id : { type: integer, notnull : true }
+    asso_name: { type: string(20), notnull: true }
+    responsable_id: { type: integer, notnull: true }
+    login: { type: string(20), notnull: true }
+    confirmation: { type: boolean, notnull: true, default: false }
+  relations:
+    Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Responsable: { onUpdate: CASCADE, local: responsable_id, foreign: id, class: sfGuardUser }
+
+Materiel:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string(100) }
+    asso_id : { type: integer }
+    description: { type: string }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+Etat:
+  connection: doctrine
+  columns:
+    nom: { type: string(100) }
+    disponible: { type: boolean }
+
+Stock:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    materiel_id: { type: integer }
+    etat_id: { type: integer, notnull: true, default: 1 }
+    nombre: { type: integer }
+  relations:
+    Materiel: { onDelete: CASCADE, onUpdate: CASCADE, local: materiel_id, foreign: id }
+    Etat: { onDelete: CASCADE, onUpdate: CASCADE, local: etat_id, foreign: id }
+
+Emprunt:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    materiel_id: { type: integer }
+    user_id: { type: integer }
+    asso_id: { type: integer }
+    nombre: { type: integer }
+    recu: { type: boolean }
+    rendu: { type: boolean }
+  relations:
+    Materiel: { onDelete: CASCADE, onUpdate: CASCADE, local: materiel_id, foreign: id }
+    User: { onDelete: CASCADE, onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser}
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+Departement:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  columns:
+    num: { type: integer(2), notnull: true }
+    name: { type: string(50), notnull: true }
+
+AnnoncesCategorie:
+  connection: doctrine
+  columns:
+    name: { type: string(100) , notnull: true }
+
+Annonce:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  columns:
+    categorie_id: { type: integer, notnull: true }
+    titre: { type: string(250), notnull: true }
+    texte: { type: string, notnull: true }
+    offre: { type: boolean, notnull: true, default: 1 }
+    lieu: { type: string(100) }
+    prix: { type: float, notnull: true, default: 0.00 }
+    user_id: { type: integer }
+    email: { type: string(100) }
+    password: { type: string(32) }
+  relations:
+    Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: AnnoncesCategorie }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+
+Partenaire:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string(100), notnull: true }
+    logo: { type: string(100) }
+    url: { type: string(255) }
+    description: { type: string }
+    position: { type: integer }
+
+CarnetAvantages:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    nom: { type: string(100), notnull: true }
+    adresse: { type: string(100) }
+    tel: { type: string(15) }
+    description: { type: string, notnull: true }
+
 VoteListe:
   connection: doctrine
-  tableName: vote_liste
+  actAs: { Timestampable: ~ }
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    nom:
-      type: string(100)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    description:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    membres:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    semestre_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    count:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      default: '0'
-      notnull: true
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
+    nom: { type: string(100), notnull: true }
+    description: { type: string, notnull: true }
+    membres: { type: string, notnull: true }
+    semestre_id: { type: integer, notnull: true }
+    count: { type: integer, notnull: true, default: 0 }
   relations:
-    Semestre:
-      local: semestre_id
-      foreign: id
-      type: one
+    Semestre: { local: semestre_id, foreign: id }
+
+Vote:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    ip: { type: string(15), notnull: true }
+    semestre_id: { type: integer, notnull: true }
+    user_id: { type: integer, notnull: true }
+    login: { type: string(20), notnull: true }
+  relations:
+    Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+
+# Système de trésorerie
+
+Budget:
+  connection: doctrine
+  actAs:
+    Timestampable: ~
+    SoftDelete: ~
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    semestre_id: { type: integer, notnull: true }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Semestre : { onUpdate: CASCADE, local: semestre_id, foreign: id }
+
+BudgetPoste:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    budget_categorie_id: { type: integer, notnull: true }
+    nombre: { type: integer, notnull: true, default: 1 }
+    prix_unitaire: { type: decimal(8), scale: 2, notnull: true, default: 0 }
+    commentaire: { type: string, notnull: false }
+    budget_id: { type: integer, notnull: true }
+  relations:
+    Budget: { onUpdate: CASCADE, local: budget_id, foreign: id }
+    BudgetCategorie: { onUpdate: CASCADE, local: budget_categorie_id, foreign: id }
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+BudgetCategorie:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    commentaire: { type: string, notnull: false }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+Transaction:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    compte_id: { type: integer, notnull: true }
+    libelle: { type: string(255), notnull: true }
+    montant: { type: decimal(8), scale: 2, notnull: true, default: 0 }
+    commentaire: { type: string, notnull: false }
+    date_transaction: { type: date, notnull: true }
+    date_rapprochement: { type: date, notnull: false }
+    budget_poste_id: { type: integer, notnull: false }
+    moyen_id: { type: integer, notnull: true }
+    moyen_commentaire: { type: string, notnull: false }
+    note_de_frais_id: { type: integer }
+  relations:
+    BudgetPoste: { onUpdate: CASCADE, local: budget_poste_id, foreign: id }
+    TransactionMoyen: { onUpdate: CASCADE, local: moyen_id, foreign: id }
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    CompteBanquaire: { onUpdate: CASCADE, local: compte_id, foreign: id }
+
+TransactionMoyen:
+  connection: doctrine
+  columns:
+    nom: { type: string(255), notnull: true }
+    detail: { type: string(255), notnull: false }
+
+Document:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    transaction_id: { type: integer }
+    nom: { type: string(255), notnull: true }
+    fichier: { type: string(255), notnull: true }
+    auteur: { type: integer, notnull: true }
+    reference: { type: string(255) }
+    type_id: { type: integer, notnull: true }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Transaction: { onUpdate: CASCADE, local: transaction_id, foreign: id }
+    User: { local: auteur, class: sfGuardUser, foreign: id }
+    DocumentType: { local: type_id, foreign: id }
+
+DocumentType:
+  connection: doctrine
+  columns:
+    nom : { type: string(255), notnull: true }
+    slug : { type: string(255), notnull: true }
+    detail : { type: string, notnull: true }
+
+# DocumentTemplate:
+#   connection: doctrine
+#   columns:
+#     nom: { type: string(255), notnull: true } #on utilise le slug pour retrouver le fichier de template
+#     commentaire: { type: string, notnull: true }
+#     type_id : { type: integer, notnull: true }
+#     champs : { type: string, notnull: true }
+#   relations:
+#     DocumentType: { local: type_id, foreign: id }
+
+CompteBanquaire:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    banque: { type: string(255), notnull: true }
+    num_compte: { type: string(255), notnull: true }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+NoteDeFrais:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    transaction_id: { type: integer, notnull: true }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Achats:
+      type: many
+      local: id
+      foreign: note_de_frais_id
+      class: Transaction
+    Transaction: { onUpdate: CASCADE, local: transaction_id, foreign: id }
+
+Subvention:
+  connection: doctrine
+  actAs: { Timestampable: ~, SoftDelete: ~ }
+  columns:
+    asso_id: { type: integer, notnull: true }
+    nom: { type: string(255), notnull: true }
+    montant : { type: decimal(8), scale: 2, notnull: true }
+    commentaire : { type: string, notnull: false }
+  relations:
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+
+AvanceTreso:
+  connection: doctrine
+  columns:
+    emetteur_id: { type: integer, notnull: true }
+    asso_id: { type: integer, notnull: true }
+    commentaire: { type: string, notnull: true }
+    transaction_id: { type: integer, notnull: true }
+    transaction_emetteur_id: { type: integer, notnull: true }
+  relations:
+    Emetteur: { onUpdate: CASCADE, local: emetteur_id, foreign: id, class: Asso }
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Transaction: { onUpdate: CASCADE, local: transaction_id, foreign: id }
+    TransactionEmetteur: { onUpdate: CASCADE, local: transaction_emetteur_id, foreign: id, class: Transaction }
+
 Weekmail:
   connection: doctrine
-  tableName: weekmail
+  actAs:  { Timestampable: ~ }
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    published_at:
-      type: date(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    edito:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    editar:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    mot_du_bde:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+    published_at: { type: date }
+    mot_du_bde: { type: string }
+    edito: { type: string }
+    editar: { type: string }
+
 WeekmailArticle:
   connection: doctrine
-  tableName: weekmail_article
+  actAs: { Timestampable: ~ }
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
-    asso_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    name:
-      type: string(200)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    text:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    image:
-      type: string()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    summary:
-      type: string(150)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    weekmail_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    article_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    event_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+    asso_id: { type: integer, notnull: true }
+    name : { type: string(200), notnull: true }
+    text : { type: string, notnull: true }
+    image: { type: string }
+    summary: { type: string(150) }
+    weekmail_id: { type: integer }
+    article_id: { type: integer }
+    event_id: { type: integer }
   relations:
-    Event:
-      local: event_id
-      foreign: id
-      type: one
+    Asso: { local: asso_id, foreign: id }
+    Weekmail: { local: weekmail_id, foreign: id }
+    Article: { local: article_id, foreign: id, onUpdate: CASCADE, onDelete: CASCADE }
+    Event: { local: event_id, foreign: id, onUpdate: CASCADE, onDelete: CASCADE }
+
+CharteLocaux:
+  connection: doctrine
+  actAs: { Timestampable: ~ }
+  columns:
+    date: { type: timestamp, notnull: true }
+    ip: { type: string(15), notnull: true }
+    semestre_id: { type: integer, notnull: true }
+    asso_id : { type: integer, notnull : true }
+    login: { type: string(20), notnull: true }
+    user_id: { type: integer, notnull: true }
+    porte_mde: { type: boolean, notnull: true, default: false }
+    bat_a: { type: boolean, notnull: true, default: false }
+    locaux_pic: { type: boolean, notnull: true, default: false }
+    mde_complete: { type: boolean, notnull: true, default: false }
+    locaux_pic: { type: boolean, notnull: true, default: false }
+    bureau_polar: { type: boolean, notnull: true, default: false }
+    perm_polar: { type: boolean, notnull: true, default: false }
+    salles_musique: { type: boolean, notnull: true, default: false }
+    statut: {type: int(1), notnull: true}
+    motif: {type: string}
+  relations:
+    Semestre: { onUpdate: CASCADE, local: semestre_id, foreign: id }
+    Asso: { onUpdate: CASCADE, local: asso_id, foreign: id }
+    Responsable: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+
+InfoJobCategorie:
+  connection: doctrine
+  columns:
+    name: { type: string(100), notnull: true }
+
+InfoJobDisponibilite:
+  connection: doctrine
+  columns:
+    name: { type: string(100), notnull: true }
+
+InfoJobOffre:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  columns:
+    categorie_id: { type: integer, notnull: true }
+    user_id: { type: integer }
+    titre: { type: string(250), notnull: true }
+    texte: { type: string, notnull: true }
+    lieu: { type: string(250) }
+    remuneration: { type: string(250), notnull: true }
+    email: { type: string(100) }
+    telephone: { type: string(20) }
+    validation_date : { type: datetime }
+    expiration_date : { type: datetime }
+    archivage_date: { type: datetime }
+    emailkey: { type: string(32), notnull: true }
+    validationkey: { type: string(32), notnull: true }
+  relations:
+    Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: InfoJobCategorie }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+    Disponibilites:
+      class: InfoJobDisponibilite
+      onDelete: CASCADE
+      refClass: InfoJobOffreDisponibilite
+      local: offre_id
+      foreign: disponibilite_id
+
+InfoJobOffreDisponibilite:
+  connection: doctrine
+  columns:
+    offre_id: { type: integer, primary: true }
+    disponibilite_id: { type: integer, primary: true }
+  relations:
+    Offre: { onUpdate: CASCADE, local: offre_id, foreign: id, class: InfoJobOffre, foreignAlias: OffreDisponibilites }
+    Disponibilite: { onUpdate: CASCADE, local: disponibilite_id, foreign: id, class: InfoJobDispobilite, foreignAlias: OffreDisponibilites }
+
+InfoJobSignalement:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  columns:
+    offre_id: { type: integer, notnull: true }
+    type_id: { type: integer, notnull: true }
+    commentaire: { type: string(255) }
+    archivage_date: { type: datetime }
+  relations:
+    Offre: { onUpdate: CASCADE, local: offre_id, foreign: id, class: InfoJobOffre }
+    Type: { onUpdate: CASCADE, local: type_id, foreign: id, class: InfoJobSignalementType }
+
+InfoJobSignalementType:
+  connection: doctrine
+  columns:
+    name: { type: string(100), notnull: true }
+
+InfoJobAbonnementCategorie:
+  connection: doctrine
+  columns:
+    categorie_id : { type: integer, notnull: true }
+    user_id: { type: integer, notnull: true }
+  relations:
+    Categorie: { onUpdate: CASCADE, local: categorie_id, foreign: id, class: InfoJobCategorie }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+
+InfoJobAbonnementDisponibilite:
+  connection: doctrine
+  columns:
+    disponibilite_id : { type: integer, notnull: true }
+    user_id: { type: integer, notnull: true }
+  relations:
+    Categorie: { onUpdate: CASCADE, local: disponibilite_id, foreign: id, class: InfoJobDispobilite }
+    User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+    
+Salle:
+  connection: doctrine
+  tableName: salle
+  columns:
+    id: { type : integer, primary: true, autoincrement: true }
+    name: { type: string(255), notnull: true, unique: true }
+    capacite: { type : integer, notnull: true }
+    couleur: { type : string(7), notnull: true }
+    pole : { type : integer, notnull: true }
+  relations:
+    Pole: { onUpdate: CASCADE, local: pole, foreign: id, class: SfGuardUser }
+      
+Reservation:
+  connection: doctrine
+  tableName: reservation
+  columns:
+    id: { type : integer, primary: true, autoincrement: true }
+    id_user_valid: { type : integer, notnull: false }
+    id_user_reserve: { type : integer, notnull: true }
+    id_asso: { type : integer, notnull: false }
+    id_salle: { type : integer, notnull : true }
+    date: { type: date, notnull: true }
+    heuredebut: { type: time, notnull: true }
+    heurefin: { type: time, notnull: true }
+    estvalide: { type: integer(1), notnull: true }
+  relations:
+    SfGuardUser: { onUpdate: CASCADE, local: id_user_valid, foreign: id, class: SfGuardUser }
+    SfGuardUser_2: { onUpdate: CASCADE, local: id_user_reserve, foreign: id, class: SfGuardUser }
+    Asso: { local: id_asso, foreign: id, onUpdate: CASCADE }
+    Salle: { local: id_salle, foreign: id, onUpdate: CASCADE }
+

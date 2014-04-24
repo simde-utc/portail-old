@@ -17,13 +17,6 @@ class ReservationTable extends Doctrine_Table
         return Doctrine_Core::getTable('Reservation');
     }
     
-    public static function getAllReservation()
-    {
-      	$q = $this->createQuery('q');
-            
-         return $q;
-    }
-    
     public static function getReservationBySalle($idSalle)
     {
       	$q = $this->createQuery('q')

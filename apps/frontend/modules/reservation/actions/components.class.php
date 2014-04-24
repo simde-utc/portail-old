@@ -3,21 +3,14 @@
 class reservationComponents extends sfComponents
 {
 
-  
   public function executeCalendarMenu()
   {
-    /*$assos = AssoTable::getInstance()->getAssosAndNotPolesList();
-
-    foreach($assos as $asso)
-    {
-      $poles[$asso->getPoleId()][] = $asso;
-    }
-    $this->poles = $poles;*/
   }
   
-  public function executeListeSalle()
+  public function executeListeSalles()
   {
-    $salles = SalleTable::getInstance()->getAllSalles();
+    //$this->salles = SalleTable::getInstance()->getAllSalles()->execute();
+    $this->salles = SalleTable::getInstance()->createQuery()->execute();
   }
   
 }

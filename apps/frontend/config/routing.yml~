@@ -703,10 +703,14 @@ locaux_refuse:
   param: { module: locaux, action: locauxRefuse }
   options: { model: CharteLocaux, type: object }
 
-reservation_salle:
+#reservation
+reservation_list:
+  url: /reservation.json
+  param: { module: event, action: list }
+
+reservation_show:
   url: /reservation/:id
   param: { module: reservation, action: index }
-
 
 reservation:
   url: /reservation

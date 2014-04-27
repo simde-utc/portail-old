@@ -19,13 +19,13 @@ class reservationActions extends sfActions
   {
 	 $this->idSalle = $request->getUrlParameter("id", 0);  
   	
-    // Chercher les reservations dans la bdd
-    //$this->reservation = ReservationTable::getInstance()->getAllReservation()->execute();
+   	 // Chercher les reservations dans la bdd
+   	// $this->reservation = ReservationTable::getInstance()->getAllReservation()->execute();
   }
   
   public function executeList(sfWebRequest $request)
   {
-  		$this->reservation = ReservationTable::getInstance()->getReservationBySalle()->execute();
+  	//$this->reservations = ReservationTable::getInstance()->getReservationBySalle()->execute();
   }
   
 }

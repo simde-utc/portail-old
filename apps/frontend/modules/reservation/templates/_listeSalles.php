@@ -1,4 +1,4 @@
-<fieldset><legend>Custom Calendar</legend>
+<!--<fieldset><legend>Custom Calendar</legend>
 	<form id="listSalle">
 		<?php if (count($salles) > 0): ?>
 			<select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
@@ -23,4 +23,32 @@
 			</select>
 		<?php endif ?>
 	</form>
-</fieldset>
+</fieldset>-->
+
+<?php if (count($salles) > 0): ?>
+
+<div id="dd" class="wrapper-dropdown-3" tabindex="1">
+    <span id="dd-label">Salles</span>
+	    <ul class="dropdown">
+		
+		<? $lastIdPole = -1 ?>
+	
+		<?php foreach ($salles as $salle): ?>
+
+			<?php if ($lastIdPole != $salle->getPole()->getId()): ?>				
+				<li class="pole"><?php echo $salle->getPole() ?></li>	
+			<?php endif ?>
+
+			<?php if ($salle->getID() == $idSalle) : ?>
+
+			<?php else : ?>
+				<li class="salleSelect" ><a href="<?php echo url_for('@reservation_show?id='.$salle->getID()) ?>"><?php echo $salle->getName() ?></a></li>		
+			<?php endif ?>
+				
+			<?php $lastIdPole = $salle->getPole()->getId() ?>
+				
+		<?php endforeach ?>
+		</ul>
+	</div>
+
+<?php endif ?>

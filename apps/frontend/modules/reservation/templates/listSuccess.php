@@ -1,14 +1,15 @@
-<?php use_stylesheet('event.css') ?>
-<?php use_helper('Text') ?>
-<?php use_helper('Date') ?>
-<?php //use_helper('Reservations') ?>
-
-<ul id="reservation_list">
-  <?php foreach ($reservations as $reservation) : ?>
-
-    <li>
-
-    </li>
-
-  <?php endforeach; ?>
-</ul>
+<?php
+$result = array();
+foreach ($reservations as $res){
+  $asso = $res->getAsso();
+  $result[] = array(
+    "id" => ($res->getId()),
+    "title" => $asso->getName(),
+    "allDay" => false,
+    "start" => strtotime($res->getDate() . " " . $res->getheuredebut()),
+    "end" => strtotime($res->getDate() . " " . $res->getheurefin()),
+    //"color" => ($res->getAsso()->isPole())?($res->getAsso()->getPoleInfos()->getCouleur()) :($res->getAsso()->getPole()->getCouleur()),
+  );  
+}
+echo json_encode($result);
+?>

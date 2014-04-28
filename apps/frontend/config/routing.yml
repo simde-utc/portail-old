@@ -704,8 +704,15 @@ locaux_refuse:
   options: { model: CharteLocaux, type: object }
 
 #reservation
-reservation_list:
-  url: /reservation.:sf_format
+
+reservation_json:
+  url: /reservation/:id.:sf_format
+  param: { module: reservation, action: listBySalle }
+  requirements:
+    sf_format: (?:html|json)
+
+reservations_json:
+  url: /reservations.:sf_format
   param: { module: reservation, action: list }
   requirements:
     sf_format: (?:html|json)

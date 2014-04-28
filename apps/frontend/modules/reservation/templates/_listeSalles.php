@@ -42,7 +42,7 @@
 			<?php if ($salle->getID() == $idSalle) : ?>
 
 			<?php else : ?>
-				<li class="salleSelect" ><a href="<?php echo url_for('@reservation_show?id='.$salle->getID()) ?>"><?php echo $salle->getName() ?></a></li>		
+				<li class="salleSelect" ><a href="<?php echo url_for('@reservation_show?id='.$salle->getID()) ?>"><?php echo $salle->getName() ?></a></li>	
 			<?php endif ?>
 				
 			<?php $lastIdPole = $salle->getPole()->getId() ?>

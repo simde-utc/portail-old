@@ -17,19 +17,33 @@ class ReservationTable extends Doctrine_Table
         return Doctrine_Core::getTable('Reservation');
     }
     
-    public static function getAllReservation()
+    public function getAllReservation()
     {
       	$q = $this->createQuery('q');
             
          return $q;
     }
     
-    public static function getReservationBySalle($idSalle)
+    public function getReservationBySalle($salle)
     {
-      	$q = $this->createQuery('q')
-            ->where('q.id_salle = ?', $idSalle)
-            ->orderBy('q.date');
+        $q = $this->createQuery('a')
+            ->select('a.*, as.id, as.name as Name, p.couleur')
+            ->leftJoin('a.Asso as')
+	    ->where("a.id_salle = ?", $salle)
+            ->addOrderBy('a.date');
             
          return $q;
     }
+
+  /*public function getAsso($idAsso)
+  {
+    $q = $this->createQuery('q')
+	    ->where('q.asso_id = ?', $idAsso);
+    
+	return $q;
+  }*/
+
+
+
+
 }

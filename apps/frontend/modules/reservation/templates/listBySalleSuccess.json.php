@@ -1,6 +1,6 @@
 <?php
 $result = array();
-foreach ($reservations as $res){
+foreach ($reservation as $res){
   $asso = $res->getAsso();
   $result[] = array(
     "id" => ($res->getId()),

@@ -16,8 +16,8 @@
                 <a class="brand" href="<?php echo url_for('homepage') ?>" title="Accueil"><img src="/images/logo_bde.png" alt="BDE UTC" /></a>
                 <ul class="nav pull-right">
                     <li class="divider-vertical"></li>
-                    <?php if(!$sf_user->isAuthenticated()): ?>
                         <li><a href="https://assos.utc.fr/bde/bdecotiz/">Cotiser en ligne</a></li>
+                    <?php if(!$sf_user->isAuthenticated()): ?>
                         <li><a href="<?php echo url_for('cas') ?>"><i class="icon-lock icon-white"></i> Connexion CAS</a></li>
                     <?php else: ?>
                         <li class="dropdown" id="drop-connexion">

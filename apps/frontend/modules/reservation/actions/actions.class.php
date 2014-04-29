@@ -10,14 +10,15 @@
  */
 class reservationActions extends sfActions
 {
- /**
+ /*
   * Executes index action
   *
   * @param sfRequest $request A request object
   */
   public function executeIndex(sfWebRequest $request)
   {
-	 $this->idSalle = $request->getUrlParameter("id", 0);  
+	 $this->idSalle = $request->getUrlParameter("id", 0);
+	 $this->executeCalendar($request);  
   }
   
   public function executeList(sfWebRequest $request)
@@ -31,5 +32,9 @@ class reservationActions extends sfActions
 	$this->idSalle = $request->getUrlParameter("id", 0); 
   	$this->reservation = ReservationTable::getInstance()->getReservationBySalle($this->idSalle)->execute();
   }
-  
+
+  public function executeCalendar(sfWebRequest $request)
+  {
+	$this->idSalle = $request->getUrlParameter("id", 0); 
+  }
 }

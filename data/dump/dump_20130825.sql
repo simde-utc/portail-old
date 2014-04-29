@@ -1,6 +1,34 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET foreign_key_checks = 0;
 
+TRUNCATE TABLE asso;
+TRUNCATE TABLE branche;
+TRUNCATE TABLE event_type;
+TRUNCATE TABLE filiere;
+TRUNCATE TABLE pole;
+TRUNCATE TABLE role;
+TRUNCATE TABLE semestre;
+TRUNCATE TABLE type_asso;
+TRUNCATE TABLE asso_member;
+TRUNCATE TABLE profile;
+TRUNCATE TABLE sf_guard_user;
+TRUNCATE TABLE sf_guard_permission;
+TRUNCATE TABLE sf_guard_group;
+TRUNCATE TABLE document_type;
+TRUNCATE TABLE sf_guard_group_permission;
+TRUNCATE TABLE transaction_moyen;
+TRUNCATE TABLE info_job_abonnement_categorie;
+TRUNCATE TABLE info_job_offre;
+TRUNCATE TABLE info_job_abonnement_disponibilite;
+TRUNCATE TABLE info_job_disponibilite;
+TRUNCATE TABLE info_job_offre_disponibilite;
+TRUNCATE TABLE info_job_signalement;
+TRUNCATE TABLE info_job_categorie;
+TRUNCATE TABLE info_job_signalement;
+TRUNCATE TABLE info_job_signalement_type;
+TRUNCATE TABLE reservation;
+TRUNCATE TABLE salle;
+
 INSERT INTO `asso` (`id`, `name`, `login`, `pole_id`, `type_id`, `description`, `logo`, `active`, `passation`, `salle`, `phone`, `facebook`, `summary`, `created_at`, `updated_at`, `joignable`) VALUES
 (1, 'BDE-UTC', 'bde', NULL, 3, 'Le bureau des étudiants de l''UTC (BDE-UTC) est une association 1901 qui a pour objet l''animation et la structuration de la vie étudiante de l''UTC de manière saine, responsable et constructive.\r\n\r\nDans ce cadre le BDE-UTC administre la Maison des Étudiants (MDE), partie du bâtiment C du centre Benjamin Franklin, dans le cadre de la Convention d''Occupation de la MDE signée chaque année avec l''UTC. Depuis début septembre, le BDE et ses commissions s''attache à supprimer les nuisances sonores aux abords des bâtiments.', '', 1, 0, 'C118', '03 44 23 43 71', 'https://www.facebook.com/pages/BDE-UTC/190043221063147', 'Bureau Des Etudiants de l''UTC', '2011-05-14 11:32:40', '2012-05-14 00:37:24', 1),
 (2, 'SiMDE', 'simde', 1, 1, 'Le SiMDE est chargé de la mise en place :\r\n<ul>\r\n<li>des ressource informatiques au sein de la MDE</li>\r\n<li>du serveur des associations Phoenix, hébergeant mails, sites web, fichiers...</li>\r\n<li>de la gestion du site assos.utc.fr</li>', '', 1, 0, '', '', '', 'Le Service informatique de la Maison des Étudiants', '2011-05-14 11:06:17', '2012-05-14 02:11:03', 1),
@@ -99,6 +127,7 @@ INSERT INTO `document_type` (`id`, `nom`, `slug`, `detail`) VALUES
 (3, 'Budget', 'budgets', 'Export du budget prévisionnel'),
 (4, 'Transactions', 'transactions', 'Export du journal des transactions'),
 (5, 'Devis', 'devis', 'Avant la facture');
+
 INSERT INTO `transaction_moyen` (`id`, `nom`, `detail`) VALUES
 (1, 'Chèque', 'Préciser le numéro de chèque'),
 (2, 'CB', ''),
@@ -128,6 +157,7 @@ INSERT INTO `info_job_disponibilite` (`id`, `name`) VALUES
 (2, 'Week-end'),
 (3, 'Soirs'),
 (4, 'Vacances');
+
 
 INSERT INTO `info_job_offre` (`id`, `categorie_id`, `user_id`, `titre`, `texte`, `lieu`, `remuneration`, `email`, `telephone`, `expiration_date`, `archivage_date`, `created_at`, `updated_at`, `emailkey`, `validationkey`, `validation_date`) VALUES
 (1, 1, NULL, 'Soutien scolaire chez Acadomia', 'Acadomia dispose d’un réseau de 120 agences, suit plus de 100 000 élèves avec l’aide de 25 000 « enseignants » encadrés par plus de 500 conseillers pédagogiques3. Toute personne titulaire d''un bac + 3 (licence) peut être employée comme enseignant.\r\nComme toutes les entreprises de services à la personne, la prestation offerte par la société - comme celle offerte individuellement par un étudiant déclaré - ouvre droit à un crédit d''impôt et/ou réduction d''impôt pour l''emploi à domicile de 50 % ce qui a favorisé son développement et celui de tout le secteur', 'Compiègne et alentours', '~10 € / h NET', 'compiegne@acadomia.fr', '0344538291', '2013-08-01 00:00:00', NULL, '2013-05-25 00:00:00', '2013-05-25 00:00:00', 'd1146c37a47de5b860e7770a0dd461da', 'd1146c37a47de5b860e7770a0dd341da', '2015-05-25 00:00:00'),
@@ -163,7 +193,11 @@ INSERT INTO salle VALUES (6, 'salle6', 15, '#1F3F56', 2);
 INSERT INTO salle VALUES (7, 'salle7', 20, '#12345F', 3);
 INSERT INTO salle VALUES (8, 'salle8', 25, '#1A34E6', 4);
 
-INSERT INTO reservation VALUES (1, NULL, 1, NULL, 1, curdate(), curtime(), addtime(curtime(), 1000), true);
-INSERT INTO reservation VALUES (2, NULL, 2, NULL, 2, curdate(), curtime(), addtime(curtime(), 1000), true);
-INSERT INTO reservation VALUES (3, NULL, 3, NULL, 3, curdate(), curtime(), addtime(curtime(), 1000), true);
-INSERT INTO reservation VALUES (4, NULL, 1, NULL, 4, curdate(), curtime(), addtime(curtime(), 1000), true);
+INSERT INTO reservation VALUES (1, NULL, 1, 2, 1, curdate(), '12:00', '13:00', true);
+INSERT INTO reservation VALUES (2, NULL, 2, 8, 2, DATE_ADD(curdate(), INTERVAL 1 DAY), '16:00', '17:00', true);
+INSERT INTO reservation VALUES (3, NULL, 3, 12, 3, DATE_ADD(curdate(), INTERVAL 2 DAY), '18:00', '19:00', true);
+INSERT INTO reservation VALUES (4, NULL, 1, 11, 4, DATE_ADD(curdate(), INTERVAL 3 DAY), '10:00', '11:00', true);
+INSERT INTO reservation VALUES (5, NULL, 1, 2, 1, curdate(), '19:00', '20:00', true);
+INSERT INTO reservation VALUES (6, NULL, 2, 8, 2, DATE_ADD(curdate(), INTERVAL 4 DAY), '16:00', '17:00', true);
+INSERT INTO reservation VALUES (7, NULL, 3, 12, 3, DATE_ADD(curdate(), INTERVAL 1 DAY), '18:00', '19:00', true);
+INSERT INTO reservation VALUES (8, NULL, 1, 7, 4, curdate(), '13:00', '14:00', true);

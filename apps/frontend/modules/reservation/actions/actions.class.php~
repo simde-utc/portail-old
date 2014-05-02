@@ -10,22 +10,30 @@
  */
 class reservationActions extends sfActions
 {
- /**
+ /*
   * Executes index action
   *
   * @param sfRequest $request A request object
   */
   public function executeIndex(sfWebRequest $request)
   {
-	 $this->idSalle = $request->getGetParameters("id", 0);  
-  	
-    // Chercher les reservations dans la bdd
-    //$this->reservation = ReservationTable::getInstance()->getAllReservation()->execute();
+	 $this->idSalle = $request->getUrlParameter("id", 0);
+	 $this->executeCalendar($request);  
   }
   
   public function executeList(sfWebRequest $request)
   {
-  		$this->reservation = ReservationTable::getInstance()->getReservationBySalle()->execute();
+	$this->reservations = ReservationTable::getInstance()->getAllReservation()->execute();
   }
-  
+
+  public function executeListBySalle(sfWebRequest $request)
+  {
+	$this->idSalle = $request->getUrlParameter("id", 0); 
+  	$this->reservation = ReservationTable::getInstance()->getReservationBySalle($this->idSalle)->execute();
+  }
+
+  public function executeCalendar(sfWebRequest $request)
+  {
+	$this->idSalle = $request->getUrlParameter("id", 0); 
+  }
 }

@@ -704,13 +704,22 @@ locaux_refuse:
   options: { model: CharteLocaux, type: object }
 
 #reservation
-reservation_list:
-  url: /reservation.json
-  param: { module: event, action: list }
 
-reservation_show:
+reservation_json:
+  url: /reservation/:id.:sf_format
+  param: { module: reservation, action: listBySalle }
+  requirements:
+    sf_format: (?:html|json)
+
+reservations_json:
+  url: /reservations.:sf_format
+  param: { module: reservation, action: list }
+  requirements:
+    sf_format: (?:html|json)
+
+reservation_salle:
   url: /reservation/:id
-  param: { module: reservation, action: index }
+  param: { module: reservation, action: calendar }
 
 reservation:
   url: /reservation
@@ -726,3 +735,4 @@ reservation:
 #  param: { sf_format: json }
 #default:
 #  url:   /:module/:action/*
+

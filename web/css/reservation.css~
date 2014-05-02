@@ -141,7 +141,7 @@ ul#menuBde {
 
 #menuBde li span {
 	margin: 0;
-	border-bottom: 3px solid #005580;
+	border-bottom: 3px solid #AAA;
 	padding: 0 5px 10px 5px;
 }
 
@@ -154,4 +154,9 @@ ul#menuBde {
 #menuBde li a:hover {
 	text-decoration: none;
 	border-bottom: none;
+}
+
+#menu li.active a {
+	border-bottom: 3px solid #005580;
+	color: green;
 }

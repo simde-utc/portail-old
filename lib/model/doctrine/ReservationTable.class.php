@@ -42,6 +42,15 @@ class ReservationTable extends Doctrine_Table
     
 	return $q;
   }*/
+  
+  public function getReservationNoValide()
+  {
+  		$q = $this->createQuery('a')
+  				->where("a.estValide=?", 0)
+  				->addOrderBy('a.date','ASC');
+  				
+  		return $q;
+  }
 
 
 

@@ -24,7 +24,6 @@ class reservationActions extends sfActions
   public function executeList(sfWebRequest $request)
   {
 	$this->reservations = ReservationTable::getInstance()->getAllReservation()->execute();
-  	//$this->reservations = ReservationTable::getInstance()->getReservationBySalle()->execute();
   }
 
   public function executeListBySalle(sfWebRequest $request)

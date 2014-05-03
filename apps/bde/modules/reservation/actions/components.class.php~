@@ -3,10 +3,19 @@
 class reservationComponents extends sfComponents
 {
 
-  public function executeCalendarMenu()
+  public function executeInsideMenu()
   {
   }
   
+  public function executeSalle()
+  {
+  
+  }
+  
+  public function executeReservation()
+  {
+  
+  }
   
 }
 

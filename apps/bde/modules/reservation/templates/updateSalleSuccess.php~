@@ -1,0 +1,12 @@
+<?php use_stylesheet("reservation.css") ?>
+
+<?php include_component("reservation","insideMenu",array("param" => $param)) ?>
+
+<h2>Salle modifiée</h2>
+
+<?php foreach ($salle as $key => $p): ?>
+	
+	<p><?php echo $key ?> : <?php echo $p ?></p>
+		
+<?php endforeach; ?>
+

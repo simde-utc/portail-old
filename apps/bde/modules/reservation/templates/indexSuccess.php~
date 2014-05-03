@@ -1,7 +1,23 @@
 <?php use_stylesheet("reservation.css") ?>
 
-<?php include_component("reservation","insideMenu",array("param" => $param) ?>
+<?php include_component("reservation","insideMenu",array("param" => $param)) ?>
 
 <?php if ($param == "salles"): ?>
-<p>Salles</p>
+	
+	<?php include_component("reservation","salle",array("id" => $id, "form" => $form, "salles" => $salles)) ?>
+	
+<?php elseif ($param == "reservations"): ?>
+	
+	<?php include_component("reservation","reservation") ?>
+	
+<?php endif; ?>
+
+<?php if (isset($params)): ?>
+
+	<?php foreach ($salle as $key => $p): ?>
+	
+		<p><?php echo $key ?> : <?php echo $p ?></p>
+		
+	<?php endforeach; ?>
+
 <?php endif; ?>

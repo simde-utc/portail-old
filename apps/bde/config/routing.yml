@@ -166,17 +166,29 @@ cas_logout:
   param: { module: utcCas, action: logout }
 
 #reservation
-reservation_reservations:
-  url: /reservation/reservations
-  param: { module: reservation, action: reservations }
-  
-reservation_salles:
-  url: /reservation/salles
-  param: { module: reservation, action: salles }
-  
 reservation:
   url: /reservation
   param: { module: reservation, action: index }
+  
+reservation_reservations:
+  url: /reservation/reservations
+  param: { module: reservation, action: reservations }
+
+reservation_salles:
+  url: /reservation/salles
+  param: { module: reservation, action: salles }
+
+reservation_salles_new:
+  url: /reservation/salles/new
+  param: { module: reservation, action: salleNew }
+
+reservation_salles_delete:
+  url: /reservation/salles/delete/:id
+  param: { module: reservation, action: salleDelete }
+
+reservation_salles_update:
+  url: /reservation/salles/update/:id
+  param: { module: reservation, action: salleUpdate }
 
 # default rules
 homepage:

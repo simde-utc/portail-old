@@ -7,6 +7,15 @@ class reservationComponents extends sfComponents
   {
   }
   
+  public function executeSalle()
+  {
+  
+  }
+  
+  public function executeReservation()
+  {
+  
+  }
   
 }
 

@@ -12,5 +12,14 @@
  */
 class Salle extends BaseSalle
 {
+	public function save(Doctrine_Connection $conn = null)
+	{
+		if ($this->isNew())
+		{
+
+		}
+
+		return parent::save($conn);
+	}
 
 }

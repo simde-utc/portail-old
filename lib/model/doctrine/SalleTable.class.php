@@ -22,6 +22,20 @@ class SalleTable extends Doctrine_Table
      		return $this->createQuery();
     }
     
+    public function getSalleById($id)
+    {
+    		$q = $this->createQuery('q')->where('q.id=?',$id)->limit(1);
+    		
+    		return $q;
+    }
+    
+    public function isSalleExist($id)
+    {
+    		$salle = $this->getSalleById($id)->execute();
+    		
+    		return (count($salle) > 0);
+    }
+    
     public function getSalleByPole()
     {
     		$q = $this->createQuery('q')

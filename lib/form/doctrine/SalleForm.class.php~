@@ -12,6 +12,7 @@ class SalleForm extends BaseSalleForm
 {
   public function configure()
   {
+
 		$this->widgetSchema->setLabels(array(
 		  'name'    => 'Nom',
 		  'id_pole' => 'Pole',

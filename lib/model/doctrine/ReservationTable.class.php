@@ -24,15 +24,34 @@ class ReservationTable extends Doctrine_Table
          return $q;
     }
     
+    public function getReservationById($id)
+    {
+        $q = $this->createQuery()
+	    		->where('id = ?', $id)
+            ->addOrderBy('date');
+            
+         return $q;
+    }
+    
     public function getReservationBySalle($salle)
     {
         $q = $this->createQuery('a')
             ->select('a.*, as.id, as.name as Name, p.couleur')
             ->leftJoin('a.Asso as')
-	    ->where("a.id_salle = ?", $salle)
+	    		->where('a.id_salle = ?', $salle)
             ->addOrderBy('a.date');
             
          return $q;
+    }
+    
+    public function isReservationNoValidExist($id)
+    {
+    		$q = $this->createQuery()
+	    		->where('id = ?', $id)
+            ->andWhere('estValide=?', 0)->execute();
+            
+         return (count($q) > 0);
+    
     }
 
   /*public function getAsso($idAsso)
@@ -46,7 +65,7 @@ class ReservationTable extends Doctrine_Table
   public function getReservationNoValide()
   {
   		$q = $this->createQuery('a')
-  				->where("a.estValide=?", 0)
+  				->where('a.estValide=?', 0)
   				->addOrderBy('a.date','ASC');
   				
   		return $q;

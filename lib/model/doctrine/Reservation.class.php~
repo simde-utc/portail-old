@@ -12,10 +12,9 @@
  */
 class Reservation extends BaseReservation
 {
-/*
+
 	public function __toString()
 	{
-
+		
 	}
-*/
 }

@@ -19,11 +19,13 @@ class reservationActions extends sfActions
   {
   }
   
+  /**
+  *	Toute la gestion des salles
+  **/
+  
   public function executeSalles(sfWebRequest $request)
   {
   		$this->param = "salles";
-
-   	$this->salles = SalleTable::getInstance()->getAllSalles()->execute();
   		
   		$this->setTemplate("index");
   }
@@ -96,10 +98,26 @@ class reservationActions extends sfActions
 
   }
   
+  /**
+  *	Toute ma gestion des reservations
+  */
+  
   public function executeReservations(sfWebRequest $request)
   {
    	$this->param = "reservations";
    	
    	$this->setTemplate("index");
   }
+  
+  public function executereservationsValid(sfWebRequest $request)
+  {
+   	$this->param = "reservations";
+   	
+   	$this->id = $request->getParameter('id',-1);
+  		
+  		$this->forward404Unless(ReservationTable::getInstance()->isReservationNoValidExist($this->id));
+   	
+   	$this->reservation = ReservationTable::getInstance()->getReservationById()->execute();
+  }
+  
 }

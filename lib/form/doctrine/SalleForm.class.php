@@ -16,6 +16,8 @@ class SalleForm extends BaseSalleForm
 		  'name'    => 'Nom',
 		  'id_pole' => 'Pole',
 		));
+		 
+		 $this->validatorSchema['couleur']->setOption('min_length', 7);
 
   }
 }

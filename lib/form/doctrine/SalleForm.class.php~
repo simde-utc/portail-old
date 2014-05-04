@@ -12,11 +12,14 @@ class SalleForm extends BaseSalleForm
 {
   public function configure()
   {
-
 		$this->widgetSchema->setLabels(array(
 		  'name'    => 'Nom',
 		  'id_pole' => 'Pole',
 		));
+		
+		$this->setValidators(array(
+		   'couleur'  => new sfValidatorString(array('max_length' => 7, 'min_length' => 7)),
+		 ));
 
   }
 }

@@ -6,13 +6,21 @@
 	
 <p><?php echo link_to ('<< retour', 'reservation_salles') ?></p>
 
-<pre><?php echo $salle_modif[0] ?></pre>
+<?php if (!$update): ?> 
 
-<form action="<?php echo url_for('reservation_salles_update',array('id' => $id)) ?>" method="post">
+	<form action="<?php echo url_for('reservation_salles_update',array('id' => $id)) ?>" method="post">
 
-	 <?php echo $form ?>
-	 <br />
-	 <input type="submit" />
+		 <?php echo $form ?>
+		 <br />
+		 <input type="submit" />
 
-</form>
+	</form>
+	
+<?php else: ?>
+
+	<p>Modification réalisée avec succès !</p>
+salle_modif
+	<?php echo $form ?>
+
+<?php endif; ?>
 

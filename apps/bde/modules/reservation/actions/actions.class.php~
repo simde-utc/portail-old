@@ -37,27 +37,20 @@ class reservationActions extends sfActions
   		
   		$this->forward404Unless(SalleTable::getInstance()->isSalleExist($this->id));
   
-  		$this->salle_modif = SalleTable::getInstance()->getSalleById($this->id)->execute();
+  		$this->salle_modif = SalleTable::getInstance()->getSalleById($this->id)->execute()[0];
 		
-		$this->form = new SalleForm($this->salle_modif[0]);
+		$this->form = new SalleForm($this->salle_modif);
   		
-  		// Si le formulaire a été envoyé
+  		$this->update = false;
+  		
   		if ($request->isMethod('post'))
   		{
-  			$this->form->bind($request->getParameter('salle'));
-  			
-  			// Le formulaire est valide
-  			if ($this->form->isValid())
-  			{
-  				$this->salle_new = $request->getPostParameter('salle');
-  				
-  				$new = $this->form->save();
-  			}  			
-  		
-  		}
-  		else
-  		{
-  			
+  			$this->form->bind($request->getParameter($this->form->getName()));
+		
+			if ($this->form->isValid())
+			{
+				$this->salle = $this->form->save();
+			}
   		}
   		
 
@@ -69,6 +62,16 @@ class reservationActions extends sfActions
   		
   		$this->form = new SalleForm();
   
+  		if ($request->isMethod('post'))
+  		{
+  			$this->form->bind($request->getParameter($this->form->getName()));
+		
+			if ($this->form->isValid())
+			{
+				$this->salle = $this->form->save();
+			}
+  		}
+   
   }
   
   public function executeSalleDelete(sfWebRequest $request)
@@ -79,7 +82,17 @@ class reservationActions extends sfActions
   		
   		$this->forward404Unless(SalleTable::getInstance()->isSalleExist($this->id));
   		
-  		$this->salle = SalleTable::getInstance()->getSalleById($this->id)->execute();
+  		$this->salle = SalleTable::getInstance()->getSalleById($this->id)->execute()[0];
+  		
+  		$this->suppr = false;
+  		
+  		if ($request->isMethod('post'))
+  		{
+  			SalleTable::getInstance()->deleteSalle($this->id)->execute();
+  			
+  			$this->suppr = true;
+  		}
+
   }
   
   public function executeReservations(sfWebRequest $request)

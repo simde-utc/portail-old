@@ -24,8 +24,16 @@ class SalleTable extends Doctrine_Table
     
     public function getSalleById($id)
     {
-    		//$q = $this->createQuery('q')->where('q.id=?',$id)->limit(1);
-    		$q = $this->find($id);
+    		$q = $this->createQuery('q')->where('q.id=?',$id)->limit(1);
+    		
+    		return $q;
+    }
+    
+    public function deleteSalle($id)
+    {
+    		$q = $this->createQuery('q')
+    					->delete()
+    					->where('q.id=?',$id);
     		
     		return $q;
     }

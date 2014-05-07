@@ -33,4 +33,11 @@ class PoleTable extends Doctrine_Table
     return $q->fetchOne();
   }
 
+  public function getOneById($id)
+  {
+    $q = $this->createQuery('p')
+      ->where('p.id = ?', $id);
+    return $q->fetchOne();
+  }
+
 }

@@ -21,10 +21,10 @@ class reservationActions extends sfActions
 	 $this->executeCalendar($request);  
   }
   
-  public function executeList(sfWebRequest $request)
+  /*public function executeList(sfWebRequest $request)
   {
 	$this->reservations = ReservationTable::getInstance()->getAllReservation()->execute();
-  }
+  }*/
 
   public function executeListBySalle(sfWebRequest $request)
   {
@@ -32,7 +32,7 @@ class reservationActions extends sfActions
   	$this->reservation = ReservationTable::getInstance()->getReservationBySalle($this->idSalle)->execute();
   }
 
-  public function executeCalendar(sfWebRequest $request)
+ public function executeCalendar(sfWebRequest $request)
   {
 	$this->idSalle = $request->getUrlParameter("id", 0); 
   }

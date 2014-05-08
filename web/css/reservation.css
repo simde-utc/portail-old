@@ -155,3 +155,69 @@ ul#menuBde {
 	text-decoration: none;
 	border-bottom: none;
 }
+
+/* -- CSS FORMULAIRE -- */
+
+ #FormShape{
+     margin: 0 auto;
+     display:none;
+     position: relative; 
+     height: 90%; 
+     width: 100%;
+    overflow: hidden;
+    z-index:10001;
+    border-radius: 10px;
+    background-color:#FFFF99;
+ }
+ 
+ 
+#sep{ 
+ display:inline-block;
+ float:left;
+ width: 2px;
+ height: 300px;
+
+
+background: rgba(226,226,226,0);
+background: -moz-linear-gradient(top, rgba(226,226,226,0) 0%, rgba(222,222,222,0) 1%, rgba(194,194,194,0.45) 8%, rgba(166,166,166,1) 15%, rgba(87,87,87,1) 35%, rgba(48,48,48,1) 52%, rgba(46,46,46,1) 53%, rgba(82,82,82,1) 70%, rgba(179,179,179,1) 87%, rgba(220,220,220,0.43) 94%, rgba(254,254,254,0) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(226,226,226,0)), color-stop(1%, rgba(222,222,222,0)), color-stop(8%, rgba(194,194,194,0.45)), color-stop(15%, rgba(166,166,166,1)), color-stop(35%, rgba(87,87,87,1)), color-stop(52%, rgba(48,48,48,1)), color-stop(53%, rgba(46,46,46,1)), color-stop(70%, rgba(82,82,82,1)), color-stop(87%, rgba(179,179,179,1)), color-stop(94%, rgba(220,220,220,0.43)), color-stop(100%, rgba(254,254,254,0)));
+background: -webkit-linear-gradient(top, rgba(226,226,226,0) 0%, rgba(222,222,222,0) 1%, rgba(194,194,194,0.45) 8%, rgba(166,166,166,1) 15%, rgba(87,87,87,1) 35%, rgba(48,48,48,1) 52%, rgba(46,46,46,1) 53%, rgba(82,82,82,1) 70%, rgba(179,179,179,1) 87%, rgba(220,220,220,0.43) 94%, rgba(254,254,254,0) 100%);
+background: -o-linear-gradient(top, rgba(226,226,226,0) 0%, rgba(222,222,222,0) 1%, rgba(194,194,194,0.45) 8%, rgba(166,166,166,1) 15%, rgba(87,87,87,1) 35%, rgba(48,48,48,1) 52%, rgba(46,46,46,1) 53%, rgba(82,82,82,1) 70%, rgba(179,179,179,1) 87%, rgba(220,220,220,0.43) 94%, rgba(254,254,254,0) 100%);
+background: -ms-linear-gradient(top, rgba(226,226,226,0) 0%, rgba(222,222,222,0) 1%, rgba(194,194,194,0.45) 8%, rgba(166,166,166,1) 15%, rgba(87,87,87,1) 35%, rgba(48,48,48,1) 52%, rgba(46,46,46,1) 53%, rgba(82,82,82,1) 70%, rgba(179,179,179,1) 87%, rgba(220,220,220,0.43) 94%, rgba(254,254,254,0) 100%);
+background: linear-gradient(to bottom, rgba(226,226,226,0) 0%, rgba(222,222,222,0) 1%, rgba(194,194,194,0.45) 8%, rgba(166,166,166,1) 15%, rgba(87,87,87,1) 35%, rgba(48,48,48,1) 52%, rgba(46,46,46,1) 53%, rgba(82,82,82,1) 70%, rgba(179,179,179,1) 87%, rgba(220,220,220,0.43) 94%, rgba(254,254,254,0) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=0 );
+}
+
+ 
+
+
+
+#formResa1{
+  display:inline-block;
+  float:left;
+  width: 46%;
+  padding-left: 3%;
+  height: 100%;
+}
+ 
+#formResa2{
+  display:inline-block;
+  float:left;
+  width: 47%;
+  height: 100%;
+  padding-left: 3%;
+}
+
+#test-form_date_day, #test-form_date_month,#test-form_heuredebut_hour,  #test-form_heuredebut_minute, #test-form_heurefin_hour,  #test-form_heurefin_minute{
+  width:53px;    
+  display: inline-block;
+}
+
+#test-form_date_year{
+  width:72px;    
+  display: inline-block;
+}
+
+#test-form_date{
+  display: inline-block;
+}

@@ -32,8 +32,9 @@ class reservationActions extends sfActions
   	$this->reservation = ReservationTable::getInstance()->getReservationBySalle($this->idSalle)->execute();
   }
 
- public function executeCalendar(sfWebRequest $request)
+  public function executeCalendar(sfWebRequest $request)
   {
-	$this->idSalle = $request->getUrlParameter("id", 0); 
+	$this->idSalle = $request->getUrlParameter("id", 0);
+        $this->form = new TestForm();
   }
 }

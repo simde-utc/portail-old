@@ -18,7 +18,7 @@
 						<?php else : ?>
 							<option value="<?php echo url_for('@reservation_salle?id='.$salle->getID()) ?>"><?php echo $salle->getName() ?></option>
 						<?php endif ?>
-				
+
 						<?php $lastIdPole = $salle->getPole()->getId() ?>
 
 					<?php endif ?>

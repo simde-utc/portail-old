@@ -14,11 +14,13 @@
 
 <?php else: ?>
 
+	<p><?php echo link_to ('<< retour', 'reservation_validation') ?></p>
+
 	<h3>Reservation non validée</h3>
 
-	<?php $user = sfGuardUserTable::getInstance()->getUserById($reservation->getIdUserReserve())->execute()[0] ?>
+	<?php //$user = sfGuardUserTable::getInstance()->getUserById($reservation->getIdUserReserve())->execute()[0] ?>
 	
-	<p><b>Qui ? : </b><?php echo $user->getFirstName()." ".$user->getLastName()." (aka ".$user->getUsername().")" ?></p>
+	<p><b>Qui ? : </b><?php echo $reservation->getUserReserve()->getFirstName()." ".$reservation->getUserReserve()->getLastName()." (".$reservation->getUserReserve()->getUsername().")" ?></p>
 	<?php if ($reservation->getAsso()) :?>
 	
 		<p><b>Asso : </b><?php echo $reservation->getAsso() ?></p>
@@ -32,7 +34,7 @@
 
 	<form action="<?php echo url_for('reservation_validation_valid',array('id'=>$id)) ?>" method="post">
 	
-		<textarea rows="4" cols="50" name="comment">Your comment here</textarea>
+		<textarea rows="4" cols="50" name="commentaire" placeholder="Your comment here"></textarea>
 	
 		<input type="submit" name="accepter" value="Accepter" />
 		<input type="submit" name="refuser" value="Refuser" />

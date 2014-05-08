@@ -31,7 +31,7 @@ class reservationActions extends sfActions
   		$this->salles = SalleTable::getInstance()->getAllSalles()->execute();
   }
   
-  public function executeSallesUpdate(sfWebRequest $request)
+  public function executeSalleUpdate(sfWebRequest $request)
   {
   
   		$this->param = "salle";
@@ -60,7 +60,7 @@ class reservationActions extends sfActions
 
   }
   
-  public function executeSallesNew(sfWebRequest $request)
+  public function executeSalleNew(sfWebRequest $request)
   {
   		$this->param = "salle";
   		
@@ -78,7 +78,7 @@ class reservationActions extends sfActions
    
   }
   
-  public function executeSallesDelete(sfWebRequest $request)
+  public function executeSalleDelete(sfWebRequest $request)
   {
   		$this->param = "salle";
   		
@@ -140,6 +140,7 @@ class reservationActions extends sfActions
    	}
    	else // Tout est OK !
    	{
+  	
    		$this->forward404Unless(ReservationTable::getInstance()->isReservationNoValidExist($this->id));
    	
    		$this->reservation = ReservationTable::getInstance()->getReservationById($this->id)->execute()[0];
@@ -147,49 +148,66 @@ class reservationActions extends sfActions
    		$accepter = $request->getParameter("accepter",false); 
    		$refuser = $request->getParameter("refuser",false);
    		
+   		$this->commentaire = $request->getParameter("commentaire","");
+
    		// Si accepter
    		if ($accepter && !$refuser)
    		{
-   			$this->valid = "accepter";
+   			$this->valider = true;
    		}
    		// Si refuser
-   		else if ($refuser && !$acceter)
+   		else if ($refuser && !$accepter)
    		{
-   			$this->valid = "refuser";
+   			$this->valider = false;
    		}
    		else
    		{
    			$this->forward404Unless(false);
    		}
    		
-   		/*
-   		$this->forward404Unless(ReservationTable::getInstance()->isReservationNoValidExist($this->id));
    		
-   		$reservation = ReservationTable::getInstance()->getReservationById($this->id)->execute()[0];
-   		$reservation->setEstvalide(true);
-   		$reservation->setIdUserValid($this->getUser()->getId());
-   		$reservation->save();
+   		$this->reservation->setEstvalide(true);
+   		$this->reservation->setIdUserValid($this->getUser()->getGuardUser()->getId());
+   		$this->reservation->save();
    		
-   		$mailDestinataire = "anthony.legiret@gmail.com";
+   		$mailDestinataire = "anthony.legiret@gmail.com";//->getEmailAddress() sfGuardUserTable::getInstance()->getUserById($reservation->getIdUserReserve())->execute()[0]
    		
-   		//->getEmailAddress()
+   		$mailContent = 'Bonjour,'."\n\n";
+   		$mailContent .= 'Votre demande de la salle '.$this->reservation->getSalle().' a été ';
+   		
+   		if ($this->valider)
+   			$mailContent .= 'validée.'."\n\n";
+   		else
+   			$mailContent .= 'refusée.'."\n\n";
+   			
+   		$mailContent .= 'Rappel de la réservation : '."\n\n";
+   		$mailContent .= 'Date : '.$this->reservation->getDate()."\n";
+   		$mailContent .= 'Heure Debut : '.$this->reservation->getHeuredebut()."\n";
+   		$mailContent .= 'Heure Fin : '.$this->reservation->getHeurefin()."\n\n";
+   		
+   		if (trim($this->commentaire) != "")
+   		{
+   		
+   			$mailContent .= 'Commentaire :'."\n";
+   			$mailContent .= $this->commentaire."\n\n";
+   		
+   		}
+   		
+   		$mailContent .= 'Ceci est un mail automatique'."\n";
+   		$mailContent .= 'BDE'."\n";
+   		
+   		$this->mail = $mailContent;
+   		
    		// Envoi d'un mail de confirmation
  			$message = $this->getMailer()->compose(
-   			array('simde@assos.utc.fr' => 'SiMDE'),
-  				 $mailDestinataire,
-   			 'Reservation d\'une salle',
-   <<<EOF
-Bonjour,
-
-Votre signature de charte vient d'être validée, vous êtes donc maintenant président de l'association {$asso->getName()}.
-
-Rendez-vous sur le portail pour mettre à jour sa page ou attribuer des droits à d'autres membres !
-
-L'équipe du SiMDE
-EOF
-);
-			$this->getMailer()->send($message);
-			*/
+   			array('bde@assos.utc.fr' => 'BDE'),
+  				$mailDestinataire,
+   			'Reservation d\'une salle',
+				$mailContent
+			);
+			
+			//$this->getMailer()->send($message);
+			
    	}	
   }
   

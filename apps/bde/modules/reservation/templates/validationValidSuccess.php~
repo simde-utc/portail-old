@@ -35,7 +35,7 @@
 	
 	<h4>Mail envoyé :</h4>
 
-	<p><?php echo nl2br($mail) ?></p>
+	<p><?php echo $mail ?></p>
 
 
 

@@ -19,6 +19,6 @@ class sfGuardUserTable extends PluginsfGuardUserTable
     
     public function getUserById($id)
     {
-    		return $this->createQuery()->where('id=?',$id);
+    		
     }
 }

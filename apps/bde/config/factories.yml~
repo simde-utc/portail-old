@@ -28,7 +28,18 @@ dev:
     param:
       delivery_strategy: none
 
-all: 
+all:
+  mailer:
+    param:
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host:       smtp.gmail.com
+          port:       465
+          encryption: ssl
+          username: anthony.legiret@gmail.com
+          password: dj301193
+          
   routing:
     class: sfPatternRouting
     param:

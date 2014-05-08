@@ -707,10 +707,10 @@ Salle:
     id: { type : integer, primary: true, autoincrement: true }
     name: { type: string(255), notnull: true, unique: true }
     capacite: { type : integer, notnull: true }
-    couleur: { type : string(7), notnull: true }
-    pole : { type : integer, notnull: true }
+    couleur: { type : string(6), notnull: true }
+    id_pole : { type : integer, notnull: true }
   relations:
-    Pole: { onUpdate: CASCADE, local: pole, foreign: id, class: SfGuardUser }
+    Pole: { onUpdate: CASCADE, local: id_pole, foreign: id, class: Pole }
       
 Reservation:
   connection: doctrine
@@ -725,6 +725,7 @@ Reservation:
     heuredebut: { type: time, notnull: true }
     heurefin: { type: time, notnull: true }
     estvalide: { type: integer(1), notnull: true }
+    commentaire: { type: text, notnull: false }
   relations:
     SfGuardUser: { onUpdate: CASCADE, local: id_user_valid, foreign: id, class: SfGuardUser }
     SfGuardUser_2: { onUpdate: CASCADE, local: id_user_reserve, foreign: id, class: SfGuardUser }

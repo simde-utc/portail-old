@@ -184,20 +184,20 @@ INSERT INTO `info_job_signalement_type` (`id`, `name`) VALUES
 
 SET foreign_key_checks = 1;
 
-INSERT INTO salle VALUES (1, 'salle1', 10, '#123456', 1);
-INSERT INTO salle VALUES (2, 'salle2', 15, '#1F3F56', 2);
-INSERT INTO salle VALUES (3, 'salle3', 20, '#12345F', 3);
-INSERT INTO salle VALUES (4, 'salle4', 25, '#1A34E6', 4);
-INSERT INTO salle VALUES (5, 'salle5', 10, '#123456', 1);
-INSERT INTO salle VALUES (6, 'salle6', 15, '#1F3F56', 2);
-INSERT INTO salle VALUES (7, 'salle7', 20, '#12345F', 3);
-INSERT INTO salle VALUES (8, 'salle8', 25, '#1A34E6', 4);
+INSERT INTO salle VALUES (1, 'salle1', 10, '123456', 1);
+INSERT INTO salle VALUES (2, 'salle2', 15, '1F3F56', 2);
+INSERT INTO salle VALUES (3, 'salle3', 20, '12345F', 3);
+INSERT INTO salle VALUES (4, 'salle4', 25, '1A34E6', 4);
+INSERT INTO salle VALUES (5, 'salle5', 10, '123456', 1);
+INSERT INTO salle VALUES (6, 'salle6', 15, '1F3F56', 2);
+INSERT INTO salle VALUES (7, 'salle7', 20, '12345F', 3);
+INSERT INTO salle VALUES (8, 'salle8', 25, '1A34E6', 4);
 
-INSERT INTO reservation VALUES (1, NULL, 1, 2, 1, curdate(), '12:00', '13:00', true);
-INSERT INTO reservation VALUES (2, NULL, 2, 8, 2, DATE_ADD(curdate(), INTERVAL 1 DAY), '16:00', '17:00', true);
-INSERT INTO reservation VALUES (3, NULL, 3, 12, 3, DATE_ADD(curdate(), INTERVAL 2 DAY), '18:00', '19:00', true);
-INSERT INTO reservation VALUES (4, NULL, 1, 11, 4, DATE_ADD(curdate(), INTERVAL 3 DAY), '10:00', '11:00', true);
-INSERT INTO reservation VALUES (5, NULL, 1, 2, 1, curdate(), '19:00', '20:00', true);
-INSERT INTO reservation VALUES (6, NULL, 2, 8, 2, DATE_ADD(curdate(), INTERVAL 4 DAY), '16:00', '17:00', true);
-INSERT INTO reservation VALUES (7, NULL, 3, 12, 3, DATE_ADD(curdate(), INTERVAL 1 DAY), '18:00', '19:00', true);
-INSERT INTO reservation VALUES (8, NULL, 1, 7, 4, curdate(), '13:00', '14:00', true);
+INSERT INTO reservation VALUES (1, NULL, 1, 2, 1, curdate(), '12:00', '13:00', true, NULL);
+INSERT INTO reservation VALUES (2, NULL, 2, 8, 2, DATE_ADD(curdate(), INTERVAL 1 DAY), '16:00', '17:00', true, NULL);
+INSERT INTO reservation VALUES (3, NULL, 3, 12, 3, DATE_ADD(curdate(), INTERVAL 2 DAY), '18:00', '19:00', true, NULL);
+INSERT INTO reservation VALUES (4, NULL, 1, 11, 4, DATE_ADD(curdate(), INTERVAL 3 DAY), '10:00', '11:00', true, NULL);
+INSERT INTO reservation VALUES (5, NULL, 1, 2, 1, curdate(), '19:00', '20:00', true, NULL);
+INSERT INTO reservation VALUES (6, NULL, 2, 8, 2, DATE_ADD(curdate(), INTERVAL 4 DAY), '16:00', '17:00', true, NULL);
+INSERT INTO reservation VALUES (7, NULL, 3, 12, 3, DATE_ADD(curdate(), INTERVAL 1 DAY), '18:00', '19:00', true, NULL);
+INSERT INTO reservation VALUES (8, NULL, 1, 7, 4, curdate(), '13:00', '14:00', true, NULL);

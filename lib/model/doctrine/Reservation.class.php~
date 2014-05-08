@@ -12,9 +12,16 @@
  */
 class Reservation extends BaseReservation
 {
-
+/*
 	public function __toString()
 	{
-		
+
 	}
+*/
+
+	public function getUserValid()
+	{
+		return sfGuardUserTable::getInstance()->getUserById($this->getIdUserReserve())->execute()[0];
+	}
+
 }

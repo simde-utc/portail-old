@@ -1,10 +1,8 @@
-<?php use_stylesheet("reservation.css") ?>
-
 <?php include_component("reservation","insideMenu",array("param" => $param)) ?>
 
 <h2>Suppression de la salle</h2>
 	
-<p><?php echo link_to ('<< retour', 'reservation_salles') ?></p>
+<p><?php echo link_to ('<< retour', 'reservation_salle') ?></p>
 
 	<p><b>Nom</b> : <?php echo $salle->getName() ?></p>
 	<p><b>Capacite</b> : <?php echo $salle->getCapacite() ?></p>
@@ -13,7 +11,7 @@
 
 <?php if (!$suppr): ?>
 
-	<form action="<?php echo url_for('reservation_salles_delete', array('id' => $id)) ?>" method="post">
+	<form action="<?php echo url_for('reservation_salle_delete', array('id' => $id)) ?>" method="post">
 
 		 <input type="submit" value="Suppression" />
 

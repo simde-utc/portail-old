@@ -14,7 +14,7 @@ class reservationComponents extends sfComponents
   
   public function executeReservation()
   {
-  		//$this->reservations = ReservationTable::getInstance()->getReservationNoValide()->execute();
+  		$this->reservations = ReservationTable::getInstance()->getReservationNoValide()->execute();
   }
   
 }

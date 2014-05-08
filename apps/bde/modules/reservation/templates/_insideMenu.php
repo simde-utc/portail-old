@@ -1,14 +1,16 @@
+<?php use_stylesheet("reservation.css") ?>
+
 <ul id="menuBde">
-	<?php if ($param == "salles"): ?>
+	<?php if ($param == "salle"): ?>
 	<li><span>Gestion des salles</span></li>
 	<?php else: ?>
-	<li><a href="<?php echo url_for('reservation_salles') ?>">Gestion des salles</a></li>
+	<li><a href="<?php echo url_for('reservation_salle') ?>">Gestion des salles</a></li>
 	<?php endif; ?>
 	
-	<?php if ($param == "reservations"): ?>
+	<?php if ($param == "validation"): ?>
 	<li><span>Validation des reservations</span></li>
 	<?php else: ?>
-	<li><a href="<?php echo url_for('reservation_reservations') ?>">Validation des reservations</a></li>
+	<li><a href="<?php echo url_for('reservation_validation') ?>">Validation des reservations</a></li>
 	<?php endif; ?>
 	
 	<li><a href="#">Modification</a></li>

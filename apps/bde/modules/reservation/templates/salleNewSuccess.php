@@ -1,14 +1,14 @@
-<?php use_stylesheet("reservation.css") ?>
-
 <?php include_component("reservation","insideMenu",array("param" => $param)) ?>
+
+<?php use_javascript("jscolor/jscolor.js") ?>
 
 <h2>Nouvelle salle</h2>
 
-<p><?php echo link_to ('<< retour', 'reservation_salles') ?></p>
+<p><?php echo link_to ('<< retour', 'reservation_salle') ?></p>
 
 <?php if (!isset($salle)): ?>
 
-	<form action="<?php echo url_for('reservation_salles_new') ?>" method="post">
+	<form action="<?php echo url_for('reservation_salle_new') ?>" method="post">
 
 		<?php echo $form ?>
 		<br />

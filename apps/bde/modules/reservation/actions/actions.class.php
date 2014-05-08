@@ -24,17 +24,17 @@ class reservationActions extends sfActions
   *	Toute la gestion des salles
   **/
   
-  public function executeSalles(sfWebRequest $request)
+  public function executeSalle(sfWebRequest $request)
   {
-  		$this->param = "salles";
+  		$this->param = "salle";
   		
   		$this->salles = SalleTable::getInstance()->getAllSalles()->execute();
   }
   
-  public function executeSallesUpdate(sfWebRequest $request)
+  public function executeSalleUpdate(sfWebRequest $request)
   {
   
-  		$this->param = "salles";
+  		$this->param = "salle";
   		
   		$this->id = $request->getParameter('id',-1);
   		
@@ -60,9 +60,9 @@ class reservationActions extends sfActions
 
   }
   
-  public function executeSallesNew(sfWebRequest $request)
+  public function executeSalleNew(sfWebRequest $request)
   {
-  		$this->param = "salles";
+  		$this->param = "salle";
   		
   		$this->form = new SalleForm();
   
@@ -78,9 +78,9 @@ class reservationActions extends sfActions
    
   }
   
-  public function executeSallesDelete(sfWebRequest $request)
+  public function executeSalleDelete(sfWebRequest $request)
   {
-  		$this->param = "salles";
+  		$this->param = "salle";
   		
   		$this->id = $request->getParameter('id',-1);
   		

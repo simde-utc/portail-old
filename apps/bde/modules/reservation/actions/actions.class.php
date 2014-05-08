@@ -17,6 +17,7 @@ class reservationActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+  		$this->param = "index";
   }
   
   /**
@@ -27,10 +28,10 @@ class reservationActions extends sfActions
   {
   		$this->param = "salles";
   		
-  		$this->setTemplate("index");
+  		$this->salles = SalleTable::getInstance()->getAllSalles()->execute();
   }
   
-  public function executeSalleUpdate(sfWebRequest $request)
+  public function executeSallesUpdate(sfWebRequest $request)
   {
   
   		$this->param = "salles";
@@ -59,7 +60,7 @@ class reservationActions extends sfActions
 
   }
   
-  public function executeSalleNew(sfWebRequest $request)
+  public function executeSallesNew(sfWebRequest $request)
   {
   		$this->param = "salles";
   		
@@ -77,7 +78,7 @@ class reservationActions extends sfActions
    
   }
   
-  public function executeSalleDelete(sfWebRequest $request)
+  public function executeSallesDelete(sfWebRequest $request)
   {
   		$this->param = "salles";
   		
@@ -99,25 +100,97 @@ class reservationActions extends sfActions
   }
   
   /**
-  *	Toute ma gestion des reservations
+  *	Toute les reservations à valider
   */
   
-  public function executeReservations(sfWebRequest $request)
+  public function executeValidation(sfWebRequest $request)
   {
-   	$this->param = "reservations";
-   	
-   	$this->setTemplate("index");
-  }
-  
-  public function executereservationsValid(sfWebRequest $request)
-  {
-   	$this->param = "reservations";
+   	$this->param = "validation";
    	
    	$this->id = $request->getParameter('id',-1);
-  		
-  		$this->forward404Unless(ReservationTable::getInstance()->isReservationNoValidExist($this->id));
    	
-   	$this->reservation = ReservationTable::getInstance()->getReservationById()->execute();
+   	// Affichage liste non validé
+   	if ($this->id == -1)
+   	{
+   		$this->reservations = ReservationTable::getInstance()->getReservationNoValide()->execute();
+   	}
+   	else
+   	{
+   		$this->forward404Unless(ReservationTable::getInstance()->isReservationNoValidExist($this->id));
+   		
+   		$this->reservation = ReservationTable::getInstance()->getReservationById($this->id)->execute()[0];
+   	}	
+  }
+  
+  public function executeValidationValid(sfWebRequest $request)
+  {
+		if (!$request->isMethod('post'))
+  		{
+  			$this->forward404Unless(false);
+  		}  
+  
+   	$this->param = "validation";
+   	
+   	$this->id = $request->getParameter('id',-1);
+   	
+   	// Erreur si pas d'id
+   	if ($this->id == -1)
+   	{
+   		$this->forward404Unless(false);
+   	}
+   	else // Tout est OK !
+   	{
+   		$this->forward404Unless(ReservationTable::getInstance()->isReservationNoValidExist($this->id));
+   	
+   		$this->reservation = ReservationTable::getInstance()->getReservationById($this->id)->execute()[0];
+   		
+   		$accepter = $request->getParameter("accepter",false); 
+   		$refuser = $request->getParameter("refuser",false);
+   		
+   		// Si accepter
+   		if ($accepter && !$refuser)
+   		{
+   			$this->valid = "accepter";
+   		}
+   		// Si refuser
+   		else if ($refuser && !$acceter)
+   		{
+   			$this->valid = "refuser";
+   		}
+   		else
+   		{
+   			$this->forward404Unless(false);
+   		}
+   		
+   		/*
+   		$this->forward404Unless(ReservationTable::getInstance()->isReservationNoValidExist($this->id));
+   		
+   		$reservation = ReservationTable::getInstance()->getReservationById($this->id)->execute()[0];
+   		$reservation->setEstvalide(true);
+   		$reservation->setIdUserValid($this->getUser()->getId());
+   		$reservation->save();
+   		
+   		$mailDestinataire = "anthony.legiret@gmail.com";
+   		
+   		//->getEmailAddress()
+   		// Envoi d'un mail de confirmation
+ 			$message = $this->getMailer()->compose(
+   			array('simde@assos.utc.fr' => 'SiMDE'),
+  				 $mailDestinataire,
+   			 'Reservation d\'une salle',
+   <<<EOF
+Bonjour,
+
+Votre signature de charte vient d'être validée, vous êtes donc maintenant président de l'association {$asso->getName()}.
+
+Rendez-vous sur le portail pour mettre à jour sa page ou attribuer des droits à d'autres membres !
+
+L'équipe du SiMDE
+EOF
+);
+			$this->getMailer()->send($message);
+			*/
+   	}	
   }
   
 }

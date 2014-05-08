@@ -174,9 +174,9 @@ reservation_reservations:
   url: /reservation/reservations
   param: { module: reservation, action: reservations }
 
-reservation_reservations_id:
+reservation_reservations_valid:
   url: /reservation/reservations/:id
-  param: { module: reservation, action: reservations }
+  param: { module: reservation, action: reservationsValid }
 
 reservation_salles:
   url: /reservation/salles

@@ -115,7 +115,7 @@ class reservationActions extends sfActions
    	
    	$this->id = $request->getParameter('id',-1);
   		
-  		$this->forward404Unless(ReservationTable::getInstance()->isReservationExist($this->id));
+  		$this->forward404Unless(ReservationTable::getInstance()->isReservationNoValidExist($this->id));
    	
    	$this->reservation = ReservationTable::getInstance()->getReservationById()->execute();
   }

@@ -170,13 +170,17 @@ reservation:
   url: /reservation
   param: { module: reservation, action: index }
   
-reservation_reservations:
-  url: /reservation/reservations
-  param: { module: reservation, action: reservations }
+reservation_validation:
+  url: /reservation/validation
+  param: { module: reservation, action: validation }
 
-reservation_reservations_valid:
-  url: /reservation/reservations/:id
-  param: { module: reservation, action: reservationsValid }
+reservation_validation_id:
+  url: /reservation/validation/:id
+  param: { module: reservation, action: validation }
+
+reservation_validation_valid:
+  url: /reservation/validation/valid/:id
+  param: { module: reservation, action: validationValid }
 
 reservation_salles:
   url: /reservation/salles
@@ -184,15 +188,15 @@ reservation_salles:
 
 reservation_salles_new:
   url: /reservation/salles/new
-  param: { module: reservation, action: salleNew }
+  param: { module: reservation, action: sallesNew }
 
 reservation_salles_delete:
   url: /reservation/salles/delete/:id
-  param: { module: reservation, action: salleDelete }
+  param: { module: reservation, action: sallesDelete }
 
 reservation_salles_update:
   url: /reservation/salles/update/:id
-  param: { module: reservation, action: salleUpdate }
+  param: { module: reservation, action: sallesUpdate }
 
 # default rules
 homepage:

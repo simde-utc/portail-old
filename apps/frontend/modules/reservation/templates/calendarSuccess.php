@@ -17,7 +17,8 @@ $(document).ready(function() {
     
   	 dayClick: function(e)
   	 {
-		//alert("A day has been clicked" + e);
+		//alert("A day has been clicked" + $sf_user->getGuardUser()->getName());
+		var xhr = new XMLHttpRequest();
 
   	 	$('#test-form_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
   	 	$('#test-form_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));

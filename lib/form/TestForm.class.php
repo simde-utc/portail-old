@@ -7,25 +7,15 @@ class TestForm extends sfForm
 			'date'            => new sfWidgetFormDate(array('format' => '%day%/%month%/%year%')), // voir pour commencer à la bonne année
 			'heuredebut'      => new sfWidgetFormTime(),
 			'heurefin'        => new sfWidgetFormTime(),
-			'id_asso' => new sfWidgetFormDoctrineChoice(array('model' => 'asso', 'table_method' => 'getAssosList')),
+			'id_asso' => new sfWidgetFormDoctrineChoiceWithParams(array('model' => 'asso', 'table_method' => array('method' => 'getMyAssosName' , 'parameters' => array($this->getOption('UserID'),$this->getOption('idSalle'))))),
 			'nbPers'   => new sfWidgetFormInputText(),
 			'message' => new sfWidgetFormTextarea(),
+			'id_salle' => new sfWidgetFormInputHidden(),
 
 		));
 
-		$this->widgetSchema->setLabels(array(
-		  'id_asso'    => 'Association:',
-		  'heuredebut'    => 'De',
-		  'heurefin'   => 'à',
-		  'nbPers' => 'Nombre de personnes:',
-		  'message' => 'Commentaires:',
-		));
-		
-		
-		$this->setValidators(array(
-			'name'    => new sfValidatorString(),
-		));
+		$this->getWidget('id_salle')->setDefault($this->getOption('idSalle'));		
 
-		$this->widgetSchema->setNameFormat('test-form[%s]');
+		$this->widgetSchema->setNameFormat('test-form[%s]'); // pour les id et les class pour modif CSS
 	}
 }

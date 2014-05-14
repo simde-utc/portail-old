@@ -159,11 +159,12 @@ ul#menuBde {
 /* -- CSS FORMULAIRE -- */
 
  #FormShape{
-     margin: 0 auto;
-     display:none;
-     position: relative; 
-     height: 90%; 
-     width: 100%;
+    margin: 0 auto;
+    margin-bottom: 2%;
+    display:none;
+    position: relative; 
+    height: 90%; 
+    width: 100%;
     overflow: hidden;
     z-index:10001;
     border-radius: 10px;
@@ -175,7 +176,7 @@ ul#menuBde {
  display:inline-block;
  float:left;
  width: 2px;
- height: 300px;
+ height: 370px;
 
 
 background: rgba(226,226,226,0);
@@ -195,17 +196,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 #formResa1{
   display:inline-block;
   float:left;
-  width: 46%;
-  padding-left: 3%;
+  width: 45%;
+  padding-left: 2%;
+  padding-right: 2%;
   height: 100%;
 }
  
 #formResa2{
   display:inline-block;
   float:left;
-  width: 47%;
+  width: 4-%;
   height: 100%;
-  padding-left: 3%;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 5%;
 }
 
 #test-form_date_day, #test-form_date_month,#test-form_heuredebut_hour,  #test-form_heuredebut_minute, #test-form_heurefin_hour,  #test-form_heurefin_minute{
@@ -220,4 +224,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 
 #test-form_date{
   display: inline-block;
+}
+
+.CaseLabel{
+  text-align: right;
+}
+
+.formTab{
+  border-spacing:30px;
 }

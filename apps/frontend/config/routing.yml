@@ -728,7 +728,7 @@ reservation_process_form:
 
 reservation_salle:
   url: /reservation/:id
-  param: { module: reservation, action: calendar }
+  param: { module: reservation, action: index }
 
 reservation:
   url: /reservation

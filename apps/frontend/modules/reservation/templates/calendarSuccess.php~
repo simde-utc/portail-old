@@ -8,9 +8,7 @@
 
 <?php include_component('reservation','listeSalles', array('idSalle' => $idSalle)) ?>
 
-<?php if (isset($form)): ?>
 <?php include_partial('TestForm', array('form' => $form)) ?>
-<?php endif; ?>
 
 <div id="calendar"></div>
 <script>

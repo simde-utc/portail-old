@@ -17,8 +17,23 @@ class reservationActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-	 $this->idSalle = $request->getUrlParameter("id", 0);
-	 $this->executeCalendar($request);  
+	 $this->idSalle = $request->getUrlParameter("id", -1);
+	 //$this->executeCalendar($request);  
+	
+	//TO DO ; ifAuthenticated
+	// différent de ligne au dessus mais permet de recupérer le num de la salle sans id .
+	
+	// fct de pole : getOneById($id)
+	//$this->pole_name = SalleTable::getInstance()->getPoleOfSalle($this->idSalle)->execute()[0];
+	
+   if ($this->getUser()->isAuthenticated())
+   {
+		$UserID=$this->getUser()->getGuardUser()->getId();
+		$values=array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
+      
+		$this->form = new TestForm(array(),$values);
+	}
+	 
   }
   
   public function executeList(sfWebRequest $request)
@@ -32,6 +47,7 @@ class reservationActions extends sfActions
   	$this->reservation = ReservationTable::getInstance()->getReservationBySalle($this->idSalle)->execute();
   }
 
+	/*
   public function executeCalendar(sfWebRequest $request)
   {
 	$this->idSalle = $request->getUrlParameter("id", 0);
@@ -50,6 +66,7 @@ class reservationActions extends sfActions
 		$this->form = new TestForm(array(),$values);
 	}
   }
+  */
   
   public function executeProcessFormResa(sfWebRequest $request)
   {

@@ -705,6 +705,11 @@ locaux_refuse:
 
 #reservation
 
+assoUser:
+  url: /reservation/assoUser
+  param: { module: reservation, action: assoUser }
+  requirements:
+
 reservation_json:
   url: /reservation/:id.:sf_format
   param: { module: reservation, action: listBySalle }
@@ -717,6 +722,10 @@ reservations_json:
   requirements:
     sf_format: (?:html|json)
 
+reservation_process_form:
+  url: /reservation/new
+  param: { module: reservation, action: processFormResa }
+
 reservation_salle:
   url: /reservation/:id
   param: { module: reservation, action: calendar }
@@ -724,6 +733,7 @@ reservation_salle:
 reservation:
   url: /reservation
   param: { module: reservation, action: index }
+
 
 # generic rules
 # please, remove them by adding more specific rules

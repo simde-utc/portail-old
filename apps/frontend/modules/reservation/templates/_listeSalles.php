@@ -1,5 +1,5 @@
 <fieldset>
-	<legend><?php if ($idSalle) echo "Salle" . $idSalle; else echo "Salles"; ?></legend>
+	<legend><?php if ($idSalle != -1) echo "Salle " . $idSalle; else echo "Salles"; ?></legend>
 		<?php if (count($salles) > 0): ?>
 			<select id="selectSalle">
 				<? $lastIdPole = -1 ?>

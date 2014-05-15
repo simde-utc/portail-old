@@ -1,4 +1,4 @@
-<div id="FormShape">
+<div id="	FormShape">
 <form action="<?php echo url_for('reservation_process_form') ?>" method="post" >
 <div id=formResa1>
 

@@ -195,9 +195,14 @@ class reservationActions extends sfActions
   // Gestion des reservations dans son ensemble
   public function executeGestion(sfWebRequest $request)
   {
+  		$this->param = "gestion";
   
   
+  }
   
+  public function executeReservations(sfWebRequest $request)
+  {
+  		$this->reservation = 
   }
   
   /**

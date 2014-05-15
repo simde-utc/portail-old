@@ -200,6 +200,11 @@ class reservationActions extends sfActions
   
   }
   
+  public function executeReservations(sfWebRequest $request)
+  {
+  		$this->reservations = ReservationTable::getInstance()->getAllReservation()->execute(); 
+  }
+  
   /**
   *	Envoie un mail
   * 	/return le contenu du mail

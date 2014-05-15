@@ -169,7 +169,7 @@ cas_logout:
 reservation:
   url: /reservation
   param: { module: reservation, action: index }
-  
+
 reservation_gestion:
   url: /reservation/gestion
   param: { module: reservation, action: gestion }  
@@ -209,6 +209,18 @@ reservation_salle_delete:
 reservation_salle_update:
   url: /reservation/salle/update/:id
   param: { module: reservation, action: salleUpdate }
+
+reservation_json:
+  url: /reservation/:id.:sf_format
+  param: { module: reservation, action: reservationBySalle }
+  requirements:
+    sf_format: (?:html|json)
+
+reservations_json:
+  url: /reservations.:sf_format
+  param: { module: reservation, action: reservations }
+  requirements:
+    sf_format: (?:html|json)
 
 # default rules
 homepage:

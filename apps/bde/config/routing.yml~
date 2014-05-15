@@ -169,18 +169,18 @@ cas_logout:
 reservation:
   url: /reservation
   param: { module: reservation, action: index }
-  
+
 reservation_gestion:
   url: /reservation/gestion
   param: { module: reservation, action: gestion }  
   
 reservation_gestion_delete:
-  url: /reservation/delete/:id
-  param: { module: reservation, action: validation }
+  url: /reservation/gestion/delete/:id
+  param: { module: reservation, action: gestionDelete }
 
 reservation_gestion_edit:
-  url: /reservation/edit/:id
-  param: { module: reservation, action: validation }
+  url: /reservation/gestion/edit/:id
+  param: { module: reservation, action: gestionEdit }
 
 reservation_validation:
   url: /reservation/validation
@@ -209,6 +209,18 @@ reservation_salle_delete:
 reservation_salle_update:
   url: /reservation/salle/update/:id
   param: { module: reservation, action: salleUpdate }
+
+reservations_json:
+  url: /reservations.:sf_format
+  param: { module: reservation, action: reservations }
+  requirements:
+    sf_format: (?:html|json)
+
+reservation_json:
+  url: /reservation/:id.:sf_format
+  param: { module: reservation, action: reservationBySalle }
+  requirements:
+    sf_format: (?:html|json)
 
 # default rules
 homepage:

@@ -1,6 +1,7 @@
 <?php use_stylesheet('fullcalendar.css') ?>
 
 <?php use_javascript('fullcalendar.min.js') ?>
+<?php use_javascript('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js') ?>
 
 <?php include_partial("insideMenu",array("param" => $param)) ?>
 
@@ -11,14 +12,42 @@
 $(document).ready(function() {
   $("#calendar").fullCalendar({
  	 
+ 	 eventResize: function(event,dayDelta,minuteDelta,revertFunc) {
+
+			alert(event);
+
+        alert("RESIZE : " +
+            "The end date of " + event.title + " has been moved " +
+            dayDelta + " days and " +
+            minuteDelta + " minutes."
+        );
+
+    },
+    
+    eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+
+        alert("DROP : " +
+            event.title + " was moved " +
+            dayDelta + " days and " +
+            minuteDelta + " minutes."
+        );
+
+        /*if (allDay) {
+            alert("Event is now all-day");
+        }else{
+            alert("Event has a time-of-day");
+        }*/
+
+    },
+ 	 
     header: {
       left: 'prev,next today',
       center: 'title',
       right: 'agendaDay,agendaWeek'
     },
-    editable: false,
+    editable: true,
     allDayDefault: false,
-    events: "",
+    events: "<?php echo url_for ('reservations_json',array('sf_format'=>'json')) ?>",
     loading: function(bool) {
       if (bool) $('#loading').show();
       else $('#loading').hide();

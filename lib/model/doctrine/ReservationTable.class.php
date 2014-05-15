@@ -64,14 +64,6 @@ class ReservationTable extends Doctrine_Table
          return (count($q) > 0);
     
     }
-
-  /*public function getAsso($idAsso)
-  {
-    $q = $this->createQuery('q')
-	    ->where('q.asso_id = ?', $idAsso);
-    
-	return $q;
-  }*/
   
   public function getReservationNoValide()
   {

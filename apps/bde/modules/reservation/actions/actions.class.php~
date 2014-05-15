@@ -197,12 +197,47 @@ class reservationActions extends sfActions
   {
   		$this->param = "gestion";
   
+  }
   
+  public function executeGestionEdit(sfWebRequest $request)
+  {
+  		if (!$request->isXmlHttpRequest())
+  		{
+  			$this->forward404Unless(false);
+  		}
+  		
+  		// Recupération des paramètres
+  		// Tous a été converti en javascript
+  		$id = $request->getParameter('id');
+  		$date = $request->getParameter('date');
+  		$start = $request->getParameter('start');
+  		$end = $request->getParameter('end');
+  		
+  		$reservation = ReservationTable::getInstance()->getReservationById($id)->execute()[0];
+  		$reservation->setDate($date);
+  		$reservation->setHeureDebut($start);
+  		$reservation->setHeureFin($end);
+  		$reservation->save();
+  		
+  }
+  
+  public function executeGestionDelete(sfWebRequest $request)
+  {
+  		if (!$request->isXmlHttpRequest())
+  		{
+  			$this->forward404Unless(false);
+  		}
+  		
+  		$reservation = ReservationTable::getInstance()->getReservationById($request->getParameter('id'))->execute()[0];
+  		$reservation->setDate($date);
+  		$reservation->setHeureDebut($start);
+  		$reservation->setHeureFin($end);
+  		$reservation->save();
   }
   
   public function executeReservations(sfWebRequest $request)
   {
-  		$this->reservation = 
+  		$this->reservations = ReservationTable::getInstance()->getAllReservation()->execute(); 
   }
   
   /**

@@ -13,30 +13,65 @@ $(document).ready(function() {
   $("#calendar").fullCalendar({
  	 
  	 eventResize: function(event,dayDelta,minuteDelta,revertFunc) {
-
-			alert(event);
-
-        alert("RESIZE : " +
-            "The end date of " + event.title + " has been moved " +
-            dayDelta + " days and " +
-            minuteDelta + " minutes."
-        );
-
+	
+		//console.log("RESIZE");
+		//console.log(event);
+		//a = event;
+		
+		var a = window.prompt("sometext","comment");
+		
+		if (a!=null)
+		{
+		
+			$.ajax({
+				url: "<?php echo url_for('reservation_gestion_edit') ?>",
+				data: {id:event.id, 
+						date:event.start.toJSON().split("T")[0], 
+						start:event.start.toTimeString().split(" ")[0],
+						end:event.end.toTimeString().split(" ")[0]
+						}		
+			});
+		}
+		
     },
     
     eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
 
-        alert("DROP : " +
-            event.title + " was moved " +
-            dayDelta + " days and " +
-            minuteDelta + " minutes."
-        );
+		//console.log("DROP");
+		//console.log(event);
+		
+		$.ajax({
+			url: "<?php echo url_for('reservation_gestion_edit') ?>",
+			data: {id:event.id, 
+					date:event.start.toJSON().split("T")[0], 
+					start:event.start.toTimeString().split(" ")[0],
+					end:event.end.toTimeString().split(" ")[0]
+					}		
+		});
 
         /*if (allDay) {
             alert("Event is now all-day");
         }else{
             alert("Event has a time-of-day");
         }*/
+
+    },
+    
+    eventClick: function(event, jsEvent, view) {
+
+     //alert('Event: ' + event.id);
+
+		var conf = window.confirm("Suppression de l'évenement: "+event.title);
+		
+		if (conf)
+		{
+			$.ajax({
+				url: "<?php echo url_for('reservation_gestion_delete') ?>",
+				data: {id:event.id}		
+			});
+			
+			$('#calendar').fullCalendar('removeEvents', event.id);
+		}
 
     },
  	 

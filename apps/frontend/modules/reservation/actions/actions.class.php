@@ -32,7 +32,7 @@ class reservationActions extends sfActions
 		
 		$values = array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
       
-		//$this->form = new TestForm(array(),$values);
+		$this->form = new TestForm(array(),$values);
 	}
 	 
   }

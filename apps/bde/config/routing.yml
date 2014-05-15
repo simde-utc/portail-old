@@ -175,11 +175,11 @@ reservation_gestion:
   param: { module: reservation, action: gestion }  
   
 reservation_gestion_delete:
-  url: /reservation/gestion/delete/:id
+  url: /reservation/gestion/delete
   param: { module: reservation, action: gestionDelete }
 
 reservation_gestion_edit:
-  url: /reservation/gestion/edit/:id
+  url: /reservation/gestion/edit
   param: { module: reservation, action: gestionEdit }
 
 reservation_validation:

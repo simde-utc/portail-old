@@ -152,7 +152,7 @@ class AssoTable extends Doctrine_Table
         return $q->execute();
     }
 
-	public function getMyAssosName($user_id,$idSalle)
+		public function getMyAssosName($user_id,$idSalle)
     {
         $q = $this->createQuery('q')
             ->select('q.name')

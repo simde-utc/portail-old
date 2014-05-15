@@ -18,7 +18,6 @@
 <script>
 $(document).ready(function() {
   $("#calendar").fullCalendar({
-<<<<<<< HEAD
     
   	 dayClick: function(e)
   	 {
@@ -47,9 +46,6 @@ $(document).ready(function() {
         }
     },
 
-=======
-     	 
->>>>>>> af8174841d14248d69e960a824eb8e80c74dc6c3
     header: {
       left: 'prev,next today',
       center: 'title',

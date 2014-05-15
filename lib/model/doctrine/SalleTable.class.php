@@ -56,4 +56,5 @@ class SalleTable extends Doctrine_Table
     		
     		return $q;
     }
+    
 }

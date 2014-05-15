@@ -179,7 +179,7 @@ reservation_gestion_delete:
   param: { module: reservation, action: gestionDelete }
 
 reservation_gestion_edit:
-  url: /reservation/gestion/edit/:id
+  url: /reservation/gestion/edit
   param: { module: reservation, action: gestionEdit }
 
 reservation_validation:
@@ -210,15 +210,15 @@ reservation_salle_update:
   url: /reservation/salle/update/:id
   param: { module: reservation, action: salleUpdate }
 
-reservations_json:
-  url: /reservations.:sf_format
-  param: { module: reservation, action: reservations }
-  requirements:
-    sf_format: (?:html|json)
-
 reservation_json:
   url: /reservation/:id.:sf_format
   param: { module: reservation, action: reservationBySalle }
+  requirements:
+    sf_format: (?:html|json)
+
+reservations_json:
+  url: /reservations.:sf_format
+  param: { module: reservation, action: reservations }
   requirements:
     sf_format: (?:html|json)
 

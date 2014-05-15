@@ -26,7 +26,7 @@ $(document).ready(function() {
     },
     editable: false,
     allDayDefault: false,
-    events: "",
+    events: "<?php if ($idSalle == -1) echo url_for ('reservations_json',array('sf_format'=>'json')); else echo url_for('reservation_json',array('sf_format'=>'json','id'=>$idSalle)) ?>",
     loading: function(bool) {
       if (bool) $('#loading').show();
       else $('#loading').hide();

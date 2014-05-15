@@ -18,10 +18,23 @@ class Reservation extends BaseReservation
 
 	}
 */
+	private $userValid;
+	private $userReserve;
 
 	public function getUserValid()
 	{
-		return sfGuardUserTable::getInstance()->getUserById($this->getIdUserReserve())->execute()[0];
+		if ($userValid)
+			return $userValid;
+			
+		return $userValid = sfGuardUserTable::getInstance()->getUserById($this->getIdUserValid())->execute()[0];
+	}
+	
+	public function getUserReserve()
+	{
+		if ($userReserve)
+			return $userReserve;
+			
+		return $userReserve = sfGuardUserTable::getInstance()->getUserById($this->getIdUserReserve())->execute()[0];
 	}
 
 }

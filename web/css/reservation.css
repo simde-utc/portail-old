@@ -139,16 +139,14 @@ ul#menuBde {
 	padding: 0 1px 0 0;
 }
 
-#menuBde li span {
-	margin: 0;
-	border-bottom: 3px solid #005580;
-	padding: 0 5px 10px 5px;
-}
-
 #menuBde li a {
 	margin: 0;
 	border-bottom: 3px solid #AAA;
 	padding: 0 5px 10px 5px;
+}
+
+#menuBde li a.active {
+	border-color: #26457f;
 }
 
 #menuBde li a:hover {

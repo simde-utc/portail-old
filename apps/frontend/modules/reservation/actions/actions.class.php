@@ -28,8 +28,9 @@ class reservationActions extends sfActions
 	
    if ($this->getUser()->isAuthenticated())
    {
-		$UserID=$this->getUser()->getGuardUser()->getId();
-		$values=array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
+		$UserID = $this->getUser()->getGuardUser()->getId();
+		
+		$values = array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
       
 		//$this->form = new TestForm(array(),$values);
 	}

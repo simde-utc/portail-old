@@ -2,8 +2,12 @@
 	<legend><?php if ($idSalle != -1) echo "Salle " . $idSalle; else echo "Salles"; ?></legend>
 		<?php if (count($salles) > 0): ?>
 			<select id="selectSalle">
+<<<<<<< HEAD
 				<option value="<?php echo url_for('@reservation') ?>">Toutes les salles</option>
 				<? $lastIdPole = -1 ?>
+=======
+				<?php $lastIdPole = -1 ?>
+>>>>>>> af8174841d14248d69e960a824eb8e80c74dc6c3
 				<?php foreach ($salles as $salle): ?>
 
 					<?php if($salle->getPole()->getId()==1 || in_array($salle->getPole()->getId(), $sf_data->getRaw(polesUser))): ?>

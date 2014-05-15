@@ -1,55 +1,16 @@
 <?php use_stylesheet('fullcalendar.css') ?>
 
-<?php use_stylesheet('reservation.css') ?>
-
 <?php use_javascript('fullcalendar.min.js') ?>
 
-<?php use_javascript('reservation.js') ?>
+<?php include_partial("insideMenu",array("param" => $param)) ?>
 
-<h1 class="partie">Calendrier des reservations de salles <i id="loading" class="fa fa-refresh fa-spin fa-lg pull-right"></i></h1>
+<h3>Gestion des reservations</h3>
 
-<?php include_component('reservation','listeSalles', array('idSalle' => $idSalle)) ?>
-
-<?php if (isset($form)): ?>
-<?php include_partial('TestForm', array('form' => $form)) ?>
-<?php endif ?>
-
-<div id="calendar"></div>
+<div id="calendar" style="background:#FFF"></div>
 <script>
 $(document).ready(function() {
   $("#calendar").fullCalendar({
-<<<<<<< HEAD
-    
-  	 dayClick: function(e)
-  	 {
-  	 
-		if ($('#FormShape').length == 0) // Si le tableau == 0
-		{
-			alert ("Vous devez etre authentifié au cas");
-		}
-		else
-		{
-
-	  	 	$('#test-form_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
-	  	 	$('#test-form_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
-	  	 	$('#test-form_date_year').val(parseInt($.fullCalendar.formatDate( e, "yyyy")));
-	  	 	$('#test-form_heuredebut_hour').val(parseInt(e.getHours()));
-	  	 	$('#test-form_heuredebut_minute').val(parseInt(e.getMinutes()));
-	  	 	
-	  	 	$('#FormShape').fadeIn();
-  	 	}
-  	 },
-  	 
-	eventClick: function(event) {
-        if (event.url) {
-            window.open(event.url);
-            return false;
-        }
-    },
-
-=======
-     	 
->>>>>>> af8174841d14248d69e960a824eb8e80c74dc6c3
+ 	 
     header: {
       left: 'prev,next today',
       center: 'title',

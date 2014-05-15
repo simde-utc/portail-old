@@ -7,14 +7,8 @@ class reservationComponents extends sfComponents
   {
   }
   
-  public function executeSalle()
+  public function executeShowSalle()
   {
-  		$this->salles = SalleTable::getInstance()->getAllSalles()->execute();
-  }
-  
-  public function executeReservation()
-  {
-  		$this->reservations = ReservationTable::getInstance()->getReservationNoValide()->execute();
   }
   
 }

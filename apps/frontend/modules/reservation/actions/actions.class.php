@@ -21,10 +21,10 @@ class reservationActions extends sfActions
 	 $this->executeCalendar($request);  
   }
   
-  /*public function executeList(sfWebRequest $request)
+  public function executeList(sfWebRequest $request)
   {
 	$this->reservations = ReservationTable::getInstance()->getAllReservation()->execute();
-  }*/
+  }
 
   public function executeListBySalle(sfWebRequest $request)
   {
@@ -42,12 +42,13 @@ class reservationActions extends sfActions
 	// fct de pole : getOneById($id)
 	//$this->pole_name = SalleTable::getInstance()->getPoleOfSalle($this->idSalle)->execute()[0];
 	
-        
-	$UserID=$this->getUser()->getGuardUser()->getId();
-	$values=array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
+   if ($this->getUser()->isAuthenticated())
+   {
+		$UserID=$this->getUser()->getGuardUser()->getId();
+		$values=array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
       
-	$this->form = new TestForm(array(),$values);
-
+		$this->form = new TestForm(array(),$values);
+	}
   }
   
   public function executeProcessFormResa(sfWebRequest $request)
@@ -55,7 +56,7 @@ class reservationActions extends sfActions
 	
 	$this->forward404Unless($request->isMethod('post'));
 
-	$this->idSaalle=$request->getPostParameter('test-form[id_salle]');
+	$this->idSalle=$request->getPostParameter('test-form[id_salle]');
 	
 	$reservation = new Reservation();
 	$reservation->setIdUserReserve($this->getUser()->getGuardUser()->getId());
@@ -64,8 +65,8 @@ class reservationActions extends sfActions
 	$reservation->setDate(sprintf("%02d",$request->getPostParameter('test-form[date][year]'))."-".sprintf("%02d",$request->getPostParameter('test-form[date][month]'))."-".sprintf("%02d",$request->getPostParameter('test-form[date][day]')));
 	$reservation->setHeuredebut(sprintf("%02d",$request->getPostParameter('test-form[heuredebut][hour]')).":".sprintf( "%02d", $request->getPostParameter('test-form[heuredebut][minute]')).":00");
 	$reservation->setHeurefin(sprintf("%02d",$request->getPostParameter('test-form[heurefin][hour]')).":".sprintf( "%02d", $request->getPostParameter('test-form[heurefin][minute]')).":00");
-	$reservation->save();
-	  
+	
+	$reservation->save(); // Save into database  
 	
   }
 }

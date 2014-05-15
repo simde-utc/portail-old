@@ -39,6 +39,13 @@ $(document).ready(function() {
   	 	}
   	 },
   	 
+	eventClick: function(event) {
+        if (event.url) {
+            window.open(event.url);
+            return false;
+        }
+    },
+
     header: {
       left: 'prev,next today',
       center: 'title',
@@ -83,7 +90,7 @@ $(document).ready(function() {
     allDayText: 'Jour entier',
     defaultView: 'agendaWeek',
     height: 1000,
-    weekends: false,
+    weekends: true,
     minTime: 8,
   });
 });

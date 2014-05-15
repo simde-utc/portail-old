@@ -31,7 +31,7 @@ class reservationActions extends sfActions
 		$UserID=$this->getUser()->getGuardUser()->getId();
 		$values=array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
       
-		$this->form = new TestForm(array(),$values);
+		//$this->form = new TestForm(array(),$values);
 	}
 	 
   }
@@ -43,11 +43,16 @@ class reservationActions extends sfActions
 
   public function executeListBySalle(sfWebRequest $request)
   {
-	$this->idSalle = $request->getUrlParameter("id", 0); 
+	$this->idSalle = $request->getUrlParameter("id"); 
   	$this->reservation = ReservationTable::getInstance()->getReservationBySalle($this->idSalle)->execute();
   }
 
-	/*
+  public function executeShow(sfWebRequest $request)
+  {
+	$this->reservation = ReservationTable::getInstance()->getReservationById($request->getUrlParameter("id"))->execute()[0];
+  }
+
+/*
   public function executeCalendar(sfWebRequest $request)
   {
 	$this->idSalle = $request->getUrlParameter("id", 0);

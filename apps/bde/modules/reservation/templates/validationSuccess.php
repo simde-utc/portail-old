@@ -1,4 +1,4 @@
-<?php include_component("reservation","insideMenu",array("param" => $param)) ?>
+<?php include_partial("insideMenu",array("param" => $param)) ?>
 
 <?php if($id == -1): ?>
 
@@ -18,17 +18,7 @@
 
 	<h3>Reservation non validée</h3>
 	
-	<p><b>Qui ? : </b><?php echo $reservation->getUserReserve()->getFirstName()." ".$reservation->getUserReserve()->getLastName()." (".$reservation->getUserReserve()->getUsername().")" ?></p>
-	<?php if ($reservation->getAsso()) :?>
-	
-		<p><b>Asso : </b><?php echo $reservation->getAsso() ?></p>
-	
-	<?php endif; ?>
-	<p><b>Date : </b><?php echo $reservation->getDate() ?></p>
-	<p><b>Heure Debut : </b><?php echo $reservation->getHeuredebut() ?></p>
-	<p><b>Heure Fin : </b><?php echo $reservation->getHeurefin() ?></p>
-	<p><b></b></p>
-	<p><b>est validée : </b><?php if($reservation->getEstvalide()) echo "oui"; else echo "non"; ?></p>	
+	<?php include_partial("showReservation",array("reservation" => $reservation)) ?>
 
 	<form action="<?php echo url_for('reservation_validation_valid',array('id'=>$id)) ?>" method="post">
 	

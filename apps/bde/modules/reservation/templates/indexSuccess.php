@@ -1,2 +1,2 @@
-<?php include_component("reservation","insideMenu",array("param" => $param)) ?>
+<?php include_partial("insideMenu",array("param" => $param)) ?>
 

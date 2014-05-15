@@ -100,7 +100,7 @@ class reservationActions extends sfActions
   }
   
   /**
-  *	Toute les reservations à valider
+  *	Toute la gestion des reservations à valider
   */
   
   public function executeValidation(sfWebRequest $request)
@@ -150,65 +150,98 @@ class reservationActions extends sfActions
    		
    		$this->commentaire = $request->getParameter("commentaire","");
 
-   		// Si accepter
+			$mailDestinataire = $this->reservation->getUserReserve()->getEmailAddress();
+
+   		// Si accepter => valide la reservation, ajoute la personne qui a validé, update base
    		if ($accepter && !$refuser)
    		{
    			$this->valider = true;
+   			$this->reservation->setEstvalide(true);
+   			$this->reservation->setIdUserValid($this->getUser()->getGuardUser()->getId());
+   			$this->reservation->save();
+   			
+   			$this->mail = $this->sendMail(
+							$this->reservation->getSalle(),
+							$this->reservation,
+							$mailDestinataire,
+							$this->commentaire,
+							$this->valider
+							);
+   			
    		}
-   		// Si refuser
+   		// Si refuser => on supprime la reservation de la base
    		else if ($refuser && !$accepter)
    		{
    			$this->valider = false;
+   			
+   			$this->mail = $this->sendMail(
+							$this->reservation->getSalle(),
+							$this->reservation,
+							$mailDestinataire,
+							$this->commentaire,
+							$this->valider
+							);
+   			
+   			$this->reservation->delete();
    		}
    		else
    		{
    			$this->forward404Unless(false);
    		}
    		
-   		
-   		$this->reservation->setEstvalide(true);
-   		$this->reservation->setIdUserValid($this->getUser()->getGuardUser()->getId());
-   		$this->reservation->save();
-   		
-   		$mailDestinataire = "anthony.legiret@gmail.com";//->getEmailAddress() sfGuardUserTable::getInstance()->getUserById($reservation->getIdUserReserve())->execute()[0]
-   		
-   		$mailContent = 'Bonjour,'."\n\n";
-   		$mailContent .= 'Votre demande de la salle '.$this->reservation->getSalle().' a été ';
-   		
-   		if ($this->valider)
-   			$mailContent .= 'validée.'."\n\n";
-   		else
-   			$mailContent .= 'refusée.'."\n\n";
-   			
-   		$mailContent .= 'Rappel de la réservation : '."\n\n";
-   		$mailContent .= 'Date : '.$this->reservation->getDate()."\n";
-   		$mailContent .= 'Heure Debut : '.$this->reservation->getHeuredebut()."\n";
-   		$mailContent .= 'Heure Fin : '.$this->reservation->getHeurefin()."\n\n";
-   		
-   		if (trim($this->commentaire) != "")
-   		{
-   		
-   			$mailContent .= 'Commentaire :'."\n";
-   			$mailContent .= $this->commentaire."\n\n";
-   		
-   		}
-   		
-   		$mailContent .= 'Ceci est un mail automatique'."\n";
-   		$mailContent .= 'BDE'."\n";
-   		
-   		$this->mail = $mailContent;
-   		
-   		// Envoi d'un mail de confirmation
- 			$message = $this->getMailer()->compose(
-   			array('bde@assos.utc.fr' => 'BDE'),
-  				$mailDestinataire,
-   			'Reservation d\'une salle',
-				$mailContent
-			);
-			
-			//$this->getMailer()->send($message);
-			
    	}	
+  }
+  
+  // Gestion des reservations dans son ensemble
+  public function executeGestion(sfWebRequest $request)
+  {
+  
+  
+  
+  }
+  
+  /**
+  *	Envoie un mail
+  * 	/return le contenu du mail
+  *
+  */
+  private function sendMail($nameSalle,$reservation,$destinataire,$commentaire,$estValide)
+  {
+  		$mailContent = 'Bonjour,'."\n\n";
+   	$mailContent .= 'Votre demande de la salle '.$nameSalle.' a été ';
+  
+  		if ($estValide)
+			$mailContent .= 'validée.'."\n\n";
+		else
+			$mailContent .= 'refusée.'."\n\n";
+			
+		$mailContent .= 'Rappel de la réservation : '."\n\n";
+		$mailContent .= 'Date : '.date("j/n/Y",strtotime(str_replace('-','/', $reservation->getDate())))."\n";
+		$mailContent .= 'Heure Debut : '.$reservation->getHeuredebut()."\n";
+		$mailContent .= 'Heure Fin : '.$reservation->getHeurefin()."\n\n";
+		
+		if (trim($commentaire) != "")
+		{
+		
+			$mailContent .= 'Commentaire :'."\n";
+			$mailContent .= $commentaire."\n\n";
+		
+		}
+		
+		$mailContent .= 'Ceci est un mail automatique'."\n";
+		$mailContent .= 'BDE'."\n";
+		
+		// Envoi d'un mail de confirmation
+		$message = $this->getMailer()->compose(
+			array('bde@assos.utc.fr' => 'BDE'),
+			$destinataire,
+			'Reservation d\'une salle',
+			$mailContent
+		);
+		
+		//$this->getMailer()->send($message);
+		
+		return $mailContent;
   }
   
 }

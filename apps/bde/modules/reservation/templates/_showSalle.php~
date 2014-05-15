@@ -1,0 +1,4 @@
+<p><b>Nom</b> : <?php echo $salle->getName() ?></p>
+<p><b>Capacite</b> : <?php echo $salle->getCapacite() ?></p>
+<p style=""><b>Couleur</b> : <?php echo $salle->getCouleur() ?></p>
+<p><b>Pole</b> : <?php echo $salle->getPole() ?></p>

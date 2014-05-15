@@ -1,6 +1,6 @@
 <?php include_component("reservation","insideMenu",array("param" => $param)) ?>
 
-<h4><?php echo link_to ('Nouvelle salle', 'reservation_salles_new') ?></h4>
+<h4><?php echo link_to ('Nouvelle salle', 'reservation_salle_new') ?></h4>
 
 <h3>Liste des salles</h3>
 

@@ -2,7 +2,7 @@
 	<legend><?php if ($idSalle != -1) echo "Salle " . $idSalle; else echo "Salles"; ?></legend>
 		<?php if (count($salles) > 0): ?>
 			<select id="selectSalle">
-				<? $lastIdPole = -1 ?>
+				<?php $lastIdPole = -1 ?>
 				<?php foreach ($salles as $salle): ?>
 
 					<?php if($salle->getPole()->getId()==1 || in_array($salle->getPole()->getId(), $sf_data->getRaw(polesUser))): ?>

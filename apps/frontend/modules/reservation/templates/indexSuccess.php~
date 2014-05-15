@@ -22,7 +22,7 @@ $(document).ready(function() {
   	 dayClick: function(e)
   	 {
   	 
-		if ($('#FormShape').length == 0) // Si le tableau == 0
+		if ($('#FormShape').length == 0) // Si le tableau == 0 donc si FormShape existe
 		{
 			alert ("Vous devez etre authentifié au cas");
 		}
@@ -46,7 +46,7 @@ $(document).ready(function() {
     },
     editable: false,
     allDayDefault: false,
-    events: "<?php if ($idSalle == -1) echo url_for('reservations_json',array('sf_format'=>'json')) else echo url_for("reservation_json",array('sf_format'=>'json', 'id'=>$idSalle)) ?>", //"<?php echo url_for("reservation_json",array('sf_format'=>'json', 'id'=>$idSalle)) ?>",
+    events: "",
     loading: function(bool) {
       if (bool) $('#loading').show();
       else $('#loading').hide();

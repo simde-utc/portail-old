@@ -1,40 +1,16 @@
 <?php use_stylesheet('fullcalendar.css') ?>
 
-<?php use_stylesheet('reservation.css') ?>
-
 <?php use_javascript('fullcalendar.min.js') ?>
 
-<h1 class="partie">Calendrier des reservations <i id="loading" class="fa fa-refresh fa-spin fa-lg pull-right"></i></h1>
+<?php include_partial("insideMenu",array("param" => $param)) ?>
 
-<?php include_component('reservation','listeSalles', array('idSalle' => $idSalle)) ?>
+<h3>Gestion des reservations</h3>
 
-<?php if (isset($form)): ?>
-<?php include_partial('TestForm', array('form' => $form)) ?>
-<?php endif; ?>
-
-<div id="calendar"></div>
+<div id="calendar" style="background:#FFF"></div>
 <script>
 $(document).ready(function() {
   $("#calendar").fullCalendar({
-    
-  	 dayClick: function(e)
-  	 {
-		//alert("A day has been clicked" + $sf_user->getGuardUser()->getName());
-		var xhr = new XMLHttpRequest();
-
-  	 	$('#test-form_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
-  	 	$('#test-form_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
-  	 	$('#test-form_date_year').val(parseInt($.fullCalendar.formatDate( e, "yyyy")));
-  	 	$('#test-form_heuredebut_hour').val(parseInt(e.getHours()));
-  	 	$('#test-form_heuredebut_minute').val(parseInt(e.getMinutes()));
-  	 	
-  	 	
-  	 	
-  	 	$('#FormShape').fadeIn();
-  	 	
-  	 },
-
-  	 
+ 	 
     header: {
       left: 'prev,next today',
       center: 'title',
@@ -42,7 +18,7 @@ $(document).ready(function() {
     },
     editable: false,
     allDayDefault: false,
-    events: "<?php echo url_for("reservation_json",array('sf_format'=>'json', 'id'=>$idSalle)) ?>",
+    events: "",
     loading: function(bool) {
       if (bool) $('#loading').show();
       else $('#loading').hide();
@@ -79,7 +55,7 @@ $(document).ready(function() {
     allDayText: 'Jour entier',
     defaultView: 'agendaWeek',
     height: 1000,
-    weekends: false,
+    weekends: true,
     minTime: 8,
   });
 });

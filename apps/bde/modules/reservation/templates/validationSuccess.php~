@@ -1,4 +1,4 @@
-<?php include_component("reservation","insideMenu",array("param" => $param)) ?>
+<?php include_partial("insideMenu",array("param" => $param)) ?>
 
 <?php if($id == -1): ?>
 
@@ -17,8 +17,8 @@
 	<p><?php echo link_to ('<< retour', 'reservation_validation') ?></p>
 
 	<h3>Reservation non validée</h3>
-
-	<?php //$user = sfGuardUserTable::getInstance()->getUserById($reservation->getIdUserReserve())->execute()[0] ?>
+	
+	<?php include_partial("showReservation",array("reservation" => $reservation)) ?>
 	
 	<p><b>Qui ? : </b><?php echo $reservation->getUserReserve()->getFirstName()." ".$reservation->getUserReserve()->getLastName()." (".$reservation->getUserReserve()->getUsername().")" ?></p>
 	<?php if ($reservation->getAsso()) :?>

@@ -708,10 +708,26 @@ Salle:
     name: { type: string(255), notnull: true, unique: true }
     capacite: { type : integer, notnull: true }
     couleur: { type : string(6), notnull: true }
+    description: { type: string, notnull: false }
     id_pole : { type : integer, notnull: true }
   relations:
     Pole: { onUpdate: CASCADE, local: id_pole, foreign: id, class: Pole }
       
+CreneauOff:
+  connection: doctrine
+  tableName: CreneauOff
+  columns:
+    date: { type: date, primary: true }
+    
+SalleCreneauOff:
+  connection: doctrine
+  columns:
+    creneauoff: { type : date, primary: true }
+    salle: { type : integer, primary: true }
+  relations:
+    CreneauOff: { onUpdate: CASCADE, local: creneauoff, foreign: date }
+    Salle: { onUpdate: CASCADE, local: salle, foreign: id }
+    
 Reservation:
   connection: doctrine
   tableName: reservation
@@ -724,8 +740,9 @@ Reservation:
     date: { type: date, notnull: true }
     heuredebut: { type: time, notnull: true }
     heurefin: { type: time, notnull: true }
-    estvalide: { type: integer(1), notnull: true }
-    commentaire: { type: text, notnull: false }
+    activite: { type: string(255), notnull: true }
+    estvalide: { type: boolean, notnull: true }
+    commentaire: { type: string, notnull: false }
   relations:
     UserValid: { onUpdate: CASCADE, local: id_user_valid, foreign: id, class: SfGuardUser }
     UserReserve: { onUpdate: CASCADE, local: id_user_reserve, foreign: id, class: SfGuardUser }

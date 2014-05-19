@@ -175,12 +175,16 @@ reservation_gestion:
   param: { module: reservation, action: gestion }  
   
 reservation_gestion_delete:
-  url: /reservation/gestion/delete/:id
+  url: /reservation/gestion/delete
   param: { module: reservation, action: gestionDelete }
 
 reservation_gestion_edit:
   url: /reservation/gestion/edit
   param: { module: reservation, action: gestionEdit }
+  
+reservation_gestion_id:
+  url: /reservation/gestion/:id
+  param: { module: reservation, action: gestionId }
 
 reservation_validation:
   url: /reservation/validation
@@ -203,6 +207,10 @@ reservation_salle_new:
   param: { module: reservation, action: salleNew }
 
 reservation_salle_delete:
+  url: /reservation/salle/delete/:id
+  param: { module: reservation, action: salleDelete }
+
+reservation_creneauoff:
   url: /reservation/salle/delete/:id
   param: { module: reservation, action: salleDelete }
 

@@ -232,10 +232,35 @@ class reservationActions extends sfActions
   		$reservation->delete();
   }
   
+  public function executeGestionId(sfWebRequest $request)
+  {
+  		$this->id = $request->getParameter('id',-1);
+  		
+  		$this->forward404Unless($this->id!=-1);
+  		
+  		$reservation = ReservationTable::getInstance()->getReservationById($this->id)->execute()[0];
+  		
+  		
+  }
+  
   public function executeReservations(sfWebRequest $request)
   {
   		$this->reservations = ReservationTable::getInstance()->getAllReservation()->execute(); 
   }
+  
+  /**
+  *
+  *
+  *
+  */
+  public function executeCreneauoff(sfWebRequest $request)
+  {
+  		$this->param = "creneauoff";
+  
+  		$this->creneauoff = CreneauoffTable::getInstance()->getAllCreneauoff()->execute();
+  		
+  }
+  
   
   /**
   *	Envoie un mail

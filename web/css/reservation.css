@@ -210,17 +210,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
   padding-top: 5%;
 }
 
-#test-form_date_day, #test-form_date_month,#test-form_heuredebut_hour,  #test-form_heuredebut_minute, #test-form_heurefin_hour,  #test-form_heurefin_minute{
+#resa-form_date_day, #resa-form_date_month,#resa-form_heuredebut_hour,  #resa-form_heuredebut_minute, #resa-form_heurefin_hour,  #resa-form_heurefin_minute{
   width:53px;    
   display: inline-block;
 }
 
-#test-form_date_year{
+#resa-form_date_year{
   width:72px;    
   display: inline-block;
 }
 
-#test-form_date{
+#resa-form_date{
   display: inline-block;
 }
 

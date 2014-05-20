@@ -258,9 +258,14 @@ class reservationActions extends sfActions
   		$this->param = "creneauoff";
   
   		$this->creneauoff = CreneauoffTable::getInstance()->getAllCreneauoff()->execute();
-  		
   }
   
+  public function executeCreneauoffNew(sfWebRequest $request)
+  {
+  		$this->param = "creneauoff";
+  
+  		$this->creneauoff = CreneauoffTable::getInstance()->getAllCreneauoff()->execute();
+  }
   
   /**
   *	Envoie un mail

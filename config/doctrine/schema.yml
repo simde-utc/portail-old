@@ -715,7 +715,7 @@ Salle:
       
 CreneauOff:
   connection: doctrine
-  tableName: CreneauOff
+  tableName: creneauoff
   columns:
     date: { type: date, primary: true }
     

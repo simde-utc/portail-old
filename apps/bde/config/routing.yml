@@ -213,6 +213,10 @@ reservation_salle_delete:
 reservation_creneauoff:
   url: /reservation/creneauoff
   param: { module: reservation, action: creneauoff }
+  
+reservation_creneauoff_new:
+  url: /reservation/creneauoff/new
+  param: { module: reservation, action: creneauoffNew }
 
 reservation_salle_update:
   url: /reservation/salle/update/:id

@@ -708,7 +708,7 @@ Salle:
     name: { type: string(255), notnull: true, unique: true }
     capacite: { type : integer, notnull: true }
     couleur: { type : string(6), notnull: true }
-    description: { type: text, notnull: false }
+    description: { type: string, notnull: false }
     id_pole : { type : integer, notnull: true }
   relations:
     Pole: { onUpdate: CASCADE, local: id_pole, foreign: id, class: Pole }
@@ -740,9 +740,9 @@ Reservation:
     date: { type: date, notnull: true }
     heuredebut: { type: time, notnull: true }
     heurefin: { type: time, notnull: true }
-    activite: { type: string, notnull: true }
+    activite: { type: string(255), notnull: true }
     estvalide: { type: boolean, notnull: true }
-    commentaire: { type: text, notnull: false }
+    commentaire: { type: string, notnull: false }
   relations:
     UserValid: { onUpdate: CASCADE, local: id_user_valid, foreign: id, class: SfGuardUser }
     UserReserve: { onUpdate: CASCADE, local: id_user_reserve, foreign: id, class: SfGuardUser }

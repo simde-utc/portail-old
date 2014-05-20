@@ -14,7 +14,6 @@ class CreneauOff extends BaseCreneauOff
 {
 	public function __toString()
 	{
-		//return $this->date;
-		return date("j/n/Y",strtotime(str_replace('-','/', $this->date)));
+		return date("j/n/Y",strtotime(str_replace('-','/', $this->Date())));
 	}
 }

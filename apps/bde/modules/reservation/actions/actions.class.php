@@ -257,14 +257,63 @@ class reservationActions extends sfActions
   {
   		$this->param = "creneauoff";
   
+  		$this->deleteOldCreneauoff();
+  
   		$this->creneauoff = CreneauoffTable::getInstance()->getAllCreneauoff()->execute();
+  		
   }
   
   public function executeCreneauoffNew(sfWebRequest $request)
   {
   		$this->param = "creneauoff";
+
+		$this->form = new SalleCreneauOffForm(); //new CreneauOffForm();
+
+  		// Envoie du formulaire
+  		if ($request->isMethod('POST'))
+  		{
+  			$this->date = $request->getParameter('creneau_off')['creneauoff'];
+			$salles = $request->getParameter('creneau_off')['salle'];
+			
+			// si le creneau existe déjà !!
+			if (CreneauoffTable::getInstance()->isCreneauoffExist($this->date))
+			{
+				$this->exist = true;
+			}
+  			// La date choisi doit etre plus grande que la date d'aujourd'hui
+  			elseif ($this->date >= date("Y-m-d"))
+  			{
+  				// Sauvegarde du creneau
+  				$this->creneau = new CreneauOff();
+  				$this->creneau->setDate($this->date);
+  				$this->creneau->save();
+  				
+  				foreach($salles as $salle)
+  				{
+	  				$a = new SalleCreneauOff();
+	  				$a->setCreneauOff($this->creneau);
+	  				$a->setSalle(SalleTable::getInstance()->getSalleById($salle)->execute()[0]);
+	  				$a->save();
+	  			}
+  			}
+  		}
+
+  }
   
-  		$this->creneauoff = CreneauoffTable::getInstance()->getAllCreneauoff()->execute();
+  /**
+  *	Permet de supprimer les creneauxOff qui sont dépassé !
+  *
+  *
+  */
+  private function deleteOldCreneauoff()
+  {
+  		$old = CreneauoffTable::getInstance()->getOldCreneauoff()->execute();
+  		
+		foreach ($old as $c)
+		{
+			$c->delete();
+		}
+  		
   }
   
   /**

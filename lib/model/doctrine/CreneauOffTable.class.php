@@ -19,6 +19,19 @@ class CreneauOffTable extends Doctrine_Table
     
     public function getAllCreneauoff()
     {
-    		return $this->createQuery();
+    		return $this->createQuery()->orderby('date');
+    }
+    
+    public function getOldCreneauoff()
+    {
+    		return $this->createQuery()
+    					->where('date<date(now())'); // Fonction de mysql
+    }
+    
+    public function isCreneauoffExist($date)
+    {
+    		$c = $this->createQuery()->where("date=?",$date)->execute();
+    		
+    		return (count($c) > 0);
     }
 }

@@ -216,7 +216,11 @@ reservation_creneauoff:
   
 reservation_creneauoff_new:
   url: /reservation/creneauoff/new
-  param: { module: reservation, action: creneauoff }
+  param: { module: reservation, action: creneauoffNew }
+  
+reservation_creneauoff_show:
+  url: /reservation/creneauoff/:date
+  param: { module: reservation, action: creneauoffShow }
 
 reservation_salle_update:
   url: /reservation/salle/update/:id

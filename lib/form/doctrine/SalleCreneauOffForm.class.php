@@ -13,25 +13,33 @@ class SalleCreneauOffForm extends BaseSalleCreneauOffForm
   public function configure()
   {
   		/*
-  		Le type date est mieux pour l'utilisateur
-  		Sauf que internet explorer et firefox ne le connaisse pas
-  		Donc le formulaire est different celon les navigateurs  		
+  			Le type date est mieux pour l'utilisateur
+  			Sauf que internet explorer et firefox ne le connaisse pas
+  			Donc le formulaire est different celon les navigateurs  		
   		*/
-  		
   		if (preg_match ("/firefox/i",$_SERVER['HTTP_USER_AGENT']) ||
   			preg_match ("/explorer/i",$_SERVER['HTTP_USER_AGENT']))
   			{
   				$this->widgetSchema['creneauoff'] =  new sfWidgetFormDate(
 	  			array('format' => '%day%/%month%/%year%')
 	  			);
+	  			
+	  			$this->setValidators(array(
+					'creneauoff' => new sfValidatorDate(array('required'=>'Ce champs est obligatoire')),
+				));
   			}
   			else
   			{
   				$this->widgetSchema['creneauoff'] = new sfWidgetFormInput(
   				array('type' => 'date')
   				);
+  				
+  				$this->setValidators(array(
+					'creneauoff' => new sfValidatorString(array('required'=>'Ce champs est obligatoire')),
+				));
   			}
   			
+  			// Changement du label
   			$this->widgetSchema['creneauoff']->setLabel('Date');
   		
   			
@@ -41,6 +49,12 @@ class SalleCreneauOffForm extends BaseSalleCreneauOffForm
   
   			$this->widgetSchema['salle']->setAttribute('style','height: '.$t.'px');
   
+  			// Validator
+  			$this->setValidators(array(
+				'salle'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Salle'), 'required'=>'Ce champs est obligatoire', 'multiple'=>true)),
+			 ));
+			 
+  			
   			$this->widgetSchema->setNameFormat('creneau_off[%s]');
   
   }

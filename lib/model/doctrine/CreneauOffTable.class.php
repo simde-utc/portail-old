@@ -28,9 +28,14 @@ class CreneauOffTable extends Doctrine_Table
     					->where('date<date(now())'); // Fonction de mysql
     }
     
+    public function getCreneauoffByDate($date)
+    {
+    		return $this->createQuery()->where("date=?",$date);
+    }
+    
     public function isCreneauoffExist($date)
     {
-    		$c = $this->createQuery()->where("date=?",$date)->execute();
+    		$c = $this->getCreneauoffByDate($date)->execute();
     		
     		return (count($c) > 0);
     }

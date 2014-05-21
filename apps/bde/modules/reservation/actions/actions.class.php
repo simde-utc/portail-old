@@ -274,7 +274,7 @@ class reservationActions extends sfActions
   		{
   			$this->date = $request->getParameter('creneau_off')['creneauoff'];
 			$salles = $request->getParameter('creneau_off')['salle'];
-			
+
 			// si le creneau existe déjà !!
 			if (CreneauoffTable::getInstance()->isCreneauoffExist($this->date))
 			{
@@ -298,6 +298,27 @@ class reservationActions extends sfActions
   			}
   		}
 
+  }
+  
+  public function executeCreneauoffShow(sfWebRequest $request)
+  {
+  		$this->param = "creneauoff";
+  
+  		$this->date = $request->getParameter('date',-1);
+  		
+  		$this->forward404Unless(($this->date != -1) && CreneauOffTable::getInstance()->isCreneauoffExist($this->date));
+  		
+  		$this->creneauoff = CreneauOffTable::getInstance()->getCreneauoffByDate($this->date)->execute()[0];
+  		
+  		if ($request->isMethod('post'))
+  		{
+  			$this->del = $request->getParameter('delete');
+  		
+  			$this->creneauoff->getSalleCreneauOff()->delete();
+  			
+  			$this->creneauoff->delete();
+  		}
+  		
   }
   
   /**

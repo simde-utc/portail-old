@@ -744,8 +744,8 @@ Reservation:
     estvalide: { type: boolean, notnull: true }
     commentaire: { type: string, notnull: false }
   relations:
-    UserValid: { onUpdate: CASCADE, local: id_user_valid, foreign: id, class: SfGuardUser }
-    UserReserve: { onUpdate: CASCADE, local: id_user_reserve, foreign: id, class: SfGuardUser }
+    UserReserve: { local: id_user_reserve, foreign: id, class: sfGuardUser }
+    UserValide: { local: id_user_valid, foreign: id, class: sfGuardUser }
     Asso: { local: id_asso, foreign: id, onUpdate: CASCADE }
     Salle: { local: id_salle, foreign: id, onUpdate: CASCADE }
 

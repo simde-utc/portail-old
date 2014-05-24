@@ -7,7 +7,8 @@
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
-    <?php include_javascripts() ?>
+    <?php use_javascript('jquery-1.7.2.min.js') ?> <!-- à laisser ? -->
+    <?php include_javascripts() ?>   
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-static-top">

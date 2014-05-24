@@ -39,5 +39,7 @@ class PoleTable extends Doctrine_Table
       ->where('p.id = ?', $id);
     return $q->fetchOne();
   }
+  
+  
 
 }

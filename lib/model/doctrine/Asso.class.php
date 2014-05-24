@@ -157,4 +157,5 @@ class Asso extends BaseAsso {
     else
       return $this->getPole()->getCouleur();
   }
+  
 }

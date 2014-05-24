@@ -1,5 +1,7 @@
+<?php if (!$ok): ?> 
+
 <div id="FormShape">
-<form action="<?php echo url_for('reservation_process_form') ?>" method="post" >
+<form action="<?php echo url_for('reservation'),array('id' => $idSalle) ?>" method="post" >
 <div id=formResa1>
 
  <legend> Réservation: </legend>
@@ -9,12 +11,13 @@
     </tr>
     <tr>
       <td class="CaseLabel">De</td><td> <?php echo $form['heuredebut']->render() ?> à <?php echo $form['heurefin']->render() ?></td>
-    </tr> 
+    </tr>
+    <!-- Faire test si salle pôle ou salle BDE pour voir si besoin de demander l'asso-->		
     <tr>
       <td class="CaseLabel"> Association:</td><td> <?php echo $form['id_asso']->render()?></td>
     </tr>
     <tr>
-      <td class="CaseLabel">Activite :</td><td> Codé en dur avec un autre <br/></td>
+      <td class="CaseLabel">Activite :</td><td> <?php echo $form['activite']->render()?></td>
     </tr>
 </table>
 </div>
@@ -24,14 +27,7 @@
 <div id=formResa2>
     <p> Nombre Personnes : </p><?php echo $form['nbPers']->render() ?>
 
-    <label for="utilise">Activité: </label>
-   <select name="utilise" id="utilise">
-    <option value="toujours"> Liste</option>
-    <option value="parfois"> à déterminer</option>
-    <option value="jamais"> par BDE</option>
-   </select>
-
-        <?php echo $form['message']->renderRow() ?>
+    <?php echo $form['message']->renderRow() ?>
    
     <p>
  <input type="submit" name="submit" value="Envoyer" />
@@ -41,3 +37,18 @@
 
 </form>
 </div>
+	
+<?php else: ?>
+
+	<p>Réservation ajoutée avec succès !</p>
+
+	//<?php include_partial("showSalle",array('salle'=>$salle_modif)) ?>
+	
+
+<?php endif; ?>
+
+
+
+
+
+

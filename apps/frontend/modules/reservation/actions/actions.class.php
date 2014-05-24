@@ -17,23 +17,47 @@ class reservationActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-	 $this->idSalle = $request->getUrlParameter("id", -1);
-	 //$this->executeCalendar($request);  
-	
-	// fct de pole : getOneById($id)
-	//$this->pole_name = SalleTable::getInstance()->getPoleOfSalle($this->idSalle)->execute()[0];
+	$this->idSalle = $request->getUrlParameter("id", -1);
 	
 	$this->userIdentified = false;
 	
 	if ($this->getUser()->isAuthenticated()) // besoin de controler si il y a un numéro de salles
 	{
-		      $this->userIdentified= true;
+	
+		$this->userIdentified= true;
 		      
-		      $UserID = $this->getUser()->getGuardUser()->getId();
-		      
-		      $values = array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
+		$UserID = $this->getUser()->getGuardUser()->getId();
+		     
+		$values = array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
 	    
-		      $this->form = new ResaForm(array(),$values);
+		$this->form = new ResaForm(array(),$values);
+		
+		$this->ok = false;
+  
+  		if ($request->isMethod('post'))
+  		{
+  			$this->form->bind($request->getParameter($this->form->getName()));
+		
+			if ($this->form->isValid())
+			{
+				$this->idSalle=$request->getPostParameter('resa-form[id_salle]');
+	
+				$reservation = new Reservation();
+				
+				$reservation->setIdUserReserve($this->getUser()->getGuardUser()->getId());
+				$reservation->setIdAsso($request->getPostParameter('resa-form[id_asso]'));
+				$reservation->setIdSalle($request->getPostParameter('resa-form[id_salle]'));
+				$reservation->setDate(sprintf("%02d",$request->getPostParameter('resa-form[date][year]'))."-".sprintf("%02d",$request->getPostParameter('resa-form[date][month]'))."-".sprintf("%02d",$request->getPostParameter('resa-form[date][day]')));
+				$reservation->setHeuredebut(sprintf("%02d",$request->getPostParameter('resa-form[heuredebut][hour]')).":".sprintf( "%02d", $request->getPostParameter('resa-form[heuredebut][minute]')).":00");
+				$reservation->setHeurefin(sprintf("%02d",$request->getPostParameter('resa-form[heurefin][hour]')).":".sprintf( "%02d", $request->getPostParameter('resa-form[heurefin][minute]')).":00");
+				$reservation->setActivite($request->getPostParameter('resa-form[activite]'));
+				$reservation->setEstValide(1);
+
+				$reservation->save(); // Save into database 
+				$this->ok=true;
+			}
+  		}
+  	      
 	}
 	 
   }
@@ -53,24 +77,23 @@ class reservationActions extends sfActions
   {
 	$this->reservation = ReservationTable::getInstance()->getReservationById($request->getUrlParameter("id"))->execute()[0];
   }
-
   
-  public function executeProcessFormResa(sfWebRequest $request)
+  public function executeProcessFormResa(sfWebRequest $request /*, sfForm $form*/)
   {
-	
-	$this->forward404Unless($request->isMethod('post'));
+	    $this->idSalle=$request->getPostParameter('resa-form[id_salle]');
+	    
+	    $reservation = new Reservation();
+	    $reservation->setIdUserReserve($this->getUser()->getGuardUser()->getId());
+	    $reservation->setIdAsso($request->getPostParameter('resa-form[id_asso]'));
+	    $reservation->setIdSalle($request->getPostParameter('resa-form[id_salle]'));
+	    $reservation->setDate(sprintf("%02d",$request->getPostParameter('resa-form[date][year]'))."-".sprintf("%02d",$request->getPostParameter('resa-form[date][month]'))."-".sprintf("%02d",$request->getPostParameter('resa-form[date][day]')));
+	    $reservation->setHeuredebut(sprintf("%02d",$request->getPostParameter('resa-form[heuredebut][hour]')).":".sprintf( "%02d", $request->getPostParameter('resa-form[heuredebut][minute]')).":00");
+	    $reservation->setHeurefin(sprintf("%02d",$request->getPostParameter('resa-form[heurefin][hour]')).":".sprintf( "%02d", $request->getPostParameter('resa-form[heurefin][minute]')).":00");
+	    $reservation->setActivite("Reunioon");
+	    
+	    $reservation->save(); // Save into database  
 
-	$this->idSalle=$request->getPostParameter('test-form[id_salle]');
-	
-	$reservation = new Reservation();
-	$reservation->setIdUserReserve($this->getUser()->getGuardUser()->getId());
-	$reservation->setIdAsso($request->getPostParameter('test-form[id_asso]'));
-	$reservation->setIdSalle($request->getPostParameter('test-form[id_salle]'));
-	$reservation->setDate(sprintf("%02d",$request->getPostParameter('test-form[date][year]'))."-".sprintf("%02d",$request->getPostParameter('test-form[date][month]'))."-".sprintf("%02d",$request->getPostParameter('test-form[date][day]')));
-	$reservation->setHeuredebut(sprintf("%02d",$request->getPostParameter('test-form[heuredebut][hour]')).":".sprintf( "%02d", $request->getPostParameter('test-form[heuredebut][minute]')).":00");
-	$reservation->setHeurefin(sprintf("%02d",$request->getPostParameter('test-form[heurefin][hour]')).":".sprintf( "%02d", $request->getPostParameter('test-form[heurefin][minute]')).":00");
-	
-	$reservation->save(); // Save into database  
-	
-  }
+	}
+
+
 }

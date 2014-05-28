@@ -1,5 +1,13 @@
 <fieldset>
-	<legend><?php if ($idSalle != -1) echo "Salle " . $idSalle; else echo "Salles"; ?></legend>
+	<legend>
+		<?php if ($idSalle != -1)
+		{ 
+			$salle = SalleTable::getInstance()->getSalleById($idSalle)->execute()[0];
+			echo "Salle " . $idSalle . "<p>". $salle->getDescription() ."</p>"; 
+		}
+		else 
+			echo "Salles"; ?>
+	</legend>
 			<select id="selectSalle">
 				<option value="<?php echo url_for('@reservation') ?>">Toutes les salles</option>
 				<? $lastIdPole = -1 ?>

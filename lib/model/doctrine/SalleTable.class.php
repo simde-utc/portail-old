@@ -45,12 +45,12 @@ class SalleTable extends Doctrine_Table
     		return (count($salle) > 0);
     }
     
-    public function getSalleByPole()
+    public function getSalleByPole($poleid)
     {
     		$q = $this->createQuery('q')
     					->leftJoin('q.Pole p')
     					->leftJoin('p.Asso a')
-    					->orderBy('p.asso_id');
+    					->where('id_pole=?',$poleid);
     					
     		//$a = $q->execute();
     		

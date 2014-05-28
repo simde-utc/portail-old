@@ -47,9 +47,7 @@ class ReservationTable extends Doctrine_Table
     public function getReservationBySalle($salle)
     {
         $q = $this->createQuery('a')
-            ->select('a.*, as.id, as.name as Name, p.couleur')
-            ->leftJoin('a.Asso as')
-	    		->where('a.id_salle = ?', $salle)
+	    ->where('a.id_salle = ?', $salle)
             ->addOrderBy('a.date');
             
          return $q;

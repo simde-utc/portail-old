@@ -11,10 +11,12 @@ class reservationComponents extends sfComponents
   {    
     	if($this->getUser()->isAuthenticated())
 	{
+		//BDE toujours dans les poles de l'utilisateur
+		$this->polesUser = array("1");
+
 		$this->assosUser = AssoTable::getInstance()->getMyAssos($this->getUser()->getGuardUser()->getId())->execute();
 		if($this->assosUser)
 		{
-			$this->polesUser = array();
 			foreach($this->assosUser as $asso)
 			{
 				$pole = PoleTable::getInstance()->getOneById($asso->getPoleId());
@@ -22,9 +24,14 @@ class reservationComponents extends sfComponents
 					array_push($this->polesUser, $pole->getId());
 			}
 		}
+		$this->sallesUser = array();
+		    foreach($this->polesUser as $pole)
+		    {
+		   	 $salles = SalleTable::getInstance()->getSalleByPole($pole)->execute();
+			 foreach($salles as $salle)
+				array_push($this->sallesUser, $salle);
+		    }
 	}
-    $this->salles = SalleTable::getInstance()->getSalleByPole()->execute();
   }
 
 }
-

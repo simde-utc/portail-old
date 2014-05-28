@@ -8,7 +8,7 @@ foreach ($reservation as $res){
     "allDay" => false,
     "start" => strtotime($res->getDate() . " " . $res->getheuredebut()),
     "end" => strtotime($res->getDate() . " " . $res->getheurefin()),
-    "color" => $res->getSalle()->getCouleur(),
+    "color" => "#" . $res->getSalle()->getCouleur(),
     "url" => url_for('reservation_show', array("id" => $res->getID()))
   );  
 }

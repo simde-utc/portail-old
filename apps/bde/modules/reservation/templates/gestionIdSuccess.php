@@ -1,5 +1,21 @@
 <?php include_partial("insideMenu",array("param" => $param)) ?>
 
+<h4><?php echo link_to('<< retour','reservation_gestion') ?></h4>
+
 <h3>Gestion des reservations</h3>
 
-// Ajout de cette page afin d'afficher la réservation + button supprimer
+<?php include_partial('showReservation',array('reservation'=>$reservation)) ?>
+
+<?php if (isset($delete)): ?>
+
+	<p>Supprimée !</p>
+
+<?php else: ?>
+
+	<form method="post" action="<?php echo url_for('reservation_gestion_id',array('id'=>$id)) ?>">
+
+		<input type="submit" value="Supprimer" name="delete" />
+
+	</form>
+	
+<?php endif ?>

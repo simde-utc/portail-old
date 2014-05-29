@@ -154,6 +154,22 @@ ul#menuBde {
 	border-bottom: none;
 }
 
+.opacity
+{
+	opacity: 0.5;
+}
+
+.popUp span {
+    display:none;
+    background: #ccc;
+    border: 1px solid;
+}
+.popUp:hover span {
+    display:block;
+    position:fixed;
+    overflow:hidden;
+}
+
 /* -- CSS FORMULAIRE -- */
 
  #FormShape{

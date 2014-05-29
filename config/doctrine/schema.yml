@@ -725,8 +725,8 @@ SalleCreneauOff:
     creneauoff: { type : date, primary: true }
     salle: { type : integer, primary: true }
   relations:
-    CreneauOff: { onUpdate: CASCADE, local: creneauoff, foreign: date }
-    Salle: { onUpdate: CASCADE, local: salle, foreign: id }
+    CreneauOff: { onDelete: CASCADE, local: creneauoff, foreign: date }
+    Salle: { onDelete: CASCADE, local: salle, foreign: id }
     
 Reservation:
   connection: doctrine

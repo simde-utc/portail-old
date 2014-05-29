@@ -12,7 +12,8 @@ foreach ($reservation as $res){
     "start" => strtotime($res->getDate() . " " . $res->getheuredebut()),
     "end" => strtotime($res->getDate() . " " . $res->getheurefin()),
     "color" => "#" . $res->getSalle()->getCouleur(),
-    "url" => url_for('reservation_show', array("id" => $res->getID()))
+    "url" => url_for('reservation_show', array("id" => $res->getID())),
+    "className" => (!$res->getEstvalide()) ? 'opacity' : ''
   );  
 }
 echo json_encode($result);

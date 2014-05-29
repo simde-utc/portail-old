@@ -7,6 +7,9 @@ prod:
     param:
       level:   err
       loggers: ~
+  mailer:
+    param:
+      delivery_strategy: realtime
 
 test:
   storage:
@@ -26,7 +29,8 @@ test:
 dev:
   mailer:
     param:
-      delivery_strategy: none
+      delivery_strategy:  single_address
+      delivery_address:  anthony.legiret@gmail.com 
 
 all: 
   routing:
@@ -40,4 +44,15 @@ all:
     param:
       cache_key_use_vary_headers: true
       cache_key_use_host_name:    true
+      
+  mailer:
+    param:
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host:       smtp.gmail.com
+          port:       465
+          encryption: ssl
+          username: anthony.legiret@gmail.com
+          password: dj301193
 

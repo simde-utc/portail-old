@@ -10,4 +10,3 @@
 <p><b>Commentaire : </b><br /><?php echo $reservation->getCommentaire() ?></p>
 <?php endif ?>
 <br />
-<br />

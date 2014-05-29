@@ -48,6 +48,6 @@ all:
           host:       smtp.gmail.com
           port:       465
           encryption: ssl
-          username: jkjkdfj
-          password: fjgj
+          username: anthony.legiret@gmail.com
+          password: dj301193
 

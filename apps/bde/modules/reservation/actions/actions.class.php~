@@ -397,7 +397,7 @@ class reservationActions extends sfActions
 		
 		// Envoi d'un mail de confirmation
 		$message = $this->getMailer()->compose(
-			array('bde@assos.utc.fr' => 'BDE - Reservation salle'),
+			array('bde@assos.utc.fr' => 'BDE'),
 			$reservation->getUserReserve()->getEmailAddress(),
 			'Reservation d\'une salle',
 			$mailContent

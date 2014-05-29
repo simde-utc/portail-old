@@ -55,9 +55,7 @@ $(document).ready(function() {
 		//console.log("DROP");
 		//console.log(event);
 		
-		var comment = askForValidateChanges(event.title);
-		
-		if (comment != null)
+		if (askForValidateChanges(event.title) != null)
 		{
 		
 			$.ajax({

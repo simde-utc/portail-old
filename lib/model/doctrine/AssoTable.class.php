@@ -162,8 +162,7 @@ class AssoTable extends Doctrine_Table
             ->andWhere('s.id = ?', $idSalle)
             ->andWhere('s.id_pole = q.pole_id') 
             ->andWhere('m.semestre_id = ?', sfConfig::get('app_portail_current_semestre'));
-        $assoNames = $q->execute();
-        return $assoNames;
+        return $q;
     }
 
     /**

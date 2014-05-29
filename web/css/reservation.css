@@ -170,6 +170,7 @@ ul#menuBde {
     overflow:hidden;
 }
 
+
 /* -- CSS FORMULAIRE -- */
 
  #FormShape{
@@ -182,7 +183,7 @@ ul#menuBde {
     overflow: hidden;
     z-index:10001;
     border-radius: 10px;
-    background-color:#FFFF99;
+    background-color:#E8E8E8;
  }
  
  
@@ -226,17 +227,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
   padding-top: 5%;
 }
 
-#resa-form_date_day, #resa-form_date_month,#resa-form_heuredebut_hour,  #resa-form_heuredebut_minute, #resa-form_heurefin_hour,  #resa-form_heurefin_minute{
+#reservation_date_day, #reservation_date_month,#reservation_heuredebut_hour,  #reservation_heuredebut_minute, #reservation_heurefin_hour,  #reservation_heurefin_minute{
   width:53px;    
   display: inline-block;
 }
 
-#resa-form_date_year{
+#reservation_date_year{
   width:72px;    
   display: inline-block;
 }
 
-#resa-form_date{
+#reservation_date{
   display: inline-block;
 }
 
@@ -247,3 +248,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 .formTab{
   border-spacing:30px;
 }
+

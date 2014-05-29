@@ -27,36 +27,42 @@ class reservationActions extends sfActions
 		$this->userIdentified= true;
 		      
 		$UserID = $this->getUser()->getGuardUser()->getId();
-		     
-		$values = array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
+		
+		// on ne récupère que les noms d'assos correspondant aux pôles 
+		// pourquoi prend le login et pas le nom ?
+		$this->query = AssoTable::getInstance()->getMyAssosName($UserID,$this->idSalle);
+		//var_dump($this->query);
+		
+		// création du tableua à passer au constructeur du formulaire de réservation
+		$values = array('UserID'=> $UserID,'idSalle'=> $this->idSalle, 'query'=>$this->query);
 	    
-		$this->form = new ResaForm(array(),$values);
+		$this->form = new ReservationForm(array(),$values);
+		
+		// TO DO
+		//$this->form->getWidget('id_asso')->setAttribute('can_be_empty',true);
+		
+		// valeur par défaut pour les champs cachés.
+		$this->form->setDefault('id_salle', $this->idSalle);
+		$this->form->setDefault('id_user_reserve', $this->getUser()->getGuardUser()->getId());
+		$this->form->setDefault('estvalide', 0); // A VOIR si 2 semaines avant ou pas
 		
 		$this->ok = false;
+		$this->afficherErreur= false;
   
   		if ($request->isMethod('post'))
   		{
   			$this->form->bind($request->getParameter($this->form->getName()));
-		
+			//var_dump($this->form);
 			if ($this->form->isValid())
 			{
-				$this->idSalle=$request->getPostParameter('resa-form[id_salle]');
-	
-				$reservation = new Reservation();
-				
-				$reservation->setIdUserReserve($this->getUser()->getGuardUser()->getId());
-				$reservation->setIdAsso($request->getPostParameter('resa-form[id_asso]'));
-				$reservation->setIdSalle($request->getPostParameter('resa-form[id_salle]'));
-				$reservation->setDate(sprintf("%02d",$request->getPostParameter('resa-form[date][year]'))."-".sprintf("%02d",$request->getPostParameter('resa-form[date][month]'))."-".sprintf("%02d",$request->getPostParameter('resa-form[date][day]')));
-				$reservation->setHeuredebut(sprintf("%02d",$request->getPostParameter('resa-form[heuredebut][hour]')).":".sprintf( "%02d", $request->getPostParameter('resa-form[heuredebut][minute]')).":00");
-				$reservation->setHeurefin(sprintf("%02d",$request->getPostParameter('resa-form[heurefin][hour]')).":".sprintf( "%02d", $request->getPostParameter('resa-form[heurefin][minute]')).":00");
-				$reservation->setActivite($request->getPostParameter('resa-form[activite]'));
-				$reservation->setEstValide(1);
-
-				$reservation->save(); // Save into database 
+				$this->reservation=$this->form->save(); // Save into database 
 				$this->ok=true;
 			}
-  		}
+			else
+			{
+			      $this->afficherErreur= true;
+			}
+		}
   	      
 	}
 	 

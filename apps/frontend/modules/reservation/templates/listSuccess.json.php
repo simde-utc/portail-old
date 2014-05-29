@@ -5,6 +5,15 @@ foreach ($reservations as $res){
 	$title = $res->getAsso()->getName();
   else
   	$title = $res->getUserReserve()->getName();
+
+if(strtotime($res->getheurefin())-time()>3600 && $res->getUserReserve()->getId()==$user->getId())
+{
+	$url = "http://google.com";
+}
+  else
+{
+	$url = url_for('reservation_show', array("id" => $res->getID()));
+}
   $result[] = array(
     "id" => ($res->getId()),
     "title" => $title,
@@ -12,7 +21,7 @@ foreach ($reservations as $res){
     "start" => strtotime($res->getDate() . " " . $res->getheuredebut()),
     "end" => strtotime($res->getDate() . " " . $res->getheurefin()),
     "color" => "#" . $res->getSalle()->getCouleur(),
-    "url" => url_for('reservation_show', array("id" => $res->getID())),
+    "url" => $url,
     "className" => (!$res->getEstvalide()) ? 'opacity' : ''
   );  
 }

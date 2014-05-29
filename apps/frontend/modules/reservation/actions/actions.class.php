@@ -64,6 +64,7 @@ class reservationActions extends sfActions
   
   public function executeList(sfWebRequest $request)
   {
+	$this->user = $this->getUser()->getGuardUser();
 	if($this->getUser()->isAuthenticated())
 	{
 		//BDE toujours dans les poles de l'utilisateur

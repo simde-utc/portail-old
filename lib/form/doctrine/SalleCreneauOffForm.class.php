@@ -26,6 +26,7 @@ class SalleCreneauOffForm extends BaseSalleCreneauOffForm
 	  			
 	  			$this->setValidators(array(
 					'creneauoff' => new sfValidatorDate(array('required'=>'Ce champs est obligatoire')),
+					'salle'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Salle'), 'required'=>'Ce champs est obligatoire', 'multiple'=>true)),
 				));
   			}
   			else
@@ -36,6 +37,7 @@ class SalleCreneauOffForm extends BaseSalleCreneauOffForm
   				
   				$this->setValidators(array(
 					'creneauoff' => new sfValidatorString(array('required'=>'Ce champs est obligatoire')),
+					'salle'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Salle'), 'required'=>'Ce champs est obligatoire', 'multiple'=>true)),
 				));
   			}
   			
@@ -49,11 +51,6 @@ class SalleCreneauOffForm extends BaseSalleCreneauOffForm
   
   			$this->widgetSchema['salle']->setAttribute('style','height: '.$t.'px');
   
-  			// Validator
-  			$this->setValidators(array(
-				'salle'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Salle'), 'required'=>'Ce champs est obligatoire', 'multiple'=>true)),
-			 ));
-			 
   			
   			$this->widgetSchema->setNameFormat('creneau_off[%s]');
   

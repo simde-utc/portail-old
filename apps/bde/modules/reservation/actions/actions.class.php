@@ -196,11 +196,11 @@ class reservationActions extends sfActions
   public function executeGestion(sfWebRequest $request)
   {
   		$this->param = "gestion";
-  
   }
   
   public function executeGestionEdit(sfWebRequest $request)
   {
+  		// AJAX 
   		if (!$request->isXmlHttpRequest())
   		{
   			$this->forward404Unless(false);
@@ -219,10 +219,14 @@ class reservationActions extends sfActions
   		$reservation->setHeureFin($end);
   		$reservation->save();
   		
+  		$this->sendMail();
+  		
   }
   
+  /*
   public function executeGestionDelete(sfWebRequest $request)
   {
+  		// AJAX
   		if (!$request->isXmlHttpRequest())
   		{
   			$this->forward404Unless(false);
@@ -231,15 +235,24 @@ class reservationActions extends sfActions
   		$reservation = ReservationTable::getInstance()->getReservationById($request->getParameter('id'))->execute()[0];
   		$reservation->delete();
   }
+  */
   
   public function executeGestionId(sfWebRequest $request)
   {
+  		$this->param = "gestion";
+  
   		$this->id = $request->getParameter('id',-1);
   		
   		$this->forward404Unless($this->id!=-1);
   		
-  		$reservation = ReservationTable::getInstance()->getReservationById($this->id)->execute()[0];
+  		$this->reservation = ReservationTable::getInstance()->getReservationById($this->id)->execute()[0];
   		
+  		if ($request->isMethod('POST'))
+  		{
+  			$this->delete = true;
+  		
+  			$this->reservation->delete();
+  		}
   		
   }
   
@@ -249,7 +262,7 @@ class reservationActions extends sfActions
   }
   
   /**
-  *
+  *	Gestion des creneaux Off
   *
   *
   */
@@ -272,32 +285,42 @@ class reservationActions extends sfActions
   		// Envoie du formulaire
   		if ($request->isMethod('POST'))
   		{
-  			$this->date = $request->getParameter('creneau_off')['creneauoff'];
-			$salles = $request->getParameter('creneau_off')['salle'];
-
-			// si le creneau existe déjà !!
-			if (CreneauoffTable::getInstance()->isCreneauoffExist($this->date))
+  			$this->form->bind($request->getParameter($this->form->getName()));
+		
+			if ($this->form->isValid())
 			{
-				$this->exist = true;
-			}
-  			// La date choisi doit etre plus grande que la date d'aujourd'hui
-  			elseif ($this->date >= date("Y-m-d"))
-  			{
-  				// Sauvegarde du creneau
-  				$this->creneau = new CreneauOff();
-  				$this->creneau->setDate($this->date);
-  				$this->creneau->save();
-  				
-  				foreach($salles as $salle)
-  				{
-	  				$a = new SalleCreneauOff();
-	  				$a->setCreneauOff($this->creneau);
-	  				$a->setSalle(SalleTable::getInstance()->getSalleById($salle)->execute()[0]);
-	  				$a->save();
+	  			$this->date = $request->getParameter('creneau_off')['creneauoff'];
+				$salles = $request->getParameter('creneau_off')['salle'];
+
+				if (is_array($this->date))
+				{
+					$this->date = date("Y-m-d",mktime(0,0,0,$this->date['month'],$this->date['year'],$this->date['day']));
+				}
+
+				// si le creneau existe déjà !!
+				if (CreneauoffTable::getInstance()->isCreneauoffExist($this->date))
+				{
+					$this->exist = true;
+				}
+	  			// La date choisi doit etre plus grande que la date d'aujourd'hui
+	  			elseif ($this->date >= date("Y-m-d"))
+	  			{	  				
+	  				// Sauvegarde du creneau
+	  				$this->creneau = new CreneauOff();
+	  				$this->creneau->setDate($this->date);
+	  				$this->creneau->save();
+	  					  				
+	  				foreach($salles as $salle)
+	  				{
+		  				$a = new SalleCreneauOff();
+		  				$a->setCreneauOff($this->creneau);
+		  				$a->setSalle(SalleTable::getInstance()->getSalleById($salle)->execute()[0]);
+		  				//$a->setSalle($salle); FONCTIONNNE PAS AVEC ID de la salle
+		  				$a->save();
+		  			}
 	  			}
   			}
   		}
-
   }
   
   public function executeCreneauoffShow(sfWebRequest $request)
@@ -313,8 +336,6 @@ class reservationActions extends sfActions
   		if ($request->isMethod('post'))
   		{
   			$this->del = $request->getParameter('delete');
-  		
-  			$this->creneauoff->getSalleCreneauOff()->delete();
   			
   			$this->creneauoff->delete();
   		}
@@ -331,7 +352,7 @@ class reservationActions extends sfActions
   		$old = CreneauoffTable::getInstance()->getOldCreneauoff()->execute();
   		
 		foreach ($old as $c)
-		{
+		{		
 			$c->delete();
 		}
   		
@@ -376,7 +397,7 @@ class reservationActions extends sfActions
 			$mailContent
 		);
 		
-		//$this->getMailer()->send($message);
+		$this->getMailer()->send($message);
 		
 		return $mailContent;
   }

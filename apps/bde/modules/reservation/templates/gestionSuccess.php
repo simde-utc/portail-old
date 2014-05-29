@@ -10,6 +10,21 @@
 <div id="calendar" style="background:#FFF"></div>
 <script>
 $(document).ready(function() {
+	
+	function askForValidateChanges(nameEvent)
+	{
+		var txt = "L'evenement "+nameEvent+" a été modifié.\n Afin de valider cette modification, entrer un commentaire si dessous afin de prévenir le titulaire par mail de la modification de sa réservation.";
+		
+		var txtField = "Votre commentaire ici";
+		
+		var ret = window.prompt(txt,txtField);
+		
+		if (ret == txtField)
+			return null;
+			
+		return ret;
+	}
+	
   $("#calendar").fullCalendar({
  	 
  	 eventResize: function(event,dayDelta,minuteDelta,revertFunc) {
@@ -18,16 +33,15 @@ $(document).ready(function() {
 		//console.log(event);
 		//a = event;
 		
-		var a = window.prompt("sometext","comment");
-		
-		if (a!=null)
+		if (var comment = askForValidateChanges(event.title) != null)
 		{
 			$.ajax({
 				url: "<?php echo url_for('reservation_gestion_edit') ?>",
 				data: {id:event.id, 
 						date:event.start.toJSON().split("T")[0], 
 						start:event.start.toTimeString().split(" ")[0],
-						end:event.end.toTimeString().split(" ")[0]
+						end:event.end.toTimeString().split(" ")[0],
+						comment : comment
 						}		
 			});
 		}
@@ -39,22 +53,32 @@ $(document).ready(function() {
 		//console.log("DROP");
 		//console.log(event);
 		
-		$.ajax({
-			url: "<?php echo url_for('reservation_gestion_edit') ?>",
-			data: {id:event.id, 
-					date:event.start.toJSON().split("T")[0], 
-					start:event.start.toTimeString().split(" ")[0],
-					end:event.end.toTimeString().split(" ")[0]
-					}		
-		});
+		if (askForValidateChanges(event.title) != null)
+		{
+		
+			$.ajax({
+				url: "<?php echo url_for('reservation_gestion_edit') ?>",
+				data: {id:event.id, 
+						date:event.start.toJSON().split("T")[0], 
+						start:event.start.toTimeString().split(" ")[0],
+						end:event.end.toTimeString().split(" ")[0]
+						}		
+			});
+		
+		}
 
-        /*if (allDay) {
+			/*
+        if (allDay) {
             alert("Event is now all-day");
         }else{
             alert("Event has a time-of-day");
-        }*/
+        }
+        */
 
-    },
+    },   
+    /*
+    
+    AJAX POUR SUPPRIMER UNE RESERVATION
     
     eventClick: function(event, jsEvent, view) {
 
@@ -73,6 +97,7 @@ $(document).ready(function() {
 		}
 
     },
+ 	 */
  	 
     header: {
       left: 'prev,next today',
@@ -83,8 +108,7 @@ $(document).ready(function() {
     allDayDefault: false,
     events: "<?php echo url_for ('reservations_json',array('sf_format'=>'json')) ?>",
     loading: function(bool) {
-      if (bool) $('#loading').show();
-      else $('#loading').hide();
+      if (!bool) showPopUp();
     },
     buttonText: {
         today: 'aujourd&rsquo;hui',
@@ -121,5 +145,6 @@ $(document).ready(function() {
     weekends: true,
     minTime: 8,
   });
+  
 });
 </script>

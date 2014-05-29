@@ -1,5 +1,0 @@
-<?php include_partial("insideMenu",array("param" => $param)) ?>
-
-<h3>Gestion des reservations</h3>
-
-

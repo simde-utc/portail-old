@@ -80,8 +80,6 @@ class ReservationForm extends BaseReservationForm
    //$error = new sfValidatorError($validator, 'A Error Message.');
    //$es = new sfValidatorErrorSchema($validator, array('FORMITEM' => $error);
    //throw $es;
-    var_dump(date_default_timezone_get());
-    var_dump(new DateTime());
     $heureDeb= new DateTime($values['heuredebut']) ;
     $heureFin= new DateTime($values['heurefin']) ;
     $diff = $heureFin->diff($heureDeb);
@@ -123,7 +121,6 @@ class ReservationForm extends BaseReservationForm
     date_default_timezone_set('Europe/Paris');
     $d= new DateTime();
     $a=new DateTime($values['date']." ".$values['heuredebut']);
-    var_dump($a<$d);
     
     if($a<$d){
 	  throw new sfValidatorError($validator, 'Créneau dans le passé, impossible de réserver.');
@@ -135,13 +132,15 @@ class ReservationForm extends BaseReservationForm
   
   public function checkCreneauLibre($validator, $values)
   { 
-
+    
     $q1 = Doctrine_Query::create()
     ->select('count(*)')
     ->from('Reservation r')
     ->where('r.date = ?', $values['date'])
+    ->andWhere('r.id_salle = ?', $values['id_salle'])
     ->andWhere('r.heurefin > ?', $values['heuredebut'])
-    ->andWhere('r.heurefin <= ?', $values['heurefin']);
+    ->andWhere('r.heurefin <= ?', $values['heurefin'])
+    ->andWhere('r.id != ?',$values['id']);
     
     $result1= $q1->fetchOne()["count"];
     
@@ -149,16 +148,15 @@ class ReservationForm extends BaseReservationForm
     ->select('count(*)')
     ->from('Reservation r')
     ->where('r.date = ?', $values['date'])
+    ->andWhere('r.id_salle = ?', $values['id_salle'])
     ->andWhere('r.heuredebut >= ?', $values['heuredebut'])
-    ->andWhere('r.heuredebut < ?', $values['heurefin']);
+    ->andWhere('r.heuredebut < ?', $values['heurefin'])
+    ->andWhere('r.id != ?',$values['id']);
      
     $result2= $q2->fetchOne()["count"];
-    var_dump($result1);
-    var_dump($result2);
-   
     
     if($result1!="0" or $result2!="0"){
-	  throw new sfValidatorError($validator, 'Ce créneau n\'est pas libre, merci de consulter le calendrier et de choisir un créneua libre.');
+	  throw new sfValidatorError($validator, 'Ce créneau n\'est pas libre, merci de consulter le calendrier et de choisir un créneau libre.');
     }
     
     return $values;

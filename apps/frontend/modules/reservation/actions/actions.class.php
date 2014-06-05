@@ -171,6 +171,46 @@ class reservationActions extends sfActions
 	return $this->renderPartial('reservation/formNew',array('form'=>$this->form,'idSalle'=>$idSalle));
 	 
   }
+  
+  public function executeFormUpdate(sfWebRequest $request)
+  {
+	if (!$request->isXmlHttpRequest())
+	{
+	  $this->forward404Unless(false);
+	}
+  
+	$idSalle = $request->getParameter("idSalle", -1);
+	$UserID = $request->getParameter("UserID", -1);
+	$idResa = intval($request->getParameter("id", -1));
+	
+	$reservation = ReservationTable::getInstance()->getReservationById($idResa)->execute()[0];
+	
+	// On a pas l'id de la salle
+	// Donc on va la chercher via la reservation
+	if ($idSalle == -1)
+	{
+	  $idSalle = $reservation->getSalle()->getId();
+	}
+	
+	// création du tableua à passer au constructeur du formulaire de réservation
+	$values = array('UserID'=> $UserID,'idSalle'=> $idSalle);
+    
+	$this->form = new ReservationForm($reservation,$values);
+	
+	// TODO : Voir si la salle appartient au BDE ou non et en fonction donner possiblité de rentrer une asso ou non.
+	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->execute()[0]->getIdPole();
+	if($PoleId==1){
+	    $this->form->getWidget('id_asso')->setOption('add_empty',true);
+	}
+	
+	$this->form->setDefault('estvalide', 0); // TODO si 2 semaines avant ou si toute une journée
+			
+	$this->ok = false;
+	$this->afficherErreur= false;
 
+
+	return $this->renderPartial('reservation/formNew',array('form'=>$this->form,'idSalle'=>$idSalle));
+	 
+  }
 
 }

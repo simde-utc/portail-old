@@ -7,7 +7,17 @@
 	<?php foreach ($reservations as $reservation): ?>
 
 		<pre>
-		<?php echo link_to ($reservation->showDate()." - ".$reservation->getAsso(), "reservation_validation_id", array('id'=>$reservation->getId())) ?>
+		<?php if ($reservation->getAsso()): ?>
+		
+		   <?php echo link_to ($reservation->showDate()." - ".$reservation->getUserReserve(), "reservation_validation_id", array('id'=>$reservation->getId())) ?>
+		
+		<?php else: ?>
+		
+		  <?php echo link_to ($reservation->showDate()." - ".$reservation->getAsso()->getName(), "reservation_validation_id", array('id'=>$reservation->getId())) ?>
+		
+		<?php endif; ?>
+		
+		
 		</pre>
 
 	<?php endforeach; ?>

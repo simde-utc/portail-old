@@ -44,6 +44,6 @@ class ResaForm extends sfForm
 		  )
 		);
 
-		$this->widgetSchema->setNameFormat('resa-form[%s]'); // pour les id et les class pour modif CSS
+		//$this->widgetSchema->setNameFormat('resa-form[%s]'); // pour les id et les class pour modif CSS
 	}
 }

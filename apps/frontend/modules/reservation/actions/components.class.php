@@ -33,5 +33,43 @@ class reservationComponents extends sfComponents
 		    }
 	}
   }
+  
+  public function executeFormNew(sfWebRequest $request)
+  {
+	$this->idSalle = $request->getUrlParameter("id", -1);
+	
+	$this->userIdentified = false;
+	
+	if ($this->getUser()->isAuthenticated()) // besoin de controler si il y a un numéro de salles
+	{
+	
+		$this->userIdentified= true;
+		      
+		$this->UserID = $this->getUser()->getGuardUser()->getId();
+				
+		// création du tableua à passer au constructeur du formulaire de réservation
+		$values = array('UserID'=> $this->UserID,'idSalle'=> $this->idSalle);
+	    
+		$this->form = new ReservationForm(array(),$values);
+		
+		// TO DO : Voir si la salle appartient au BDE ou non et en fonction donner possiblité de rentrer une asso ou non.
+		$PoleId= SalleTable::getInstance()->getSalleById($this->idSalle)->execute()[0]->getIdPole();
+		if($PoleId==1){
+		    $this->form->getWidget('id_asso')->setOption('add_empty',true);
+		}
+		
+		// valeur par défaut pour les champs cachés.
+		$this->form->setDefault('id_salle', $this->idSalle);
+		$this->form->setDefault('id_user_reserve', $this->getUser()->getGuardUser()->getId());
+		$this->form->setDefault('estvalide', 0); // A VOIR si 2 semaines avant ou pas
+				
+		$this->ok = false;
+		$this->afficherErreur= false;
+  
+
+  	      
+	}
+	 
+  }
 
 }

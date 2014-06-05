@@ -33,6 +33,17 @@
 	$('#FormShape').fadeIn();
     }  
     
+    function addForm(dataForm)
+    {
+      if ($('#FormShape').length > 0)
+      {
+	$('#FormShape').remove();
+      }
+      
+      $("#calendar").before(dataForm);
+      
+    }
+    
     $("#calendar").fullCalendar({
 
 
@@ -69,8 +80,8 @@
 	      url: "<?php echo url_for('reservation_form_new') ?>",
 	      data: { idSalle : idSalle, UserID : UserID},
 	      success : function (data)
-	      {
-		$("#calendar").before(data);
+	    {
+		addForm(data);
 		
 	      $('#reservation_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
 	      $('#reservation_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
@@ -91,10 +102,20 @@
 	},
 		
 	eventClick: function(event) {
-		
-		console.log(event);
-		if (!event.url) {
 
+	      
+		if (event.url == "modif") {
+		
+		    $.ajax({
+		      url: "<?php echo url_for('reservation_form_update') ?>",
+		      data: { id : parseInt(event.id), idSalle : <?php echo $idSalle; ?> , UserID : <?php echo $UserID; ?> },
+		      success : function (data)
+		      {
+			console.log(data);
+			addForm(data);
+		      }
+		    });
+		    return false;
 		}
 		else
 		{

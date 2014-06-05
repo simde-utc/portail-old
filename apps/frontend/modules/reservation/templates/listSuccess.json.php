@@ -7,7 +7,7 @@ foreach ($reservations as $res){
   	$title = $res->getUserReserve()->getName();
 
 if(strtotime($res->getheurefin())-time()>3600 && $res->getUserReserve()->getId()==$user->getId())
-	$url = "";
+	$url = "modif";
   else
 	$url = url_for('reservation_show', array("id" => $res->getID()));
 

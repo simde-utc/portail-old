@@ -715,6 +715,14 @@ reservation_show:
   param: { module: reservation, action: show }
   requirements:
 
+reservation_form_new:
+  url: /reservation/formNew
+  param: { module: reservation, action: formNew }
+
+reservation_form_update:
+  url: /reservation/formUpdate
+  param: { module: reservation, action: formUpdate }
+
 reservation_json:
   url: /reservation/:id.:sf_format
   param: { module: reservation, action: listBySalle }
@@ -726,10 +734,6 @@ reservations_json:
   param: { module: reservation, action: list }
   requirements:
     sf_format: (?:html|json)
-
-reservation_process_form:
-  url: /reservation/new
-  param: { module: reservation, action: processFormResa }
 
 reservation_salle:
   url: /reservation/:id

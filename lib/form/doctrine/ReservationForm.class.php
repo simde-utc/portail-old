@@ -13,17 +13,26 @@ class ReservationForm extends BaseReservationForm
 
   public function configure()
   {  
-  
-     $query = $this->getOption('query');
+      $query = AssoTable::getInstance()->getMyAssosName($this->getOption('UserID'),$this->getOption('idSalle'));
     
      $this->widgetSchema['id_user_valid'] = new sfWidgetFormInputHidden();
      $this->widgetSchema['id_salle'] = new sfWidgetFormInputHidden();
      $this->widgetSchema['id_user_reserve'] = new sfWidgetFormInputHidden();
      $this->widgetSchema['estvalide'] = new sfWidgetFormInputHidden();
      $this->widgetSchema['date'] = new sfWidgetFormDate(array('format'=>'%day%/%month%/%year%','can_be_empty'=>false));	
-     $this->widgetSchema['heuredebut'] = new sfWidgetFormTime(array('can_be_empty'=>false));	
+     $this->widgetSchema['heuredebut'] = new sfWidgetFormTime(array('can_be_empty'=>false));
      
-     $this->getWidget('id_asso')->setOption('add_empty',true);
+     
+     $types = array(
+	  'reunion' => 'Réunion',
+	  'logistique' => 'Autre',
+     );
+     
+     $this->widgetSchema['activite'] = new sfWidgetFormChoice(array(
+	  'choices'  => $types,
+      ));
+      
+     
     
      $this->widgetSchema['id_asso'] = new sfWidgetFormDoctrineChoice(array(
 		'model' => $this->getRelatedModelName('Asso'), 
@@ -45,43 +54,23 @@ class ReservationForm extends BaseReservationForm
      $this->getWidget('activite')->setLabel('Activité:');
      $this->getWidget('id_asso')->setLabel('Association:');
      
-     //$this->WidgetValidator['date']= new sfValidatorDate(array('required'=>'Ce champs est obligatoire'));
-     //$this->WidgetValidator['heuredebut']= new sfValidatorTime(array('required'=>'Ce champs est obligatoire'));
-     //$this->WidgetValidator['heurefin']= new sfValidatorTime(array('required'=>'Ce champs est obligatoire'));
      $this->validatorSchema['heurefin']->setMessage('required', 'Merci de renseigner l\'heure de fin.');
      $this->validatorSchema['activite']->setMessage('required', 'Merci de renseigner l\'activité.');
      
      
      sfValidatorBase::setDefaultMessage('required', 'This field is required.');
-     
-     /*$this->validatorSchema->setPostValidator(
-	new sfValidatorSchemaCompare('heuredebut', "<", 'heurefin',
-	  array(),
-	  array('invalid' => 'L\'heure de début doit précéder l\'heure de fin.')
-	),
-	new sfValidatorCallback(array('callback' => array($this, 'checkTempsDeReservation')))
-      );*/
-      
-    /*$this->validatorSchema->setPostValidator(array(
-      new sfValidatorCallback(array('callback' => array($this, 'checkTempsDeReservation')))
-    ));*/
     
     $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
 	new sfValidatorCallback(array('callback' => array($this, 'checkTempsDeReservation'))),
 	new sfValidatorCallback(array('callback' => array($this, 'checkPeutReserver'))),
+	new sfValidatorCallback(array('callback' => array($this, 'checkCreneauDansLePasse'))),
+	new sfValidatorCallback(array('callback' => array($this, 'checkCreneauLibre'))),
       	new sfValidatorSchemaCompare('heuredebut', "<", 'heurefin',
 	  array(),
 	  array('invalid' => 'L\'heure de début doit précéder l\'heure de fin.')
 	)
     )));
       
-    
-     //$this->widgetSchema->setHelp('date', 'Date de debut, creneau 1, 2 ou 3h max');
-     
-     
-     /*$this->validatorSchema->setPostValidator(
-      new sfValidatorCallback(array('callback' => array($this, 'checkTempsDeReservation')))
-    );*/
   }
  
   public function checkTempsDeReservation($validator, $values)
@@ -91,21 +80,21 @@ class ReservationForm extends BaseReservationForm
    //$error = new sfValidatorError($validator, 'A Error Message.');
    //$es = new sfValidatorErrorSchema($validator, array('FORMITEM' => $error);
    //throw $es;
-    
+    var_dump(date_default_timezone_get());
+    var_dump(new DateTime());
     $heureDeb= new DateTime($values['heuredebut']) ;
     $heureFin= new DateTime($values['heurefin']) ;
     $diff = $heureFin->diff($heureDeb);
-    $d=$diff->format('%H');
-    var_dump($diff->m);
-    if ($diff->h>3 or ($diff->h==3 and $diff->m!=0))
+    //$d=$diff->format('%H');
+    if ($diff->h>3 or ($diff->h==3 and $diff->i!=0))
     {
       // créneau trop long
       throw new sfValidatorError($validator, 'Créneau trop large, 3 heures max.');
     }
     
-    if ($diff->h==0 and $diff->m==0)
+    if ($diff->h==0 && $diff->i==0)
     {
-      // créneau trop long
+      // créneau trop court
       throw new sfValidatorError($validator, 'Créneau d\'au minimum 30mn');
     }
  
@@ -113,30 +102,70 @@ class ReservationForm extends BaseReservationForm
     return $values;
   }
   
+  
   public function checkPeutReserver($validator, $values)
   { 
-    $jourDeb= new DateTime();
-    var_dump($values['date']);
-    /*$jourDeb->setDate($values['date']);
-    $jourDeb->setTime($values['heuredebut']);
-    $heureFin= new DateTime() ;
-    $diff = $heureFin->diff($heureDeb);
-    $d=$diff->format('%H');*/
+    //date_default_timezone_set(NULL);
+    $d= new DateTime();
+    $a=new DateTime($values['date']." ".$values['heuredebut']);
+    $diff = $a->diff($d);
     
-    if ($diff->h>3 or ($diff->h==3 and $diff->m!=0))
-    {
-      // créneau trop long
-      throw new sfValidatorError($validator, 'Créneau trop large, 3 heures max.');
+    if($diff->y==0 and $diff->m==0 and $diff->d==0 and $diff->h==0 and $diff->i<59){
+	  throw new sfValidatorError($validator, 'Vous devez effectuer la réservation au moins une heure avant le début du créneau.');
     }
     
-    if ($diff->h==0 and $diff->m==0)
-    {
-      // créneau trop long
-      throw new sfValidatorError($validator, 'Créneau d\'au minimum 30mn');
-    }
- 
-    // créneau correct, on retourne les données nettoyées
     return $values;
+
   }
 
+  public function checkCreneauDansLePasse($validator, $values)
+  { 
+    date_default_timezone_set('Europe/Paris');
+    $d= new DateTime();
+    $a=new DateTime($values['date']." ".$values['heuredebut']);
+    var_dump($a<$d);
+    
+    if($a<$d){
+	  throw new sfValidatorError($validator, 'Créneau dans le passé, impossible de réserver.');
+    }
+    
+    return $values;
+
+  }
+  
+  public function checkCreneauLibre($validator, $values)
+  { 
+
+    $q1 = Doctrine_Query::create()
+    ->select('count(*)')
+    ->from('Reservation r')
+    ->where('r.date = ?', $values['date'])
+    ->andWhere('r.heurefin > ?', $values['heuredebut'])
+    ->andWhere('r.heurefin <= ?', $values['heurefin']);
+    
+    $result1= $q1->fetchOne()["count"];
+    
+    $q2 = Doctrine_Query::create()
+    ->select('count(*)')
+    ->from('Reservation r')
+    ->where('r.date = ?', $values['date'])
+    ->andWhere('r.heuredebut >= ?', $values['heuredebut'])
+    ->andWhere('r.heuredebut < ?', $values['heurefin']);
+     
+    $result2= $q2->fetchOne()["count"];
+    var_dump($result1);
+    var_dump($result2);
+   
+    
+    if($result1!="0" or $result2!="0"){
+	  throw new sfValidatorError($validator, 'Ce créneau n\'est pas libre, merci de consulter le calendrier et de choisir un créneua libre.');
+    }
+    
+    return $values;
+
+  }
+  
+  
+  
+  
 }

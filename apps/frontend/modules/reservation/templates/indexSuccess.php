@@ -10,49 +10,17 @@
 
 <?php if ($userIdentified): ?> 
     <?php include_component('reservation','listeSalles', array('idSalle' => $idSalle)) ?>
-
-    <!-- Est-ce qu'on garde ça ? Quel serait l'ID de la salle ? PB pour page avec id = "toutes les salles"...-->
-
-    <?php if (!$ok): ?> 
-	<?php if (isset($form) && $idSalle != -1): ?>
-	        
-	    <div id="FormShape">
-	    <form action="<?php echo url_for(/*'reservation_process_form'*/'reservation_salle',array('id' => $idSalle)) ?>" method="post" >
-	    <?php echo $form->renderHiddenFields()?>
-	    <?php echo $form->renderGlobalErrors()?> // à centrer
-
-	    <div id=formResa1>
-
-	      <legend> Réservation: </legend>
+    
+    <?php if ($afficherErreur): ?> 
 	
-	      <p><?php echo $form['date']->renderRow()?></p>
-	      <p><?php echo $form['heuredebut']->renderLabel() ?><?php echo $form['heuredebut']->renderError() ?><?php echo $form['heurefin']->renderError() ?><?php echo $form['heuredebut']->render() ?><?php echo ' à '.$form['heurefin']->render() ?></p>
-	      <p><?php echo $form['id_asso']->renderRow()?></p>
+	  <?php include_partial('formNew', array('idSalle' => $idSalle, 'form' => $form)) ?> 
+	
+    <?php endif; ?>
 
-	    </div>
-
-	    <div id="sep"></div>
-
-	    <div id=formResa2>
-		<!--<p> Nombre Personnes : </p>--><?php /*echo $form['nbPers']->render()*/ ?>
-
-		<p><?php echo $form['activite']->renderRow()?></p>
-		<?php echo $form['commentaire']->renderRow() ?>
-	      
-		<p>
-	    <input type="submit" name="submit" value="Envoyer" />
-	    <input type="button" value="Annuler" onclick="$('#FormShape').fadeOut();" />
-	    </p>
-	    </div>
-	    </form>
-	    </div>
-
-	<?php endif ?>
-    <?php else: ?>
+    <?php if ($ok): ?> 
 
 	<?php echo "<p>Réservation réalisée avec succès !</p>" ?>
 	
-
     <?php endif; ?>
 
     <div id="calendar"></div>
@@ -60,39 +28,71 @@
     <script>
     $(document).ready(function() {
     
-    //J'ai le droit de mettre ça là ? :)
-    
-    var displayError = '<?php echo $afficherErreur ?>' ; 
-    
-    if(displayError) {
+    var afficherErreur=parseInt(<?php echo $afficherErreur; ?>) ;
+    if(afficherErreur){
 	$('#FormShape').fadeIn();
-    }
+    }  
     
     $("#calendar").fullCalendar({
+
 
 	 
 	dayClick: function(e)
 	{
-		
-			if ($('#FormShape').length == 0) // Si le tableau == 0
-			{
-				alert ("Vous devez sélectionner une salle pour pouvoir effectuer une réservation.");
-			}
-			else
-			{
+	  
+	  if (idSalle < 0) 
+	  {
+		  alert ("Vous devez sélectionner une salle pour pouvoir effectuer une réservation.");
+		  return;
+	  }
+	  
 
-				$('#reservation_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
-				$('#reservation_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
-				$('#reservation_date_year').val(parseInt($.fullCalendar.formatDate( e, "yyyy")));
-				$('#reservation_heuredebut_hour').val(parseInt(e.getHours()));
-				$('#reservation_heuredebut_minute').val(parseInt(e.getMinutes())==30?"30":"00");
-				
-				
-				$('#FormShape').fadeIn();
-			}
+	  var idSalle=parseInt(<?php echo $idSalle; ?>) ;
+	  var UserID=parseInt(<?php echo $UserID; ?>) ;
+	  
+	  // SI formulaire exist déjà
+	  if ($('#FormShape').length > 0)
+	  {
+	  
+	      $('#reservation_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
+	      $('#reservation_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
+	      $('#reservation_date_year').val(parseInt($.fullCalendar.formatDate( e, "yyyy")));
+	      $('#reservation_heuredebut_hour').val(parseInt(e.getHours()));
+	      $('#reservation_heuredebut_minute').val(parseInt(e.getMinutes())==30?"30":"00");
+	      
+	      $('#FormShape').fadeIn();
+	  
+	  }
+	  else
+	  {
+	    $.ajax({
+	      url: "<?php echo url_for('reservation_form_new') ?>",
+	      data: { idSalle : idSalle, UserID : UserID},
+	      success : function (data)
+	      {
+		$("#calendar").before(data);
+		
+	      $('#reservation_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
+	      $('#reservation_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
+	      $('#reservation_date_year').val(parseInt($.fullCalendar.formatDate( e, "yyyy")));
+	      $('#reservation_heuredebut_hour').val(parseInt(e.getHours()));
+	      $('#reservation_heuredebut_minute').val(parseInt(e.getMinutes())==30?"30":"00");
+	      
+		$('#FormShape').fadeIn();
+	      }
+	    });
+	    
+
+	    
+	   }
+	    
+	    
+	    
 	},
 		
 	eventClick: function(event) {
+		
+		console.log(event);
 		if (!event.url) {
 
 		}

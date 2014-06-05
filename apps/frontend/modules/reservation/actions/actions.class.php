@@ -22,9 +22,11 @@ class reservationActions extends sfActions
 	{
 		$this->userIdentified= true;	      
 		$UserID = $this->getUser()->getGuardUser()->getId();
-		$values = array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
-
+		$this->UserID=$this->getUser()->getGuardUser()->getId();
 		$this->idSalle = $request->getUrlParameter("id", -1);
+		$values = array('UserID'=> $this->UserID,'idSalle'=> $this->idSalle);
+
+
 		$this->salle = SalleTable::getInstance()->getSalleById($this->idSalle)->execute()[0]; 
 
 		//test si la salle appartient bien aux pole de l'utilisateur
@@ -51,33 +53,24 @@ class reservationActions extends sfActions
 		$this->query = AssoTable::getInstance()->getMyAssosName($UserID,$this->idSalle);
 		//var_dump($this->query);
 		
-		// création du tableua à passer au constructeur du formulaire de réservation
-		$values = array('UserID'=> $UserID,'idSalle'=> $this->idSalle, 'query'=>$this->query);
-	    
 		$this->form = new ReservationForm(array(),$values);
-		
-		// TO DO
-		//$this->form->getWidget('id_asso')->setAttribute('can_be_empty',true);
-		
-		// valeur par défaut pour les champs cachés.
-		$this->form->setDefault('id_salle', $this->idSalle);
-		$this->form->setDefault('id_user_reserve', $this->getUser()->getGuardUser()->getId());
-		$this->form->setDefault('estvalide', 0); // A VOIR si 2 semaines avant ou pas
-		
+
 		$this->ok = false;
 		$this->afficherErreur= false;
   
   		if ($request->isMethod('post'))
   		{
   			$this->form->bind($request->getParameter($this->form->getName()));
-			//var_dump($this->form);
+			var_dump($request->getParameter($this->form->getName()));
 			if ($this->form->isValid())
 			{
+				var_dump("valide");
 				$this->reservation=$this->form->save(); // Save into database 
 				$this->ok=true;
 			}
 			else
 			{
+			      var_dump("NOvalide");
 			      $this->afficherErreur= true;
 			}
 		}
@@ -134,22 +127,40 @@ class reservationActions extends sfActions
 	$this->reservation = ReservationTable::getInstance()->getReservationById($request->getUrlParameter("id"))->execute()[0];
   }
   
-  public function executeProcessFormResa(sfWebRequest $request /*, sfForm $form*/)
+  public function executeFormNew(sfWebRequest $request)
   {
-	    $this->idSalle=$request->getPostParameter('resa-form[id_salle]');
-	    
-	    $reservation = new Reservation();
-	    $reservation->setIdUserReserve($this->getUser()->getGuardUser()->getId());
-	    $reservation->setIdAsso($request->getPostParameter('resa-form[id_asso]'));
-	    $reservation->setIdSalle($request->getPostParameter('resa-form[id_salle]'));
-	    $reservation->setDate(sprintf("%02d",$request->getPostParameter('resa-form[date][year]'))."-".sprintf("%02d",$request->getPostParameter('resa-form[date][month]'))."-".sprintf("%02d",$request->getPostParameter('resa-form[date][day]')));
-	    $reservation->setHeuredebut(sprintf("%02d",$request->getPostParameter('resa-form[heuredebut][hour]')).":".sprintf( "%02d", $request->getPostParameter('resa-form[heuredebut][minute]')).":00");
-	    $reservation->setHeurefin(sprintf("%02d",$request->getPostParameter('resa-form[heurefin][hour]')).":".sprintf( "%02d", $request->getPostParameter('resa-form[heurefin][minute]')).":00");
-	    $reservation->setActivite("Reunioon");
-	    
-	    $reservation->save(); // Save into database  
-
+	if (!$request->isXmlHttpRequest())
+	{
+	  $this->forward404Unless(false);
 	}
+  
+	$idSalle = $request->getParameter("idSalle", -1);
+	$UserID = $request->getParameter("UserID", -1);
+	
+	
+	// création du tableua à passer au constructeur du formulaire de réservation
+	$values = array('UserID'=> $UserID,'idSalle'=> $idSalle);
+    
+	$this->form = new ReservationForm(array(),$values);
+	
+	// TO DO : Voir si la salle appartient au BDE ou non et en fonction donner possiblité de rentrer une asso ou non.
+	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->execute()[0]->getIdPole();
+	if($PoleId==1){
+	    $this->form->getWidget('id_asso')->setOption('add_empty',true);
+	}
+	
+	// valeur par défaut pour les champs cachés.
+	$this->form->setDefault('id_salle', $idSalle);
+	$this->form->setDefault('id_user_reserve', $UserID);
+	$this->form->setDefault('estvalide', 0); // TODO si 2 semaines avant ou pas
+			
+	$this->ok = false;
+	$this->afficherErreur= false;
+
+
+	return $this->renderPartial('reservation/formNew',array('form'=>$this->form,'idSalle'=>$idSalle));
+	 
+  }
 
 
 }

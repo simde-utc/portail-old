@@ -22,6 +22,7 @@ class reservationActions extends sfActions
 	{
 		$this->userIdentified= true;	      
 		$UserID = $this->getUser()->getGuardUser()->getId();
+<<<<<<< HEAD
 		$values = array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
 
 		$this->idSalle = $request->getUrlParameter("id", -1);
@@ -45,6 +46,8 @@ class reservationActions extends sfActions
 			}
 			$this->forward404Unless(in_array($this->salle->getIdPole(), $this->polesUser));
 		}	
+	
+=======
 		
 		// on ne récupère que les noms d'assos correspondant aux pôles 
 		// pourquoi prend le login et pas le nom ?
@@ -53,6 +56,7 @@ class reservationActions extends sfActions
 		
 		// création du tableua à passer au constructeur du formulaire de réservation
 		$values = array('UserID'=> $UserID,'idSalle'=> $this->idSalle, 'query'=>$this->query);
+>>>>>>> a701aacc6a5cb422d39486ea5f78a663aac9e0df
 	    
 		$this->form = new ReservationForm(array(),$values);
 		

@@ -190,6 +190,13 @@ class reservationActions extends sfActions
   public function executeGestion(sfWebRequest $request)
   {
   		$this->param = "gestion";
+  		
+  		$this->poles = PoleTable::getInstance()->getAllWithInfos()->execute();
+
+		$this->pole = $request->getParameter('pole',-1);
+  		$this->salle = $request->getParameter('salle',-1);
+  		
+  		
   }
   
   public function executeGestionEdit(sfWebRequest $request)
@@ -208,7 +215,7 @@ class reservationActions extends sfActions
   		$end = $request->getParameter('end');
   		$comment = $request->getParameter('comment');
 
-  		var_dump($comment);
+  		//var_dump($comment);
   		
   		$reservation = ReservationTable::getInstance()->getReservationById($id)->execute()[0];
   		$reservation->setDate($date);
@@ -253,9 +260,59 @@ class reservationActions extends sfActions
   		
   }
   
+  /**
+  *	Pour le JSON
+  *
+  */
   public function executeReservations(sfWebRequest $request)
   {
-  		$this->reservations = ReservationTable::getInstance()->getAllReservation()->execute(); 
+  		// -1 signifie ALL
+  		$pole = $request->getParameter('pole',-1);
+  		$salle = $request->getParameter('salle',-1);
+  
+  		// Si j'ai le pole
+  		if ($pole != -1)
+  		{
+  			// Prendre la salle du pole
+  			// On ne peut pas se tromper sur la salle, car les salles sont affichées dynamiquement selon le pole séléctionner avant
+  			if ($salle != -1)
+  			{
+  				$this->reservations = ReservationTable::getInstance()->getReservationBySalle($salle)->execute();
+  			}
+  			// Prendre toutes les salles du pole
+  			else
+  			{
+  				$this->reservations = ReservationTable::getInstance()->getReservationByPole($pole)->execute();
+  			}
+  		}
+  		// Aucun information = On prend tout
+  		else
+  		{
+  			$this->reservations = ReservationTable::getInstance()->getAllReservation()->execute();
+  		}
+  		
+  }
+  
+  public function executeGetSalleByPole(sfWebRequest $request)
+  {
+  		// AJAX
+  		if (!$request->isXmlHttpRequest())
+  		{
+  			$this->forward404Unless(false);
+  		}
+  		
+  		$idSalle = intval($request->getParameter('salle')); 
+  		
+  		$idPole = intval($request->getParameter('pole'));
+  		
+  		if ($idPole != -1)
+  		{
+  			$pole = PoleTable::getInstance()->getOneById($idPole);
+  		
+  			return $this->renderPartial('reservation/selectSalles',array('salles'=>$pole->getSalle(),'id' => $idSalle));
+  		}
+  		
+  		return $this->renderPartial('reservation/selectSalles',array());
   }
   
   /**

@@ -72,7 +72,16 @@ class ReservationTable extends Doctrine_Table
   		return $q;
   }
 
-
+	public function getReservationByPole($pole)
+	{
+		$q = $this->createQuery('a')
+				->leftJoin('a.Salle s')
+				->leftJoin('s.Pole p')
+				->where('p.id=?',$pole)
+  				->addOrderBy('a.date','ASC');
+  				
+  		return $q;	
+	}
 
 
 }

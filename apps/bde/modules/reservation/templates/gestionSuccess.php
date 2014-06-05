@@ -7,9 +7,53 @@
 
 <h3>Gestion des reservations</h3>
 
+<form method="post" action="">
+	
+	<label>Selection du pole :</label>
+	<select name="pole">
+		<option value="-1">All</option>
+		<?php foreach($poles as $p): ?>
+		<option value="<?php echo $p->getId() ?>" <?php if ($p->getId() == $pole) echo "selected" ?>><?php echo $p ?></option>
+		<?php endforeach ?>
+	</select>
+	
+	<label>Selection de la salle :</label>
+	<select name="salle">
+	</select>
+
+<br />
+<input type="submit" name="submit" value="Valider" />
+
+</form>
+
+
 <div id="calendar" style="background:#FFF"></div>
 <script>
 $(document).ready(function() {
+	
+	function loadSalle()
+	{
+		$.ajax({
+				url: "<?php echo url_for('reservation_gestion_salle_list') ?>",
+				data : {pole : $('form select[name=pole]').val(),
+							salle : <?php echo $salle ?> },
+				success : function(data)
+				{
+					//console.log(data);
+					$('form select[name=salle]').empty();
+					$('form select[name=salle]').append(data);
+				}
+			});
+	}
+	
+	loadSalle();
+	
+	$('form select[name=pole]').change(function()
+	{
+		loadSalle();	
+	});
+	
+	
 	
 	function askForValidateChanges(nameEvent)
 	{
@@ -28,11 +72,7 @@ $(document).ready(function() {
   $("#calendar").fullCalendar({
  	 
  	 eventResize: function(event,dayDelta,minuteDelta,revertFunc) {
-	
-		//console.log("RESIZE");
-		//console.log(event);
-		//a = event;
-		
+ 	 
 		var comment = askForValidateChanges(event.title);
 		
 		if (comment != null)
@@ -52,9 +92,6 @@ $(document).ready(function() {
     
     eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
 
-		//console.log("DROP");
-		//console.log(event);
-		
 		var comment = askForValidateChanges(event.title);
 		
 		if (comment != null)
@@ -67,7 +104,8 @@ $(document).ready(function() {
 						start:event.start.toTimeString().split(" ")[0],
 						end:event.end.toTimeString().split(" ")[0],
 						comment : comment
-						}		
+						}
+
 			});
 		
 		}
@@ -83,7 +121,7 @@ $(document).ready(function() {
     },   
     /*
     
-    AJAX POUR SUPPRIMER UNE RESERVATION
+    AJAX POUR SUPPRIMER UNE RESERVATION LORS D'UN CLIC SUR LA RESERVATION
     
     eventClick: function(event, jsEvent, view) {
 
@@ -111,10 +149,7 @@ $(document).ready(function() {
     },
     editable: true,
     allDayDefault: false,
-    events: "<?php echo url_for ('reservations_json',array('sf_format'=>'json')) ?>",
-    loading: function(bool) {
-      if (!bool) showPopUp();
-    },
+    events: "<?php echo url_for ('reservations_json',array('sf_format'=>'json', 'pole'=>$pole, 'salle'=>$salle)) ?>",
     buttonText: {
         today: 'aujourd&rsquo;hui',
         month: 'mois',

@@ -1,54 +1,30 @@
-<?php if (!$ok): ?> 
-
 <div id="FormShape">
-<form action="<?php echo url_for('reservation'),array('id' => $idSalle) ?>" method="post" >
-<div id=formResa1>
+	    <form action="<?php echo url_for(/*'reservation_process_form'*/'reservation_salle',array('id' => $idSalle)) ?>" method="post" >
+	    <?php echo $form->renderHiddenFields()?>
+	    <?php echo $form->renderGlobalErrors()?> // à centrer
 
- <legend> Réservation: </legend>
- <table class=formTab>
-    <tr>
-      <td class="CaseLabel">Date:</td> <td><?php echo $form['id_salle']->render(); echo $form['date']->render(); ?></td>
-    </tr>
-    <tr>
-      <td class="CaseLabel">De</td><td> <?php echo $form['heuredebut']->render() ?> à <?php echo $form['heurefin']->render() ?></td>
-    </tr>
-    <!-- Faire test si salle pôle ou salle BDE pour voir si besoin de demander l'asso-->		
-    <tr>
-      <td class="CaseLabel"> Association:</td><td> <?php echo $form['id_asso']->render()?></td>
-    </tr>
-    <tr>
-      <td class="CaseLabel">Activite :</td><td> <?php echo $form['activite']->render()?></td>
-    </tr>
-</table>
-</div>
+	    <div id=formResa1>
 
-<div id="sep"></div>
-
-<div id=formResa2>
-    <p> Nombre Personnes : </p><?php echo $form['nbPers']->render() ?>
-
-    <?php echo $form['message']->renderRow() ?>
-   
-    <p>
- <input type="submit" name="submit" value="Envoyer" />
- <input type="button" value="Annuler" onclick="$('#FormShape').fadeOut();" />
- </p>
-</div>
-
-</form>
-</div>
+	      <legend> Réservation: </legend>
 	
-<?php else: ?>
+	      <p><?php echo $form['date']->renderRow()?></p>
+	      <p><?php echo $form['heuredebut']->renderLabel() ?><?php echo $form['heuredebut']->renderError() ?><?php echo $form['heurefin']->renderError() ?><?php echo $form['heuredebut']->render() ?><?php echo ' à '.$form['heurefin']->render() ?></p>
+	      <p><?php echo $form['id_asso']->renderRow()?></p>
 
-	<p>Réservation ajoutée avec succès !</p>
+	    </div>
 
-	//<?php include_partial("showSalle",array('salle'=>$salle_modif)) ?>
-	
+	    <div id="sep"></div>
 
-<?php endif; ?>
+	    <div id=formResa2>
+		<!--<p> Nombre Personnes : </p>--><?php /*echo $form['nbPers']->render()*/ ?>
 
-
-
-
-
-
+		<p><?php echo $form['activite']->renderRow()?></p>
+		<?php echo $form['commentaire']->renderRow() ?>
+	      
+		<p>
+	    <input type="submit" name="submit" value="Envoyer" />
+	    <input type="button" value="Annuler" onclick="$('#FormShape').fadeOut();" />
+	    </p>
+	    </div>
+	    </form>
+	    </div>

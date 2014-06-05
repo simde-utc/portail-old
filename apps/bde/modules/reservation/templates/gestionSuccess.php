@@ -83,7 +83,8 @@ $(document).ready(function() {
 						date:event.start.toJSON().split("T")[0], 
 						start:event.start.toTimeString().split(" ")[0],
 						end:event.end.toTimeString().split(" ")[0],
-						comment : comment
+						comment : comment,
+						allday : false
 						}		
 			});
 		}
@@ -103,20 +104,13 @@ $(document).ready(function() {
 						date:event.start.toJSON().split("T")[0], 
 						start:event.start.toTimeString().split(" ")[0],
 						end:event.end.toTimeString().split(" ")[0],
-						comment : comment
+						comment : comment,
+						allday : allDay
 						}
 
 			});
 		
 		}
-
-			/*
-        if (allDay) {
-            alert("Event is now all-day");
-        }else{
-            alert("Event has a time-of-day");
-        }
-        */
 
     },   
     /*

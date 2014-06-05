@@ -712,22 +712,7 @@ Salle:
     id_pole : { type : integer, notnull: true }
   relations:
     Pole: { onUpdate: CASCADE, local: id_pole, foreign: id, class: Pole }
-      
-CreneauOff:
-  connection: doctrine
-  tableName: creneauoff
-  columns:
-    date: { type: date, primary: true }
-    
-SalleCreneauOff:
-  connection: doctrine
-  columns:
-    creneauoff: { type : date, primary: true }
-    salle: { type : integer, primary: true }
-  relations:
-    CreneauOff: { onDelete: CASCADE, local: creneauoff, foreign: date }
-    Salle: { onDelete: CASCADE, local: salle, foreign: id }
-    
+
 Reservation:
   connection: doctrine
   tableName: reservation
@@ -740,6 +725,7 @@ Reservation:
     date: { type: date, notnull: true }
     heuredebut: { type: time, notnull: true }
     heurefin: { type: time, notnull: true }
+    allday: { type: boolean, notnull: true }
     activite: { type: string(255), notnull: true }
     estvalide: { type: boolean, notnull: true }
     commentaire: { type: string, notnull: false }

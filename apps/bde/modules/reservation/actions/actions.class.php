@@ -209,37 +209,18 @@ class reservationActions extends sfActions
   		
   		// Recupération des paramètres
   		// Tout a été converti en javascript
-  		$id = $request->getParameter('id');
-  		$date = $request->getParameter('date');
-  		$start = $request->getParameter('start');
-  		$end = $request->getParameter('end');
-  		$comment = $request->getParameter('comment');
-
-  		//var_dump($comment);
-  		
-  		$reservation = ReservationTable::getInstance()->getReservationById($id)->execute()[0];
-  		$reservation->setDate($date);
-  		$reservation->setHeureDebut($start);
-  		$reservation->setHeureFin($end);
-  		$reservation->save();
-  		
-  		$this->sendMail($reservation,$comment,NULL);
-  		
-  }
-  
-  /*
-  public function executeGestionDelete(sfWebRequest $request)
-  {
-  		// AJAX
-  		if (!$request->isXmlHttpRequest())
-  		{
-  			$this->forward404Unless(false);
-  		}
+		// la reservation est modifiée en conséquence
   		
   		$reservation = ReservationTable::getInstance()->getReservationById($request->getParameter('id'))->execute()[0];
-  		$reservation->delete();
+  		$reservation->setDate($request->getParameter('date'));
+  		$reservation->setHeureDebut($request->getParameter('start'));
+  		$reservation->setHeureFin($request->getParameter('end'));
+  		$reservation->setAllday(filter_var($request->getParameter('allday'), FILTER_VALIDATE_BOOLEAN));
+  		$reservation->save();
+  		
+  		$this->sendMail($reservation,$request->getParameter('comment'),NULL);
+  		
   }
-  */
   
   public function executeGestionId(sfWebRequest $request)
   {
@@ -323,94 +304,83 @@ class reservationActions extends sfActions
   public function executeCreneauoff(sfWebRequest $request)
   {
   		$this->param = "creneauoff";
-  
-  		$this->deleteOldCreneauoff();
-  
-  		$this->creneauoff = CreneauoffTable::getInstance()->getAllCreneauoff()->execute();
   		
-  }
-  
-  public function executeCreneauoffNew(sfWebRequest $request)
-  {
-  		$this->param = "creneauoff";
-
-		$this->form = new SalleCreneauOffForm(); //new CreneauOffForm();
-
-  		// Envoie du formulaire
+  		$this->salles = SalleTable::getInstance()->getAllSalles()->execute();
+  		
+  		$this->formDay = new CreneauDayForm();
+  		$this->formHour = new CreneauHourForm();
+  		
   		if ($request->isMethod('POST'))
   		{
-  			$this->form->bind($request->getParameter($this->form->getName()));
-		
-			if ($this->form->isValid())
-			{
-	  			$this->date = $request->getParameter('creneau_off')['creneauoff'];
-				$salles = $request->getParameter('creneau_off')['salle'];
-
-				if (is_array($this->date))
-				{
-					$this->date = date("Y-m-d",mktime(0,0,0,$this->date['month'],$this->date['year'],$this->date['day']));
-				}
-
-				// si le creneau existe déjà !!
-				if (CreneauoffTable::getInstance()->isCreneauoffExist($this->date))
-				{
-					$this->exist = true;
-				}
-	  			// La date choisi doit etre plus grande que la date d'aujourd'hui
-	  			elseif ($this->date >= date("Y-m-d"))
-	  			{	  				
-	  				// Sauvegarde du creneau
-	  				$this->creneau = new CreneauOff();
-	  				$this->creneau->setDate($this->date);
-	  				$this->creneau->save();
-	  					  				
-	  				foreach($salles as $salle)
-	  				{
-		  				$a = new SalleCreneauOff();
-		  				$a->setCreneauOff($this->creneau);
-		  				$a->setSalle(SalleTable::getInstance()->getSalleById($salle)->execute()[0]);
-		  				//$a->setSalle($salle); FONCTIONNNE PAS AVEC ID de la salle
-		  				$a->save();
-		  			}
+  			if ($request->getParameter('day'))
+  			{
+  				$this->formDay->bind($request->getParameter($this->formDay->getName()));
+  			
+  				if ($this->formDay->isValid())
+  				{
+  					
+  					$params = $request->getParameter('CreneauDay');
+  			
+	  				//var_dump($params);
+	  			
+	  				foreach ($params['salles'] as $salle)
+	  				{  					
+	  					$reservation = new Reservation();
+	  					
+		  				$reservation->setIdUserReserve($this->getUser()->getGuardUser()->getId());
+		  				$reservation->setIdAsso(1); // BDE
+		  				$reservation->setDate($params['date']);
+		  				$reservation->setHeuredebut('00:00');
+		  				$reservation->setHeurefin('00:00');
+		  				$reservation->setAllday(true);
+		  				$reservation->setActivite('Journée Interdite');
+		  				$reservation->setEstvalide(true);
+		  				//$reservation->setCommentaire('Commentaire');
+		  				$reservation->setIdSalle($salle);
+		  				
+		  				$reservation->save();
+	  					
+	  				}
 	  			}
   			}
-  		}
-  }
-  
-  public function executeCreneauoffShow(sfWebRequest $request)
-  {
-  		$this->param = "creneauoff";
-  
-  		$this->date = $request->getParameter('date',-1);
-  		
-  		$this->forward404Unless(($this->date != -1) && CreneauOffTable::getInstance()->isCreneauoffExist($this->date));
-  		
-  		$this->creneauoff = CreneauOffTable::getInstance()->getCreneauoffByDate($this->date)->execute()[0];
-  		
-  		if ($request->isMethod('post'))
-  		{
-  			$this->del = $request->getParameter('delete');
+  			else if ($request->getParameter('hour'))
+  			{
+  				if ($request->getParameter('hour'))
+	  			{
+	  				$this->formHour->bind($request->getParameter($this->formHour->getName()));
   			
-  			$this->creneauoff->delete();
+  					if ($this->formHour->isValid())
+  					{
+	  			
+		  				$params = $request->getParameter('CreneauHour');
+		  			
+		  				//var_dump($params);
+		  			
+		  				foreach ($params['salles'] as $salle)
+		  				{  			
+		  					$reservation = new Reservation();
+		  					
+			  				$reservation->setIdUserReserve($this->getUser()->getGuardUser()->getId());
+			  				$reservation->setIdAsso(1); // BDE
+			  				$reservation->setDate($params['date']);
+			  				$reservation->setHeuredebut($params['debut']['hour'].':'.$params['debut']['minute']);
+			  				$reservation->setHeurefin($params['fin']['hour'].':'.$params['fin']['minute']);
+			  				$reservation->setAllday(false);
+			  				$reservation->setActivite('Creneau Interdit');
+			  				$reservation->setEstvalide(true);
+			  				//$reservation->setCommentaire('Commentaire');
+			  				$reservation->setIdSalle($salle);
+			  				
+			  				$reservation->save();
+		  					
+		  				}
+		  			}
+	  			}
+	  		}
   		}
   		
   }
   
-  /**
-  *	Permet de supprimer les creneauxOff qui sont dépassé !
-  *
-  *
-  */
-  private function deleteOldCreneauoff()
-  {
-  		$old = CreneauoffTable::getInstance()->getOldCreneauoff()->execute();
-  		
-		foreach ($old as $c)
-		{		
-			$c->delete();
-		}
-  		
-  }
   
   /**
   *	Envoie un mail

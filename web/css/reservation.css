@@ -249,3 +249,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
   border-spacing:30px;
 }
 
+/* Disposition des 2 formulaires dans BDE creneaux Off */
+
+#form_creneau {
+	position: relative;
+}
+
+#form_creneau .left {
+	float: left;
+	width: 50%;
+}
+
+#form_creneau .right {
+	display : inline-block;
+}
+
+

@@ -1,13 +1,29 @@
 <?php include_partial("insideMenu",array("param" => $param)) ?>
 
-<h4><?php echo link_to('Nouveau Creneau Off','reservation_creneauoff_new') ?></h4>
-
 <h3>Gestion des creneaux off</h3>
 
-<ul>
-<?php foreach ($creneauoff as $cre): ?>
+<div id="form_creneau">
+	
+	<p>Astuce : restez appuyer sur la touche "ctrl" afin de sélectionner plusieurs salles :)</p>
+	
+	<div class="left">
+		<h4>Ajout creneau off journée</h4>
+		<form method="post" action="<?php url_for ('reservation_creneauoff') ?>">
+			<?php echo $formDay ?>
+			<br />
+			<input type="submit" name="day" value="Valider" />		
+		</form>
+	</div>
 
-	<li><?php echo link_to($cre, 'reservation_creneauoff_show',array('date'=>$cre->getDate())) ?></li>
+	<div class="right">
+		<h4>Ajout creneau off horaire</h4>
+		<form method="post" action="<?php url_for ('reservation_creneauoff') ?>">
+			<?php echo $formHour ?>
+			<br />
+			<input type="submit" name="hour" value="Valider" />
+		</form>
+	</div>
+	
+<div>
 
-<?php endforeach; ?>
-</ul>
+

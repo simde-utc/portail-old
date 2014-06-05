@@ -5,10 +5,10 @@ foreach ($reservations as $res){
   $result[] = array(
     "id" => ($res->getId()),
     "title" => $asso->getName(),
-    "allDay" => false,
+    "allDay" => $res->getAllday(),
     "start" => strtotime($res->getDate() . " " . $res->getheuredebut()),
     "end" => strtotime($res->getDate() . " " . $res->getheurefin()),
-    "color" => ($res->getAsso()->isPole())?($res->getAsso()->getPoleInfos()->getCouleur()) :($res->getAsso()->getPole()->getCouleur()),
+    "color" => "#" . $res->getSalle()->getCouleur(),
     "url" => url_for('reservation_gestion_id',array('id'=>$res->getId())),
     "className" => (!$res->getEstvalide()) ? 'opacity' : ''
   );  

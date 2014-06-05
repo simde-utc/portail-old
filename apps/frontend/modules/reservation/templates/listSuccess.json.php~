@@ -18,7 +18,7 @@ if($res->getUserReserve()->getId()==$user->getId())
   $result[] = array(
     "id" => ($res->getId()),
     "title" => $title,
-    "allDay" => $res->getAllday(),
+    "allDay" => false,
     "start" => strtotime($res->getDate() . " " . $res->getheuredebut()),
     "end" => strtotime($res->getDate() . " " . $res->getheurefin()),
     "color" => "#" . $res->getSalle()->getCouleur(),

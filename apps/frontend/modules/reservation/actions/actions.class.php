@@ -17,18 +17,35 @@ class reservationActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-	$this->idSalle = $request->getUrlParameter("id", -1);
-	
 	$this->userIdentified = false;
-	
-	if ($this->getUser()->isAuthenticated()) // besoin de controler si il y a un numéro de salles
+	if ($this->getUser()->isAuthenticated())
 	{
-	
-		$this->userIdentified= true;
-		      
+		$this->userIdentified= true;	      
 		$UserID = $this->getUser()->getGuardUser()->getId();
-		     
 		$values = array('UserID'=> $UserID,'idSalle'=> $this->idSalle);
+
+		$this->idSalle = $request->getUrlParameter("id", -1);
+		$this->salle = SalleTable::getInstance()->getSalleById($this->idSalle)->execute()[0]; 
+
+		//test si la salle appartient bien aux pole de l'utilisateur
+		if($this->idSalle != -1)
+		{
+			//BDE toujours dans les poles de l'utilisateur
+			$this->polesUser = array("1");
+
+			$this->assosUser = AssoTable::getInstance()->getMyAssos($this->getUser()->getGuardUser()->getId())->execute();
+			if($this->assosUser)
+			{
+				foreach($this->assosUser as $asso)
+				{
+					$pole = PoleTable::getInstance()->getOneById($asso->getPoleId());
+					if(!in_array($pole->getId(), $this->polesUser))
+						array_push($this->polesUser, $pole->getId());
+				}
+			}
+			$this->forward404Unless(in_array($this->salle->getIdPole(), $this->polesUser));
+		}	
+	
 	    
 		$this->form = new ResaForm(array(),$values);
 		
@@ -100,7 +117,8 @@ class reservationActions extends sfActions
 
   public function executeListBySalle(sfWebRequest $request)
   {
-	$this->idSalle = $request->getUrlParameter("id"); 
+	$this->user = $this->getUser()->getGuardUser();	
+	$this->idSalle = $request->getUrlParameter("id");
   	$this->reservation = ReservationTable::getInstance()->getReservationBySalle($this->idSalle)->execute();
   }
 

@@ -6,7 +6,7 @@ foreach ($reservation as $res){
   else
   	$title = $res->getUserReserve()->getName();
 
-if(strtotime($res->getheurefin())-time()>3600 && $reservation->getUserReserve()->getId()==$this->getUser()->getId())
+if(strtotime($res->getheurefin())-time()>3600 && $res->getUserReserve()->getId()==$user->getId())
 	$url = "";
   else
 	$url = url_for('reservation_show', array("id" => $res->getID()));

@@ -1,4 +1,4 @@
-<?php
+<?php	
 $result = array();
 foreach ($reservations as $res){
   if($res->getAsso()->getId()) 
@@ -7,13 +7,10 @@ foreach ($reservations as $res){
   	$title = $res->getUserReserve()->getName();
 
 if(strtotime($res->getheurefin())-time()>3600 && $res->getUserReserve()->getId()==$user->getId())
-{
-	$url = "http://google.com";
-}
+	$url = "";
   else
-{
 	$url = url_for('reservation_show', array("id" => $res->getID()));
-}
+
   $result[] = array(
     "id" => ($res->getId()),
     "title" => $title,

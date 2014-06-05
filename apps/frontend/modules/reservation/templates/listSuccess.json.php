@@ -6,10 +6,14 @@ foreach ($reservations as $res){
   else
   	$title = $res->getUserReserve()->getName();
 
-if(strtotime($res->getheurefin())-time()>3600 && $res->getUserReserve()->getId()==$user->getId())
-	$url = "modif";
-  else
-	$url = url_for('reservation_show', array("id" => $res->getID()));
+$url = url_for('reservation_show', array("id" => $res->getID()));
+
+if($res->getUserReserve()->getId()==$user->getId())
+	//if(strtotime($res->getDate())<time() || strtotime($res->getheurefin())-time()>3600))
+	if( strtotime($res->getDate()) > time() )
+		$url = "modif";
+	elseif(strtotime($res->getheurefin())-time()>3600)
+		$url = "modif";
 
   $result[] = array(
     "id" => ($res->getId()),

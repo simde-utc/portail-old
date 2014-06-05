@@ -53,14 +53,6 @@ class ReservationTable extends Doctrine_Table
          return $q;
     }
     
-    public function isReservationExist($id)
-    {
-    		$q = $this->createQuery()
-	    		->where('id = ?', $id)->execute();
-            
-         return (count($q) > 0);
-    }
-    
     public function isReservationNoValidExist($id)
     {
     		$q = $this->createQuery()
@@ -68,6 +60,7 @@ class ReservationTable extends Doctrine_Table
             ->andWhere('estValide=?', 0)->execute();
             
          return (count($q) > 0);
+    
     }
   
   public function getReservationNoValide()

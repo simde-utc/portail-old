@@ -723,6 +723,12 @@ reservation_form_update:
   url: /reservation/formUpdate
   param: { module: reservation, action: formUpdate }
 
+reservation_json:
+  url: /reservation/:id.:sf_format
+  param: { module: reservation, action: listBySalle }
+  requirements:
+    sf_format: (?:html|json)
+
 reservations_json:
   url: /reservations.:sf_format/:id
   param: { module: reservation, action: list }

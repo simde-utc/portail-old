@@ -82,12 +82,16 @@ class reservationActions extends sfActions
   public function executeList(sfWebRequest $request)
   {
 	$this->user = $this->getUser()->getGuardUser();
-	if($this->getUser()->isAuthenticated())
+	
+	$idSalle = $request->getUrlParameter('id',-1);
+	
+	if($idSalle == -1)
 	{
 		//BDE toujours dans les poles de l'utilisateur
 		$this->polesUser = array("1");
 
 		$this->assosUser = AssoTable::getInstance()->getMyAssos($this->getUser()->getGuardUser()->getId())->execute();
+		
 		if($this->assosUser)
 		{
 			foreach($this->assosUser as $asso)
@@ -113,18 +117,24 @@ class reservationActions extends sfActions
 				array_push($this->reservations, $res);
 		}
 	}
+	else
+	{
+		$this->user = $this->getUser()->getGuardUser();	
+  		$this->reservations = ReservationTable::getInstance()->getReservationBySalle($idSalle)->execute();
+	}
   }
 
-  public function executeListBySalle(sfWebRequest $request)
-  {
-	$this->user = $this->getUser()->getGuardUser();	
-	$this->idSalle = $request->getUrlParameter("id");
-  	$this->reservation = ReservationTable::getInstance()->getReservationBySalle($this->idSalle)->execute();
-  }
 
   public function executeShow(sfWebRequest $request)
   {
-	$this->reservation = ReservationTable::getInstance()->getReservationById($request->getUrlParameter("id"))->execute()[0];
+  		$id = $request->getUrlParameter("id",-1);
+  
+  		if ($id == -1)
+  			$this->forward404Unless(false);
+  
+  		$this->forward404Unless(ReservationTable::getInstance()->isReservationExist($id));
+  
+		$this->reservation = ReservationTable::getInstance()->getReservationById($id)->execute()[0];
   }
   
   public function executeFormNew(sfWebRequest $request)

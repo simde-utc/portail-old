@@ -26,12 +26,23 @@
     <div id="calendar"></div>
 
     <script>
-    $(document).ready(function() {
+    $(document).ready(
+    
+    function() {
     
     var afficherErreur=parseInt(<?php echo $afficherErreur; ?>) ;
     if(afficherErreur){
 	$('#FormShape').fadeIn();
     }  
+    
+    /*var element=document.getElementById('calendar'); 
+    element.onclick = function() {
+	  document.getElementById('reservation_heuredebut_hour').disabled = true;
+	  document.getElementById('reservation_heuredebut_minute').disabled = true;
+	  document.getElementById('reservation_heurefin_hour').disabled = true;
+	  document.getElementById('reservation_heurefin_minute').disabled = true;
+    };*/
+
     
     function addForm(dataForm)
     {
@@ -50,52 +61,36 @@
 	 
 	dayClick: function(e)
 	{
+	 
+	  var idSalle=parseInt(<?php echo $idSalle; ?>) ;
+	  var UserID=parseInt(<?php echo $UserID; ?>) ;
 	  
 	  if (idSalle < 0) 
 	  {
 		  alert ("Vous devez sélectionner une salle pour pouvoir effectuer une réservation.");
 		  return;
 	  }
-	  
 
-	  var idSalle=parseInt(<?php echo $idSalle; ?>) ;
-	  var UserID=parseInt(<?php echo $UserID; ?>) ;
-	  
-	  // SI formulaire exist déjà
-	  if ($('#FormShape').length > 0)
+	  $.ajax({
+	    url: "<?php echo url_for('reservation_form_new') ?>",
+	    data: { idSalle : idSalle, UserID : UserID, update: false},
+	    success : function (data)
 	  {
-	  
-	      $('#reservation_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
-	      $('#reservation_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
-	      $('#reservation_date_year').val(parseInt($.fullCalendar.formatDate( e, "yyyy")));
-	      $('#reservation_heuredebut_hour').val(parseInt(e.getHours()));
-	      $('#reservation_heuredebut_minute').val(parseInt(e.getMinutes())==30?"30":"00");
+	      addForm(data);
 	      
-	      $('#FormShape').fadeIn();
-	  
-	  }
-	  else
-	  {
-	    $.ajax({
-	      url: "<?php echo url_for('reservation_form_new') ?>",
-	      data: { idSalle : idSalle, UserID : UserID},
-	      success : function (data)
-	    {
-		addForm(data);
-		
-	      $('#reservation_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
-	      $('#reservation_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
-	      $('#reservation_date_year').val(parseInt($.fullCalendar.formatDate( e, "yyyy")));
-	      $('#reservation_heuredebut_hour').val(parseInt(e.getHours()));
-	      $('#reservation_heuredebut_minute').val(parseInt(e.getMinutes())==30?"30":"00");
-	      
-		$('#FormShape').fadeIn();
-	      }
-	    });
+	    $('#reservation_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
+	    $('#reservation_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
+	    $('#reservation_date_year').val(parseInt($.fullCalendar.formatDate( e, "yyyy")));
+	    $('#reservation_heuredebut_hour').val(parseInt(e.getHours()));
+	    $('#reservation_heuredebut_minute').val(parseInt(e.getMinutes())==30?"30":"00");
+	    
+	    $('#FormShape').fadeIn();
+	    }
+	  });
 	    
 
 	    
-	   }
+	   
 	    
 	    
 	    
@@ -108,7 +103,7 @@
 		
 		    $.ajax({
 		      url: "<?php echo url_for('reservation_form_update') ?>",
-		      data: { id : parseInt(event.id), idSalle : <?php echo $idSalle; ?> , UserID : <?php echo $UserID; ?> },
+		      data: { id : parseInt(event.id), idSalle : <?php echo $idSalle; ?> , UserID : <?php echo $UserID; ?>, update: true },
 		      success : function (data)
 		      {
 			console.log(data);

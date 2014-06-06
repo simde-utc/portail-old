@@ -15,6 +15,14 @@ class reservationActions extends sfActions
   *
   * @param sfRequest $request A request object
   */
+  public function formatage($a)
+  {
+      if ($a<10)
+	return "0".$a;
+      else 
+	return "$a";
+   }
+  
   public function executeIndex(sfWebRequest $request)
   {
 	$this->userIdentified = false;
@@ -25,8 +33,7 @@ class reservationActions extends sfActions
 		$this->UserID=$this->getUser()->getGuardUser()->getId();
 		$this->idSalle = $request->getUrlParameter("id", -1);
 		$values = array('UserID'=> $this->UserID,'idSalle'=> $this->idSalle);
-
-
+		
 		$this->salle = SalleTable::getInstance()->getSalleById($this->idSalle)->execute()[0]; 
 
 		//test si la salle appartient bien aux pole de l'utilisateur
@@ -50,23 +57,111 @@ class reservationActions extends sfActions
 		
 		// on ne récupère que les noms d'assos correspondant aux pôles 
 		// pourquoi prend le login et pas le nom ?
-		$this->query = AssoTable::getInstance()->getMyAssosName($UserID,$this->idSalle);
+		$this->query = AssoTable::getInstance()->getMyAssosNameByIdSalle($UserID,$this->idSalle);
 		//var_dump($this->query);
 		
 		$this->form = new ReservationForm(array(),$values);
 
 		$this->ok = false;
 		$this->afficherErreur= false;
-  
+
+
+				$a=$request->getParameter($this->form->getName());
+				var_dump($a);
+				var_dump($a['id']);
+
   		if ($request->isMethod('post'))
   		{
   			$this->form->bind($request->getParameter($this->form->getName()));
-			var_dump($request->getParameter($this->form->getName()));
 			if ($this->form->isValid())
 			{
-				var_dump("valide");
+
+			
 				$this->reservation=$this->form->save(); // Save into database 
+				$idResa=$this->reservation->getId();
 				$this->ok=true;
+				
+				// permet de mettre à jour si le réservation est valide ou non ( deux semaines avant ou pas).
+				
+				$d= new DateTime();
+				$a=new DateTime($this->reservation->getDate());
+				$diff = $a->diff($d);
+				if($diff->d<14 && $this->reservation->getAllday()==0){
+				    $q = Doctrine_Query::create()
+				    ->update('Reservation')
+				    ->set('estvalide', '?', 1)
+				    ->where('id = ?', $idResa)
+				    ->execute();
+				}
+				
+				/*if($this->reservation->getAllday()){
+				    $q = Doctrine_Query::create()
+				    ->update('Reservation')
+				    ->set('heuredebut', '?', '08:00:00')
+				    ->set('heurefin', '?', '23:59:00')
+				    ->where('id = ?', $idResa)
+				    ->execute();
+				}*/
+			}
+			else
+			{
+			      var_dump("NOvalide");
+			      $this->afficherErreur= true;
+			}
+		}
+		
+  		if ($request->isMethod(sfRequest::PUT))
+  		{
+  			$this->form->bind($request->getParameter($this->form->getName()));
+			if ($this->form->isValid())
+			{	
+			
+				$a=$request->getParameter($this->form->getName());
+				$date= $a['date']['year'];
+				$date.="-";
+				$date.=(strlen($a['date']['month'])<2)?"0".$a['date']['month']:$a['date']['month'];
+				$date.="-";
+				$date.=(strlen($a['date']['day'])<2)?"0".$a['date']['day']:$a['date']['day'];
+				
+				$heureD=(strlen($a['heuredebut']['hour'])<2)?"0".$a['heuredebut']['hour']:$a['heuredebut']['hour'];
+				$heureD.=":";
+				$heureD.=$a['heuredebut']['minute'];
+				$heureD.=":00";
+				
+				$heureF=(strlen($a['heurefin']['hour'])<2)?"0".$a['date']['hour']:$a['date']['hour'];
+				$heureF.=":";
+				$heureF.=$a['heurefin']['minute'];
+				$heureF.=":00";
+				
+				$res = new Reservation();
+				
+				$res->setId($a['id']);
+				$res->setIdUserValid($a['id_user_valid']);
+				$res->setIdUserReserve($a['id_user_reserve']);
+				$res->setIdAsso($a['id_asso']);
+				$res->setIdSalle($a['id_salle']);
+				$res->setDate($date);
+				$res->setHeuredebut($heureD);
+				$res->setHeurefin($heureF);
+				$res->setAllday($a['allday']);
+				/*if($a['allday'])
+				  $res->setEstvalide(0);*/
+				$res->setActivite($a['activite']);
+				$res->setCommentaire($a['commentaire']);
+				
+				// permet de mettre à jour si le réservation est valide ou non ( deux semaines avant ou pas).
+				
+				$d=new DateTime();
+				$a=new DateTime($res->getDate());
+				$diff = $a->diff($d);
+				if($diff->d<14 && $res->getAllday()==0){
+				    $q = Doctrine_Query::create()
+				    ->update('Reservation')
+				    ->set('estvalide', '?', 1)
+				    ->where('id = ?', $idResa)
+				    ->execute();
+				}
+
 			}
 			else
 			{
@@ -146,23 +241,27 @@ class reservationActions extends sfActions
   
 	$idSalle = $request->getParameter("idSalle", -1);
 	$UserID = $request->getParameter("UserID", -1);
+	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->execute()[0]->getIdPole();
 	
 	
 	// création du tableua à passer au constructeur du formulaire de réservation
-	$values = array('UserID'=> $UserID,'idSalle'=> $idSalle);
+	$values = array('UserID'=> $UserID,'idSalle'=> $idSalle,'PoleId'=>$PoleId);
     
 	$this->form = new ReservationForm(array(),$values);
 	
 	// TO DO : Voir si la salle appartient au BDE ou non et en fonction donner possiblité de rentrer une asso ou non.
-	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->execute()[0]->getIdPole();
+
+	
 	if($PoleId==1){
 	    $this->form->getWidget('id_asso')->setOption('add_empty',true);
 	}
 	
+
+	
 	// valeur par défaut pour les champs cachés.
 	$this->form->setDefault('id_salle', $idSalle);
 	$this->form->setDefault('id_user_reserve', $UserID);
-	$this->form->setDefault('estvalide', 0); // TODO si 2 semaines avant ou pas
+	$this->form->setDefault('estvalide', 0); 
 			
 	$this->ok = false;
 	$this->afficherErreur= false;
@@ -182,6 +281,7 @@ class reservationActions extends sfActions
 	$idSalle = $request->getParameter("idSalle", -1);
 	$UserID = $request->getParameter("UserID", -1);
 	$idResa = intval($request->getParameter("id", -1));
+	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->execute()[0]->getIdPole();
 	
 	$reservation = ReservationTable::getInstance()->getReservationById($idResa)->execute()[0];
 	
@@ -192,8 +292,14 @@ class reservationActions extends sfActions
 	  $idSalle = $reservation->getSalle()->getId();
 	}
 	
+	if($PoleId==1){
+	    //$this->form->getWidget('id_asso')->setOption('add_empty',true);
+	}
+	
 	// création du tableua à passer au constructeur du formulaire de réservation
-	$values = array('UserID'=> $UserID,'idSalle'=> $idSalle);
+	$values = array('UserID'=> $UserID,'idSalle'=> $idSalle,'PoleId'=>$PoleId);
+	
+	
     
 	$this->form = new ReservationForm($reservation,$values);
 	
@@ -203,13 +309,13 @@ class reservationActions extends sfActions
 	    $this->form->getWidget('id_asso')->setOption('add_empty',true);
 	}
 	
-	$this->form->setDefault('estvalide', 0); // TODO si 2 semaines avant ou si toute une journée
+	$this->form->setDefault('estvalide', 0);
 			
 	$this->ok = false;
 	$this->afficherErreur= false;
 
 
-	return $this->renderPartial('reservation/formNew',array('form'=>$this->form,'idSalle'=>$idSalle));
+	return $this->renderPartial('reservation/formNew',array('form'=>$this->form,'idSalle'=>$idSalle,'PoleId'=>$PoleId));
 	 
   }
 

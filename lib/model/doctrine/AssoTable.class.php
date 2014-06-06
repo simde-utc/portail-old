@@ -152,7 +152,7 @@ class AssoTable extends Doctrine_Table
         return $q->execute();
     }
 
-	public function getMyAssosName($user_id,$idSalle)
+    public function getMyAssosNameByIdSalle($user_id,$idSalle)
     {
         $q = $this->createQuery('q')
             ->select('q.name')
@@ -164,6 +164,7 @@ class AssoTable extends Doctrine_Table
             ->andWhere('m.semestre_id = ?', sfConfig::get('app_portail_current_semestre'));
         return $q;
     }
+    
 
     /**
      *

@@ -12,8 +12,18 @@
  */
 class GaleriePhoto extends BaseGaleriePhoto
 {
-	public function delete(){
+	public function delete(Doctrine_Connection $conn = NULL){
 		PhotoTable::getInstance()->deletePhotosFromGallery($this->getId());
-		parent::delete();
+		parent::delete($conn);
 	}
+
+	public function userIsPhotographer($user){
+    	return $this->getEvent()->userIsPhotographer($user);
+  	}
+
+  	public function countPhotosVisible($logged_in=False){
+  		return PhotoTable::getInstance()
+	        ->getPhotos($this->getId(),$logged_in)
+	        ->count();
+  	}  
 }

@@ -176,6 +176,7 @@ EventType:
   columns:
     name: { type: string(50) }
 
+
 EventGuestAsso:
   connection: doctrine
   columns:
@@ -199,11 +200,12 @@ Photo:
     galeriePhoto_id: {type: integer, notnull: true}
     title: {type: string(200)}
     author: {type: integer, notnull: true}
-    is_public: {type: integer, notnull:true}
+    is_public: {type: boolean, notnull:true}
     image: { type: string, notnull: true}
   relations:
     GaleriePhoto: {local: galeriePhoto_id, foreign: id}
     User: { local: author, foreign: id, class: sfGuardUser }
+
 
 Article:
   connection: doctrine
@@ -376,6 +378,7 @@ Partenaire:
     logo: { type: string(100) }
     url: { type: string(255) }
     description: { type: string }
+    position: { type: integer }
 
 CarnetAvantages:
   connection: doctrine
@@ -385,6 +388,7 @@ CarnetAvantages:
     adresse: { type: string(100) }
     tel: { type: string(15) }
     description: { type: string, notnull: true }
+    logo: { type: string(100) }
 
 VoteListe:
   connection: doctrine

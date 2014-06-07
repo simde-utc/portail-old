@@ -620,3 +620,11 @@ a.btn-danger {
 
 /* fix margin problem thumbnail bootstrap*/
 ul.thumbfix li.span3:nth-child(4n + 5) { margin-left : 0px; }
+
+.btn.btn-primary{
+  color:#FFF;
+}
+
+ul.thumbnails li.span4:nth-child(3n + 4) {
+  margin-left : 0px;
+}

@@ -28,7 +28,11 @@ class infojobActions extends sfActions {
     else {
       $query = InfoJobOffreTable::getInstance()->getLastOffreList();
     }
-    $this->annonces = $query->execute();
+    $this->pager = new sfDoctrinePager('InfoJobOffre', sfConfig::get('app_portail_offres_par_page'));
+    $this->pager->setQuery($query);
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
+    $this->annonces = $this->pager->getResults();
     $this->isGet = $request->getMethod() == sfRequest::GET;
   }
 

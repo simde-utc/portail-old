@@ -135,6 +135,12 @@ asso_charte_refuse:
   param: { module: asso, action: charteRefuse }
   options: { model: CharteInfo, type: object }
 
+assos_logo:
+  url:   /asso/:login/logo
+  class: sfDoctrineRoute
+  param: { module: asso, action: logo }
+  options: { model: Asso, type: object }
+
 #Articles
 articles_list:
   url:   /article

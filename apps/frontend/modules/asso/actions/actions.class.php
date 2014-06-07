@@ -247,7 +247,7 @@ EOF
   public function executeUpdate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->find(array($request->getParameter('id'))), sprintf('Object asso does not exist (%s).', $request->getParameter('id')));
+    $this->forward404Unless($asso = Doctrine_Core::getTable('asso')->getOneByLogin($request->getParameter('login'))->fetchOne(), sprintf('Object asso does not exist (%s).', $request->getParameter('login')));
     if(!$this->getUser()->isAuthenticated() || !$this->getUser()->getGuardUser()->hasAccess($asso->getLogin(), 0x01))
     {
       $this->getUser()->setFlash('error', 'Vous n\'avez pas le droit d\'effectuer cette action.');

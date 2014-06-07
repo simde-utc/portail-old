@@ -114,7 +114,7 @@ asso_unfollow:
   options: { model: Asso, type: object }
 
 asso_update:
-  url: /asso/:id/update
+  url: /asso/:login/update
   param: { module: asso, action: update }
 
 asso_charte:

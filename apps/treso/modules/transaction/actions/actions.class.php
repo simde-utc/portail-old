@@ -17,7 +17,7 @@ class transactionActions extends tresoActions {
     $this->getResponse()->setSlot('current_asso', $this->asso);
 
     $this->compte = CompteBanquaireTable::getInstance()->getAllForAsso($this->asso)->fetchOne();
-    if (is_null($this->compte))
+    if ($this->compte === false)
       $this->setTemplate('noCompte');
     else {
       $this->chooser = new sfWidgetFormDoctrineChoice(array('model'=>'CompteBanquaire',

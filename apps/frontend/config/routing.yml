@@ -139,7 +139,7 @@ assos_logo:
   url:   /asso/:login/logo
   class: sfDoctrineRoute
   param: { module: asso, action: logo }
-  options: { model: Asso, type: object, method_for_query: retrieveAsso }
+  options: { model: Asso, type: object }
 
 #Articles
 articles_list:

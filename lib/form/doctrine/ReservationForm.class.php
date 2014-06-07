@@ -191,7 +191,10 @@ class ReservationForm extends BaseReservationForm
 	$q = Doctrine_Query::create()
 	->from('Reservation r')
 	->where('r.id_asso = ?', $values['id_asso'])
-	->andWhere('r.date = ?', $values['date']);
+	->andWhere('r.date = ?', $values['date'])
+	->andWhere('r.id != ?',$values['id']);;
+	
+	
 	
 	$result= $q->execute();
 	

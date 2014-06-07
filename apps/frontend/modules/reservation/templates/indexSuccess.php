@@ -35,15 +35,6 @@
 	$('#FormShape').fadeIn();
     }  
     
-    /*var element=document.getElementById('calendar'); 
-    element.onclick = function() {
-	  document.getElementById('reservation_heuredebut_hour').disabled = true;
-	  document.getElementById('reservation_heuredebut_minute').disabled = true;
-	  document.getElementById('reservation_heurefin_hour').disabled = true;
-	  document.getElementById('reservation_heurefin_minute').disabled = true;
-    };*/
-
-    
     function addForm(dataForm)
     {
       if ($('#FormShape').length > 0)
@@ -73,7 +64,7 @@
 
 	  $.ajax({
 	    url: "<?php echo url_for('reservation_form_new') ?>",
-	    data: { idSalle : idSalle, UserID : UserID, update: false},
+	    data: { idSalle : idSalle, UserID : UserID},
 	    success : function (data)
 	  {
 	      addForm(data);
@@ -85,6 +76,28 @@
 	    $('#reservation_heuredebut_minute').val(parseInt(e.getMinutes())==30?"30":"00");
 	    
 	    $('#FormShape').fadeIn();
+	    
+	    
+	    	    var element=document.getElementById('reservation_allday'); 
+	    element.onclick = function() {
+	      if(document.getElementById('reservation_heuredebut_hour').disabled == true){
+		  document.getElementById('reservation_heuredebut_hour').disabled = false;
+		  document.getElementById('reservation_heuredebut_minute').disabled = false;
+		  document.getElementById('reservation_heurefin_hour').disabled = false;
+		  document.getElementById('reservation_heurefin_minute').disabled = false;
+		}
+	      else{
+		  document.getElementById('reservation_heuredebut_hour').disabled = true;
+		  document.getElementById('reservation_heuredebut_minute').disabled = true;
+		  document.getElementById('reservation_heurefin_hour').disabled = true;
+		  document.getElementById('reservation_heurefin_minute').disabled = true;
+		  $('#reservation_heuredebut_hour').val(0);
+		  $('#reservation_heuredebut_minute').val(0);
+		  $('#reservation_heurefin_hour').val(0);
+		  $('#reservation_heurefin_minute').val(0);
+	      }
+	     }
+	    
 	    }
 	  });
 	    
@@ -103,7 +116,7 @@
 		
 		    $.ajax({
 		      url: "<?php echo url_for('reservation_form_update') ?>",
-		      data: { id : parseInt(event.id), idSalle : <?php echo $idSalle; ?> , UserID : <?php echo $UserID; ?>, update: true },
+		      data: { idResa : parseInt(event.id), idSalle : <?php echo $idSalle; ?> , UserID : <?php echo $UserID; ?>, update: true },
 		      success : function (data)
 		      {
 			console.log(data);

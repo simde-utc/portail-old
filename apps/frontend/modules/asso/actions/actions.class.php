@@ -404,4 +404,21 @@ EOF
     $this->getUser()->setFlash('success', 'Vous ne suivez plus les actualités de cette association.');
     $this->redirect('asso/show?login='.$asso->getLogin());
   }
+
+  public function executeLogo(sfWebRequest $request)
+  {
+    sfProjectConfiguration::getActive()->loadHelpers(array('Asset', 'Thumb'));
+
+    $width = intval($request->getParameter('width'));
+    if ($width == 0) {
+        $width = 150;
+    }
+    $height = intval($request->getParameter('height'));
+    if ($height == 0) {
+        $height = 150;
+    }
+
+    $asso = $this->getRoute()->getObject();
+    $this->redirect(doThumb($asso->getLogo(), 'assos', array('width' => $width, 'height' => $height), 'scale'));
+  }
 }

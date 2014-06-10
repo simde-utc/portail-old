@@ -68,36 +68,35 @@
 	    success : function (data)
 	  {
 	      addForm(data);
+	      $('#reservation_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
+	      $('#reservation_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
+	      $('#reservation_date_year').val(parseInt($.fullCalendar.formatDate( e, "yyyy")));
+	      $('#reservation_heuredebut_hour').val(parseInt(e.getHours()));
+	      $('#reservation_heuredebut_minute').val(parseInt(e.getMinutes())==30?"30":"00");
 	      
-	    $('#reservation_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
-	    $('#reservation_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
-	    $('#reservation_date_year').val(parseInt($.fullCalendar.formatDate( e, "yyyy")));
-	    $('#reservation_heuredebut_hour').val(parseInt(e.getHours()));
-	    $('#reservation_heuredebut_minute').val(parseInt(e.getMinutes())==30?"30":"00");
-	    
-	    $('#FormShape').fadeIn();
-	    
-	    
-	    	    var element=document.getElementById('reservation_allday'); 
-	    element.onclick = function() {
-	      if(document.getElementById('reservation_heuredebut_hour').disabled == true){
-		  document.getElementById('reservation_heuredebut_hour').disabled = false;
-		  document.getElementById('reservation_heuredebut_minute').disabled = false;
-		  document.getElementById('reservation_heurefin_hour').disabled = false;
-		  document.getElementById('reservation_heurefin_minute').disabled = false;
+	      $('#FormShape').fadeIn();
+	      
+	      
+	      var element=document.getElementById('reservation_allday'); 
+	      element.onclick = function() {
+		if(document.getElementById('reservation_heuredebut_hour').disabled == true){
+		    document.getElementById('reservation_heuredebut_hour').disabled = false;
+		    document.getElementById('reservation_heuredebut_minute').disabled = false;
+		    document.getElementById('reservation_heurefin_hour').disabled = false;
+		    document.getElementById('reservation_heurefin_minute').disabled = false;
+		  }
+		else{
+		    document.getElementById('reservation_heuredebut_hour').disabled = true;
+		    document.getElementById('reservation_heuredebut_minute').disabled = true;
+		    document.getElementById('reservation_heurefin_hour').disabled = true;
+		    document.getElementById('reservation_heurefin_minute').disabled = true;
+		    $('#reservation_heuredebut_hour').val(0);
+		    $('#reservation_heuredebut_minute').val(0);
+		    $('#reservation_heurefin_hour').val(09);
+		    $('#reservation_heurefin_minute').val(00);
 		}
-	      else{
-		  document.getElementById('reservation_heuredebut_hour').disabled = true;
-		  document.getElementById('reservation_heuredebut_minute').disabled = true;
-		  document.getElementById('reservation_heurefin_hour').disabled = true;
-		  document.getElementById('reservation_heurefin_minute').disabled = true;
-		  $('#reservation_heuredebut_hour').val(0);
-		  $('#reservation_heuredebut_minute').val(0);
-		  $('#reservation_heurefin_hour').val(0);
-		  $('#reservation_heurefin_minute').val(0);
 	      }
-	     }
-	    
+	      
 	    }
 	  });
 	    
@@ -119,8 +118,29 @@
 		      data: { idResa : parseInt(event.id), idSalle : <?php echo $idSalle; ?> , UserID : <?php echo $UserID; ?>, update: true },
 		      success : function (data)
 		      {
-			console.log(data);
+			//console.log(data);
 			addForm(data);
+	      
+			var element=document.getElementById('reservation_allday'); 
+			element.onclick = function() {
+			  if(document.getElementById('reservation_heuredebut_hour').disabled == true){
+			      document.getElementById('reservation_heuredebut_hour').disabled = false;
+			      document.getElementById('reservation_heuredebut_minute').disabled = false;
+			      document.getElementById('reservation_heurefin_hour').disabled = false;
+			      document.getElementById('reservation_heurefin_minute').disabled = false;
+			    }
+			  else{
+			      document.getElementById('reservation_heuredebut_hour').disabled = true;
+			      document.getElementById('reservation_heuredebut_minute').disabled = true;
+			      document.getElementById('reservation_heurefin_hour').disabled = true;
+			      document.getElementById('reservation_heurefin_minute').disabled = true;
+			      $('#reservation_heuredebut_hour').val(0);
+			      $('#reservation_heuredebut_minute').val(0);
+			      $('#reservation_heurefin_hour').val(09);
+			      $('#reservation_heurefin_minute').val(00);
+			  }
+			}
+
 		      }
 		    });
 		    return false;

@@ -50,12 +50,13 @@ class ReservationForm extends BaseReservationForm
 
      $years = range(date('Y'), date('Y') + 2);
      $this->getWidget('date')->addOption('years', array_combine($years, $years));
+     $lminutes = [0,30];
      $minutes = [sprintf("%02d",0),30];
-		
+
      $hours = [sprintf("%02d",8),sprintf("%02d",9),10,11,12,13,14,15,16,17,18,19,20,21,22,23];
-     $this->getWidget('heuredebut')->addOption('minutes', array_combine($minutes, $minutes));
+     $this->getWidget('heuredebut')->addOption('minutes', array_combine($lminutes, $minutes));
      $this->getWidget('heuredebut')->addOption('hours', array_combine(range(8,23),$hours));
-     $this->getWidget('heurefin')->addOption('minutes', array_combine($minutes, $minutes));
+     $this->getWidget('heurefin')->addOption('minutes', array_combine($lminutes, $minutes));
      $this->getWidget('heurefin')->addOption('hours', array_combine(range(8,23), $hours));
      
      $this->getWidget('date')->setLabel('Date:');

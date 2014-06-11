@@ -19,7 +19,7 @@
 
     <?php if ($ok): ?> 
 
-	<?php echo "<p>Réservation réalisée avec succès !</p>" ?>
+	<?php echo '<p id="ok">Réservation réalisée avec succès !</p>' ?>
 	
     <?php endif; ?>
 
@@ -33,6 +33,35 @@
     var afficherErreur=parseInt(<?php echo $afficherErreur; ?>) ;
     if(afficherErreur){
 	$('#FormShape').fadeIn();
+
+	var element=document.getElementById('reservation_allday'); 
+	
+	if(element.checked ==true){
+	      document.getElementById('reservation_heuredebut_hour').disabled = true;
+	      document.getElementById('reservation_heuredebut_minute').disabled = true;
+	      document.getElementById('reservation_heurefin_hour').disabled = true;
+	      document.getElementById('reservation_heurefin_minute').disabled = true;
+	}
+
+
+	element.onclick = function() {
+	  if(document.getElementById('reservation_heuredebut_hour').disabled == true){
+	      document.getElementById('reservation_heuredebut_hour').disabled = false;
+	      document.getElementById('reservation_heuredebut_minute').disabled = false;
+	      document.getElementById('reservation_heurefin_hour').disabled = false;
+	      document.getElementById('reservation_heurefin_minute').disabled = false;
+	    }
+	  else{
+	      document.getElementById('reservation_heuredebut_hour').disabled = true;
+	      document.getElementById('reservation_heuredebut_minute').disabled = true;
+	      document.getElementById('reservation_heurefin_hour').disabled = true;
+	      document.getElementById('reservation_heurefin_minute').disabled = true;
+	      $('#reservation_heuredebut_hour').val(0);
+	      $('#reservation_heuredebut_minute').val(0);
+	      $('#reservation_heurefin_hour').val(09);
+	      $('#reservation_heurefin_minute').val(00);
+	  }
+	}
     }  
     
     function addForm(dataForm)
@@ -67,6 +96,10 @@
 	    data: { idSalle : idSalle, UserID : UserID},
 	    success : function (data)
 	  {
+	      if(document.getElementById('ok')){
+		 var elt=document.getElementById('ok');
+		  elt.parentNode.removeChild(elt)
+	      }
 	      addForm(data);
 	      $('#reservation_date_day').val(parseInt($.fullCalendar.formatDate( e, "dd")));
 	      $('#reservation_date_month').val(parseInt($.fullCalendar.formatDate( e, "MM")));
@@ -117,11 +150,23 @@
 		      url: "<?php echo url_for('reservation_form_update') ?>",
 		      data: { idResa : parseInt(event.id), idSalle : <?php echo $idSalle; ?> , UserID : <?php echo $UserID; ?>, update: true },
 		      success : function (data)
-		      {
-			//console.log(data);
+		      {		
+			if(document.getElementById('ok')){
+			  var elt=document.getElementById('ok');
+			    elt.parentNode.removeChild(elt)
+			}
+		      
 			addForm(data);
-	      
 			var element=document.getElementById('reservation_allday'); 
+			
+			if(element.checked ==true){
+			      document.getElementById('reservation_heuredebut_hour').disabled = true;
+			      document.getElementById('reservation_heuredebut_minute').disabled = true;
+			      document.getElementById('reservation_heurefin_hour').disabled = true;
+			      document.getElementById('reservation_heurefin_minute').disabled = true;
+			}
+	      
+
 			element.onclick = function() {
 			  if(document.getElementById('reservation_heuredebut_hour').disabled == true){
 			      document.getElementById('reservation_heuredebut_hour').disabled = false;

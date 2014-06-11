@@ -257,6 +257,7 @@ class ReservationForm extends BaseReservationForm
     ->from('Reservation r')
     ->where('r.date = ?', $values['date'])
     ->andWhere('r.id_salle = ?', $values['id_salle'])
+    ->andWhere('id != ?', $values['id'])
     ->andWhere('r.allday = ?', 1);
 
     $result= $q->fetchOne()["count"];

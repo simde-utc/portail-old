@@ -123,7 +123,6 @@ class ReservationForm extends BaseReservationForm
 	new sfValidatorCallback(array('callback' => array($this, 'checkLimiteMax'))),
 	new sfValidatorCallback(array('callback' => array($this, 'checkJourLibre'))),
 	new sfValidatorCallback(array('callback' => array($this, 'checkHeureDebutAvantHeureFin'))),
-	new sfValidatorCallback(array('callback' => array($this, 'checkHeureFinOk'))),
     )));
       
   }
@@ -374,32 +373,21 @@ class ReservationForm extends BaseReservationForm
   { 
     
     if($values['allday']==false){
-
-      if($values['heuredebut']>$values['heurefin']){
-	  throw new sfValidatorError($validator, 'L\'heure de début doit précéder l\'heure de fin');
-      }
     
-    }
-
-    return $values;
-
-  }
-  
-  
-  public function checkHeureFinOk($validator, $values)
-  { 
-    
-    if($values['allday']==false){
-
       if($values['heurefin']==""){
 	  throw new sfValidatorError($validator, 'Merci de rentrer une heure de fin.');
       }
+      if($values['heuredebut']>$values['heurefin']){
+	  throw new sfValidatorError($validator, 'L\'heure de début doit précéder l\'heure de fin.');
+      }
     
     }
 
     return $values;
 
   }
+  
+
   
   
   

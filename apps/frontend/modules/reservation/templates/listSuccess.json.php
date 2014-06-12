@@ -9,11 +9,12 @@ foreach ($reservations as $res){
 $url = url_for('reservation_show', array("id" => $res->getID()));
 
 if($res->getUserReserve()->getId()==$user->getId())
-	//if(strtotime($res->getDate())<time() || strtotime($res->getheurefin())-time()>3600))
-	if( strtotime($res->getDate()) > time() )
+{
+	$timestampResa = strtotime($res->getDate() . " " . $res->getheuredebut());
+	
+	if( $timestampResa-3600 > time() )
 		$url = "modif";
-	elseif(strtotime($res->getheurefin())-time()>3600)
-		$url = "modif";
+}
 
   $result[] = array(
     "id" => ($res->getId()),

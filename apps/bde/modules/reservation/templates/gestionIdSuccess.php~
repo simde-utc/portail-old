@@ -8,9 +8,7 @@
 
 <?php if ($delete): ?>
 
-	<h4>Supprimée !</h4>
-	
-	<?php echo nl2br($mail) ?>
+	<p>Supprimée !</p>
 
 <?php else: ?>
 

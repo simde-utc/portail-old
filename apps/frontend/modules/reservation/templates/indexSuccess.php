@@ -137,17 +137,17 @@
 	    }
 	  });
 	    
-
-	    
-	   
-	    
-	    
-	    
+	$('html, body').animate({
+	    scrollTop: ($('#selectSalle').first().offset().top)
+	},500);
 	},
 		
 	eventClick: function(event) {
 
-	      
+	      	$('html, body').animate({
+		    scrollTop: ($('#selectSalle').first().offset().top)
+		},500);
+
 		if (event.url == "modif") {
 		
 		    $.ajax({

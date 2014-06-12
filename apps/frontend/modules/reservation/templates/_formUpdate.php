@@ -5,7 +5,7 @@
 
 	<div id=formResa1>
 
-	  <legend> Modification de réservation: </legend>
+	  <legend> Modification de réservation </br> (Salle <?php echo $idSalle ?>): </legend>
 
 	  <p><?php echo $form['date']->renderRow()?></p>
 	  <p><?php echo $form['heuredebut']->renderLabel() ?><?php echo $form['heuredebut']->renderError() ?><?php echo $form['heurefin']->renderError() ?><?php echo $form['heuredebut']->render() ?><?php echo ' à '.$form['heurefin']->render() ?></p>
@@ -23,6 +23,7 @@
 	  
 	    <p>
 	<input type="submit" name="submit" value="Envoyer" />
+	<input type="submit" name="delete" value="Supprimer la réservation" />
 	<input type="button" value="Annuler" onclick="$('#FormShape').fadeOut();" />
 	    </p>
 	</div>

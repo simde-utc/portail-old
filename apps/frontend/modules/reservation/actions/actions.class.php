@@ -17,6 +17,7 @@ class reservationActions extends sfActions
   */ 
   public function executeIndex(sfWebRequest $request)
   {
+	
 	$this->userIdentified = false;
 	if ($this->getUser()->isAuthenticated())
 	{
@@ -58,6 +59,9 @@ class reservationActions extends sfActions
 		if ($request->isMethod('post'))
   		{
   		
+  		
+		     
+  		
 		     // Récupération de l'id de la réservation actuelle ( =-1 si nouvelle réservation, =id de la réservation à modifier sinon).
 		     $idResa = $request->getParameter('reservation',-1)['id'];
 
@@ -70,38 +74,44 @@ class reservationActions extends sfActions
 			  $reservation = ReservationTable::getInstance()->getReservationById($idResa)->execute()[0];
 			  $this->form = new ReservationForm($reservation,$values);
 		      }
+		      
+		      if($request->getParameter("delete")){
+			  $reservation->delete();
+		      }
 		      		      
-		     
-		      $this->form->bind($request->getParameter($this->form->getName()));
 		      
-		      if ($this->form->isValid())
-		      {
-		      
-				$this->reservation=$this->form->save(); // Save into database 
-				$this->ok=true;
+		      else{
+			    $this->form->bind($request->getParameter($this->form->getName()));
+			    
+			    if ($this->form->isValid())
+			    {
+			    
+				      $this->reservation=$this->form->save(); // Save into database 
+				      $this->ok=true;
 
-								
-				$d= new DateTime();
-				$a=new DateTime($this->reservation->getDate());
-				var_dump($this->reservation->getDate());
-				$diff = $a->diff($d);
-				
-				
-				if($diff->d<14 && $diff->y==0 && $diff->m==0 && $this->reservation->getAllday()==0){
-				      $this->reservation->setEstvalide(1);
-				      $this->reservation->save();
-				}
-				else{
-				      $this->reservation->setEstvalide(0);
-				      $this->reservation->save();				
-				}
-				
-				
-			}
-			else
-			{
-			      $this->afficherErreur= true;
-			}
+								      
+				      $d= new DateTime();
+				      $a=new DateTime($this->reservation->getDate());
+				      var_dump($this->reservation->getDate());
+				      $diff = $a->diff($d);
+				      
+				      
+				      if($diff->d<14 && $diff->y==0 && $diff->m==0 && $this->reservation->getAllday()==0){
+					    $this->reservation->setEstvalide(1);
+					    $this->reservation->save();
+				      }
+				      else{
+					    $this->reservation->setEstvalide(0);
+					    $this->reservation->save();				
+				      }
+				      
+				      
+			    }
+			    else
+			    {
+				  $this->afficherErreur= true;
+			    }
+		      }
 		      
 		      
 		      

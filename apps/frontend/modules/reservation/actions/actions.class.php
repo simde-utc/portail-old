@@ -70,23 +70,14 @@ class reservationActions extends sfActions
 			  $reservation = ReservationTable::getInstance()->getReservationById($idResa)->execute()[0];
 			  $this->form = new ReservationForm($reservation,$values);
 		      }
-		      
-		      if($PoleId==1){
-			  $this->form->getWidget('id_asso')->setOption('add_empty',true);
-		      }
-		      
+		      		      
 		     
 		      $this->form->bind($request->getParameter($this->form->getName()));
 		      
-		      //var_dump($this->form);
-		      
-		      
 		      if ($this->form->isValid())
 		      {
-
-			
+		      
 				$this->reservation=$this->form->save(); // Save into database 
-				//$idResa=$this->reservation->getId();
 				$this->ok=true;
 
 								
@@ -105,11 +96,6 @@ class reservationActions extends sfActions
 				      $this->reservation->save();				
 				}
 				
-				/*if($this->reservation->getAllday()){
-				      $this->reservation->setHeuredebut('08:00:00');
-				      $this->reservation->setHeurefin('23:59:00');
-				      $this->reservation->save();
-				}*/
 				
 			}
 			else
@@ -201,19 +187,10 @@ class reservationActions extends sfActions
 	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->execute()[0]->getIdPole();
 	
 	
-	// création du tableua à passer au constructeur du formulaire de réservation
+	// création du tableau à passer au constructeur du formulaire de réservation
 	$values = array('UserID'=> $UserID,'idSalle'=> $idSalle,'PoleId'=>$PoleId);
     
 	$this->form = new ReservationForm(array(),$values);
-	
-	// TO DO : Voir si la salle appartient au BDE ou non et en fonction donner possiblité de rentrer une asso ou non.
-
-	
-	if($PoleId==1){
-	    $this->form->getWidget('id_asso')->setOption('add_empty',true);
-	}
-	
-
 	
 	// valeur par défaut pour les champs cachés.
 	$this->form->setDefault('id_salle', $idSalle);
@@ -250,17 +227,12 @@ class reservationActions extends sfActions
 	}
 	
 	
-	// création du tableua à passer au constructeur du formulaire de réservation
+	// création du tableau à passer au constructeur du formulaire de réservation
 	$values = array('UserID'=> $UserID,'idSalle'=> $idSalle,'PoleId'=>$PoleId);
     
 	$this->form = new ReservationForm($reservation,$values);
 	
-	// TODO : Voir si la salle appartient au BDE ou non et en fonction donner possiblité de rentrer une asso ou non.
 	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->execute()[0]->getIdPole();
-	
-	if($PoleId==1){
-	    $this->form->getWidget('id_asso')->setOption('add_empty',true);
-	}
 	
 	$this->form->setDefault('estvalide', 0);
 			

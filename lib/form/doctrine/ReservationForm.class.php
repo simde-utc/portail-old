@@ -12,22 +12,56 @@ class ReservationForm extends BaseReservationForm
 {
 
   public function configure()
-  {  
-     if($this->getOption('PoleId')!=1){
-	  $query = AssoTable::getInstance()->getMyAssosNameByIdSalle($this->getOption('UserID'),$this->getOption('idSalle'));
+  { 
+ 
+     if($this->getOption('PoleId')!=1){ // salle spécifique à un pôle.
+	    
+	    // préparation du tableau associatif regroupant les id et les noms des assos de l'utilisateur pour le pôle de la salle concernée
+	    $choices=array();
+	    $c = AssoTable::getInstance()->getMyAssosNameByIdSalle($this->getOption('UserID'),$this->getOption('idSalle'))->execute();
+	    foreach($c as $asso){
+		  $choices= $choices + array($asso->getId() => $asso->getName());
+	    }
 
+	    // Préparation des données pour la suite de l'algo
+	    $Salle = SalleTable::getInstance()->getSalleById($this->getOption('idSalle'))->execute()[0];
+	    $PoleLogin = $Salle->getPole()->getAssoId();
+	    $PoleName = AssoTable::getInstance()->getOneById($PoleLogin)->execute()[0]->getName();
+	    $PoleId = AssoTable::getInstance()->getOneById($PoleLogin)->execute()[0]->getId();
+	    $myAssos = AssoTable::getInstance()->getMyAssos($this->getOption('UserID'))->execute();
+	    
+	    // Constitution du tableau d'ID des assos de l'utilisateur.
+	    $ma=array();
+	    foreach($myAssos as $a){
+		  $ma= $ma+array($a->getId() => $a->getName());
+	    }
+
+	    // Si l'utilisateur appartient au pôle, on ajoute le pôle aux choix possibles.
+	    if (in_array($PoleName, $ma)) {
+		$choices= $choices + array($PoleId=> $PoleName);
+	    }
+		
+	    $this->widgetSchema['id_asso'] = new sfWidgetFormChoice(array('choices' => $choices));
+	    
+	  
+    }
+    else{
+	    $choices=array();
+	    $myAssos = AssoTable::getInstance()->getMyAssos($this->getOption('UserID'))->execute();
+
+	    
+	    // Constitution du tableau d'ID des assos de l'utilisateur.
+	    $ma=array();
+	    foreach($myAssos as $a){
+		  $ma= $ma+array($a->getId() => $a->getName());
+	    }
+	    $ma = $ma+array(""=>"");
+	    $this->widgetSchema['id_asso'] = new sfWidgetFormChoice(array('choices' => $ma));
+
+	    
      }
-     else{
-	  $query = AssoTable::getInstance()->getMyAssos($this->getOption('UserID'));
-     }
-     
-    $this->widgetSchema['id_asso'] = new sfWidgetFormDoctrineChoice(array(
-		'model' => $this->getRelatedModelName('Asso'), 
-		'query' => $query 
-    ));
-     
-     
     
+       
      $this->widgetSchema['id_user_valid'] = new sfWidgetFormInputHidden();
      $this->widgetSchema['id_salle'] = new sfWidgetFormInputHidden();
      $this->widgetSchema['id_user_reserve'] = new sfWidgetFormInputHidden();
@@ -156,15 +190,15 @@ class ReservationForm extends BaseReservationForm
   // Permet de savoir s'il n'y a pas déjà une réservation à l'heure et à la date demandée.
   public function checkCreneauLibre($validator, $values)
   { 
-    
+    if($values['id']==NULL){
     $q1 = Doctrine_Query::create()
     ->select('count(*)')
     ->from('Reservation r')
     ->where('r.date = ?', $values['date'])
     ->andWhere('r.id_salle = ?', $values['id_salle'])
     ->andWhere('r.heurefin > ?', $values['heuredebut'])
-    ->andWhere('r.heurefin <= ?', $values['heurefin'])
-    ->andWhere('r.id != ?',$values['id']);
+    ->andWhere('r.heurefin <= ?', $values['heurefin']);
+    //->andWhere('r.id != ?',$values['id']);
     
     $result1= $q1->fetchOne()["count"];
     
@@ -174,12 +208,59 @@ class ReservationForm extends BaseReservationForm
     ->where('r.date = ?', $values['date'])
     ->andWhere('r.id_salle = ?', $values['id_salle'])
     ->andWhere('r.heuredebut >= ?', $values['heuredebut'])
-    ->andWhere('r.heuredebut < ?', $values['heurefin'])
-    ->andWhere('r.id != ?',$values['id']); 
+    ->andWhere('r.heuredebut < ?', $values['heurefin']);
+    //->andWhere('r.id != ?',$values['id']); 
      
     $result2= $q2->fetchOne()["count"];
     
-    if($result1!="0" or $result2!="0"){
+     $q3 = Doctrine_Query::create()
+    ->select('count(*)')
+    ->from('Reservation r')
+    ->where('r.date = ?', $values['date'])
+    ->andWhere('r.id_salle = ?', $values['id_salle'])
+    ->andWhere('r.heuredebut < ?', $values['heuredebut'])
+    ->andWhere('r.heurefin > ?', $values['heurefin']);
+    //->andWhere('r.id != ?',$values['id']); 
+  
+    $result3= $q3->fetchOne()["count"];
+    }
+    else{
+      $q1 = Doctrine_Query::create()
+      ->select('count(*)')
+      ->from('Reservation r')
+      ->where('r.date = ?', $values['date'])
+      ->andWhere('r.id_salle = ?', $values['id_salle'])
+      ->andWhere('r.heurefin > ?', $values['heuredebut'])
+      ->andWhere('r.heurefin <= ?', $values['heurefin'])
+      ->andWhere('r.id != ?',$values['id']);
+      
+      $result1= $q1->fetchOne()["count"];
+      
+      $q2 = Doctrine_Query::create()
+      ->select('count(*)')
+      ->from('Reservation r')
+      ->where('r.date = ?', $values['date'])
+      ->andWhere('r.id_salle = ?', $values['id_salle'])
+      ->andWhere('r.heuredebut >= ?', $values['heuredebut'])
+      ->andWhere('r.heuredebut < ?', $values['heurefin'])
+      ->andWhere('r.id != ?',$values['id']); 
+      
+      $result2= $q2->fetchOne()["count"];
+      
+      $q3 = Doctrine_Query::create()
+      ->select('count(*)')
+      ->from('Reservation r')
+      ->where('r.date = ?', $values['date'])
+      ->andWhere('r.id_salle = ?', $values['id_salle'])
+      ->andWhere('r.heuredebut < ?', $values['heuredebut'])
+      ->andWhere('r.heurefin > ?', $values['heurefin'])
+      ->andWhere('r.id != ?',$values['id']); 
+    
+      $result3= $q3->fetchOne()["count"];
+    
+    }
+    
+    if($result1!="0" or $result2!="0" or $result3!="0"){
 	  throw new sfValidatorError($validator, 'Ce créneau n\'est pas libre, merci de consulter le calendrier et de choisir un créneau libre.');
     }
     
@@ -189,19 +270,25 @@ class ReservationForm extends BaseReservationForm
   
   
   
-  
-  
   // Permet de voir si la limite de 3h maximum par jour par asso n'est pas atteinte.
   public function checkLimiteMax($validator, $values)
   { 
     if($values['id_asso']!=NULL){
-	$q = Doctrine_Query::create()
-	->from('Reservation r')
-	->where('r.id_asso = ?', $values['id_asso'])
-	->andWhere('r.date = ?', $values['date'])
-	->andWhere('r.id != ?',$values['id']);;
+	if($values['id']!=NULL){
+	    $q = Doctrine_Query::create()
+	    ->from('Reservation r')
+	    ->where('r.id_asso = ?', $values['id_asso'])
+	    ->andWhere('r.date = ?', $values['date'])
+	    ->andWhere('r.id != ?',$values['id']);
+	}
+	else{
+	    $q = Doctrine_Query::create()
+	    ->from('Reservation r')
+	    ->where('r.id_asso = ?', $values['id_asso'])
+	    ->andWhere('r.date = ?', $values['date']);
+	}
 	
-	
+
 	
 	$result= $q->execute();
 	
@@ -238,7 +325,6 @@ class ReservationForm extends BaseReservationForm
 	$heureDeb= new DateTime($values['heuredebut']) ;
 	$heureFin= new DateTime($values['heurefin']) ;
 	$diff = $heureFin->diff($heureDeb);
-	//$d=$diff->format('%H');
 	if ($diff->h>3 or ($diff->h==3 and $diff->i!=0))
 	{
 	  // créneau trop long
@@ -263,7 +349,7 @@ class ReservationForm extends BaseReservationForm
     ->from('Reservation r')
     ->where('r.date = ?', $values['date'])
     ->andWhere('r.id_salle = ?', $values['id_salle'])
-    ->andWhere('id != ?', $values['id'])
+    ->andWhere('r.id != ?', $values['id'])
     ->andWhere('r.allday = ?', 1);
 
     $result= $q->fetchOne()["count"];

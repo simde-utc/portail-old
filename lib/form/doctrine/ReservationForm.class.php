@@ -198,7 +198,6 @@ class ReservationForm extends BaseReservationForm
     ->andWhere('r.id_salle = ?', $values['id_salle'])
     ->andWhere('r.heurefin > ?', $values['heuredebut'])
     ->andWhere('r.heurefin <= ?', $values['heurefin']);
-    //->andWhere('r.id != ?',$values['id']);
     
     $result1= $q1->fetchOne()["count"];
     
@@ -209,7 +208,6 @@ class ReservationForm extends BaseReservationForm
     ->andWhere('r.id_salle = ?', $values['id_salle'])
     ->andWhere('r.heuredebut >= ?', $values['heuredebut'])
     ->andWhere('r.heuredebut < ?', $values['heurefin']);
-    //->andWhere('r.id != ?',$values['id']); 
      
     $result2= $q2->fetchOne()["count"];
     
@@ -220,8 +218,7 @@ class ReservationForm extends BaseReservationForm
     ->andWhere('r.id_salle = ?', $values['id_salle'])
     ->andWhere('r.heuredebut < ?', $values['heuredebut'])
     ->andWhere('r.heurefin > ?', $values['heurefin']);
-    //->andWhere('r.id != ?',$values['id']); 
-  
+
     $result3= $q3->fetchOne()["count"];
     }
     else{
@@ -343,14 +340,24 @@ class ReservationForm extends BaseReservationForm
   // Permet de savoir s'il n'y a pas une réservation Allday à la date demandée.
   public function checkJourLibre($validator, $values)
   { 
-    
-    $q = Doctrine_Query::create()
-    ->select('count(*)')
-    ->from('Reservation r')
-    ->where('r.date = ?', $values['date'])
-    ->andWhere('r.id_salle = ?', $values['id_salle'])
-    ->andWhere('r.id != ?', $values['id'])
-    ->andWhere('r.allday = ?', 1);
+      if($values['id']!=NULL){
+	  $q = Doctrine_Query::create()
+	  ->select('count(*)')
+	  ->from('Reservation r')
+	  ->where('r.date = ?', $values['date'])
+	  ->andWhere('r.id_salle = ?', $values['id_salle'])
+	  ->andWhere('r.id != ?', $values['id'])
+	  ->andWhere('r.allday = ?', 1);
+      }
+      else{
+	  $q = Doctrine_Query::create()
+	  ->select('count(*)')
+	  ->from('Reservation r')
+	  ->where('r.date = ?', $values['date'])
+	  ->andWhere('r.id_salle = ?', $values['id_salle'])
+	  ->andWhere('r.allday = ?', 1);
+      }
+
 
     $result= $q->fetchOne()["count"];
     

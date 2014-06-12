@@ -1,16 +1,17 @@
 <fieldset>
-	<legend>
+	<legend id='legende_salle'>
 		<?php if ($idSalle != -1)
 		{ 
 			$salle = SalleTable::getInstance()->getSalleById($idSalle)->execute()[0];
-			echo "Salle " . $idSalle . "<p>". $salle->getDescription() ."</p>"; 
+			echo "Salle " . $idSalle ;
+			echo "<p>Capacite : ". $salle->getCapacite() ." personnes<p/>";
+			echo "<p>". $salle->getDescription() ."</p>"; 
 		}
 		else 
 			echo "Salles"; ?>
 	</legend>
 			<select id="selectSalle">
 				<option value="<?php echo url_for('@reservation') ?>">Toutes les salles</option>
-				<? $lastIdPole = -1 ?>
 				<?php $lastIdPole = -1 ?>
 				<?php foreach ($sallesUser as $salle): ?>
 

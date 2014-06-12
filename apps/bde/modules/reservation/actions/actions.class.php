@@ -318,57 +318,79 @@ class reservationActions extends sfActions
   		
   		if ($request->isMethod('POST'))
   		{
+  		
   			if ($request->getParameter('day'))
   			{
-  				$this->formDay->bind($request->getParameter($this->formDay->getName()));
+  				// Le bind ne foncionne pas, donc j'ai du faire les conditions à la main
   			
-  				if ($this->formDay->isValid())
-  				{
-  					
-  					$params = $request->getParameter('CreneauDay');
+  				$this->errD = array();
   			
-	  				//var_dump($params);
-	  			
-	  				foreach ($params['salles'] as $salle)
+				$params = $request->getParameter('CreneauDay');
+
+				$date = date("Y-m-d",strtotime($params['date']));
+
+				if (date("Y-m-d") > $date)
+					$this->errD[] = "Impossible d'ajouter une journée Off dans le passé";
+					
+				if (!isset($params['salles']))
+					$this->errD[] = "Aucune salle n'a été séléctionnée";
+		
+				// Si il n'y a pas d'erreur
+				if (count($this->errD) == 0)
+				{
+					foreach ($params['salles'] as $salle)
 	  				{  					
 	  					$reservation = new Reservation();
 	  					
 		  				$reservation->setIdUserReserve($this->getUser()->getGuardUser()->getId());
 		  				$reservation->setIdAsso(1); // BDE
-		  				$reservation->setDate($params['date']);
+		  				$reservation->setDate($date);
 		  				$reservation->setHeuredebut('00:00');
 		  				$reservation->setHeurefin('00:00');
 		  				$reservation->setAllday(true);
 		  				$reservation->setActivite('Journée Interdite');
 		  				$reservation->setEstvalide(true);
-		  				//$reservation->setCommentaire('Commentaire');
+		  				//$reservation->setCommentaire('Creneau Interdit');
 		  				$reservation->setIdSalle($salle);
 		  				
 		  				$reservation->save();
-	  					
 	  				}
-	  			}
+				}
+  				
   			}
   			else if ($request->getParameter('hour'))
   			{
   				if ($request->getParameter('hour'))
 	  			{
-	  				$this->formHour->bind($request->getParameter($this->formHour->getName()));
-  			
-  					if ($this->formHour->isValid())
-  					{
+					$this->errH = array();
+					
+	  				$params = $request->getParameter('CreneauHour');
 	  			
-		  				$params = $request->getParameter('CreneauHour');
-		  			
-		  				//var_dump($params);
-		  			
+	  				$date = date("Y-m-d",strtotime($params['date']));
+
+					if (date("Y-m-d") > $date)
+						$this->errH[] = "Impossible d'ajouter un horaire Off dans le passé";
+	  			
+	  				if (!isset($params['salles']))
+						$this->errH[] = "Aucune salle n'a été séléctionnée";
+	  			
+	  				if ($params['debut']['hour'] >= $params['fin']['hour'])
+	  				{
+	  					if ($params['debut']['minute'] >= $params['fin']['hour'])
+	  					{
+	  						$this->errH[] = "Horaire de début doit précéder l'horaire de fin";
+	  					}
+	  				}
+	  			
+	  				if (count($this->errH) == 0)
+	  				{
 		  				foreach ($params['salles'] as $salle)
 		  				{  			
 		  					$reservation = new Reservation();
 		  					
 			  				$reservation->setIdUserReserve($this->getUser()->getGuardUser()->getId());
 			  				$reservation->setIdAsso(1); // BDE
-			  				$reservation->setDate($params['date']);
+			  				$reservation->setDate($date);
 			  				$reservation->setHeuredebut($params['debut']['hour'].':'.$params['debut']['minute']);
 			  				$reservation->setHeurefin($params['fin']['hour'].':'.$params['fin']['minute']);
 			  				$reservation->setAllday(false);

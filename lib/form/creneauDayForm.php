@@ -7,13 +7,13 @@ class CreneauDayForm extends sfForm
   	$nbSalles = count(SalleTable::getInstance()->getAllSalles()->execute())*20;
   
     $this->setWidgets(array(
-      'date'   => new sfWidgetFormInputText(array('type'=>'date')),
-      'salles'     => new sfWidgetFormDoctrineChoice(array('model' => 'salle', 'multiple'=>true),array('style'=>'height : '.$nbSalles.'px')),
+      'date'   => new sfWidgetFormInputText(array(),array('class'=>'date')),
+      'salles'     => new sfWidgetFormDoctrineChoice(array('model' => 'Salle','multiple'=>true),array('style'=>'height : '.$nbSalles.'px')),
     ));
  
     $this->setValidators(array(
       'date'   => new sfValidatorString(array('required' => true)),
-      'salles'     => new sfValidatorDoctrineChoice(array('model' => 'salle', 'required' => true)),
+      'salles'     => new sfValidatorDoctrineChoice(array('model' => 'Salle', 'required' => true)),
     ));
     
     $this->widgetSchema->setNameFormat('CreneauDay[%s]');

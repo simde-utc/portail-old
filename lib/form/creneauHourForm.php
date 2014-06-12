@@ -7,7 +7,7 @@ class CreneauHourForm extends sfForm
   	$nbSalles = count(SalleTable::getInstance()->getAllSalles()->execute())*20;
   
     $this->setWidgets(array(
-      'date'   => new sfWidgetFormInputText(array('type'=>'date')),
+      'date'   => new sfWidgetFormInputText(array(),array('class'=>'date')),
       'debut' => new sfWidgetFormTime(array(),array('style'=>'width : 100px')),
       'fin' => new sfWidgetFormTime(array(),array('style'=>'width : 100px')),
       'salles'     => new sfWidgetFormDoctrineChoice(array('model' => 'salle', 'multiple'=>true),array('style'=>'height : '.$nbSalles.'px')),
@@ -28,11 +28,6 @@ class CreneauHourForm extends sfForm
     
     $this->getWidget('debut')->addOption('hours', array_combine($hours, $hours));
     $this->getWidget('fin')->addOption('hours', array_combine($hours, $hours));
-  
-  
-  
-  
-  
   
   
   	$this->widgetSchema->setNameFormat('CreneauHour[%s]');

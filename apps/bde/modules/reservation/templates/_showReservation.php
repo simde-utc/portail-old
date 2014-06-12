@@ -3,6 +3,7 @@
 <?php if ($reservation->getAsso()->getName()): ?>
 	<p><b>Asso : </b><?php echo $reservation->getAsso() ?></p>
 <?php endif ?>
+<p><b>Activité : </b><?php echo $reservation->getActivite() ?></p>
 <p><b>Date : </b><?php echo $reservation->showDate() ?></p>
 <?php if (!$reservation->getAllday()): ?>
 	<p><b>Heure Debut : </b><?php echo $reservation->getHeuredebut() ?></p>

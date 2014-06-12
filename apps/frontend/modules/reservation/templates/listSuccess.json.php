@@ -4,7 +4,7 @@ foreach ($reservations as $res){
   if($res->getAsso()->getId()) 
 	$title = $res->getAsso()->getName();
   else
-  	$title = $res->getUserReserve()->getName();
+  	$title = $res->getUserReserve()->getUsername();
 
 $url = url_for('reservation_show', array("id" => $res->getID()));
 

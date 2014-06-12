@@ -40,13 +40,14 @@ class reservationActions extends sfActions
 			{
 				foreach($this->assosUser as $asso)
 				{
-					//si c'est une asso normale
+					//si c'est une asso appartenant a un pole
 					if($asso->getPoleId()) 
 						$pole = PoleTable::getInstance()->getOneById($asso->getPoleId());
 					//si c'est un pole
-				else
-					$pole = PoleTable::getInstance()->getOneByAsso($asso);
-					if(!in_array($pole->getId(), $this->polesUser))
+					else
+						$pole = PoleTable::getInstance()->getOneByAsso($asso);
+					
+					if($pole && !in_array($pole->getId(), $this->polesUser))
 						array_push($this->polesUser, $pole->getId());
 				}
 			}
@@ -145,7 +146,7 @@ class reservationActions extends sfActions
 				//si c'est un pole
 				else
 					$pole = PoleTable::getInstance()->getOneByAsso($asso);
-				if(!in_array($pole->getId(), $this->polesUser))
+				if($pole && !in_array($pole->getId(), $this->polesUser))
 					array_push($this->polesUser, $pole->getId());
 			}
 		}

@@ -26,7 +26,7 @@ class reservationComponents extends sfComponents
 				else
 					$pole = PoleTable::getInstance()->getOneByAsso($asso);
 
-				if(!in_array($pole->getId(), $this->polesUser))
+				if($pole && !in_array($pole->getId(), $this->polesUser))
 					array_push($this->polesUser, $pole->getId());
 			}
 		}

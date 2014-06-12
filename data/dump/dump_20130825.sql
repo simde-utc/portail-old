@@ -41,7 +41,8 @@ INSERT INTO `asso` (`id`, `name`, `login`, `pole_id`, `type_id`, `description`, 
 (9, 'Comet', 'comet', 2, 1, 'Organisation des soirées Étudiantes (Estu), location de matériel de son et lumières à bas prix.', '', 1, 0, '', '', '', '', '2011-05-14 11:37:01', '2012-05-13 22:50:08', 1),
 (10, 'UVweb', 'uvweb', NULL, 3, 'Hit-Parade des UV UTCéennes', NULL, 0, 0, '', '', '', '', '2012-04-03 01:21:26', '2012-05-14 02:14:40', 1),
 (11, 'SkiUTC', 'skiutc', 5, 2, 'Créé en 1989 par des étudiants passionnés de montagne, SkiUTC a pour but de \r\nrassembler, lors d’une semaine au mois de Janvier, le plus grand nombre d’étudiants de l’UTC pour un voyage hors du commun au ski.\r\nIl s’agit d’un évènement qui promeut la cohésion et l’esprit d’équipe au sein des \r\nétudiants, qui propose des animations sportives et festives tout cela à des tarifs accessibles.\r\n\r\nSkiUTC permet égallement à des étudiants qui n''en aurait pas l''occasion faute de moyen financier (ou habitant dans des pays sans neige) de pouvoir partir au ski. Pour certain SkiUTC est l''occasion de découvrir le ski.', '', 0, 0, '', '', 'https://www.facebook.com/pages/SkiUTC/265089426858018', 'Vive le ski !', '2012-04-03 01:21:26', '2012-10-19 09:55:38', 1),
-(12, 'UTCoupe', 'utcoupe', 4, 2, 'Tu jouais aux Lego Minstorms, Mécanos ou autre quand tu étais petit ? \r\nTu es fan de I-Robot ou de Terminator ? \r\nUTCoupe est l''association étudiante de l''Université de Technologie de Compiègne qui participe à la Coupe de France de Robotique. Chaque année, nous devons concevoir de A à Z un robot autonome capable de nous propulser toujours plus haut dans le classement de la Coupe !\r\n\r\nSi tu es passionné par la robotique, cette association est faite pour toi ! Informatique, électronique ou mécanique, toute connaissance est bonne à prendre, et à apprendre... ', '', 0, 0, 'TN04', '', '', 'UTCoupe est l''association étudiante de l''Université de Technologie de Compiègne qui participe à la Coupe de France de Robotique.', '2012-04-03 01:21:26', '2012-10-20 12:33:24', 1);
+(12, 'UTCoupe', 'utcoupe', 4, 2, 'Tu jouais aux Lego Minstorms, Mécanos ou autre quand tu étais petit ? \r\nTu es fan de I-Robot ou de Terminator ? \r\nUTCoupe est l''association étudiante de l''Université de Technologie de Compiègne qui participe à la Coupe de France de Robotique. Chaque année, nous devons concevoir de A à Z un robot autonome capable de nous propulser toujours plus haut dans le classement de la Coupe !\r\n\r\nSi tu es passionné par la robotique, cette association est faite pour toi ! Informatique, électronique ou mécanique, toute connaissance est bonne à prendre, et à apprendre... ', '', 0, 0, 'TN04', '', '', 'UTCoupe est l''association étudiante de l''Université de Technologie de Compiègne qui participe à la Coupe de France de Robotique.', '2012-04-03 01:21:26', '2012-10-20 12:33:24', 1),
+(13, 'Cac carotte', 'caccarotte', 3, 2, 'Cac''carotte ! C''est l''association de distribution chaque semaine de paniers de légumes locaux, propres et de saisons aux étudiants de l''UTC inscrits sur nos listes, et qui s''inspire pour son fonctionnement du principe des AMAP (Association de Maintien de l''Agriculture Paysanne) : soutien d''une production locale de légumes respectueuse du rythme de la terre et des hommes en lien avec des producteurs locaux, etc. etc.', '', 0, 0, '', '', '', 'Viens manger des bon légumes !', '2011-04-03 14:00:00', '2011-04-03 15:00:00', 1);
 
 INSERT INTO `branche` (`id`, `name`) VALUES
 (1, 'TC'),
@@ -90,7 +91,10 @@ INSERT INTO `sf_guard_user` (`id`, `first_name`, `last_name`, `email_address`, `
 (1, NULL, NULL, 'kenlerem@etu.utc.fr', 'kenlerem', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (2, NULL, NULL, 'puyouart@etu.utc.fr', 'puyouart', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (3, NULL, NULL, 'mguffroy@etu.utc.fr', 'mguffroy', 'sha1', NULL, NULL, 1, 0, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
-(4, NULL, NULL, 'ytournad@etu.utc.fr', 'ytournad', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
+(4, NULL, NULL, 'ytournad@etu.utc.fr', 'ytournad', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(5, NULL, NULL, 'martinin@etu.utc.fr', 'martinin', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(6, NULL, NULL, 'alegiret@etu.utc.fr', 'alegiret', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(7, NULL, NULL, 'mbenalir@etu.utc.fr', 'mbenalir', 'sha1', NULL, NULL, 1, 1, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
 UPDATE `sf_guard_user` SET `is_active`= 0;
 
 INSERT INTO `asso_member` (`id`, `user_id`, `asso_id`, `role_id`, `semestre_id`, `created_at`, `updated_at`) VALUES
@@ -99,7 +103,22 @@ INSERT INTO `asso_member` (`id`, `user_id`, `asso_id`, `role_id`, `semestre_id`,
 (3, 2, 12, 1, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (4, 1, 2, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (5, 2, 2, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
-(6, 3, 2, 1, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
+(6, 3, 2, 1, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(7, 5, 3, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(8, 5, 10, 3, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(9, 5, 11, 3, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(10, 5, 12, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(11, 5, 13, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(12, 6, 3, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(13, 6, 10, 3, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(14, 6, 11, 3, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(15, 6, 12, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(16, 6, 13, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(17, 7, 3, 1, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(18, 7, 10, 3, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(19, 7, 11, 3, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(20, 7, 12, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(21, 7, 13, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
 
 INSERT INTO `profile` (`id`, `user_id`, `domain`, `nickname`, `birthday`, `sexe`, `mobile`, `home_place`, `family_place`, `branche_id`, `filiere_id`, `semestre`, `other_email`, `photo`, `weekmail`, `autorisation_photo`, `created_at`, `updated_at`) VALUES
 (NULL, 1, 'utc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
@@ -184,20 +203,32 @@ INSERT INTO `info_job_signalement_type` (`id`, `name`) VALUES
 
 SET foreign_key_checks = 1;
 
-INSERT INTO salle VALUES (1, 'salle1', 10, '123456', 'description', 1);
-INSERT INTO salle VALUES (2, 'salle2', 15, '1F3F56', 'description', 2);
-INSERT INTO salle VALUES (3, 'salle3', 20, '12345F', 'description', 3);
-INSERT INTO salle VALUES (4, 'salle4', 25, '1A34E6', 'description', 4);
-INSERT INTO salle VALUES (5, 'salle5', 10, '123456', 'description', 1);
-INSERT INTO salle VALUES (6, 'salle6', 15, '1F3F56', 'description', 2);
-INSERT INTO salle VALUES (7, 'salle7', 20, '12345F', 'description', 3);
-INSERT INTO salle VALUES (8, 'salle8', 25, '1A34E6', 'description', 4);
+INSERT INTO salle VALUES (1, 'salle de reunion', 20, 'CC0000', 'salle de reunion du BDE', 1);
+INSERT INTO salle VALUES (2, 'MUS', 15, 'FF5C33', 'salle de musique - batterie, ampli', 1);
+INSERT INTO salle VALUES (3, 'PAE1', 20, 'B82E8A', 'salle de reunion du PAE - videoproj', 2);
+INSERT INTO salle VALUES (4, 'PAE2', 10, '52003D', 'local du PAE - materiel sono', 2);
+INSERT INTO salle VALUES (5, 'PSEC1', 20, '008A2E', 'salle de reunion du PSEC - videoproj', 3);
+INSERT INTO salle VALUES (6, 'PTE1', 20, '000080', 'salle de reunion du PTE', 4);
+INSERT INTO salle VALUES (7, 'PTE2', 20, '4D70DB', 'salle de reunion du PTE', 4);
+INSERT INTO salle VALUES (8, 'PVDC1', 25, 'B85C00', 'salle de reunion du PVDC', 5);
+INSERT INTO salle VALUES (9, 'PVDC2', 10, 'E6B800', 'local PVDC', 5);
 
 INSERT INTO reservation VALUES (1, NULL, 1, 2, 1, curdate(), '12:00', '13:00',false, 'Reunion', true, NULL);
-INSERT INTO reservation VALUES (2, NULL, 2, 8, 2, DATE_ADD(curdate(), INTERVAL 1 DAY), '16:00', '17:00',false, 'Reunion', true, NULL);
-INSERT INTO reservation VALUES (3, NULL, 3, 12, 3, DATE_ADD(curdate(), INTERVAL 2 DAY), '18:00', '19:00',false, 'Reunion', true, NULL);
-INSERT INTO reservation VALUES (4, NULL, 1, 11, 4, DATE_ADD(curdate(), INTERVAL 3 DAY), '10:00', '11:00',false, 'Reunion', true, NULL);
-INSERT INTO reservation VALUES (5, NULL, 1, 2, 1, curdate(), '19:00', '20:00',true, 'Reunion', true, NULL);
-INSERT INTO reservation VALUES (6, NULL, 2, 8, 2, DATE_ADD(curdate(), INTERVAL 4 DAY), '16:00', '17:00',false, 'Reunion', true, NULL);
-INSERT INTO reservation VALUES (7, NULL, 3, 12, 3, DATE_ADD(curdate(), INTERVAL 1 DAY), '18:00', '19:00',false, 'Reunion', true, NULL);
-INSERT INTO reservation VALUES (8, NULL, 1, 7, 4, curdate(), '13:00', '14:00',false, 'Reunion', true, NULL);
+INSERT INTO reservation VALUES (2, NULL, 2, 2, 1, DATE_ADD(curdate(), INTERVAL 1 DAY), '16:00', '17:00',false, 'Reunion', true, NULL);
+INSERT INTO reservation VALUES (3, NULL, 3, 2, 1, DATE_ADD(curdate(), INTERVAL 2 DAY), '18:00', '19:00',false, 'Hackathon', true, NULL);
+INSERT INTO reservation VALUES (4, NULL, 5, 10, 1, DATE_ADD(curdate(), INTERVAL 3 DAY), '10:00', '11:00',false, 'Reunion', true, NULL);
+INSERT INTO reservation VALUES (5, NULL, 6, 10, 1, DATE_ADD(curdate(), INTERVAL -2 DAY), '10:00', '11:00',false, 'Reunion', true, NULL);
+INSERT INTO reservation VALUES (6, NULL, 5, NULL, 2, DATE_ADD(curdate(), INTERVAL -2 DAY), '19:00', '20:00',true, 'Repetition pour Imaginarium', true, NULL);
+INSERT INTO reservation VALUES (7, NULL, 5, NULL, 2, DATE_ADD(curdate(), INTERVAL -1 DAY), '19:00', '20:00',false, 'Repetition pour Imaginarium', true, NULL);
+INSERT INTO reservation VALUES (8, NULL, 7, 3, 3, DATE_ADD(curdate(), INTERVAL 2 DAY), '19:00', '22:00',false, 'CA PAE', true, NULL);
+INSERT INTO reservation VALUES (9, NULL, 6, 3, 4, DATE_ADD(curdate(), INTERVAL 1 DAY), '18:00', '19:00',false, 'rangement local', true, NULL);
+INSERT INTO reservation VALUES (10, NULL, 5, 13, 5, DATE_ADD(curdate(), INTERVAL -2 DAY), '13:00', '14:00',false, 'Reunion Cac Carotte', true, NULL);
+INSERT INTO reservation VALUES (11, NULL, 5, 13, 5, DATE_ADD(curdate(), INTERVAL 1 DAY), '18:00', '19:00',false, 'Reunion Cac Carotte', true, NULL);
+INSERT INTO reservation VALUES (12, NULL, 2, 12, 7, curdate(), '13:00', '14:00',false, 'Reunion UTCoupe', true, NULL);
+INSERT INTO reservation VALUES (13, NULL, 5, 12, 7, DATE_ADD(curdate(), INTERVAL 4 DAY), '13:00', '14:00',true, 'Reunion UTCoupe', true, NULL);
+INSERT INTO reservation VALUES (14, NULL, 6, 12, 7, DATE_ADD(curdate(), INTERVAL -4 DAY), '13:00', '14:00',false, 'Reunion UTCoupe', true, NULL);
+INSERT INTO reservation VALUES (16, NULL, 2, 8, 8, DATE_ADD(curdate(), INTERVAL 1 DAY), '13:00', '14:00',false, 'Reunion Polar', true, NULL);
+INSERT INTO reservation VALUES (17, NULL, 3, 11, 8, DATE_ADD(curdate(), INTERVAL -2 DAY), '18:00', '19:00',false, 'Reunion Skiutc', true, NULL);
+INSERT INTO reservation VALUES (18, NULL, 3, 11, 8, DATE_ADD(curdate(), INTERVAL 7 DAY), '20:00', '21:00',false, 'Reunion Skiutc', true, NULL);
+INSERT INTO reservation VALUES (19, NULL, 5, 11, 9, DATE_ADD(curdate(), INTERVAL 2 DAY), '15:00', '18:00',false, 'Preparation perm skiutc', true, NULL);
+INSERT INTO reservation VALUES (20, NULL, 7, 3, 3, DATE_ADD(curdate(), INTERVAL -1 DAY), '19:00', '20:00',false, 'Reunion PAE', true, NULL);

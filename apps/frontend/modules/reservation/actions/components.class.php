@@ -19,7 +19,13 @@ class reservationComponents extends sfComponents
 		{
 			foreach($this->assosUser as $asso)
 			{
-				$pole = PoleTable::getInstance()->getOneById($asso->getPoleId());
+				//si c'est une asso normale
+				if($asso->getPoleId()) 
+					$pole = PoleTable::getInstance()->getOneById($asso->getPoleId());
+				//si c'est un pole
+				else
+					$pole = PoleTable::getInstance()->getOneByAsso($asso);
+
 				if(!in_array($pole->getId(), $this->polesUser))
 					array_push($this->polesUser, $pole->getId());
 			}

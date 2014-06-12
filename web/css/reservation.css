@@ -177,7 +177,7 @@ ul#menuBde {
     margin: 0 auto;
     margin-bottom: 2%;
     position: relative; 
-    height: 90%; 
+    max-height: 400px; 
     width: 100%;
     overflow: hidden;
     z-index:10001;
@@ -210,14 +210,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
   width: 45%;
   padding-left: 2%;
   padding-right: 2%;
-  height: 100%;
+  max-height:380px;
 }
  
 #formResa2{
   display:inline-block;
   float:left;
-  width: 4-%;
-  height: 100%;
+  width: 40%;
+  max-height:380px;
   padding-left: 2%;
   padding-right: 2%;
   padding-top: 5%;

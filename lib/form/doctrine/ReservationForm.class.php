@@ -36,6 +36,21 @@ class ReservationForm extends BaseReservationForm
      $this->widgetSchema['heuredebut'] = new sfWidgetFormTime(array('can_be_empty'=>false));
      
      
+    $this->setValidators(array(
+      'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'id_user_valid'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('UserValide'), 'required' => false)),
+      'id_user_reserve' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('UserReserve'))),
+      'id_asso'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'required' => false)),
+      'id_salle'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Salle'))),
+      'date'            => new sfValidatorDate(),
+      'heuredebut'      => new sfValidatorTime(array('required' => false)),
+      'heurefin'        => new sfValidatorTime(array('required' => false)),
+      'allday'          => new sfValidatorBoolean(),
+      'activite'        => new sfValidatorString(array('max_length' => 255)),
+      'estvalide'       => new sfValidatorBoolean(),
+      'commentaire'     => new sfValidatorString(array('required' => false)),
+    ));
+     
      $types = array(
 	  'Réunion' => 'Réunion',
 	  'Logistique' => 'Logistique',
@@ -65,13 +80,6 @@ class ReservationForm extends BaseReservationForm
      $this->getWidget('id_asso')->setLabel('Association:');
      $this->getWidget('allday')->setLabel('Jour entier:');
      
-     $this->validatorSchema['heurefin']->setMessage('required', 'Merci de renseigner l\'heure de fin.');
-     $this->validatorSchema['activite']->setMessage('required', 'Merci de renseigner l\'activité.');
-     
-
-     
-     
-     sfValidatorBase::setDefaultMessage('required', 'This field is required.');
     
     $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
 	new sfValidatorCallback(array('callback' => array($this, 'checkTempsMinDeReservation'))),
@@ -80,35 +88,33 @@ class ReservationForm extends BaseReservationForm
 	new sfValidatorCallback(array('callback' => array($this, 'checkCreneauLibre'))),
 	new sfValidatorCallback(array('callback' => array($this, 'checkLimiteMax'))),
 	new sfValidatorCallback(array('callback' => array($this, 'checkJourLibre'))),
-      	new sfValidatorSchemaCompare('heuredebut', "<", 'heurefin',
-	  array(),
-	  array('invalid' => 'L\'heure de début doit précéder l\'heure de fin.')
-	)
+	new sfValidatorCallback(array('callback' => array($this, 'checkHeureDebutAvantHeureFin'))),
+	new sfValidatorCallback(array('callback' => array($this, 'checkHeureFinOk'))),
     )));
       
   }
  // Permet de savoir si le temps de réservation est supérieur à une limite minimum de 30mn.
   public function checkTempsMinDeReservation($validator, $values)
   {
-    $heureDeb= new DateTime($values['heuredebut']) ;
-    $heureFin= new DateTime($values['heurefin']) ;
-    $diff = $heureFin->diff($heureDeb);
+    if($values['allday']==false){
     
-    if ($diff->h==0 && $diff->i==0)
-    {
-      // créneau trop court
-      throw new sfValidatorError($validator, 'Créneau d\'au minimum 30mn');
+      $heureDeb= new DateTime($values['heuredebut']) ;
+      $heureFin= new DateTime($values['heurefin']) ;
+      $diff = $heureFin->diff($heureDeb);
+      
+      if ($diff->h==0 && $diff->i==0)
+      {
+	// créneau trop court
+	throw new sfValidatorError($validator, 'Créneau d\'au minimum 30mn');
+      }
+    
     }
  
     // créneau correct, on retourne les données nettoyées
     return $values;
   }
   
-  
-  
-  
-  
-  
+
   // permet de savoir si la réservation se fait au moins une heure avant l'heure de réservation demandée.
   public function checkPeutReserver($validator, $values)
   { 
@@ -266,6 +272,38 @@ class ReservationForm extends BaseReservationForm
 	  throw new sfValidatorError($validator, 'Impossible de valider, cette salle a été réservée toute la journée.');
     }
     
+    return $values;
+
+  }
+  
+  
+  public function checkHeureDebutAvantHeureFin($validator, $values)
+  { 
+    
+    if($values['allday']==false){
+
+      if($values['heuredebut']>$values['heurefin']){
+	  throw new sfValidatorError($validator, 'L\'heure de début doit précéder l\'heure de fin');
+      }
+    
+    }
+
+    return $values;
+
+  }
+  
+  
+  public function checkHeureFinOk($validator, $values)
+  { 
+    
+    if($values['allday']==false){
+
+      if($values['heurefin']==""){
+	  throw new sfValidatorError($validator, 'Merci de rentrer une heure de fin.');
+      }
+    
+    }
+
     return $values;
 
   }

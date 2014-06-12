@@ -41,6 +41,10 @@
 	      document.getElementById('reservation_heuredebut_minute').disabled = true;
 	      document.getElementById('reservation_heurefin_hour').disabled = true;
 	      document.getElementById('reservation_heurefin_minute').disabled = true;
+	      $('#reservation_heuredebut_hour').val(0);
+	      $('#reservation_heuredebut_minute').val(0);
+	      $('#reservation_heurefin_hour').val(09);
+	      $('#reservation_heurefin_minute').val(00);
 	}
 
 
@@ -164,6 +168,10 @@
 			      document.getElementById('reservation_heuredebut_minute').disabled = true;
 			      document.getElementById('reservation_heurefin_hour').disabled = true;
 			      document.getElementById('reservation_heurefin_minute').disabled = true;
+			      $('#reservation_heuredebut_hour').val(0);
+			      $('#reservation_heuredebut_minute').val(0);
+			      $('#reservation_heurefin_hour').val(09);
+			      $('#reservation_heurefin_minute').val(00);
 			}
 	      
 

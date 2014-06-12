@@ -72,6 +72,10 @@ class reservationActions extends sfActions
 		      
 		     
 		      $this->form->bind($request->getParameter($this->form->getName()));
+		      
+		      //var_dump($this->form);
+		      
+		      
 		      if ($this->form->isValid())
 		      {
 
@@ -210,7 +214,7 @@ class reservationActions extends sfActions
 	$this->afficherErreur= false;
 
 
-	return $this->renderPartial('reservation/form',array('form'=>$this->form,'idSalle'=>$idSalle));
+	return $this->renderPartial('reservation/formNew',array('form'=>$this->form,'idSalle'=>$idSalle));
 	 
   }
   
@@ -254,7 +258,7 @@ class reservationActions extends sfActions
 	$this->afficherErreur= false;
 
 
-	return $this->renderPartial('reservation/form',array('form'=>$this->form,'idSalle'=>$idSalle,'PoleId'=>$PoleId));
+	return $this->renderPartial('reservation/formUpdate',array('form'=>$this->form,'idSalle'=>$idSalle,'PoleId'=>$PoleId));
 	 
   }
 

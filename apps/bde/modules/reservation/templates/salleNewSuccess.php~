@@ -2,7 +2,7 @@
 
 <?php use_javascript("jscolor/jscolor.js") ?>
 
-<h3>Nouvelle salle</h3>
+<h2>Nouvelle salle</h2>
 
 <p><?php echo link_to ('<< retour', 'reservation_salle') ?></p>
 

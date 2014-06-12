@@ -9,7 +9,7 @@
 	<p><b>Heure Fin : </b><?php echo $reservation->getHeurefin() ?></p>
 <?php endif ?>
 <p><b>Toute la journée : </b><?php if($reservation->getAllday()) echo "oui"; else echo "non"; ?></p>
-<p><b>Est validée : </b><?php if($reservation->getEstvalide()) echo "oui"; else echo "non"; ?></p>
+<p><b>est validée : </b><?php if($reservation->getEstvalide()) echo "oui"; else echo "non"; ?></p>
 <br />
 <?php if ($reservation->getCommentaire()): ?>
 <p><b>Commentaire : </b><br /><?php echo $reservation->getCommentaire() ?></p>

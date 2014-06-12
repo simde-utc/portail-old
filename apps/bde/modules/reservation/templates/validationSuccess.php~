@@ -6,7 +6,7 @@
 
 	<?php foreach ($reservations as $reservation): ?>
 
-		<p>
+		<pre>
 		<?php if ($reservation->getAsso()->getName()): ?>
 		
 			<?php echo link_to ($reservation->showDate()." - ".$reservation->getAsso(), "reservation_validation_id", array('id'=>$reservation->getId())) ?>
@@ -16,7 +16,7 @@
 		  	<?php echo link_to ($reservation->showDate()." - ".$reservation->getUserReserve(), "reservation_validation_id", array('id'=>$reservation->getId())) ?>
 		
 		<?php endif; ?>	
-		</p>
+		</pre>
 
 	<?php endforeach; ?>
 

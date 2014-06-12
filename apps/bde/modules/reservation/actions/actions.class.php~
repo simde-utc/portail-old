@@ -396,7 +396,7 @@ class reservationActions extends sfActions
   {
   		$mailContent = 'Bonjour,'."\n\n";
 	
-		$mailContent .= 'Votre demande de la salle '.$reservation->getSalle().' a été supprimée par un admin.'."\n\n";
+		$mailContent .= 'Votre demande de la salle '.$reservation->getSalle().' a été supprimée par un admin.';
 		
 		return $this->sendMail ($reservation,$commentaire,$mailContent);
   }
@@ -411,7 +411,7 @@ class reservationActions extends sfActions
   {
   		$mailContent = 'Bonjour,'."\n\n";
 	
-		$mailContent .= 'Votre demande de la salle '.$reservation->getSalle().' a été modifiée par un admin.'."\n\n";
+		$mailContent .= 'Votre demande de la salle '.$reservation->getSalle().' a été modifiée par un admin.';
 		
 		return $this->sendMail ($reservation,$commentaire,$mailContent);
   }

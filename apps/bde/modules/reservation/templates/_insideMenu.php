@@ -24,6 +24,12 @@
 	<?php else: ?>
 	<li><a href="<?php echo url_for('reservation_gestion') ?>">Gestion des reservations</a></li>
 	<?php endif; ?>
+
+	<?php if ($param == "statistiques"): ?>
+	<li><a class="active" href="<?php echo url_for('reservation_statistiques') ?>">Statistiques</a></li>
+	<?php else: ?>
+	<li><a href="<?php echo url_for('reservation_statistiques') ?>">Statistiques</a></li>
+	<?php endif; ?>
 	
 </ul>
 

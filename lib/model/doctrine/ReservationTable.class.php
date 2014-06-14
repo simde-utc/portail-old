@@ -85,10 +85,25 @@ class ReservationTable extends Doctrine_Table
 				->leftJoin('a.Salle s')
 				->leftJoin('s.Pole p')
 				->where('p.id=?',$pole)
-  				->addOrderBy('a.date','ASC');
-  				
-  		return $q;	
+				->addOrderBy('a.date','ASC');
+			
+		return $q;	
 	}
 
 
+	public function getStatJours()
+	{
+		$q = Doctrine_Manager::getInstance()->getCurrentConnection();
+		$result = $q->execute("select r.*, count(r.id) as count_resa, weekday(r.date) as dow from reservation r group by dow order by dow");
+
+		return $result;
+	}
+
+	public function getStatMois()
+	{
+		$q = Doctrine_Manager::getInstance()->getCurrentConnection();
+		$result = $q->execute("select r.*, count(r.id) as count_resa, month(r.date) as month from reservation r group by month order by month");
+
+		return $result;
+	}
 }

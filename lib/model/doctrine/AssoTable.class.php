@@ -193,5 +193,17 @@ class AssoTable extends Doctrine_Table
     {
         return sfConfig::get('sf_data_dir') . '/asso.' . sfConfig::get('sf_environment') . '.index';
     }
+	
 
+    /* Statistiques Reservations Assos */
+    public function getStatAsso()
+    {
+	$q = $this->createQuery('a')
+            ->select('a.*, r.*, count(r.id) as count_resa')
+            ->leftJoin('a.Reservation r')
+	    ->groupBy('a.id')
+            ->addOrderBy('a.name ASC');
+
+	return $q;
+    }
 }

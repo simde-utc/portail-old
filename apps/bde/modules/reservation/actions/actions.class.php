@@ -505,5 +505,37 @@ class reservationActions extends sfActions
   	
   		return $mailContent;
   }
-  
+
+  public function executeStatistiques(sfWebRequest $request)
+  {
+  		$this->param = "statistiques";
+  }
+
+  public function executeStatSalle(sfWebRequest $request)
+  {  		
+  		$this->salles = SalleTable::getInstance()->getAllSalles()->execute();
+		$this->statSalles = SalleTable::getInstance()->getStatSalle()->execute();
+  }
+
+  public function executeStatJour(sfWebRequest $request)
+  {  		
+		$this->statJours = ReservationTable::getInstance()->getStatJours();
+  }
+
+  public function executeStatMois(sfWebRequest $request)
+  {  		
+		$this->statMois = ReservationTable::getInstance()->getStatMois();
+  }
+
+  public function executeStatAsso(sfWebRequest $request)
+  {  		
+  		$this->assos = AssoTable::getInstance()->getAssosList()->execute();
+		$this->statAssos = AssoTable::getInstance()->getStatAsso()->execute();
+  }
+
+  public function executeStatPole(sfWebRequest $request)
+  {  		
+  		$this->poles = PoleTable::getInstance()->getPolesList()->execute();	
+		$this->statPoles = PoleTable::getInstance()->getStatPole()->execute();
+  }  
 }

@@ -118,7 +118,8 @@ INSERT INTO `asso_member` (`id`, `user_id`, `asso_id`, `role_id`, `semestre_id`,
 (18, 7, 10, 3, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (19, 7, 11, 3, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
 (20, 7, 12, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
-(21, 7, 13, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
+(21, 7, 13, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
+(22, 3, 1, 2, 2, '2012-04-21 12:00:00', '2012-04-21 12:00:00');
 
 INSERT INTO `profile` (`id`, `user_id`, `domain`, `nickname`, `birthday`, `sexe`, `mobile`, `home_place`, `family_place`, `branche_id`, `filiere_id`, `semestre`, `other_email`, `photo`, `weekmail`, `autorisation_photo`, `created_at`, `updated_at`) VALUES
 (NULL, 1, 'utc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2012-04-21 12:00:00', '2012-04-21 12:00:00'),
@@ -232,3 +233,5 @@ INSERT INTO reservation VALUES (17, NULL, 3, 11, 8, DATE_ADD(curdate(), INTERVAL
 INSERT INTO reservation VALUES (18, NULL, 3, 11, 8, DATE_ADD(curdate(), INTERVAL 7 DAY), '20:00', '21:00',false, 'Reunion Skiutc', true, NULL);
 INSERT INTO reservation VALUES (19, NULL, 5, 11, 9, DATE_ADD(curdate(), INTERVAL 2 DAY), '15:00', '18:00',false, 'Preparation perm skiutc', true, NULL);
 INSERT INTO reservation VALUES (20, NULL, 7, 3, 3, DATE_ADD(curdate(), INTERVAL -1 DAY), '19:00', '20:00',false, 'Reunion PAE', true, NULL);
+INSERT INTO reservation VALUES (21, NULL, 3, 1, 1, DATE_ADD(curdate(), INTERVAL 2 MONTH), '19:00', '20:00',true, 'Preparation Integ', true, NULL);
+INSERT INTO reservation VALUES (22, NULL, 5, NULL, 2, DATE_ADD(curdate(), INTERVAL 1 MONTH), '19:00', '20:00',true, 'Repetition Groupe', false, NULL);

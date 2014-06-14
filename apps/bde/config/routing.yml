@@ -228,6 +228,41 @@ reservations_json:
   requirements:
     sf_format: (?:html|json)
 
+reservations_statSalle:
+  url: /reservation/statistiques/salles.:sf_format
+  param: { module: reservation, action: statSalle }
+  requirements:
+    sf_format: (json)
+
+reservations_statJour:
+  url: /reservation/statistiques/jours.:sf_format
+  param: { module: reservation, action: statJour }
+  requirements:
+    sf_format: (json)
+
+reservations_statAsso:
+  url: /reservation/statistiques/assos.:sf_format
+  param: { module: reservation, action: statAsso }
+  requirements:
+    sf_format: (json)
+
+reservations_statPole:
+  url: /reservation/statistiques/poles.:sf_format
+  param: { module: reservation, action: statPole }
+  requirements:
+    sf_format: (json)
+
+reservations_statMois:
+  url: /reservation/statistiques/mois.:sf_format
+  param: { module: reservation, action: statMois }
+  requirements:
+    sf_format: (json)
+
+reservation_statistiques:
+  url: /reservation/statistiques
+  param: { module: reservation, action: statistiques }  
+
+
 # default rules
 homepage:
   url:   /

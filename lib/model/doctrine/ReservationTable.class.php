@@ -30,16 +30,6 @@ class ReservationTable extends Doctrine_Table
         $q = $this->createQuery('q')
 	    		->where('q.id = ?', $id)
             ->addOrderBy('date');
-        /*
-        $q = Doctrine_Query::create()
-        		->select('*')
-        		->from('Reservation r, SfGuardUser u')
-        		//->from('Reservation r')
-        		->where('r.id = ?', $id)
-        		->andWhere('r.id_user_reserve=u.id')
-        		//->leftJoin('r.UserReserve u')
-        		->addOrderBy('date');
-        	*/
         	
          return $q;
     }

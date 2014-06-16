@@ -264,4 +264,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 	display : inline-block;
 }
 
+#table_salle span
+{
+	display: inline-block;
+	min-width: 10%;
+}
+
+#table_salle span.name
+{
+	display: inline-block;
+	min-width: 70%;
+}
 

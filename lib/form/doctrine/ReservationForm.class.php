@@ -307,7 +307,7 @@ class ReservationForm extends BaseReservationForm
 	$f=new DateTime($values['date']." ".$values['heurefin']);
 	$diff = $f->diff($d);
 	$h+=$diff->h;
-	$m+=$diff->m;
+	$m+=$diff->i;
 	
 	$h+=(int)($m/60);
 	$m+=$m%60;

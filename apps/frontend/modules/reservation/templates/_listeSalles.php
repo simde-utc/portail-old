@@ -5,7 +5,7 @@
 			$salle = SalleTable::getInstance()->getSalleById($idSalle)->execute()[0];
 			echo $salle->getName() ;
 			echo "<p>Capacite : ". $salle->getCapacite() ." personnes<p/>";
-			echo "<p>". $salle->getDescription() ."</p>"; 
+			echo "<p>". nl2br($salle->getDescription()) ."</p>"; 
 		}
 		else 
 			echo "Salles"; ?>

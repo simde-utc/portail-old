@@ -93,7 +93,7 @@ class reservationActions extends sfActions
 								      
 				      $d= new DateTime();
 				      $a=new DateTime($this->reservation->getDate());
-				      var_dump($this->reservation->getDate());
+
 				      $diff = $a->diff($d);
 				      
 				      

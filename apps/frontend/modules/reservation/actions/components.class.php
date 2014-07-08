@@ -31,12 +31,17 @@ class reservationComponents extends sfComponents
 			}
 		}
 		$this->sallesUser = array();
-		    foreach($this->polesUser as $pole)
-		    {
-		   	 $salles = SalleTable::getInstance()->getSalleByPole($pole)->execute();
-			 foreach($salles as $salle)
+		foreach($this->polesUser as $pole)
+		{
+			$salles = SalleTable::getInstance()->getSalleByPole($pole)->execute();
+			foreach($salles as $salle)
 				array_push($this->sallesUser, $salle);
-		    }
+		}
+		
+		if($this->idSalle!=-1)
+			$this->salle = SalleTable::getInstance()->getSalleById($this->idSalle)->fetchOne();
+		else
+			$this->salle = NULL;
 	}
   }
   
@@ -59,7 +64,7 @@ class reservationComponents extends sfComponents
 		$this->form = new ReservationForm(array(),$values);
 		
 		// TO DO : Voir si la salle appartient au BDE ou non et en fonction donner possiblité de rentrer une asso ou non.
-		$PoleId= SalleTable::getInstance()->getSalleById($this->idSalle)->execute()[0]->getIdPole();
+		$PoleId= SalleTable::getInstance()->getSalleById($this->idSalle)->fetchOne()->getIdPole();
 		if($PoleId==1){
 		    $this->form->getWidget('id_asso')->setOption('add_empty',true);
 		}

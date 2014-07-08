@@ -24,10 +24,15 @@ class reservationActions extends sfActions
 		$this->userIdentified= true;	      
 		$this->UserID=$this->getUser()->getGuardUser()->getId();
 		$this->idSalle = $request->getUrlParameter("id", -1);
-		$PoleId= SalleTable::getInstance()->getSalleById($this->idSalle)->execute()[0]->getIdPole();
+		$this->salle = SalleTable::getInstance()->getSalleById($this->idSalle)->fetchOne();
+		if($this->salle)
+			$PoleId= $this->salle->getIdPole();
+		else
+			$PoleId = NULL;
+
 		$values = array('UserID'=> $this->UserID,'idSalle'=> $this->idSalle,'PoleId'=>$PoleId);
 		
-		$this->salle = SalleTable::getInstance()->getSalleById($this->idSalle)->execute()[0]; 
+		$this->salle = SalleTable::getInstance()->getSalleById($this->idSalle)->fetchOne(); 
 
 		//test si la salle appartient bien aux pole de l'utilisateur
 		if($this->idSalle != -1)
@@ -72,7 +77,7 @@ class reservationActions extends sfActions
 		      }
 		      
 		      else{ // Cas 2: Edition d'une réservation déjà existante  
-			  $reservation = ReservationTable::getInstance()->getReservationById($idResa)->execute()[0];
+			  $reservation = ReservationTable::getInstance()->getReservationById($idResa)->fetchOne();
 			  $this->form = new ReservationForm($reservation,$values);
 		      }
 		      
@@ -183,7 +188,7 @@ class reservationActions extends sfActions
   
   		$this->forward404Unless(ReservationTable::getInstance()->isReservationExist($id));
   
-		$this->reservation = ReservationTable::getInstance()->getReservationById($id)->execute()[0];
+		$this->reservation = ReservationTable::getInstance()->getReservationById($id)->fetchOne();
   }
   
   public function executeFormNew(sfWebRequest $request)
@@ -195,7 +200,7 @@ class reservationActions extends sfActions
   
 	$idSalle = $request->getParameter("idSalle", -1);
 	$UserID = $request->getParameter("UserID", -1);
-	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->execute()[0]->getIdPole();
+	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->fetchOne()->getIdPole();
 	
 	
 	// création du tableau à passer au constructeur du formulaire de réservation
@@ -226,9 +231,8 @@ class reservationActions extends sfActions
 	$idSalle = $request->getParameter("idSalle", -1);
 	$UserID = $request->getParameter("UserID", -1);
 	$idResa = intval($request->getParameter("idResa", -1));
-	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->execute()[0]->getIdPole();
 	
-	$reservation = ReservationTable::getInstance()->getReservationById($idResa)->execute()[0];
+	$reservation = ReservationTable::getInstance()->getReservationById($idResa)->fetchOne();
 	
 	// On a pas l'id de la salle
 	// Donc on va la chercher via la reservation 	
@@ -236,14 +240,16 @@ class reservationActions extends sfActions
 	{
 	  $idSalle = $reservation->getSalle()->getId();
 	}
-	
-	
+
+	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->fetchOne()->getIdPole();
+	$SalleName = SalleTable::getInstance()->getSalleById($idSalle)->fetchOne()->getName();
+
 	// création du tableau à passer au constructeur du formulaire de réservation
-	$values = array('UserID'=> $UserID,'idSalle'=> $idSalle,'PoleId'=>$PoleId);
+	$values = array('UserID'=> $UserID,'idSalle'=> $idSalle,'PoleId'=>$PoleId, 'SalleName'=>$SalleName);
     
 	$this->form = new ReservationForm($reservation,$values);
 	
-	$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->execute()[0]->getIdPole();
+	//$PoleId= SalleTable::getInstance()->getSalleById($idSalle)->fetchOne()->getIdPole();
 	
 	$this->form->setDefault('estvalide', 0);
 			
@@ -251,7 +257,7 @@ class reservationActions extends sfActions
 	$this->afficherErreur= false;
 
 
-	return $this->renderPartial('reservation/formUpdate',array('form'=>$this->form,'idSalle'=>$idSalle,'PoleId'=>$PoleId));
+	return $this->renderPartial('reservation/formUpdate',array('form'=>$this->form,'idSalle'=>$idSalle,'PoleId'=>$PoleId, 'SalleName'=>$SalleName));
 	 
   }
 

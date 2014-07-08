@@ -40,7 +40,7 @@ class reservationActions extends sfActions
   		
   		$this->forward404Unless(SalleTable::getInstance()->isSalleExist($this->id));
   
-  		$this->salle_modif = SalleTable::getInstance()->getSalleById($this->id)->execute()[0];
+  		$this->salle_modif = SalleTable::getInstance()->getSalleById($this->id)->fetchOne();
 		
 		$this->form = new SalleForm($this->salle_modif);
   		
@@ -86,7 +86,7 @@ class reservationActions extends sfActions
   		
   		$this->forward404Unless(SalleTable::getInstance()->isSalleExist($this->id));
   		
-  		$this->salle = SalleTable::getInstance()->getSalleById($this->id)->execute()[0];
+  		$this->salle = SalleTable::getInstance()->getSalleById($this->id)->fetchOne();
   		
   		$this->suppr = false;
   		
@@ -118,18 +118,18 @@ class reservationActions extends sfActions
    	{
    		$this->forward404Unless(ReservationTable::getInstance()->isReservationNoValidExist($this->id));
    		
-   		$this->reservation = ReservationTable::getInstance()->getReservationById($this->id)->execute()[0];
+   		$this->reservation = ReservationTable::getInstance()->getReservationById($this->id)->fetchOne();
    	}	
   }
   
   public function executeValidationValid(sfWebRequest $request)
   {
-		if (!$request->isMethod('post'))
-  		{
-  			$this->forward404Unless(false);
-  		}  
+	if (!$request->isMethod('post'))
+	{
+		$this->forward404Unless(false);
+	}  
   
-   	$this->param = "validation";
+	$this->param = "validation";
    	
    	$this->id = $request->getParameter('id',-1);
    	
@@ -143,7 +143,8 @@ class reservationActions extends sfActions
   	
    		$this->forward404Unless(ReservationTable::getInstance()->isReservationNoValidExist($this->id));
    	
-   		$this->reservation = ReservationTable::getInstance()->getReservationById($this->id)->execute()[0];
+   		$this->reservation = ReservationTable::getInstance()->getReservationById($this->id)->fetchOne();
+		$user = sfGuardUserTable::getInstance()->getUserById($this->reservation->getIdUserReserve())->fetchOne();
    		
    		$accepter = $request->getParameter("accepter",false); 
    		$refuser = $request->getParameter("refuser",false);
@@ -211,7 +212,7 @@ class reservationActions extends sfActions
   		// Tout a été converti en javascript
 		// la reservation est modifiée en conséquence
   		
-  		$reservation = ReservationTable::getInstance()->getReservationById($request->getParameter('id'))->execute()[0];
+  		$reservation = ReservationTable::getInstance()->getReservationById($request->getParameter('id'))->fetchOne();
   		$reservation->setDate($request->getParameter('date'));
   		$reservation->setHeureDebut($request->getParameter('start'));
   		$reservation->setHeureFin($request->getParameter('end'));
@@ -232,7 +233,7 @@ class reservationActions extends sfActions
   		
   		$this->forward404Unless(ReservationTable::getInstance()->isReservationExist($this->id));
   		
-  		$this->reservation = ReservationTable::getInstance()->getReservationById($this->id)->execute()[0];
+  		$this->reservation = ReservationTable::getInstance()->getReservationById($this->id)->fetchOne();
   		
   		$this->delete = false;
   		

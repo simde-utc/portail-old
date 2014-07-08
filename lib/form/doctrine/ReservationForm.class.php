@@ -24,10 +24,10 @@ class ReservationForm extends BaseReservationForm
 	    }
 
 	    // Préparation des données pour la suite de l'algo
-	    $Salle = SalleTable::getInstance()->getSalleById($this->getOption('idSalle'))->execute()[0];
+	    $Salle = SalleTable::getInstance()->getSalleById($this->getOption('idSalle'))->fetchOne();
 	    $PoleLogin = $Salle->getPole()->getAssoId();
-	    $PoleName = AssoTable::getInstance()->getOneById($PoleLogin)->execute()[0]->getName();
-	    $PoleId = AssoTable::getInstance()->getOneById($PoleLogin)->execute()[0]->getId();
+	    $PoleName = AssoTable::getInstance()->getOneById($PoleLogin)->fetchOne()->getName();
+	    $PoleId = AssoTable::getInstance()->getOneById($PoleLogin)->fetchOne()->getId();
 	    $myAssos = AssoTable::getInstance()->getMyAssos($this->getOption('UserID'))->execute();
 	    
 	    // Constitution du tableau d'ID des assos de l'utilisateur.

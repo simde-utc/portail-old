@@ -3,9 +3,9 @@
 
 prod:
   logger:
-    class:   sfNoLogger
+    class: sfNoLogger
     param:
-      level:   err
+      level: err
       loggers: ~
   mailer:
     param:

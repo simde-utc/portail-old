@@ -17,8 +17,6 @@
 <?php endif; ?>
 
 	<h4>Info sur la réservation :</h4>
-
-<?php $user = sfGuardUserTable::getInstance()->getUserById($reservation->getIdUserReserve())->execute()[0] ?>
 	
 	<?php include_partial("showReservation",array("reservation" => $reservation,"user"=>$user)) ?>
 	

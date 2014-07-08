@@ -1,8 +1,7 @@
 <fieldset>
 	<legend id='legende_salle'>
-		<?php if ($idSalle != -1)
+		<?php if ($salle)
 		{ 
-			$salle = SalleTable::getInstance()->getSalleById($idSalle)->execute()[0];
 			echo $salle->getName() ;
 			echo "<p>Capacite : ". $salle->getCapacite() ." personnes<p/>";
 			echo "<p>". nl2br($salle->getDescription()) ."</p>"; 

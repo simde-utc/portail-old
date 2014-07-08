@@ -53,8 +53,6 @@ class SalleTable extends Doctrine_Table
     					->leftJoin('q.Pole p')
     					->leftJoin('p.Asso a')
     					->where('id_pole=?',$poleid);
-    					
-    		//$a = $q->execute();
     		
     		return $q;
     }

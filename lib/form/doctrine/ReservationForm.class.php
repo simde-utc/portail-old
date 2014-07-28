@@ -190,70 +190,18 @@ class ReservationForm extends BaseReservationForm
   public function checkCreneauLibre($validator, $values)
   { 
     if($values['id']==NULL){
-    $q1 = Doctrine_Query::create()
-    ->select('count(*)')
-    ->from('Reservation r')
-    ->where('r.date = ?', $values['date'])
-    ->andWhere('r.id_salle = ?', $values['id_salle'])
-    ->andWhere('r.heurefin > ?', $values['heuredebut'])
-    ->andWhere('r.heurefin <= ?', $values['heurefin']);
     
-    $result1= $q1->fetchOne()["count"];
+    $result1= ReservationTable::getInstance()->isChevauchementFin($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne()["count"];
+    $result2= ReservationTable::getInstance()->isChevauchementDebut($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne()["count"];
+    $result3= ReservationTable::getInstance()->isChevauchementInterne($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne()["count"];
     
-    $q2 = Doctrine_Query::create()
-    ->select('count(*)')
-    ->from('Reservation r')
-    ->where('r.date = ?', $values['date'])
-    ->andWhere('r.id_salle = ?', $values['id_salle'])
-    ->andWhere('r.heuredebut >= ?', $values['heuredebut'])
-    ->andWhere('r.heuredebut < ?', $values['heurefin']);
-     
-    $result2= $q2->fetchOne()["count"];
-    
-     $q3 = Doctrine_Query::create()
-    ->select('count(*)')
-    ->from('Reservation r')
-    ->where('r.date = ?', $values['date'])
-    ->andWhere('r.id_salle = ?', $values['id_salle'])
-    ->andWhere('r.heuredebut < ?', $values['heuredebut'])
-    ->andWhere('r.heurefin > ?', $values['heurefin']);
-
-    $result3= $q3->fetchOne()["count"];
     }
     else{
-      $q1 = Doctrine_Query::create()
-      ->select('count(*)')
-      ->from('Reservation r')
-      ->where('r.date = ?', $values['date'])
-      ->andWhere('r.id_salle = ?', $values['id_salle'])
-      ->andWhere('r.heurefin > ?', $values['heuredebut'])
-      ->andWhere('r.heurefin <= ?', $values['heurefin'])
-      ->andWhere('r.id != ?',$values['id']);
-      
-      $result1= $q1->fetchOne()["count"];
-      
-      $q2 = Doctrine_Query::create()
-      ->select('count(*)')
-      ->from('Reservation r')
-      ->where('r.date = ?', $values['date'])
-      ->andWhere('r.id_salle = ?', $values['id_salle'])
-      ->andWhere('r.heuredebut >= ?', $values['heuredebut'])
-      ->andWhere('r.heuredebut < ?', $values['heurefin'])
-      ->andWhere('r.id != ?',$values['id']); 
-      
-      $result2= $q2->fetchOne()["count"];
-      
-      $q3 = Doctrine_Query::create()
-      ->select('count(*)')
-      ->from('Reservation r')
-      ->where('r.date = ?', $values['date'])
-      ->andWhere('r.id_salle = ?', $values['id_salle'])
-      ->andWhere('r.heuredebut < ?', $values['heuredebut'])
-      ->andWhere('r.heurefin > ?', $values['heurefin'])
-      ->andWhere('r.id != ?',$values['id']); 
     
-      $result3= $q3->fetchOne()["count"];
-    
+    $result1= ReservationTable::getInstance()->isChevauchementFinUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne()["count"];
+    $result2= ReservationTable::getInstance()->isChevauchementDebutUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne()["count"];
+    $result3= ReservationTable::getInstance()->isChevauchementInterneUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne()["count"];
+     
     }
     
     if($result1!="0" or $result2!="0" or $result3!="0"){
@@ -271,20 +219,11 @@ class ReservationForm extends BaseReservationForm
   { 
     if($values['id_asso']!=NULL){
 	if($values['id']!=NULL){
-	    $q = Doctrine_Query::create()
-	    ->from('Reservation r')
-	    ->where('r.id_asso = ?', $values['id_asso'])
-	    ->andWhere('r.date = ?', $values['date'])
-	    ->andWhere('r.id != ?',$values['id']);
+	    $q = ReservationTable::getInstance()->getReservationPourAssoPourDateUpdate($values['id_asso'],$values['date'],$values['id']);
 	}
 	else{
-	    $q = Doctrine_Query::create()
-	    ->from('Reservation r')
-	    ->where('r.id_asso = ?', $values['id_asso'])
-	    ->andWhere('r.date = ?', $values['date']);
+	    $q = ReservationTable::getInstance()->getReservationPourAssoPourDate($values['id_asso'],$values['date']);
 	}
-	
-
 	
 	$result= $q->execute();
 	
@@ -300,6 +239,10 @@ class ReservationForm extends BaseReservationForm
 			$diff = $f->diff($d);
 			$h+=$diff->h;
 			$m+=$diff->i;
+			
+			var_dump($h);
+			var_dump($m);
+
 		}
 	}
 				    
@@ -309,8 +252,14 @@ class ReservationForm extends BaseReservationForm
 	$h+=$diff->h;
 	$m+=$diff->i;
 	
+	var_dump($h);
+	var_dump($m);
+	
 	$h+=(int)($m/60);
-	$m+=$m%60;
+	$m=$m%60;
+	
+	var_dump($h);
+	var_dump($m);
 	
 	
 	if($h>3 or ($h==3 and $m!=0)){
@@ -340,21 +289,10 @@ class ReservationForm extends BaseReservationForm
   public function checkJourLibre($validator, $values)
   { 
       if($values['id']!=NULL){
-	  $q = Doctrine_Query::create()
-	  ->select('count(*)')
-	  ->from('Reservation r')
-	  ->where('r.date = ?', $values['date'])
-	  ->andWhere('r.id_salle = ?', $values['id_salle'])
-	  ->andWhere('r.id != ?', $values['id'])
-	  ->andWhere('r.allday = ?', 1);
+	  $q = ReservationTable::getInstance()->isJourLibreUpdate($values['date'],$values['id_salle'],$values['id']);
       }
       else{
-	  $q = Doctrine_Query::create()
-	  ->select('count(*)')
-	  ->from('Reservation r')
-	  ->where('r.date = ?', $values['date'])
-	  ->andWhere('r.id_salle = ?', $values['id_salle'])
-	  ->andWhere('r.allday = ?', 1);
+	  $q = ReservationTable::getInstance()->isJourLibre($values['date'],$values['id_salle']);
       }
 
 

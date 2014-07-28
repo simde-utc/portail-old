@@ -171,7 +171,7 @@ class ReservationForm extends BaseReservationForm
   { 
     //date_default_timezone_set('Europe/Paris');
     $d= new DateTime();
-    //var_dump(
+
     $a=new DateTime($values['date']." ".$values['heuredebut']);
     
     if($a<$d){
@@ -239,9 +239,6 @@ class ReservationForm extends BaseReservationForm
 			$diff = $f->diff($d);
 			$h+=$diff->h;
 			$m+=$diff->i;
-			
-			var_dump($h);
-			var_dump($m);
 
 		}
 	}
@@ -252,15 +249,9 @@ class ReservationForm extends BaseReservationForm
 	$h+=$diff->h;
 	$m+=$diff->i;
 	
-	var_dump($h);
-	var_dump($m);
-	
 	$h+=(int)($m/60);
 	$m=$m%60;
-	
-	var_dump($h);
-	var_dump($m);
-	
+
 	
 	if($h>3 or ($h==3 and $m!=0)){
 	      throw new sfValidatorError($validator, 'Vous ne pouvez pas réserver plus de 3h dans une même journée pour la même association.');

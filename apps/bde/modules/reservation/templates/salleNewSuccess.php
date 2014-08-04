@@ -8,18 +8,18 @@
 
 <?php if (!isset($salle)): ?>
 
-	<form action="<?php echo url_for('reservation_salle_new') ?>" method="post">
+  <form action="<?php echo url_for('reservation_salle_new') ?>" method="post">
 
-		<?php echo $form ?>
-		<br />
-		<input type="submit" />
+    <?php echo $form ?>
+    <br />
+    <input type="submit" />
 
-	</form>
-	
+  </form>
+  
 <?php else: ?>
 
 
-	<?php include_partial("showSalle",array("salle" => $salle)) ?>
-	
+  <?php include_partial("showSalle",array("salle" => $salle)) ?>
+  
 
 <?php endif; ?>

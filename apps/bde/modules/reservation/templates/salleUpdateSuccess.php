@@ -3,25 +3,25 @@
 <?php use_javascript("jscolor/jscolor.js") ?>
 
 <h2>Modification de la salle</h2>
-	
+  
 <p><?php echo link_to ('<< retour', 'reservation_salle') ?></p>
 
 <?php if (!$update): ?> 
 
-	<form action="<?php echo url_for('reservation_salle_update',array('id' => $id)) ?>" method="post">
+  <form action="<?php echo url_for('reservation_salle_update',array('id' => $id)) ?>" method="post">
 
-		 <?php echo $form ?>
-		 <br />
-		 <input type="submit" />
+     <?php echo $form ?>
+     <br />
+     <input type="submit" />
 
-	</form>
-	
+  </form>
+  
 <?php else: ?>
 
-	<p>Modification réalisée avec succès !</p>
+  <p>Modification réalisée avec succès !</p>
 
-	<?php include_partial("showSalle",array('salle'=>$salle_modif)) ?>
-	
+  <?php include_partial("showSalle",array('salle'=>$salle_modif)) ?>
+  
 
 <?php endif; ?>
 

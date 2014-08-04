@@ -4,7 +4,7 @@ class CreneauDayForm extends sfForm
 {
   public function configure()
   {
-  	$nbSalles = count(SalleTable::getInstance()->getAllSalles()->execute())*20;
+    $nbSalles = count(SalleTable::getInstance()->getAllSalles()->execute())*20;
   
     $this->setWidgets(array(
       'date'   => new sfWidgetFormInputText(array(),array('class'=>'date')),
@@ -20,10 +20,10 @@ class CreneauDayForm extends sfForm
     
   }
 
-	public function getModelName()
-	{
-		return 'CreneauDay';
-	}
+  public function getModelName()
+  {
+    return 'CreneauDay';
+  }
 
 }
 

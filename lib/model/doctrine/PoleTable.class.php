@@ -20,10 +20,10 @@ class PoleTable extends Doctrine_Table
 
   public function getPolesList()
   {
-	$q = $this->createQuery('p')
-		->addOrderBy('p.id ASC');
+  $q = $this->createQuery('p')
+    ->addOrderBy('p.id ASC');
 
-	return $q;
+  return $q;
   }
   
   public function getAllWithInfos()
@@ -51,14 +51,14 @@ class PoleTable extends Doctrine_Table
   /* Statistiques Reservations Poles */
     public function getStatPole()
     {
-	$q = $this->createQuery('p')
+  $q = $this->createQuery('p')
             ->select('p.*, a.*, r.*, count(r.id) as count_resa')
-	    ->leftJoin('p.Asso a')
+      ->leftJoin('p.Asso a')
             ->leftJoin('a.Reservation r')
-	    ->groupBy('p.id')
+      ->groupBy('p.id')
             ->addOrderBy('p.id ASC');
 
-	return $q;
+  return $q;
     }
 
 }

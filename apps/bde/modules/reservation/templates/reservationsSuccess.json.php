@@ -2,10 +2,10 @@
 $result = array();
 foreach ($reservations as $res){
 
-	if($res->getAsso()->getId()) 
-		$title = $res->getAsso()->getName();
-	else
-		$title = $res->getUserReserve()->getUsername();
+  if($res->getAsso()->getId()) 
+    $title = $res->getAsso()->getName();
+  else
+    $title = $res->getUserReserve()->getUsername();
 
   $asso = $res->getAsso();
   $result[] = array(

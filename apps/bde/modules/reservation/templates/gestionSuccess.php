@@ -8,18 +8,18 @@
 <h3>Gestion des reservations</h3>
 
 <form method="post" action="">
-	
-	<label>Selection du pole :</label>
-	<select name="pole">
-		<option value="-1">All</option>
-		<?php foreach($poles as $p): ?>
-		<option value="<?php echo $p->getId() ?>" <?php if ($p->getId() == $pole) echo "selected" ?>><?php echo $p ?></option>
-		<?php endforeach ?>
-	</select>
-	
-	<label>Selection de la salle :</label>
-	<select name="salle">
-	</select>
+  
+  <label>Selection du pole :</label>
+  <select name="pole">
+    <option value="-1">All</option>
+    <?php foreach($poles as $p): ?>
+    <option value="<?php echo $p->getId() ?>" <?php if ($p->getId() == $pole) echo "selected" ?>><?php echo $p ?></option>
+    <?php endforeach ?>
+  </select>
+  
+  <label>Selection de la salle :</label>
+  <select name="salle">
+  </select>
 
 <br />
 <input type="submit" name="submit" value="Valider" />
@@ -30,87 +30,87 @@
 <div id="calendar" style="background:#FFF"></div>
 <script>
 $(document).ready(function() {
-	
-	function loadSalle()
-	{
-		$.ajax({
-				url: "<?php echo url_for('reservation_gestion_salle_list') ?>",
-				data : {pole : $('form select[name=pole]').val(),
-							salle : <?php echo $salle ?> },
-				success : function(data)
-				{
-					//console.log(data);
-					$('form select[name=salle]').empty();
-					$('form select[name=salle]').append(data);
-				}
-			});
-	}
-	
-	loadSalle();
-	
-	$('form select[name=pole]').change(function()
-	{
-		loadSalle();	
-	});
-	
-	
-	
-	function askForValidateChanges(nameEvent)
-	{
-		var txt = "L'evenement "+nameEvent+" a été modifié.\n Afin de valider cette modification, entrer un commentaire si dessous afin de prévenir le titulaire par mail de la modification de sa réservation.";
-		
-		var txtField = "Votre commentaire ici";
-		
-		var ret = window.prompt(txt,txtField);
-		
-		if (ret == txtField)
-			return null;
-			
-		return ret;
-	}
-	
+  
+  function loadSalle()
+  {
+    $.ajax({
+        url: "<?php echo url_for('reservation_gestion_salle_list') ?>",
+        data : {pole : $('form select[name=pole]').val(),
+              salle : <?php echo $salle ?> },
+        success : function(data)
+        {
+          //console.log(data);
+          $('form select[name=salle]').empty();
+          $('form select[name=salle]').append(data);
+        }
+      });
+  }
+  
+  loadSalle();
+  
+  $('form select[name=pole]').change(function()
+  {
+    loadSalle();  
+  });
+  
+  
+  
+  function askForValidateChanges(nameEvent)
+  {
+    var txt = "L'evenement "+nameEvent+" a été modifié.\n Afin de valider cette modification, entrer un commentaire si dessous afin de prévenir le titulaire par mail de la modification de sa réservation.";
+    
+    var txtField = "Votre commentaire ici";
+    
+    var ret = window.prompt(txt,txtField);
+    
+    if (ret == txtField)
+      return null;
+      
+    return ret;
+  }
+  
   $("#calendar").fullCalendar({
- 	 
- 	 eventResize: function(event,dayDelta,minuteDelta,revertFunc) {
- 	 
-		var comment = askForValidateChanges(event.title);
-		
-		if (comment != null)
-		{
-			$.ajax({
-				url: "<?php echo url_for('reservation_gestion_edit') ?>",
-				data: {id:event.id, 
-						date:event.start.toJSON().split("T")[0], 
-						start:event.start.toTimeString().split(" ")[0],
-						end:event.end.toTimeString().split(" ")[0],
-						comment : comment,
-						allday : false
-						}		
-			});
-		}
-		
+    
+    eventResize: function(event,dayDelta,minuteDelta,revertFunc) {
+    
+    var comment = askForValidateChanges(event.title);
+    
+    if (comment != null)
+    {
+      $.ajax({
+        url: "<?php echo url_for('reservation_gestion_edit') ?>",
+        data: {id:event.id, 
+            date:event.start.toJSON().split("T")[0], 
+            start:event.start.toTimeString().split(" ")[0],
+            end:event.end.toTimeString().split(" ")[0],
+            comment : comment,
+            allday : false
+            }    
+      });
+    }
+    
     },
     
     eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
 
-		var comment = askForValidateChanges(event.title);
-		
-		if (comment != null)
-		{
-		
-			$.ajax({
-				url: "<?php echo url_for('reservation_gestion_edit') ?>",
-				data: {id:event.id, 
-						date:event.start.toJSON().split("T")[0], 
-						start:event.start.toTimeString().split(" ")[0],
-						end:event.end.toTimeString().split(" ")[0],
-						comment : comment,
-						allday : allDay
-						}
+    var comment = askForValidateChanges(event.title);
+    
+    if (comment != null)
+    {
+    
+      $.ajax({
+        url: "<?php echo url_for('reservation_gestion_edit') ?>",
+        data: {id:event.id, 
+            date:event.start.toJSON().split("T")[0], 
+            start:event.start.toTimeString().split(" ")[0],
+            end:event.end.toTimeString().split(" ")[0],
+            comment : comment,
+            allday : allDay
+            }
 
-			});
-		
-		}
+      });
+    
+    }
 
     },   
     /*
@@ -121,21 +121,21 @@ $(document).ready(function() {
 
      //alert('Event: ' + event.id);
 
-		var conf = window.confirm("Suppression de l'évenement: "+event.title);
-		
-		if (conf)
-		{
-			$.ajax({
-				url: "<?php echo url_for('reservation_gestion_delete') ?>",
-				data: {id:event.id}		
-			});
-			
-			$('#calendar').fullCalendar('removeEvents', event.id);
-		}
+    var conf = window.confirm("Suppression de l'évenement: "+event.title);
+    
+    if (conf)
+    {
+      $.ajax({
+        url: "<?php echo url_for('reservation_gestion_delete') ?>",
+        data: {id:event.id}    
+      });
+      
+      $('#calendar').fullCalendar('removeEvents', event.id);
+    }
 
     },
- 	 */
- 	 
+    */
+    
     header: {
       left: 'prev,next today',
       center: 'title',

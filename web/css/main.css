@@ -51,13 +51,13 @@ p {
 }
 
 .part h1 .pull-right {
-	font-size: 12px;
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	text-transform: none;
+  font-size: 12px;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  text-transform: none;
 }
 
 .part h1 .pull-right a {
-	color: white;
+  color: white;
 }
 
 .part .article h2 img {
@@ -246,19 +246,19 @@ p {
 /* Formulaires d'édition (articles, event...) */
 
 .editform label:first-child {
-	text-align: right;
-	margin-right: 6px;
-	padding: 4px;
+  text-align: right;
+  margin-right: 6px;
+  padding: 4px;
 }
 .editform th {
-	vertical-align: top;
+  vertical-align: top;
 }
 .editform input, .editform textarea {
-	width: 100%;
+  width: 100%;
 }
 
 .editform input.btn, .editform select.nosize {
-	width: auto;
+  width: auto;
 }
 
 a.btn-danger {
@@ -597,7 +597,7 @@ a.btn-danger {
 }
 
 .infojob-form tbody input, .infojob-form tbody textarea, .infojob-form tbody .uneditable-input {
-	width: 350px;
+  width: 350px;
 }
 
 .infojob-form label {
@@ -607,7 +607,7 @@ a.btn-danger {
 }
 
 .infojob-form select {
-	width: 350px;
+  width: 350px;
 }
 
 #infojob-collapse-link {

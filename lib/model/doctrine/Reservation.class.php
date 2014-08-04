@@ -13,33 +13,33 @@
 class Reservation extends BaseReservation
 {
 /*
-	public function __toString()
-	{
+  public function __toString()
+  {
 
-	}
+  }
 */
-	private $userValid;
-	private $userReserve;
+  private $userValid;
+  private $userReserve;
 
-	public function getUserValid()
-	{
-		if (isset($userValid))
-			return $userValid;
-			
-		return $userValid = sfGuardUserTable::getInstance()->getUserById($this->getIdUserValid())->fetchOne();
-	}
-	
-	public function getUserReserve()
-	{
-		if (isset($userReserve))
-			return $userReserve;
-			
-		return $userReserve = sfGuardUserTable::getInstance()->getUserById($this->getIdUserReserve())->fetchOne();
-	}
-	
-	public function showDate()
-	{
-		return date("j/n/Y",strtotime($this->getDate()));
-	}
+  public function getUserValid()
+  {
+    if (isset($userValid))
+      return $userValid;
+      
+    return $userValid = sfGuardUserTable::getInstance()->getUserById($this->getIdUserValid())->fetchOne();
+  }
+  
+  public function getUserReserve()
+  {
+    if (isset($userReserve))
+      return $userReserve;
+      
+    return $userReserve = sfGuardUserTable::getInstance()->getUserById($this->getIdUserReserve())->fetchOne();
+  }
+  
+  public function showDate()
+  {
+    return date("j/n/Y",strtotime($this->getDate()));
+  }
 
 }

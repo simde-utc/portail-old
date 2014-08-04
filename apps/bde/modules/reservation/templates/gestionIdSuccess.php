@@ -8,18 +8,18 @@
 
 <?php if ($delete): ?>
 
-	<h4>Supprimée !</h4>
-	
-	<?php echo nl2br($mail) ?>
+  <h4>Supprimée !</h4>
+  
+  <?php echo nl2br($mail) ?>
 
 <?php else: ?>
 
-	<form method="post" action="<?php echo url_for('reservation_gestion_id',array('id'=>$id)) ?>">
+  <form method="post" action="<?php echo url_for('reservation_gestion_id',array('id'=>$id)) ?>">
 
-		<textarea name="comment" placeholder="Your comment here"></textarea>
+    <textarea name="comment" placeholder="Your comment here"></textarea>
 
-		<input type="submit" value="Supprimer" name="delete" />
+    <input type="submit" value="Supprimer" name="delete" />
 
-	</form>
-	
+  </form>
+  
 <?php endif ?>

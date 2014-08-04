@@ -6,11 +6,11 @@
 <div id="table_salle">
 <?php foreach ($salles as $salle): ?>
 
-	<p>
-		<span class="name"><?php echo ucfirst ($salle->getName()) ?></span>
-		<span><?php echo link_to ('Edit', 'reservation_salle_update', array ('id' => $salle->getId())) ?></span>
-		<span><?php echo link_to ('Delete', 'reservation_salle_delete', array ('id' => $salle->getId())) ?></span>
-	</p>
-	
+  <p>
+    <span class="name"><?php echo ucfirst ($salle->getName()) ?></span>
+    <span><?php echo link_to ('Edit', 'reservation_salle_update', array ('id' => $salle->getId())) ?></span>
+    <span><?php echo link_to ('Delete', 'reservation_salle_delete', array ('id' => $salle->getId())) ?></span>
+  </p>
+  
 <?php endforeach; ?>
 </div>

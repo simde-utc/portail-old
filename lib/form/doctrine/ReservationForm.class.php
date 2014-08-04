@@ -15,50 +15,50 @@ class ReservationForm extends BaseReservationForm
   { 
  
      if($this->getOption('PoleId')!=1){ // salle spécifique à un pôle.
-	    
-	    // préparation du tableau associatif regroupant les id et les noms des assos de l'utilisateur pour le pôle de la salle concernée
-	    $choices=array();
-	    $c = AssoTable::getInstance()->getMyAssosNameByIdSalle($this->getOption('UserID'),$this->getOption('idSalle'))->execute();
-	    foreach($c as $asso){
-		  $choices= $choices + array($asso->getId() => $asso->getName());
-	    }
+      
+      // préparation du tableau associatif regroupant les id et les noms des assos de l'utilisateur pour le pôle de la salle concernée
+      $choices=array();
+      $c = AssoTable::getInstance()->getMyAssosNameByIdSalle($this->getOption('UserID'),$this->getOption('idSalle'))->execute();
+      foreach($c as $asso){
+      $choices= $choices + array($asso->getId() => $asso->getName());
+      }
 
-	    // Préparation des données pour la suite de l'algo
-	    $Salle = SalleTable::getInstance()->getSalleById($this->getOption('idSalle'))->fetchOne();
-	    $PoleLogin = $Salle->getPole()->getAssoId();
-	    $PoleName = AssoTable::getInstance()->getOneById($PoleLogin)->fetchOne()->getName();
-	    $PoleId = AssoTable::getInstance()->getOneById($PoleLogin)->fetchOne()->getId();
-	    $myAssos = AssoTable::getInstance()->getMyAssos($this->getOption('UserID'))->execute();
-	    
-	    // Constitution du tableau d'ID des assos de l'utilisateur.
-	    $ma=array();
-	    foreach($myAssos as $a){
-		  $ma= $ma+array($a->getId() => $a->getName());
-	    }
+      // Préparation des données pour la suite de l'algo
+      $Salle = SalleTable::getInstance()->getSalleById($this->getOption('idSalle'))->fetchOne();
+      $PoleLogin = $Salle->getPole()->getAssoId();
+      $PoleName = AssoTable::getInstance()->getOneById($PoleLogin)->fetchOne()->getName();
+      $PoleId = AssoTable::getInstance()->getOneById($PoleLogin)->fetchOne()->getId();
+      $myAssos = AssoTable::getInstance()->getMyAssos($this->getOption('UserID'))->execute();
+      
+      // Constitution du tableau d'ID des assos de l'utilisateur.
+      $ma=array();
+      foreach($myAssos as $a){
+      $ma= $ma+array($a->getId() => $a->getName());
+      }
 
-	    // Si l'utilisateur appartient au pôle, on ajoute le pôle aux choix possibles.
-	    if (in_array($PoleName, $ma)) {
-		$choices= $choices + array($PoleId=> $PoleName);
-	    }
-		
-	    $this->widgetSchema['id_asso'] = new sfWidgetFormChoice(array('choices' => $choices));
-	    
-	  
+      // Si l'utilisateur appartient au pôle, on ajoute le pôle aux choix possibles.
+      if (in_array($PoleName, $ma)) {
+    $choices= $choices + array($PoleId=> $PoleName);
+      }
+    
+      $this->widgetSchema['id_asso'] = new sfWidgetFormChoice(array('choices' => $choices));
+      
+    
     }
     else{
-	    $choices=array();
-	    $myAssos = AssoTable::getInstance()->getMyAssos($this->getOption('UserID'))->execute();
+      $choices=array();
+      $myAssos = AssoTable::getInstance()->getMyAssos($this->getOption('UserID'))->execute();
 
-	    
-	    // Constitution du tableau d'ID des assos de l'utilisateur.
-	    $ma=array();
-	    foreach($myAssos as $a){
-		  $ma= $ma+array($a->getId() => $a->getName());
-	    }
-	    $ma = $ma+array(""=>"");
-	    $this->widgetSchema['id_asso'] = new sfWidgetFormChoice(array('choices' => $ma));
+      
+      // Constitution du tableau d'ID des assos de l'utilisateur.
+      $ma=array();
+      foreach($myAssos as $a){
+      $ma= $ma+array($a->getId() => $a->getName());
+      }
+      $ma = $ma+array(""=>"");
+      $this->widgetSchema['id_asso'] = new sfWidgetFormChoice(array('choices' => $ma));
 
-	    
+      
      }
     
        
@@ -66,7 +66,7 @@ class ReservationForm extends BaseReservationForm
      $this->widgetSchema['id_salle'] = new sfWidgetFormInputHidden();
      $this->widgetSchema['id_user_reserve'] = new sfWidgetFormInputHidden();
      $this->widgetSchema['estvalide'] = new sfWidgetFormInputHidden();
-     $this->widgetSchema['date'] = new sfWidgetFormDate(array('format'=>'%day%/%month%/%year%','can_be_empty'=>false));	
+     $this->widgetSchema['date'] = new sfWidgetFormDate(array('format'=>'%day%/%month%/%year%','can_be_empty'=>false));  
      $this->widgetSchema['heuredebut'] = new sfWidgetFormTime(array('can_be_empty'=>false));
      
      
@@ -86,13 +86,13 @@ class ReservationForm extends BaseReservationForm
     ));
      
      $types = array(
-	  'Réunion' => 'Réunion',
-	  'Logistique' => 'Logistique',
-	  'Autre' => 'Autre',
+    'Réunion' => 'Réunion',
+    'Logistique' => 'Logistique',
+    'Autre' => 'Autre',
      );
      
      $this->widgetSchema['activite'] = new sfWidgetFormChoice(array(
-	  'choices'  => $types,
+    'choices'  => $types,
       ));
     
 
@@ -116,13 +116,13 @@ class ReservationForm extends BaseReservationForm
      
     
     $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
-	new sfValidatorCallback(array('callback' => array($this, 'checkTempsMinDeReservation'))),
-	new sfValidatorCallback(array('callback' => array($this, 'checkPeutReserver'))),
-	new sfValidatorCallback(array('callback' => array($this, 'checkCreneauDansLePasse'))),
-	new sfValidatorCallback(array('callback' => array($this, 'checkCreneauLibre'))),
-	new sfValidatorCallback(array('callback' => array($this, 'checkLimiteMax'))),
-	new sfValidatorCallback(array('callback' => array($this, 'checkJourLibre'))),
-	new sfValidatorCallback(array('callback' => array($this, 'checkHeureDebutAvantHeureFin'))),
+  new sfValidatorCallback(array('callback' => array($this, 'checkTempsMinDeReservation'))),
+  new sfValidatorCallback(array('callback' => array($this, 'checkPeutReserver'))),
+  new sfValidatorCallback(array('callback' => array($this, 'checkCreneauDansLePasse'))),
+  new sfValidatorCallback(array('callback' => array($this, 'checkCreneauLibre'))),
+  new sfValidatorCallback(array('callback' => array($this, 'checkLimiteMax'))),
+  new sfValidatorCallback(array('callback' => array($this, 'checkJourLibre'))),
+  new sfValidatorCallback(array('callback' => array($this, 'checkHeureDebutAvantHeureFin'))),
     )));
       
   }
@@ -137,8 +137,8 @@ class ReservationForm extends BaseReservationForm
       
       if ($diff->h==0 && $diff->i==0)
       {
-	// créneau trop court
-	throw new sfValidatorError($validator, 'Créneau d\'au minimum 30mn');
+  // créneau trop court
+  throw new sfValidatorError($validator, 'Créneau d\'au minimum 30mn');
       }
     
     }
@@ -156,7 +156,7 @@ class ReservationForm extends BaseReservationForm
     $diff = $a->diff($d);
     
     if($diff->y==0 and $diff->m==0 and $diff->d==0 and $diff->h==0 and $diff->i<59){
-	  throw new sfValidatorError($validator, 'Vous devez effectuer la réservation au moins une heure avant le début du créneau.');
+    throw new sfValidatorError($validator, 'Vous devez effectuer la réservation au moins une heure avant le début du créneau.');
     }
     return $values;
 
@@ -175,7 +175,7 @@ class ReservationForm extends BaseReservationForm
     $a=new DateTime($values['date']." ".$values['heuredebut']);
     
     if($a<$d){
-	  throw new sfValidatorError($validator, 'Créneau dans le passé, impossible de réserver.');
+    throw new sfValidatorError($validator, 'Créneau dans le passé, impossible de réserver.');
     }
     
     return $values;
@@ -205,7 +205,7 @@ class ReservationForm extends BaseReservationForm
     }
     
     if($result1!="0" or $result2!="0" or $result3!="0"){
-	  throw new sfValidatorError($validator, 'Ce créneau n\'est pas libre, merci de consulter le calendrier et de choisir un créneau libre.');
+    throw new sfValidatorError($validator, 'Ce créneau n\'est pas libre, merci de consulter le calendrier et de choisir un créneau libre.');
     }
     
     return $values;
@@ -218,54 +218,54 @@ class ReservationForm extends BaseReservationForm
   public function checkLimiteMax($validator, $values)
   { 
     if($values['id_asso']!=NULL){
-	if($values['id']!=NULL){
-	    $q = ReservationTable::getInstance()->getReservationPourAssoPourDateUpdate($values['id_asso'],$values['date'],$values['id']);
-	}
-	else{
-	    $q = ReservationTable::getInstance()->getReservationPourAssoPourDate($values['id_asso'],$values['date']);
-	}
-	
-	$result= $q->execute();
-	
-	$h=0;
-	$m=0;
-		    
-	if($result)
-	{
-		foreach($result as $res)
-		{
-			$d=new DateTime($res->getDate()." ".$res->getHeureDebut());
-			$f=new DateTime($res->getDate()." ".$res->getHeureFin());
-			$diff = $f->diff($d);
-			$h+=$diff->h;
-			$m+=$diff->i;
+  if($values['id']!=NULL){
+      $q = ReservationTable::getInstance()->getReservationPourAssoPourDateUpdate($values['id_asso'],$values['date'],$values['id']);
+  }
+  else{
+      $q = ReservationTable::getInstance()->getReservationPourAssoPourDate($values['id_asso'],$values['date']);
+  }
+  
+  $result= $q->execute();
+  
+  $h=0;
+  $m=0;
+        
+  if($result)
+  {
+    foreach($result as $res)
+    {
+      $d=new DateTime($res->getDate()." ".$res->getHeureDebut());
+      $f=new DateTime($res->getDate()." ".$res->getHeureFin());
+      $diff = $f->diff($d);
+      $h+=$diff->h;
+      $m+=$diff->i;
 
-		}
-	}
-				    
-	$d=new DateTime($values['date']." ".$values['heuredebut']);
-	$f=new DateTime($values['date']." ".$values['heurefin']);
-	$diff = $f->diff($d);
-	$h+=$diff->h;
-	$m+=$diff->i;
-	
-	$h+=(int)($m/60);
-	$m=$m%60;
+    }
+  }
+            
+  $d=new DateTime($values['date']." ".$values['heuredebut']);
+  $f=new DateTime($values['date']." ".$values['heurefin']);
+  $diff = $f->diff($d);
+  $h+=$diff->h;
+  $m+=$diff->i;
+  
+  $h+=(int)($m/60);
+  $m=$m%60;
 
-	
-	if($h>3 or ($h==3 and $m!=0)){
-	      throw new sfValidatorError($validator, 'Vous ne pouvez pas réserver plus de 3h dans une même journée pour la même association.');
-	}
+  
+  if($h>3 or ($h==3 and $m!=0)){
+        throw new sfValidatorError($validator, 'Vous ne pouvez pas réserver plus de 3h dans une même journée pour la même association.');
+  }
     }
     else{
-	$heureDeb= new DateTime($values['heuredebut']) ;
-	$heureFin= new DateTime($values['heurefin']) ;
-	$diff = $heureFin->diff($heureDeb);
-	if ($diff->h>3 or ($diff->h==3 and $diff->i!=0))
-	{
-	  // créneau trop long
-	  throw new sfValidatorError($validator, 'Créneau trop large, 3 heures max.');
-	}
+  $heureDeb= new DateTime($values['heuredebut']) ;
+  $heureFin= new DateTime($values['heurefin']) ;
+  $diff = $heureFin->diff($heureDeb);
+  if ($diff->h>3 or ($diff->h==3 and $diff->i!=0))
+  {
+    // créneau trop long
+    throw new sfValidatorError($validator, 'Créneau trop large, 3 heures max.');
+  }
     
     }
     return $values;
@@ -280,17 +280,17 @@ class ReservationForm extends BaseReservationForm
   public function checkJourLibre($validator, $values)
   { 
       if($values['id']!=NULL){
-	  $q = ReservationTable::getInstance()->isJourLibreUpdate($values['date'],$values['id_salle'],$values['id']);
+    $q = ReservationTable::getInstance()->isJourLibreUpdate($values['date'],$values['id_salle'],$values['id']);
       }
       else{
-	  $q = ReservationTable::getInstance()->isJourLibre($values['date'],$values['id_salle']);
+    $q = ReservationTable::getInstance()->isJourLibre($values['date'],$values['id_salle']);
       }
 
 
     $result= $q->fetchOne()["count"];
     
     if($result>0){
-	  throw new sfValidatorError($validator, 'Impossible de valider, cette salle a été réservée toute la journée.');
+    throw new sfValidatorError($validator, 'Impossible de valider, cette salle a été réservée toute la journée.');
     }
     
     return $values;
@@ -304,10 +304,10 @@ class ReservationForm extends BaseReservationForm
     if($values['allday']==false){
     
       if($values['heurefin']==""){
-	  throw new sfValidatorError($validator, 'Merci de rentrer une heure de fin.');
+    throw new sfValidatorError($validator, 'Merci de rentrer une heure de fin.');
       }
       if($values['heuredebut']>$values['heurefin']){
-	  throw new sfValidatorError($validator, 'L\'heure de début doit précéder l\'heure de fin.');
+    throw new sfValidatorError($validator, 'L\'heure de début doit précéder l\'heure de fin.');
       }
     
     }

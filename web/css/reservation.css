@@ -123,40 +123,40 @@
 }
 
 ul#menuBde {
-	display: inline-block;
-	width: inherit;
-	padding: 0 0 20px 0;
-	margin: 0;
-	font-size: 18px;
+  display: inline-block;
+  width: inherit;
+  padding: 0 0 20px 0;
+  margin: 0;
+  font-size: 18px;
 }
 
 #menuBde li {
-	list-style-type: none;
-	display: inline-block;
-	text-align: center;
-	float: left;
-	margin:0;
-	padding: 0 1px 0 0;
+  list-style-type: none;
+  display: inline-block;
+  text-align: center;
+  float: left;
+  margin:0;
+  padding: 0 1px 0 0;
 }
 
 #menuBde li a {
-	margin: 0;
-	border-bottom: 3px solid #AAA;
-	padding: 0 5px 10px 5px;
+  margin: 0;
+  border-bottom: 3px solid #AAA;
+  padding: 0 5px 10px 5px;
 }
 
 #menuBde li a.active {
-	border-color: #26457f;
+  border-color: #26457f;
 }
 
 #menuBde li a:hover {
-	text-decoration: none;
-	border-bottom: none;
+  text-decoration: none;
+  border-bottom: none;
 }
 
 .opacity
 {
-	opacity: 0.5;
+  opacity: 0.5;
 }
 
 .popUp span {
@@ -252,27 +252,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 /* Disposition des 2 formulaires dans BDE creneaux Off */
 
 #form_creneau {
-	position: relative;
+  position: relative;
 }
 
 #form_creneau .left {
-	float: left;
-	width: 50%;
+  float: left;
+  width: 50%;
 }
 
 #form_creneau .right {
-	display : inline-block;
+  display : inline-block;
 }
 
 #table_salle span
 {
-	display: inline-block;
-	min-width: 10%;
+  display: inline-block;
+  min-width: 10%;
 }
 
 #table_salle span.name
 {
-	display: inline-block;
-	min-width: 70%;
+  display: inline-block;
+  min-width: 70%;
 }
 

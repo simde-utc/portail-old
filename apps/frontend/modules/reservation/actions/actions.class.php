@@ -63,69 +63,50 @@ class reservationActions extends sfActions
       $this->afficherErreur= false;
       
       if ($request->isMethod('post'))
-        {
+      {
         
-        
-           
-        
-           // Récupération de l'id de la réservation actuelle ( =-1 si nouvelle réservation, =id de la réservation à modifier sinon).
-           $idResa = $request->getParameter('reservation',-1)['id'];
+        // Récupération de l'id de la réservation actuelle ( =-1 si nouvelle réservation, =id de la réservation à modifier sinon).
+        $idResa = $request->getParameter('reservation',-1)['id'];
 
            
-            if($idResa==-1){ // Cas 1: Création d'une nouvelle réservation
-           $this->form = new ReservationForm(array(),$values);
-            }
-            
-            else{ // Cas 2: Edition d'une réservation déjà existante  
-           $reservation = ReservationTable::getInstance()->getReservationById($idResa)->fetchOne();
-           $this->form = new ReservationForm($reservation,$values);
-            }
-            
-            if($request->getParameter("delete")){
-           $reservation->delete();
-            }
-                        
-            
-            else{
-             $this->form->bind($request->getParameter($this->form->getName()));
-             
-             if ($this->form->isValid())
-             {
-             
-                  $this->reservation=$this->form->save(); // Save into database 
-                  $this->ok=true;
-
-                              
-                  $d= new DateTime();
-                  $a=new DateTime($this->reservation->getDate());
-
-                  $diff = $a->diff($d);
-                  
-                  
-                  if($diff->d<14 && $diff->y==0 && $diff->m==0 && $this->reservation->getAllday()==0){
-                   $this->reservation->setEstvalide(1);
-                   $this->reservation->save();
-                  }
-                  else{
-                   $this->reservation->setEstvalide(0);
-                   $this->reservation->save();            
-                  }
-                  
-                  
-             }
-             else
-             {
-              $this->afficherErreur= true;
-             }
-            }
-            
-            
-            
+        if($idResa==-1){ // Cas 1: Création d'une nouvelle réservation
+          $this->form = new ReservationForm(array(),$values);
         }
+            
+        else{ // Cas 2: Edition d'une réservation déjà existante  
+          $reservation = ReservationTable::getInstance()->getReservationById($idResa)->fetchOne();
+          $this->form = new ReservationForm($reservation,$values);
+        }
+            
+        if($request->getParameter("delete")){
+           $reservation->delete();
+        }                 
+        else{
+          $this->form->bind($request->getParameter($this->form->getName()));
+             
+          if ($this->form->isValid())
+          { 
+            $this->reservation=$this->form->save(); // Save into database 
+            $this->ok=true;
+            $d= new DateTime();
+            $a=new DateTime($this->reservation->getDate());
 
-           
-   }
-    
+            $diff = $a->diff($d);
+                  
+            if($diff->d<14 && $diff->y==0 && $diff->m==0 && $this->reservation->getAllday()==0){
+              $this->reservation->setEstvalide(1);
+              $this->reservation->save();
+            }
+            else{
+              $this->reservation->setEstvalide(0);
+              $this->reservation->save();            
+            }                                    
+          }
+          else
+            $this->afficherErreur= true;
+        }
+      }
+    }
   }
   
   public function executeList(sfWebRequest $request)
@@ -158,9 +139,9 @@ class reservationActions extends sfActions
       $this->sallesUser = array();
           foreach($this->polesUser as $pole)
           {
-             $salles = SalleTable::getInstance()->getSalleByPole($pole)->execute();
-          foreach($salles as $salle)
-            array_push($this->sallesUser, $salle->getId());
+            $salles = SalleTable::getInstance()->getSalleByPole($pole)->execute();
+            foreach($salles as $salle)
+              array_push($this->sallesUser, $salle->getId());
           }
 
       $this->reservations = array();   
@@ -174,29 +155,27 @@ class reservationActions extends sfActions
    else
    {
       $this->user = $this->getUser()->getGuardUser();   
-        $this->reservations = ReservationTable::getInstance()->getReservationBySalle($idSalle)->execute();
+      $this->reservations = ReservationTable::getInstance()->getReservationBySalle($idSalle)->execute();
    }
   }
 
 
   public function executeShow(sfWebRequest $request)
   {
-        $id = $request->getUrlParameter("id",-1);
+    $id = $request->getUrlParameter("id",-1);
   
-        if ($id == -1)
-           $this->forward404Unless(false);
+    if ($id == -1)
+      $this->forward404Unless(false);
   
-        $this->forward404Unless(ReservationTable::getInstance()->isReservationExist($id));
+    $this->forward404Unless(ReservationTable::getInstance()->isReservationExist($id));
   
-      $this->reservation = ReservationTable::getInstance()->getReservationById($id)->fetchOne();
+    $this->reservation = ReservationTable::getInstance()->getReservationById($id)->fetchOne();
   }
   
   public function executeFormNew(sfWebRequest $request)
   {
    if (!$request->isXmlHttpRequest())
-   {
      $this->forward404Unless(false);
-   }
   
    $idSalle = $request->getParameter("idSalle", -1);
    $UserID = $request->getParameter("UserID", -1);
@@ -216,7 +195,6 @@ class reservationActions extends sfActions
    $this->ok = false;
    $this->afficherErreur= false;
 
-
    return $this->renderPartial('reservation/formNew',array('form'=>$this->form,'idSalle'=>$idSalle));
     
   }
@@ -224,9 +202,7 @@ class reservationActions extends sfActions
   public function executeFormUpdate(sfWebRequest $request)
   {
    if (!$request->isXmlHttpRequest())
-   {
      $this->forward404Unless(false);
-   }
   
    $idSalle = $request->getParameter("idSalle", -1);
    $UserID = $request->getParameter("UserID", -1);
@@ -237,9 +213,7 @@ class reservationActions extends sfActions
    // On a pas l'id de la salle
    // Donc on va la chercher via la reservation    
    if ($idSalle == -1)
-   {
      $idSalle = $reservation->getSalle()->getId();
-   }
 
    $PoleId= SalleTable::getInstance()->getSalleById($idSalle)->fetchOne()->getIdPole();
    $SalleName = SalleTable::getInstance()->getSalleById($idSalle)->fetchOne()->getName();

@@ -17,11 +17,19 @@ class PoleTable extends Doctrine_Table
   {
     return Doctrine_Core::getTable('Pole');
   }
+
+  public function getPolesList()
+  {
+    $q = $this->createQuery('p')
+              ->addOrderBy('p.id ASC');
+
+    return $q;
+  }
   
   public function getAllWithInfos()
   {
     $q = $this->createQuery('q')
-      ->leftJoin('q.Infos i');
+              ->leftJoin('q.Infos i');
     
     return $q;
   }
@@ -29,8 +37,28 @@ class PoleTable extends Doctrine_Table
   public function getOneByAsso($asso)
   {
     $q = $this->createQuery('p')
-      ->where('p.asso_id = ?', $asso->getPrimaryKey());
+              ->where('p.asso_id = ?', $asso->getPrimaryKey());
     return $q->fetchOne();
+  }
+
+  public function getOneById($id)
+  {
+    $q = $this->createQuery('p')
+              ->where('p.id = ?', $id);
+    return $q->fetchOne();
+  }
+  
+  /* Statistiques Reservations Poles */
+  public function getStatPole()
+  {
+    $q = $this->createQuery('p')
+              ->select('p.*, a.*, r.*, count(r.id) as count_resa')
+              ->leftJoin('p.Asso a')
+              ->leftJoin('a.Reservation r')
+              ->groupBy('p.id')
+              ->addOrderBy('p.id ASC');
+
+    return $q;
   }
 
 }

@@ -7,115 +7,115 @@
 
 .jspContainer
 {
-	overflow: hidden;
-	position: relative;
+  overflow: hidden;
+  position: relative;
 }
 
 .jspPane
 {
-	position: absolute;
+  position: absolute;
 }
 
 .jspVerticalBar
 {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 10px;
-	height: 100%;
-	background: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  background: #fff;
 
 }
 
 .jspHorizontalBar
 {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 10px;
-	background: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: #fff;
 }
 
 .jspVerticalBar *,
 .jspHorizontalBar *
 {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .jspCap
 {
-	display: none;
+  display: none;
 }
 
 .jspHorizontalBar .jspCap
 {
-	float: left;
+  float: left;
 }
 
 .jspTrack
 {
-	background: #fff;
-	position: relative;
+  background: #fff;
+  position: relative;
 }
 
 .jspDrag
 {
-	background: #000;
-	position: relative;
-	top: 0;
-	left: 0;
-	cursor: pointer;
+  background: #000;
+  position: relative;
+  top: 0;
+  left: 0;
+  cursor: pointer;
 }
 
 .jspHorizontalBar .jspTrack,
 .jspHorizontalBar .jspDrag
 {
-	float: left;
-	height: 100%;
+  float: left;
+  height: 100%;
 }
 
 .jspArrow
 {
-	background: #50506d;
-	text-indent: -20000px;
-	display: block;
-	cursor: pointer;
+  background: #50506d;
+  text-indent: -20000px;
+  display: block;
+  cursor: pointer;
 }
 
 .jspArrow.jspDisabled
 {
-	cursor: default;
-	background: #80808d;
+  cursor: default;
+  background: #80808d;
 }
 
 .jspVerticalBar .jspArrow
 {
-	height: 10px;
+  height: 10px;
 }
 
 .jspHorizontalBar .jspArrow
 {
-	width: 10px;
-	float: left;
-	height: 100%;
+  width: 10px;
+  float: left;
+  height: 100%;
 }
 
 .jspVerticalBar .jspArrow:focus
 {
-	outline: none;
+  outline: none;
 }
 
 .jspCorner
 {
-	background: #eeeef4;
-	float: left;
-	height: 100%;
+  background: #eeeef4;
+  float: left;
+  height: 100%;
 }
 
 /* Yuk! CSS Hack for IE6 3 pixel bug :( */
 * html .jspCorner
 {
-	margin: 0 -3px 0 0;
+  margin: 0 -3px 0 0;
 }

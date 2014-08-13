@@ -709,6 +709,41 @@ locaux_refuse:
   param: { module: locaux, action: locauxRefuse }
   options: { model: CharteLocaux, type: object }
 
+#reservation  
+
+assoUser:
+  url: /reservation/assoUser
+  param: { module: reservation, action: assoUser }
+  requirements:
+
+reservation_show:
+  url: /reservation/show/:id
+  param: { module: reservation, action: show }
+  requirements:
+
+reservation_form_new:
+  url: /reservation/formNew
+  param: { module: reservation, action: formNew }
+
+reservation_form_update:
+  url: /reservation/formUpdate
+  param: { module: reservation, action: formUpdate }
+
+reservations_json:
+  url: /reservations.:sf_format/:id
+  param: { module: reservation, action: list }
+  requirements:
+    sf_format: (?:html|json)
+
+reservation_salle:
+  url: /reservation/:id
+  param: { module: reservation, action: index }
+
+reservation:
+  url: /reservation
+  param: { module: reservation, action: index }
+
+
 # generic rules
 # please, remove them by adding more specific rules
 #default_index:
@@ -719,3 +754,4 @@ locaux_refuse:
 #  param: { sf_format: json }
 #default:
 #  url:   /:module/:action/*
+

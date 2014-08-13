@@ -153,3 +153,4 @@ INSERT INTO `info_job_signalement_type` (`id`, `name`) VALUES
 (2, 'Offre illégale, travail non-déclaré, etc.');
 
 SET foreign_key_checks = 1;
+

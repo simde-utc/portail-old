@@ -700,4 +700,39 @@ InfoJobAbonnementDisponibilite:
   relations:
     Categorie: { onUpdate: CASCADE, local: disponibilite_id, foreign: id, class: InfoJobDispobilite }
     User: { onUpdate: CASCADE, local: user_id, foreign: id, class: sfGuardUser }
+    
+Salle:
+  connection: doctrine
+  tableName: salle
+  columns:
+    id: { type : integer, primary: true, autoincrement: true }
+    name: { type: string(255), notnull: true, unique: true }
+    capacite: { type : integer, notnull: true }
+    couleur: { type : string(6), notnull: true }
+    description: { type: string, notnull: false }
+    id_pole : { type : integer, notnull: true }
+  relations:
+    Pole: { onUpdate: CASCADE, local: id_pole, foreign: id, class: Pole }
+
+Reservation:
+  connection: doctrine
+  tableName: reservation
+  columns:
+    id: { type : integer, primary: true, autoincrement: true }
+    id_user_valid: { type : integer, notnull: false }
+    id_user_reserve: { type : integer, notnull: true }
+    id_asso: { type : integer, notnull: false }
+    id_salle: { type : integer, notnull : true }
+    date: { type: date, notnull: true }
+    heuredebut: { type: time, notnull: true }
+    heurefin: { type: time, notnull: true }
+    allday: { type: boolean, notnull: true }
+    activite: { type: string(255), notnull: true }
+    estvalide: { type: boolean, notnull: true }
+    commentaire: { type: string, notnull: false }
+  relations:
+    UserReserve: { local: id_user_reserve, foreign: id, class: sfGuardUser }
+    UserValide: { local: id_user_valid, foreign: id, class: sfGuardUser }
+    Asso: { local: id_asso, foreign: id, onUpdate: CASCADE }
+    Salle: { local: id_salle, foreign: id, onUpdate: CASCADE }
 

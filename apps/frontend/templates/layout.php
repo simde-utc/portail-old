@@ -7,7 +7,8 @@
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
-    <?php include_javascripts() ?>
+    <?php use_javascript('jquery-1.7.2.min.js') ?> <!-- à laisser ? -->
+    <?php include_javascripts() ?>   
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-static-top">
@@ -47,8 +48,8 @@
           <div class="row">
             <div class="span12">
               <a href="<?php echo url_for('homepage') ?>" class="first">Accueil</a>
-              <a href="<?php echo url_for('asso/index') ?>" id="lienlisteassos">Associations</a>
-              <a href="<?php echo url_for('agenda_detail') ?>">Calendrier</a>
+              <a href="<?php echo url_for('asso/index') ?>" class="lienlisteassos">Associations</a>
+              <a href="<?php echo url_for('agenda_detail') ?>" class="lienlistereservation" > Calendrier</a> <!-- à changer url-for-->
               <a href="<?php echo url_for('infojob_home') ?>">InfoJob</a>              
               <a href="<?php echo url_for('services')?>">Services</a>
               <a href="<?php echo url_for('partenaires')?>">Partenaires</a>
@@ -56,7 +57,11 @@
           </div>
         </div>
         
+
         <?php include_component('asso', 'bigMenu') ?>
+        <?php include_component('reservation', 'calendarMenu') ?>
+
+
         
         <?php if($sf_request->getParameter('module') == 'home'): ?>
           <?php include_component('event', 'carousel') ?>

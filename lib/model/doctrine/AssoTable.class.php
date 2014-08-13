@@ -152,6 +152,20 @@ class AssoTable extends Doctrine_Table
         return $q->execute();
     }
 
+    public function getMyAssosNameByIdSalle($user_id,$idSalle)
+    {
+        $q = $this->createQuery('q')
+            ->select('q.name')
+            ->leftJoin('q.AssoMember m')
+            ->leftJoin('Salle s')
+            ->where('m.user_id = ?', $user_id)
+            ->andWhere('s.id = ?', $idSalle)
+            ->andWhere('s.id_pole = q.pole_id') 
+            ->andWhere('m.semestre_id = ?', sfConfig::get('app_portail_current_semestre'));
+        return $q;
+    }
+    
+
     /**
      *
      * Method to use the zend framework for search
@@ -179,5 +193,17 @@ class AssoTable extends Doctrine_Table
     {
         return sfConfig::get('sf_data_dir') . '/asso.' . sfConfig::get('sf_environment') . '.index';
     }
+  
 
+    /* Statistiques Reservations Assos */
+    public function getStatAsso()
+    {
+  $q = $this->createQuery('a')
+            ->select('a.*, r.*, count(r.id) as count_resa')
+            ->leftJoin('a.Reservation r')
+      ->groupBy('a.id')
+            ->addOrderBy('a.name ASC');
+
+  return $q;
+    }
 }

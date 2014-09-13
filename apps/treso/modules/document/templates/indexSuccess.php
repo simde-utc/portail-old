@@ -64,9 +64,8 @@ function documentCtrl($scope, $filter) {
 </script>
 
 <div ng-app="DocumentApp" ng-controller="documentCtrl">
-<h1>Documents stockés</h1>
-<br/>
-<a href="<?php echo url_for('document_new', $asso) ?>" class="btn btn-success">Ajouter un document</a>
+<div class="pull-left" style="margin-right:20px;"><h1>Documents stockés</h1></div>
+<div><a href="<?php echo url_for('document_new', $asso) ?>" class="btn btn-primary btn-large">Ajouter un document</a></div>
 
 <style type="text/css">
 .table input {
@@ -102,10 +101,10 @@ function documentCtrl($scope, $filter) {
   </thead>
   <tbody>
     <tr ng-repeat="document in filteredDocuments">
-      <td class="reduce">{{ document.date_ajout * 1000 | date:'d MMMM yyyy' }}</td>
-      <td class="expand"><a href="{{ document.url }}" target="_blank">{{ document.nom }}</a></td>
-      <td class="reduce">{{ document.type }}</td>
-      <td class="reduce"><a ng-if="document.transaction != null" href="{{ document.transaction.url }}">{{ document.transaction.libelle }}</a></td>
+      <td style="width:13;">{{ document.date_ajout * 1000 | date:'d MMMM yyyy' }}</td>
+      <td style="width:52%;"><a href="{{ document.url }}" target="_blank">{{ document.nom }}</a></td>
+      <td style="width:10%;">{{ document.type }}</td>
+      <td style="width:25%;"><a ng-if="document.transaction != null" href="{{ document.transaction.url }}">{{ document.transaction.libelle }}</a></td>
     </tr>
   </tbody>
 </table>

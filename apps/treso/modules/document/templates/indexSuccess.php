@@ -2,69 +2,13 @@
 
 use_javascript('treso/common/portail.js');
 use_javascript('treso/document/document-ctrl.js');
-
-// à terme cette partie dégage
-// il y aura un service angular pour récupérer les documents par XMLHttpRequest
-$docs = array();
-foreach ($documents as $document) {
-  if (!is_null($document->getTransactionId())) {
-      $transaction = array(
-        'id' => $document->getTransactionId(),
-        'libelle' => $document->Transaction->getLibelle(),
-        'url' => url_for('transaction_show', $document->Transaction),
-        );
-  } else {
-      $transaction = NULL;
-  }
-
-  $docs[] = array(
-      'id' => $document->getPrimaryKey(),
-      'nom' => $document->getNom(),
-      'date_ajout' => $document->getDateTimeObject('created_at')->getTimestamp(), // simplifie les comparaisons
-      'type' => $document->DocumentType->getNom(),
-      'url' => url_for('document_show', $document),
-      'transaction' => $transaction,
-      );
-} ?>
+?>
 <script type="text/javascript">
-// pareil
-// à terme on aura plus à écrire les docs direct dans le JS
-// donc on pourra mettre le controller à sa juste place (document-ctrl.js)
-function documentCtrl($scope, $filter) {
-    $scope.documents = <?php echo json_encode($docs); ?>;
-    $scope.date = {start: 0, end: undefined, selectedRange: undefined};
-    $scope.allowed_types = {t: null};
-    $scope.rangeSelected = function() {
-      if ($scope.date.selectedRange == undefined)
-        return false;
-      return $scope.date.selectedRange.year != undefined;
-    };
-    $scope.updateDocumentList = function() {
-      //alert($scope.date.start);
-      var filtered = $filter('filter')($filter('int_range')($scope.documents, 'date_ajout',
-                                                                        $scope.date.start, $scope.date.end),
-                                                   $scope.search);
-      $scope.types = $filter('unique')(filtered, 'type');
-
-      $scope.filteredDocuments = $filter('filter')(filtered, function(doc, index) {
-        if ($scope.allowed_types.t == null) {
-          return true;
-        }
-        return $scope.allowed_types.t.indexOf(doc.type) >= 0; // le "in_array" de javascript
-      });
-      //$scope.filteredDocuments = $filter('in_array')(filtered, 'type', $scope.allowed_types.t);
-      // | filter:search | int_range:'date_ajout':date.start:date.end | in_array:'type':allowed_types
-    }
-    $scope.$watch('date.start', $scope.updateDocumentList);
-    $scope.$watch('date.end', $scope.updateDocumentList);
-    $scope.$watch('search.nom', $scope.updateDocumentList);
-    $scope.$watch('documents', $scope.updateDocumentList);
-    $scope.$watch('allowed_types.t', $scope.updateDocumentList);
-}
+documentApp.constant('baseUrl', "<?php echo url_for('documents_list', array('login' => $asso->getLogin(), 'sf_format' => 'json')) ?>");
 </script>
 
 <div ng-app="DocumentApp" ng-controller="documentCtrl">
-<div class="pull-left" style="margin-right:20px;"><h1>Documents stockés</h1></div>
+<div class="pull-left" style="margin-right:20px;"><h1>Stockage de documents</h1></div>
 <div><a href="<?php echo url_for('document_new', $asso) ?>" class="btn btn-primary btn-large">Ajouter un document</a></div>
 
 <style type="text/css">
@@ -76,13 +20,13 @@ function documentCtrl($scope, $filter) {
 }
 </style>
 
-<table class="table table-striped table-bordered table-documents">
+<table ng-if="documents.length > 0" class="table table-striped table-bordered table-documents">
   <thead>
     <tr>
       <th class="column-date"><portail-dropdown>
             <button class="btn dropdown-toggle" portail-dropdown-trigger>
               <span ng-if="!rangeSelected()">Date</span>
-              <span ng-if="rangeSelected()">{{ date.selectedRange.month }} {{ date.selectedRange.year }}</span>
+              <span ng-if="rangeSelected()">{{ date.selectedRange.month | capitalize }} {{ date.selectedRange.year }}</span>
               <i class="caret"></i></button>
             <portail-dropdown-content style="width: 300px">
               <portail-date-range header="Filtrer par date" selection="date.selectedRange" start="date.start" end="date.end"></portail-date-range>
@@ -91,7 +35,7 @@ function documentCtrl($scope, $filter) {
       </th>
       <th class="column-nom">Nom <div class="pull-right"><input ng-model="search.nom" type="text" placeholder="Recherche..." auto-focus/></div></th>
       <th class="column-type"><portail-dropdown>
-            <button class="btn dropdown-toggle" portail-dropdown-trigger>Type <i class="caret"></i></button>
+            <button class="btn dropdown-toggle" portail-dropdown-trigger>Type <span ng-if="allowed_types.t.length > 0">({{ allowed_types.t.length }})</span> <i class="caret"></i></button>
             <portail-dropdown-content>
               <portail-options-chooser options="types" selected="allowed_types" />
             </portail-dropdown-content>
@@ -106,7 +50,17 @@ function documentCtrl($scope, $filter) {
       <td class="column-type">{{ document.type }}</td>
       <td class="column-transaction"><a ng-if="document.transaction != null" href="{{ document.transaction.url }}">{{ document.transaction.libelle }}</a></td>
     </tr>
+    <tr ng-if="filteredDocuments.length == 0">
+      <td colspan="4" style="text-align:center;">Aucun document ne correspond à ces critères.</td>
+    </tr>
   </tbody>
 </table>
+<div ng-if="documents.length == 0">
+  <h2 style="text-align:center;">Aucun document stocké</h2>
+  <p>Vous pouvez stocker ici tous les documents de votre asso : Changement de bureau, nouveaux status, devis, factures, attestation de dépôt de chèques à la banque...</p>
+  <p>Cet espace n'est pas réservé aux PDFs, vous pouvez stocker le fichier excel récapitulatif d'une commande par exemple.</p>
+  <p>En stockant vos documents ici vous serez sûr de ne pas les perdre et, si besoin, vous (et vos successeurs) pourrez retrouver facilement un documment grâce au système de recherche pas date, nom et type.</p>
+  <p>Les documents stockés ici sont aussi accessibles depuis le "Z:/" de votre asso.</p>
+</div>
 
 </div>

@@ -251,6 +251,14 @@ ndf_create:
   param: { module: noteDeFrais, action: create }
 
 # Documents
+documents_list:
+  url: /documents/asso/:login.:sf_format
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: document, action: list }
+  requirements:
+    sf_format: (?:json)
+
 documents:
   url: /documents/asso/:login
   class: sfDoctrineRoute

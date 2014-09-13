@@ -61,11 +61,12 @@ angular.module('Portail', [])
 })
 .filter('capitalize', function() {
     return function(string) {
+        if (string == null)
+            return null;
         return string.charAt(0).toUpperCase() + string.slice(1);
     };
 })
 .filter('unique', function() {
-    var cache = {};
     return function(array, attr) {
         if (!angular.isArray(array)) return array;
 
@@ -74,16 +75,8 @@ angular.module('Portail', [])
 
         array.$$uniqueFilter.length = 0;
         for ( var j = 0; j < array.length; j++) {
-            var value = array[j][attr];
-            var found = false;
-            for ( var i = 0; i < array.$$uniqueFilter.length; i++) {
-                if (array.$$uniqueFilter[i] == value) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                array.$$uniqueFilter.push(value);
+            if (array.$$uniqueFilter.indexOf(array[j][attr]) < 0) {
+                array.$$uniqueFilter.push(array[j][attr]);
             }
         }
 
@@ -323,13 +316,9 @@ angular.module('Portail', [])
     template: '<div class="types-chooser" id="types-chooser-bitches">'+
                 '<ul class="unstyled checkbox-list">'+
                   '<li ng-repeat="option in options">'+
-                    '<label><input type="checkbox" checked="checked" ng-click="select($event)" data-value="{{ option }}"/>{{ option }}</label>'+
+                    '<label><input type="checkbox" ng-click="select($event)" data-value="{{ option }}"/>{{ option }}</label>'+
                   '</li>'+
                 '</ul>'+
-                '<!--<div class="btn-group">'+
-                  '<button ng-click="close" class="btn half-button">Select All</button>'+
-                  '<button ng-click="close" class="btn half-button">Unselect All</button>'+
-                '</div>-->'+
                 '<div class="btn-group">'+
                   '<button ng-click="close()" class="btn full-button">Ok</button>'+
                 '</div>'+
@@ -344,6 +333,13 @@ angular.module('Portail', [])
         scope.close = function() {
             setTimeout(ctrls[0].close, 0);
         };
+
+        scope.$watch('options', function() {
+            setTimeout(function() {
+                scope.select();
+                scope.$apply();
+            }, 0);
+        });
 
         scope.select = function(event) {
             var inputs = $('#types-chooser-bitches li input:checked');

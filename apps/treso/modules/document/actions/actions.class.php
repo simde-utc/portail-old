@@ -15,8 +15,15 @@ class documentActions extends tresoActions
     $this->asso = $this->getRoute()->getObject();
     $this->checkAuthorisation($this->asso);
 
-    $this->documents = DocumentTable::getInstance()->getAllForAsso($this->asso)->execute();
     $this->getResponse()->setSlot('current_asso', $this->asso);
+  }
+
+  public function executeList(sfWebRequest $request)
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->checkAuthorisation($this->asso);
+
+    $this->documents = DocumentTable::getInstance()->getAllForAsso($this->asso)->execute();
   }
 
   public function executeNew(sfWebRequest $request) {

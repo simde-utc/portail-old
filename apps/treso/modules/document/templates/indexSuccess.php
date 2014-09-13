@@ -1,7 +1,10 @@
 <?php use_helper('Date', 'Text');
 
+use_javascript('treso/common/portail.js');
 use_javascript('treso/document/document-ctrl.js');
 
+// à terme cette partie dégage
+// il y aura un service angular pour récupérer les documents par XMLHttpRequest
 $docs = array();
 foreach ($documents as $document) {
   if (!is_null($document->getTransactionId())) {
@@ -24,15 +27,27 @@ foreach ($documents as $document) {
       );
 } ?>
 <script type="text/javascript">
-function documentCtrl($scope) {
+// pareil
+// à terme on aura plus à écrire les docs direct dans le JS
+// donc on pourra mettre le controller à sa juste place (document-ctrl.js)
+function documentCtrl($scope, $filter) {
     $scope.documents = <?php echo json_encode($docs); ?>;
-    $scope.opened = false;
-    $scope.date = {start: 0, end: undefined};
+    $scope.date = {start: 0, end: undefined, selectedRange: undefined};
     $scope.rangeSelected = function() {
-      if ($scope.selectedRange == undefined)
+      if ($scope.date.selectedRange == undefined)
         return false;
-      return $scope.selectedRange.year != undefined;
+      return $scope.date.selectedRange.year != undefined;
     };
+    $scope.updateDocumentList = function() {
+      //alert($scope.date.start);
+      $scope.filteredDocuments = $filter('filter')($filter('int_range')($scope.documents, 'date_ajout', $scope.date.start, $scope.date.end), $scope.search);
+      $scope.types = $filter('unique')($scope.filteredDocuments, 'type');
+      // | filter:search | int_range:'date_ajout':date.start:date.end | in_array:'type':allowed_types
+    }
+    $scope.$watch('date.start', $scope.updateDocumentList);
+    $scope.$watch('date.end', $scope.updateDocumentList);
+    $scope.$watch('search.nom', $scope.updateDocumentList);
+    $scope.$watch('documents', $scope.updateDocumentList);
 }
 </script>
 
@@ -48,58 +63,6 @@ function documentCtrl($scope) {
 .table thead th {
   vertical-align: top;
 }
-.dropdown-menu {
-  padding: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  border: 1px solid #ddd !important;
-  -moz-box-shadow: 2px 2px 5px #888;
-  -webkit-box-shadow: 2px 2px 5px #888;
-}
-
-.date-range table {
-  width: 100%;
-}
-
-.date-range td button {
-  background-image: none;
-  background-color: transparent;
-  border-width: 0px;
-  text-shadow: none;
-  box-shadow: none;
-  width: 100%;
-}
-
-.date-range td button:hover {
-  background-color: #eeeeee;
-}
-
-.date-range td button.active {
-  background-color: #006dcc;
-  color: white;
-}
-
-.date-range h1 {
-  font-size: 20px;
-  font-weight: 500;
-}
-
-.date-range hr {
-  margin: 5px 0px;
-}
-
-.date-range .btn-group button {
-  width: 50%;
-}
-.date-range td, .date-range td:hover {
-  border: none;
-  background-color: white !important;
-}
-.date-range tr, .date-range tr:hover {
-  border: none;
-  background-color: white !important;
-}
 </style>
 
 <table class="table table-striped table-bordered">
@@ -108,20 +71,25 @@ function documentCtrl($scope) {
       <th><portail-dropdown>
             <button class="btn dropdown-toggle" portail-dropdown-trigger>
               <span ng-if="!rangeSelected()">Date</span>
-              <span ng-if="rangeSelected()">{{ selectedRange.month }} {{ selectedRange.year }}</span>
+              <span ng-if="rangeSelected()">{{ date.selectedRange.month }} {{ date.selectedRange.year }}</span>
               <i class="caret"></i></button>
             <portail-dropdown-content style="width: 300px">
-              <portail-date-range header="Filtrer par date" selection="selectedRange" start="date.start" end="date.end"></portail-date-range>
+              <portail-date-range header="Filtrer par date" selection="date.selectedRange" start="date.start" end="date.end"></portail-date-range>
             </portail-dropdown-content>
           </portail-dropdown>
       </th>
       <th>Nom <div class="pull-right"><input ng-model="search.nom" type="text" placeholder="Recherche"/></div></th>
-      <th>Type</th>
+      <th><portail-dropdown>
+            <button class="btn dropdown-toggle" portail-dropdown-trigger>Type <i class="caret"></i></button>
+            <portail-dropdown-content>
+              <portail-types-chooser types="types" ng-model="allowed_types" />
+            </portail-dropdown-content>
+      </th>
       <th>Transaction</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="document in documents | filter:search | int_range:'date_ajout':date.start:date.end">
+    <tr ng-repeat="document in filteredDocuments">
       <td class="reduce">{{ document.date_ajout * 1000 | date:'d MMMM yyyy' }}</td>
       <td class="expand"><a href="{{ document.url }}" target="_blank">{{ document.nom }}</a></td>
       <td class="reduce">{{ document.type }}</td>

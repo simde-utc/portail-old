@@ -33,6 +33,7 @@ foreach ($documents as $document) {
 function documentCtrl($scope, $filter) {
     $scope.documents = <?php echo json_encode($docs); ?>;
     $scope.date = {start: 0, end: undefined, selectedRange: undefined};
+    $scope.allowed_types = {t: null};
     $scope.rangeSelected = function() {
       if ($scope.date.selectedRange == undefined)
         return false;
@@ -40,14 +41,25 @@ function documentCtrl($scope, $filter) {
     };
     $scope.updateDocumentList = function() {
       //alert($scope.date.start);
-      $scope.filteredDocuments = $filter('filter')($filter('int_range')($scope.documents, 'date_ajout', $scope.date.start, $scope.date.end), $scope.search);
-      $scope.types = $filter('unique')($scope.filteredDocuments, 'type');
+      var filtered = $filter('filter')($filter('int_range')($scope.documents, 'date_ajout',
+                                                                        $scope.date.start, $scope.date.end),
+                                                   $scope.search);
+      $scope.types = $filter('unique')(filtered, 'type');
+
+      $scope.filteredDocuments = $filter('filter')(filtered, function(doc, index) {
+        if ($scope.allowed_types.t == null) {
+          return true;
+        }
+        return $scope.allowed_types.t.indexOf(doc.type) >= 0; // le "in_array" de javascript
+      });
+      //$scope.filteredDocuments = $filter('in_array')(filtered, 'type', $scope.allowed_types.t);
       // | filter:search | int_range:'date_ajout':date.start:date.end | in_array:'type':allowed_types
     }
     $scope.$watch('date.start', $scope.updateDocumentList);
     $scope.$watch('date.end', $scope.updateDocumentList);
     $scope.$watch('search.nom', $scope.updateDocumentList);
     $scope.$watch('documents', $scope.updateDocumentList);
+    $scope.$watch('allowed_types.t', $scope.updateDocumentList);
 }
 </script>
 
@@ -82,7 +94,7 @@ function documentCtrl($scope, $filter) {
       <th><portail-dropdown>
             <button class="btn dropdown-toggle" portail-dropdown-trigger>Type <i class="caret"></i></button>
             <portail-dropdown-content>
-              <portail-types-chooser types="types" ng-model="allowed_types" />
+              <portail-options-chooser options="types" selected="allowed_types" />
             </portail-dropdown-content>
       </th>
       <th>Transaction</th>

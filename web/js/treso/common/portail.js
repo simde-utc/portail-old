@@ -316,33 +316,41 @@ angular.module('Portail', [])
     }
   }
 })
-.directive('portailTypesChooser', function() {
+.directive('portailOptionsChooser', function() {
   return {
-    restrict: 'E',
+    restrict: 'E', // s'applique uniquement aux elements HTML, ex <portail-options-chooser ... />
     replace: true,
-    template: '<div class="types-chooser">'+
+    template: '<div class="types-chooser" id="types-chooser-bitches">'+
                 '<ul class="unstyled checkbox-list">'+
-                  '<li ng-repeat="type in types">'+
-                    '<label><input type="checkbox" checked="checked" ng-click=""/>{{ type }}</label>'+
+                  '<li ng-repeat="option in options">'+
+                    '<label><input type="checkbox" checked="checked" ng-click="select($event)" data-value="{{ option }}"/>{{ option }}</label>'+
                   '</li>'+
                 '</ul>'+
-                '<div class="btn-group">'+
+                '<!--<div class="btn-group">'+
                   '<button ng-click="close" class="btn half-button">Select All</button>'+
                   '<button ng-click="close" class="btn half-button">Unselect All</button>'+
-                '</div>'+
+                '</div>-->'+
                 '<div class="btn-group">'+
                   '<button ng-click="close()" class="btn full-button">Ok</button>'+
                 '</div>'+
               '</div>',
-    require: ['ngModel', '?^portailDropdown'],
+    require: ['?^portailDropdown'], // require a parent portailDropdown
     scope: {
-        types: '=',
+        options: '=',
+        selected: '='
     },
     controller: function ($scope, $element) {},
     link: function (scope, element, attrs, ctrls) {
         scope.close = function() {
-            if (ctrls[1] != null && ctrls[1].close != undefined)
-                setTimeout(ctrls[1].close, 0);
+            setTimeout(ctrls[0].close, 0);
+        };
+
+        scope.select = function(event) {
+            var inputs = $('#types-chooser-bitches li input:checked');
+
+            scope.selected.t = $.map(inputs, function(input) {
+                return $(input).attr('data-value');
+            });
         };
     }
   }

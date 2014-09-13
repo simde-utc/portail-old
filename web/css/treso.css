@@ -167,3 +167,19 @@ tr .expand {
     margin-left: 0;
     margin-bottom: 5px;
 }
+
+.table-documents .column-date {
+    width:13;
+}
+
+.table-documents .column-nom {
+    width:52%;
+}
+
+.table-documents .column-type {
+    width:10%;
+}
+
+.table-documents .column-transaction {
+    width:25%;
+}

@@ -76,10 +76,10 @@ function documentCtrl($scope, $filter) {
 }
 </style>
 
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered table-documents">
   <thead>
     <tr>
-      <th><portail-dropdown>
+      <th class="column-date"><portail-dropdown>
             <button class="btn dropdown-toggle" portail-dropdown-trigger>
               <span ng-if="!rangeSelected()">Date</span>
               <span ng-if="rangeSelected()">{{ date.selectedRange.month }} {{ date.selectedRange.year }}</span>
@@ -89,22 +89,22 @@ function documentCtrl($scope, $filter) {
             </portail-dropdown-content>
           </portail-dropdown>
       </th>
-      <th>Nom <div class="pull-right"><input ng-model="search.nom" type="text" placeholder="Recherche"/></div></th>
-      <th><portail-dropdown>
+      <th class="column-nom">Nom <div class="pull-right"><input ng-model="search.nom" type="text" placeholder="Recherche..." auto-focus/></div></th>
+      <th class="column-type"><portail-dropdown>
             <button class="btn dropdown-toggle" portail-dropdown-trigger>Type <i class="caret"></i></button>
             <portail-dropdown-content>
               <portail-options-chooser options="types" selected="allowed_types" />
             </portail-dropdown-content>
       </th>
-      <th>Transaction</th>
+      <th class="column-transaction">Transaction</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="document in filteredDocuments">
-      <td style="width:13;">{{ document.date_ajout * 1000 | date:'d MMMM yyyy' }}</td>
-      <td style="width:52%;"><a href="{{ document.url }}" target="_blank">{{ document.nom }}</a></td>
-      <td style="width:10%;">{{ document.type }}</td>
-      <td style="width:25%;"><a ng-if="document.transaction != null" href="{{ document.transaction.url }}">{{ document.transaction.libelle }}</a></td>
+      <td class="column-date">{{ document.date_ajout * 1000 | date:'d MMMM yyyy' }}</td>
+      <td class="column-nom"><a href="{{ document.url }}" target="_blank">{{ document.nom }}</a></td>
+      <td class="column-type">{{ document.type }}</td>
+      <td class="column-transaction"><a ng-if="document.transaction != null" href="{{ document.transaction.url }}">{{ document.transaction.libelle }}</a></td>
     </tr>
   </tbody>
 </table>

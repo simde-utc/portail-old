@@ -1,12 +1,17 @@
 'use strict';
 var documentApp = angular.module('DocumentApp', ['Portail', 'ngResource']);
 
-documentApp.controller('documentCtrl', function($scope, $filter, $location, Documents) {
-    $scope.documents = Documents.query();
+documentApp.controller('documentCtrl', function($scope, $filter, $location, Documents, documentsPerPage) {
+    $scope.documents = []
+    Documents.query().$promise.then(function(result) {
+      $scope.documents = result;
+    });
     $scope.date = {start: 0, end: undefined, selectedRange: undefined};
     $scope.allowed_types = {t: null};
     $scope.search = {nom: null};
     $scope.types = [];
+    $scope.documentsPerPage = documentsPerPage;
+    $scope.pagination = {offset: 0, end: documentsPerPage};
 
     $scope.rangeSelected = function() {
       if ($scope.date.selectedRange == undefined)
@@ -44,3 +49,5 @@ documentApp.factory('Documents', ['$resource', 'baseUrl',
             query: {method: 'GET', isArray: true}
         });
     }]);
+
+documentApp.value('documentsPerPage', 20);

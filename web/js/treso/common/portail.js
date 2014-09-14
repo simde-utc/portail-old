@@ -334,12 +334,7 @@ angular.module('Portail', [])
             setTimeout(ctrls[0].close, 0);
         };
 
-        scope.$watch('options', function() {
-            setTimeout(function() {
-                scope.select();
-                scope.$apply();
-            }, 0);
-        });
+        scope.$watch('options', scope.select);
 
         scope.select = function(event) {
             var inputs = element.find('li input:checked');
@@ -360,4 +355,60 @@ angular.module('Portail', [])
             }, 0);
         }
     };
-});
+})
+.directive('portailPaginator', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<div ng-if="nbItems > maxPerPage">'+
+                    '<div class="pagination">'+
+                        '<ul>'+
+                            '<li><a href="#" ng-click="move(-1)">Précédent</a></li>'+
+                            '<li><a>{{ currentPage + 1 }} / {{ nbPages }}</a></li>'+
+                            '<li><a href="#" ng-click="move(1)">Suivant</a></li>'+
+                        '</ul>'+
+                    '</div>'+
+                '</div>',
+        scope: {
+            source: '=',
+            maxPerPage: '=',
+            reportIn: '='
+        },
+        controller: function ($scope, $element) {},
+        link: function(scope, element) {
+            scope.currentPage = 0;
+            scope.nbPages = 0;
+            scope.nbItems = 0;
+            scope.end = scope.maxPerPage;
+
+            scope.updateInternal = function() {
+                if (scope.source == undefined) {
+                    return;
+                }
+                scope.nbItems = scope.source.length;
+                scope.nbPages = Math.ceil(scope.nbItems / scope.maxPerPage);
+            };
+
+            scope.updateReport = function() {
+                console.log(scope);
+                scope.updateInternal();
+                var offset = scope.currentPage * scope.maxPerPage;
+                scope.reportIn = {
+                    offset: offset,
+                    nbPages: scope.nbPages,
+                    currentPage: scope.currentPage + 1,
+                    per_page: scope.maxPerPage,
+                    end: Math.min(offset + scope.maxPerPage, scope.nbItems)
+                };
+            };
+
+            scope.move = function(amount) {
+                var pageNum = scope.currentPage + amount;
+                scope.currentPage = Math.min(Math.max(pageNum, 0), scope.nbPages - 1);
+            };
+
+            scope.$watch('source', scope.updateReport);
+            scope.$watch('currentPage', scope.updateReport);
+        }
+    };
+})

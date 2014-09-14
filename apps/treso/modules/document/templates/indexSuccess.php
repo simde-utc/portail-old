@@ -44,7 +44,7 @@ documentApp.constant('baseUrl', "<?php echo url_for('documents_list', array('log
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="document in filteredDocuments">
+    <tr ng-repeat="document in filteredDocuments | slice : pagination.offset : pagination.end">
       <td class="column-date">{{ document.date_ajout * 1000 | date:'d MMMM yyyy' }}</td>
       <td class="column-nom"><a href="{{ document.url }}" target="_blank">{{ document.nom }}</a></td>
       <td class="column-type">{{ document.type }}</td>
@@ -55,6 +55,11 @@ documentApp.constant('baseUrl', "<?php echo url_for('documents_list', array('log
     </tr>
   </tbody>
 </table>
+
+<div style="text-align:center;">
+  <portail-paginator source="filteredDocuments" max-per-page="documentsPerPage" report-in="pagination" />
+</div>
+
 <div ng-if="documents.length == 0">
   <h2 style="text-align:center;">Aucun document stocké</h2>
   <p>Vous pouvez stocker ici tous les documents de votre asso : Changement de bureau, nouveaux status, devis, factures, attestation de dépôt de chèques à la banque...</p>

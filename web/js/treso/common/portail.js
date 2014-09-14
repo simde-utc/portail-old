@@ -313,7 +313,7 @@ angular.module('Portail', [])
   return {
     restrict: 'E', // s'applique uniquement aux elements HTML, ex <portail-options-chooser ... />
     replace: true,
-    template: '<div class="types-chooser" id="types-chooser-bitches">'+
+    template: '<div class="types-chooser">'+
                 '<ul class="unstyled checkbox-list">'+
                   '<li ng-repeat="option in options">'+
                     '<label><input type="checkbox" ng-click="select($event)" data-value="{{ option }}"/>{{ option }}</label>'+
@@ -342,7 +342,7 @@ angular.module('Portail', [])
         });
 
         scope.select = function(event) {
-            var inputs = $('#types-chooser-bitches li input:checked');
+            var inputs = element.find('li input:checked');
 
             scope.selected.t = $.map(inputs, function(input) {
                 return $(input).attr('data-value');

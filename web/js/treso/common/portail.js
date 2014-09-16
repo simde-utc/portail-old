@@ -407,7 +407,10 @@ angular.module('Portail', [])
                 scope.currentPage = Math.min(Math.max(pageNum, 0), scope.nbPages - 1);
             };
 
-            scope.$watch('source', scope.updateReport);
+            scope.$watch('source', function() {
+                scope.currentPage = 0;
+                scope.updateReport();
+            });
             scope.$watch('currentPage', scope.updateReport);
         }
     };

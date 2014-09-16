@@ -28,7 +28,7 @@ documentApp.constant('baseUrl', "<?php echo url_for('documents_list', array('log
               <span ng-if="!rangeSelected()">Date</span>
               <span ng-if="rangeSelected()">{{ date.selectedRange.month | capitalize }} {{ date.selectedRange.year }}</span>
               <i class="caret"></i></button>
-            <portail-dropdown-content style="width: 300px">
+            <portail-dropdown-content style="min-width: 300px">
               <portail-date-range header="Filtrer par date" selection="date.selectedRange" start="date.start" end="date.end"></portail-date-range>
             </portail-dropdown-content>
           </portail-dropdown>

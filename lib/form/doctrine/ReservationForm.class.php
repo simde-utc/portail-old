@@ -99,10 +99,10 @@ class ReservationForm extends BaseReservationForm
 
      $years = range(date('Y'), date('Y') + 2);
      $this->getWidget('date')->addOption('years', array_combine($years, $years));
-     $lminutes = [0,30];
-     $minutes = [sprintf("%02d",0),30];
+     $lminutes = array(0,30);
+     $minutes = array(sprintf("%02d",0),30);
 
-     $hours = [sprintf("%02d",8),sprintf("%02d",9),10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+     $hours = array(sprintf("%02d",8),sprintf("%02d",9),10,11,12,13,14,15,16,17,18,19,20,21,22,23);
      $this->getWidget('heuredebut')->addOption('minutes', array_combine($lminutes, $minutes));
      $this->getWidget('heuredebut')->addOption('hours', array_combine(range(8,23),$hours));
      $this->getWidget('heurefin')->addOption('minutes', array_combine($lminutes, $minutes));
@@ -191,17 +191,23 @@ class ReservationForm extends BaseReservationForm
   { 
     if($values['id']==NULL){
     
-    $result1= ReservationTable::getInstance()->isChevauchementFin($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne()["count"];
-    $result2= ReservationTable::getInstance()->isChevauchementDebut($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne()["count"];
-    $result3= ReservationTable::getInstance()->isChevauchementInterne($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne()["count"];
+    $r1= ReservationTable::getInstance()->isChevauchementFin($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne();
+    $result1=$r1["count"];
+    $r2= ReservationTable::getInstance()->isChevauchementDebut($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne();
+    $result2=$r2["count"];
+    $r3= ReservationTable::getInstance()->isChevauchementInterne($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne();
+    $result3=$r3["count"];
     
     }
     else{
     
-    $result1= ReservationTable::getInstance()->isChevauchementFinUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne()["count"];
-    $result2= ReservationTable::getInstance()->isChevauchementDebutUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne()["count"];
-    $result3= ReservationTable::getInstance()->isChevauchementInterneUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne()["count"];
-     
+    $r1= ReservationTable::getInstance()->isChevauchementFinUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne();
+    $result1=$r1["count"];
+    $r2= ReservationTable::getInstance()->isChevauchementDebutUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne();
+    $result2=$r2["count"];
+    $r3= ReservationTable::getInstance()->isChevauchementInterneUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne();
+    $result3=$r3["count"];
+    
     }
     
     if($result1!="0" or $result2!="0" or $result3!="0"){
@@ -287,7 +293,8 @@ class ReservationForm extends BaseReservationForm
       }
 
 
-    $result= $q->fetchOne()["count"];
+    $r= $q->fetchOne();
+    $result=$r["count"];
     
     if($result>0){
     throw new sfValidatorError($validator, 'Impossible de valider, cette salle a été réservée toute la journée.');

@@ -11,15 +11,13 @@
     <?php include_javascripts() ?>   
   </head>
   <body>
-  <!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KFKZTK"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KFKZTK');</script>
-<!-- End Google Tag Manager -->
+<!-- SUPERTAG CODE ASYNC v2.9.8.6 -->
+<script type="text/javascript">
+(function(s,d,src) {
+    var st = d.createElement(s); st.type = 'text/javascript';st.async = true;st.src = src;
+    var sc = d.getElementsByTagName(s)[0]; sc.parentNode.insertBefore(st, sc);
+})('script', document, '//c.supert.ag/p/0002be/supertag-async.js');
+</script>
     <div class="navbar navbar-inverse navbar-static-top">
         <div class="navbar-inner">
             <div class="container">

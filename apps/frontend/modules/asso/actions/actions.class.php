@@ -369,6 +369,14 @@ EOF
     $this->roles = RoleTable::getInstance()->findAll();
   }
 
+  public function executeMemberJson()
+  {
+    $this->asso = $this->getRoute()->getObject();
+	$this->membres = AssoMemberTable::getInstance()->getMembres($this->asso)->execute();
+	
+	$this->roles = RoleTable::getInstance()->findAll();
+  }
+  
   public function executeFollow()
   {
     $asso = $this->getRoute()->getObject();

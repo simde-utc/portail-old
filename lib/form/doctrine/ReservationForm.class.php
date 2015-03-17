@@ -74,7 +74,7 @@ class ReservationForm extends BaseReservationForm
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'id_user_valid'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('UserValide'), 'required' => false)),
       'id_user_reserve' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('UserReserve'))),
-      'id_asso'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'required' => false)),
+      'id_asso'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Asso')), array('required' => 'Veuillez rentrer une association.')),
       'id_salle'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Salle'))),
       'date'            => new sfValidatorDate(),
       'heuredebut'      => new sfValidatorTime(array('required' => false)),

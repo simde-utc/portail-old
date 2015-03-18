@@ -16,4 +16,9 @@ class sfGuardUserTable extends PluginsfGuardUserTable
     {
         return Doctrine_Core::getTable('sfGuardUser');
     }
+    
+    public function getUserById($id)
+    {
+    		return $this->createQuery()->where('id=?',$id);
+    }
 }

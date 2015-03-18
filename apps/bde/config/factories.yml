@@ -3,10 +3,13 @@
 
 prod:
   logger:
-    class:   sfNoLogger
+    class: sfNoLogger
     param:
-      level:   err
+      level: err
       loggers: ~
+  mailer:
+    param:
+      delivery_strategy: realtime
 
 test:
   storage:
@@ -23,12 +26,8 @@ test:
     param:
       delivery_strategy: none
 
-dev:
-  mailer:
-    param:
-      delivery_strategy: none
 
-all:
+all: 
   routing:
     class: sfPatternRouting
     param:
@@ -40,3 +39,4 @@ all:
     param:
       cache_key_use_vary_headers: true
       cache_key_use_host_name:    true
+

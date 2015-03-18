@@ -93,6 +93,7 @@
                             <li><?php echo link_to('Services', 'service/index') ?></li>
                             <li><?php echo link_to('Partenaires', 'partenaire/index') ?></li>
                             <li><?php echo link_to('Carnet Avantage', 'carnetAvantage/index') ?></li>
+                            <li><?php echo link_to('Gestion des reservations', 'reservation/index') ?></li>
                         </ul>
                     </div><!--/.well -->
                 </div><!--/span-->

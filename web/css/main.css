@@ -51,13 +51,13 @@ p {
 }
 
 .part h1 .pull-right {
-	font-size: 12px;
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	text-transform: none;
+  font-size: 12px;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  text-transform: none;
 }
 
 .part h1 .pull-right a {
-	color: white;
+  color: white;
 }
 
 .part .article h2 img {
@@ -148,7 +148,7 @@ p {
 
 /* Menu principal */
 
-#menu, #bigmenu {
+#menu, #bigmenu, #calendarmenu {
   background: black;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424", endColorstr="#414141");
   background-image: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#414141));
@@ -174,6 +174,8 @@ p {
   border: 0;
 }
 
+/* Sous-menu asso */
+
 #bigmenu {
   display: none;
   z-index: 11000;
@@ -193,6 +195,32 @@ p {
   padding: 5px 10px;
   margin-bottom: -2000px;
   padding-bottom: 2000px;
+}
+
+/* Sous-menu calendrier */
+
+#calendarmenu {
+  padding-top: 10px;
+  font-weight : bold;
+  display: none;
+  z-index: 11000;
+  overflow: hidden;
+  padding-left: 0;
+}
+
+#calendarmenu a {
+  color:white;
+}
+
+#calendarmenu ul {
+  list-style-type: none;
+  padding-left: 6%;
+}
+
+#calendarmenu ul li{
+  display: inline-block;
+  list-style-type: none;
+  padding-right: 5%;
 }
 
 /* Page asso */
@@ -218,19 +246,19 @@ p {
 /* Formulaires d'édition (articles, event...) */
 
 .editform label:first-child {
-	text-align: right;
-	margin-right: 6px;
-	padding: 4px;
+  text-align: right;
+  margin-right: 6px;
+  padding: 4px;
 }
 .editform th {
-	vertical-align: top;
+  vertical-align: top;
 }
 .editform input, .editform textarea {
-	width: 100%;
+  width: 100%;
 }
 
 .editform input.btn, .editform select.nosize {
-	width: auto;
+  width: auto;
 }
 
 a.btn-danger {
@@ -569,7 +597,7 @@ a.btn-danger {
 }
 
 .infojob-form tbody input, .infojob-form tbody textarea, .infojob-form tbody .uneditable-input {
-	width: 350px;
+  width: 350px;
 }
 
 .infojob-form label {
@@ -579,7 +607,7 @@ a.btn-danger {
 }
 
 .infojob-form select {
-	width: 350px;
+  width: 350px;
 }
 
 #infojob-collapse-link {

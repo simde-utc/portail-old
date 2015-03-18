@@ -4,13 +4,17 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+script = <<SCRIPT
+sed -i -r 's#^\s+//(.*AllowNoPassword.*)#  \\1#g' /etc/phpmyadmin/config.inc.php
+SCRIPT
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "puppetlabs/debian-6.0.9-32-puppet"
+  config.vm.box = "puppetlabs/debian-6.0.10-32-puppet"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -62,6 +66,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.manifests_path = "puppet/manifests"
     puppet.manifest_file  = "site.pp"
     puppet.module_path    = "puppet/modules"
+  end
+
+  config.vm.provision "shell" do |shell|
+    shell.inline = script
   end
  
 end

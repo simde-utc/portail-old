@@ -1,7 +1,7 @@
 <?php use_stylesheet('fullcalendar.css') ?>
 
 <?php use_javascript('fullcalendar.min.js') ?>
-<?php use_javascript('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js') ?>
+<?php use_javascript('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js') ?>
 
 <?php include_partial("insideMenu",array("param" => $param)) ?>
 

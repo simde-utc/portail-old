@@ -224,11 +224,16 @@ class ReservationForm extends BaseReservationForm
   public function checkLimiteMax($validator, $values)
   { 
     if($values['id_asso']!=NULL){
-  if($values['id']!=NULL){
-      $q = ReservationTable::getInstance()->getReservationPourAssoPourDateUpdate($values['id_asso'],$values['date'],$values['id']);
-  }
-  else{
-      $q = ReservationTable::getInstance()->getReservationPourAssoPourDate($values['id_asso'],$values['date']);
+      {
+        // Le BDE n'est pas soumis à la restriction d'horaires
+      if ($values['id_asso'] == 1) return $values;
+
+      if($values['id']!=NULL){
+          $q = ReservationTable::getInstance()->getReservationPourAssoPourDateUpdate($values['id_asso'],$values['date'],$values['id']);
+      }
+      else{
+          $q = ReservationTable::getInstance()->getReservationPourAssoPourDate($values['id_asso'],$values['date']);
+      }
   }
   
   $result= $q->execute();

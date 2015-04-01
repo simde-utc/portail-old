@@ -222,65 +222,61 @@ class ReservationForm extends BaseReservationForm
   
   // Permet de voir si la limite de 3h maximum par jour par asso n'est pas atteinte.
   public function checkLimiteMax($validator, $values)
-  { 
-    if($values['id_asso']!=NULL){
-      {
-        // Le BDE n'est pas soumis à la restriction d'horaires
-      if ($values['id_asso'] == 1) return $values;
-
-      if($values['id']!=NULL){
-          $q = ReservationTable::getInstance()->getReservationPourAssoPourDateUpdate($values['id_asso'],$values['date'],$values['id']);
-      }
-      else{
-          $q = ReservationTable::getInstance()->getReservationPourAssoPourDate($values['id_asso'],$values['date']);
-      }
-  }
-  
-  $result= $q->execute();
-  
-  $h=0;
-  $m=0;
-        
-  if($result)
   {
-    foreach($result as $res)
-    {
-      $d=new DateTime($res->getDate()." ".$res->getHeureDebut());
-      $f=new DateTime($res->getDate()." ".$res->getHeureFin());
+    if($values['id_asso']!=NULL){
+          // Le BDE n'est pas soumis à la restriction d'horaires
+        if ($values['id_asso'] == 1) return $values;
+
+        if($values['id']!=NULL){
+            $q = ReservationTable::getInstance()->getReservationPourAssoPourDateUpdate($values['id_asso'],$values['date'],$values['id']);
+        }
+        else{
+            $q = ReservationTable::getInstance()->getReservationPourAssoPourDate($values['id_asso'],$values['date']);
+        }
+
+      $result= $q->execute();
+
+      $h=0;
+      $m=0;
+
+      if($result)
+      {
+        foreach($result as $res)
+        {
+          $d=new DateTime($res->getDate()." ".$res->getHeureDebut());
+          $f=new DateTime($res->getDate()." ".$res->getHeureFin());
+          $diff = $f->diff($d);
+          $h+=$diff->h;
+          $m+=$diff->i;
+
+        }
+      }
+
+      $d=new DateTime($values['date']." ".$values['heuredebut']);
+      $f=new DateTime($values['date']." ".$values['heurefin']);
       $diff = $f->diff($d);
       $h+=$diff->h;
       $m+=$diff->i;
 
-    }
-  }
-            
-  $d=new DateTime($values['date']." ".$values['heuredebut']);
-  $f=new DateTime($values['date']." ".$values['heurefin']);
-  $diff = $f->diff($d);
-  $h+=$diff->h;
-  $m+=$diff->i;
-  
-  $h+=(int)($m/60);
-  $m=$m%60;
+      $h+=(int)($m/60);
+      $m=$m%60;
 
-  
-  if($h>3 or ($h==3 and $m!=0)){
-        throw new sfValidatorError($validator, 'Vous ne pouvez pas réserver plus de 3h dans une même journée pour la même association.');
-  }
+
+      if($h>3 or ($h==3 and $m!=0)){
+            throw new sfValidatorError($validator, 'Vous ne pouvez pas réserver plus de 3h dans une même journée pour la même association.');
+      }
     }
     else{
-  $heureDeb= new DateTime($values['heuredebut']) ;
-  $heureFin= new DateTime($values['heurefin']) ;
-  $diff = $heureFin->diff($heureDeb);
-  if ($diff->h>3 or ($diff->h==3 and $diff->i!=0))
-  {
-    // créneau trop long
-    throw new sfValidatorError($validator, 'Créneau trop large, 3 heures max.');
-  }
-    
+      $heureDeb= new DateTime($values['heuredebut']) ;
+      $heureFin= new DateTime($values['heurefin']) ;
+      $diff = $heureFin->diff($heureDeb);
+      if ($diff->h>3 or ($diff->h==3 and $diff->i!=0))
+      {
+        // créneau trop long
+        throw new sfValidatorError($validator, 'Créneau trop large, 3 heures max.');
+      }
     }
     return $values;
-
   }
   
   

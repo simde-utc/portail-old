@@ -72,7 +72,7 @@
                 </td>
             </tr>
             <tr class="article_text">
-                <td colspan="4"><?php echo nl2br($event->getDescription()) ?></td>
+                <td colspan="5"><?php echo nl2br($event->getDescription()) ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>
@@ -107,7 +107,7 @@
                 </td>
             </tr>
             <tr class="article_text">
-                <td colspan="4"><?php echo nl2br($article->getText()) ?></td>
+                <td colspan="5"><?php echo nl2br($article->getText()) ?></td>
             </tr>
         <?php endforeach; ?>
     </tbody>

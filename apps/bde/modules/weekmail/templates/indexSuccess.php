@@ -44,49 +44,73 @@
 </table>
 <h1>Events à valider <small>Les événements seront ajoutés au premier Weekmail de la liste précédente</small></h1>
 <table class="table table-striped table-bordered table-hover">
-    <?php foreach ($events as $event): ?>
+    <thead>
         <tr>
-            <td>
-                <?php echo $event->getAsso()->getName() ?>
-            </td>
-            <td>
-                <a href="javascript:;" class="article_name"><?php echo $event->getName() ?></a>
-            </td>
-            <td style="width: 60%;"><?php echo nl2br($event->getSummary()) ?></td>
-            <td style="min-width: 72px;">
-                <div class="btn-group">
-                    <a href="<?php echo url_for('weekmail_accept_event', $event) ?>" class="btn btn-success"><i class="icon-ok icon-white"></i></a>
-                    <a href="<?php echo url_for('weekmail_refuse_event', $event) ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
-                </div>
-            </td>
+            <th>Asso</th>
+            <th>Nom</th>
+            <th>Débute le</th>
+            <th>Résumé</th>
+            <th>Actions</th>
         </tr>
-        <tr class="article_text">
-            <td colspan="4"><?php echo nl2br($event->getDescription()) ?></td>
-        </tr>
-    <?php endforeach; ?>
+    </thead>
+    <tbody>
+        <?php foreach ($events as $event): ?>
+            <tr>
+                <td>
+                    <?php echo $event->getAsso()->getName() ?>
+                </td>
+                <td>
+                    <a href="javascript:;" class="article_name"><?php echo $event->getName() ?></a>
+                </td>
+                <td><?php echo format_date($event->getStartDate(), 'd MMMM à HH:mm', 'fr'); ?></td>
+                <td style="width: 60%;"><?php echo nl2br($event->getSummary()) ?></td>
+                <td style="min-width: 72px;">
+                    <div class="btn-group">
+                        <a href="<?php echo url_for('weekmail_accept_event', $event) ?>" class="btn btn-success"><i class="icon-ok icon-white"></i></a>
+                        <a href="<?php echo url_for('weekmail_refuse_event', $event) ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
+                    </div>
+                </td>
+            </tr>
+            <tr class="article_text">
+                <td colspan="4"><?php echo nl2br($event->getDescription()) ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
 </table>
 <h1>Articles à valider <small>Les articles seront ajoutés au premier Weekmail de la liste précédente</small></h1>
 <table class="table table-striped table-bordered table-hover">
-    <?php foreach ($articles as $article): ?>
+    <thead>
         <tr>
-            <td>
-                <?php echo $article->getAsso()->getName() ?>
-            </td>
-            <td>
-                <a href="javascript:;" class="article_name"><?php echo $article->getName() ?></a>
-            </td>
-            <td style="width: 60%;"><?php echo nl2br($article->getSummary()) ?></td>
-            <td style="min-width: 72px;">
-                <div class="btn-group">
-                    <a href="<?php echo url_for('weekmail_accept', $article) ?>" class="btn btn-success"><i class="icon-ok icon-white"></i></a>
-                    <a href="<?php echo url_for('weekmail_refuse', $article) ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
-                </div>
-            </td>
+            <th>Asso</th>
+            <th>Titre</th>
+            <th>Crée le</th>
+            <th>Résumé</th>
+            <th>Actions</th>
         </tr>
-        <tr class="article_text">
-            <td colspan="4"><?php echo nl2br($article->getText()) ?></td>
-        </tr>
-    <?php endforeach; ?>
+    </thead>
+    <tbody>
+        <?php foreach ($articles as $article): ?>
+            <tr>
+                <td>
+                    <?php echo $article->getAsso()->getName() ?>
+                </td>
+                <td>
+                    <a href="javascript:;" class="article_name"><?php echo $article->getName() ?></a>
+                </td>
+                <td><?php echo $article->getCreatedAt() ?></td>
+                <td style="width: 60%;"><?php echo nl2br($article->getSummary()) ?></td>
+                <td style="min-width: 72px;">
+                    <div class="btn-group">
+                        <a href="<?php echo url_for('weekmail_accept', $article) ?>" class="btn btn-success"><i class="icon-ok icon-white"></i></a>
+                        <a href="<?php echo url_for('weekmail_refuse', $article) ?>" class="btn btn-danger"><i class="icon-remove icon-white"></i></a>
+                    </div>
+                </td>
+            </tr>
+            <tr class="article_text">
+                <td colspan="4"><?php echo nl2br($article->getText()) ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
 </table>
 <h1>Les derniers weekmails</h1>
 <table class="table table-striped table-bordered table-hover">

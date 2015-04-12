@@ -1,4 +1,7 @@
-<?php use_javascript('bde_weekmail') ?>
+<?php
+use_javascript('bde_weekmail');
+use_helper('Date');
+?>
 <a href="<?php echo url_for('weekmail/new') ?>" class="btn btn-success" style="float: right;"><i class="icon-plus icon-white"></i>&nbsp;&nbsp;Nouveau weekmail</a>
 <h1>Prochain weekmail</h1>
 <table class="table table-striped table-bordered table-hover">
@@ -62,7 +65,7 @@
                 <td>
                     <a href="javascript:;" class="article_name"><?php echo $event->getName() ?></a>
                 </td>
-                <td><?php echo format_date($event->getStartDate(), 'd MMMM à HH:mm', 'fr'); ?></td>
+                <td><?php echo format_date($event->getStartDate(), 'd MMMM y à HH:mm', 'fr'); ?></td>
                 <td style="width: 60%;"><?php echo nl2br($event->getSummary()) ?></td>
                 <td style="min-width: 72px;">
                     <div class="btn-group">
@@ -97,7 +100,7 @@
                 <td>
                     <a href="javascript:;" class="article_name"><?php echo $article->getName() ?></a>
                 </td>
-                <td><?php echo $article->getCreatedAt() ?></td>
+                <td><?php echo format_date($article->getCreatedAt(), 'd MMMM y à HH:mm', 'fr')?></td>
                 <td style="width: 60%;"><?php echo nl2br($article->getSummary()) ?></td>
                 <td style="min-width: 72px;">
                     <div class="btn-group">

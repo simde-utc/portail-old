@@ -224,8 +224,8 @@ class ReservationForm extends BaseReservationForm
   public function checkLimiteMax($validator, $values)
   {
     if($values['id_asso']!=NULL){
-          // Le BDE n'est pas soumis à la restriction d'horaires
-        if ($values['id_asso'] == 1) return $values;
+          // Le BDE (et le SiMDE) ne sont pas soumis à la restriction d'horaires
+        if (in_array($values['id_asso'], array('1', '2'))) return $values;
 
         if($values['id']!=NULL){
             $q = ReservationTable::getInstance()->getReservationPourAssoPourDateUpdate($values['id_asso'],$values['date'],$values['id']);

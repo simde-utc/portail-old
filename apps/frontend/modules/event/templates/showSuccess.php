@@ -22,7 +22,7 @@
         <p><i class="fa fa-calendar fa-2x fa-fw"></i>Du <?php echo format_date($event->getStartDate(), 'D', 'fr') ?> au <?php echo format_date($event->getEndDate(), 'D', 'fr') ?></p>
       <?php endif; ?>
       <p><i class="fa fa-clock-o fa-2x fa-fw"></i>De <?php echo format_date($event->getStartDate(), 't', 'fr') ?> à <?php echo format_date($event->getEndDate(), 't', 'fr') ?></p>
-      <p><i class="fa fa-home fa-2x fa-fw"></i><?php echo event_from_asso_list($event) ;?></p>
+      <p><i class="fa fa-home fa-2x fa-fw"></i><?php echo getAssoNameForEvent($event) ;?></p>
       <p><i class="fa fa-tag fa-2x fa-fw"></i><?php echo $event->getType()->getName(); ?></p>
       <p><i class="fa fa-map-marker fa-2x fa-fw"></i><?php echo $event->getPlace(); ?></p>
       <p><i class="fa fa-info-circle fa-2x fa-fw"></i><em><?php echo nl2br($event->getSummary()) ?></em></p>

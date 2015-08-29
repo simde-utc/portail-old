@@ -13,7 +13,7 @@
 
     <li>
       <h3><?php echo $event->getName() . " - " . format_date($event->getStartDate(), 'f', 'fr') . " au " . format_date($event->getEndDate(), 'f', 'fr'); ?></h3>
-      <?php echo event_from_asso_list($event) ;?>
+      <?php echo getAssoNameForEvent($event) ;?>
       <php echo " le " . format_date($event->getCreatedAt(), 'f', 'fr') ?>  
       <?php if (isset($asso) && $sf_user->isAuthenticated() && $sf_user->getGuardUser()->hasAccess($asso->getLogin(), 0x08)): ?>
         - <a href="<?php echo url_for('event/edit?id=' . $event->getId()) ?>">Editer</a>

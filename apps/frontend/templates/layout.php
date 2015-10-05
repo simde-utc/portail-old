@@ -60,6 +60,7 @@
               <a href="<?php echo url_for('infojob_home') ?>">InfoJob</a>              
               <a href="<?php echo url_for('services')?>">Services</a>
               <a href="<?php echo url_for('partenaires')?>">Partenaires</a>
+              <a href="/wiki">Wiki des Assos</a>
             </div>
           </div>
         </div>

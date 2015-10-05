@@ -122,7 +122,7 @@ p {
 /* Pied de page */
 
 #footer {
-  margin: 80px -20px 0px -20px;
+  margin-top: 80px;
   padding: 45px 20px 20px 20px;
   background: url(/images/bg_footer.png) repeat-x #393939;
   color: #FFF;

@@ -6,7 +6,11 @@
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
   <table>
-    <tfoot>
+    <tbody>
+      <?php echo $form->renderGlobalErrors() ?>
+      <?php echo $form ?>
+    </tbody>
+	<tfoot>
       <tr>
         <td colspan="2">
           <?php echo $form->renderHiddenFields(false) ?>
@@ -18,9 +22,5 @@
         </td>
       </tr>
     </tfoot>
-    <tbody>
-      <?php echo $form->renderGlobalErrors() ?>
-      <?php echo $form ?>
-    </tbody>
   </table>
 </form>

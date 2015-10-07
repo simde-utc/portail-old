@@ -154,7 +154,7 @@ class weekmailActions extends sfActions
 
   public function executeHtml() {
     $this->weekmail = $this->getRoute()->getObject();
-    $this->rows = 10
+    $this->rows = 12
       + WeekmailArticleTable::getInstance()
         ->getEventsForWeekmail($this->weekmail->getId())->count() * 3
       + WeekmailArticleTable::getInstance()

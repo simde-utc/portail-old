@@ -32,6 +32,18 @@
 <tr height="40">
   <td style="padding-left: 30px;" bgcolor="black">
     <strong>
+      <span style="color: #ffffff; font-size: large;">LE SAVIEZ-VOUS ?</span>
+    </strong>
+  </td>
+</tr>
+<tr>
+  <td style="text-align: justify; padding: 10px 30px;">
+    <?php echo nl2br($weekmail->getLeSaviezVous()) ?>
+  </td>
+</tr>
+<tr height="40">
+  <td style="padding-left: 30px;" bgcolor="black">
+    <strong>
       <span style="color: #ffffff; font-size: large;">EDITO</span>
     </strong>
   </td>
@@ -39,18 +51,6 @@
 <tr>
   <td style="text-align: justify; padding: 10px 30px;">
     <?php echo nl2br($weekmail->getEdito()) ?>
-  </td>
-</tr>
-<tr height="40">
-  <td style="padding-left: 30px;" bgcolor="black">
-    <strong>
-      <span style="color: #ffffff; font-size: large;">LE SAVIEZ-VOUS ?</span>
-    </strong>
-  </td>
-</tr>
-<tr>
-  <td style="text-align: justify; padding: 10px 30px;">
-    <?php echo nl2br($weekmail->getLesaviezvous()) ?>
   </td>
 </tr>
 <tr height="40">

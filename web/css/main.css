@@ -197,6 +197,10 @@ p {
   padding-bottom: 2000px;
 }
 
+#bigmenu li{
+	padding : 2px;
+}
+
 /* Sous-menu calendrier */
 
 #calendarmenu {

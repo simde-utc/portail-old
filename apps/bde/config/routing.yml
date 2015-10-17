@@ -271,10 +271,6 @@ exterieurs_edit:
   url: /exterieurs/edit
   param: { module: exterieurs, action: edit }
 
-exterieurs_cotiser:
-  url: /exterieurs/cotiser
-  param: { module: exterieurs, action: cotiser }
-
 # default rules
 homepage:
   url:   /

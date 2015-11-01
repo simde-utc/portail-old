@@ -4,6 +4,7 @@
 <?php if ($sf_user->hasFlash('error')): ?>
   <div class="alert alert-error"><?php echo $sf_user->getFlash('error') ?></div>
 <?php endif ?>
+<?php if (!(empty($cotisant))): ?>
 <h3>Infos sur la carte <?php echo $tag;?></h3>
 <?php echo $editForm->renderFormTag('edit?tag='.$tag) ?>
 <table class="table table-striped">
@@ -50,7 +51,7 @@ Deux cotisations ne peuvent être en même temps.</p>
 <?php else: ?>
 <p>Aucune cotisation à afficher</p>
 <?php endif ?>
-
+<?php endif; ?>
 <?php if(!empty($error)): ?>
 <p>Erreur : <?php echo $error ?></p>
 <?php endif; ?>

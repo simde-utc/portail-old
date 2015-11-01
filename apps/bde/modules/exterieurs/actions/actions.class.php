@@ -28,7 +28,7 @@ class exterieursActions extends sfActions
     }
     catch (\Ginger\Client\ApiException $ex){
       if($ex->getCode() == 404){
-        $this->error = "Utilisateur non trouvé";
+        $this->error = "Utilisateur non trouvé, contacter le SiMDE (simde@assos.utc.fr) pour régler le problème!";
       }
       else {
         $this->error = $ex->getCode()." - ".$ex->getMessage();
@@ -36,64 +36,56 @@ class exterieursActions extends sfActions
     }       
     $this->editForm = new sfForm();
     if ($this->cotisant) {
-      $this->editForm->setWidgets(array(
-        'prenom' => new sfWidgetFormInputText(array('label' => 'Prénom: ', 'default' => $this->cotisant->prenom)),
-        'nom' => new sfWidgetFormInputText(array('label' => 'Nom: ', 'default' => $this->cotisant->nom)),
-        'mail' => new sfWidgetFormInputText(array('label' => 'Mail (laisser vide si inconnu): ', 'default' => $this->cotisant->mail)),
-        'is_adulte' => new sfWidgetFormChoice(array('label' => 'Adulte ? ', 'choices' => array('Non', 'Oui'), 'default' => $this->cotisant->is_adulte))
-      ));
-    }
-    else {
-      $this->editForm->setWidgets(array(
-        'prenom' => new sfWidgetFormInputText(array('label' => 'Prénom: ')),
-        'nom' => new sfWidgetFormInputText(array('label' => 'Nom: ')),
-        'mail' => new sfWidgetFormInputText(array('label' => 'Mail (laisser identique si inconnu): ', 'default' => 'bde-badge'.$this->tag.'@assos.utc.fr')),
-        'is_adulte' => new sfWidgetFormChoice(array('label' => 'Adulte ? ', 'choices' => array('Non', 'Oui')))
-      ));
-    }
-    $this->editForm->setValidators(array(
-      'prenom' => new sfValidatorString(),
-      'nom' => new sfValidatorString(),
-      'is_adulte' => new sfValidatorChoice(array('choices' => array('0', '1'))),
-      'mail' => new sfValidatorEmail()));
+        $this->editForm->setWidgets(array(
+          'prenom' => new sfWidgetFormInputText(array('label' => 'Prénom: ', 'default' => $this->cotisant->prenom)),
+          'nom' => new sfWidgetFormInputText(array('label' => 'Nom: ', 'default' => $this->cotisant->nom)),
+          'mail' => new sfWidgetFormInputText(array('label' => 'Mail (laisser vide si inconnu): ', 'default' => $this->cotisant->mail)),
+          'is_adulte' => new sfWidgetFormChoice(array('label' => 'Adulte ? ', 'choices' => array('Non', 'Oui'), 'default' => $this->cotisant->is_adulte))
+        ));
+      $this->editForm->setValidators(array(
+        'prenom' => new sfValidatorString(),
+        'nom' => new sfValidatorString(),
+        'is_adulte' => new sfValidatorChoice(array('choices' => array('0', '1'))),
+        'mail' => new sfValidatorEmail()));
 
 
-    // les cotisations s'arrêtent le 31 aout
-    $debut = date('Y-m-d');
-    $yearend = date("Y");
-    if(date("m") > 8){
-      $yearend++;
-    }
-    $fin = "$yearend-08-31";
-    $this->cotizForm = new sfForm();
-    $this->cotizForm->setWidgets(array(
-      'montant' => new sfWidgetFormInputText(array(
-          'label' => 'Montant de la cotisation: ',
-          'default' => 20)),
-      'debut_cotiz' => new sfWidgetFormDate(array(
-          'can_be_empty' => false,
-          'label' => 'Date de début de cotisation (format 2015/05/31): ',
-          'format' => '%year%-%month%-%day%',
-          'default' => $debut)),      
-      'fin_cotiz' => new sfWidgetFormDate(array(
-          'can_be_empty' => false,
-          'label' => 'Date de fin de cotisation (format 2015/05/31): ',
-          'format' => '%year%-%month%-%day%',
-          'default' => $fin))));
-    $this->cotizForm->setValidators(array(
-      'montant' => new sfValidatorInteger(array('min' => 0)),
-      'fin_cotiz' => new sfValidatorDate(array('max' => $fin), array('invalid' => 'La date de fin doit être inférieure au 31 août de l\'année suivante')),
-      'debut_cotiz' => new sfValidatorDate(array('min' => $debut, 'max' => $fin))));
+      // les cotisations s'arrêtent le 31 aout
+      $debut = date('Y-m-d');
+      $yearend = date("Y");
+      if(date("m") > 8){
+        $yearend++;
+      }
+      $fin = "$yearend-08-31";
+      $this->cotizForm = new sfForm();
+      $this->cotizForm->setWidgets(array(
+        'montant' => new sfWidgetFormInputText(array(
+            'label' => 'Montant de la cotisation: ',
+            'default' => 20)),
+        'debut_cotiz' => new sfWidgetFormDate(array(
+            'can_be_empty' => false,
+            'label' => 'Date de début de cotisation (format 2015/05/31): ',
+            'format' => '%year%-%month%-%day%',
+            'default' => $debut)),      
+        'fin_cotiz' => new sfWidgetFormDate(array(
+            'can_be_empty' => false,
+            'label' => 'Date de fin de cotisation (format 2015/05/31): ',
+            'format' => '%year%-%month%-%day%',
+            'default' => $fin))));
+      $this->cotizForm->setValidators(array(
+        'montant' => new sfValidatorInteger(array('min' => 0)),
+        'fin_cotiz' => new sfValidatorDate(array('max' => $fin), array('invalid' => 'La date de fin doit être inférieure au 31 août de l\'année suivante')),
+        'debut_cotiz' => new sfValidatorDate(array('min' => $debut, 'max' => $fin))));
 
-    $this->cotizForm->getValidatorSchema()->setPostValidator(
-      new sfValidatorSchemaCompare('debut_cotiz', sfValidatorSchemaCompare::LESS_THAN, 'fin_cotiz',
-          array('throw_global_error' => true),
-          array('invalid' => 'La date de début ("%left_field%") doit être strictement inférieure à la date de fin ("%right_field%")')
-      )
-    );
-    $this->cotizForm->getWidgetSchema()->setNameFormat('cotiz[%s]');
-    $this->editForm->getWidgetSchema()->setNameFormat('edit[%s]');
-    $this->processForm($request, $this->editForm, $this->cotizForm);
+      $this->cotizForm->getValidatorSchema()->setPostValidator(
+        new sfValidatorSchemaCompare('debut_cotiz', sfValidatorSchemaCompare::LESS_THAN, 'fin_cotiz',
+            array('throw_global_error' => true),
+            array('invalid' => 'La date de début ("%left_field%") doit être strictement inférieure à la date de fin ("%right_field%")')
+        )
+      );
+      $this->cotizForm->getWidgetSchema()->setNameFormat('cotiz[%s]');
+      $this->editForm->getWidgetSchema()->setNameFormat('edit[%s]');
+      $this->processForm($request, $this->editForm, $this->cotizForm);
+    }
   }
   public function processForm(sfWebRequest $request, sfForm $editForm, sfForm $cotizForm)
   {
@@ -108,7 +100,7 @@ class exterieursActions extends sfActions
             try {
               $login = self::LOGIN_PATTERN . $this->tag;
               $ginger = new \Ginger\Client\GingerClient(sfConfig::get('app_portail_ginger_key'));
-              $ginger->setPersonne($login, $values["prenom"], $values["nom"], $values["mail"], $values["is_adulte"]);
+              $ginger->setPersonne($login, $values["nom"], $values["prenom"], $values["mail"], $values["is_adulte"]);
             }
             catch (\Ginger\Client\ApiException $ex) {
               if ($ex->getCode() == 404) {
@@ -130,7 +122,7 @@ class exterieursActions extends sfActions
             $login = self::LOGIN_PATTERN . $this->tag;
             $ginger = new \Ginger\Client\GingerClient(sfConfig::get('app_portail_ginger_key'));
             $ginger->addCotisation($login, $values["debut_cotiz"], $values["fin_cotiz"], $values["montant"]);
-            echo "Cotisation ajouté!";
+            $this->cotisations = $ginger->getCotisations($login);
           }
           catch (\Ginger\Client\ApiException $ex){
             if($ex->getCode() == 404){

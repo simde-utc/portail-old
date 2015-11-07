@@ -7,17 +7,19 @@ use_helper('Date');
 <table class="table table-striped table-bordered table-hover">
     <thead>
         <tr>
-            <th style="width: 20%;">Mot du BDE</th>
-            <th style="width: 20%;">Edito</th>
-            <th style="width: 20%;">Editar</th>
-            <th style="width: 20%;">Articles</th>
-            <th style="width: 20%;">Actions</th>
+            <th style="width: 17%;">Mot du BDE</th>
+            <th style="width: 17%;">Le saviez-vous?</th>
+            <th style="width: 17%;">Edito</th>
+            <th style="width: 17%;">Editar</th>
+            <th style="width: 17%;">Articles</th>
+            <th style="width: 17%;">Actions</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($current_weekmails as $weekmail): ?>
             <tr>
                 <td><?php echo nl2br($weekmail->getMotDuBde()) ?></td>
+                <td><?php echo nl2br($weekmail->getLeSaviezVous()) ?></td>
                 <td><?php echo nl2br($weekmail->getEdito()) ?></td>
                 <td><?php echo nl2br($weekmail->getEditar()) ?></td>
                 <td>
@@ -121,6 +123,7 @@ use_helper('Date');
         <tr>
             <th>Publié le</th>
             <th>Mot du BDE</th>
+            <th>Le saviez-vous ? </th>
             <th>Edito</th>
             <th>Editar</th>
             <th>Actions</th>
@@ -135,6 +138,7 @@ use_helper('Date');
                     <?php if (strtotime($weekmail->getPublishedAt()) > time()): ?><em>(Non publié)</em><?php endif ?>
                 </td>
                 <td><?php echo $weekmail->getMotDuBde() ?></td>
+                <td><?php echo $weekmail->getLeSaviezVous() ?></td>
                 <td><?php echo $weekmail->getEdito() ?></td>
                 <td><?php echo $weekmail->getEditar() ?></td>
                 <td style="min-width: 108px;">

@@ -254,13 +254,22 @@ reservations_statMois:
 
 reservation_statistiques:
   url: /reservation/statistiques
-  param: { module: reservation, action: statistiques }  
+  param: { module: reservation, action: statistiques }
 
 reservations_json:
   url: /reservations.:sf_format/:pole/:salle
   param: { module: reservation, action: reservations }
   requirements:
     sf_format: (?:html|json)
+
+#Cotisations extérieures
+exterieurs:
+  url: /exterieurs
+  param: { module: exterieurs, action: index }
+
+exterieurs_edit:
+  url: /exterieurs/edit
+  param: { module: exterieurs, action: edit }
 
 # default rules
 homepage:

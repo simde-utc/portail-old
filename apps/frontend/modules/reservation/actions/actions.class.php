@@ -114,9 +114,12 @@ class reservationActions extends sfActions
    $this->user = $this->getUser()->getGuardUser();
    
    $idSalle = $request->getUrlParameter('id',-1);
-   
+   $start = $request->getGetParameter('start', strtotime('monday this week'));
+   $end = $request->getGetParameter('end', strtotime('sunday this week'));
+
    if($idSalle == -1)
    {
+
       //BDE toujours dans les poles de l'utilisateur
       $this->polesUser = array("1");
 
@@ -147,7 +150,7 @@ class reservationActions extends sfActions
       $this->reservations = array();   
       foreach($this->sallesUser as $salle)
       {   
-         $resa = ReservationTable::getInstance()->getReservationBySalle($salle)->execute();
+         $resa = ReservationTable::getInstance()->getReservationsBySalleBetweenDates($salle, $start, $end)->execute();
          foreach($resa as $res)
             array_push($this->reservations, $res);
       }
@@ -155,7 +158,7 @@ class reservationActions extends sfActions
    else
    {
       $this->user = $this->getUser()->getGuardUser();   
-      $this->reservations = ReservationTable::getInstance()->getReservationBySalle($idSalle)->execute();
+      $this->reservations = ReservationTable::getInstance()->getReservationsBySalleBetweenDates($idSalle, $start, $end)->execute();
    }
   }
 

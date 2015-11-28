@@ -59,6 +59,12 @@ asso_member:
   param: { module: asso, action: member }
   options: { model: Asso, type: object }
 
+asso_member_json:
+  url: /asso/membres.json/:login
+  class: sfDoctrineRoute
+  param: { module: asso, action: memberJson, sf_format: json }
+  options: { model: Asso, type: object }  
+
 member_edit:
   url:   /asso/membres/:asso/edit/:id
   class: sfDoctrineRoute

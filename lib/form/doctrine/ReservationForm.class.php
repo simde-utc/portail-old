@@ -74,7 +74,7 @@ class ReservationForm extends BaseReservationForm
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'id_user_valid'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('UserValide'), 'required' => false)),
       'id_user_reserve' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('UserReserve'))),
-      'id_asso'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Asso'), 'required' => false)),
+      'id_asso'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Asso')), array('required' => 'Veuillez rentrer une association.')),
       'id_salle'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Salle'))),
       'date'            => new sfValidatorDate(),
       'heuredebut'      => new sfValidatorTime(array('required' => false)),
@@ -99,10 +99,10 @@ class ReservationForm extends BaseReservationForm
 
      $years = range(date('Y'), date('Y') + 2);
      $this->getWidget('date')->addOption('years', array_combine($years, $years));
-     $lminutes = [0,30];
-     $minutes = [sprintf("%02d",0),30];
+     $lminutes = array(0,30);
+     $minutes = array(sprintf("%02d",0),30);
 
-     $hours = [sprintf("%02d",8),sprintf("%02d",9),10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+     $hours = array(sprintf("%02d",8),sprintf("%02d",9),10,11,12,13,14,15,16,17,18,19,20,21,22,23);
      $this->getWidget('heuredebut')->addOption('minutes', array_combine($lminutes, $minutes));
      $this->getWidget('heuredebut')->addOption('hours', array_combine(range(8,23),$hours));
      $this->getWidget('heurefin')->addOption('minutes', array_combine($lminutes, $minutes));
@@ -191,17 +191,23 @@ class ReservationForm extends BaseReservationForm
   { 
     if($values['id']==NULL){
     
-    $result1= ReservationTable::getInstance()->isChevauchementFin($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne()["count"];
-    $result2= ReservationTable::getInstance()->isChevauchementDebut($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne()["count"];
-    $result3= ReservationTable::getInstance()->isChevauchementInterne($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne()["count"];
+    $r1= ReservationTable::getInstance()->isChevauchementFin($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne();
+    $result1=$r1["count"];
+    $r2= ReservationTable::getInstance()->isChevauchementDebut($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne();
+    $result2=$r2["count"];
+    $r3= ReservationTable::getInstance()->isChevauchementInterne($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'])->fetchOne();
+    $result3=$r3["count"];
     
     }
     else{
     
-    $result1= ReservationTable::getInstance()->isChevauchementFinUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne()["count"];
-    $result2= ReservationTable::getInstance()->isChevauchementDebutUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne()["count"];
-    $result3= ReservationTable::getInstance()->isChevauchementInterneUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne()["count"];
-     
+    $r1= ReservationTable::getInstance()->isChevauchementFinUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne();
+    $result1=$r1["count"];
+    $r2= ReservationTable::getInstance()->isChevauchementDebutUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne();
+    $result2=$r2["count"];
+    $r3= ReservationTable::getInstance()->isChevauchementInterneUpdate($values['date'],$values['id_salle'],$values['heuredebut'],$values['heurefin'],$values['id'])->fetchOne();
+    $result3=$r3["count"];
+    
     }
     
     if($result1!="0" or $result2!="0" or $result3!="0"){
@@ -216,60 +222,61 @@ class ReservationForm extends BaseReservationForm
   
   // Permet de voir si la limite de 3h maximum par jour par asso n'est pas atteinte.
   public function checkLimiteMax($validator, $values)
-  { 
-    if($values['id_asso']!=NULL){
-  if($values['id']!=NULL){
-      $q = ReservationTable::getInstance()->getReservationPourAssoPourDateUpdate($values['id_asso'],$values['date'],$values['id']);
-  }
-  else{
-      $q = ReservationTable::getInstance()->getReservationPourAssoPourDate($values['id_asso'],$values['date']);
-  }
-  
-  $result= $q->execute();
-  
-  $h=0;
-  $m=0;
-        
-  if($result)
   {
-    foreach($result as $res)
-    {
-      $d=new DateTime($res->getDate()." ".$res->getHeureDebut());
-      $f=new DateTime($res->getDate()." ".$res->getHeureFin());
+    if($values['id_asso']!=NULL){
+          // Le BDE (et le SiMDE) ne sont pas soumis à la restriction d'horaires
+        if (in_array($values['id_asso'], array('1', '2'))) return $values;
+
+        if($values['id']!=NULL){
+            $q = ReservationTable::getInstance()->getReservationPourAssoPourDateUpdate($values['id_asso'],$values['date'],$values['id']);
+        }
+        else{
+            $q = ReservationTable::getInstance()->getReservationPourAssoPourDate($values['id_asso'],$values['date']);
+        }
+
+      $result= $q->execute();
+
+      $h=0;
+      $m=0;
+
+      if($result)
+      {
+        foreach($result as $res)
+        {
+          $d=new DateTime($res->getDate()." ".$res->getHeureDebut());
+          $f=new DateTime($res->getDate()." ".$res->getHeureFin());
+          $diff = $f->diff($d);
+          $h+=$diff->h;
+          $m+=$diff->i;
+
+        }
+      }
+
+      $d=new DateTime($values['date']." ".$values['heuredebut']);
+      $f=new DateTime($values['date']." ".$values['heurefin']);
       $diff = $f->diff($d);
       $h+=$diff->h;
       $m+=$diff->i;
 
-    }
-  }
-            
-  $d=new DateTime($values['date']." ".$values['heuredebut']);
-  $f=new DateTime($values['date']." ".$values['heurefin']);
-  $diff = $f->diff($d);
-  $h+=$diff->h;
-  $m+=$diff->i;
-  
-  $h+=(int)($m/60);
-  $m=$m%60;
+      $h+=(int)($m/60);
+      $m=$m%60;
 
-  
-  if($h>3 or ($h==3 and $m!=0)){
-        throw new sfValidatorError($validator, 'Vous ne pouvez pas réserver plus de 3h dans une même journée pour la même association.');
-  }
+
+      if($h>3 or ($h==3 and $m!=0)){
+            throw new sfValidatorError($validator, 'Vous ne pouvez pas réserver plus de 3h dans une même journée pour la même association.');
+      }
     }
     else{
-  $heureDeb= new DateTime($values['heuredebut']) ;
-  $heureFin= new DateTime($values['heurefin']) ;
-  $diff = $heureFin->diff($heureDeb);
-  if ($diff->h>3 or ($diff->h==3 and $diff->i!=0))
-  {
-    // créneau trop long
-    throw new sfValidatorError($validator, 'Créneau trop large, 3 heures max.');
-  }
-    
+      $heureDeb= new DateTime($values['heuredebut']) ;
+      $heureFin= new DateTime($values['heurefin']) ;
+      $diff = $heureFin->diff($heureDeb);
+      if ($diff->h>3 or ($diff->h==3 and $diff->i!=0))
+      {
+        // créneau trop long
+        throw new sfValidatorError($validator, 'Créneau trop large, 3 heures max.');
+      }
     }
     return $values;
-
   }
   
   
@@ -287,7 +294,8 @@ class ReservationForm extends BaseReservationForm
       }
 
 
-    $result= $q->fetchOne()["count"];
+    $r= $q->fetchOne();
+    $result=$r["count"];
     
     if($result>0){
     throw new sfValidatorError($validator, 'Impossible de valider, cette salle a été réservée toute la journée.');

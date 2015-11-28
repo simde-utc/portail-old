@@ -15,7 +15,7 @@
         <?php echo $galerie_photo->getEvent() ?>
       </a>
     </p>
-    <p><?php echo event_from_asso_list($galerie_photo->getEvent())?></p>
+    <p><?php echo getAssoNameForEvent($galerie_photo->getEvent())?></p>
   <?php endif ?>
   <p><?php echo $galerie_photo->getDescription() ?></p>
 </div>

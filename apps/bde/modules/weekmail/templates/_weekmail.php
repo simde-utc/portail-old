@@ -14,7 +14,7 @@
   </td>
 </tr>
 <tr>
-  <td rowspan="<?php echo $rows ?>" width="120" valign="top" bgcolor="#000" style="text-align: center;">
+  <td rowspan="<?php echo $rows ?>" width="120" valign="top" bgcolor="#fff" style="text-align: center;">
       <img src="//assos.utc.fr/images/weekmail/bandeau_vertical.png" alt="" width="120" style="border: none;"/>
     </p>
   </td>
@@ -27,6 +27,18 @@
 <tr>
   <td style="text-align: justify; padding: 10px 30px;">
     <?php echo nl2br($weekmail->getMotDuBde()) ?>
+  </td>
+</tr>
+<tr height="40">
+  <td style="padding-left: 30px;" bgcolor="black">
+    <strong>
+      <span style="color: #ffffff; font-size: large;">LE SAVIEZ-VOUS ?</span>
+    </strong>
+  </td>
+</tr>
+<tr>
+  <td style="text-align: justify; padding: 10px 30px;">
+    <?php echo nl2br($weekmail->getLeSaviezVous()) ?>
   </td>
 </tr>
 <tr height="40">

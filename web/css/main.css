@@ -122,7 +122,7 @@ p {
 /* Pied de page */
 
 #footer {
-  margin: 80px -20px 0px -20px;
+  margin-top: 80px;
   padding: 45px 20px 20px 20px;
   background: url(/images/bg_footer.png) repeat-x #393939;
   color: #FFF;
@@ -195,6 +195,10 @@ p {
   padding: 5px 10px;
   margin-bottom: -2000px;
   padding-bottom: 2000px;
+}
+
+#bigmenu li{
+	padding : 2px;
 }
 
 /* Sous-menu calendrier */

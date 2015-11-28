@@ -10,7 +10,18 @@
   <a href="<?php echo url_for('transaction_new_with_compte', $compte) ?>" class="btn btn-success"><i class="icon-plus icon-white"></i>&nbsp;&nbsp;Nouvelle transaction</a>
 <a href="<?php echo url_for('transaction_pdf', $compte) ?>" class="btn btn-primary"><i class="icon-share-alt icon-white"></i>&nbsp;&nbsp;Export pdf</a>
 </div>
-
+<style type="text/css">
+.table-transaction select {
+  border: 0;
+  margin-bottom: 0;
+  width: 99%;
+}
+.table-transaction input {
+  border: 0;
+  margin-bottom: 0;
+  width: 99%;
+}
+</style>
 <div style="clear:both; text-align:center;">
     <strong><?php echo "Actuel  " . format_currency($compte->getSoldeActuel(), '€', 'fr'); ?></strong>
     <?php echo " | Rapproché  " . format_currency($compte->getSoldeRapproche(), '€', 'fr'); ?>
@@ -19,13 +30,13 @@
     <table style="margin: 20px auto;" class="table table-bordered table-striped table-transaction table-hover">
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Libellé</th>
-          <th>Poste</th>
+          <th><select><option>Date</option><option>Début</option><option>Fin</option></select></th>
+          <th><input type="text" placeholder="Libellé"/></th>
+          <th><input type="text" placeholder="Poste"/></th>
           <th>Crédit</th>
           <th>Débit</th>
           <th>Solde</th>
-          <th>Moyen</th>
+          <th><input type="text" placeholder="Moyen"/></th>
           <th></th>
         </tr>
       </thead>

@@ -13,7 +13,26 @@ class documentActions extends tresoActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->asso = $this->getRoute()->getObject();
+    $this->checkAuthorisation($this->asso);
+
+    $this->getResponse()->setSlot('current_asso', $this->asso);
+  }
+
+  public function executeList(sfWebRequest $request)
+  {
+    $this->asso = $this->getRoute()->getObject();
+    $this->checkAuthorisation($this->asso);
+
     $this->documents = DocumentTable::getInstance()->getAllForAsso($this->asso)->execute();
+  }
+
+  public function executeNew(sfWebRequest $request) {
+    $this->asso = $this->getRoute()->getObject();
+    $this->checkAuthorisation($this->asso);
+
+    $doc = new Document();
+    $doc->setAsso($this->asso);
+    $this->form = new DocumentForm($doc);
     $this->getResponse()->setSlot('current_asso', $this->asso);
   }
 
@@ -25,7 +44,10 @@ class documentActions extends tresoActions
 
     $path = $document->getPath();
     if(file_exists($path)) {
-      header('Content-type: application/pdf');
+      $infos = new finfo(FILEINFO_MIME_TYPE);
+      $mime = $infos->file($path);
+
+      header('Content-type: '.$mime);
       readfile($path);
       return sfView::NONE;
     } else {
@@ -33,27 +55,29 @@ class documentActions extends tresoActions
     }
   }
 
-  public function executeCreate(sfWebRequest $request)
+  public function executeAdd(sfWebRequest $request)
   {
-    $this->form = new DocumentForm();
+    $this->forward404Unless($request->isMethod(sfRequest::PUT));
 
-    $this->processForm($request, $this->form);
+    $form = new DocumentForm();
+    $request_params = $request->getParameter($form->getName());
+    $asso = AssoTable::getInstance()->find($request_params['asso_id']);
+    $this->checkAuthorisation($asso);
 
-    $this->setTemplate('new');
-  }
+    $form->setFilePath(Document::getPathForAsso($asso));
+    $files = $request->getFiles($form->getName());
+    $form->bind($request->getParameter($form->getName()), $files);
 
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->form = new DocumentForm($this->getRoute()->getObject());
-  }
+    if ( $form->isValid() ) {
+      $form->setValue('auteur', $this->getUser()->getGuardUser()->getPrimaryKey());
+      $doc = $form->save();
 
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->form = new DocumentForm($this->getRoute()->getObject());
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
+      $this->redirect('documents', $asso);
+    } else {
+      $this->form = $form;
+      $this->setTemplate('show', $this->transaction);
+      $this->getResponse()->setSlot('current_asso', $asso);
+    }
   }
 
   public function executeDeleteFromTransaction(sfWebRequest $request)
@@ -65,16 +89,5 @@ class documentActions extends tresoActions
     $document->deleteAndUnlink();
 
     $this->redirect('transaction_show', $transaction);
-  }
-
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
-      $document = $form->save();
-
-      $this->redirect('document/edit?id='.$document->getId());
-    }
   }
 }

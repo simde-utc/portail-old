@@ -225,4 +225,14 @@ class ReservationTable extends Doctrine_Table
     return $q;
   }
   
+  public function getReservationsBySalleBetweenDates($salle, $start, $end)
+  {
+    $q = $this->createQuery('a')
+              ->where('a.id_salle = ?', $salle)
+              ->andWhere('a.date >= FROM_UNIXTIME(?)', $start)
+              ->andWhere('a.date <= FROM_UNIXTIME(?)', $end)
+              ->addOrderBy('a.date');
+            
+    return $q;
+  }
 }

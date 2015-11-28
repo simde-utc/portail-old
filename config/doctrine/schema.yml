@@ -575,6 +575,7 @@ Weekmail:
     published_at: { type: date }
     mot_du_bde: { type: string }
     edito: { type: string }
+    le_saviez_vous: { type: string }
     editar: { type: string }
 
 WeekmailArticle:

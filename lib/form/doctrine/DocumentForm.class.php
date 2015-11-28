@@ -57,7 +57,7 @@ class DocumentForm extends BaseDocumentForm
     // on déplace le fichier
     $dir = $this->path . $type->getSlug() . '/';
     if(!is_dir($dir)) {
-      mkdir($dir);
+      mkdir($dir, 0770, True);
     }
 
     move_uploaded_file($value['tmp_name'], $dir . $fichier);

@@ -1,6 +1,10 @@
 <?php
 class tresoActions extends sfActions
 {
+  public function preExecute() {
+    $this->getResponse()->setSlot('current_module', $this->getModuleName());
+  }
+
   protected function checkAuthorisation($asso) {
     if(!$asso)
       return false;

@@ -14,15 +14,15 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <a class="btn btn-navbar pull-left" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="<?php echo url_for('homepage') ?>">Outil de Trésorerie</a>
+          <?php include_component('asso', 'myAssos', array('current_asso' => get_slot('current_asso'))) ?>
           <div class="btn-group pull-right">
             <?php if(!$sf_user->isAuthenticated()): ?>
               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#drop-connexion">
@@ -43,16 +43,13 @@
               </ul>
             <?php endif ?>
           </div>
-          <?php include_component('asso', 'myAssos', array('current_asso' => get_slot('current_asso'))) ?>
+          <?php include_component('asso', 'menu', array('asso' => get_slot('current_asso'), 'cm' => get_slot('current_module'))) ?>
         </div>
       </div>
     </div>
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span2">
-          <?php include_component('asso', 'menu', array('asso' => get_slot('current_asso'))) ?>
-        </div><!--/span-->
-        <div class="span10">
+        <div class="span12">
           <div class="well">
             <?php echo $sf_content ?>
           </div>

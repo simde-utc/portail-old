@@ -38,11 +38,11 @@ body {
     text-align: right;
 }
 
-.table-transaction tr .reduce {
+tr .reduce {
     white-space: nowrap;
 }
 
-.table-transaction tr .expand {
+tr .expand {
     width: 80%;
 }
 
@@ -85,4 +85,101 @@ body {
 .checkbox_list label
 {
     display: inline;
+}
+
+.dropdown-menu {
+  padding: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #ddd !important;
+  -moz-box-shadow: 2px 2px 5px #888;
+  -webkit-box-shadow: 2px 2px 5px #888;
+}
+
+.date-range table {
+  width: 100%;
+}
+
+.date-range td button {
+  background-image: none;
+  background-color: transparent;
+  border-width: 0px;
+  text-shadow: none;
+  box-shadow: none;
+  width: 100%;
+}
+
+.date-range td button:hover {
+  background-color: #eeeeee;
+}
+
+.date-range td button.active {
+  background-color: #006dcc;
+  color: white;
+}
+
+.date-range h1 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.date-range hr {
+  margin: 5px 0px;
+}
+
+.date-range .btn-group button {
+  width: 50%;
+}
+.date-range td, .date-range td:hover {
+  border: none;
+  background-color: white !important;
+}
+.date-range tr, .date-range tr:hover {
+  border: none;
+  background-color: white !important;
+}
+
+.checkbox-list input {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.checkbox-list li label {
+  cursor: pointer;
+  padding: 4px;
+}
+
+.checkbox-list li label:hover {
+  background-color: #eeeeee;
+}
+
+.full-button {
+    width: 100%;
+}
+
+.half-button {
+    width: 50%;
+    white-space: nowrap;
+}
+
+.types-chooser .btn-group {
+    margin-left: 0;
+    margin-bottom: 5px;
+}
+
+.table-documents .column-date {
+    width:13;
+}
+
+.table-documents .column-nom {
+    width:52%;
+}
+
+.table-documents .column-type {
+    width:10%;
+}
+
+.table-documents .column-transaction {
+    width:25%;
 }

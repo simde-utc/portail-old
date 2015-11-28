@@ -7,6 +7,7 @@
         <li><a href="<?php echo url_for('cheque_list',$asso) ?>">Liste des chèques</a></li>
         <li><a href="<?php echo url_for('compte',$asso) ?>">Comptes bancaires</a></li>
         <li><a href="<?php echo url_for('ndf',$asso) ?>">Notes de frais</a></li>
+        <li><a href="<?php echo url_for('documents',$asso) ?>">Documents</a></li>
         <?php if($asso->isPole()): ?>
             <li><a href="<?php echo url_for('avances',$asso) ?>">Avances de trésorerie</a></li>
         <?php endif ?>

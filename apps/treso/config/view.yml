@@ -14,7 +14,7 @@ default:
 
   stylesheets:    [bootstrap.min.css,treso.css]
 
-  javascripts:    [jquery-1.7.2.min.js, bootstrap.min.js, treso.js, highcharts.js]
+  javascripts:    [jquery-1.7.2.min.js, bootstrap.min.js, treso.js, highcharts.js, angular.js, angular-locale_fr-fr.js, angular-resource.js]
 
   has_layout:     true
   layout:         layout

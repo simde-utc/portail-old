@@ -251,11 +251,37 @@ ndf_create:
   param: { module: noteDeFrais, action: create }
 
 # Documents
+documents_list:
+  url: /documents/asso/:login.:sf_format
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: document, action: list }
+  requirements:
+    sf_format: (?:json)
+
+documents:
+  url: /documents/asso/:login
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: document, action: index }
+
+document_new:
+  url: /documents/:login/new
+  class: sfDoctrineRoute
+  options: { model: Asso, type: object }
+  param: { module: document, action: new }
+
+document_add:
+  url: /documents/add
+  param: { module: document, action: add }
+
 document_show:
-  url: /documents/show/:id
+  url: /documents/show/:asso/:type_slug/:fichier
   class: sfDoctrineRoute
   options: { model: Document, type: object }
   param: { module: document, action: show }
+  requirements:
+    fichier: .+
 
 document_delete_from_transaction:
   url: /documents/delete_from_transaction/:id

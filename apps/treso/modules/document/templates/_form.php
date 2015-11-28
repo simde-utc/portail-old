@@ -1,4 +1,7 @@
-<form action="<?php echo url_for('transaction/addDocument?id='.$transaction->getPrimaryKey())?>" method="post" enctype="multipart/form-data">
+<?php use_stylesheets_for_form($form) ?>
+<?php use_javascripts_for_form($form) ?>
+<br/>
+<form action="<?php echo url_for('document_add') ?>" method="post" enctype="multipart/form-data">
 <input type="hidden" name="sf_method" value="put" />
   <table>
     <tfoot>

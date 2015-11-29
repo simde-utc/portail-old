@@ -16,8 +16,10 @@ cas_logout:
 
 #Asso
 assos_list:
-  url:   /asso
-  param: { module: asso, action: index }
+  url:   /asso/:sf_format
+  param: { module: asso, action: index, sf_format: html }
+  requirements:
+    sf_format: (?:html|json)
 
 assos_list_pole:
   url:   /asso/pole/:pole
@@ -36,10 +38,12 @@ asso_articles:
   options: { model: Asso, type: object }
 
 asso_events:
-  url:   /asso/events/:login
+  url:   /asso/events/:login/:sf_format
   class: sfDoctrineRoute
-  param: { module: asso, action: events }
+  param: { module: asso, action: events, sf_format: html }
   options: { model: Asso, type: object }
+  requirements:
+    sf_format: (?:html|json)
 
 asso_bureau:
   url:   /asso/bureau/:login
@@ -623,8 +627,10 @@ register_resend:
   param: { module: sfGuardRegister, action: resend }
 
 abonnement_list:
-  url: /abonnement/:show
-  param: { module: abonnement, action: show}
+  url: /abonnement/:login/:sf_format
+  param: { module: abonnement, action: show, sf_format: html }
+  requirements:
+    sf_format: (?:html|json)
 
 services:
   url: /services

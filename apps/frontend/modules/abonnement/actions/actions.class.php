@@ -18,10 +18,12 @@ class abonnementActions extends sfActions
   }
   
   public function executeShow(sfWebRequest $request){
-    $this->text='hello world';
-    $this->abonnements = AbonnementTable::getInstance()->getMyAsso($this->getUser()->getGuardUser()->getId())->execute();
-   
+    $username = $request->getParameter('login');
+    if (!$username)
+    {
+      $this->abonnements = AbonnementTable::getInstance()->getMyAsso($this->getUser()->getGuardUser()->getId())->execute();
+    }
+    else
+      $this->abonnements = AbonnementTable::getInstance()->getMyAsso(sfGuardUserTable::getInstance()->findOneBy('username', $username)->getId())->execute();
   }
-
-
 }

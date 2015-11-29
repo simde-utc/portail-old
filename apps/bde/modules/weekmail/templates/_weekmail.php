@@ -98,7 +98,7 @@
       </p>
       <?php echo nl2br($article->getText()) ?>
       <br />
-      <a href="<?php echo cross_app_link_to('frontend', '@event_show', array('id' => $article->getEventId())) ?>" title="Lire <?php echo $article->getName() ?>">Voir les détails...</a>
+      <a href="http<?php echo cross_app_link_to('frontend', '@event_show', array('id' => $article->getEventId())) ?>" title="Lire <?php echo $article->getName() ?>">Voir les détails...</a>
     </td>
   </tr>
   <tr>
@@ -128,7 +128,7 @@
     <td style="text-align: justify; padding: 10px 30px;">
       <?php echo nl2br($article->getText()) ?>
       <br />
-      <a href="<?php echo cross_app_link_to('frontend', '@article_show', array('id' => $article->getArticleId())) ?>" title="Lire <?php echo $article->getName() ?>">Voir sur le portail...</a>
+      <a href="http<?php echo cross_app_link_to('frontend', '@article_show', array('id' => $article->getArticleId())) ?>" title="Lire <?php echo $article->getName() ?>">Voir sur le portail...</a>
     </td>
   </tr>
   <tr>

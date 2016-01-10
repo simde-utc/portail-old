@@ -1,13 +1,13 @@
 <?php use_helper('Date'); ?>
 <?php use_helper('CrossLink'); ?>
-<table id="grandtableau" cellspacing="0" cellpadding="0" width="640" style="
+<table id="grandtableau" cellspacing="0" cellpadding="0" width="640px" style="
 		background-image:url(https://assos.utc.fr/bde/weekmail/v2/bordure.png);
 		font-family: 'Lucida Sans Unicode';
 		font-size: 13px;
 		border-collapse: separate;
 		border-spacing : 5px 0;
 		border-width: 0px;">
-<tbody>
+<tbody width="640px">
 
 <tr width="640px">
   <td style="border-style : none none solid none; border-color: #f0f0f0; padding-left: 30px; height: 40px; color: #fff; background: url('http://i174.photobucket.com/albums/w84/fddfd/front_l.png') no-repeat;
@@ -58,7 +58,8 @@
 					color : #efefef;
 					border-style : none solid solid solid;
 					text-align : center;
-					padding : 2px 3px;">
+					padding : 2px 3px;"
+					width="200px">
 						<?php echo nl2br($weekmail->getLeSaviezVous()) ?>
 				</td></tr>
 			</table></td>
@@ -239,7 +240,7 @@
 		padding : 10px 20px;">
 		<center>
 		<?php
-			foreach (InfoJobOffreTable::getInstance()->getLastOffreList()->execute() as $offre) :
+			foreach (InfoJobOffreTable::getInstance()->getLastOffreList(3)->execute() as $offre) :
 		?>
 			<table id="petittableau" style="text-align :justify; font-size : 13px; border-collapse : collapse; border : solid 1px #333333; padding : 5px 0;" width="600px">
 				<tr><td style="text-align : center; background-color : #333333; color : #efefef;"><?php echo $offre->getTitre(); ?></td></tr>
@@ -253,7 +254,7 @@
 	</td>
 </tr>
 
-<tr>
+<tr width="640px">
   <td  style="border-top : solid 1px #333333;
 		border-bottom : solid 1px #333333;
 		border-collapse : collapse;

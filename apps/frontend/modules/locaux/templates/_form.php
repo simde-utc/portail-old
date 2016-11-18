@@ -84,55 +84,6 @@
         </td>
       </tr>
       <tr>
-        <th><?php echo $form['porte_mde']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['porte_mde']->renderError() ?>
-          <?php echo $form['porte_mde'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['bat_a']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['bat_a']->renderError() ?>
-          <?php echo $form['bat_a'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['locaux_pic']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['locaux_pic']->renderError() ?>
-          <?php echo $form['locaux_pic'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['mde_complete']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['mde_complete']->renderError() ?>
-          <?php echo $form['mde_complete'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['bureau_polar']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['bureau_polar']->renderError() ?>
-          <?php echo $form['bureau_polar'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['perm_polar']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['perm_polar']->renderError() ?>
-          <?php echo $form['perm_polar'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['salles_musique']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['salles_musique']->renderError() ?>
-          <?php echo $form['salles_musique'] ?>
-        </td>
-      </tr>
-      <tr>
         <th><?php echo $form['statut']->renderLabel() ?></th>
         <td>
           <?php echo $form['statut']->renderError() ?>

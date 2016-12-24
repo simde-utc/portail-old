@@ -90,6 +90,7 @@
                             <li><?php echo link_to('Chartes info', 'charte_info/index') ?></li>
                             <li><?php echo link_to('Weekmail', 'weekmail/index') ?></li>
                             <li><?php echo link_to('Charte d\'accès étendu aux locaux', 'charte_locaux/index')?></li>
+                            <li><?php echo link_to('Groupes d\'accès locaux', 'charte_locaux_type/index')?></li>
                             <li><?php echo link_to('InfoJob', 'infojob/index') ?></li>
                             <li><?php echo link_to('Services', 'service/index') ?></li>
                             <li><?php echo link_to('Partenaires', 'partenaire/index') ?></li>

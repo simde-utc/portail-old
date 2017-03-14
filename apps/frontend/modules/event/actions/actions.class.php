@@ -18,7 +18,11 @@ class eventActions extends sfActions
 
   public function executeIndex(sfWebRequest $request)
   {
-    $this->events = EventTable::getInstance()->getEventsList()->execute();
+    $start = $request->getGetParameter('start', strtotime('monday this week'));
+    $end = $request->getGetParameter('end', strtotime('sunday this week'));
+
+    $this->events = EventTable::getInstance()->getEventsListBetweenDates($start, $end)->execute();
+
     $this->setTemplate('list');
   }
 

@@ -27,7 +27,9 @@ l’administration (contacter le gardien de l’UTC) tout problème relatif aux 
 sécurité. En effet, le BDE-UTC n’assure pas de permanence durant ces périodes. Il doit avoir conscience du
 privilège de pouvoir accéder à la MDE en dehors des accès libres face à d’autres étudiants à l’accès limité,
 et doit par conséquent éviter tout incident qui pourrait entraîner la fermeture de la MDE.</p>
-
+  <div class="alert alert-info">
+    La description de chaque groupe d'accès est défini <b><a href="https://assos.utc.fr/wiki/Acc%C3%A8s_%C3%A9tendus">ici</a></b>
+  </div>
   <div class="well">
     <form method="post" action="<?php echo url_for('locaux_create') ?>">
       <?php echo $form->renderHiddenFields(false) ?>

@@ -27,18 +27,4 @@ class CharteLocaux extends BaseCharteLocaux
       default: return "Charte invalide"; break;
     }
   }
-
-  public function getAccesLocaux()
-  {
-    $res="";
-    if ($this->getPorteMde()==1) $res.="Porte de la MDE / ";
-    if ($this->getBatA()==1) $res.="Batiment A / ";
-    if ($this->getMdeComplete()==1) $res.=" MDE complète / ";
-    if ($this->getLocauxPic()==1) $res.="Locaux du PIC / ";
-    if ($this->getBureauPolar()==1) $res.="Bureau du Polar / ";
-    if ($this->getPermPolar()==1) $res.="Permanence du Polar / ";
-    if ($this->getSallesMusique()==1) $res.="Salles de musique / ";
-    $res = substr($res, 0, -3);
-    return $res;
-  }
 }

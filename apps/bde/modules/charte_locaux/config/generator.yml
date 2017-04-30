@@ -15,14 +15,14 @@ generator:
       actions: ~
       fields: ~
       list:
-        title: "Chartes d'accès étendu au locaux"
-        display: [id, date, Responsable, asso, semestre, acces_locaux, statut_string, motif, created_at]
+        title: "Chartes d'accès étendu aux locaux"
+        display: [id, date, Responsable, asso, semestre, CharteLocauxType, statut_string, motif]
         actions: {}
         batch_actions: {}
         object_actions: {valider: ~, refuser:~, _delete:~}
-        sort: [created_at, desc]
+        sort: [date, desc]
       filter:
-        display: [login, user_id, asso_id, semestre_id, porte_mde, bat_a, locaux_pic, mde_complete, bureau_polar, perm_polar, salles_musique, statut]
+        display: [login, user_id, asso_id, semestre_id, type_id, statut]
       form:    ~
       edit:    ~
       new:     ~

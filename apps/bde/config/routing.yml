@@ -1,3 +1,12 @@
+charte_locaux_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                CharteLocauxType
+    module:               charte_locaux_type
+    prefix_path:          /charte_locaux_type
+    column:               id
+    with_wildcard_routes: true
+
 charte_locaux:
   class: sfDoctrineRouteCollection
   options:

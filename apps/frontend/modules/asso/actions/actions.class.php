@@ -102,15 +102,7 @@ class assoActions extends sfActions {
              Les demandes suivantes ont été effectuées :<br /><br /><ul>';
         foreach($cl as $locaux)
         {
-          $msg .= '<li><b>' . $locaux->getResponsable()->getName() . '</b> le <em>' . $locaux->getDate() . '</em><br />Accès demandé:<ul>';
-          if ($locaux->getPorteMde()) $msg .= '<li>Porte de la MDE</li>';
-          if ($locaux->getBatA()) $msg .= '<li>Batiment A</li>';
-          if ($locaux->getLocauxPic()) $msg .= '<li>Locaux du Pic</li>';
-          if ($locaux->getMdeComplete()) $msg .= '<li>MDE complète</li>';
-          if ($locaux->getBureauPolar()) $msg .= '<li>Bureau du Polar</li>';
-          if ($locaux->getPermPolar()) $msg .= '<li>Permanence du Polar</li>';
-          if ($locaux->getSallesMusique()) $msg .= '<li>Salles de musique</li>';
-          $msg .= '</ul><br />';
+          $msg .= '<li><b>' . $locaux->getResponsable()->getName() . '</b> le <em>' . $locaux->getDate() . '</em><br />Accès demandé: '. $locaux->getCharteLocauxType()->getName().'<br />';
           $msg .= 'Motif: <br />' . $locaux->getMotif() . '<br />';
           $msg .= '<a href="' . $this->generateUrl('locaux_accept', $locaux) . '">Accepter</a> / <a href="' . $this->generateUrl('locaux_refuse', $locaux) . '">Refuser</a></li>';          
         }

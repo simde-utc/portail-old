@@ -1,0 +1,29 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           CharteLocauxType
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          charte_locaux_type
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields: ~
+      list:
+        title: "Groupes d'accès aux locaux"
+        display: [id, name, description, correspondance]
+        sort: [correspondance, asc]
+      filter:
+        display: [name, description, correspondance]
+      form:    ~
+      edit:
+        title: Edition d'un groupe d'accès
+      new:
+        title: Nouveau groupe d'accès
+        display: [name, description, correspondance]
+

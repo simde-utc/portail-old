@@ -44,6 +44,15 @@ class EventTable extends Doctrine_Table
         return $q;
     }
 
+    
+    public function getEventsListBetweenDates($start, $end) {
+        $q = $this->createQuery('a')
+                    ->where('a.start_date <= FROM_UNIXTIME(?)', $end)
+                    ->andWhere('a.end_date >= FROM_UNIXTIME(?)', $start)
+                    ->addOrderBy('a.start_date DESC');
+        return $q;
+    }
+
     /**
      *
      * Fetch the list of all events in future.

@@ -22,7 +22,7 @@ class profileActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    if (!$this->getUser()->isAuthenticated())
+    if (!$this->getUser()->isAuthenticated() && $request->getRequestFormat() != "json")
       $this->redirect("homepage");
     $this->user = $this->getRoute()->getObject();
     

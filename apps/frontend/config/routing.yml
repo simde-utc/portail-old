@@ -26,16 +26,20 @@ assos_list_pole:
   param: { module: asso, action: index }
 
 assos_show:
-  url:   /asso/:login
+  url:   /asso/:login/:sf_format
   class: sfDoctrineRoute
-  param: { module: asso, action: show }
+  param: { module: asso, action: show, sf_format: html }
   options: { model: Asso, type: object, method_for_query: retrieveAsso }
+  requirements:
+    sf_format: (?:html|json)
 
 asso_articles:
-  url:   /asso/articles/:login
+  url:   /asso/articles/:login/:sf_format
   class: sfDoctrineRoute
-  param: { module: asso, action: articles }
+  param: { module: asso, action: articles, sf_format: html }
   options: { model: Asso, type: object }
+  requirements:
+    sf_format: (?:html|json)
 
 asso_events:
   url:   /asso/events/:login/:sf_format
@@ -325,10 +329,12 @@ sport_edit:
 
 #Profile
 profile_show:
-  url:   /profile/:username
+  url:   /profile/:username/:sf_format
   class: sfDoctrineRoute
   options: {model: sfGuardUser, type: object}
-  param: { module: profile, action: show }
+  param: { module: profile, action: show, sf_format: html }
+  requirements:
+    sf_format: (?:html|json)
 
 
 profile_identite_edit:

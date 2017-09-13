@@ -7,7 +7,8 @@ foreach ($abonnements as $abonnement)
   $asso = $abonnement->getAsso();
   $arr = array(
     "id" => ($asso->getId()),
-    "name" => ($asso->getName()), 
+    "name" => ($asso->getName()),
+    "login" => ($asso->getLogin()),
     "pole" => array(
     		"id" => $asso->getPoleId(),
     		"name" => $asso->getPoleName()
